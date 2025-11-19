@@ -99,14 +99,24 @@ Os tokens são exportados em:
 ### Componentes (`packages/design-system`)
 
 Biblioteca de componentes React reutilizáveis:
+
+**Componentes Base:**
 - **Button** - Botões com variantes (primary, secondary, outline, ghost)
 - **Text** - Tipografia com controle completo
 - **Card** - Containers com diferentes estilos
 - **Layout** - Sistema de layout responsivo
 
+**Componentes de Formulário:** 🆕
+- **Input** - Text, email, password, number, etc.
+- **Select** - Dropdown com options e optgroups
+- **Checkbox** - Checkbox com label e estados
+- **Radio** - Radio buttons para grupos de opções
+- **Switch** - Toggle switch animado
+
 Todos os componentes:
 - Consomem tokens do `@prototipo/tokens`
 - São documentados no Storybook
+- Incluem acessibilidade (ARIA, keyboard navigation)
 - Estão disponíveis no Puck para prototipagem
 
 ## 🎬 Studio (Puck)
@@ -196,6 +206,23 @@ pnpm lint                 # Executa lint em todos os pacotes
 pnpm test                 # Executa testes em todos os pacotes
 pnpm clean                # Remove node_modules e builds
 ```
+
+### Automação GitHub 🆕
+
+```bash
+# Configuração completa automatizada (recomendado)
+pnpm setup:gh:full
+
+# Ou passo a passo:
+pnpm setup:gh:labels                # Criar labels padrão
+pnpm setup:gh:issues:all            # Criar todas as 37 issues
+pnpm setup:gh:project               # Criar project board
+pnpm setup:gh:add-issues-to-project # Adicionar issues ao board
+```
+
+**Pré-requisito**: `gh auth login` (GitHub CLI autenticado)
+
+Veja mais detalhes em [`scripts/gh/README.md`](./scripts/gh/README.md)
 
 ### Pacotes Individuais
 
@@ -288,7 +315,10 @@ packages/design-system
 - [Storybook README](./apps/storybook/README.md)
 - [Documentação Central](./docs/README.md)
 - [Backlog do Projeto](./docs/backlog.md)
+- [Issues Pendentes](./docs/issues-pendentes.md) 🆕
+- [Resumo de Issues Resolvidas](./docs/resumo-issues-resolvidas.md) 🆕
 - [Domínios e Jornadas](./domains/README.md)
+- [Automação GitHub](./scripts/gh/README.md) 🆕
 
 ## 🐛 Troubleshooting
 
