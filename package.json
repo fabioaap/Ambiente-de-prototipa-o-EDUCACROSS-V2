@@ -1,0 +1,22 @@
+{
+  "name": "prototipacao-educa",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev:studio": "pnpm --filter studio dev",
+    "dev:storybook": "pnpm --filter storybook dev",
+    "build:studio": "pnpm --filter studio build",
+    "build:storybook": "pnpm --filter storybook build",
+    "build:tokens": "pnpm --filter @prototipo/tokens build",
+    "build:design-system": "pnpm --filter @prototipo/design-system build",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
