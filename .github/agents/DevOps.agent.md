@@ -4,8 +4,8 @@ description: Agente DevOps senior que analisa qualquer repositorio dos projetos 
 target: github-copilot
 tools: ["read", "search", "edit", "shell"]
 metadata:
-  domain: DevOps
-  owner: fabio
+domain: DevOps
+owner: fabio
 ---
 
 ## Core Identity
