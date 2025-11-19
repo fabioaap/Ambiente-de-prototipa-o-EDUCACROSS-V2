@@ -1,10 +1,10 @@
 ---
-name: devops
+name: DevOps
 description: Agente DevOps senior que analisa qualquer repositorio dos projetos do Fabio para resolver bugs e otimizar arquitetura ambiente e C I C D
 target: github-copilot
 tools: ["read", "search", "edit", "shell"]
 metadata:
-  domain: devops
+  domain: DevOps
   owner: fabio
 ---
 
