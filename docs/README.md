@@ -4,8 +4,8 @@ Este diretório centraliza documentos de apoio ao monorepo de prototipação EDU
 
 ## Índice
 
-- [Backlog do Projeto](./backlog.md)
-- [Jornadas por Domínio](../BackOffice/README.md), [FrontOffice](../FrontOffice/README.md), [Game](../Game/README.md)
+- [Backlog do Projeto](./backlog.md) - Epics, tarefas priorizadas e roadmap
+- [Domínios e Jornadas](../domains/README.md) - BackOffice, FrontOffice, Game
 
 ## Convenções
 

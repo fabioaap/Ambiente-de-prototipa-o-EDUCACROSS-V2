@@ -7,13 +7,13 @@ Esta pasta contém todas as jornadas de prototipagem relacionadas ao **Game** (�
 Cada jornada deve ser organizada em sua própria pasta dentro de `journeys/`:
 
 ```
-Game/
-  journeys/
-    nome-da-jornada/
-      README.md           # Descrição da jornada
-      notas.md            # Decisões de design e anotações
-      diagramas/          # Fluxos, wireframes, etc
-      referencias/        # Links, imagens de referência
+domains/Game/
+	journeys/
+		nome-da-jornada/
+			README.md           # Descrição da jornada
+			notas.md            # Decisões de design e anotações
+			diagramas/          # Fluxos, wireframes, etc
+			referencias/        # Links, imagens de referência
 ```
 
 ## Como documentar uma jornada

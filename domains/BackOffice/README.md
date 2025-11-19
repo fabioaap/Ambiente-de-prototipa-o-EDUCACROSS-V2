@@ -1,19 +1,19 @@
-# FrontOffice - Jornadas de Prototipação
+# BackOffice - Jornadas de Prototipação
 
-Esta pasta contém todas as jornadas de prototipagem relacionadas ao **FrontOffice** (área do aluno/responsável) do sistema EDUCACROSS.
+Esta pasta contém todas as jornadas de prototipagem relacionadas ao **BackOffice** (área administrativa) do sistema EDUCACROSS.
 
 ## Estrutura
 
 Cada jornada deve ser organizada em sua própria pasta dentro de `journeys/`:
 
 ```
-FrontOffice/
-  journeys/
-    nome-da-jornada/
-      README.md           # Descrição da jornada
-      notas.md            # Decisões de design e anotações
-      diagramas/          # Fluxos, wireframes, etc
-      referencias/        # Links, imagens de referência
+domains/BackOffice/
+	journeys/
+		nome-da-jornada/
+			README.md           # Descrição da jornada
+			notas.md            # Decisões de design e anotações
+			diagramas/          # Fluxos, wireframes, etc
+			referencias/        # Links, imagens de referência
 ```
 
 ## Como documentar uma jornada
@@ -37,27 +37,26 @@ O README deve incluir:
 Exemplo:
 
 ```markdown
-# Jornada: Onboarding do Aluno
+# Jornada: Revisão de Questões
 
 ## Objetivo
-Guiar novos alunos através do processo inicial de setup da conta.
+Permitir que professores revisem questões submetidas antes de publicá-las.
 
 ## Contexto
-Primeira experiência do aluno com a plataforma - crucial para retenção.
+Professores precisam validar qualidade e adequação antes de disponibilizar.
 
 ## Protótipos
-- [Boas-vindas](http://localhost:3000/frontoffice/onboarding-welcome)
-- [Perfil inicial](http://localhost:3000/frontoffice/onboarding-profile)
-- [Tutorial](http://localhost:3000/frontoffice/onboarding-tutorial)
+- [Lista de questões pendentes](http://localhost:3000/backoffice/questoes-pendentes)
+- [Detalhe da questão](http://localhost:3000/backoffice/questao-detalhe)
 
 ## Componentes
-- `Card` (elevated) - Para cada etapa
-- `Button` (primary) - Avançar
-- `Text` - Instruções e títulos
-- `Layout` - Container centrado
+- `Card` (elevated) - Para exibir cada questão
+- `Button` (primary, outline) - Aprovar/Rejeitar
+- `Text` - Tipografia consistente
+- `Layout` - Container responsivo
 
 ## Status
-🚧 Em andamento
+✅ Concluído
 ```
 
 ### 3. Documente decisões em notas.md

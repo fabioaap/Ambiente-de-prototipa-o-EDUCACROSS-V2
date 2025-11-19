@@ -20,12 +20,20 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ```
 .
-├── BackOffice/              # Jornadas do BackOffice (admin)
-│   └── journeys/
-├── FrontOffice/             # Jornadas do FrontOffice (aluno/responsável)
-│   └── journeys/
-├── Game/                    # Jornadas do Game (missões, gamificação)
-│   └── journeys/
+├── domains/                 # Domínios com jornadas (BackOffice, FrontOffice, Game)
+│   ├── README.md            # Documentação centralizada dos domínios
+│   ├── BackOffice/
+│   │   ├── README.md
+│   │   └── journeys/        # Jornadas de prototipagem BackOffice
+│   ├── FrontOffice/
+│   │   ├── README.md
+│   │   └── journeys/        # Jornadas de prototipagem FrontOffice
+│   └── Game/
+│       ├── README.md
+│       └── journeys/        # Jornadas de prototipagem Game
+├── docs/                    # Documentação do projeto
+│   ├── README.md
+│   └── backlog.md           # Backlog e roadmap
 ├── apps/
 │   ├── studio/              # App Next.js com Puck (editor visual)
 │   └── storybook/           # Catálogo de componentes
@@ -141,12 +149,16 @@ Visite: http://localhost:6006
 
 ## 📝 Organização por Jornadas
 
-As pastas `BackOffice/`, `FrontOffice/` e `Game/` são organizadas por **jornadas de prototipagem**.
+As pastas dentro de `domains/` (BackOffice, FrontOffice, Game) são organizadas por **jornadas de prototipagem**.
+
+Cada domínio contém:
+- **README.md**: Visão geral do domínio e objetivos
+- **journeys/**: Diretório com as jornadas documentadas
 
 ### Estrutura de uma Jornada
 
 ```
-BackOffice/journeys/nome-da-jornada/
+domains/BackOffice/journeys/nome-da-jornada/
   README.md           # Objetivo, contexto, links para protótipos
   notas.md            # Decisões de design/UX
   diagramas/          # Fluxos, wireframes
@@ -155,7 +167,7 @@ BackOffice/journeys/nome-da-jornada/
 
 ### Como Documentar uma Jornada
 
-1. **Crie a pasta da jornada** dentro de `journeys/`
+1. **Crie a pasta da jornada** dentro de `domains/{domínio}/journeys/`
 2. **README.md** deve incluir:
    - Objetivo da jornada
    - Contexto de negócio
@@ -166,7 +178,7 @@ BackOffice/journeys/nome-da-jornada/
 4. **diagramas/** para fluxogramas e wireframes
 5. **referencias/** para materiais de apoio
 
-**Exemplo**: Ver os READMEs em `BackOffice/`, `FrontOffice/` e `Game/`.
+**Mais detalhes**: Ver `domains/README.md` para convenções e templates.
 
 ## 🔧 Scripts Disponíveis
 
@@ -274,10 +286,9 @@ packages/design-system
 - [Design System README](./packages/design-system/README.md)
 - [Studio README](./apps/studio/README.md)
 - [Storybook README](./apps/storybook/README.md)
-- [BackOffice Jornadas](./BackOffice/README.md)
-- [FrontOffice Jornadas](./FrontOffice/README.md)
-- [Game Jornadas](./Game/README.md)
+- [Documentação Central](./docs/README.md)
 - [Backlog do Projeto](./docs/backlog.md)
+- [Domínios e Jornadas](./domains/README.md)
 
 ## 🐛 Troubleshooting
 

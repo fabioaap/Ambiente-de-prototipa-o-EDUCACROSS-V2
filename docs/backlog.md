@@ -60,14 +60,14 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 - [ ] D3 – Play functions para interações básicas nos componentes (testes interativos).
 - [ ] D4 – Agrupamento por categoria/domínio; exemplos focados em jornadas reais.
 
-### Epic E – Jornadas (BackOffice/FrontOffice/Game)
-- [ ] E1 – BackOffice: Revisão de Questões
+### Epic E – Jornadas (domains/BackOffice, domains/FrontOffice, domains/Game)
+- [ ] E1 – domains/BackOffice: Revisão de Questões
   - [ ] Páginas do Studio: lista de pendentes, detalhe de questão, ações.
   - [ ] Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog.
-- [ ] E2 – FrontOffice: Onboarding do Aluno
+- [ ] E2 – domains/FrontOffice: Onboarding do Aluno
   - [ ] Páginas do Studio: boas-vindas, perfil inicial, tutorial.
   - [ ] Componentes DS necessários: Stepper, ProgressBar, AvatarUpload.
-- [ ] E3 – Game: Missões da Ilha 1
+- [ ] E3 – domains/Game: Missões da Ilha 1
   - [ ] Páginas do Studio: mapa, missão ativa, conquistas.
   - [ ] Componentes DS necessários: Card de missão, HUD simples, Modal de recompensa.
 
@@ -77,6 +77,23 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 - [ ] F3 – GitHub Actions: workflow de CI com cache pnpm e jobs de build (tokens, DS, Studio, Storybook).
 - [ ] F4 – Husky + lint-staged (opcional) para garantir qualidade em commits.
 
+### Epic G – Governança e Manutenção
+- [x] G1 – Consolidar estrutura de domínios em `domains/` (BackOffice, FrontOffice, Game).
+- [x] G2 – Criar template reutilizável de jornada (`domains/template-jornada.md`).
+- [x] G3 – Documentar convenções de nomenclatura e checklist de jornadas em `domains/README.md`.
+- [ ] G4 – Script para gerar índice automático de jornadas por domínio (`pnpm gen:jornadas`).
+- [ ] G5 – Validação de links em CI (lint-md ou similar) para evitar links quebrados.
+- [ ] G6 – Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas.
+
+### Epic H – Dashboard do Projeto
+- [ ] H1 – Planejar layout do Dashboard do Projeto (wireframe): lista de páginas prototipadas, links, filtros por domínio/jornada.
+- [ ] H2 – Implementar endpoint e rota para index de páginas do Studio (`/studio/api/pages` ou `apps/studio/data/pages/*`).
+- [ ] H3 – Implementar UI do Dashboard (aplicação mínima em `apps/studio` ou `apps/storybook`): links diretos para páginas prototipadas.
+- [ ] H4 – Expor indicadores de saúde do repositório: status de build (tokens/DS/Studio/Storybook), última build, lint status, tamanho do bundle Storybook, dependências desatualizadas.
+- [ ] H5 – Link direto e badge para Storybook estático (documentação final) no Dashboard e READMEs de domínio.
+- [ ] H6 – Definir requisitos de segurança/visibilidade (quem pode acessar o dashboard; ambiente prod vs dev).
+
+
 ---
 
 ## Backlog Priorizado (P0→P2)
@@ -85,15 +102,20 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
   - D1 Página de Tokens no Storybook
   - B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch)
   - E1 BackOffice: primeira jornada com páginas base
+  - F1 ESLint unificado
 - P1 (médio)
   - C2 Lista de páginas no sidebar
   - B4 Acessibilidade básica
   - D2 Addon A11y + D3 Play functions
-  - F1 ESLint unificado
+  - G4 Script gerador de índice de jornadas
+  - G6 Guia de contribuição
+  - H1 Planejar Dashboard do Projeto (wireframe)
 - P2 (exploração)
   - B6 Theming com tokens semânticos
   - C5 Export/Import JSON por UI
   - F3 GitHub Actions CI
+  - G5 Validação de links em CI
+  - H3 Dashboard: implementação de UI e integrações
 
 ---
 
@@ -154,6 +176,6 @@ pnpm -r test
 - Storybook: `apps/storybook/`
 - Design System: `packages/design-system/`
 - Tokens: `packages/tokens/`
-- Jornadas: `BackOffice/`, `FrontOffice/`, `Game/`
+- Jornadas: `domains/BackOffice/`, `domains/FrontOffice/`, `domains/Game/`
 
 Mantenha este backlog vivo. Ao concluir tarefas, marque-as e adicione links para PRs e páginas do Studio/Storybook.

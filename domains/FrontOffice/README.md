@@ -1,19 +1,19 @@
-# BackOffice - Jornadas de Prototipação
+# FrontOffice - Jornadas de Prototipação
 
-Esta pasta contém todas as jornadas de prototipagem relacionadas ao **BackOffice** (área administrativa) do sistema EDUCACROSS.
+Esta pasta contém todas as jornadas de prototipagem relacionadas ao **FrontOffice** (área do aluno/responsável) do sistema EDUCACROSS.
 
 ## Estrutura
 
 Cada jornada deve ser organizada em sua própria pasta dentro de `journeys/`:
 
 ```
-BackOffice/
-  journeys/
-    nome-da-jornada/
-      README.md           # Descrição da jornada
-      notas.md            # Decisões de design e anotações
-      diagramas/          # Fluxos, wireframes, etc
-      referencias/        # Links, imagens de referência
+domains/FrontOffice/
+	journeys/
+		nome-da-jornada/
+			README.md           # Descrição da jornada
+			notas.md            # Decisões de design e anotações
+			diagramas/          # Fluxos, wireframes, etc
+			referencias/        # Links, imagens de referência
 ```
 
 ## Como documentar uma jornada
@@ -37,26 +37,27 @@ O README deve incluir:
 Exemplo:
 
 ```markdown
-# Jornada: Revisão de Questões
+# Jornada: Onboarding do Aluno
 
 ## Objetivo
-Permitir que professores revisem questões submetidas antes de publicá-las.
+Guiar novos alunos através do processo inicial de setup da conta.
 
 ## Contexto
-Professores precisam validar qualidade e adequação antes de disponibilizar.
+Primeira experiência do aluno com a plataforma - crucial para retenção.
 
 ## Protótipos
-- [Lista de questões pendentes](http://localhost:3000/backoffice/questoes-pendentes)
-- [Detalhe da questão](http://localhost:3000/backoffice/questao-detalhe)
+- [Boas-vindas](http://localhost:3000/frontoffice/onboarding-welcome)
+- [Perfil inicial](http://localhost:3000/frontoffice/onboarding-profile)
+- [Tutorial](http://localhost:3000/frontoffice/onboarding-tutorial)
 
 ## Componentes
-- `Card` (elevated) - Para exibir cada questão
-- `Button` (primary, outline) - Aprovar/Rejeitar
-- `Text` - Tipografia consistente
-- `Layout` - Container responsivo
+- `Card` (elevated) - Para cada etapa
+- `Button` (primary) - Avançar
+- `Text` - Instruções e títulos
+- `Layout` - Container centrado
 
 ## Status
-✅ Concluído
+🚧 Em andamento
 ```
 
 ### 3. Documente decisões em notas.md
