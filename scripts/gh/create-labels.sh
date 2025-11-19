@@ -19,10 +19,15 @@ labels=(
   "domain:FrontOffice:0366d6"
   "domain:Game:00a3d7"
   "tooling:d4c5f9"
+  "status:backlog:9b2aef"
+  "status:in-progress:f4a261"
+  "status:done:60b0d2"
 )
 
 for label in "${labels[@]}"; do
-  IFS=":" read -r name color <<<"$label"
+  # label has format name:color or name:subname:color (e.g. status:backlog:9b2aef)
+  color=$(echo "$label" | rev | cut -d':' -f1 | rev)
+  name=$(echo "$label" | rev | cut -d':' -f2- | rev)
   echo "Ensuring label: $name ($color)"
   if gh label list -R "$REPO" | grep -Fq "$name"; then
     echo "  Label exists: $name"
