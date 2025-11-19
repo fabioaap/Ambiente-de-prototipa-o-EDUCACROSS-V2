@@ -16,6 +16,9 @@
     "build:design-system": "pnpm --filter @prototipo/design-system build",
     "build": "pnpm build:tokens && pnpm build:design-system && pnpm build:studio && pnpm build:storybook",
     "lint": "pnpm -r lint",
+    "setup:gh:labels": "bash ./scripts/gh/create-labels.sh",
+    "setup:gh:issues": "bash ./scripts/gh/create-issues.sh",
+    "setup:gh:project": "bash ./scripts/gh/create-project.sh",
     "test": "pnpm -r test",
     "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static"
   },
