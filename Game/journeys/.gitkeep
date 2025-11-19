@@ -1,0 +1,40 @@
+# Exemplo de Jornada
+
+_(Este é apenas um exemplo. Remova este arquivo e crie suas próprias jornadas.)_
+
+## Objetivo
+
+Descreva brevemente o objetivo desta jornada.
+
+## Contexto de Negócio
+
+Para quem é? Por que é importante?
+
+## Protótipos Relacionados
+
+- [Link para página no Studio](http://localhost:3000/path)
+- [Outra página relacionada](http://localhost:3000/path2)
+
+## Componentes Utilizados
+
+- `Button` - Para ações principais
+- `Card` - Para organização de conteúdo
+- `Text` - Para tipografia
+- `Layout` - Container responsivo
+
+## Status
+
+🚧 Em andamento
+
+## Decisões de Design
+
+_(Opcional: ou crie um arquivo `notas.md` separado)_
+
+- Decisão X: Escolhemos Y porque Z
+- Alternativa considerada: A, mas descartada por B
+
+## Próximos Passos
+
+- [ ] Validar com stakeholders
+- [ ] Testes com usuários
+- [ ] Ajustes finais

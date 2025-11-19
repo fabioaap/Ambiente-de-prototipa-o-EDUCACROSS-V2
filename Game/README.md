@@ -1,45 +1,82 @@
-# Game
+# Game - Jornadas de Prototipação
 
-Este domínio contém jornadas de prototipação relacionadas à experiência gamificada do sistema EDUCACROSS.
+Esta pasta contém todas as jornadas de prototipagem relacionadas ao **Game** (área de jogos e missões) do sistema EDUCACROSS.
 
-## Como organizar jornadas
+## Estrutura
 
-Cada jornada deve ser criada dentro de `journeys/` com a seguinte estrutura:
+Cada jornada deve ser organizada em sua própria pasta dentro de `journeys/`:
 
 ```
-journeys/
-  nome-da-jornada/
-    README.md           # Objetivo e contexto de negócio
-    notas.md            # Decisões de design/UX
-    diagramas/          # Fluxos (Mermaid, imagens)
-    referencias/        # Links, prints, etc
+Game/
+  journeys/
+    nome-da-jornada/
+      README.md           # Descrição da jornada
+      notas.md            # Decisões de design e anotações
+      diagramas/          # Fluxos, wireframes, etc
+      referencias/        # Links, imagens de referência
 ```
 
-### O que deve conter o README.md de cada jornada:
+## Como documentar uma jornada
 
-- **Objetivo**: O que esta jornada pretende resolver?
-- **Contexto de negócio**: Público-alvo, problemas, necessidades
-- **Links relevantes**:
-  - Páginas do Studio (Puck) relacionadas
-  - Componentes do Storybook usados
-  - Issues/PRs relacionadas
+### 1. Crie uma pasta para a jornada
 
-### Exemplo
+```bash
+mkdir -p journeys/nome-da-jornada
+```
+
+### 2. Crie o README.md da jornada
+
+O README deve incluir:
+
+- **Objetivo**: O que essa jornada busca resolver
+- **Contexto de negócio**: Para quem é, por que é importante
+- **Protótipos relacionados**: Links para páginas no Studio
+- **Componentes utilizados**: Quais componentes do Storybook são usados
+- **Status**: Em andamento, concluído, pausado, etc
+
+Exemplo:
 
 ```markdown
-# Missões Ilha 1
+# Jornada: Missões da Ilha 1
 
 ## Objetivo
-Criar experiência de missões gamificadas para engajamento do aluno.
+Apresentar as primeiras missões gamificadas para engajar o aluno.
 
 ## Contexto
-Alunos completam missões para avançar...
+Primeira experiência gamificada - deve ser divertida e educativa.
 
-## Links
-- Studio: `/studio/game/missoes-ilha-1`
-- Componentes: MissionCard, RewardBadge, ProgressBar
+## Protótipos
+- [Mapa da ilha](http://localhost:3000/game/ilha-1-mapa)
+- [Missão ativa](http://localhost:3000/game/ilha-1-missao)
+- [Conquistas](http://localhost:3000/game/ilha-1-conquistas)
+
+## Componentes
+- `Card` (elevated) - Para cada missão
+- `Button` (primary, secondary) - Ações das missões
+- `Text` - Narrativa e instruções
+- `Layout` - Container do jogo
+
+## Status
+💡 Planejamento
 ```
 
-## Jornadas atuais
+### 3. Documente decisões em notas.md
 
-(Adicionar links conforme novas jornadas forem criadas)
+Use `notas.md` ou `decisions.md` para registrar:
+- Por que escolhemos determinado fluxo
+- Alternativas consideradas
+- Feedback de usuários/playtesters
+- Melhorias futuras
+
+### 4. Adicione diagramas e referências
+
+- `diagramas/`: Fluxogramas (Mermaid, imagens, Figma exports)
+- `referencias/`: Screenshots, concept art, links para docs
+
+## Jornadas Existentes
+
+_(Esta seção será atualizada conforme jornadas forem criadas)_
+
+---
+
+**Nota**: Esta pasta contém apenas documentação. O código real está em `apps/studio` e `packages/*`.

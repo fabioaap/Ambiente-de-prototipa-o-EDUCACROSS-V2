@@ -1,0 +1,63 @@
+@import '@prototipo/tokens/tokens.css';
+
+.card {
+  background-color: white;
+  border-radius: var(--borderRadius-lg);
+  transition: all 0.2s ease;
+}
+
+/* Variantes */
+.default {
+  background-color: white;
+}
+
+.bordered {
+  border: 1px solid var(--colors-neutral-200);
+}
+
+.elevated {
+  box-shadow: var(--shadows-md);
+}
+
+.elevated:hover {
+  box-shadow: var(--shadows-lg);
+}
+
+/* Padding */
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: var(--spacing-3);
+}
+
+.padding-md {
+  padding: var(--spacing-4);
+}
+
+.padding-lg {
+  padding: var(--spacing-6);
+}
+
+/* Clickable */
+.clickable {
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadows-lg);
+}
+
+.clickable:active {
+  transform: translateY(0);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--colors-primary-500);
+  outline-offset: 2px;
+}

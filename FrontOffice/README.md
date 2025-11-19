@@ -1,45 +1,82 @@
-# FrontOffice
+# FrontOffice - Jornadas de Prototipação
 
-Este domínio contém jornadas de prototipação relacionadas ao FrontOffice do sistema EDUCACROSS (interface do aluno/responsável).
+Esta pasta contém todas as jornadas de prototipagem relacionadas ao **FrontOffice** (área do aluno/responsável) do sistema EDUCACROSS.
 
-## Como organizar jornadas
+## Estrutura
 
-Cada jornada deve ser criada dentro de `journeys/` com a seguinte estrutura:
+Cada jornada deve ser organizada em sua própria pasta dentro de `journeys/`:
 
 ```
-journeys/
-  nome-da-jornada/
-    README.md           # Objetivo e contexto de negócio
-    notas.md            # Decisões de design/UX
-    diagramas/          # Fluxos (Mermaid, imagens)
-    referencias/        # Links, prints, etc
+FrontOffice/
+  journeys/
+    nome-da-jornada/
+      README.md           # Descrição da jornada
+      notas.md            # Decisões de design e anotações
+      diagramas/          # Fluxos, wireframes, etc
+      referencias/        # Links, imagens de referência
 ```
 
-### O que deve conter o README.md de cada jornada:
+## Como documentar uma jornada
 
-- **Objetivo**: O que esta jornada pretende resolver?
-- **Contexto de negócio**: Público-alvo, problemas, necessidades
-- **Links relevantes**:
-  - Páginas do Studio (Puck) relacionadas
-  - Componentes do Storybook usados
-  - Issues/PRs relacionadas
+### 1. Crie uma pasta para a jornada
 
-### Exemplo
+```bash
+mkdir -p journeys/nome-da-jornada
+```
+
+### 2. Crie o README.md da jornada
+
+O README deve incluir:
+
+- **Objetivo**: O que essa jornada busca resolver
+- **Contexto de negócio**: Para quem é, por que é importante
+- **Protótipos relacionados**: Links para páginas no Studio
+- **Componentes utilizados**: Quais componentes do Storybook são usados
+- **Status**: Em andamento, concluído, pausado, etc
+
+Exemplo:
 
 ```markdown
-# Onboarding Aluno
+# Jornada: Onboarding do Aluno
 
 ## Objetivo
-Guiar o aluno através dos primeiros passos na plataforma.
+Guiar novos alunos através do processo inicial de setup da conta.
 
 ## Contexto
-Novos alunos precisam entender como navegar...
+Primeira experiência do aluno com a plataforma - crucial para retenção.
 
-## Links
-- Studio: `/studio/frontoffice/onboarding-aluno`
-- Componentes: WelcomeCard, TutorialStep, ProgressIndicator
+## Protótipos
+- [Boas-vindas](http://localhost:3000/frontoffice/onboarding-welcome)
+- [Perfil inicial](http://localhost:3000/frontoffice/onboarding-profile)
+- [Tutorial](http://localhost:3000/frontoffice/onboarding-tutorial)
+
+## Componentes
+- `Card` (elevated) - Para cada etapa
+- `Button` (primary) - Avançar
+- `Text` - Instruções e títulos
+- `Layout` - Container centrado
+
+## Status
+🚧 Em andamento
 ```
 
-## Jornadas atuais
+### 3. Documente decisões em notas.md
 
-(Adicionar links conforme novas jornadas forem criadas)
+Use `notas.md` ou `decisions.md` para registrar:
+- Por que escolhemos determinado fluxo
+- Alternativas consideradas
+- Feedback de usuários
+- Melhorias futuras
+
+### 4. Adicione diagramas e referências
+
+- `diagramas/`: Fluxogramas (Mermaid, imagens, Figma exports)
+- `referencias/`: Screenshots, links para docs, artigos
+
+## Jornadas Existentes
+
+_(Esta seção será atualizada conforme jornadas forem criadas)_
+
+---
+
+**Nota**: Esta pasta contém apenas documentação. O código real está em `apps/studio` e `packages/*`.

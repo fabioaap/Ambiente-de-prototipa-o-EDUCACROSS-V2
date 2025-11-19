@@ -1,122 +1,97 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import chokidar from 'chokidar';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const tokensPath = path.join(__dirname, '../src/tokens.json');
-const distPath = path.join(__dirname, '../dist');
+const srcDir = path.resolve(__dirname, '../src');
+const distDir = path.resolve(__dirname, '../dist');
+const tokensPath = path.join(srcDir, 'tokens.json');
 
-// Criar pasta dist se não existir
-if (!fs.existsSync(distPath)) {
-  fs.mkdirSync(distPath, { recursive: true });
-}
+function buildTokens() {
+  console.log('🔨 Building tokens...');
 
-// Ler tokens
-const tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
+  // Criar pasta dist
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
 
-// Gerar CSS Variables
-function generateCSS(tokens) {
-  let css = ':root {\n';
-  
-  // Colors
-  Object.entries(tokens.colors).forEach(([colorName, shades]) => {
-    Object.entries(shades).forEach(([shade, value]) => {
-      css += `  --color-${colorName}-${shade}: ${value};\n`;
-    });
-  });
-  
-  // Spacing
-  Object.entries(tokens.spacing).forEach(([key, value]) => {
-    css += `  --spacing-${key}: ${value};\n`;
-  });
-  
-  // Typography
-  Object.entries(tokens.typography.fontFamily).forEach(([key, value]) => {
-    css += `  --font-family-${key}: ${value};\n`;
-  });
-  
-  Object.entries(tokens.typography.fontSize).forEach(([key, value]) => {
-    css += `  --font-size-${key}: ${value};\n`;
-  });
-  
-  Object.entries(tokens.typography.fontWeight).forEach(([key, value]) => {
-    css += `  --font-weight-${key}: ${value};\n`;
-  });
-  
-  Object.entries(tokens.typography.lineHeight).forEach(([key, value]) => {
-    css += `  --line-height-${key}: ${value};\n`;
-  });
-  
-  // Border Radius
-  Object.entries(tokens.borderRadius).forEach(([key, value]) => {
-    css += `  --radius-${key}: ${value};\n`;
-  });
-  
-  // Shadows
-  Object.entries(tokens.shadows).forEach(([key, value]) => {
-    css += `  --shadow-${key}: ${value};\n`;
-  });
-  
-  css += '}\n';
-  return css;
-}
+  // Ler tokens
+  const tokens = JSON.parse(fs.readFileSync(tokensPath, 'utf-8'));
 
-// Gerar JavaScript/TypeScript exports
-function generateJS(tokens) {
-  return `export const tokens = ${JSON.stringify(tokens, null, 2)};\n\nexport default tokens;\n`;
-}
+  // Gerar CSS variables
+  const cssLines = [':root {'];
+  
+  function flattenTokens(obj, prefix = '') {
+    for (const [key, value] of Object.entries(obj)) {
+      const varName = prefix ? `${prefix}-${key}` : key;
+      if (typeof value === 'object' && !Array.isArray(value)) {
+        flattenTokens(value, varName);
+      } else {
+        cssLines.push(`  --${varName}: ${value};`);
+      }
+    }
+  }
 
-function generateTypes(tokens) {
-  return `export interface DesignTokens {
+  flattenTokens(tokens);
+  cssLines.push('}');
+
+  const cssContent = cssLines.join('\n');
+  fs.writeFileSync(path.join(distDir, 'tokens.css'), cssContent);
+
+  // Gerar módulo ESM
+  const esmContent = `export const tokens = ${JSON.stringify(tokens, null, 2)};\nexport default tokens;\n`;
+  fs.writeFileSync(path.join(distDir, 'index.esm.js'), esmContent);
+
+  // Gerar módulo CommonJS
+  const cjsContent = `const tokens = ${JSON.stringify(tokens, null, 2)};\nmodule.exports = tokens;\nmodule.exports.tokens = tokens;\n`;
+  fs.writeFileSync(path.join(distDir, 'index.cjs'), cjsContent);
+
+  // Gerar tipos TypeScript
+  const dtsContent = `export interface Tokens {
   colors: {
-    [key: string]: {
-      [shade: string]: string;
-    };
-  };
-  spacing: {
-    [key: string]: string;
+    primary: Record<string, string>;
+    secondary: Record<string, string>;
+    success: Record<string, string>;
+    warning: Record<string, string>;
+    error: Record<string, string>;
+    neutral: Record<string, string>;
   };
   typography: {
-    fontFamily: {
-      [key: string]: string;
-    };
-    fontSize: {
-      [key: string]: string;
-    };
-    fontWeight: {
-      [key: string]: string;
-    };
-    lineHeight: {
-      [key: string]: string;
-    };
+    fontFamily: Record<string, string>;
+    fontSize: Record<string, string>;
+    fontWeight: Record<string, string>;
+    lineHeight: Record<string, string>;
   };
-  borderRadius: {
-    [key: string]: string;
-  };
-  shadows: {
-    [key: string]: string;
-  };
+  spacing: Record<string, string>;
+  borderRadius: Record<string, string>;
+  shadows: Record<string, string>;
+  breakpoints: Record<string, string>;
 }
 
-export declare const tokens: DesignTokens;
+export const tokens: Tokens;
 export default tokens;
 `;
+  fs.writeFileSync(path.join(distDir, 'index.d.ts'), dtsContent);
+
+  console.log('✅ Tokens built successfully!');
 }
 
-// Escrever arquivos
-const cssContent = generateCSS(tokens);
-const jsContent = generateJS(tokens);
-const typesContent = generateTypes(tokens);
+// Build inicial
+buildTokens();
 
-fs.writeFileSync(path.join(distPath, 'tokens.css'), cssContent);
-fs.writeFileSync(path.join(distPath, 'index.js'), jsContent);
-fs.writeFileSync(path.join(distPath, 'index.cjs'), `module.exports = ${JSON.stringify(tokens, null, 2)};\n`);
-fs.writeFileSync(path.join(distPath, 'index.d.ts'), typesContent);
+// Watch mode
+if (process.argv.includes('--watch')) {
+  console.log('👀 Watching for changes...');
+  const watcher = chokidar.watch(tokensPath, {
+    persistent: true,
+    ignoreInitial: true,
+  });
 
-console.log('✅ Design tokens compilados com sucesso!');
-console.log('   - dist/tokens.css');
-console.log('   - dist/index.js');
-console.log('   - dist/index.cjs');
-console.log('   - dist/index.d.ts');
+  watcher.on('change', () => {
+    console.log('📝 Tokens changed, rebuilding...');
+    buildTokens();
+  });
+}

@@ -1,45 +1,81 @@
-# BackOffice
+# BackOffice - Jornadas de Prototipação
 
-Este domínio contém jornadas de prototipação relacionadas ao BackOffice do sistema EDUCACROSS.
+Esta pasta contém todas as jornadas de prototipagem relacionadas ao **BackOffice** (área administrativa) do sistema EDUCACROSS.
 
-## Como organizar jornadas
+## Estrutura
 
-Cada jornada deve ser criada dentro de `journeys/` com a seguinte estrutura:
+Cada jornada deve ser organizada em sua própria pasta dentro de `journeys/`:
 
 ```
-journeys/
-  nome-da-jornada/
-    README.md           # Objetivo e contexto de negócio
-    notas.md            # Decisões de design/UX
-    diagramas/          # Fluxos (Mermaid, imagens)
-    referencias/        # Links, prints, etc
+BackOffice/
+  journeys/
+    nome-da-jornada/
+      README.md           # Descrição da jornada
+      notas.md            # Decisões de design e anotações
+      diagramas/          # Fluxos, wireframes, etc
+      referencias/        # Links, imagens de referência
 ```
 
-### O que deve conter o README.md de cada jornada:
+## Como documentar uma jornada
 
-- **Objetivo**: O que esta jornada pretende resolver?
-- **Contexto de negócio**: Público-alvo, problemas, necessidades
-- **Links relevantes**:
-  - Páginas do Studio (Puck) relacionadas
-  - Componentes do Storybook usados
-  - Issues/PRs relacionadas
+### 1. Crie uma pasta para a jornada
 
-### Exemplo
+```bash
+mkdir -p journeys/nome-da-jornada
+```
+
+### 2. Crie o README.md da jornada
+
+O README deve incluir:
+
+- **Objetivo**: O que essa jornada busca resolver
+- **Contexto de negócio**: Para quem é, por que é importante
+- **Protótipos relacionados**: Links para páginas no Studio
+- **Componentes utilizados**: Quais componentes do Storybook são usados
+- **Status**: Em andamento, concluído, pausado, etc
+
+Exemplo:
 
 ```markdown
-# Revisão de Questões
+# Jornada: Revisão de Questões
 
 ## Objetivo
-Permitir que professores revisem e aprovem questões criadas para avaliações.
+Permitir que professores revisem questões submetidas antes de publicá-las.
 
 ## Contexto
-Professores precisam de uma interface intuitiva para...
+Professores precisam validar qualidade e adequação antes de disponibilizar.
 
-## Links
-- Studio: `/studio/backoffice/revisao-questoes`
-- Componentes: QuestionCard, ApprovalButton, CommentBox
+## Protótipos
+- [Lista de questões pendentes](http://localhost:3000/backoffice/questoes-pendentes)
+- [Detalhe da questão](http://localhost:3000/backoffice/questao-detalhe)
+
+## Componentes
+- `Card` (elevated) - Para exibir cada questão
+- `Button` (primary, outline) - Aprovar/Rejeitar
+- `Text` - Tipografia consistente
+- `Layout` - Container responsivo
+
+## Status
+✅ Concluído
 ```
 
-## Jornadas atuais
+### 3. Documente decisões em notas.md
 
-(Adicionar links conforme novas jornadas forem criadas)
+Use `notas.md` ou `decisions.md` para registrar:
+- Por que escolhemos determinado fluxo
+- Alternativas consideradas
+- Feedback de usuários
+- Melhorias futuras
+
+### 4. Adicione diagramas e referências
+
+- `diagramas/`: Fluxogramas (Mermaid, imagens, Figma exports)
+- `referencias/`: Screenshots, links para docs, artigos
+
+## Jornadas Existentes
+
+_(Esta seção será atualizada conforme jornadas forem criadas)_
+
+---
+
+**Nota**: Esta pasta contém apenas documentação. O código real está em `apps/studio` e `packages/*`.

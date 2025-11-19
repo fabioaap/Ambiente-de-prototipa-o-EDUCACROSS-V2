@@ -1,12 +1,6 @@
 # @prototipo/tokens
 
-Pacote de design tokens do repositório de prototipação EDUCACROSS.
-
-## Estrutura
-
-- `src/tokens.json` - Definição base dos tokens
-- `scripts/build-tokens.mjs` - Script de build
-- `dist/` - Outputs compilados (gerados automaticamente)
+Pacote de design tokens para o sistema de prototipação EDUCACROSS.
 
 ## Uso
 
@@ -15,23 +9,23 @@ Pacote de design tokens do repositório de prototipação EDUCACROSS.
 ```css
 @import '@prototipo/tokens/tokens.css';
 
-.button {
-  background-color: var(--color-primary-500);
+.my-component {
+  color: var(--colors-primary-500);
   padding: var(--spacing-4);
-  border-radius: var(--radius-md);
+  border-radius: var(--borderRadius-md);
 }
 ```
 
 ### JavaScript/TypeScript
 
 ```typescript
-import { tokens } from '@prototipo/tokens';
+import tokens from '@prototipo/tokens';
 
-const primaryColor = tokens.colors.primary['500'];
+const primaryColor = tokens.colors.primary[500];
+const spacing = tokens.spacing[4];
 ```
 
-## Build
+## Scripts
 
-```bash
-pnpm build
-```
+- `pnpm build` - Gera os tokens em CSS e JS
+- `pnpm dev` - Modo watch para desenvolvimento
