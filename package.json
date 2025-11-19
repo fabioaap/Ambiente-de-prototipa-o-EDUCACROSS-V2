@@ -18,8 +18,10 @@
     "lint": "pnpm -r lint",
     "setup:gh:labels": "bash ./scripts/gh/create-labels.sh",
     "setup:gh:issues": "bash ./scripts/gh/create-issues.sh",
+    "setup:gh:issues:all": "bash ./scripts/gh/create-issues-all.sh",
     "setup:gh:project": "bash ./scripts/gh/create-project.sh",
     "setup:gh:add-issues-to-project": "bash ./scripts/gh/add-issues-to-project.sh",
+    "setup:gh:full": "bash ./scripts/gh/setup-github-full.sh",
     "test": "pnpm -r test",
     "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static"
   },
