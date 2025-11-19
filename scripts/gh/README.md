@@ -85,15 +85,27 @@ Creates "EDUCACROSS Backlog" project at owner level.
 
 ### 4. Add Issues to Project Board
 
+**For GitHub Projects v2 (NEW - Recommended):**
+
+```bash
+pnpm setup:gh:add-to-project-v2
+# or
+./scripts/gh/quick-add-to-project.sh
+```
+
+This script adds all open issues to your existing GitHub Projects v2 board (the new projects interface at `https://github.com/users/USERNAME/projects/NUMBER`).
+
+**For legacy Project Boards (OLD):**
+
 ```bash
 pnpm setup:gh:add-issues-to-project
 # or
 ./scripts/gh/add-issues-to-project.sh
 ```
 
-Adds issues labeled with `status:backlog` to the "Backlog" column.
+Adds issues labeled with `status:backlog` to the "Backlog" column of old-style project boards.
 
-**Note**: This requires project permissions. If it fails, add issues manually via the GitHub UI.
+**Note**: GitHub Projects v2 is recommended. The script is pre-configured for project #3 at https://github.com/users/fabioaap/projects/3
 
 ## Custom Usage
 
