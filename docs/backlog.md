@@ -6,22 +6,23 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 
 | Grupo | Itens P0 | Concluídos | % | Observações |
 |-------|----------|-----------|----|-------------|
-| P0    | 5        | 3         | 60% | B1, D1, F1 implementados (issues ainda abertas: #2, #3, #5 – fechar após revisão) |
-| P1    | 11       | 0         | 0% | Planejados, aguardam dependências de C1/E1 |
-| P2    | 4        | 0         | 0% | Exploratório, não iniciar antes de consolidar C1/E1 |
+| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados; issues #1–#5 aguardam encerramento formal |
+| P1    | 11       | 0         | 0% | Dependem de C1/E1 e definições de acessibilidade |
+| P2    | 4        | 0         | 0% | Exploratório, iniciar após dashboards base |
 
 ### Concluídos tecnicamente (aguardando fechamento das issues)
 - ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
+- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 aberta)
 - ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
 - ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
 
 ### Em andamento prioritário
-- ⏳ C1 – Persistência em disco / API (issue #1)
 - ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)
 
 ### Fontes auxiliares
 - `docs/issues-pendentes.md` (snapshot detalhado das 37 issues geradas)
 - `docs/resumo-issues-resolvidas.md` (detalhes de implementação concluída)
+- API: `apps/studio/src/app/api/pages/README.md`
 - Scripts: `scripts/gh/*.sh` (automação de labels, issues, project board)
 
 ---
@@ -72,7 +73,7 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 - [ ] B7 – Snapshot visual básico via Chromatic (opcional nesta fase).
 
 ### Epic C – Studio (Next + Puck)
-- [ ] C1 – Persistência em disco: rota de API para salvar/ler `data/pages/*.json` (além de localStorage).
+- [x] C1 – Persistência em disco: rota de API para salvar/ler `data/pages/*.json` (além de localStorage).
 - [ ] C2 – Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir.
 - [ ] C3 – Templates de página por jornada (ex.: dashboard, detalhe, formulário).
 - [ ] C4 – Autocomplete do map de componentes do DS no Puck (sincronizado por arquivo único).
@@ -121,11 +122,10 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 ---
 
 ## Backlog Priorizado (P0→P2)
-
 ### 🔴 P0 (alto impacto / habilita restante)
 | Item | Issue | Status | Dependências | Próximo Passo |
 |------|-------|--------|--------------|---------------|
-| C1 Persistência em disco | #1 | Em andamento | Nenhuma (bloqueia C2/H2) | Definir schema JSON e rota `/api/pages` |
+| C1 Persistência em disco | #1 | Implementado | Nenhuma (desbloqueia C2/H2) | Executar checklist de QA + fechar issue |
 | E1 Jornada BackOffice (Revisão de Questões) | #4 | Em andamento | B1 concluído | Criar páginas iniciais + mapear componentes adicionais |
 | B1 Form Components | #2 | Implementado | — | Revisão A11y + fechar issue |
 | D1 Página de Tokens | #3 | Implementado | Tokens base | Adicionar exemplos de uso JS + fechar issue |
@@ -159,14 +159,14 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 
 ## Sprints (Replanejamento)
 
-### Sprint Atual (S1 – foco em fundação de dados + primeira jornada)
-Objetivo: habilitar persistência e primeira jornada real para permitir evolução de dashboard e navegação.
-- C1: Implementar rota de persistência (CRUD básico JSON)
-- E1: Estrutura + 1 página inicial (lista de questões)
+### Sprint Atual (S1 – foco em dados + primeira jornada)
+Objetivo: habilitar jornada real e encerrar pendências abertas.
+- ✅ C1: rota de persistência (CRUD JSON) – validar e fechar issue #1
+- E1: Estrutura + página inicial (lista de questões)
 - Revisões finais e fechamento de issues: B1, D1, F1
 
 ### Próxima Sprint (S2 – navegação e acessibilidade)
-Pré-condição: C1 e página inicial E1 concluídas.
+Pré-condição: E1 página inicial concluída.
 - C2: Sidebar páginas
 - B4: Acessibilidade DS (foco + contraste + roles)
 - D2: Addon A11y + validações
