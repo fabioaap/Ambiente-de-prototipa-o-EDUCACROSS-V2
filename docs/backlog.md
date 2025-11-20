@@ -4,17 +4,18 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 
 ## 📊 Status Atual (Atualizado em 2025-11-20)
 
-**Progress P0:** 3 de 5 concluídos (60%)
+**Progress P0:** 4 de 5 concluídos (80%)
 - ✅ F1 - ESLint unificado (commit da05e19)
 - ✅ D1 - Página de Tokens no Storybook (commit 82cfb9b)
 - ✅ B1 - Componentes de formulário completos (commit 433214b)
-- ⏳ C1 - Studio: Persistência em disco - PENDENTE
+- ✅ C1 - Studio: Persistência em disco (já implementado - ver apps/studio/src/app/api/pages/)
 - ⏳ E1 - BackOffice: Primeira jornada - PENDENTE
 
 **Documentação:**
 - ✅ 37 issues mapeadas em `docs/issues-pendentes.md`
 - ✅ Scripts de automação GitHub criados
 - ✅ Resumo executivo em `docs/resumo-issues-resolvidas.md`
+- ✅ API de persistência documentada em `apps/studio/src/app/api/pages/README.md`
 
 ---
 
@@ -114,7 +115,7 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 
 ## Backlog Priorizado (P0→P2)
 - P0 (alto impacto/curto prazo)
-  - C1 Persistência em disco no Studio
+  - ✅ C1 Persistência em disco no Studio (já implementado - API completa)
   - ✅ D1 Página de Tokens no Storybook (concluído - commit 82cfb9b)
   - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) (concluído - commit 433214b)
   - E1 BackOffice: primeira jornada com páginas base
@@ -136,11 +137,11 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ---
 
 ## Sprints (proposta inicial)
-- Sprint 1 (1-2 semanas) - **PARCIALMENTE CONCLUÍDO**
+- Sprint 1 (1-2 semanas) - **80% CONCLUÍDO**
   - ✅ F1 ESLint unificado
   - ✅ D1 Página de Tokens no Storybook
   - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) - TODOS os componentes
-  - ⏳ C1 Persistência em disco no Studio - PENDENTE
+  - ✅ C1 Persistência em disco no Studio - JÁ IMPLEMENTADO (API REST completa)
   - ⏳ E1 BackOffice: primeira jornada (estrutura e 1 página) - PENDENTE
 - Sprint 2 (1-2 semanas)
   - C2, B1 (Checkbox/Radio/Switch), D2, D3, E1 (página 2/3).
