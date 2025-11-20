@@ -6,18 +6,37 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 
 | Grupo | Itens P0 | Concluídos | % | Observações |
 |-------|----------|-----------|----|-------------|
-| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados; issues #1–#5 aguardam encerramento formal |
-| P1    | 11       | 0         | 0% | Dependem de C1/E1 e definições de acessibilidade |
-| P2    | 4        | 0         | 0% | Exploratório, iniciar após dashboards base |
+| P0    | 5        | 5         | 100% | ✅ SPRINT 1 COMPLETO - Todas as issues #1–#5 validadas e prontas para fechamento |
+| P1    | 11       | 11        | 100% | ✅ SPRINT 2 COMPLETO - Mergeado em main (v0.2-beta) |
+| P2    | 7        | 3         | 43% | F3, C5, G5 implementados; H3, H4, H5, B6 pendentes |
 
-### Concluídos tecnicamente (aguardando fechamento das issues)
-- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
-- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 aberta)
-- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
-- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
+### ✅ Concluídos e Validados (Sprint 1 - P0)
+- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 - VALIDADO)
+- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 - VALIDADO)
+- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 - VALIDADO)
+- ✅ E1 – Jornada BackOffice: Revisão de Questões `commit a60494c` (issue #4 - COMPLETO)
+- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 - VALIDADO)
 
-### Em andamento prioritário
-- ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)
+### ✅ Concluídos e Mergeados (Sprint 2 - P1)
+- ✅ C2 – Sidebar páginas no Studio `commit f6e99e7`
+- ✅ D2 – Addon A11y no Storybook `commit 7fb11f7`
+- ✅ H1 – Dashboard Planning `commit 5e8306d`
+- ✅ H2 – Dashboard Endpoint `commit 4689f7a`
+- ✅ E2 – FrontOffice Onboarding `commit 1e060a0`
+- ✅ E3 – Game Missões Ilha 1 `commit d95fcf9`
+- ✅ G4 – Script geração índice jornadas
+- ✅ G6 – CONTRIBUTING.md
+- ✅ B4 – Acessibilidade básica DS
+- ✅ H (Epic) – Dashboard do Projeto
+
+### 🚧 Em andamento (Sprint 3 - P2)
+- ✅ F3 – GitHub Actions CI/CD (implementado)
+- ✅ C5 – Export/Import JSON (implementado)
+- ✅ G5 – Link Validation CI (implementado)
+- [ ] H3 – Dashboard UI (planejado)
+- [ ] H4 – Indicadores de saúde (planejado)
+- [ ] H5 – Link para Storybook (planejado)
+- [ ] B6 – Theming tokens semânticos (BLOQUEADO - aguarda A1-A4)
 
 ### Fontes auxiliares
 - `docs/issues-pendentes.md` (snapshot detalhado das 37 issues geradas)
@@ -64,118 +83,158 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 - [ ] A5 – Estrutura para futura integração Figma → tokens (sem automatizar agora).
 
 ### Epic B – Design System (@prototipo/design-system)
-- [x] B1 – Componentes de formulário: `Input`, `Select`, `Checkbox`, `Radio`, `Switch` (implementado – fechar issue #2 após revisão de acessibilidade).
+- [x] B1 – Componentes de formulário: `Input`, `Select`, `Checkbox`, `Radio`, `Switch` `commit 433214b` ✅ VALIDADO
 - [ ] B2 – Componentes de layout: `Stack`, `Grid`, `Section`, `Navbar`, `Footer`.
 - [ ] B3 – Feedback/UI: `Badge`, `Tag`, `Tooltip`, `Modal`, `Toast` (API mínima).
-- [ ] B4 – Acessibilidade: roles/aria, foco visível, contraste, navegação teclado.
+- [x] B4 – Acessibilidade: roles/aria, foco visível, contraste, navegação teclado (Sprint 2) ✅ COMPLETO
 - [ ] B5 – Página de documentação dos componentes (Storybook Docs) com exemplos reais.
-- [ ] B6 – Theming: consumir tokens semânticos para variar tema global.
+- [ ] B6 – Theming: consumir tokens semânticos para variar tema global (BLOQUEADO - aguarda A1-A4).
 - [ ] B7 – Snapshot visual básico via Chromatic (opcional nesta fase).
 
 ### Epic C – Studio (Next + Puck)
-- [x] C1 – Persistência em disco: rota de API para salvar/ler `data/pages/*.json` (além de localStorage).
-- [ ] C2 – Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir.
+- [x] C1 – Persistência em disco: rota de API para salvar/ler `data/pages/*.json` `commit 370298d` ✅ VALIDADO
+- [x] C2 – Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir `commit f6e99e7` ✅ COMPLETO
 - [ ] C3 – Templates de página por jornada (ex.: dashboard, detalhe, formulário).
 - [ ] C4 – Autocomplete do map de componentes do DS no Puck (sincronizado por arquivo único).
-- [ ] C5 – Export/Import de páginas (JSON) via UI do editor.
+- [x] C5 – Export/Import de páginas (JSON) via UI do editor (Sprint 3) ✅ IMPLEMENTADO
 
 ### Epic D – Storybook
-- [x] D1 – Página de Tokens (visualizar cores/typography/spacing) – implementado (issue #3 aberta para revisão final).
-- [ ] D2 – Addon A11y e validações mínimas.
+- [x] D1 – Página de Tokens (visualizar cores/typography/spacing) `commit 82cfb9b` ✅ VALIDADO
+- [x] D2 – Addon A11y e validações mínimas `commit 7fb11f7` ✅ COMPLETO
 - [ ] D3 – Play functions para interações básicas nos componentes (testes interativos).
 - [ ] D4 – Agrupamento por categoria/domínio; exemplos focados em jornadas reais.
 
 ### Epic E – Jornadas (domains/BackOffice, domains/FrontOffice, domains/Game)
-- [ ] E1 – domains/BackOffice: Revisão de Questões
+- [x] E1 – domains/BackOffice: Revisão de Questões `commit a60494c` ✅ COMPLETO
   - [x] Página do Studio: Lista de pendentes (`/backoffice/revisao-questoes/lista`).
   - [x] Página do Studio: Detalhe da questão (`/backoffice/revisao-questoes/detalhe`).
-  - [ ] Tela de ações/confirmar devolutivas (pendente).
-  - [ ] Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog.
-- [ ] E2 – domains/FrontOffice: Onboarding do Aluno
-  - [ ] Páginas do Studio: boas-vindas, perfil inicial, tutorial.
-  - [ ] Componentes DS necessários: Stepper, ProgressBar, AvatarUpload.
-- [ ] E3 – domains/Game: Missões da Ilha 1
-  - [ ] Páginas do Studio: mapa, missão ativa, conquistas.
-  - [ ] Componentes DS necessários: Card de missão, HUD simples, Modal de recompensa.
+  - [x] Página do Studio: Ações/confirmar devolutivas (`/backoffice/revisao-questoes/acoes`).
+  - [x] Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog (TODOS IMPLEMENTADOS).
+- [x] E2 – domains/FrontOffice: Onboarding do Aluno `commit 1e060a0` ✅ COMPLETO
+  - [x] Páginas do Studio: boas-vindas, perfil inicial, tutorial.
+  - [x] Componentes DS necessários: Stepper, ProgressBar, AvatarUpload (mockup).
+- [x] E3 – domains/Game: Missões da Ilha 1 `commit d95fcf9` ✅ COMPLETO
+  - [x] Páginas do Studio: mapa, missão ativa, conquistas.
+  - [x] Componentes DS necessários: Card de missão, HUD simples, Modal de recompensa (mockup).
 
 ### Epic F – Tooling/Infra
-- [x] F1 – ESLint config compartilhada + plugins aplicados – implementado (issue #5 aberta para validação CI futura).
+- [x] F1 – ESLint config compartilhada + plugins aplicados `commit da05e19` ✅ VALIDADO
 - [ ] F2 – Prettier + `.prettierrc` (opcional) e `format` scripts.
-- [ ] F3 – GitHub Actions: workflow de CI com cache pnpm e jobs de build (tokens, DS, Studio, Storybook).
+- [x] F3 – GitHub Actions: workflow de CI com cache pnpm e jobs de build (Sprint 3) ✅ IMPLEMENTADO
 - [ ] F4 – Husky + lint-staged (opcional) para garantir qualidade em commits.
 
 ### Epic G – Governança e Manutenção
-- [x] G1 – Consolidar estrutura de domínios em `domains/` (BackOffice, FrontOffice, Game).
-- [x] G2 – Criar template reutilizável de jornada (`domains/template-jornada.md`).
-- [x] G3 – Documentar convenções de nomenclatura e checklist de jornadas em `domains/README.md`.
-- [ ] G4 – Script para gerar índice automático de jornadas por domínio (`pnpm gen:jornadas`).
-- [ ] G5 – Validação de links em CI (lint-md ou similar) para evitar links quebrados.
-- [ ] G6 – Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas.
+- [x] G1 – Consolidar estrutura de domínios em `domains/` (BackOffice, FrontOffice, Game). ✅ COMPLETO
+- [x] G2 – Criar template reutilizável de jornada (`domains/template-jornada.md`). ✅ COMPLETO
+- [x] G3 – Documentar convenções de nomenclatura e checklist de jornadas em `domains/README.md`. ✅ COMPLETO
+- [x] G4 – Script para gerar índice automático de jornadas por domínio (`pnpm gen:jornadas`) (Sprint 2) ✅ COMPLETO
+- [x] G5 – Validação de links em CI (lint-md ou similar) para evitar links quebrados (Sprint 3) ✅ IMPLEMENTADO
+- [x] G6 – Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas (Sprint 2) ✅ COMPLETO
 
 ### Epic H – Dashboard do Projeto
-- [ ] H1 – Planejar layout do Dashboard do Projeto (wireframe): lista de páginas prototipadas, links, filtros por domínio/jornada.
-- [ ] H2 – Implementar endpoint e rota para index de páginas do Studio (`/studio/api/pages` ou `apps/studio/data/pages/*`).
-- [ ] H3 – Implementar UI do Dashboard (aplicação mínima em `apps/studio` ou `apps/storybook`): links diretos para páginas prototipadas.
-- [ ] H4 – Expor indicadores de saúde do repositório: status de build (tokens/DS/Studio/Storybook), última build, lint status, tamanho do bundle Storybook, dependências desatualizadas.
-- [ ] H5 – Link direto e badge para Storybook estático (documentação final) no Dashboard e READMEs de domínio.
-- [ ] H6 – Definir requisitos de segurança/visibilidade (quem pode acessar o dashboard; ambiente prod vs dev).
+- [x] H1 – Planejar layout do Dashboard do Projeto (wireframe) `commit 5e8306d` ✅ COMPLETO
+- [x] H2 – Implementar endpoint e rota para index de páginas `commit 4689f7a` ✅ COMPLETO
+- [ ] H3 – Implementar UI do Dashboard (aplicação mínima em `apps/studio`) (Sprint 3 - Planejado).
+- [ ] H4 – Expor indicadores de saúde do repositório (Sprint 3 - Planejado).
+- [ ] H5 – Link direto e badge para Storybook estático (Sprint 3 - Planejado).
+- [ ] H6 – Definir requisitos de segurança/visibilidade.
 
 
 ---
 
 ## Backlog Priorizado (P0→P2)
 
-### ✅ Sprint 1 (P0) – 100% Completo
-- [x] #1 – C1 Persistência em disco no Studio (API)
-- [x] #2 – B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch)
-- [x] #3 – D1 Página de Tokens no Storybook (visual)
-- [x] #4 – E1 BackOffice: Revisão de Questões (primeira jornada)
-- [x] #5 – F1 ESLint unificado para monorepo
+### ✅ Sprint 1 (P0) – 100% Completo - VALIDADO
 
-### ✅ Sprint 2 (P1) – 100% Completo
-- [x] #6 – C2 Lista de páginas no sidebar
-- [x] #7 – B4 Acessibilidade básica no DS
-- [x] #8 – D2 Addon A11y e validações no Storybook
+**Todas as issues foram implementadas, testadas e validadas. Prontas para fechamento.**
+
+- [x] #1 – C1 Persistência em disco no Studio (API) `commit 370298d` ✅ VALIDADO
+- [x] #2 – B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) `commit 433214b` ✅ VALIDADO
+- [x] #3 – D1 Página de Tokens no Storybook (visual) `commit 82cfb9b` ✅ VALIDADO
+- [x] #4 – E1 BackOffice: Revisão de Questões (primeira jornada) `commit a60494c` ✅ COMPLETO
+- [x] #5 – F1 ESLint unificado para monorepo `commit da05e19` ✅ VALIDADO
+
+**Documentação:** Ver `docs/validacao-issues-p0.md` para relatório detalhado de validação.
+
+### ✅ Sprint 2 (P1) – 100% Completo - MERGEADO
+
+**Todas as issues foram implementadas e mergeadas em main (tag v0.2-beta).**
+
+- [x] #6 – C2 Lista de páginas no sidebar `commit f6e99e7`
+- [x] #7 – B4 Acessibilidade básica no DS (audit + melhorias)
+- [x] #8 – D2 Addon A11y e validações no Storybook `commit 7fb11f7`
 - [x] #9 – G4 Script: gerar índice automático de jornadas
 - [x] #10 – G6 Documentação: Criar CONTRIBUTING.md com workflow de jornadas
 - [x] #11 – H Epic: Dashboard do Projeto
-  - [x] #12 – H1 Planejar layout/Wireframe
-  - [x] #13 – H2 Endpoint / API para index de páginas
-  - [x] #14 – E2 FrontOffice: Onboarding do Aluno
-  - [x] #15 – E3 Game: Missões da Ilha 1
+  - [x] #12 – H1 Planejar layout/Wireframe `commit 5e8306d`
+  - [x] #13 – H2 Endpoint / API para index de páginas `commit 4689f7a`
+  - [x] #14 – E2 FrontOffice: Onboarding do Aluno `commit 1e060a0`
+  - [x] #15 – E3 Game: Missões da Ilha 1 `commit d95fcf9`
 
-### 🟢 Sprint 3 (P2) – Em Planejamento
-- [ ] H3 UI Dashboard (implementação)
-- [ ] H4 Indicadores de saúde
-- [ ] H5 Link para Storybook
-- [ ] B6 Theming com tokens semânticos
-- [ ] C5 Export/Import JSON por UI
-- [ ] F3 GitHub Actions CI
-- [ ] G5 Validação de links em CI
+**Documentação:** Ver `docs/sprint-2-final-report.md` para relatório detalhado.
+
+### 🟢 Sprint 3 (P2) – 43% Completo (3/7)
+
+**Implementações concluídas:**
+- [x] F3 – GitHub Actions CI/CD (workflow completo com cache e artefatos)
+- [x] C5 – Export/Import JSON por UI (API + componente React)
+- [x] G5 – Validação de links em CI (markdown-link-check workflow)
+
+**Pendentes (planejado):**
+- [ ] H3 – UI Dashboard (implementação)
+- [ ] H4 – Indicadores de saúde
+- [ ] H5 – Link para Storybook
+- [ ] B6 – Theming com tokens semânticos (BLOQUEADO - aguarda A1-A4)
+
+**Documentação:** Ver `docs/sprint-3-concluido.md` para detalhes das implementações.
 
 ---
 
-## Sprints (Replanejamento)
+## Sprints (Histórico Atualizado)
 
-### Sprint Atual (S1 – foco em dados + primeira jornada)
-Objetivo: habilitar jornada real e encerrar pendências abertas.
-- ✅ C1: rota de persistência (CRUD JSON) – validar e fechar issue #1
-- E1: Estrutura + página inicial (lista de questões)
-- Revisões finais e fechamento de issues: B1, D1, F1
+### Sprint 1 (S1) – Fundação + Primeira Jornada ✅ COMPLETO
 
-### Próxima Sprint (S2 – navegação e acessibilidade)
-Pré-condição: E1 página inicial concluída.
-- C2: Sidebar páginas
-- B4: Acessibilidade DS (foco + contraste + roles)
-- D2: Addon A11y + validações
-- G6: CONTRIBUTING.md
-- H2: Index páginas (API + integração dashboard)
+**Objetivo:** Habilitar jornada real e fundação do projeto.
 
-### Sprint Posterior (S3 – dashboard e automação)
-- H3/H4/H5: UI + indicadores + link Storybook
-- G4: Índice automático jornadas
-- F3: Workflow CI básico (lint + build) 
-- C5: Export/Import JSON
+**Entregues:**
+- ✅ C1: Rota de persistência (CRUD JSON) - VALIDADO
+- ✅ B1: Componentes de formulário (5 componentes + 40 stories) - VALIDADO
+- ✅ D1: Página de Tokens no Storybook - VALIDADO
+- ✅ E1: Estrutura BackOffice + 3 páginas (lista, detalhe, ações) - COMPLETO
+- ✅ F1: ESLint unificado monorepo - VALIDADO
+
+**Resultado:** 5/5 issues (100%) - Tag: v0.1.0
+
+### Sprint 2 (S2) – Navegação + Acessibilidade + Jornadas ✅ COMPLETO
+
+**Objetivo:** Ampliar jornadas, melhorar navegação e acessibilidade básica.
+
+**Entregues:**
+- ✅ C2: Sidebar páginas no Studio
+- ✅ B4: Acessibilidade DS (audit + melhorias)
+- ✅ D2: Addon A11y + validações
+- ✅ G4: Script geração índice jornadas
+- ✅ G6: CONTRIBUTING.md
+- ✅ H1/H2: Dashboard planning + endpoint
+- ✅ E2: FrontOffice Onboarding (4 páginas)
+- ✅ E3: Game Missões Ilha 1 (3 páginas)
+
+**Resultado:** 11/11 issues (100%) - Tag: v0.2-beta
+
+### Sprint 3 (S3) – Dashboard + Automação ⏳ EM ANDAMENTO (43%)
+
+**Objetivo:** UI Dashboard, indicadores de saúde e automações CI/CD.
+
+**Entregues:**
+- ✅ F3: GitHub Actions CI/CD
+- ✅ C5: Export/Import JSON
+- ✅ G5: Validação de links CI
+
+**Em Planejamento:**
+- [ ] H3/H4/H5: UI + indicadores + link Storybook
+- [ ] B6: Theming (aguarda tokens semânticos A1-A4)
+
+**Meta:** Completar H3-H5 + definir tokens semânticos com Design lead.
 
 ---
 
