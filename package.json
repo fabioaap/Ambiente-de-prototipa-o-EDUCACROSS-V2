@@ -1,6 +1,6 @@
 {
   "name": "prototipacao-educa",
-  "version": "0.1.0",
+  "version": "0.2.0-beta",
   "private": true,
   "description": "Repositório de prototipação frontend orientado a jornadas com Puck, React e Storybook",
   "engines": {
