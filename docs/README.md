@@ -4,7 +4,10 @@ Este diretório centraliza documentos de apoio ao monorepo de prototipação EDU
 
 ## Índice
 
+- [Issues Abertas](./ISSUES_ABERTAS.md) - Listagem completa e organizada das issues abertas
 - [Backlog do Projeto](./backlog.md) - Epics, tarefas priorizadas e roadmap
+- [Issues Pendentes](./issues-pendentes.md) - Issues pendentes do projeto
+- [Resumo de Issues Resolvidas](./resumo-issues-resolvidas.md) - Histórico de issues concluídas
 - [Domínios e Jornadas](../domains/README.md) - BackOffice, FrontOffice, Game
 
 ## Convenções
