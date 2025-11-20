@@ -1,20 +1,28 @@
 # Backlog do Projeto – EDUCACROSS Prototipação
 
-Este backlog organiza o trabalho para evoluir o ambiente de prototipação orientado a jornadas. É um repositório não-produtivo, com foco em velocidade e clareza para PMs, designers e devs.
+Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog reflete estado real de implementação e serve como fonte de verdade operacional para priorização e tracking. Atualize sempre que uma issue for fechada ou um epic tiver escopo ajustado.
 
-## 📊 Status Atual (Atualizado em 2025-11-20)
+## 📊 Visão de Status (Atualizado em 2025-11-20)
 
-**Progress P0:** 3 de 5 concluídos (60%)
-- ✅ F1 - ESLint unificado (commit da05e19)
-- ✅ D1 - Página de Tokens no Storybook (commit 82cfb9b)
-- ✅ B1 - Componentes de formulário completos (commit 433214b)
-- ⏳ C1 - Studio: Persistência em disco - PENDENTE
-- ⏳ E1 - BackOffice: Primeira jornada - PENDENTE
+| Grupo | Itens P0 | Concluídos | % | Observações |
+|-------|----------|-----------|----|-------------|
+| P0    | 5        | 3         | 60% | B1, D1, F1 implementados (issues ainda abertas: #2, #3, #5 – fechar após revisão) |
+| P1    | 11       | 0         | 0% | Planejados, aguardam dependências de C1/E1 |
+| P2    | 4        | 0         | 0% | Exploratório, não iniciar antes de consolidar C1/E1 |
 
-**Documentação:**
-- ✅ 37 issues mapeadas em `docs/issues-pendentes.md`
-- ✅ Scripts de automação GitHub criados
-- ✅ Resumo executivo em `docs/resumo-issues-resolvidas.md`
+### Concluídos tecnicamente (aguardando fechamento das issues)
+- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
+- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
+- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
+
+### Em andamento prioritário
+- ⏳ C1 – Persistência em disco / API (issue #1)
+- ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)
+
+### Fontes auxiliares
+- `docs/issues-pendentes.md` (snapshot detalhado das 37 issues geradas)
+- `docs/resumo-issues-resolvidas.md` (detalhes de implementação concluída)
+- Scripts: `scripts/gh/*.sh` (automação de labels, issues, project board)
 
 ---
 
@@ -45,7 +53,7 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 
 ---
 
-## Epics e Tarefas
+## Epics e Tarefas (Estado Atual)
 
 ### Epic A – Tokens (@prototipo/tokens)
 - [ ] A1 – Adicionar tokens semânticos (ex.: `--color-bg`, `--color-fg`, `--color-accent`).
@@ -55,7 +63,7 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 - [ ] A5 – Estrutura para futura integração Figma → tokens (sem automatizar agora).
 
 ### Epic B – Design System (@prototipo/design-system)
-- [ ] B1 – Componentes de formulário: `Input`, `Select`, `Checkbox`, `Radio`, `Switch`.
+- [x] B1 – Componentes de formulário: `Input`, `Select`, `Checkbox`, `Radio`, `Switch` (implementado – fechar issue #2 após revisão de acessibilidade).
 - [ ] B2 – Componentes de layout: `Stack`, `Grid`, `Section`, `Navbar`, `Footer`.
 - [ ] B3 – Feedback/UI: `Badge`, `Tag`, `Tooltip`, `Modal`, `Toast` (API mínima).
 - [ ] B4 – Acessibilidade: roles/aria, foco visível, contraste, navegação teclado.
@@ -71,7 +79,7 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 - [ ] C5 – Export/Import de páginas (JSON) via UI do editor.
 
 ### Epic D – Storybook
-- [ ] D1 – Página de Tokens (visualizar cores/typography/spacing com exemplos).
+- [x] D1 – Página de Tokens (visualizar cores/typography/spacing) – implementado (issue #3 aberta para revisão final).
 - [ ] D2 – Addon A11y e validações mínimas.
 - [ ] D3 – Play functions para interações básicas nos componentes (testes interativos).
 - [ ] D4 – Agrupamento por categoria/domínio; exemplos focados em jornadas reais.
@@ -88,7 +96,7 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
   - [ ] Componentes DS necessários: Card de missão, HUD simples, Modal de recompensa.
 
 ### Epic F – Tooling/Infra
-- [ ] F1 – ESLint config compartilhada + `eslint-plugin-react` + `eslint-plugin-storybook` aplicados a pacotes/apps.
+- [x] F1 – ESLint config compartilhada + plugins aplicados – implementado (issue #5 aberta para validação CI futura).
 - [ ] F2 – Prettier + `.prettierrc` (opcional) e `format` scripts.
 - [ ] F3 – GitHub Actions: workflow de CI com cache pnpm e jobs de build (tokens, DS, Studio, Storybook).
 - [ ] F4 – Husky + lint-staged (opcional) para garantir qualidade em commits.
@@ -113,58 +121,87 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ---
 
 ## Backlog Priorizado (P0→P2)
-- P0 (alto impacto/curto prazo)
-  - C1 Persistência em disco no Studio
-  - ✅ D1 Página de Tokens no Storybook (concluído - commit 82cfb9b)
-  - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) (concluído - commit 433214b)
-  - E1 BackOffice: primeira jornada com páginas base
-  - ✅ F1 ESLint unificado (concluído - commit da05e19)
-- P1 (médio)
-  - C2 Lista de páginas no sidebar
-  - B4 Acessibilidade básica
-  - D2 Addon A11y + D3 Play functions
-  - G4 Script gerador de índice de jornadas
-  - G6 Guia de contribuição
-  - H1 Planejar Dashboard do Projeto (wireframe)
-- P2 (exploração)
-  - B6 Theming com tokens semânticos
-  - C5 Export/Import JSON por UI
-  - F3 GitHub Actions CI
-  - G5 Validação de links em CI
-  - H3 Dashboard: implementação de UI e integrações
+
+### 🔴 P0 (alto impacto / habilita restante)
+| Item | Issue | Status | Dependências | Próximo Passo |
+|------|-------|--------|--------------|---------------|
+| C1 Persistência em disco | #1 | Em andamento | Nenhuma (bloqueia C2/H2) | Definir schema JSON e rota `/api/pages` |
+| E1 Jornada BackOffice (Revisão de Questões) | #4 | Em andamento | B1 concluído | Criar páginas iniciais + mapear componentes adicionais |
+| B1 Form Components | #2 | Implementado | — | Revisão A11y + fechar issue |
+| D1 Página de Tokens | #3 | Implementado | Tokens base | Adicionar exemplos de uso JS + fechar issue |
+| F1 ESLint unificado | #5 | Implementado | — | Rodar lint full + fechar issue |
+
+### 🟡 P1 (médio / incrementos)
+| Item | Issue | Status | Gate |
+|------|-------|--------|------|
+| C2 Sidebar páginas | #6 | Pendente | C1 |
+| B4 Acessibilidade DS | #7 | Pendente | B1 |
+| D2 Addon A11y | #8 | Pendente | D1 |
+| G4 Índice automático jornadas | #9 | Pendente | Estrutura atual domains |
+| G6 CONTRIBUTING.md | #10 | Pendente | Guia tokens/DS estável |
+| H1 Planejar Dashboard | #12 | Pendente | Wireframe inicial |
+| H2 Endpoint index páginas | #13 | Pendente | C1 |
+| H3 UI listagem dashboard | #14 | Pendente | H2 |
+| H4 Indicadores saúde repo | #15 | Pendente | H2 + lint + build metrics |
+| H5 Link Storybook/badge | #16 | Pendente | D1 build estático |
+| (Reservado) H6 Requisitos segurança | — | Pendente | Definição acesso |
+
+### 🟢 P2 (exploração / pós estabilização)
+| Item | Status | Observação |
+|------|--------|------------|
+| B6 Theming (tokens semânticos) | Pendente | Requer A1–A4 definidos |
+| C5 Export/Import JSON UI | Pendente | Após C1 + C2 |
+| F3 GitHub Actions CI | Pendente | Infra mínima + caching pnpm |
+| G5 Validação de links em CI | Pendente | Após CONTRIBUTING.md |
+| H3 (Expansão dashboard avançada) | Pendente | Métricas + gráficos |
 
 ---
 
-## Sprints (proposta inicial)
-- Sprint 1 (1-2 semanas) - **PARCIALMENTE CONCLUÍDO**
-  - ✅ F1 ESLint unificado
-  - ✅ D1 Página de Tokens no Storybook
-  - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) - TODOS os componentes
-  - ⏳ C1 Persistência em disco no Studio - PENDENTE
-  - ⏳ E1 BackOffice: primeira jornada (estrutura e 1 página) - PENDENTE
-- Sprint 2 (1-2 semanas)
-  - C2, B1 (Checkbox/Radio/Switch), D2, D3, E1 (página 2/3).
+## Sprints (Replanejamento)
+
+### Sprint Atual (S1 – foco em fundação de dados + primeira jornada)
+Objetivo: habilitar persistência e primeira jornada real para permitir evolução de dashboard e navegação.
+- C1: Implementar rota de persistência (CRUD básico JSON)
+- E1: Estrutura + 1 página inicial (lista de questões)
+- Revisões finais e fechamento de issues: B1, D1, F1
+
+### Próxima Sprint (S2 – navegação e acessibilidade)
+Pré-condição: C1 e página inicial E1 concluídas.
+- C2: Sidebar páginas
+- B4: Acessibilidade DS (foco + contraste + roles)
+- D2: Addon A11y + validações
+- G6: CONTRIBUTING.md
+- H2: Index páginas (API + integração dashboard)
+
+### Sprint Posterior (S3 – dashboard e automação)
+- H3/H4/H5: UI + indicadores + link Storybook
+- G4: Índice automático jornadas
+- F3: Workflow CI básico (lint + build) 
+- C5: Export/Import JSON
 
 ---
 
-## Critérios de Aceitação (exemplos)
-- C1: é possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `apps/studio/data/pages`.
-- D1: existe uma story/MDX que apresenta visualmente os tokens com amostras legíveis.
-- B1: cada componente de formulário possui stories com controles e estados (foco/erro/disabled).
+## Critérios de Aceitação (Principais)
+- C1: CRUD funcional (`GET /api/pages`, `POST /api/pages`, `PUT /api/pages/{id}`, `DELETE /api/pages/{id}`) + arquivos JSON persistidos.
+- E1: Jornada BackOffice com ao menos 1 fluxo navegável (lista → detalhe) usando componentes DS existentes.
+- B1: Todos os form components com stories contendo estados (focus, error, disabled) e props documentadas.
+- D1: Página de Tokens apresenta amostras interpretáveis + instruções de uso em CSS/TS.
+- F1: `pnpm -r lint` executa sem erros críticos (warnings aceitáveis listados).
 
 ---
 
 ## Riscos e Assunções
-- Puck OSS evolui rapidamente: manter config enxuta para facilitar upgrades.
-- DS deve evitar acoplamento a frameworks CSS externos (priorizar CSS Modules + tokens).
-- Evitar expandir muito escopo de CI no início (foco em prototipação). 
+- Atualizações do Puck OSS podem alterar API → manter configuração minimalista e documentar versão.
+- Evitar dependências adicionais de styling (priorizar CSS Modules + tokens) até estabilizar DS.
+- Sem CI ainda: risco de regressões silenciosas → priorizar criação de workflow simples (F3) quando S2 concluir.
+- Issues implementadas mas não fechadas geram ruído → fechar após checklist acessibilidade/performance.
 
 ---
 
-## Papéis e Rotinas (sugestão)
+## Papéis e Rotinas (Sugestão)
 - Papéis: PM, Design, Frontend, QA.
-- Rotinas: planning semanal curto; demo quinzenal com stakeholders.
-- Issues no GitHub com labels: `epic`, `feature`, `chore`, `bug`, `docs`, `domain:backoffice|frontoffice|game`, `priority:P0|P1|P2`.
+- Cerimônias: planning semanal (30min), revisão técnica meio da sprint, demo quinzenal.
+- Labels obrigatórias por issue: `priority:P*`, `type:*`, `epic` (quando aplicável), `domain:*` (se jornada), `status:*`.
 
 ---
 
@@ -198,4 +235,10 @@ pnpm -r test
 - Tokens: `packages/tokens/`
 - Jornadas: `domains/BackOffice/`, `domains/FrontOffice/`, `domains/Game/`
 
-Mantenha este backlog vivo. Ao concluir tarefas, marque-as e adicione links para PRs e páginas do Studio/Storybook.
+## Governança do Backlog
+1. Toda conclusão técnica deve gerar: atualização nesta lista + fechamento da issue + link de commit/PR.
+2. Evitar adicionar tarefas sem mapear a qual Epic pertencem (ou criar nova Epic com justificativa clara).
+3. Revisar previsões de sprint ao final (retro rápida: 10min, atualizar percentuais e bloqueios).
+4. Documentos complementares devem manter coesão: se `issues-pendentes.md` for regenerado, sincronizar antes de planejar sprint.
+
+Mantenha este backlog vivo. Ao concluir tarefas, marque-as, feche issues no GitHub e adicione links para PRs e páginas do Studio/Storybook.
