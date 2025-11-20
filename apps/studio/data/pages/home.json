@@ -1,0 +1,41 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "layout-1",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-1",
+              "content": "Página Inicial - Home",
+              "as": "h1",
+              "size": "5xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-2",
+              "content": "Esta é a página inicial do Studio. Você pode editá-la livremente.",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Página Inicial"
+    }
+  },
+  "zones": {}
+}
