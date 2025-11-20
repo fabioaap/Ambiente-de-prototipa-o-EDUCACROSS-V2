@@ -18,6 +18,9 @@ on:
           - staging
           - preview
 
+permissions:
+  contents: read
+
 jobs:
   deploy-studio:
     name: Deploy Studio to Staging
