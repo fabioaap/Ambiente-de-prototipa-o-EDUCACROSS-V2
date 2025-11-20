@@ -1,0 +1,28 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^https?://localhost",
+      "comment": "Ignore localhost URLs (development URLs)"
+    },
+    {
+      "pattern": "^https?://example.com",
+      "comment": "Ignore example.com URLs"
+    },
+    {
+      "pattern": "^file://",
+      "comment": "Ignore file:// URLs"
+    },
+    {
+      "pattern": "^mailto:",
+      "comment": "Ignore email addresses"
+    }
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 2,
+  "fallbackRetryDelay": "30s",
+  "aliveStatusCodes": [
+    200,
+    206
+  ]
+}
