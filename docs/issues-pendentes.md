@@ -2,21 +2,21 @@
 
 Este documento lista todas as issues pendentes extraídas do `backlog.md`, organizadas por Epic e prioridade.
 
-**Data de geração**: 2025-11-19  
-**Status**: Documento gerado automaticamente a partir do backlog
+**Data de geração**: 2025-11-20  
+**Status**: Snapshot manual sincronizado com `docs/backlog.md`
 
 ---
 
 ## Resumo por Prioridade
 
-- **P0 (Alto Impacto/Curto Prazo)**: 5 issues → **5 CONCLUÍDAS** ✅
-- **P1 (Médio)**: 11 issues
-- **P2 (Exploração)**: 4 issues
+- **P0 (Alto Impacto/Curto Prazo)**: 5 issues → 4 concluídas, **1 pendente (E1)**
+- **P1 (Médio)**: 11 issues → 0 concluídas (aguardam C1/E1 e definições de A11y)
+- **P2 (Exploração)**: 4 issues → 0 concluídas
 - **Sem Prioridade Definida**: 17 issues (principalmente Epic A, B, C, D)
 
-**Total**: 32 issues pendentes (5 de P0 concluídas)
+**Total**: 37 issues mapeadas (4 concluídas aguardando fechamento, 33 pendentes)
 
-**Sprint 1 Status**: ✅ **COMPLETO** - Todas as 5 issues P0 finalizadas!
+**Sprint 1 Status**: 🚧 **EM ANDAMENTO** – Falta concluir E1 (páginas + componentes DS)
 
 ---
 
@@ -75,12 +75,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Labels**: `epic`, `type:task`
 - **Status**: Pendente
 
-### B4 – Acessibilidade ✅
+### B4 – Acessibilidade
 - **Descrição**: Acessibilidade: roles/aria, foco visível, contraste, navegação teclado
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
-- **Implementado**: Focus-visible, hit targets melhorados, audit completo
+- **Status**: Pendente
+- **Próximo passo**: Checklist completo após revisar os componentes de formulário (B1)
 
 ### B5 – Página de documentação dos componentes
 - **Descrição**: Página de documentação dos componentes (Storybook Docs) com exemplos reais
@@ -111,12 +111,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Status**: **CONCLUÍDO** ✅
 - **Critério de Aceitação**: É possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `apps/studio/data/pages`
 
-### C2 – Lista de páginas no sidebar ✅
+### C2 – Lista de páginas no sidebar
 - **Descrição**: Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
-- **Implementado**: Sidebar com StudioLayout, lista dinâmica, criar/deletar páginas, responsive design
+- **Status**: Pendente
+- **Observação**: Depende da validação final da persistência (C1) e definição de UX no Studio
 
 ### C3 – Templates de página por jornada
 - **Descrição**: Templates de página por jornada (ex.: dashboard, detalhe, formulário)
@@ -154,11 +154,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Status**: Pendente
 - **Nota**: Play functions adicionadas em D3 como base para futuro addon A11y
 
-### D3 – Play functions ✅
+### D3 – Play functions
 - **Descrição**: Play functions para interações básicas nos componentes (testes interativos)
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
+- **Status**: Pendente
+- **Observação**: Espera definição dos componentes críticos (B1/B4)
 
 ### D4 – Agrupamento por categoria/domínio
 - **Descrição**: Agrupamento por categoria/domínio; exemplos focados em jornadas reais
@@ -170,18 +171,20 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic E – Jornadas (domains/BackOffice, domains/FrontOffice, domains/Game)
 
-### E1 – domains/BackOffice: Revisão de Questões ✅
+### E1 – domains/BackOffice: Revisão de Questões
 - **Descrição**: 
   - Páginas do Studio: lista de pendentes, detalhe de questão, ações
   - Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `domain:BackOffice`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
+- **Status**: Em andamento
 
 #### Subtarefas E1:
 - [x] Criar estrutura de jornada em `domains/BackOffice/journeys/revisao-questoes/`
 - [ ] Implementar componentes DS: Toolbar, StatusBadge, ConfirmDialog
-- [x] Criar páginas no Studio: lista de pendentes, detalhe de questão, ações
+- [x] Página do Studio: Lista de pendentes (`/backoffice/revisao-questoes/lista`)
+- [x] Página do Studio: Detalhe da questão (`/backoffice/revisao-questoes/detalhe`)
+- [ ] Tela de ações/confirmar devolutivas
 - [x] Documentar jornada no README
 
 ### E2 – domains/FrontOffice: Onboarding do Aluno
@@ -259,11 +262,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Prioridade**: Concluída
 - **Status**: **CONCLUÍDO**
 
-### G4 – Script gerador de índice de jornadas ✅
+### G4 – Script gerador de índice de jornadas
 - **Descrição**: Script para gerar índice automático de jornadas por domínio (`pnpm gen:jornadas`)
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`, `tooling`
-- **Status**: **CONCLUÍDO** ✅
+- **Status**: Pendente
+- **Dependência**: Estrutura final de domínios consolidada
 
 ### G5 – Validação de links em CI
 - **Descrição**: Validação de links em CI (lint-md ou similar) para evitar links quebrados
@@ -271,11 +275,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Labels**: `priority:P2`, `type:task`, `tooling`
 - **Status**: Pendente
 
-### G6 – Guia de contribuição ✅
+### G6 – Guia de contribuição
 - **Descrição**: Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `documentation`
-- **Status**: **CONCLUÍDO** ✅
+- **Status**: Pendente
+- **Observação**: Depende de tokens/DS estabilizados e checklist de jornadas
 
 ---
 
@@ -311,12 +316,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Labels**: `priority:P2`, `type:task`
 - **Status**: Pendente
 
-### H5 – Link para Storybook e badge ✅
+### H5 – Link para Storybook e badge
 - **Descrição**: Adicionar link e badge do Storybook no Dashboard e READMEs de domínio
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
-- **Implementado em**: README.md e CONTRIBUTING.md
+- **Status**: Pendente
+- **Observação**: Aguarda build estática final do Storybook e redação nos READMEs
 
 ### H6 – Requisitos de segurança e visibilidade
 - **Descrição**: Definir permissões e capture de visibilidade para usuários
@@ -372,4 +377,4 @@ pnpm setup:gh:add-issues-to-project
 
 ---
 
-**Última atualização**: 2025-11-19
+**Última atualização**: 2025-11-20
