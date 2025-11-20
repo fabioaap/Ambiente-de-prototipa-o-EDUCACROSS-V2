@@ -4,8 +4,21 @@ Este diretório centraliza documentos de apoio ao monorepo de prototipação EDU
 
 ## Índice
 
+### Planejamento e Roadmap
 - [Backlog do Projeto](./backlog.md) - Epics, tarefas priorizadas e roadmap
 - [Domínios e Jornadas](../domains/README.md) - BackOffice, FrontOffice, Game
+- [Sprint 1 - Completo](./sprint-1-completo.md) - Histórico Sprint 1
+- [Sprint 2 - Final Report](./sprint-2-final-report.md) - Sprint 2 (100%)
+
+### Implementação
+- [C2 Implementation](./c2-implementation.md) - Studio Sidebar
+- [Accessibility Audit](./accessibility-audit.md) - Auditoria WCAG 2.1
+
+### QA e Testes
+- [🚀 QA Quick Start](./qa-quick-start.md) - **Começar aqui!** Guia rápido (15 min)
+- [📋 QA Testing Guide](./qa-dashboard-testing.md) - Cenários detalhados de teste
+- [✅ QA Checklist](./qa-dashboard-checklist.md) - Checklist imprimível para testers
+- [📊 User Flows](./qa-user-flows.md) - Fluxos de usuário com diagramas
 
 ## Convenções
 
