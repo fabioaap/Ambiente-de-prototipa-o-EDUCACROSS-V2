@@ -89,9 +89,9 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
   - [ ] Componentes DS necessários: Card de missão, HUD simples, Modal de recompensa.
 
 ### Epic F – Tooling/Infra
-- [ ] F1 – ESLint config compartilhada + `eslint-plugin-react` + `eslint-plugin-storybook` aplicados a pacotes/apps.
+- [x] F1 – ESLint config compartilhada + `eslint-plugin-react` + `eslint-plugin-storybook` aplicados a pacotes/apps.
 - [ ] F2 – Prettier + `.prettierrc` (opcional) e `format` scripts.
-- [ ] F3 – GitHub Actions: workflow de CI com cache pnpm e jobs de build (tokens, DS, Studio, Storybook).
+- [x] F3 – GitHub Actions: workflow de CI com cache pnpm e jobs de build (tokens, DS, Studio, Storybook).
 - [ ] F4 – Husky + lint-staged (opcional) para garantir qualidade em commits.
 
 ### Epic G – Governança e Manutenção
@@ -120,6 +120,7 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
   - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) (concluído - commit 433214b)
   - E1 BackOffice: primeira jornada com páginas base
   - ✅ F1 ESLint unificado (concluído - commit da05e19)
+  - ✅ F3 GitHub Actions CI (concluído)
 - P1 (médio)
   - C2 Lista de páginas no sidebar
   - B4 Acessibilidade básica
@@ -130,7 +131,6 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 - P2 (exploração)
   - B6 Theming com tokens semânticos
   - C5 Export/Import JSON por UI
-  - F3 GitHub Actions CI
   - G5 Validação de links em CI
   - H3 Dashboard: implementação de UI e integrações
 

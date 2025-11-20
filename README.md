@@ -1,5 +1,10 @@
 # EDUCACROSS - Ambiente de Prototipação
 
+![CI Status](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/workflows/CI/badge.svg)
+![Node Version](https://img.shields.io/badge/node-22.x-brightgreen)
+![pnpm Version](https://img.shields.io/badge/pnpm-9.14.4-blue)
+![License](https://img.shields.io/badge/license-Internal-red)
+
 Repositório de prototipação frontend orientado a jornadas, utilizando React, Puck OSS e Storybook.
 
 ## 🎯 Visão Geral
@@ -319,6 +324,83 @@ packages/design-system
 - [Resumo de Issues Resolvidas](./docs/resumo-issues-resolvidas.md) 🆕
 - [Domínios e Jornadas](./domains/README.md)
 - [Automação GitHub](./scripts/gh/README.md) 🆕
+- [**Guia DevOps**](./docs/DEVOPS.md) 🆕
+
+## 🔧 DevOps & CI/CD
+
+### Pipeline de Integração Contínua
+
+O projeto possui um workflow de CI automatizado (`.github/workflows/ci.yml`) que é executado em:
+- Push para `main` ou `develop`
+- Pull requests para `main` ou `develop`
+
+**Jobs executados:**
+
+1. **Lint** - Executa ESLint em todos os workspaces
+2. **Build Tokens** - Compila design tokens (CSS + JS)
+3. **Build Design System** - Compila biblioteca de componentes
+4. **Build Studio** - Build do app Next.js com Puck
+5. **Build Storybook** - Build estático do Storybook
+
+### Ordem de Build (Dependências)
+
+É importante respeitar a ordem de build devido às dependências entre workspaces:
+
+```bash
+# 1. Tokens (sem dependências internas)
+pnpm build:tokens
+
+# 2. Design System (depende de tokens)
+pnpm build:design-system
+
+# 3. Studio e Storybook (dependem de tokens + design-system)
+pnpm build:studio
+pnpm build:storybook
+
+# Ou build completo (já respeita a ordem)
+pnpm build
+```
+
+### Cache e Otimizações
+
+O CI utiliza cache do pnpm store para reduzir tempo de instalação:
+- Key: `${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}`
+- Redução esperada: ~70% no tempo de `pnpm install`
+
+**Artifacts gerados:**
+- `tokens-dist` - Design tokens compilados (1 dia)
+- `design-system-dist` - Componentes compilados (1 dia)
+- `storybook-static` - Build estático do Storybook (7 dias)
+
+### Processo de Deploy (Futuro)
+
+**Studio (Next.js):**
+- Plataforma sugerida: Vercel ou GitHub Pages
+- Variáveis de ambiente: TBD
+- Comando: `pnpm build:studio` + `pnpm start`
+
+**Storybook:**
+- Plataforma sugerida: GitHub Pages, Vercel ou Chromatic
+- Build estático disponível em: `apps/storybook/storybook-static`
+- Pode ser servido por qualquer servidor de arquivos estáticos
+
+### Monitoramento e Saúde do Repositório
+
+**Checks automáticos:**
+- ✅ Build de todos os workspaces
+- ✅ Lint (ESLint) sem erros
+- ✅ Type checking (TypeScript)
+
+**Métricas importantes:**
+- Build time total: ~5-7 minutos (CI)
+- Bundle size Storybook: ~890KB (index-Cjb8qg89.js)
+- Dependências totais: 535 pacotes
+
+### Ambientes
+
+- **Development**: `pnpm dev:studio` / `pnpm dev:storybook`
+- **Preview**: Via PR (quando configurado deploy preview)
+- **Production**: TBD (configuração futura)
 
 ## 🐛 Troubleshooting
 
