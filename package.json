@@ -18,15 +18,24 @@
     "lint": "pnpm -r lint",
     "setup:gh:labels": "bash ./scripts/gh/create-labels.sh",
     "setup:gh:issues": "bash ./scripts/gh/create-issues.sh",
+    "setup:gh:issues:all": "bash ./scripts/gh/create-issues-all.sh",
     "setup:gh:project": "bash ./scripts/gh/create-project.sh",
     "setup:gh:add-issues-to-project": "bash ./scripts/gh/add-issues-to-project.sh",
+    "setup:gh:add-to-project-v2": "bash ./scripts/gh/quick-add-to-project.sh",
+    "setup:gh:full": "bash ./scripts/gh/setup-github-full.sh",
     "test": "pnpm -r test",
-    "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static"
+    "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static",
+    "gen:journeys": "node ./scripts/gen-journeys-index.js"
   },
   "devDependencies": {
     "typescript": "^5.6.3",
     "prettier": "^3.3.3",
-    "eslint": "^9.15.0"
+    "eslint": "^9.15.0",
+    "@eslint/js": "^9.15.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0"
   },
   "packageManager": "pnpm@9.14.4"
 }

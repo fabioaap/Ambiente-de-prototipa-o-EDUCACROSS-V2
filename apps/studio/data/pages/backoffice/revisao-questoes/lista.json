@@ -1,0 +1,235 @@
+{
+    "content": [
+        {
+            "type": "Layout",
+            "props": {
+                "id": "layout-lista",
+                "maxWidth": "xl",
+                "children": [
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "titulo-lista",
+                            "content": "BackOffice · Revisão de Questões",
+                            "as": "h1",
+                            "size": "4xl",
+                            "weight": "bold",
+                            "color": "primary"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "descricao-lista",
+                            "content": "Visualize e aprove rapidamente as questões pendentes enviadas pelos educadores.",
+                            "as": "p",
+                            "size": "lg",
+                            "weight": "normal",
+                            "color": "muted"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "contagem-pendentes",
+                            "content": "Pendentes hoje: 3 questões aguardando revisão",
+                            "as": "p",
+                            "size": "base",
+                            "weight": "medium",
+                            "color": "secondary"
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "questao-1",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-1-titulo",
+                                        "content": "Questão 1345 · Frações equivalentes",
+                                        "as": "h3",
+                                        "size": "2xl",
+                                        "weight": "semibold",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-1-meta",
+                                        "content": "Enviada por Prof.ª Ana Souza · 12 min atrás",
+                                        "as": "p",
+                                        "size": "sm",
+                                        "weight": "normal",
+                                        "color": "muted"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-1-preview",
+                                        "content": "Os alunos devem identificar quais frações representam a mesma parte do todo em uma pizza dividida...",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "questao-1-aprovar",
+                                        "text": "Aprovar",
+                                        "variant": "primary",
+                                        "size": "md"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "questao-1-rejeitar",
+                                        "text": "Solicitar ajustes",
+                                        "variant": "outline",
+                                        "size": "md"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "questao-2",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-2-titulo",
+                                        "content": "Questão 1288 · Interpretação de gráficos",
+                                        "as": "h3",
+                                        "size": "2xl",
+                                        "weight": "semibold",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-2-meta",
+                                        "content": "Enviada por Prof. Carlos Mendes · 35 min atrás",
+                                        "as": "p",
+                                        "size": "sm",
+                                        "weight": "normal",
+                                        "color": "muted"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-2-preview",
+                                        "content": "A turma deverá analisar um gráfico de barras com dados de leitura semanal e responder perguntas abertas...",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "questao-2-aprovar",
+                                        "text": "Aprovar",
+                                        "variant": "primary",
+                                        "size": "md"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "questao-2-rejeitar",
+                                        "text": "Solicitar ajustes",
+                                        "variant": "outline",
+                                        "size": "md"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "questao-3",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-3-titulo",
+                                        "content": "Questão 1279 · Probabilidade básica",
+                                        "as": "h3",
+                                        "size": "2xl",
+                                        "weight": "semibold",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-3-meta",
+                                        "content": "Enviada por Prof.ª Luiza Prado · 1h atrás",
+                                        "as": "p",
+                                        "size": "sm",
+                                        "weight": "normal",
+                                        "color": "muted"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "questao-3-preview",
+                                        "content": "Questão pede para calcular a probabilidade de retirar bolas coloridas de um saco sem reposição...",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "questao-3-aprovar",
+                                        "text": "Aprovar",
+                                        "variant": "primary",
+                                        "size": "md"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "questao-3-rejeitar",
+                                        "text": "Solicitar ajustes",
+                                        "variant": "outline",
+                                        "size": "md"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "root": {
+        "props": {
+            "title": "BackOffice | Revisão de Questões · Lista"
+        }
+    },
+    "zones": {}
+}

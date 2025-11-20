@@ -1,0 +1,188 @@
+{
+    "content": [
+        {
+            "type": "Layout",
+            "props": {
+                "id": "layout-detalhe",
+                "maxWidth": "xl",
+                "children": [
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "detalhe-titulo",
+                            "content": "Revisão · Questão 1345",
+                            "as": "h1",
+                            "size": "4xl",
+                            "weight": "bold",
+                            "color": "primary"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "detalhe-subtitulo",
+                            "content": "Frações equivalentes · Ensino Fundamental · 6º ano",
+                            "as": "p",
+                            "size": "lg",
+                            "weight": "medium",
+                            "color": "default"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "detalhe-meta",
+                            "content": "Enviada por Prof.ª Ana Souza · Revisão pendente há 12 minutos",
+                            "as": "p",
+                            "size": "sm",
+                            "weight": "normal",
+                            "color": "muted"
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "enunciado",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "enunciado-label",
+                                        "content": "Enunciado proposto",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "enunciado-texto",
+                                        "content": "Considerando a pizza abaixo dividida em 8 fatias, quais frações representam a mesma quantidade de pizza que 3/8? Justifique sua resposta.",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "criterios",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "criterios-label",
+                                        "content": "Checklist de revisão",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "criterio-claridade",
+                                        "content": "✔ Clareza do enunciado: OK",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "criterio-nivel",
+                                        "content": "⚠ Nível de dificuldade: ajustar exemplos para alunos com defasagem",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "warning"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "criterio-alinhamento",
+                                        "content": "✔ Alinhamento com BNCC: OK",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "acoes",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "acoes-label",
+                                        "content": "Próximas ações",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "acoes-instrucoes",
+                                        "content": "Revise o nível de dificuldade e adicione um exemplo guiado antes da pergunta final.",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-aprovar",
+                                        "text": "Aprovar e publicar",
+                                        "variant": "primary",
+                                        "size": "lg"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-ajustes",
+                                        "text": "Solicitar ajustes",
+                                        "variant": "outline",
+                                        "size": "lg"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "root": {
+        "props": {
+            "title": "BackOffice | Revisão de Questões · Detalhe"
+        }
+    },
+    "zones": {}
+}
