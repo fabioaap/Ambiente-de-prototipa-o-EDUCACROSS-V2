@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Config } from '@measured/puck';
-import { Button, Text, Card, Layout } from '@prototipo/design-system';
+import { Button, Text, Card, Layout, Toolbar, StatusBadge } from '@prototipo/design-system';
 
 export type ButtonProps = {
   text: string;
@@ -25,6 +25,16 @@ export type CardProps = {
 export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   children: ReactNode[];
+};
+
+export type ToolbarProps = {
+  align: 'left' | 'center' | 'right' | 'space-between';
+  children: ReactNode[];
+};
+
+export type StatusBadgeProps = {
+  status: 'pending' | 'approved' | 'rejected' | 'reviewing';
+  label?: string;
 };
 
 export const puckConfig: Config = {
@@ -182,6 +192,47 @@ export const puckConfig: Config = {
       },
       render: ({ maxWidth, children }: LayoutProps) => {
         return <Layout maxWidth={maxWidth}>{children}</Layout>;
+      },
+    },
+    Toolbar: {
+      fields: {
+        align: {
+          type: 'select',
+          options: [
+            { label: 'Left', value: 'left' },
+            { label: 'Center', value: 'center' },
+            { label: 'Right', value: 'right' },
+            { label: 'Space Between', value: 'space-between' },
+          ],
+        },
+      },
+      defaultProps: {
+        align: 'left',
+        children: [] as ReactNode[],
+      },
+      render: ({ align, children }: ToolbarProps) => {
+        return <Toolbar align={align}>{children}</Toolbar>;
+      },
+    },
+    StatusBadge: {
+      fields: {
+        status: {
+          type: 'select',
+          options: [
+            { label: 'Pendente', value: 'pending' },
+            { label: 'Aprovado', value: 'approved' },
+            { label: 'Rejeitado', value: 'rejected' },
+            { label: 'Em Revisão', value: 'reviewing' },
+          ],
+        },
+        label: { type: 'text' },
+      },
+      defaultProps: {
+        status: 'pending',
+        label: '',
+      },
+      render: ({ status, label }: StatusBadgeProps) => {
+        return <StatusBadge status={status} label={label || undefined} />;
       },
     },
   },

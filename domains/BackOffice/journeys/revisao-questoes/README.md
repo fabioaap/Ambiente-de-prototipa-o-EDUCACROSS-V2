@@ -11,21 +11,19 @@ Validar o fluxo para que curadores pedagógicos revisem questões enviadas pelos
 ## 🔗 Protótipos Relacionados
 - [Lista de questões pendentes](http://localhost:3000/backoffice/revisao-questoes/lista)
 - [Detalhe da questão](http://localhost:3000/backoffice/revisao-questoes/detalhe)
-
-_(Próxima etapa: tela de ações/ confirmação final)_
+- [Ações em lote](http://localhost:3000/backoffice/revisao-questoes/acoes)
 
 ## 🧩 Componentes Utilizados
 - `Layout` – estrutura responsiva do conteúdo
 - `Text` – títulos, descrições e metadados
 - `Card` – agrupamento de cada questão e checklists
 - `Button` – ações Aprovar / Solicitar ajustes
-
-**Componentes futuros necessários**
-- [ ] `StatusBadge` – indicar status atual (pendente, aprovado, revisando)
-- [ ] `ConfirmDialog` – confirmar ações críticas (publicar, descartar)
+- `Toolbar` – barra de ações em lote
+- `StatusBadge` – indicar status atual (pendente, aprovado, revisando, rejeitado)
+- `ConfirmDialog` – confirmar ações críticas (implementado, disponível no DS)
 
 ## 📊 Status
-- **Status atual**: 🚧 Em andamento
+- **Status atual**: ✅ Concluído
 - **Última atualização**: 2025-11-20
 
 ## 💡 Decisões de Design
@@ -44,8 +42,8 @@ _(Próxima etapa: tela de ações/ confirmação final)_
 Consulte `notas.md` para feedback de revisores e próximos experimentos.
 
 ## 🔜 Próximos Passos
-- [ ] Criar tela de confirmação/ação final (aprovar em lote, devolver com comentários)
-- [ ] Adicionar `StatusBadge` e `ConfirmDialog` ao design system
+- [x] Criar tela de confirmação/ação final (aprovar em lote, devolver com comentários)
+- [x] Adicionar `StatusBadge` e `ConfirmDialog` ao design system
 - [ ] Conectar com API de páginas para persistir status real
 - [ ] Validar fluxo com um grupo piloto de coordenadores
 

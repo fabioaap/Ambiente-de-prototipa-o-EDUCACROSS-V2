@@ -1,0 +1,237 @@
+{
+    "content": [
+        {
+            "type": "Layout",
+            "props": {
+                "id": "layout-acoes",
+                "maxWidth": "xl",
+                "children": [
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "titulo-acoes",
+                            "content": "BackOffice · Ações em Lote",
+                            "as": "h1",
+                            "size": "4xl",
+                            "weight": "bold",
+                            "color": "primary"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "descricao-acoes",
+                            "content": "Revise e execute ações em múltiplas questões selecionadas de uma vez.",
+                            "as": "p",
+                            "size": "lg",
+                            "weight": "normal",
+                            "color": "muted"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "contagem-selecao",
+                            "content": "3 questões selecionadas",
+                            "as": "p",
+                            "size": "base",
+                            "weight": "semibold",
+                            "color": "secondary"
+                        }
+                    },
+                    {
+                        "type": "Toolbar",
+                        "props": {
+                            "id": "toolbar-acoes",
+                            "align": "left",
+                            "children": [
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "btn-aprovar-lote",
+                                        "text": "Aprovar Selecionadas",
+                                        "variant": "primary",
+                                        "size": "md"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "btn-ajustes-lote",
+                                        "text": "Solicitar Ajustes",
+                                        "variant": "outline",
+                                        "size": "md"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "btn-rejeitar-lote",
+                                        "text": "Rejeitar",
+                                        "variant": "outline",
+                                        "size": "md"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-questoes-selecionadas",
+                            "variant": "elevated",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "titulo-lista-selecao",
+                                        "content": "Questões Selecionadas",
+                                        "as": "h2",
+                                        "size": "2xl",
+                                        "weight": "semibold",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Card",
+                                    "props": {
+                                        "id": "questao-sel-1",
+                                        "variant": "bordered",
+                                        "padding": "md",
+                                        "children": [
+                                            {
+                                                "type": "Text",
+                                                "props": {
+                                                    "id": "questao-sel-1-titulo",
+                                                    "content": "Questão 1345 · Frações equivalentes",
+                                                    "as": "h3",
+                                                    "size": "lg",
+                                                    "weight": "semibold",
+                                                    "color": "default"
+                                                }
+                                            },
+                                            {
+                                                "type": "StatusBadge",
+                                                "props": {
+                                                    "id": "questao-sel-1-status",
+                                                    "status": "pending"
+                                                }
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "props": {
+                                                    "id": "questao-sel-1-meta",
+                                                    "content": "Enviada por Prof.ª Ana Souza",
+                                                    "as": "p",
+                                                    "size": "sm",
+                                                    "weight": "normal",
+                                                    "color": "muted"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "Card",
+                                    "props": {
+                                        "id": "questao-sel-2",
+                                        "variant": "bordered",
+                                        "padding": "md",
+                                        "children": [
+                                            {
+                                                "type": "Text",
+                                                "props": {
+                                                    "id": "questao-sel-2-titulo",
+                                                    "content": "Questão 1288 · Interpretação de gráficos",
+                                                    "as": "h3",
+                                                    "size": "lg",
+                                                    "weight": "semibold",
+                                                    "color": "default"
+                                                }
+                                            },
+                                            {
+                                                "type": "StatusBadge",
+                                                "props": {
+                                                    "id": "questao-sel-2-status",
+                                                    "status": "reviewing"
+                                                }
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "props": {
+                                                    "id": "questao-sel-2-meta",
+                                                    "content": "Enviada por Prof. Carlos Mendes",
+                                                    "as": "p",
+                                                    "size": "sm",
+                                                    "weight": "normal",
+                                                    "color": "muted"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "type": "Card",
+                                    "props": {
+                                        "id": "questao-sel-3",
+                                        "variant": "bordered",
+                                        "padding": "md",
+                                        "children": [
+                                            {
+                                                "type": "Text",
+                                                "props": {
+                                                    "id": "questao-sel-3-titulo",
+                                                    "content": "Questão 1279 · Probabilidade básica",
+                                                    "as": "h3",
+                                                    "size": "lg",
+                                                    "weight": "semibold",
+                                                    "color": "default"
+                                                }
+                                            },
+                                            {
+                                                "type": "StatusBadge",
+                                                "props": {
+                                                    "id": "questao-sel-3-status",
+                                                    "status": "pending"
+                                                }
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "props": {
+                                                    "id": "questao-sel-3-meta",
+                                                    "content": "Enviada por Prof.ª Luiza Prado",
+                                                    "as": "p",
+                                                    "size": "sm",
+                                                    "weight": "normal",
+                                                    "color": "muted"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "info-confirmacao",
+                            "content": "⚠️ Ao clicar em uma das ações acima, um diálogo de confirmação será exibido antes de aplicar as mudanças.",
+                            "as": "p",
+                            "size": "sm",
+                            "weight": "normal",
+                            "color": "muted"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "root": {
+        "props": {
+            "title": "BackOffice | Revisão de Questões · Ações"
+        }
+    },
+    "zones": {}
+}
