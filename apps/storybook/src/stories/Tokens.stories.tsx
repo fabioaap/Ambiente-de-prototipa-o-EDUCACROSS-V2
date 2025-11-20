@@ -122,7 +122,7 @@ export const Typography: Story = {
                 {height}: {value}
               </p>
               <p
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                 
                 style={{
                   lineHeight: parseFloat(value) as any,
                   padding: '1rem',

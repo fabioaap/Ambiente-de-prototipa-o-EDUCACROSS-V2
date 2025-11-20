@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import styles from './PagesList.module.css';
 
 interface PageInfo {
@@ -11,10 +12,16 @@ interface PageInfo {
 }
 
 export function PagesList() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentSlug = searchParams.get('page');
+
   const [pages, setPages] = useState<PageInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [newPageSlug, setNewPageSlug] = useState('');
+  const [renamingSlug, setRenamingSlug] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState('');
 
   useEffect(() => {
     loadPages();
@@ -42,8 +49,36 @@ export function PagesList() {
       });
       if (!response.ok) throw new Error('Failed to delete page');
       setPages(pages.filter((p) => p.slug !== slug));
+      if (currentSlug === slug) {
+        router.push('/studio');
+      }
     } catch (err) {
       alert('Erro ao deletar página: ' + (err instanceof Error ? err.message : 'Unknown error'));
+    }
+  };
+
+  const startRename = (slug: string) => {
+    const page = pages.find((p) => p.slug === slug);
+    if (page) {
+      setRenamingSlug(slug);
+      setRenameValue(page.slug);
+    }
+  };
+
+  const finishRename = async () => {
+    if (!renamingSlug || !renameValue.trim() || renameValue === renamingSlug) {
+      setRenamingSlug(null);
+      return;
+    }
+
+    try {
+      // Nota: A API atual não suporta rename direto
+      // Implementação seria: copiar dados, deletar antigo
+      // Por enquanto, apenas mostrar aviso
+      alert('Rename ainda não implementado na API. Será adicionado em breve.');
+      setRenamingSlug(null);
+    } catch (err) {
+      alert('Erro ao renomear: ' + (err instanceof Error ? err.message : 'Unknown error'));
     }
   };
 
@@ -52,7 +87,7 @@ export function PagesList() {
       alert('Digite um nome para a página');
       return;
     }
-    window.location.href = `/studio?page=${encodeURIComponent(newPageSlug)}`;
+    router.push(`/studio?page=${encodeURIComponent(newPageSlug)}`);
     setNewPageSlug('');
   };
 
@@ -71,34 +106,90 @@ export function PagesList() {
           onChange={(e) => setNewPageSlug(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === 'Enter') createNewPage();
+            if (e.key === 'Escape') setNewPageSlug('');
           }}
           className={styles.newPageInput}
+          aria-label="Nome da nova página"
         />
-        <button onClick={createNewPage} className={styles.newPageBtn}>
+        <button
+          onClick={createNewPage}
+          className={styles.newPageBtn}
+          title="Criar nova página (Enter)"
+          aria-label="Criar página"
+        >
           +
         </button>
       </div>
 
-      {error && <div className={styles.error}>{error}</div>}
+      {error && <div className={styles.error} role="alert">{error}</div>}
       {pages.length === 0 ? (
         <p className={styles.empty}>Nenhuma página criada ainda.</p>
       ) : (
-        <ul className={styles.list}>
+        <ul className={styles.list} role="navigation" aria-label="Lista de páginas">
           {pages.map((page) => (
-            <li key={page.slug} className={styles.item}>
+            <li
+              key={page.slug}
+              className={`${styles.item} ${currentSlug === page.slug ? styles.active : ''}`}
+            >
               <div className={styles.itemContent}>
-                <Link href={`/studio?page=${page.slug}`} className={styles.itemTitle}>
+                <Link
+                  href={`/studio?page=${page.slug}`}
+                  className={styles.itemTitle}
+                  title={`Abrir página: ${page.slug}`}
+                >
                   {page.title}
                 </Link>
                 <span className={styles.itemSlug}>{page.slug}</span>
               </div>
-              <button
-                onClick={() => deletePage(page.slug)}
-                className={styles.deleteBtn}
-                title="Deletar página"
-              >
-                ✕
-              </button>
+              <div className={styles.itemActions}>
+                <button
+                  onClick={() => startRename(page.slug)}
+                  className={styles.actionBtn}
+                  title="Renomear página"
+                  aria-label={`Renomear ${page.slug}`}
+                >
+                  ✎
+                </button>
+                <button
+                  onClick={() => deletePage(page.slug)}
+                  className={styles.deleteBtn}
+                  title="Deletar página"
+                  aria-label={`Deletar ${page.slug}`}
+                >
+                  ✕
+                </button>
+              </div>
+
+              {renamingSlug === page.slug && (
+                <div className={styles.renameForm}>
+                  <input
+                    type="text"
+                    value={renameValue}
+                    onChange={(e) => setRenameValue(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') finishRename();
+                      if (e.key === 'Escape') setRenamingSlug(null);
+                    }}
+                    autoFocus
+                    className={styles.renameInput}
+                    aria-label="Novo nome da página"
+                  />
+                  <button
+                    onClick={finishRename}
+                    className={styles.renameBtn}
+                    aria-label="Confirmar renomear"
+                  >
+                    ✓
+                  </button>
+                  <button
+                    onClick={() => setRenamingSlug(null)}
+                    className={styles.cancelBtn}
+                    aria-label="Cancelar renomear"
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
             </li>
           ))}
         </ul>
