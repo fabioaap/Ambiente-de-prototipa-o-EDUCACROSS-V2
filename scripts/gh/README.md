@@ -107,6 +107,59 @@ Adds issues labeled with `status:backlog` to the "Backlog" column of old-style p
 
 **Note**: GitHub Projects v2 is recommended. The script is pre-configured for project #3 at https://github.com/users/fabioaap/projects/3
 
+### 5. Approve Pull Requests in Batch
+
+```bash
+pnpm approve:prs
+# or
+./scripts/gh/approve-prs-batch.sh
+```
+
+Approve multiple PRs at once with optional filters:
+
+**Basic usage:**
+```bash
+# Approve all open PRs (with confirmation)
+pnpm approve:prs
+
+# Skip confirmation prompt (use with caution!)
+./scripts/gh/approve-prs-batch.sh -- --yes
+```
+
+**Filter by label:**
+```bash
+./scripts/gh/approve-prs-batch.sh -- --label "ready-to-review"
+./scripts/gh/approve-prs-batch.sh -- --label "dependencies"
+```
+
+**Filter by author:**
+```bash
+./scripts/gh/approve-prs-batch.sh -- --author "dependabot[bot]"
+./scripts/gh/approve-prs-batch.sh -- --author "github-actions[bot]"
+```
+
+**Filter by base branch:**
+```bash
+./scripts/gh/approve-prs-batch.sh -- --base main
+./scripts/gh/approve-prs-batch.sh -- --base develop
+```
+
+**Combine filters:**
+```bash
+# Approve up to 5 dependabot PRs without confirmation
+./scripts/gh/approve-prs-batch.sh -- --author "dependabot[bot]" --limit 5 --yes
+
+# Approve ready PRs targeting main branch
+./scripts/gh/approve-prs-batch.sh -- --label "ready-to-review" --base main
+```
+
+**Features:**
+- Interactive confirmation before approving (unless `--yes` is used)
+- Detects if you've already approved a PR and skips it
+- Detailed summary of approvals, failures, and skipped PRs
+- Supports all GitHub PR filters (label, author, base branch, state, limit)
+- Idempotent - safe to run multiple times
+
 ## Custom Usage
 
 All scripts accept the repository as an argument:
@@ -166,6 +219,7 @@ GitHub Projects v2 API permissions may be required. If automated adding fails, m
 - `create-issues-all.sh` - Creates ALL issues from backlog.md (37 total)
 - `create-project.sh` - Creates project board
 - `add-issues-to-project.sh` - Adds issues to project board
+- `approve-prs-batch.sh` - Approves multiple Pull Requests in batch with filters
 - `setup-github-full.sh` - Master script that runs all steps
 
 ## Notes

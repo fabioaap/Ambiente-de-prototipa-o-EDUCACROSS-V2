@@ -23,6 +23,7 @@
     "setup:gh:add-issues-to-project": "bash ./scripts/gh/add-issues-to-project.sh",
     "setup:gh:add-to-project-v2": "bash ./scripts/gh/quick-add-to-project.sh",
     "setup:gh:full": "bash ./scripts/gh/setup-github-full.sh",
+    "approve:prs": "bash ./scripts/gh/approve-prs-batch.sh",
     "test": "pnpm -r test",
     "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static"
   },
