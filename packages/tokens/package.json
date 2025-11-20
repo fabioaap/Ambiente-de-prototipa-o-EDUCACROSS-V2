@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "build": "node scripts/build-tokens.mjs",
-    "dev": "node scripts/build-tokens.mjs --watch"
+    "dev": "node scripts/build-tokens.mjs --watch",
+    "lint": "eslint scripts"
   },
   "devDependencies": {
     "chokidar": "^4.0.3"

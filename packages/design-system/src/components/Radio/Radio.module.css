@@ -1,7 +1,9 @@
 .radio {
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   border: 2px solid var(--color-neutral-300);
   border-radius: var(--border-radius-full);
   background-color: var(--color-neutral-50);
@@ -15,10 +17,10 @@
   border-color: var(--color-neutral-400);
 }
 
-.radio:focus {
-  outline: none;
+.radio:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
   border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .radio:checked {

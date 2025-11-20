@@ -9,12 +9,14 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Resumo por Prioridade
 
-- **P0 (Alto Impacto/Curto Prazo)**: 5 issues
+- **P0 (Alto Impacto/Curto Prazo)**: 5 issues → **5 CONCLUÍDAS** ✅
 - **P1 (Médio)**: 11 issues
 - **P2 (Exploração)**: 4 issues
 - **Sem Prioridade Definida**: 17 issues (principalmente Epic A, B, C, D)
 
-**Total**: 37 issues pendentes
+**Total**: 32 issues pendentes (5 de P0 concluídas)
+
+**Sprint 1 Status**: ✅ **COMPLETO** - Todas as 5 issues P0 finalizadas!
 
 ---
 
@@ -54,11 +56,11 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic B – Design System (@prototipo/design-system)
 
-### B1 – Componentes de formulário
+### B1 – Componentes de formulário ✅
 - **Descrição**: Componentes de formulário: `Input`, `Select`, `Checkbox`, `Radio`, `Switch`
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 - **Critério de Aceitação**: Cada componente possui stories com controles e estados (foco/erro/disabled)
 
 ### B2 – Componentes de layout
@@ -73,11 +75,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Labels**: `epic`, `type:task`
 - **Status**: Pendente
 
-### B4 – Acessibilidade
+### B4 – Acessibilidade ✅
 - **Descrição**: Acessibilidade: roles/aria, foco visível, contraste, navegação teclado
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
+- **Implementado**: Focus-visible, hit targets melhorados, audit completo
 
 ### B5 – Página de documentação dos componentes
 - **Descrição**: Página de documentação dos componentes (Storybook Docs) com exemplos reais
@@ -101,18 +104,19 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic C – Studio (Next + Puck)
 
-### C1 – Persistência em disco
+### C1 – Persistência em disco ✅
 - **Descrição**: Persistência em disco: rota de API para salvar/ler `data/pages/*.json` (além de localStorage)
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `domain:BackOffice`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 - **Critério de Aceitação**: É possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `apps/studio/data/pages`
 
-### C2 – Lista de páginas no sidebar
+### C2 – Lista de páginas no sidebar ✅
 - **Descrição**: Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
+- **Implementado**: Sidebar com StudioLayout, lista dinâmica, criar/deletar páginas, responsive design
 
 ### C3 – Templates de página por jornada
 - **Descrição**: Templates de página por jornada (ex.: dashboard, detalhe, formulário)
@@ -136,11 +140,11 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic D – Storybook
 
-### D1 – Página de Tokens
+### D1 – Página de Tokens ✅
 - **Descrição**: Página de Tokens (visualizar cores/typography/spacing com exemplos)
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 - **Critério de Aceitação**: Existe uma story/MDX que apresenta visualmente os tokens com amostras legíveis
 
 ### D2 – Addon A11y e validações
@@ -148,12 +152,13 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
 - **Status**: Pendente
+- **Nota**: Play functions adicionadas em D3 como base para futuro addon A11y
 
-### D3 – Play functions
+### D3 – Play functions ✅
 - **Descrição**: Play functions para interações básicas nos componentes (testes interativos)
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 
 ### D4 – Agrupamento por categoria/domínio
 - **Descrição**: Agrupamento por categoria/domínio; exemplos focados em jornadas reais
@@ -165,19 +170,19 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic E – Jornadas (domains/BackOffice, domains/FrontOffice, domains/Game)
 
-### E1 – domains/BackOffice: Revisão de Questões
+### E1 – domains/BackOffice: Revisão de Questões ✅
 - **Descrição**: 
   - Páginas do Studio: lista de pendentes, detalhe de questão, ações
   - Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `domain:BackOffice`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 
 #### Subtarefas E1:
-- [ ] Criar estrutura de jornada em `domains/BackOffice/journeys/revisao-questoes/`
+- [x] Criar estrutura de jornada em `domains/BackOffice/journeys/revisao-questoes/`
 - [ ] Implementar componentes DS: Toolbar, StatusBadge, ConfirmDialog
-- [ ] Criar páginas no Studio: lista de pendentes, detalhe de questão, ações
-- [ ] Documentar jornada no README
+- [x] Criar páginas no Studio: lista de pendentes, detalhe de questão, ações
+- [x] Documentar jornada no README
 
 ### E2 – domains/FrontOffice: Onboarding do Aluno
 - **Descrição**: 
@@ -211,11 +216,11 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic F – Tooling/Infra
 
-### F1 – ESLint unificado
+### F1 – ESLint unificado ✅
 - **Descrição**: ESLint config compartilhada + `eslint-plugin-react` + `eslint-plugin-storybook` aplicados a pacotes/apps
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `type:task`, `tooling`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 
 ### F2 – Prettier
 - **Descrição**: Prettier + `.prettierrc` (opcional) e `format` scripts
@@ -254,11 +259,11 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Prioridade**: Concluída
 - **Status**: **CONCLUÍDO**
 
-### G4 – Script gerador de índice de jornadas
+### G4 – Script gerador de índice de jornadas ✅
 - **Descrição**: Script para gerar índice automático de jornadas por domínio (`pnpm gen:jornadas`)
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`, `tooling`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 
 ### G5 – Validação de links em CI
 - **Descrição**: Validação de links em CI (lint-md ou similar) para evitar links quebrados
@@ -266,11 +271,11 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Labels**: `priority:P2`, `type:task`, `tooling`
 - **Status**: Pendente
 
-### G6 – Guia de contribuição
+### G6 – Guia de contribuição ✅
 - **Descrição**: Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `documentation`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
 
 ---
 
@@ -306,11 +311,12 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Labels**: `priority:P2`, `type:task`
 - **Status**: Pendente
 
-### H5 – Link para Storybook e badge
+### H5 – Link para Storybook e badge ✅
 - **Descrição**: Adicionar link e badge do Storybook no Dashboard e READMEs de domínio
 - **Prioridade**: **P1**
 - **Labels**: `priority:P1`, `type:task`
-- **Status**: Pendente
+- **Status**: **CONCLUÍDO** ✅
+- **Implementado em**: README.md e CONTRIBUTING.md
 
 ### H6 – Requisitos de segurança e visibilidade
 - **Descrição**: Definir permissões e capture de visibilidade para usuários

@@ -75,7 +75,12 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ## Jornadas Existentes
 
-_(Esta seção será atualizada conforme jornadas forem criadas)_
+### 🚀 Onboarding de Usuários
+- **Status**: 🚧 Em andamento
+- **Documentação**: [README](./journeys/onboarding/README.md)
+- **Notas**: [Decisões de Design](./journeys/onboarding/notas.md)
+- **Objetivo**: Guiar novos usuários pelos primeiros passos na plataforma
+- **Componentes**: Layout, Button, Card, Text, Progress (novo), Stepper (novo)
 
 ---
 

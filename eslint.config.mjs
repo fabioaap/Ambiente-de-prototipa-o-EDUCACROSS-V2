@@ -3,6 +3,12 @@ import tseslint from '@typescript-eslint/eslint-plugin';
 import tsparser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import storybookPlugin from 'eslint-plugin-storybook';
+import nextPlugin from '@next/eslint-plugin-next';
+
+const nextCoreWebVitals = nextPlugin.configs['core-web-vitals'];
+const nextCoreWebVitalsRules = nextCoreWebVitals.rules ?? {};
+const nextCoreWebVitalsSettings = nextCoreWebVitals.settings ?? {};
 
 export default [
   // Ignore patterns
@@ -44,7 +50,7 @@ export default [
         clearTimeout: 'readonly',
         setInterval: 'readonly',
         clearInterval: 'readonly',
-        
+
         // Browser globals
         window: 'readonly',
         document: 'readonly',
@@ -66,7 +72,7 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
-      
+
       // TypeScript rules
       '@typescript-eslint/no-unused-vars': [
         'warn',
@@ -77,13 +83,13 @@ export default [
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      
+
       // React rules
       'react/react-in-jsx-scope': 'off', // Not needed in React 18+
       'react/prop-types': 'off', // Using TypeScript for prop validation
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      
+
       // General rules
       'no-console': 'off', // Allow console in prototyping environment
       'no-unused-vars': 'off', // Using TypeScript version instead
@@ -101,16 +107,26 @@ export default [
   // Next.js specific config
   {
     files: ['apps/studio/**/*.{js,ts,tsx}'],
+    plugins: {
+      '@next/next': nextPlugin,
+    },
     rules: {
-      // Next.js specific rules can be added here
+      ...nextCoreWebVitalsRules,
+    },
+    settings: {
+      ...nextCoreWebVitalsSettings,
     },
   },
 
   // Storybook specific config
   {
     files: ['apps/storybook/**/*.{js,ts,tsx,stories.tsx}'],
+    plugins: {
+      storybook: storybookPlugin,
+    },
     rules: {
-      // Storybook specific rules can be added here
+      ...storybookPlugin.configs.recommended.rules,
+      'storybook/story-exports': 'error',
     },
   },
 

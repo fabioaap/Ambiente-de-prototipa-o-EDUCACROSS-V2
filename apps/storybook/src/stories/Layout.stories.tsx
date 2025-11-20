@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Layout, Text, Button, Card } from '@prototipo/design-system';
+import { Layout, Text, Card } from '@prototipo/design-system';
 
 const meta = {
   title: 'Components/Layout',

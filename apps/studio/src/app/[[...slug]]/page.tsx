@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { Render, Data } from '@measured/puck';
+import Link from 'next/link';
 import { puckConfig } from '@/config/puck.config';
-import { notFound } from 'next/navigation';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
@@ -50,7 +50,7 @@ export default async function Page({ params }: PageProps) {
         <p style={{ fontSize: '1.25rem', color: '#666', marginBottom: '2rem' }}>
           A página <code>/{pagePath}</code> ainda não foi criada.
         </p>
-        <a
+        <Link
           href="/studio"
           style={{
             display: 'inline-block',
@@ -63,10 +63,11 @@ export default async function Page({ params }: PageProps) {
           }}
         >
           Criar no Studio
-        </a>
+        </Link>
       </div>
     );
   }
 
   return <Render config={puckConfig} data={data} />;
 }
+

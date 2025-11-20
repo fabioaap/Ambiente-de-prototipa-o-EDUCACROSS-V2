@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within, expect } from '@storybook/test';
 import { Input } from '@prototipo/design-system';
 
 const meta = {
@@ -43,6 +44,12 @@ export const WithLabel: Story = {
     type: 'email',
     placeholder: 'you@example.com',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByPlaceholderText('you@example.com');
+    await userEvent.type(input, 'test@example.com', { delay: 50 });
+    await expect(input).toHaveValue('test@example.com');
+  },
 };
 
 export const WithHelperText: Story = {
@@ -50,6 +57,13 @@ export const WithHelperText: Story = {
     label: 'Username',
     placeholder: 'johndoe',
     helperText: 'Choose a unique username',
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByPlaceholderText('johndoe');
+    await userEvent.click(input);
+    await userEvent.type(input, 'awesome_user', { delay: 30 });
+    await expect(input).toHaveValue('awesome_user');
   },
 };
 
@@ -105,5 +119,11 @@ export const Focused: Story = {
     label: 'Focus State',
     placeholder: 'Click to see focus style',
     autoFocus: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByPlaceholderText('Click to see focus style');
+    await expect(input).toHaveFocus();
+    await userEvent.type(input, 'Focused!', { delay: 20 });
   },
 };

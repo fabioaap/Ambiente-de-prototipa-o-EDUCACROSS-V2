@@ -14,6 +14,7 @@ export function PagesList() {
   const [pages, setPages] = useState<PageInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [newPageSlug, setNewPageSlug] = useState('');
 
   useEffect(() => {
     loadPages();
@@ -46,11 +47,38 @@ export function PagesList() {
     }
   };
 
+  const createNewPage = () => {
+    if (!newPageSlug.trim()) {
+      alert('Digite um nome para a página');
+      return;
+    }
+    window.location.href = `/studio?page=${encodeURIComponent(newPageSlug)}`;
+    setNewPageSlug('');
+  };
+
   if (loading) return <div className={styles.loading}>Carregando páginas...</div>;
 
   return (
     <div className={styles.container}>
-      <h2>Páginas Criadas</h2>
+      <h2>📄 Minhas Páginas</h2>
+
+      {/* Criar nova página */}
+      <div className={styles.newPageForm}>
+        <input
+          type="text"
+          placeholder="nome-da-página"
+          value={newPageSlug}
+          onChange={(e) => setNewPageSlug(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') createNewPage();
+          }}
+          className={styles.newPageInput}
+        />
+        <button onClick={createNewPage} className={styles.newPageBtn}>
+          +
+        </button>
+      </div>
+
       {error && <div className={styles.error}>{error}</div>}
       {pages.length === 0 ? (
         <p className={styles.empty}>Nenhuma página criada ainda.</p>

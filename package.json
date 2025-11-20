@@ -24,7 +24,8 @@
     "setup:gh:add-to-project-v2": "bash ./scripts/gh/quick-add-to-project.sh",
     "setup:gh:full": "bash ./scripts/gh/setup-github-full.sh",
     "test": "pnpm -r test",
-    "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static"
+    "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static",
+    "gen:journeys": "node ./scripts/gen-journeys-index.js"
   },
   "devDependencies": {
     "typescript": "^5.6.3",

@@ -1,4 +1,4 @@
-// @ts-nocheck
+import type { ReactNode } from 'react';
 import type { Config } from '@measured/puck';
 import { Button, Text, Card, Layout } from '@prototipo/design-system';
 
@@ -19,12 +19,12 @@ export type TextProps = {
 export type CardProps = {
   variant: 'default' | 'bordered' | 'elevated';
   padding: 'none' | 'sm' | 'md' | 'lg';
-  children: any[];
+  children: ReactNode[];
 };
 
 export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
-  children: any[];
+  children: ReactNode[];
 };
 
 export const puckConfig: Config = {
@@ -152,7 +152,7 @@ export const puckConfig: Config = {
       defaultProps: {
         variant: 'default',
         padding: 'md',
-        children: [],
+        children: [] as ReactNode[],
       },
       render: ({ variant, padding, children }: CardProps) => {
         return (
@@ -178,7 +178,7 @@ export const puckConfig: Config = {
       },
       defaultProps: {
         maxWidth: 'xl',
-        children: [],
+        children: [] as ReactNode[],
       },
       render: ({ maxWidth, children }: LayoutProps) => {
         return <Layout maxWidth={maxWidth}>{children}</Layout>;

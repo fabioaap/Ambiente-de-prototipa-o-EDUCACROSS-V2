@@ -87,7 +87,9 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 
 ### Epic E – Jornadas (domains/BackOffice, domains/FrontOffice, domains/Game)
 - [ ] E1 – domains/BackOffice: Revisão de Questões
-  - [ ] Páginas do Studio: lista de pendentes, detalhe de questão, ações.
+  - [x] Página do Studio: Lista de pendentes (`/backoffice/revisao-questoes/lista`).
+  - [x] Página do Studio: Detalhe da questão (`/backoffice/revisao-questoes/detalhe`).
+  - [ ] Tela de ações/confirmar devolutivas (pendente).
   - [ ] Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog.
 - [ ] E2 – domains/FrontOffice: Onboarding do Aluno
   - [ ] Páginas do Studio: boas-vindas, perfil inicial, tutorial.

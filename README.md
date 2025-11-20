@@ -1,5 +1,10 @@
 # EDUCACROSS - Ambiente de Prototipação
 
+[![Storybook](https://img.shields.io/badge/Storybook-8-FF4785?logo=storybook)](https://educacross-storybook.vercel.app)
+[![Design System](https://img.shields.io/badge/Design%20System-Live-blueviolet)](https://educacross-storybook.vercel.app)
+[![Node](https://img.shields.io/badge/Node-22%20LTS-green?logo=node.js)](https://nodejs.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-9.14-F69220?logo=pnpm)](https://pnpm.io/)
+
 Repositório de prototipação frontend orientado a jornadas, utilizando React, Puck OSS e Storybook.
 
 ## 🎯 Visão Geral
@@ -150,12 +155,15 @@ pnpm dev:storybook
 
 Visite: http://localhost:6006
 
+**🎨 [Abrir Storybook ao Vivo →](https://educacross-storybook.vercel.app)**
+
 ### Stories Disponíveis
 
 - `Button` - Todas as variantes e tamanhos
 - `Text` - Tipografia e cores
 - `Card` - Containers e layouts
 - `Layout` - Sistema de grid responsivo
+- **`Design System/Tokens`** 🆕 - Visualização interativa de todos os tokens
 
 ## 📝 Organização por Jornadas
 

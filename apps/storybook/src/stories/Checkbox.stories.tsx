@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within, expect } from '@storybook/test';
 import { Checkbox } from '@prototipo/design-system';
 
 const meta = {
@@ -28,12 +29,25 @@ export const Default: Story = {
   args: {
     label: 'Accept terms and conditions',
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByRole('checkbox');
+    await userEvent.click(checkbox);
+    await expect(checkbox).toBeChecked();
+  },
 };
 
 export const Checked: Story = {
   args: {
     label: 'I agree to receive newsletters',
     checked: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkbox = canvas.getByRole('checkbox');
+    await expect(checkbox).toBeChecked();
+    await userEvent.click(checkbox);
+    await expect(checkbox).not.toBeChecked();
   },
 };
 
@@ -83,4 +97,22 @@ export const MultipleCheckboxes: Story = {
       <Checkbox label="Option 4" disabled />
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const checkboxes = canvas.getAllByRole('checkbox');
+
+    // Verificar que o primeiro está marcado
+    await expect(checkboxes[0]).toBeChecked();
+
+    // Clicar no segundo
+    await userEvent.click(checkboxes[1]);
+    await expect(checkboxes[1]).toBeChecked();
+
+    // Clicar no terceiro
+    await userEvent.click(checkboxes[2]);
+    await expect(checkboxes[2]).toBeChecked();
+
+    // Quarto deve estar disabled
+    await expect(checkboxes[3]).toBeDisabled();
+  },
 };

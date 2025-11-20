@@ -2,6 +2,7 @@
 
 import { Puck, Data } from '@measured/puck';
 import { puckConfig } from '@/config/puck.config';
+import { StudioLayout } from '@/components/StudioLayout';
 import { useState, useEffect, useCallback } from 'react';
 
 const initialData: Data = {
@@ -141,30 +142,32 @@ export default function StudioPage() {
   }
 
   return (
-    <div style={{ position: 'relative' }}>
-      {saving && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '1rem',
-            right: '1rem',
-            background: '#4CAF50',
-            color: 'white',
-            padding: '0.5rem 1rem',
-            borderRadius: '4px',
-            zIndex: 9999,
-            fontSize: '0.875rem',
-          }}
-        >
-          Salvando...
-        </div>
-      )}
-      <Puck
-        config={puckConfig}
-        data={data}
-        onPublish={handlePublish}
-        onChange={savePage}
-      />
-    </div>
+    <StudioLayout>
+      <div style={{ position: 'relative', height: '100%' }}>
+        {saving && (
+          <div
+            style={{
+              position: 'fixed',
+              top: '1rem',
+              right: '1rem',
+              background: '#4CAF50',
+              color: 'white',
+              padding: '0.5rem 1rem',
+              borderRadius: '4px',
+              zIndex: 9999,
+              fontSize: '0.875rem',
+            }}
+          >
+            Salvando...
+          </div>
+        )}
+        <Puck
+          config={puckConfig}
+          data={data}
+          onPublish={handlePublish}
+          onChange={savePage}
+        />
+      </div>
+    </StudioLayout>
   );
 }
