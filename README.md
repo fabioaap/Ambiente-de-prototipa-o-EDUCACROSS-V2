@@ -1,11 +1,22 @@
 # EDUCACROSS - Ambiente de Prototipação
 
+[![Version](https://img.shields.io/badge/version-0.2.0--beta-blue)](https://github.com/educacross/prototipacao)
 [![Storybook](https://img.shields.io/badge/Storybook-8-FF4785?logo=storybook)](https://educacross-storybook.vercel.app)
 [![Design System](https://img.shields.io/badge/Design%20System-Live-blueviolet)](https://educacross-storybook.vercel.app)
 [![Node](https://img.shields.io/badge/Node-22%20LTS-green?logo=node.js)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-9.14-F69220?logo=pnpm)](https://pnpm.io/)
 
 Repositório de prototipação frontend orientado a jornadas, utilizando React, Puck OSS e Storybook.
+
+## 🌐 Ambientes Disponíveis
+
+### Produção
+- **🎨 Studio:** [educacross-studio.vercel.app](https://educacross-studio.vercel.app)
+- **📚 Storybook:** [educacross-storybook.vercel.app](https://educacross-storybook.vercel.app)
+
+### Staging (v0.2-beta)
+- **🎨 Studio Staging:** [educacross-studio-staging.vercel.app](https://educacross-studio-staging.vercel.app)
+- **📚 Storybook Staging:** [educacross-storybook-staging.vercel.app](https://educacross-storybook-staging.vercel.app)
 
 ## 🎯 Visão Geral
 
@@ -379,6 +390,24 @@ Este é um ambiente de prototipação. Para adicionar novos protótipos:
 4. Crie a jornada na pasta de domínio apropriada
 5. Documente no README da jornada
 
+## 🚀 Deploy
+
+Para instruções completas sobre deploy, veja [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+### Quick Start - Deploy para Staging
+
+```bash
+# Atualizar versão (já feito para v0.2.0-beta)
+# Commit suas alterações
+git add .
+git commit -m "feat: sua feature"
+
+# Push para staging
+git push origin copilot/deploy-v02-beta-to-staging-again
+```
+
+Deploy automático via GitHub Actions + Vercel Git Integration.
+
 ## 📄 Licença
 
 Este é um repositório interno de prototipação para EDUCACROSS.
@@ -387,4 +416,4 @@ Este é um repositório interno de prototipação para EDUCACROSS.
 
 **Última atualização**: Novembro 2025  
 **Node Version**: v22.21.1  
-**Versão do repositório**: 0.1.0
+**Versão do repositório**: 0.2.0-beta
