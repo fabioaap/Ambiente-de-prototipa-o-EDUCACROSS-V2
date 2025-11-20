@@ -387,4 +387,5 @@ Este é um repositório interno de prototipação para EDUCACROSS.
 
 **Última atualização**: Novembro 2025  
 **Node Version**: v22.21.1  
-**Versão do repositório**: 0.1.0
+**Versão do repositório**: 0.2.0-beta  
+**Status**: 🚀 Staging Deployment Ready

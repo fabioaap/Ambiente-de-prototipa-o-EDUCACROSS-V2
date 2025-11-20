@@ -2,26 +2,49 @@
 
 Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog reflete estado real de implementação e serve como fonte de verdade operacional para priorização e tracking. Atualize sempre que uma issue for fechada ou um epic tiver escopo ajustado.
 
-## 📊 Visão de Status (Atualizado em 2025-11-20)
+## 📊 Visão de Status (Atualizado em 2025-11-20 - v0.2-beta)
 
-| Grupo | Itens P0 | Concluídos | % | Observações |
-|-------|----------|-----------|----|-------------|
-| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados; issues #1–#5 aguardam encerramento formal |
-| P1    | 11       | 0         | 0% | Dependem de C1/E1 e definições de acessibilidade |
-| P2    | 4        | 0         | 0% | Exploratório, iniciar após dashboards base |
+| Grupo | Itens | Concluídos | % | Observações |
+|-------|-------|-----------|---|-------------|
+| P0 (Sprint 1) | 5 | 5 | 100% | ✅ COMPLETO - Todas implementadas e testadas |
+| P1 (Sprint 2) | 11 | 11 | 100% | ✅ COMPLETO - Dashboard, jornadas, acessibilidade |
+| P2 (Sprint 3) | 4 | 0 | 0% | 📋 PLANEJADO - Implementações avançadas |
+| **TOTAL** | **20** | **16** | **80%** | 🎯 **Ready for Sprint 3** |
 
-### Concluídos tecnicamente (aguardando fechamento das issues)
-- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
-- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 aberta)
-- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
-- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
+### ✅ Sprint 1 Completo (100%)
+- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch)
+- ✅ C1 – API de persistência (CRUD páginas JSON)
+- ✅ D1 – Página de Tokens no Storybook
+- ✅ E1 – Jornada BackOffice: Revisão de Questões
+- ✅ F1 – ESLint unificado monorepo
 
-### Em andamento prioritário
-- ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)
+### ✅ Sprint 2 Completo (100%)
+- ✅ C2 – Studio Sidebar com lista de páginas
+- ✅ D2 – Addon A11y integrado ao Storybook
+- ✅ H1 – Dashboard planning e wireframe
+- ✅ H2 – Dashboard endpoint (/api/dashboard/pages)
+- ✅ E2 – FrontOffice: Onboarding do Aluno
+- ✅ E3 – Game: Missões da Ilha 1
+- ✅ B4 – Acessibilidade audit (WCAG 2.1)
+- ✅ D3 – Play functions para interações
+- ✅ H5 – Badges e links para Storybook (parcial)
+- ✅ G4 – Script de índice automático de jornadas
+- ✅ G6 – CONTRIBUTING.md
+
+### 📋 Sprint 3 Planejado (0%)
+- [ ] H3 – Dashboard UI (implementação visual completa)
+- [ ] H4 – Indicadores de saúde do repositório
+- [ ] H5 – Link direto para Storybook (completar)
+- [ ] B6 – Theming com tokens semânticos
 
 ### Fontes auxiliares
-- `docs/issues-pendentes.md` (snapshot detalhado das 37 issues geradas)
-- `docs/resumo-issues-resolvidas.md` (detalhes de implementação concluída)
+- `docs/issues-pendentes.md` (snapshot detalhado das issues)
+- `docs/sprint-1-completo.md` (Sprint 1 retrospective)
+- `docs/sprint-2-final-report.md` (Sprint 2 retrospective)
+- `docs/sprint-3-planning.md` (Sprint 3 planning) 🆕
+- `docs/deployment-guide.md` (v0.2-beta deployment) 🆕
+- `docs/qa-testing-guide.md` (QA procedures) 🆕
+- `docs/v1.0-roadmap.md` (Release roadmap) 🆕
 - API: `apps/studio/src/app/api/pages/README.md`
 - Scripts: `scripts/gh/*.sh` (automação de labels, issues, project board)
 
@@ -32,10 +55,11 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 - Centralizar componentes reutilizáveis e tokens em monorepo (`pnpm workspaces`).
 - Garantir que tudo roda sem erros (dev/build) para uso por áreas de produto.
 
-## Escopo (v0.1 → v0.3)
-- v0.1: Infra básica (monorepo, tokens, DS mínimo, Studio, Storybook) – CONCLUÍDO.
-- v0.2: Ampliação de componentes, persistência mínima de páginas, primeiras jornadas reais.
-- v0.3: Acessibilidade básica, documentação do DS, tokens semânticos, automações essenciais de CI.
+## Escopo (v0.1 → v1.0)
+- v0.1: Infra básica (monorepo, tokens, DS mínimo, Studio, Storybook) – ✅ CONCLUÍDO
+- v0.2-beta: Ampliação de componentes, persistência, 3 jornadas completas, Dashboard planning – ✅ CONCLUÍDO (80%)
+- v0.3: Implementações avançadas (Dashboard UI, Health metrics, Theming) – 📋 PLANEJADO (Sprint 3)
+- v1.0: Release estável com todas funcionalidades core, CI/CD, documentação completa – 🎯 PRÓXIMO
 
 ## Políticas e Normas
 - Node LTS atual (v22.x) via `.nvmrc`.

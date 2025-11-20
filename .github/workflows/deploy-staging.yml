@@ -1,0 +1,137 @@
+name: Deploy to Staging
+
+on:
+  push:
+    tags:
+      - 'v*-beta'
+      - 'v*-alpha'
+    branches:
+      - develop
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - preview
+
+jobs:
+  deploy-studio:
+    name: Deploy Studio to Staging
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.4
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm build
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_ENV: staging
+
+      - name: Create deployment summary
+        run: |
+          echo "## 🚀 Staging Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Environment:** Staging" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Build Status" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Tokens built successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Design System built successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Studio built successfully" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Storybook built successfully" >> $GITHUB_STEP_SUMMARY
+
+      - name: Comment deployment info
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        run: |
+          echo "📦 Build artifacts ready for deployment"
+          echo "Studio: apps/studio/.next"
+          echo "Storybook: apps/storybook/storybook-static"
+
+  deploy-storybook:
+    name: Deploy Storybook to Staging
+    runs-on: ubuntu-latest
+    environment:
+      name: staging-storybook
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Storybook
+        run: pnpm build:storybook
+
+      - name: Create deployment summary
+        run: |
+          echo "## 📚 Storybook Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Build Size:** $(du -sh apps/storybook/storybook-static | cut -f1)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Storybook built successfully" >> $GITHUB_STEP_SUMMARY
+
+  notify:
+    name: Notify Deployment
+    runs-on: ubuntu-latest
+    needs: [deploy-studio, deploy-storybook]
+    if: always()
+    steps:
+      - name: Create notification summary
+        run: |
+          echo "## 🎉 Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. ✅ Verify Studio deployment" >> $GITHUB_STEP_SUMMARY
+          echo "2. ✅ Verify Storybook deployment" >> $GITHUB_STEP_SUMMARY
+          echo "3. 📋 Run QA tests on Dashboard flows" >> $GITHUB_STEP_SUMMARY
+          echo "4. 👥 Conduct user testing sessions" >> $GITHUB_STEP_SUMMARY

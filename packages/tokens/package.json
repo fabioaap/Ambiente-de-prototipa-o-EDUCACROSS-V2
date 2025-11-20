@@ -1,6 +1,6 @@
 {
   "name": "@prototipo/tokens",
-  "version": "0.1.0",
+  "version": "0.2.0-beta",
   "description": "Design tokens para o sistema de prototipação",
   "main": "dist/index.cjs",
   "module": "dist/index.esm.js",
