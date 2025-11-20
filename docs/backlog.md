@@ -2,6 +2,22 @@
 
 Este backlog organiza o trabalho para evoluir o ambiente de prototipação orientado a jornadas. É um repositório não-produtivo, com foco em velocidade e clareza para PMs, designers e devs.
 
+## 📊 Status Atual (Atualizado em 2025-11-20)
+
+**Progress P0:** 3 de 5 concluídos (60%)
+- ✅ F1 - ESLint unificado (commit da05e19)
+- ✅ D1 - Página de Tokens no Storybook (commit 82cfb9b)
+- ✅ B1 - Componentes de formulário completos (commit 433214b)
+- ⏳ C1 - Studio: Persistência em disco - PENDENTE
+- ⏳ E1 - BackOffice: Primeira jornada - PENDENTE
+
+**Documentação:**
+- ✅ 37 issues mapeadas em `docs/issues-pendentes.md`
+- ✅ Scripts de automação GitHub criados
+- ✅ Resumo executivo em `docs/resumo-issues-resolvidas.md`
+
+---
+
 ## Visão e Objetivos
 - Validar fluxos e jornadas rapidamente com Puck (editor visual) + Design System.
 - Centralizar componentes reutilizáveis e tokens em monorepo (`pnpm workspaces`).
@@ -99,10 +115,10 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ## Backlog Priorizado (P0→P2)
 - P0 (alto impacto/curto prazo)
   - C1 Persistência em disco no Studio
-  - D1 Página de Tokens no Storybook
-  - B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch)
+  - ✅ D1 Página de Tokens no Storybook (concluído - commit 82cfb9b)
+  - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) (concluído - commit 433214b)
   - E1 BackOffice: primeira jornada com páginas base
-  - F1 ESLint unificado
+  - ✅ F1 ESLint unificado (concluído - commit da05e19)
 - P1 (médio)
   - C2 Lista de páginas no sidebar
   - B4 Acessibilidade básica
@@ -120,8 +136,12 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ---
 
 ## Sprints (proposta inicial)
-- Sprint 1 (1-2 semanas)
-  - C1, D1, B1 (Input + Select), E1 (estrutura e 1 página), F1.
+- Sprint 1 (1-2 semanas) - **PARCIALMENTE CONCLUÍDO**
+  - ✅ F1 ESLint unificado
+  - ✅ D1 Página de Tokens no Storybook
+  - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) - TODOS os componentes
+  - ⏳ C1 Persistência em disco no Studio - PENDENTE
+  - ⏳ E1 BackOffice: primeira jornada (estrutura e 1 página) - PENDENTE
 - Sprint 2 (1-2 semanas)
   - C2, B1 (Checkbox/Radio/Switch), D2, D3, E1 (página 2/3).
 
