@@ -1,0 +1,229 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-mapa",
+        "maxWidth": "xl",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-mapa",
+              "content": "🏝️ Bem-vindo à Ilha das Missões",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "descricao-mapa",
+              "content": "Explore a ilha, complete missões e desbloqueie novos desafios!",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-progresso",
+              "variant": "elevated",
+              "padding": "md",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "texto-progresso",
+                    "content": "📊 Seu Progresso: 0/3 Missões · 0 Pontos · Nível 1",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-missoes",
+              "content": "🗺️ Missões Disponíveis",
+              "as": "h2",
+              "size": "2xl",
+              "weight": "bold",
+              "color": "default"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-missao-1",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-1-titulo",
+                    "content": "💎 O Tesouro dos Números",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-1-desc",
+                    "content": "Encontre padrões numéricos escondidos na ilha para desvendar o tesouro.",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-1-info",
+                    "content": "⏱️ 15 min · 🏆 75 pontos · 🔒 Desbloqueada",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "props": {
+                    "id": "btn-missao-1",
+                    "text": "Participar",
+                    "variant": "primary",
+                    "size": "lg"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-missao-2",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-2-titulo",
+                    "content": "📜 Decifra o Código Antigo",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-2-desc",
+                    "content": "Use lógica para decifrar mensagens cifradas deixadas pelos antigos.",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-2-info",
+                    "content": "⏱️ 12 min · 🏆 60 pontos · 🔒 Desbloqueada",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "props": {
+                    "id": "btn-missao-2",
+                    "text": "Participar",
+                    "variant": "primary",
+                    "size": "lg"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-missao-3",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-3-titulo",
+                    "content": "🎯 O Desafio Final - O Portal",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-3-desc",
+                    "content": "Apenas os mestres chegam aqui. Complete as 2 missões anteriores para desbloquear.",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-3-info",
+                    "content": "⏱️ 20 min · 🏆 150 pontos · 🔐 Bloqueada (complete 2+ missões)",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "props": {
+                    "id": "btn-missao-3",
+                    "text": "Bloqueada",
+                    "variant": "outline",
+                    "size": "lg"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Game | Missões Ilha 1 · Mapa"
+    }
+  },
+  "zones": {}
+}

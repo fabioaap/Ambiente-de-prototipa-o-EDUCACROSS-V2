@@ -1,0 +1,187 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-missao-1",
+        "maxWidth": "lg",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-back",
+              "content": "← Voltar para Mapa",
+              "as": "p",
+              "size": "sm",
+              "weight": "medium",
+              "color": "secondary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-missao",
+              "content": "💎 Missão 1: O Tesouro dos Números",
+              "as": "h1",
+              "size": "3xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-contexto",
+              "variant": "elevated",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "narrativa",
+                    "content": "Uma antiga lenda fala de um tesouro escondido na ilha. Diz-se que apenas aqueles que compreendem a linguagem dos números conseguem localizá-lo. Você está pronto para o desafio?",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-tarefas",
+              "content": "🎯 Tarefas da Missão",
+              "as": "h2",
+              "size": "2xl",
+              "weight": "semibold",
+              "color": "default"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-tarefa-1",
+              "variant": "bordered",
+              "padding": "md",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "tarefa-1",
+                    "content": "✓ Encontre a sequência Fibonacci nas dicas da ilha",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-tarefa-2",
+              "variant": "bordered",
+              "padding": "md",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "tarefa-2",
+                    "content": "✓ Responda 3 perguntas sobre padrões numéricos",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-tarefa-3",
+              "variant": "bordered",
+              "padding": "md",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "tarefa-3",
+                    "content": "✓ Use a senha dos números para abrir o baú do tesouro",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-info",
+              "content": "ℹ️ Informações",
+              "as": "h3",
+              "size": "lg",
+              "weight": "semibold",
+              "color": "default"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "info-tempo",
+              "content": "⏱️ Tempo estimado: 15 minutos",
+              "as": "p",
+              "size": "base",
+              "weight": "normal",
+              "color": "muted"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "info-pontos",
+              "content": "🏆 Pontos disponíveis: 75 (completo) ou 45 (parcial)",
+              "as": "p",
+              "size": "base",
+              "weight": "normal",
+              "color": "muted"
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-iniciar",
+              "text": "Iniciar Missão",
+              "variant": "primary",
+              "size": "lg"
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-voltar",
+              "text": "Voltar",
+              "variant": "outline",
+              "size": "md"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Game | Missões Ilha 1 · Missão 1"
+    }
+  },
+  "zones": {}
+}

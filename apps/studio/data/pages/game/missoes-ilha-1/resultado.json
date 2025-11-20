@@ -1,0 +1,188 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-resultado",
+        "maxWidth": "md",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-resultado",
+              "content": "🎉 Missão Concluída!",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-resultado",
+              "variant": "elevated",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "missao-titulo",
+                    "content": "💎 O Tesouro dos Números",
+                    "as": "h2",
+                    "size": "2xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "resultado-desempenho",
+                    "content": "Desempenho: ⭐⭐⭐ Excelente!",
+                    "as": "p",
+                    "size": "lg",
+                    "weight": "semibold",
+                    "color": "primary"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "resultado-tempo",
+                    "content": "Tempo: 14 minutos 32 segundos",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "resultado-acertos",
+                    "content": "Acertos: 3 de 3 perguntas",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-pontos",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "pontos-titulo",
+                    "content": "🏆 Pontos Ganhos",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "pontos-valor",
+                    "content": "+75 Pontos",
+                    "as": "p",
+                    "size": "3xl",
+                    "weight": "bold",
+                    "color": "primary"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "pontos-breakdown",
+                    "content": "Bonus por velocidade: +10 pontos",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-desbloqueios",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "desbloqueio-titulo",
+                    "content": "🔓 Desbloqueado",
+                    "as": "h3",
+                    "size": "lg",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "desbloqueio-badge",
+                    "content": "🏅 Badge: Mestre dos Números",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "desbloqueio-missao",
+                    "content": "🎯 Acesso à Missão 3: O Desafio Final",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-proximo",
+              "text": "Próxima Missão",
+              "variant": "primary",
+              "size": "lg"
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-mapa",
+              "text": "Voltar ao Mapa",
+              "variant": "outline",
+              "size": "md"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Game | Missões Ilha 1 · Resultado"
+    }
+  },
+  "zones": {}
+}
