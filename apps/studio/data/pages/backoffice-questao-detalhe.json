@@ -1,0 +1,257 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "layout-main",
+        "children": [
+          {
+            "type": "Button",
+            "props": {
+              "id": "back-button",
+              "variant": "ghost",
+              "size": "sm",
+              "children": "← Voltar para lista"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "title",
+              "content": "Qual é a capital do Brasil?",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "StatusBadge",
+            "props": {
+              "id": "status",
+              "status": "pendente",
+              "size": "lg"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-meta",
+              "variant": "bordered",
+              "padding": "md",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "meta-title",
+                    "content": "Metadados da Questão",
+                    "as": "h3",
+                    "size": "lg",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "meta-discipline",
+                    "content": "Disciplina: Geografia",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "meta-level",
+                    "content": "Nível: Ensino Fundamental",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "meta-date",
+                    "content": "Data de Submissão: 18/11/2025",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "meta-author",
+                    "content": "Autor: Prof. João Silva",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-content",
+              "variant": "elevated",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "content-title",
+                    "content": "Enunciado",
+                    "as": "h3",
+                    "size": "lg",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "question-text",
+                    "content": "Qual é a capital do Brasil? Esta questão avalia conhecimento básico de geografia do país.",
+                    "as": "p",
+                    "size": "lg",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-alternatives",
+              "variant": "elevated",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "alternatives-title",
+                    "content": "Alternativas",
+                    "as": "h3",
+                    "size": "lg",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "alt-a",
+                    "content": "A) São Paulo",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "alt-b",
+                    "content": "B) Rio de Janeiro",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "alt-c",
+                    "content": "C) Brasília ✓ (Resposta Correta)",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "bold",
+                    "color": "success"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "alt-d",
+                    "content": "D) Salvador",
+                    "as": "p",
+                    "size": "md",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-actions",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "actions-title",
+                    "content": "Ações de Revisão",
+                    "as": "h3",
+                    "size": "lg",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "props": {
+                    "id": "approve-button",
+                    "variant": "primary",
+                    "size": "lg",
+                    "children": "✓ Aprovar Questão"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "props": {
+                    "id": "reject-button",
+                    "variant": "outline",
+                    "size": "lg",
+                    "children": "✗ Rejeitar Questão"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "props": {
+                    "id": "edit-button",
+                    "variant": "secondary",
+                    "size": "md",
+                    "children": "✎ Sugerir Edição"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "BackOffice - Detalhe da Questão"
+    }
+  },
+  "zones": {}
+}

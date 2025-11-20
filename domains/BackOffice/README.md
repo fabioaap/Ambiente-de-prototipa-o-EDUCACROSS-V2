@@ -74,7 +74,16 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ## Jornadas Existentes
 
-_(Esta seção será atualizada conforme jornadas forem criadas)_
+### 1. [Revisão de Questões](./journeys/revisao-questoes/)
+**Status**: ✅ Concluído (Sprint 1)  
+**Objetivo**: Permitir que professores/revisores validem questões antes da publicação.
+
+**Protótipos**:
+- [Lista de Questões Pendentes](http://localhost:3000/studio/backoffice/questoes-pendentes)
+- [Detalhe da Questão](http://localhost:3000/studio/backoffice/questao-detalhe)
+
+**Componentes principais**:
+- Layout, Text, Card, Button, StatusBadge
 
 ---
 

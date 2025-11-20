@@ -1,0 +1,205 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "layout-main",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "title",
+              "content": "Revisão de Questões",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "subtitle",
+              "content": "Questões aguardando revisão e aprovação",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-1",
+              "variant": "elevated",
+              "padding": "lg",
+              "clickable": true,
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q1-title",
+                    "content": "Qual é a capital do Brasil?",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q1-meta",
+                    "content": "Geografia • Ensino Fundamental • Submetida em 18/11/2025",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "StatusBadge",
+                  "props": {
+                    "id": "q1-status",
+                    "status": "pendente",
+                    "size": "md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-2",
+              "variant": "elevated",
+              "padding": "lg",
+              "clickable": true,
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q2-title",
+                    "content": "Resolva a equação: 2x + 5 = 15",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q2-meta",
+                    "content": "Matemática • Ensino Médio • Submetida em 19/11/2025",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "StatusBadge",
+                  "props": {
+                    "id": "q2-status",
+                    "status": "em-revisao",
+                    "size": "md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-3",
+              "variant": "elevated",
+              "padding": "lg",
+              "clickable": true,
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q3-title",
+                    "content": "Quem descobriu o Brasil?",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q3-meta",
+                    "content": "História • Ensino Fundamental • Submetida em 17/11/2025",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "StatusBadge",
+                  "props": {
+                    "id": "q3-status",
+                    "status": "pendente",
+                    "size": "md"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-4",
+              "variant": "elevated",
+              "padding": "lg",
+              "clickable": true,
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q4-title",
+                    "content": "O que é fotossíntese?",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "q4-meta",
+                    "content": "Ciências • Ensino Fundamental • Submetida em 20/11/2025",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "StatusBadge",
+                  "props": {
+                    "id": "q4-status",
+                    "status": "aprovado",
+                    "size": "md"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "BackOffice - Questões Pendentes"
+    }
+  },
+  "zones": {}
+}

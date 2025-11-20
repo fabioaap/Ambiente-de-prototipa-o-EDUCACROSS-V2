@@ -4,12 +4,12 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 
 ## 📊 Status Atual (Atualizado em 2025-11-20)
 
-**Progress P0:** 4 de 5 concluídos (80%)
+**Progress P0:** 5 de 5 concluídos (100%) ✅
 - ✅ F1 - ESLint unificado (commit da05e19)
 - ✅ D1 - Página de Tokens no Storybook (commit 82cfb9b)
 - ✅ B1 - Componentes de formulário completos (commit 433214b)
 - ✅ C1 - Studio: Persistência em disco (já implementado - ver apps/studio/src/app/api/pages/)
-- ⏳ E1 - BackOffice: Primeira jornada - PENDENTE
+- ✅ E1 - BackOffice: Revisão de Questões (jornada completa - ver domains/BackOffice/journeys/revisao-questoes/)
 
 **Documentação:**
 - ✅ 37 issues mapeadas em `docs/issues-pendentes.md`
@@ -78,9 +78,11 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 - [ ] D4 – Agrupamento por categoria/domínio; exemplos focados em jornadas reais.
 
 ### Epic E – Jornadas (domains/BackOffice, domains/FrontOffice, domains/Game)
-- [ ] E1 – domains/BackOffice: Revisão de Questões
-  - [ ] Páginas do Studio: lista de pendentes, detalhe de questão, ações.
-  - [ ] Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog.
+- [x] E1 – domains/BackOffice: Revisão de Questões
+  - [x] Páginas do Studio: lista de pendentes, detalhe de questão, ações.
+  - [x] Componentes DS necessários: StatusBadge implementado.
+  - [x] Documentação completa da jornada criada.
+  - ⏳ Componentes futuros (P1): Toolbar, ConfirmDialog.
 - [ ] E2 – domains/FrontOffice: Onboarding do Aluno
   - [ ] Páginas do Studio: boas-vindas, perfil inicial, tutorial.
   - [ ] Componentes DS necessários: Stepper, ProgressBar, AvatarUpload.
@@ -114,11 +116,11 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ---
 
 ## Backlog Priorizado (P0→P2)
-- P0 (alto impacto/curto prazo)
+- P0 (alto impacto/curto prazo) - **100% CONCLUÍDO** ✅
   - ✅ C1 Persistência em disco no Studio (já implementado - API completa)
   - ✅ D1 Página de Tokens no Storybook (concluído - commit 82cfb9b)
   - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) (concluído - commit 433214b)
-  - E1 BackOffice: primeira jornada com páginas base
+  - ✅ E1 BackOffice: primeira jornada completa (Revisão de Questões)
   - ✅ F1 ESLint unificado (concluído - commit da05e19)
   - ✅ F3 GitHub Actions CI (concluído)
 - P1 (médio)
@@ -137,14 +139,14 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ---
 
 ## Sprints (proposta inicial)
-- Sprint 1 (1-2 semanas) - **80% CONCLUÍDO**
+- Sprint 1 (1-2 semanas) - **100% CONCLUÍDO** ✅
   - ✅ F1 ESLint unificado
   - ✅ D1 Página de Tokens no Storybook
   - ✅ B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch) - TODOS os componentes
   - ✅ C1 Persistência em disco no Studio - JÁ IMPLEMENTADO (API REST completa)
-  - ⏳ E1 BackOffice: primeira jornada (estrutura e 1 página) - PENDENTE
+  - ✅ E1 BackOffice: primeira jornada (Revisão de Questões - completa)
 - Sprint 2 (1-2 semanas)
-  - C2, B1 (Checkbox/Radio/Switch), D2, D3, E1 (página 2/3).
+  - C2, B4, D2, D3, E2 (FrontOffice: Onboarding).
 
 ---
 
