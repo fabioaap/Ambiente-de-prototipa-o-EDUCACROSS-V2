@@ -97,25 +97,32 @@ Este backlog organiza o trabalho para evoluir o ambiente de prototipação orien
 ---
 
 ## Backlog Priorizado (P0→P2)
-- P0 (alto impacto/curto prazo)
-  - C1 Persistência em disco no Studio
-  - D1 Página de Tokens no Storybook
-  - B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch)
-  - E1 BackOffice: primeira jornada com páginas base
-  - F1 ESLint unificado
-- P1 (médio)
-  - C2 Lista de páginas no sidebar
-  - B4 Acessibilidade básica
-  - D2 Addon A11y + D3 Play functions
-  - G4 Script gerador de índice de jornadas
-  - G6 Guia de contribuição
-  - H1 Planejar Dashboard do Projeto (wireframe)
-- P2 (exploração)
-  - B6 Theming com tokens semânticos
-  - C5 Export/Import JSON por UI
-  - F3 GitHub Actions CI
-  - G5 Validação de links em CI
-  - H3 Dashboard: implementação de UI e integrações
+
+### 🔴 P0 (alto impacto/curto prazo)
+- [x] #1 – C1 Persistência em disco no Studio (API)
+- [x] #2 – B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch)
+- [x] #3 – D1 Página de Tokens no Storybook (visual)
+- [x] #4 – E1 BackOffice: Revisão de Questões (primeira jornada)
+- [x] #5 – F1 ESLint unificado para monorepo
+
+### 🟡 P1 (médio)
+- [x] #6 – C2 Lista de páginas no sidebar
+- [x] #7 – B4 Acessibilidade básica no DS
+- [x] #8 – D2 Addon A11y e validações no Storybook
+- [x] #9 – G4 Script: gerar índice automático de jornadas
+- [x] #10 – G6 Documentação: Criar CONTRIBUTING.md com workflow de jornadas
+- [x] #11 – H Epic: Dashboard do Projeto (planejamento e implementação)
+  - [x] #12 – H1 Planejar layout/Wireframe
+  - [x] #13 – H2 Endpoint / API para index de páginas
+  - [x] #14 – H3 Implementar UI de listagem (POC)
+  - [x] #15 – H4 Indicadores de saúde do repositório
+  - [x] #16 – H5 Link para Storybook e badge
+
+### 🟢 P2 (exploração)
+- [ ] B6 Theming com tokens semânticos
+- [ ] C5 Export/Import JSON por UI
+- [ ] F3 GitHub Actions CI
+- [ ] G5 Validação de links em CI
 
 ---
 
