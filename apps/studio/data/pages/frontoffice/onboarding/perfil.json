@@ -1,0 +1,104 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-perfil",
+        "maxWidth": "md",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-perfil",
+              "content": "2 de 4 · Seu Perfil",
+              "as": "p",
+              "size": "sm",
+              "weight": "medium",
+              "color": "secondary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-principal",
+              "content": "Conte-nos sobre você",
+              "as": "h1",
+              "size": "2xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-info-perfil",
+              "variant": "bordered",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "label-serie",
+                    "content": "📚 Qual é sua série?",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "opcoes-serie",
+                    "content": "6º ano · 7º ano · 8º ano · 9º ano",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "label-interesse",
+                    "content": "❤️ Qual sua disciplina favorita?",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "opcoes-interesse",
+                    "content": "Matemática · Português · História · Ciências · Artes",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-proximo-perfil",
+              "text": "Próximo",
+              "variant": "primary",
+              "size": "lg"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Perfil"
+    }
+  },
+  "zones": {}
+}

@@ -1,0 +1,71 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-boas-vindas",
+        "maxWidth": "md",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-boas-vindas",
+              "content": "Bem-vindo(a) ao EDUCACROSS! 🎓",
+              "as": "h1",
+              "size": "3xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "descricao-boas-vindas",
+              "content": "A plataforma que conecta educadores e alunos para aprendizado significativo.",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-conteudo",
+              "variant": "elevated",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "texto-conteudo",
+                    "content": "Aqui você vai:\n• 📝 Responder atividades customizadas\n• 🎮 Ganhar pontos e desbloqueadores\n• 👥 Colaborar com colegas\n• 📊 Acompanhar seu progresso",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "default"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-proximo",
+              "text": "Continuar",
+              "variant": "primary",
+              "size": "lg"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Boas-vindas"
+    }
+  },
+  "zones": {}
+}

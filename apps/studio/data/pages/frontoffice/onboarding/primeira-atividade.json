@@ -1,0 +1,113 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-atividade",
+        "maxWidth": "md",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-progresso",
+              "content": "3 de 4 · Primeira Atividade",
+              "as": "p",
+              "size": "sm",
+              "weight": "medium",
+              "color": "secondary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "titulo-atividade",
+              "content": "Vamos começar?",
+              "as": "h1",
+              "size": "2xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Card",
+            "props": {
+              "id": "card-atividade",
+              "variant": "elevated",
+              "padding": "lg",
+              "children": [
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "nome-atividade",
+                    "content": "📐 Introdução a Geometria",
+                    "as": "h3",
+                    "size": "xl",
+                    "weight": "semibold",
+                    "color": "default"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "desc-atividade",
+                    "content": "Aprenda sobre formas geométricas básicas respondendo 5 questões interativas.",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "muted"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "tempo-estimado",
+                    "content": "⏱️ Tempo estimado: 10 minutos",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "normal",
+                    "color": "secondary"
+                  }
+                },
+                {
+                  "type": "Text",
+                  "props": {
+                    "id": "pontos-disponiveis",
+                    "content": "🏆 Você pode ganhar 50 pontos!",
+                    "as": "p",
+                    "size": "sm",
+                    "weight": "semibold",
+                    "color": "primary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-fazer-atividade",
+              "text": "Fazer Atividade",
+              "variant": "primary",
+              "size": "lg"
+            }
+          },
+          {
+            "type": "Button",
+            "props": {
+              "id": "btn-pular-atividade",
+              "text": "Pular por enquanto",
+              "variant": "outline",
+              "size": "md"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Primeira Atividade"
+    }
+  },
+  "zones": {}
+}
