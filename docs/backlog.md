@@ -113,11 +113,11 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 - [ ] G6 – Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas.
 
 ### Epic H – Dashboard do Projeto
-- [ ] H1 – Planejar layout do Dashboard do Projeto (wireframe): lista de páginas prototipadas, links, filtros por domínio/jornada.
-- [ ] H2 – Implementar endpoint e rota para index de páginas do Studio (`/studio/api/pages` ou `apps/studio/data/pages/*`).
-- [ ] H3 – Implementar UI do Dashboard (aplicação mínima em `apps/studio` ou `apps/storybook`): links diretos para páginas prototipadas.
+- [x] H1 – Planejar layout do Dashboard do Projeto (wireframe): lista de páginas prototipadas, links, filtros por domínio/jornada. **✅ CONCLUÍDO** - Documentação completa em `docs/H1-dashboard-planejamento-completo.md`. Decisão: hospedado no Studio (`/dashboard`). Métricas priorizadas (P0/P1/P2). Roadmap de 6 fases definido. (issue #12)
+- [ ] H2 – Implementar endpoint e rota para index de páginas do Studio (`/api/dashboard/pages`): escanear `apps/studio/data/pages/`, retornar JSON com páginas + stats + domínios.
+- [ ] H3 – Implementar UI do Dashboard em `apps/studio/src/app/dashboard/page.tsx`: consumir endpoint, renderizar cards por domínio, busca, filtros.
 - [ ] H4 – Expor indicadores de saúde do repositório: status de build (tokens/DS/Studio/Storybook), última build, lint status, tamanho do bundle Storybook, dependências desatualizadas.
-- [ ] H5 – Link direto e badge para Storybook estático (documentação final) no Dashboard e READMEs de domínio.
+- [x] H5 – Link direto e badge para Storybook estático (documentação final) no Dashboard e READMEs de domínio. **✅ JÁ IMPLEMENTADO** - Badges no README principal.
 - [ ] H6 – Definir requisitos de segurança/visibilidade (quem pode acessar o dashboard; ambiente prod vs dev).
 
 
@@ -141,7 +141,7 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 | D2 Addon A11y | #8 | Pendente | D1 |
 | G4 Índice automático jornadas | #9 | Pendente | Estrutura atual domains |
 | G6 CONTRIBUTING.md | #10 | Pendente | Guia tokens/DS estável |
-| H1 Planejar Dashboard | #12 | Pendente | Wireframe inicial |
+| H1 Planejar Dashboard | #12 | ✅ Concluído | — (Documentação completa) |
 | H2 Endpoint index páginas | #13 | Pendente | C1 |
 | H3 UI listagem dashboard | #14 | Pendente | H2 |
 | H4 Indicadores saúde repo | #15 | Pendente | H2 + lint + build metrics |

@@ -325,6 +325,30 @@ packages/design-system
 4. **Adicionar ao Puck** configurando em `apps/studio/src/config/puck.config.tsx`
 5. **Criar protótipos** usando o editor visual em `/studio`
 6. **Documentar jornadas** nas pastas de domínio (BackOffice, FrontOffice, Game)
+7. **Acompanhar progresso** no Dashboard do Projeto (em desenvolvimento) 🆕
+
+## 📊 Dashboard do Projeto 🆕
+
+O **Dashboard do Projeto** é uma visão centralizada de todas as páginas prototipadas, métricas e indicadores de saúde do repositório.
+
+### Status
+- ✅ **H1 (Planejamento)**: Concluído - [Ver Documentação](./docs/H1-dashboard-planejamento-completo.md)
+- 🔜 **H2 (Endpoint API)**: Próximo
+- 📅 **H3 (UI Dashboard)**: Futuro
+
+### O Que o Dashboard Terá
+- 📄 Lista de todas as páginas prototipadas
+- 🏢 Organização por domínios (BackOffice, FrontOffice, Game)
+- 🔍 Busca e filtros para encontrar páginas
+- ✏️ Links diretos para editar no Studio
+- 📊 Indicadores de saúde (build, lint, Storybook)
+
+### Acesso Futuro
+```
+http://localhost:3000/dashboard (após implementação de H3)
+```
+
+**Saiba mais**: [Resumo Executivo](./docs/H1-resumo-executivo.md) | [Documentação Completa](./docs/H1-dashboard-planejamento-completo.md)
 
 ## 📖 Documentação Adicional
 
@@ -338,6 +362,8 @@ packages/design-system
 - [Resumo de Issues Resolvidas](./docs/resumo-issues-resolvidas.md) 🆕
 - [Domínios e Jornadas](./domains/README.md)
 - [Automação GitHub](./scripts/gh/README.md) 🆕
+- **[Dashboard - Planejamento Completo](./docs/H1-dashboard-planejamento-completo.md)** 🆕
+- **[Dashboard - Resumo Executivo](./docs/H1-resumo-executivo.md)** 🆕
 
 ## 🐛 Troubleshooting
 
