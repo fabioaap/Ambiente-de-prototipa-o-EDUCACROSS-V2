@@ -151,16 +151,20 @@ interface DashboardStats {
 - [ ] Integrar stats do repositório
 
 ### Fase 3: H3 (UI)
-- [ ] Component `Dashboard.tsx`
-- [ ] Stories no Storybook
-- [ ] Filtros por domínio
-- [ ] Busca de páginas
-- [ ] Cards com preview
+- [x] Component `Dashboard.tsx`
+- [x] Página em `/dashboard`
+- [x] Consumir endpoint `/api/dashboard/pages`
+- [x] Filtros por domínio
+- [x] Busca de páginas
+- [x] Cards com preview
+- [x] Link para Storybook no header
+- [x] Atualizada página inicial com link para Dashboard
 
-### Fase 4: H4 (Métricas) - FUTURO
-- [ ] Indicadores de saúde
-- [ ] Status de build
-- [ ] Links ativos
+### Fase 4: H4 (Métricas)
+- [x] Indicadores de saúde no footer do dashboard
+- [x] Status de build
+- [x] Status do Storybook
+- [x] Contadores por domínio
 
 ### Fase 5: H5 (Link/Badge) - JÁ FEITO
 - ✅ Badge Storybook no README

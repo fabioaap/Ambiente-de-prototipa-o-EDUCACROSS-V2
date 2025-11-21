@@ -23,13 +23,27 @@ export default function Home() {
       >
         <Card variant="elevated" padding="lg">
           <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
-            Editor Visual
+            📊 Dashboard
+          </Text>
+          <Text color="muted" style={{ marginBottom: '1.5rem' }}>
+            Visualize todas as páginas prototipadas, métricas e acesso rápido.
+          </Text>
+          <Link href="/dashboard">
+            <Button variant="primary" fullWidth>
+              Ver Dashboard
+            </Button>
+          </Link>
+        </Card>
+
+        <Card variant="elevated" padding="lg">
+          <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
+            ✏️ Editor Visual
           </Text>
           <Text color="muted" style={{ marginBottom: '1.5rem' }}>
             Acesse o Puck para criar e editar páginas de forma visual.
           </Text>
           <Link href="/studio">
-            <Button variant="primary" fullWidth>
+            <Button variant="secondary" fullWidth>
               Abrir Studio
             </Button>
           </Link>
@@ -37,26 +51,20 @@ export default function Home() {
 
         <Card variant="elevated" padding="lg">
           <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
-            Storybook
+            📚 Storybook
           </Text>
           <Text color="muted" style={{ marginBottom: '1.5rem' }}>
             Catálogo de componentes do Design System.
           </Text>
-          <Button variant="secondary" fullWidth disabled>
-            Em Breve
-          </Button>
-        </Card>
-
-        <Card variant="elevated" padding="lg">
-          <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
-            Jornadas
-          </Text>
-          <Text color="muted" style={{ marginBottom: '1.5rem' }}>
-            Documentação organizada por domínio e jornada.
-          </Text>
-          <Button variant="outline" fullWidth disabled>
-            Ver Documentação
-          </Button>
+          <a 
+            href="https://educacross-storybook.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" fullWidth>
+              Abrir Storybook
+            </Button>
+          </a>
         </Card>
       </div>
     </Layout>
