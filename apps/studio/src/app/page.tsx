@@ -37,25 +37,27 @@ export default function Home() {
 
         <Card variant="elevated" padding="lg">
           <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
+            Dashboard
+          </Text>
+          <Text color="muted" style={{ marginBottom: '1.5rem' }}>
+            Indicadores de saúde e métricas do repositório.
+          </Text>
+          <Link href="/dashboard">
+            <Button variant="secondary" fullWidth>
+              Ver Dashboard
+            </Button>
+          </Link>
+        </Card>
+
+        <Card variant="elevated" padding="lg">
+          <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
             Storybook
           </Text>
           <Text color="muted" style={{ marginBottom: '1.5rem' }}>
             Catálogo de componentes do Design System.
           </Text>
-          <Button variant="secondary" fullWidth disabled>
-            Em Breve
-          </Button>
-        </Card>
-
-        <Card variant="elevated" padding="lg">
-          <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
-            Jornadas
-          </Text>
-          <Text color="muted" style={{ marginBottom: '1.5rem' }}>
-            Documentação organizada por domínio e jornada.
-          </Text>
           <Button variant="outline" fullWidth disabled>
-            Ver Documentação
+            Em Breve
           </Button>
         </Card>
       </div>
