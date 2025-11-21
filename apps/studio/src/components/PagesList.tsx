@@ -72,13 +72,31 @@ export function PagesList() {
     }
 
     try {
-      // Nota: A API atual não suporta rename direto
-      // Implementação seria: copiar dados, deletar antigo
-      // Por enquanto, apenas mostrar aviso
-      alert('Rename ainda não implementado na API. Será adicionado em breve.');
+      const response = await fetch('/api/pages/rename', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ oldSlug: renamingSlug, newSlug: renameValue }),
+      });
+
+      if (!response.ok) {
+        const { error } = await response.json();
+        throw new Error(error || 'Failed to rename page');
+      }
+
+      const { newSlug } = await response.json();
+      
+      // Atualizar lista de páginas
+      await loadPages();
+      
+      // Se estamos na página renomeada, redirecionar
+      if (currentSlug === renamingSlug) {
+        router.push(`/studio?page=${newSlug}`);
+      }
+      
       setRenamingSlug(null);
     } catch (err) {
       alert('Erro ao renomear: ' + (err instanceof Error ? err.message : 'Unknown error'));
+      setRenamingSlug(null);
     }
   };
 

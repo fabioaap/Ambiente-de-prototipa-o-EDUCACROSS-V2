@@ -3,7 +3,8 @@
 import { Puck, Data } from '@measured/puck';
 import { puckConfig } from '@/config/puck.config';
 import { StudioLayout } from '@/components/StudioLayout';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const initialData: Data = {
   content: [
@@ -45,17 +46,22 @@ const initialData: Data = {
 
 const DEFAULT_PAGE_SLUG = 'home';
 
-export default function StudioPage() {
+function StudioEditor() {
+  const searchParams = useSearchParams();
+  const pageParam = searchParams.get('page');
+  
   const [data, setData] = useState<Data>(initialData);
   const [mounted, setMounted] = useState(false);
-  const [currentSlug, setCurrentSlug] = useState<string>(DEFAULT_PAGE_SLUG);
+  const [currentSlug, setCurrentSlug] = useState<string>(pageParam || DEFAULT_PAGE_SLUG);
   const [saving, setSaving] = useState(false);
 
-  // Carregar página ao montar
+  // Carregar página ao montar ou quando o param mudar
   useEffect(() => {
     setMounted(true);
-    loadPage(DEFAULT_PAGE_SLUG);
-  }, []);
+    const slug = pageParam || DEFAULT_PAGE_SLUG;
+    setCurrentSlug(slug);
+    loadPage(slug);
+  }, [pageParam]);
 
   const loadPage = async (slug: string) => {
     try {
@@ -169,5 +175,19 @@ export default function StudioPage() {
         />
       </div>
     </StudioLayout>
+  );
+}
+
+export default function StudioPage() {
+  return (
+    <Suspense fallback={
+      <StudioLayout>
+        <div style={{ padding: '2rem', textAlign: 'center' }}>
+          Carregando editor...
+        </div>
+      </StudioLayout>
+    }>
+      <StudioEditor />
+    </Suspense>
   );
 }
