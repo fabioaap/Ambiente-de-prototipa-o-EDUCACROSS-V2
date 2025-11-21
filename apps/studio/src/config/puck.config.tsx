@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Config } from '@measured/puck';
-import { Button, Text, Card, Layout } from '@prototipo/design-system';
+import { Button, Text, Card, Layout, Input, Select, Checkbox, Radio, Switch } from '@prototipo/design-system';
 
 export type ButtonProps = {
   text: string;
@@ -25,6 +25,55 @@ export type CardProps = {
 export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   children: ReactNode[];
+};
+
+export type InputProps = {
+  label?: string;
+  placeholder?: string;
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
+  helperText?: string;
+  error?: boolean;
+  errorText?: string;
+  required?: boolean;
+  disabled?: boolean;
+};
+
+export type SelectProps = {
+  label?: string;
+  helperText?: string;
+  error?: boolean;
+  errorText?: string;
+  required?: boolean;
+  disabled?: boolean;
+  options: Array<{ value: string; label: string }>;
+};
+
+export type CheckboxProps = {
+  label?: string;
+  helperText?: string;
+  error?: boolean;
+  errorText?: string;
+  disabled?: boolean;
+  checked?: boolean;
+};
+
+export type RadioProps = {
+  label?: string;
+  name: string;
+  helperText?: string;
+  error?: boolean;
+  errorText?: string;
+  disabled?: boolean;
+  checked?: boolean;
+};
+
+export type SwitchProps = {
+  label?: string;
+  helperText?: string;
+  error?: boolean;
+  errorText?: string;
+  disabled?: boolean;
+  checked?: boolean;
 };
 
 export const puckConfig: Config = {
@@ -182,6 +231,179 @@ export const puckConfig: Config = {
       },
       render: ({ maxWidth, children }: LayoutProps) => {
         return <Layout maxWidth={maxWidth}>{children}</Layout>;
+      },
+    },
+    Input: {
+      fields: {
+        label: { type: 'text' },
+        placeholder: { type: 'text' },
+        type: {
+          type: 'select',
+          options: [
+            { label: 'Text', value: 'text' },
+            { label: 'Email', value: 'email' },
+            { label: 'Password', value: 'password' },
+            { label: 'Number', value: 'number' },
+            { label: 'Tel', value: 'tel' },
+            { label: 'URL', value: 'url' },
+          ],
+        },
+        helperText: { type: 'text' },
+        error: { type: 'radio', options: [{ label: 'Error', value: true }, { label: 'Normal', value: false }] },
+        errorText: { type: 'text' },
+        required: { type: 'radio', options: [{ label: 'Required', value: true }, { label: 'Optional', value: false }] },
+        disabled: { type: 'radio', options: [{ label: 'Disabled', value: true }, { label: 'Enabled', value: false }] },
+      },
+      defaultProps: {
+        label: 'Campo de texto',
+        placeholder: 'Digite aqui...',
+        type: 'text',
+        error: false,
+        required: false,
+        disabled: false,
+      },
+      render: ({ label, placeholder, type, helperText, error, errorText, required, disabled }: InputProps) => {
+        return (
+          <Input
+            label={label}
+            placeholder={placeholder}
+            type={type}
+            helperText={helperText}
+            error={error}
+            errorText={errorText}
+            required={required}
+            disabled={disabled}
+          />
+        );
+      },
+    },
+    Select: {
+      fields: {
+        label: { type: 'text' },
+        helperText: { type: 'text' },
+        error: { type: 'radio', options: [{ label: 'Error', value: true }, { label: 'Normal', value: false }] },
+        errorText: { type: 'text' },
+        required: { type: 'radio', options: [{ label: 'Required', value: true }, { label: 'Optional', value: false }] },
+        disabled: { type: 'radio', options: [{ label: 'Disabled', value: true }, { label: 'Enabled', value: false }] },
+        options: {
+          type: 'array',
+          arrayFields: {
+            value: { type: 'text' },
+            label: { type: 'text' },
+          },
+        },
+      },
+      defaultProps: {
+        label: 'Selecione uma opção',
+        error: false,
+        required: false,
+        disabled: false,
+        options: [
+          { value: '', label: 'Selecione...' },
+          { value: 'opcao1', label: 'Opção 1' },
+          { value: 'opcao2', label: 'Opção 2' },
+          { value: 'opcao3', label: 'Opção 3' },
+        ],
+      },
+      render: ({ label, helperText, error, errorText, required, disabled, options }: SelectProps) => {
+        return (
+          <Select
+            label={label}
+            helperText={helperText}
+            error={error}
+            errorText={errorText}
+            required={required}
+            disabled={disabled}
+            options={options}
+          />
+        );
+      },
+    },
+    Checkbox: {
+      fields: {
+        label: { type: 'text' },
+        helperText: { type: 'text' },
+        error: { type: 'radio', options: [{ label: 'Error', value: true }, { label: 'Normal', value: false }] },
+        errorText: { type: 'text' },
+        disabled: { type: 'radio', options: [{ label: 'Disabled', value: true }, { label: 'Enabled', value: false }] },
+        checked: { type: 'radio', options: [{ label: 'Checked', value: true }, { label: 'Unchecked', value: false }] },
+      },
+      defaultProps: {
+        label: 'Aceito os termos e condições',
+        error: false,
+        disabled: false,
+        checked: false,
+      },
+      render: ({ label, helperText, error, errorText, disabled, checked }: CheckboxProps) => {
+        return (
+          <Checkbox
+            label={label}
+            helperText={helperText}
+            error={error}
+            errorText={errorText}
+            disabled={disabled}
+            checked={checked}
+          />
+        );
+      },
+    },
+    Radio: {
+      fields: {
+        label: { type: 'text' },
+        name: { type: 'text' },
+        helperText: { type: 'text' },
+        error: { type: 'radio', options: [{ label: 'Error', value: true }, { label: 'Normal', value: false }] },
+        errorText: { type: 'text' },
+        disabled: { type: 'radio', options: [{ label: 'Disabled', value: true }, { label: 'Enabled', value: false }] },
+        checked: { type: 'radio', options: [{ label: 'Checked', value: true }, { label: 'Unchecked', value: false }] },
+      },
+      defaultProps: {
+        label: 'Opção 1',
+        name: 'radio-group',
+        error: false,
+        disabled: false,
+        checked: false,
+      },
+      render: ({ label, name, helperText, error, errorText, disabled, checked }: RadioProps) => {
+        return (
+          <Radio
+            label={label}
+            name={name}
+            helperText={helperText}
+            error={error}
+            errorText={errorText}
+            disabled={disabled}
+            checked={checked}
+          />
+        );
+      },
+    },
+    Switch: {
+      fields: {
+        label: { type: 'text' },
+        helperText: { type: 'text' },
+        error: { type: 'radio', options: [{ label: 'Error', value: true }, { label: 'Normal', value: false }] },
+        errorText: { type: 'text' },
+        disabled: { type: 'radio', options: [{ label: 'Disabled', value: true }, { label: 'Enabled', value: false }] },
+        checked: { type: 'radio', options: [{ label: 'On', value: true }, { label: 'Off', value: false }] },
+      },
+      defaultProps: {
+        label: 'Ativar notificações',
+        error: false,
+        disabled: false,
+        checked: false,
+      },
+      render: ({ label, helperText, error, errorText, disabled, checked }: SwitchProps) => {
+        return (
+          <Switch
+            label={label}
+            helperText={helperText}
+            error={error}
+            errorText={errorText}
+            disabled={disabled}
+            checked={checked}
+          />
+        );
       },
     },
   },
