@@ -37,7 +37,7 @@ const DOMAIN_COLORS: Record<string, string> = {
 
 async function scanPagesDirectory(dir: string, prefix = ''): Promise<DashboardPage[]> {
   const pages: DashboardPage[] = []
-  const dataDir = path.join(process.cwd(), 'apps/studio/data/pages', dir)
+  const dataDir = path.join(process.cwd(), 'data/pages', dir)
 
   try {
     const entries = await fs.readdir(dataDir, { withFileTypes: true })

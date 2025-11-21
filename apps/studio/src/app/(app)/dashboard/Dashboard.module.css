@@ -1,0 +1,163 @@
+.container {
+  min-height: 100vh;
+  background-color: var(--color-neutral-50);
+  padding: var(--space-8);
+}
+
+.header {
+  margin-bottom: var(--space-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-4);
+}
+
+/* Loading and Error States */
+.loadingState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: var(--space-4);
+}
+
+/* Health Indicators Section */
+.healthSection {
+  margin-bottom: var(--space-8);
+}
+
+.healthGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+/* Domains Section */
+.domainsSection {
+  margin-bottom: var(--space-8);
+}
+
+.domainsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+.domainCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.domainIndicator {
+  width: 8px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+/* Pages Section */
+.pagesSection {
+  margin-bottom: var(--space-8);
+}
+
+.pagesSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.domainFilter {
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.pagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.pageCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pageCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.pageCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.domainBadge {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pageDescription {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+.pageCardActions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.pageCardMeta {
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-4);
+  }
+
+  .healthGrid,
+  .domainsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .pagesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pagesSectionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .domainFilter {
+    max-width: 100%;
+  }
+}

@@ -23,13 +23,27 @@ export default function Home() {
       >
         <Card variant="elevated" padding="lg">
           <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
+            Dashboard
+          </Text>
+          <Text color="muted" style={{ marginBottom: '1.5rem' }}>
+            Visão geral das páginas, domínios e indicadores de saúde.
+          </Text>
+          <Link href="/dashboard">
+            <Button variant="primary" fullWidth>
+              Ver Dashboard
+            </Button>
+          </Link>
+        </Card>
+
+        <Card variant="elevated" padding="lg">
+          <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
             Editor Visual
           </Text>
           <Text color="muted" style={{ marginBottom: '1.5rem' }}>
             Acesse o Puck para criar e editar páginas de forma visual.
           </Text>
           <Link href="/studio">
-            <Button variant="primary" fullWidth>
+            <Button variant="secondary" fullWidth>
               Abrir Studio
             </Button>
           </Link>
@@ -42,7 +56,7 @@ export default function Home() {
           <Text color="muted" style={{ marginBottom: '1.5rem' }}>
             Catálogo de componentes do Design System.
           </Text>
-          <Button variant="secondary" fullWidth disabled>
+          <Button variant="outline" fullWidth disabled>
             Em Breve
           </Button>
         </Card>
