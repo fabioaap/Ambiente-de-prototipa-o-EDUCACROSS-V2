@@ -127,3 +127,37 @@ export const Focused: Story = {
     await userEvent.type(input, 'Focused!', { delay: 20 });
   },
 };
+
+// Accessibility Stories
+export const AccessibilityDemo: Story = {
+  args: {
+    label: 'Email com aria-required',
+    type: 'email',
+    placeholder: 'you@example.com',
+    required: true,
+    helperText: 'Este campo é obrigatório e deve ser um email válido',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstra acessibilidade completa: label associado, aria-required, aria-describedby para helper text, e foco visível.',
+      },
+    },
+  },
+};
+
+export const ErrorAnnouncement: Story = {
+  args: {
+    label: 'CPF',
+    value: '123',
+    error: true,
+    errorText: 'CPF inválido. Digite 11 dígitos',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Erros são anunciados automaticamente para leitores de tela usando role="alert" e aria-invalid.',
+      },
+    },
+  },
+};

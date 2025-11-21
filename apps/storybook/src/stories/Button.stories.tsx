@@ -101,3 +101,35 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+// Accessibility Stories
+export const WithAriaLabel: Story = {
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: '🔍',
+    'aria-label': 'Buscar',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Botão apenas com ícone deve sempre incluir aria-label para acessibilidade.',
+      },
+    },
+  },
+};
+
+export const KeyboardNavigation: Story = {
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'Pressione Tab para focar',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Use Tab para focar o botão e Enter ou Space para ativá-lo. O foco é visível através de um outline azul.',
+      },
+    },
+  },
+};

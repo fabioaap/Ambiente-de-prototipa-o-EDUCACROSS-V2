@@ -19,6 +19,14 @@ export interface CardProps {
    */
   onClick?: () => void;
   /**
+   * Role ARIA opcional (ex: 'region' para seções importantes)
+   */
+  role?: string;
+  /**
+   * Label acessível opcional (recomendado quando role='region')
+   */
+  'aria-label'?: string;
+  /**
    * Conteúdo do card
    */
   children: React.ReactNode;
@@ -36,6 +44,8 @@ export const Card: React.FC<CardProps> = ({
   padding = 'md',
   clickable = false,
   onClick,
+  role,
+  'aria-label': ariaLabel,
   className = '',
   children,
 }) => {
@@ -52,7 +62,12 @@ export const Card: React.FC<CardProps> = ({
   const Component = clickable ? 'button' : 'div';
 
   return (
-    <Component className={classNames} onClick={onClick}>
+    <Component 
+      className={classNames} 
+      onClick={onClick}
+      role={role}
+      aria-label={ariaLabel}
+    >
       {children}
     </Component>
   );

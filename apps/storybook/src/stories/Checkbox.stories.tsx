@@ -116,3 +116,39 @@ export const MultipleCheckboxes: Story = {
     await expect(checkboxes[3]).toBeDisabled();
   },
 };
+
+// Accessibility Stories
+export const KeyboardInteraction: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#666' }}>
+        Use Tab para navegar e Space para marcar/desmarcar:
+      </p>
+      <Checkbox label="Primeira opção" />
+      <Checkbox label="Segunda opção" />
+      <Checkbox label="Terceira opção" />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Checkboxes são totalmente navegáveis por teclado. Use Tab para mover entre eles e Space para alternar.',
+      },
+    },
+  },
+};
+
+export const AccessibilityWithError: Story = {
+  args: {
+    label: 'Aceito os termos de uso',
+    error: true,
+    errorText: 'Você deve aceitar os termos para continuar',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Erros são comunicados com aria-invalid e role="alert", sendo anunciados automaticamente por leitores de tela.',
+      },
+    },
+  },
+};
