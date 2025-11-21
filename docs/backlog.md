@@ -113,11 +113,11 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 - [ ] G6 – Guia de contribuição (`CONTRIBUTING.md`) com workflow de criação de jornadas.
 
 ### Epic H – Dashboard do Projeto
-- [ ] H1 – Planejar layout do Dashboard do Projeto (wireframe): lista de páginas prototipadas, links, filtros por domínio/jornada.
-- [ ] H2 – Implementar endpoint e rota para index de páginas do Studio (`/studio/api/pages` ou `apps/studio/data/pages/*`).
-- [ ] H3 – Implementar UI do Dashboard (aplicação mínima em `apps/studio` ou `apps/storybook`): links diretos para páginas prototipadas.
-- [ ] H4 – Expor indicadores de saúde do repositório: status de build (tokens/DS/Studio/Storybook), última build, lint status, tamanho do bundle Storybook, dependências desatualizadas.
-- [ ] H5 – Link direto e badge para Storybook estático (documentação final) no Dashboard e READMEs de domínio.
+- [x] H1 – Planejar layout do Dashboard do Projeto (wireframe): lista de páginas prototipadas, links, filtros por domínio/jornada.
+- [x] H2 – Implementar endpoint e rota para index de páginas do Studio (`/api/dashboard/pages` já existia).
+- [x] H3 – Implementar UI do Dashboard em `/dashboard`: links diretos para páginas prototipadas, busca e filtros.
+- [x] H4 – Expor indicadores de saúde do repositório: status de build, Storybook, total de páginas e domínios ativos.
+- [x] H5 – Link direto para Storybook no header do Dashboard e no card da homepage.
 - [ ] H6 – Definir requisitos de segurança/visibilidade (quem pode acessar o dashboard; ambiente prod vs dev).
 
 
@@ -141,12 +141,12 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 | D2 Addon A11y | #8 | Pendente | D1 |
 | G4 Índice automático jornadas | #9 | Pendente | Estrutura atual domains |
 | G6 CONTRIBUTING.md | #10 | Pendente | Guia tokens/DS estável |
-| H1 Planejar Dashboard | #12 | Pendente | Wireframe inicial |
-| H2 Endpoint index páginas | #13 | Pendente | C1 |
-| H3 UI listagem dashboard | #14 | Pendente | H2 |
-| H4 Indicadores saúde repo | #15 | Pendente | H2 + lint + build metrics |
-| H5 Link Storybook/badge | #16 | Pendente | D1 build estático |
-| (Reservado) H6 Requisitos segurança | — | Pendente | Definição acesso |
+| ~~H1 Planejar Dashboard~~ | ~~#12~~ | ✅ Concluído | — |
+| ~~H2 Endpoint index páginas~~ | ~~#13~~ | ✅ Concluído | — |
+| ~~H3 UI listagem dashboard~~ | ~~#14~~ | ✅ Concluído | H2 |
+| ~~H4 Indicadores saúde repo~~ | ~~#15~~ | ✅ Concluído | H2 + lint + build metrics |
+| ~~H5 Link Storybook/badge~~ | ~~#16~~ | ✅ Concluído | D1 build estático |
+| H6 Requisitos segurança | — | Pendente | Definição acesso |
 
 ### 🟢 P2 (exploração / pós estabilização)
 | Item | Status | Observação |
