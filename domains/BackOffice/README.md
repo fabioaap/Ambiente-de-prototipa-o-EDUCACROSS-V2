@@ -74,7 +74,17 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ## Jornadas Existentes
 
-_(Esta seção será atualizada conforme jornadas forem criadas)_
+### [Revisão de Questões](./journeys/revisao-questoes/)
+**Status**: 🚧 Em andamento  
+**Objetivo**: Validar o fluxo para que curadores pedagógicos revisem questões enviadas pelos educadores, garantindo qualidade antes da publicação.
+
+**Páginas no Studio**:
+- [Lista de questões pendentes](http://localhost:3000/backoffice/revisao-questoes/lista)
+- [Detalhe da questão](http://localhost:3000/backoffice/revisao-questoes/detalhe)
+
+**Componentes utilizados**: Layout, Text, Card, Button
+
+**Próximos passos**: Tela de confirmação/ação final, componentes StatusBadge e ConfirmDialog
 
 ---
 
