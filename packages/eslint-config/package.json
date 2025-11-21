@@ -1,0 +1,48 @@
+{
+  "name": "@prototipo/eslint-config",
+  "version": "0.2.0-beta",
+  "description": "Configuração compartilhada de ESLint para o monorepo EDUCACROSS",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./next": "./next.js",
+    "./storybook": "./storybook.js"
+  },
+  "files": [
+    "index.js",
+    "next.js",
+    "storybook.js",
+    "README.md"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "config",
+    "typescript",
+    "react"
+  ],
+  "peerDependencies": {
+    "eslint": "^9.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@next/eslint-plugin-next": {
+      "optional": true
+    },
+    "eslint-plugin-storybook": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@eslint/js": "^9.15.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0"
+  },
+  "optionalDependencies": {
+    "@next/eslint-plugin-next": "^15.0.3",
+    "eslint-plugin-storybook": "^0.11.1"
+  }
+}

@@ -94,6 +94,28 @@ pnpm build:tokens
 pnpm build:design-system
 pnpm build:studio
 pnpm build:storybook
+
+# Lint (verificar código)
+pnpm lint
+
+# Lint em um pacote específico
+pnpm --filter @prototipo/design-system lint
+```
+
+## 🔍 Qualidade de Código
+
+O projeto utiliza **ESLint** com configuração unificada para garantir consistência.
+
+- ✅ Configuração compartilhada `@prototipo/eslint-config`
+- ✅ Suporte completo a TypeScript e React
+- ✅ Variantes para Next.js e Storybook
+- ✅ Integração com editores (VS Code, WebStorm)
+
+**Documentação completa:** [`docs/eslint.md`](./docs/eslint.md)
+
+```bash
+# Executar lint em todos os pacotes
+pnpm lint
 ```
 
 ## 🎨 Design System
