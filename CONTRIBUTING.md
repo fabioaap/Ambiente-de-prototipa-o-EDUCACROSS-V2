@@ -8,6 +8,7 @@ Obrigado por seu interesse em contribuir! Este guia ajudará você a entender co
 - [Configuração Local](#configuração-local)
 - [Workflow de Desenvolvimento](#workflow-de-desenvolvimento)
 - [Criando uma Jornada](#criando-uma-jornada)
+- [Criando um Componente](#criando-um-componente)
 - [Padrões de Código](#padrões-de-código)
 - [Testando Mudanças](#testando-mudanças)
 - [Abrindo Pull Requests](#abrindo-pull-requests)
@@ -196,6 +197,136 @@ Documentar link no README do domínio:
 - [🎨 Studio](http://localhost:3000/dominio/jornada/lista)
 ```
 
+#### 5. Atualizar Índice Automático (Opcional)
+
+```bash
+# Gera/atualiza o arquivo domains/INDEX.md com todas as jornadas
+pnpm gen:journeys
+```
+
+### Exemplo Completo
+
+Para criar uma jornada "Cadastro de Aluno" no domínio FrontOffice:
+
+```bash
+# 1. Criar estrutura
+mkdir -p domains/FrontOffice/journeys/cadastro-aluno
+cd domains/FrontOffice/journeys/cadastro-aluno
+
+# 2. Copiar template
+cp ../../../template-jornada.md README.md
+
+# 3. Criar arquivo de notas
+touch notas.md
+
+# 4. Editar README.md com os dados da jornada
+# (usar editor de preferência)
+
+# 5. Criar páginas no Studio
+# Acessar http://localhost:3000/studio
+# Criar página com slug: frontoffice/cadastro-aluno/formulario
+
+# 6. Atualizar índice
+cd ../../../
+pnpm gen:journeys
+
+# 7. Commit
+git add domains/FrontOffice/journeys/cadastro-aluno
+git commit -m "feat(frontoffice): adicionar jornada cadastro-aluno"
+```
+
+---
+
+## Criando um Componente
+
+### Passo a Passo
+
+#### 1. Criar Estrutura do Componente
+
+```bash
+# Exemplo: Criando componente Badge
+cd packages/design-system/src/components
+mkdir Badge
+cd Badge
+touch Badge.tsx Badge.module.css
+```
+
+#### 2. Implementar o Componente
+
+Ver seção [Componentes React](#componentes-react) abaixo para template e padrões.
+
+#### 3. Exportar o Componente
+
+Adicionar ao arquivo `packages/design-system/src/index.ts`:
+
+```typescript
+export { Badge } from './components/Badge/Badge';
+export type { BadgeProps } from './components/Badge/Badge';
+```
+
+#### 4. Criar Story no Storybook
+
+```bash
+# Criar story
+touch apps/storybook/src/stories/Badge.stories.tsx
+```
+
+Ver seção [Stories no Storybook](#stories-no-storybook) abaixo para template.
+
+#### 5. Adicionar ao Puck (Opcional)
+
+Se o componente será usado no Studio, adicionar em `apps/studio/src/config/puck.config.tsx`:
+
+```tsx
+export const puckConfig: Config = {
+  components: {
+    // ... componentes existentes
+    Badge: {
+      fields: {
+        text: { type: 'text' },
+        variant: {
+          type: 'select',
+          options: [
+            { label: 'Success', value: 'success' },
+            { label: 'Warning', value: 'warning' },
+            { label: 'Error', value: 'error' },
+          ],
+        },
+      },
+      render: ({ text, variant }) => (
+        <Badge variant={variant}>{text}</Badge>
+      ),
+    },
+  },
+};
+```
+
+#### 6. Testar e Validar
+
+```bash
+# Build do design system
+pnpm build:design-system
+
+# Testar no Storybook
+pnpm dev:storybook
+
+# Validar no Studio (se adicionou ao Puck)
+pnpm dev:studio
+
+# Lint
+pnpm lint
+```
+
+#### 7. Commit
+
+```bash
+git add packages/design-system/src/components/Badge
+git add packages/design-system/src/index.ts
+git add apps/storybook/src/stories/Badge.stories.tsx
+git add apps/studio/src/config/puck.config.tsx  # se aplicável
+git commit -m "feat(design-system): adicionar componente Badge"
+```
+
 ---
 
 ## Padrões de Código
@@ -351,6 +482,33 @@ pnpm dev:studio
 - [ ] Commits seguem Conventional Commits
 - [ ] README ou documentação atualizada (se necessário)
 - [ ] Nenhuma quebra de funcionalidades existentes
+
+### Convenções de Labels
+
+O projeto usa as seguintes labels para organizar issues e PRs:
+
+**Prioridades:**
+- `priority:P0` - Crítico, bloqueante
+- `priority:P1` - Alta prioridade
+- `priority:P2` - Prioridade normal
+
+**Tipos:**
+- `epic` - Epic (agrupa múltiplas issues)
+- `type:task` - Tarefa técnica
+- `documentation` - Documentação
+
+**Domínios:**
+- `domain:BackOffice` - Jornadas administrativas
+- `domain:FrontOffice` - Jornadas de usuário/aluno
+- `domain:Game` - Jornadas gamificadas
+
+**Status:**
+- `status:backlog` - No backlog, não iniciado
+- `status:in-progress` - Em desenvolvimento
+- `status:done` - Concluído
+
+**Outros:**
+- `tooling` - Ferramentas, scripts, automação
 
 ### Template de PR
 
