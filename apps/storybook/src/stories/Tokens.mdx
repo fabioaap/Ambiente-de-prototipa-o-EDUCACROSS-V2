@@ -41,7 +41,7 @@ const styles = {
 
 As cores primárias são usadas para elementos principais, CTAs e destaques.
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
   {Object.entries(tokens.colors.primary).map(([shade, color]) => (
     <div key={shade} style={{ textAlign: 'center' }}>
       <div
@@ -54,8 +54,11 @@ As cores primárias são usadas para elementos principais, CTAs e destaques.
         }}
       />
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{shade}</div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {color}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+        --colors-primary-{shade}
       </div>
     </div>
   ))}
@@ -65,7 +68,7 @@ As cores primárias são usadas para elementos principais, CTAs e destaques.
 
 As cores secundárias complementam a paleta principal.
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
   {Object.entries(tokens.colors.secondary).map(([shade, color]) => (
     <div key={shade} style={{ textAlign: 'center' }}>
       <div
@@ -78,8 +81,11 @@ As cores secundárias complementam a paleta principal.
         }}
       />
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{shade}</div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {color}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#9333ea', fontFamily: 'monospace', fontWeight: 500 }}>
+        --colors-secondary-{shade}
       </div>
     </div>
   ))}
@@ -89,7 +95,7 @@ As cores secundárias complementam a paleta principal.
 
 Cores neutras para textos, backgrounds e bordas.
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
   {Object.entries(tokens.colors.neutral).map(([shade, color]) => (
     <div key={shade} style={{ textAlign: 'center' }}>
       <div
@@ -102,8 +108,11 @@ Cores neutras para textos, backgrounds e bordas.
         }}
       />
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{shade}</div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {color}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#4b5563', fontFamily: 'monospace', fontWeight: 500 }}>
+        --colors-neutral-{shade}
       </div>
     </div>
   ))}
@@ -111,7 +120,7 @@ Cores neutras para textos, backgrounds e bordas.
 
 ### Success (Verde)
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
   {Object.entries(tokens.colors.success).map(([shade, color]) => (
     <div key={shade} style={{ textAlign: 'center' }}>
       <div
@@ -124,8 +133,11 @@ Cores neutras para textos, backgrounds e bordas.
         }}
       />
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{shade}</div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {color}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#16a34a', fontFamily: 'monospace', fontWeight: 500 }}>
+        --colors-success-{shade}
       </div>
     </div>
   ))}
@@ -133,7 +145,7 @@ Cores neutras para textos, backgrounds e bordas.
 
 ### Warning (Amarelo)
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
   {Object.entries(tokens.colors.warning).map(([shade, color]) => (
     <div key={shade} style={{ textAlign: 'center' }}>
       <div
@@ -146,8 +158,11 @@ Cores neutras para textos, backgrounds e bordas.
         }}
       />
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{shade}</div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {color}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#d97706', fontFamily: 'monospace', fontWeight: 500 }}>
+        --colors-warning-{shade}
       </div>
     </div>
   ))}
@@ -155,7 +170,7 @@ Cores neutras para textos, backgrounds e bordas.
 
 ### Error (Vermelho)
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
   {Object.entries(tokens.colors.error).map(([shade, color]) => (
     <div key={shade} style={{ textAlign: 'center' }}>
       <div
@@ -168,8 +183,11 @@ Cores neutras para textos, backgrounds e bordas.
         }}
       />
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{shade}</div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {color}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#dc2626', fontFamily: 'monospace', fontWeight: 500 }}>
+        --colors-error-{shade}
       </div>
     </div>
   ))}
@@ -190,8 +208,11 @@ Cores neutras para textos, backgrounds e bordas.
       <div style={{ fontFamily: value, fontSize: '1.25rem', marginBottom: '0.5rem' }}>
         The quick brown fox jumps over the lazy dog
       </div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {value}
+      </div>
+      <div style={{ fontSize: '0.75rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+        --typography-fontFamily-{name}
       </div>
     </div>
   ))}
@@ -201,7 +222,7 @@ Cores neutras para textos, backgrounds e bordas.
 
 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
   {Object.entries(tokens.typography.fontSize).map(([name, value]) => (
-    <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
+    <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', flexWrap: 'wrap' }}>
       <div style={{ minWidth: '80px', fontSize: '0.875rem', fontWeight: 600 }}>
         {name}
       </div>
@@ -211,6 +232,9 @@ Cores neutras para textos, backgrounds e bordas.
       <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
         {value}
       </div>
+      <div style={{ fontSize: '0.75rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+        --typography-fontSize-{name}
+      </div>
     </div>
   ))}
 </div>
@@ -219,7 +243,7 @@ Cores neutras para textos, backgrounds e bordas.
 
 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
   {Object.entries(tokens.typography.fontWeight).map(([name, value]) => (
-    <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1rem' }}>
+    <div key={name} style={{ display: 'flex', alignItems: 'baseline', gap: '1rem', flexWrap: 'wrap' }}>
       <div style={{ minWidth: '100px', fontSize: '0.875rem', fontWeight: 600 }}>
         {name}
       </div>
@@ -228,6 +252,9 @@ Cores neutras para textos, backgrounds e bordas.
       </div>
       <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
         {value}
+      </div>
+      <div style={{ fontSize: '0.75rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+        --typography-fontWeight-{name}
       </div>
     </div>
   ))}
@@ -238,12 +265,15 @@ Cores neutras para textos, backgrounds e bordas.
 <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
   {Object.entries(tokens.typography.lineHeight).map(([name, value]) => (
     <div key={name} style={{ padding: '1rem', border: '1px solid #e5e7eb', borderRadius: '8px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div style={{ fontSize: '0.875rem', fontWeight: 600, textTransform: 'capitalize' }}>
           {name}
         </div>
         <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
           {value}
+        </div>
+        <div style={{ fontSize: '0.75rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+          --typography-lineHeight-{name}
         </div>
       </div>
       <div style={{ lineHeight: value }}>
@@ -261,7 +291,7 @@ Cores neutras para textos, backgrounds e bordas.
 
 Sistema de espaçamento baseado em múltiplos de 0.25rem (4px).
 
-<div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
+<div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
   {Object.entries(tokens.spacing).map(([name, value]) => (
     <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
       <div
@@ -279,6 +309,9 @@ Sistema de espaçamento baseado em múltiplos de 0.25rem (4px).
         <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
           {value}
         </div>
+        <div style={{ fontSize: '0.7rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+          --spacing-{name}
+        </div>
       </div>
     </div>
   ))}
@@ -288,7 +321,7 @@ Sistema de espaçamento baseado em múltiplos de 0.25rem (4px).
 
 ## Border Radius
 
-<div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
+<div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '1rem' }}>
   {Object.entries(tokens.borderRadius).map(([name, value]) => (
     <div key={name} style={{ textAlign: 'center' }}>
       <div
@@ -303,8 +336,11 @@ Sistema de espaçamento baseado em múltiplos de 0.25rem (4px).
       <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>
         {name}
       </div>
-      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace' }}>
+      <div style={{ fontSize: '0.75rem', color: '#6b7280', fontFamily: 'monospace', marginBottom: '0.25rem' }}>
         {value}
+      </div>
+      <div style={{ fontSize: '0.7rem', color: '#3b82f6', fontFamily: 'monospace', fontWeight: 500 }}>
+        --borderRadius-{name}
       </div>
     </div>
   ))}
@@ -371,6 +407,34 @@ Sistema de breakpoints responsivos.
 
 ## Referência
 
-Para mais informações sobre como usar os tokens, consulte:
-- [Design System README](/packages/design-system/README.md)
-- [Tokens README](/packages/tokens/README.md)
+### Como Usar os Tokens
+
+Os design tokens estão disponíveis de duas formas no Design System:
+
+**1. CSS Variables (Recomendado)**
+```css
+.my-component {
+  background-color: var(--colors-primary-500);
+  padding: var(--spacing-4);
+  border-radius: var(--borderRadius-md);
+  font-size: var(--typography-fontSize-base);
+}
+```
+
+**2. JavaScript/TypeScript**
+```typescript
+import { colors, spacing, typography } from '@prototipo/tokens';
+
+const styles = {
+  backgroundColor: colors.primary[500],
+  padding: spacing[4],
+  fontSize: typography.fontSize.base,
+};
+```
+
+### Documentação Adicional
+
+Para mais informações sobre como usar os tokens no Design System:
+- [Design System README](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/tree/main/packages/design-system)
+- [Tokens README](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/tree/main/packages/tokens)
+- [Componentes do Design System](?path=/docs/components-button--docs)
