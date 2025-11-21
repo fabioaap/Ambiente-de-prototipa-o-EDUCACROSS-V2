@@ -27,9 +27,10 @@ echo ""
 
 # 2. Executar lint
 echo "🔍 Executando lint..."
-if pnpm lint > /tmp/lint-output.txt 2>&1; then
-    WARNINGS=$(grep -c "warning" /tmp/lint-output.txt || echo 0)
-    ERRORS=$(grep -c "error" /tmp/lint-output.txt || echo 0)
+LINT_OUTPUT=$(mktemp)
+if pnpm lint > "$LINT_OUTPUT" 2>&1; then
+    WARNINGS=$(grep -E "warning" "$LINT_OUTPUT" | wc -l || echo 0)
+    ERRORS=$(grep -E "([0-9]+) error" "$LINT_OUTPUT" | grep -oE "([0-9]+) error" | grep -oE "[0-9]+" | head -1 || echo 0)
     
     if [ "$ERRORS" -gt 0 ]; then
         echo -e "${RED}✗${NC} Lint com $ERRORS erro(s)"
@@ -45,6 +46,7 @@ else
     echo -e "${RED}✗${NC} Lint falhou"
     LINT_STATUS="failed"
 fi
+rm -f "$LINT_OUTPUT"
 echo ""
 
 # 3. Verificar tamanho do bundle Storybook
