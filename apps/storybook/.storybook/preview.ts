@@ -26,6 +26,30 @@ const preview: Preview = {
         },
       ],
     },
+    a11y: {
+      config: {
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+          },
+          {
+            id: 'label',
+            enabled: true,
+          },
+          {
+            id: 'button-name',
+            enabled: true,
+          },
+        ],
+      },
+      options: {
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21aa'],
+        },
+      },
+    },
   },
 };
 
