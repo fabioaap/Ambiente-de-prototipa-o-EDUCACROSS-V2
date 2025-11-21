@@ -2,22 +2,39 @@
 
 Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog reflete estado real de implementação e serve como fonte de verdade operacional para priorização e tracking. Atualize sempre que uma issue for fechada ou um epic tiver escopo ajustado.
 
-## 📊 Visão de Status (Atualizado em 2025-11-21)
+## 📊 Visão de Status (Atualizado em 2025-11-21 14:41 UTC)
 
 | Grupo | Itens P0 | Concluídos | % | Observações |
 |-------|----------|-----------|----|-------------|
-| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados; issues #1–#5 aguardam encerramento formal |
-| P1    | 11       | 0         | 0% | Dependem de C1/E1 e definições de acessibilidade |
+| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados e verificados; prontos para fechamento formal |
+| P1    | 11       | 0         | 0% | Aguardam fechamento de P0 antes de iniciar |
 | P2    | 4        | 0         | 0% | Exploratório, iniciar após dashboards base |
 
-### Concluídos tecnicamente (aguardando fechamento das issues)
-- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
-- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 aberta)
-- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
-- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
+### ✅ Concluídos e Verificados (Prontos para Fechamento)
+- ✅ **C1** – API de persistência (`apps/studio/src/app/api/pages/*`) - VERIFICADO 2025-11-21 (issue #1)
+  - API completa: GET/POST/PUT/DELETE endpoints
+  - Export/Import funcionando
+  - Build e lint passando
+  - Arquivos JSON persistidos corretamente
+- ✅ **B1** – Form Components (Input, Select, Checkbox, Radio, Switch) - VERIFICADO 2025-11-21 (issue #2)
+  - Todos 5 componentes implementados
+  - Stories no Storybook com estados interativos
+  - Acessibilidade básica (ARIA, keyboard navigation)
+  - Build e lint passando
+- ✅ **D1** – Página de Tokens no Storybook - VERIFICADO 2025-11-21 (issue #3)
+  - Story completa exibindo cores, tipografia, espaçamentos
+  - Tokens CSS variables documentados
+  - Build gerando static Storybook
+- ✅ **F1** – ESLint unificado monorepo - VERIFICADO 2025-11-21 (issue #5)
+  - Configuração compartilhada aplicada
+  - 0 errors em todo monorepo (1 warning menor aceitável)
+  - Scripts funcionando em todos os pacotes
 
-### Em andamento prioritário
-- ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)
+### 🟡 Em Andamento
+- ⏳ **E1** – Jornada BackOffice: Revisão de Questões (issue #4)
+  - Estrutura criada em `domains/BackOffice/`
+  - Algumas páginas implementadas
+  - Faltam: componentes específicos (Toolbar, StatusBadge, ConfirmDialog)
 
 ### Fontes auxiliares
 - `docs/issues-pendentes.md` (snapshot detalhado das 37 issues geradas)
@@ -127,11 +144,13 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 ### 🔴 P0 (alto impacto / habilita restante)
 | Item | Issue | Status | Dependências | Próximo Passo |
 |------|-------|--------|--------------|---------------|
-| C1 Persistência em disco | #1 | Implementado | Nenhuma (desbloqueia C2/H2) | Executar checklist de QA + fechar issue |
-| E1 Jornada BackOffice (Revisão de Questões) | #4 | Em andamento | B1 concluído | Criar tela de ações + componentes dedicados |
-| B1 Form Components | #2 | Implementado | — | Revisão A11y + fechar issue |
-| D1 Página de Tokens | #3 | Implementado | Tokens base | Adicionar exemplos JS + fechar issue |
-| F1 ESLint unificado | #5 | Implementado | — | Rodar lint full + fechar issue |
+| C1 Persistência em disco | #1 | ✅ VERIFICADO | Nenhuma (desbloqueia C2/H2) | ✅ Executar script de fechamento |
+| B1 Form Components | #2 | ✅ VERIFICADO | — | ✅ Executar script de fechamento |
+| D1 Página de Tokens | #3 | ✅ VERIFICADO | Tokens base | ✅ Executar script de fechamento |
+| E1 Jornada BackOffice (Revisão de Questões) | #4 | 🟡 Em andamento | B1 concluído | Criar tela de ações + componentes dedicados |
+| F1 ESLint unificado | #5 | ✅ VERIFICADO | — | ✅ Executar script de fechamento |
+
+**Script de Fechamento Automático**: Execute `./scripts/close-completed-issues.sh` para fechar issues #1, #2, #3, #5
 
 ### 🟡 P1 (médio / incrementos)
 | Item | Issue | Status | Gate |
@@ -226,6 +245,9 @@ pnpm build:storybook
 # Lint / Test (quando aplicável)
 pnpm -r lint
 pnpm -r test
+
+# Fechar issues completas (após verificação)
+./scripts/close-completed-issues.sh
 ```
 
 ---

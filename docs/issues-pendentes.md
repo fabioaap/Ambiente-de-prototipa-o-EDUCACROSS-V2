@@ -2,21 +2,22 @@
 
 Este documento lista todas as issues pendentes extraídas do `backlog.md`, organizadas por Epic e prioridade.
 
-**Data de geração**: 2025-11-21  
-**Status**: Snapshot manual sincronizado com `docs/backlog.md`
+**Data de atualização**: 2025-11-21 14:41 UTC  
+**Status**: Verificação completa realizada - 4 P0 issues prontas para fechamento  
+**Última verificação de código**: 2025-11-21 (build e lint passando)
 
 ---
 
 ## Resumo por Prioridade
 
-- **P0 (Alto Impacto/Curto Prazo)**: 5 issues → 4 concluídas, **1 pendente (E1)**
-- **P1 (Médio)**: 11 issues → 0 concluídas (aguardam C1/E1 e definições de A11y)
+- **P0 (Alto Impacto/Curto Prazo)**: 5 issues → **4 VERIFICADAS E PRONTAS PARA FECHAMENTO**, 1 em andamento (E1)
+- **P1 (Médio)**: 11 issues → 0 concluídas (aguardam fechamento de P0)
 - **P2 (Exploração)**: 4 issues → 0 concluídas
 - **Sem Prioridade Definida**: 17 issues (principalmente Epic A, B, C, D)
 
-**Total**: 37 issues mapeadas (4 concluídas aguardando fechamento, 33 pendentes)
+**Total**: 37 issues mapeadas (4 verificadas aguardando fechamento, 1 em andamento, 32 pendentes)
 
-**Sprint 1 Status**: 🚧 **EM ANDAMENTO** – Falta concluir E1 (páginas + componentes DS)
+**Script de Fechamento**: `./scripts/close-completed-issues.sh` disponível para fechar #1, #2, #3, #5
 
 ---
 
@@ -56,12 +57,15 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic B – Design System (@prototipo/design-system)
 
-### B1 – Componentes de formulário ✅
+### B1 – Componentes de formulário ✅ **VERIFICADO 2025-11-21**
 - **Descrição**: Componentes de formulário: `Input`, `Select`, `Checkbox`, `Radio`, `Switch`
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
-- **Critério de Aceitação**: Cada componente possui stories com controles e estados (foco/erro/disabled)
+- **Status**: **✅ IMPLEMENTADO E VERIFICADO**
+- **Localização**: `packages/design-system/src/components/`
+- **Verificação**: Build ✅ | Lint ✅ | Stories ✅ | Acessibilidade básica ✅
+- **Próximo passo**: Executar `./scripts/close-completed-issues.sh` para fechar issue #2
+- **Critério de Aceitação**: ✅ Cada componente possui stories com controles e estados (foco/erro/disabled)
 
 ### B2 – Componentes de layout
 - **Descrição**: Componentes de layout: `Stack`, `Grid`, `Section`, `Navbar`, `Footer`
@@ -104,12 +108,15 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic C – Studio (Next + Puck)
 
-### C1 – Persistência em disco ✅
+### C1 – Persistência em disco ✅ **VERIFICADO 2025-11-21**
 - **Descrição**: Persistência em disco: rota de API para salvar/ler `data/pages/*.json` (além de localStorage)
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `domain:BackOffice`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
-- **Critério de Aceitação**: É possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `apps/studio/data/pages`
+- **Status**: **✅ IMPLEMENTADO E VERIFICADO**
+- **Localização**: `apps/studio/src/app/api/pages/`
+- **Verificação**: Build ✅ | Lint ✅ | API endpoints ✅ | Export/Import ✅
+- **Próximo passo**: Executar `./scripts/close-completed-issues.sh` para fechar issue #1
+- **Critério de Aceitação**: ✅ É possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `apps/studio/data/pages`
 
 ### C2 – Lista de páginas no sidebar
 - **Descrição**: Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir
@@ -140,12 +147,15 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic D – Storybook
 
-### D1 – Página de Tokens ✅
+### D1 – Página de Tokens ✅ **VERIFICADO 2025-11-21**
 - **Descrição**: Página de Tokens (visualizar cores/typography/spacing com exemplos)
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `type:task`
-- **Status**: **CONCLUÍDO** ✅
-- **Critério de Aceitação**: Existe uma story/MDX que apresenta visualmente os tokens com amostras legíveis
+- **Status**: **✅ IMPLEMENTADO E VERIFICADO**
+- **Localização**: `apps/storybook/src/stories/Tokens.stories.tsx`
+- **Verificação**: Build ✅ | Storybook static ✅ | Visual tokens ✅
+- **Próximo passo**: Executar `./scripts/close-completed-issues.sh` para fechar issue #3
+- **Critério de Aceitação**: ✅ Existe uma story/MDX que apresenta visualmente os tokens com amostras legíveis
 
 ### D2 – Addon A11y e validações
 - **Descrição**: Addon A11y e validações mínimas
@@ -177,7 +187,7 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
   - Componentes DS necessários: Toolbar, StatusBadge, ConfirmDialog
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `domain:BackOffice`, `type:task`
-- **Status**: Em andamento
+- **Status**: 🟡 Em andamento (estrutura criada, faltam componentes específicos)
 
 #### Subtarefas E1:
 - [x] Criar estrutura de jornada em `domains/BackOffice/journeys/revisao-questoes/`
@@ -218,11 +228,14 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 
 ## Epic F – Tooling/Infra
 
-### F1 – ESLint unificado ✅
+### F1 – ESLint unificado ✅ **VERIFICADO 2025-11-21**
 - **Descrição**: ESLint config compartilhada + `eslint-plugin-react` + `eslint-plugin-storybook` aplicados a pacotes/apps
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `type:task`, `tooling`
-- **Status**: **CONCLUÍDO** ✅
+- **Status**: **✅ IMPLEMENTADO E VERIFICADO**
+- **Localização**: `eslint.config.mjs` (raiz do monorepo)
+- **Verificação**: Build ✅ | Lint ✅ (0 errors, 1 warning menor) | Todos os pacotes ✅
+- **Próximo passo**: Executar `./scripts/close-completed-issues.sh` para fechar issue #5
 
 ### F2 – Prettier
 - **Descrição**: Prettier + `.prettierrc` (opcional) e `format` scripts
