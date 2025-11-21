@@ -56,6 +56,9 @@ async function scanPagesDirectory(dir: string, prefix = ''): Promise<DashboardPa
         // Ler arquivo JSON
         const content = await fs.readFile(fullPath, 'utf-8')
         const data = JSON.parse(content)
+        
+        // Obter informações do arquivo
+        const stats = await fs.stat(fullPath)
 
         // Determinar domínio pelo slug
         let domain: DashboardPage['domain'] = 'Other'
@@ -75,8 +78,8 @@ async function scanPagesDirectory(dir: string, prefix = ''): Promise<DashboardPa
           status: 'draft', // Futuro: ler de metadados
           editUrl: `/studio?page=${encodeURIComponent(cleanSlug)}`,
           viewUrl: `/pages/${cleanSlug}`,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
+          createdAt: stats.birthtime.toISOString(),
+          updatedAt: stats.mtime.toISOString(),
           description: data.root?.props?.description,
         })
       }
