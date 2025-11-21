@@ -340,6 +340,24 @@ pnpm install
 pnpm build
 ```
 
+### If using wrong Node.js version:
+```bash
+# Check current version
+node --version
+
+# Should be v22.x per .nvmrc
+# If not, install and switch:
+nvm install 22
+nvm use 22
+
+# Or with other version managers:
+# fnm: fnm use
+# asdf: asdf install nodejs && asdf reshim
+
+# Verify correct version
+node --version  # Should show v22.x.x
+```
+
 ---
 
 ## 📞 Need Help?

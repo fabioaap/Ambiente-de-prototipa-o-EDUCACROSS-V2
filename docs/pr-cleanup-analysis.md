@@ -271,8 +271,9 @@
 - This analysis performed on 2025-11-21 16:13 UTC
 - Main branch commit: 2cff479bc6662142c0aaeff7e7ceb91c4328f95a
 - Main branch state: HEALTHY (builds pass, lint clean except 1 warning)
-- Node version: 20.19.5 (⚠️ .nvmrc specifies v22, but v20 works)
+- Node version: 20.19.5 (⚠️ .nvmrc specifies v22 - recommend upgrading to match)
 - pnpm version: 9.14.4 ✅
+- Note: While v20 works for builds, using v22 as specified ensures consistency across environments
 
 ## Conclusion
 
