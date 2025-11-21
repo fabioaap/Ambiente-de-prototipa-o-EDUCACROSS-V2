@@ -2,6 +2,32 @@
 
 API REST para persistência de páginas em disco no Studio.
 
+## Configuração
+
+### Variáveis de Ambiente
+
+Copie o arquivo `.env.example` para `.env.local` e configure conforme necessário:
+
+```bash
+cp .env.example .env.local
+```
+
+**Variáveis disponíveis:**
+
+- `NODE_ENV`: Ambiente de execução (development, production, test)
+- `ALLOW_PAGE_WRITE`: Permitir operações de escrita em produção (padrão: false)
+
+### Permissões de Escrita
+
+Por motivos de segurança, operações de escrita (POST, PUT, DELETE) são permitidas apenas em ambiente de desenvolvimento por padrão.
+
+Para habilitar em produção, defina:
+```env
+ALLOW_PAGE_WRITE=true
+```
+
+⚠️ **Atenção**: Em produção sem autenticação, isso permite que qualquer usuário crie, edite ou delete páginas.
+
 ## Endpoints
 
 ### GET /api/pages
@@ -51,7 +77,8 @@ Cria uma nova página.
 ```
 
 **Errors:**
-- `400` - Missing slug or data
+- `400` - Missing slug or data / Invalid data structure
+- `403` - Write operations not allowed in production
 - `409` - Page already exists
 
 ### GET /api/pages/[slug]
@@ -96,7 +123,8 @@ Atualiza uma página existente.
 ```
 
 **Errors:**
-- `400` - Missing data
+- `400` - Missing data / Invalid data structure
+- `403` - Write operations not allowed in production
 - `404` - Page not found
 
 ### DELETE /api/pages/[slug]
@@ -112,6 +140,7 @@ Remove uma página.
 ```
 
 **Errors:**
+- `403` - Write operations not allowed in production
 - `404` - Page not found
 
 ## Armazenamento

@@ -4,6 +4,14 @@ import path from 'path';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
+// Verificar se gravação é permitida (apenas em desenvolvimento por padrão)
+function isWriteAllowed(): boolean {
+  const env = process.env.NODE_ENV || 'development';
+  const allowWrite = process.env.ALLOW_PAGE_WRITE === 'true';
+  
+  return env === 'development' || allowWrite;
+}
+
 type RouteContext = {
   params: Promise<{ slug: string }>;
 };
@@ -35,6 +43,14 @@ export async function PUT(
   request: NextRequest,
   context: RouteContext
 ) {
+  // Verificar permissões de escrita
+  if (!isWriteAllowed()) {
+    return NextResponse.json(
+      { error: 'Write operations not allowed in production' },
+      { status: 403 }
+    );
+  }
+
   try {
     const { slug } = await context.params;
     const body = await request.json();
@@ -43,6 +59,14 @@ export async function PUT(
     if (!data) {
       return NextResponse.json(
         { error: 'Missing data' },
+        { status: 400 }
+      );
+    }
+
+    // Validar estrutura básica dos dados
+    if (!data.root || !data.content || !data.zones) {
+      return NextResponse.json(
+        { error: 'Invalid data structure. Expected root, content and zones properties' },
         { status: 400 }
       );
     }
@@ -79,6 +103,14 @@ export async function DELETE(
   request: NextRequest,
   context: RouteContext
 ) {
+  // Verificar permissões de escrita
+  if (!isWriteAllowed()) {
+    return NextResponse.json(
+      { error: 'Write operations not allowed in production' },
+      { status: 403 }
+    );
+  }
+
   try {
     const { slug } = await context.params;
     const filePath = path.join(PAGES_DIR, `${slug}.json`);
@@ -93,7 +125,7 @@ export async function DELETE(
     console.error('Error deleting page:', error);
     return NextResponse.json(
       { error: 'Failed to delete page' },
-      { status: 500 }
+      { status: 404 }
     );
   }
 }

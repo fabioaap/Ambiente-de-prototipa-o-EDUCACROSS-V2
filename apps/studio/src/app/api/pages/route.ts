@@ -4,6 +4,14 @@ import path from 'path';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
+// Verificar se gravação é permitida (apenas em desenvolvimento por padrão)
+function isWriteAllowed(): boolean {
+  const env = process.env.NODE_ENV || 'development';
+  const allowWrite = process.env.ALLOW_PAGE_WRITE === 'true';
+  
+  return env === 'development' || allowWrite;
+}
+
 // Garantir que o diretório existe
 async function ensureDir() {
   try {
@@ -47,6 +55,14 @@ export async function GET() {
 
 // POST /api/pages - Cria uma nova página
 export async function POST(request: NextRequest) {
+  // Verificar permissões de escrita
+  if (!isWriteAllowed()) {
+    return NextResponse.json(
+      { error: 'Write operations not allowed in production' },
+      { status: 403 }
+    );
+  }
+
   try {
     await ensureDir();
     const body = await request.json();
@@ -58,9 +74,25 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Validar estrutura básica dos dados
+    if (!data.root || !data.content || !data.zones) {
+      return NextResponse.json(
+        { error: 'Invalid data structure. Expected root, content and zones properties' },
+        { status: 400 }
+      );
+    }
     
     // Sanitizar slug
     const sanitizedSlug = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+    
+    if (!sanitizedSlug || sanitizedSlug.length === 0) {
+      return NextResponse.json(
+        { error: 'Invalid slug format' },
+        { status: 400 }
+      );
+    }
+
     const filePath = path.join(PAGES_DIR, `${sanitizedSlug}.json`);
     
     // Verificar se já existe
