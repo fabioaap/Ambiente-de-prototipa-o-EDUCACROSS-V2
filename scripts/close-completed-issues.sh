@@ -97,9 +97,9 @@ close_issue 2 \
 
 **Qualidade:**
 - ✅ Build passando
-- ✅ Lint passando (0 errors)
+- ✅ Lint passando (0 errors, 1 warning menor aceitável)
 - ✅ TypeScript strict mode
-- ✅ CSS Modules com tokens
+- ✅ CSS Modules with tokens
 
 **Acessibilidade:**
 - ✅ ARIA labels onde apropriado
