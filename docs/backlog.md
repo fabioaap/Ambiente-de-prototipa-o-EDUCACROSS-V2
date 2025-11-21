@@ -2,7 +2,7 @@
 
 Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog reflete estado real de implementação e serve como fonte de verdade operacional para priorização e tracking. Atualize sempre que uma issue for fechada ou um epic tiver escopo ajustado.
 
-## 📊 Visão de Status (Atualizado em 2025-11-20)
+## 📊 Visão de Status (Atualizado em 2025-11-21)
 
 | Grupo | Itens P0 | Concluídos | % | Observações |
 |-------|----------|-----------|----|-------------|
@@ -124,34 +124,38 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 ---
 
 ## Backlog Priorizado (P0→P2)
+### 🔴 P0 (alto impacto / habilita restante)
+| Item | Issue | Status | Dependências | Próximo Passo |
+|------|-------|--------|--------------|---------------|
+| C1 Persistência em disco | #1 | Implementado | Nenhuma (desbloqueia C2/H2) | Executar checklist de QA + fechar issue |
+| E1 Jornada BackOffice (Revisão de Questões) | #4 | Em andamento | B1 concluído | Criar tela de ações + componentes dedicados |
+| B1 Form Components | #2 | Implementado | — | Revisão A11y + fechar issue |
+| D1 Página de Tokens | #3 | Implementado | Tokens base | Adicionar exemplos JS + fechar issue |
+| F1 ESLint unificado | #5 | Implementado | — | Rodar lint full + fechar issue |
 
-### ✅ Sprint 1 (P0) – 100% Completo
-- [x] #1 – C1 Persistência em disco no Studio (API)
-- [x] #2 – B1 Componentes de formulário (Input/Select/Checkbox/Radio/Switch)
-- [x] #3 – D1 Página de Tokens no Storybook (visual)
-- [x] #4 – E1 BackOffice: Revisão de Questões (primeira jornada)
-- [x] #5 – F1 ESLint unificado para monorepo
+### 🟡 P1 (médio / incrementos)
+| Item | Issue | Status | Gate |
+|------|-------|--------|------|
+| C2 Sidebar páginas | #6 | Pendente | C1 |
+| B4 Acessibilidade DS | #7 | Pendente | B1 |
+| D2 Addon A11y | #8 | Pendente | D1 |
+| G4 Índice automático jornadas | #9 | Pendente | Estrutura atual domains |
+| G6 CONTRIBUTING.md | #10 | Pendente | Guia tokens/DS estável |
+| H1 Planejar Dashboard | #12 | Pendente | Wireframe inicial |
+| H2 Endpoint index páginas | #13 | Pendente | C1 |
+| H3 UI listagem dashboard | #14 | Pendente | H2 |
+| H4 Indicadores saúde repo | #15 | Pendente | H2 + lint + build metrics |
+| H5 Link Storybook/badge | #16 | Pendente | D1 build estático |
+| (Reservado) H6 Requisitos segurança | — | Pendente | Definição acesso |
 
-### ✅ Sprint 2 (P1) – 100% Completo
-- [x] #6 – C2 Lista de páginas no sidebar
-- [x] #7 – B4 Acessibilidade básica no DS
-- [x] #8 – D2 Addon A11y e validações no Storybook
-- [x] #9 – G4 Script: gerar índice automático de jornadas
-- [x] #10 – G6 Documentação: Criar CONTRIBUTING.md com workflow de jornadas
-- [x] #11 – H Epic: Dashboard do Projeto
-  - [x] #12 – H1 Planejar layout/Wireframe
-  - [x] #13 – H2 Endpoint / API para index de páginas
-  - [x] #14 – E2 FrontOffice: Onboarding do Aluno
-  - [x] #15 – E3 Game: Missões da Ilha 1
-
-### 🟢 Sprint 3 (P2) – Em Planejamento
-- [ ] H3 UI Dashboard (implementação)
-- [ ] H4 Indicadores de saúde
-- [ ] H5 Link para Storybook
-- [ ] B6 Theming com tokens semânticos
-- [ ] C5 Export/Import JSON por UI
-- [ ] F3 GitHub Actions CI
-- [ ] G5 Validação de links em CI
+### 🟢 P2 (exploração / pós estabilização)
+| Item | Status | Observação |
+|------|--------|------------|
+| B6 Theming (tokens semânticos) | Pendente | Requer A1–A4 definidos |
+| C5 Export/Import JSON UI | Pendente | Após C1 + C2 |
+| F3 GitHub Actions CI | Pendente | Infra mínima + caching pnpm |
+| G5 Validação de links em CI | Pendente | Após CONTRIBUTING.md |
+| H3 (Expansão dashboard avançada) | Pendente | Métricas + gráficos |
 
 ---
 
