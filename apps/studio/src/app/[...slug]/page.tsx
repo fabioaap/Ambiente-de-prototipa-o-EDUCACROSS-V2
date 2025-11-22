@@ -18,13 +18,13 @@ export function generateStaticParams() {
 
 interface PageProps {
   params: Promise<{
-    slug?: string[];
+    slug: string[];
   }>;
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const pagePath = slug ? slug.join('/') : 'index';
+  const pagePath = slug.join('/');
   const filePath = path.join(PAGES_DIR, `${pagePath}.json`);
 
   let data: Data;

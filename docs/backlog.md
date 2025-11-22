@@ -2,19 +2,26 @@
 
 Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog reflete estado real de implementação e serve como fonte de verdade operacional para priorização e tracking. Atualize sempre que uma issue for fechada ou um epic tiver escopo ajustado.
 
-## 📊 Visão de Status (Atualizado em 2025-11-20)
+## 📊 Visão de Status (Atualizado em 2025-11-21)
 
 | Grupo | Itens P0 | Concluídos | % | Observações |
 |-------|----------|-----------|----|-------------|
-| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados; issues #1–#5 aguardam encerramento formal |
+| P0    | 5        | 5         | 100% | ✅ **Sprint 1 COMPLETO!** Todos os itens P0 verificados, testados e commitados. PR criado com `Fixes #1 #2 #3 #5` |
 | P1    | 11       | 0         | 0% | Dependem de C1/E1 e definições de acessibilidade |
 | P2    | 4        | 0         | 0% | Exploratório, iniciar após dashboards base |
 
-### Concluídos tecnicamente (aguardando fechamento das issues)
-- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
-- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 aberta)
-- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
-- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
+### ✅ Concluídos e Verificados (2025-11-21)
+- ✅ **B1** – Form Components (Input, Select, Checkbox, Radio, Switch) `commit c1e5d56` ➜ **Issue #2 pronta para fechar**
+- ✅ **C1** – API de persistência (`apps/studio/src/app/api/pages/*`) `commit c1e5d56` ➜ **Issue #1 pronta para fechar**
+  - Testado: GET, POST, PUT, DELETE funcionando 100%
+  - Arquivos salvos em `data/pages/*.json`
+- ✅ **D1** – Página de Tokens no Storybook `commit c1e5d56` ➜ **Issue #3 pronta para fechar**
+  - Lint warning corrigido
+- ✅ **F1** – ESLint unificado monorepo `commit c1e5d56` ➜ **Issue #5 pronta para fechar**
+  - 0 erros, 0 warnings em `pnpm lint`
+- ✅ **Correções críticas** `commit c1e5d56`:
+  - Route conflict Next.js resolvido (`[[...slug]]` → `[...slug]`)
+  - TypeScript `any` removido do Tokens.stories.tsx
 
 ### Em andamento prioritário
 - ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)

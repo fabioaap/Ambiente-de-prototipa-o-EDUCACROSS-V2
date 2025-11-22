@@ -1,0 +1,35 @@
+name: Link Validation
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  validate-links:
+    name: Validate Markdown Links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for broken links in Markdown files
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'no'
+          config-file: '.github/markdown-link-check-config.json'
+          max-depth: 10
+          folder-path: 'docs,domains'
+          file-path: 'README.md,CONTRIBUTING.md,LEIA-PRIMEIRO.md,PRÓXIMOS-PASSOS.md,PRÓXIMAS-AÇÕES.md'
+
+      - name: Report results
+        if: always()
+        run: echo "✅ Link validation completed"
