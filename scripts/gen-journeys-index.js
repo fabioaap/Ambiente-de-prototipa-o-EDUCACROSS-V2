@@ -2,14 +2,28 @@
 
 /**
  * Script para gerar índice automático de jornadas por domínio
- * Uso: node scripts/gen-journeys-index.js ou pnpm gen:journeys
+ * 
+ * Este script varre a estrutura domains/*/journeys/*/README.md
+ * e gera um arquivo centralizado domains/JOURNEYS.md listando:
+ * - Todos os domínios (BackOffice, FrontOffice, Game)
+ * - Todas as jornadas dentro de cada domínio
+ * - Títulos extraídos dos README.md de cada jornada
+ * - Links diretos para documentação e pastas
+ * - Estatísticas de domínios e jornadas
+ * 
+ * Uso: 
+ *   pnpm gen:journeys
+ *   ou
+ *   node scripts/gen-journeys-index.js
+ * 
+ * Saída: domains/JOURNEYS.md
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const DOMAINS_DIR = path.join(process.cwd(), 'domains');
-const OUTPUT_FILE = path.join(DOMAINS_DIR, 'INDEX.md');
+const OUTPUT_FILE = path.join(DOMAINS_DIR, 'JOURNEYS.md');
 
 console.log('🔄 Gerando índice de jornadas...\n');
 
@@ -63,9 +77,14 @@ for (const domainName of domains) {
         const journeyReadme = path.join(journeyDir, 'README.md');
 
         if (fs.existsSync(journeyReadme)) {
-          content += `- **[${journeyName}](./${domainName}/journeys/${journeyName}/README.md)** - Jornada prototipada\n`;
+          // Try to extract title from README
+          const readmeContent = fs.readFileSync(journeyReadme, 'utf-8');
+          const titleMatch = readmeContent.match(/^#\s+(?:Jornada:\s+)?(.+)$/m);
+          const title = titleMatch ? titleMatch[1] : journeyName;
+          
+          content += `- **[${title}](./${domainName}/journeys/${journeyName}/README.md)** - [📁 Pasta](./${domainName}/journeys/${journeyName}/)\n`;
         } else {
-          content += `- **${journeyName}** - Sem documentação\n`;
+          content += `- **${journeyName}** - ⚠️ Sem documentação\n`;
         }
       }
     } else {
