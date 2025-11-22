@@ -40,21 +40,24 @@ Obrigado por seu interesse em contribuir! Este guia ajudará você a entender co
 
 ### Pré-requisitos
 
-- Node.js >= 20.0.0
-- pnpm >= 8.0.0 (gerenciador de pacotes)
+- Node.js 22 LTS ([nvm](https://github.com/nvm-sh/nvm) recomendado)
+- pnpm 9.14.4+ (`npm install -g pnpm`)
 - Git
 
 ### Instalação
 
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/seu-org/educacross-prototipacao.git
-cd educacross-prototipacao
+git clone https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2.git
+cd Ambiente-de-prototipa-o-EDUCACROSS-V2
 
-# 2. Instalar dependências
+# 2. Ativar versão correta do Node (se usando nvm)
+nvm use  # usa .nvmrc
+
+# 3. Instalar dependências
 pnpm install
 
-# 3. Verificar configuração
+# 4. Verificar configuração
 pnpm lint
 pnpm build
 ```
@@ -383,6 +386,61 @@ Closes #123
 - 🎨 Veja exemplos em [stories](apps/storybook/src/stories)
 - 📁 Explore [jornadas existentes](domains/)
 - 💬 Abra uma issue com perguntas
+
+### Troubleshooting Comum
+
+#### Erro: "Cannot find module @measured/puck"
+```bash
+pnpm install
+pnpm build:tokens
+pnpm build:design-system
+```
+
+#### Erro: Port 3000 já em uso
+```bash
+# Encontrar processo
+lsof -i :3000
+# Ou no Windows:
+# netstat -ano | findstr :3000
+
+# Matar processo (Unix/Mac)
+kill -9 <PID>
+# Ou no Windows:
+# taskkill /PID <PID> /F
+
+# Alternativa: usar npx kill-port
+npx kill-port 3000
+```
+
+#### Erro: Port 6006 já em uso (Storybook)
+```bash
+npx kill-port 6006
+```
+
+#### Erro: Eslint config not found
+```bash
+# Remover node_modules e reinstalar
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
+```
+
+#### Erro: Build falha em design-system
+```bash
+# Rebuildar tokens primeiro
+pnpm build:tokens
+# Depois design-system
+pnpm build:design-system
+```
+
+#### Erro: Type errors em TypeScript
+```bash
+# Verificar tipos específicos
+pnpm -r type-check
+
+# Limpar cache TypeScript
+rm -rf packages/*/tsconfig.tsbuildinfo
+pnpm build
+```
 
 ---
 

@@ -328,6 +328,7 @@ packages/design-system
 
 ## 📖 Documentação Adicional
 
+- **[Guia de Contribuição](./CONTRIBUTING.md)** 🆕
 - [Tokens README](./packages/tokens/README.md)
 - [Design System README](./packages/design-system/README.md)
 - [Studio README](./apps/studio/README.md)
@@ -382,7 +383,18 @@ pnpm dev:storybook
 
 ## 🤝 Contribuindo
 
-Este é um ambiente de prototipação. Para adicionar novos protótipos:
+Agradecemos seu interesse em contribuir! Para começar:
+
+**📖 Leia o [Guia de Contribuição](./CONTRIBUTING.md)**
+
+Este guia contém:
+- Setup local completo
+- Convenções de código e Git
+- Como criar jornadas
+- Checklist pré-PR
+- Troubleshooting detalhado
+
+### Quick Start
 
 1. Crie ou atualize componentes no Design System
 2. Documente no Storybook
