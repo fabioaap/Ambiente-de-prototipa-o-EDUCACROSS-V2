@@ -2,22 +2,29 @@
 
 Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog reflete estado real de implementação e serve como fonte de verdade operacional para priorização e tracking. Atualize sempre que uma issue for fechada ou um epic tiver escopo ajustado.
 
-## 📊 Visão de Status (Atualizado em 2025-11-21)
+## 📊 Visão de Status (Atualizado em 2025-11-22)
 
-| Grupo | Itens P0 | Concluídos | % | Observações |
-|-------|----------|-----------|----|-------------|
-| P0    | 5        | 4         | 80% | B1, C1, D1, F1 implementados; issues #1–#5 aguardam encerramento formal |
-| P1    | 11       | 0         | 0% | Dependem de C1/E1 e definições de acessibilidade |
-| P2    | 4        | 0         | 0% | Exploratório, iniciar após dashboards base |
+| Grupo | Itens | Concluídos | % | Observações |
+|-------|-------|-----------|----|----|
+| P0    | 5     | 5         | 100% | ✅ **Sprint 1 COMPLETO!** PR #30 mergeado. Issues #1, #2, #3, #5 fechadas. |
+| P1    | 11    | 0         | 0% | 🔴 **Sprint 2 iniciada em 2025-11-22** – C2, B4, D2, G4, G6 em backlog |
+| P2    | 4     | 0         | 0% | 🟡 Planejado para Sprint 3 (após P1 estabilizar) |
 
-### Concluídos tecnicamente (aguardando fechamento das issues)
-- ✅ B1 – Form Components (Input, Select, Checkbox, Radio, Switch) `commit 433214b` (issue #2 aberta)
-- ✅ C1 – API de persistência (`apps/studio/src/app/api/pages/*`) `commit 370298d` (issue #1 aberta)
-- ✅ D1 – Página de Tokens no Storybook `commit 82cfb9b` (issue #3 aberta)
-- ✅ F1 – ESLint unificado monorepo `commit da05e19` (issue #5 aberta)
+### ✅ Sprint 1 – Concluído e Mergeado (PR #30)
+- ✅ **#1 (C1)** – Studio API Persistência → **Fechada**
+- ✅ **#2 (B1)** – Form Components → **Fechada**
+- ✅ **#3 (D1)** – Storybook Tokens Page → **Fechada**
+- ✅ **#5 (F1)** – ESLint unificado → **Fechada**
 
-### Em andamento prioritário
-- ⏳ E1 – Jornada BackOffice: Revisão de Questões (issue #4)
+### 🔴 Sprint 2 – Em Planejamento (P1)
+- 📝 **#6 (C2)** – Studio: Lista de páginas no sidebar (Prioridade: Alta)
+- 📝 **#10 (G6)** – CONTRIBUTING.md (Prioridade: Alta)
+- 📝 **#9 (G4)** – Script gerador de índice (Prioridade: Média)
+- 📝 **#7 (B4)** – Design System: Acessibilidade (Prioridade: Média)
+- 📝 **#8 (D2)** – Storybook Addon A11y (Prioridade: Média)
+
+### ⏳ Em andamento (Dependências Sprint 2)
+- ⏳ **#4 (E1)** – Jornada BackOffice (Pausa até C2/B4 prontos)
 
 ### Fontes auxiliares
 - `docs/issues-pendentes.md` (snapshot detalhado das 37 issues geradas)
@@ -159,27 +166,61 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 
 ---
 
-## Sprints (Replanejamento)
+## Sprints (Planejamento Atual)
 
-### Sprint Atual (S1 – foco em dados + primeira jornada)
-Objetivo: habilitar jornada real e encerrar pendências abertas.
-- ✅ C1: rota de persistência (CRUD JSON) – validar e fechar issue #1
-- E1: Estrutura + página inicial (lista de questões)
-- Revisões finais e fechamento de issues: B1, D1, F1
+### ✅ Sprint 1 (P0) – CONCLUÍDO ✅
+**Data**: 2025-11-15 a 2025-11-22  
+**Objetivo**: Implementar base técnica P0 (API, componentes, tokens, ESLint)
 
-### Próxima Sprint (S2 – navegação e acessibilidade)
-Pré-condição: E1 página inicial concluída.
-- C2: Sidebar páginas
-- B4: Acessibilidade DS (foco + contraste + roles)
-- D2: Addon A11y + validações
-- G6: CONTRIBUTING.md
-- H2: Index páginas (API + integração dashboard)
+**Entregues:**
+- ✅ C1 (#1): API CRUD de persistência (GET, POST, PUT, DELETE)
+- ✅ B1 (#2): 5 componentes de formulário (Input, Select, Checkbox, Radio, Switch)
+- ✅ D1 (#3): Página visual de Tokens no Storybook
+- ✅ F1 (#5): ESLint config unificada para monorepo
+- ✅ Correção crítica: Route conflict Next.js resolvido
 
-### Sprint Posterior (S3 – dashboard e automação)
-- H3/H4/H5: UI + indicadores + link Storybook
-- G4: Índice automático jornadas
-- F3: Workflow CI básico (lint + build) 
-- C5: Export/Import JSON
+**Resultado**: Build ✅ | Lint ✅ | Tests ✅ | PR #30 mergeado
+
+---
+
+### 🔴 Sprint 2 (P1) – INICIADA EM 2025-11-22
+**Objetivo**: Navegação, acessibilidade e governança básica
+
+**Issues Prioritárias:**
+1. **#6 (C2)** – Studio: Sidebar com lista de páginas (estimativa: M)
+2. **#10 (G6)** – CONTRIBUTING.md com workflow (estimativa: S)
+3. **#9 (G4)** – Script gerador de índice de jornadas (estimativa: M)
+4. **#7 (B4)** – Design System: Acessibilidade (ARIA, contraste, foco) (estimativa: L)
+5. **#8 (D2)** – Storybook: Addon A11y (estimativa: M)
+
+**Bloqueadores**: Nenhum (todas as P0 estão prontas)
+
+**Pré-condições de sucesso:**
+- [ ] C2 concluída (habilita navegação no Studio)
+- [ ] B4 concluída (melhora acessibilidade em todos os componentes)
+- [ ] G6 concluída (documenta como contribuir)
+- [ ] Build + Lint passando em todos os workspaces
+
+---
+
+### 🟡 Sprint 3 (P2) – PLANEJADO
+**Objetivo**: Dashboard, automação CI, export/import avançado
+
+**Issues:**
+- H Epic (Dashboard): Planning, API, UI, Health indicators, Storybook link
+- C5 (Export/Import JSON UI)
+- F3 (GitHub Actions CI workflow)
+- G5 (Link validation em CI)
+
+**Dependências**: Sprint 2 deve estar 90%+ concluída
+
+---
+
+### 📋 Sprint 4+ (Roadmap)
+- E2/E3: FrontOffice e Game jornadas
+- A1-A5: Tokens semânticos e dark mode
+- B2/B3: Layout e feedback components
+- Integração com backend real (quando disponível)
 
 ---
 
