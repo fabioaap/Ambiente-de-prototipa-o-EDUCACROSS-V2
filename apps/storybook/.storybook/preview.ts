@@ -26,6 +26,21 @@ const preview: Preview = {
         },
       ],
     },
+    // A11y addon configuration
+    a11y: {
+      // Run accessibility checks automatically
+      manual: false,
+      // Configuration for axe-core
+      config: {
+        rules: [
+          {
+            // Ensure color contrast meets WCAG AA
+            id: 'color-contrast',
+            enabled: true,
+          },
+        ],
+      },
+    },
   },
 };
 
