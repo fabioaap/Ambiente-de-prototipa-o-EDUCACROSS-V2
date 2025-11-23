@@ -13,6 +13,9 @@ out/
 .next/
 storybook-static/
 
+# Turbo
+.turbo/
+
 # Misc
 .DS_Store
 *.pem
