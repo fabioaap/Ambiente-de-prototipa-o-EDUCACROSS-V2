@@ -1,0 +1,123 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" font-size="32" font-weight="bold" text-anchor="middle" fill="#1a202c">
+    📊 Progresso do Projeto EDUCACROSS – Sprint 2
+  </text>
+  <text x="600" y="70" font-size="14" text-anchor="middle" fill="#718096">
+    Atualizado em 2025-11-22 | Fase 1 (Estabilização) – CONCLUÍDO
+  </text>
+  
+  <!-- Divider -->
+  <line x1="50" y1="90" x2="1150" y2="90" stroke="#cbd5e0" stroke-width="2"/>
+  
+  <!-- SECTION 1: PRs Mergeadas vs Abertas -->
+  <text x="50" y="130" font-size="18" font-weight="bold" fill="#1a202c">
+    📈 Redução de PRs Abertas (28 → 17 = -39%)
+  </text>
+  
+  <!-- Bar 1: Before (28) -->
+  <rect x="80" y="160" width="400" height="50" fill="#ff6b6b" rx="4"/>
+  <text x="100" y="192" font-size="16" font-weight="bold" fill="white">28 PRs Abertas</text>
+  <text x="500" y="192" font-size="14" fill="#1a202c">Status Inicial (Caótico)</text>
+  
+  <!-- Arrow -->
+  <line x1="550" y1="185" x2="600" y2="185" stroke="#4a5568" stroke-width="3"/>
+  <polygon points="600,185 590,180 590,190" fill="#4a5568"/>
+  
+  <!-- Bar 2: After (17) -->
+  <rect x="620" y="160" width="280" height="50" fill="#48bb78" rx="4"/>
+  <text x="640" y="192" font-size="16" font-weight="bold" fill="white">17 PRs Abertas</text>
+  <text x="920" y="192" font-size="14" fill="#1a202c">Status Final (Organizado)</text>
+  
+  <!-- Stats line -->
+  <text x="500" y="240" font-size="12" fill="#718096" font-weight="bold">
+    ✅ 11 PRs mergeadas em 1 dia | ✅ 2 PRs obsoletas fechadas | ✅ Build 100% OK
+  </text>
+  
+  <!-- Divider -->
+  <line x1="50" y1="260" x2="1150" y2="260" stroke="#cbd5e0" stroke-width="1"/>
+  
+  <!-- SECTION 2: Sprint Progress -->
+  <text x="50" y="300" font-size="18" font-weight="bold" fill="#1a202c">
+    🎯 Progresso por Sprint
+  </text>
+  
+  <!-- Sprint 1 (P0) -->
+  <text x="80" y="335" font-size="14" font-weight="bold" fill="#2d3748">Sprint 1 (P0)</text>
+  <rect x="280" y="320" width="600" height="30" fill="#e6ffed" rx="3" stroke="#48bb78" stroke-width="2"/>
+  <rect x="280" y="320" width="600" height="30" fill="#48bb78" rx="3" opacity="1"/>
+  <text x="590" y="342" font-size="13" font-weight="bold" fill="white" text-anchor="middle">100% (5/5)</text>
+  <text x="900" y="342" font-size="12" fill="#1a202c">✅ Completo</text>
+  
+  <!-- Sprint 2 P1 (Critical) -->
+  <text x="80" y="385" font-size="14" font-weight="bold" fill="#2d3748">Sprint 2 P1</text>
+  <rect x="280" y="370" width="600" height="30" fill="#e6f3ff" rx="3" stroke="#4299e1" stroke-width="2"/>
+  <rect x="280" y="370" width="480" height="30" fill="#4299e1" rx="3" opacity="1"/>
+  <text x="520" y="392" font-size="13" font-weight="bold" fill="white" text-anchor="middle">80% (4/5)</text>
+  <text x="900" y="392" font-size="12" fill="#1a202c">⏳ 1 WIP (#38)</text>
+  
+  <!-- Sprint 2 (Executadas) -->
+  <text x="80" y="435" font-size="14" font-weight="bold" fill="#2d3748">Sprint 2 Executadas</text>
+  <rect x="280" y="420" width="600" height="30" fill="#fff5e6" rx="3" stroke="#ed8936" stroke-width="2"/>
+  <rect x="280" y="420" width="540" height="30" fill="#ed8936" rx="3" opacity="1"/>
+  <text x="550" y="442" font-size="13" font-weight="bold" fill="white" text-anchor="middle">90% (11/12)</text>
+  <text x="900" y="442" font-size="12" fill="#1a202c">✅ 11 mergeadas</text>
+  
+  <!-- Sprint 3 (Dashboard) -->
+  <text x="80" y="485" font-size="14" font-weight="bold" fill="#2d3748">Sprint 3 P2 (Dashboard)</text>
+  <rect x="280" y="470" width="600" height="30" fill="#f0e6ff" rx="3" stroke="#9f7aea" stroke-width="2"/>
+  <rect x="280" y="470" width="30" height="30" fill="#9f7aea" rx="3" opacity="1"/>
+  <text x="295" y="492" font-size="13" font-weight="bold" fill="white" text-anchor="middle">0%</text>
+  <text x="900" y="492" font-size="12" fill="#1a202c">📋 5 PRs prontas</text>
+  
+  <!-- Total -->
+  <text x="80" y="535" font-size="14" font-weight="bold" fill="#2d3748">TOTAL PROJETO</text>
+  <rect x="280" y="520" width="600" height="30" fill="#e6e6e6" rx="3" stroke="#4a5568" stroke-width="2"/>
+  <rect x="280" y="520" width="450" height="30" fill="#4a5568" rx="3" opacity="1"/>
+  <text x="555" y="542" font-size="13" font-weight="bold" fill="white" text-anchor="middle">75% (Fase 1 OK)</text>
+  <text x="900" y="542" font-size="12" fill="#1a202c">🟢 Excelente</text>
+  
+  <!-- Divider -->
+  <line x1="50" y1="560" x2="1150" y2="560" stroke="#cbd5e0" stroke-width="1"/>
+  
+  <!-- SECTION 3: Breakdown por Tipo -->
+  <text x="50" y="600" font-size="18" font-weight="bold" fill="#1a202c">
+    📋 Distribuição de PRs Mergeadas (por tipo)
+  </text>
+  
+  <!-- Pie Chart Data Visualization (Horizontal bars) -->
+  
+  <!-- Features -->
+  <text x="80" y="640" font-size="13" font-weight="bold" fill="#2d3748">Features (6 PRs)</text>
+  <rect x="280" y="630" width="180" height="20" fill="#4299e1" rx="2"/>
+  <text x="475" y="645" font-size="12" fill="#1a202c">55% (#42, #40, #35, #36, #33, #27)</text>
+  
+  <!-- Documentation -->
+  <text x="80" y="675" font-size="13" font-weight="bold" fill="#2d3748">Documentation (4 PRs)</text>
+  <rect x="280" y="665" width="120" height="20" fill="#48bb78" rx="2"/>
+  <text x="475" y="680" font-size="12" fill="#1a202c">36% (#47, #22, #21, #19)</text>
+  
+  <!-- Other -->
+  <text x="80" y="710" font-size="13" font-weight="bold" fill="#2d3748">Automation (1 PR)</text>
+  <rect x="280" y="700" width="36" height="20" fill="#ed8936" rx="2"/>
+  <text x="475" y="715" font-size="12" fill="#1a202c">9% (#18)</text>
+  
+  <!-- Divider -->
+  <line x1="50" y1="730" x2="1150" y2="730" stroke="#cbd5e0" stroke-width="1"/>
+  
+  <!-- SECTION 4: Key Metrics -->
+  <text x="50" y="770" font-size="14" font-weight="bold" fill="#1a202c">
+    ✅ Sprint 2 P1 Mergeadas: #40 (CONTRIBUTING) | #42 (Sidebar) | #35 (A11y) | #36 (A11y addon) + 7 pequenas  
+    🟡 Pendente: #38 (G4 Index Script) 
+    📊 Build: 100% OK | Lint: OK | Type-check: 0 errors
+  </text>
+  
+  <!-- Footer -->
+  <rect x="0" y="790" width="1200" height="10" fill="#4a5568"/>
+  <text x="1150" y="810" font-size="10" fill="#718096" text-anchor="end">
+    Próxima Fase: Dashboard merges (#44→#43→#45→#46→#41)
+  </text>
+</svg>
