@@ -1,0 +1,184 @@
+@import '@prototipo/tokens/tokens.css';
+
+/* Base Progress */
+.progress {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-family: var(--typography-fontFamily-sans);
+}
+
+/* Variantes */
+
+/* Linear Progress */
+.linear {
+  width: 100%;
+}
+
+.linearTrack {
+  position: relative;
+  width: 100%;
+  background-color: var(--colors-neutral-200);
+  border-radius: var(--borderRadius-full);
+  overflow: hidden;
+}
+
+.linearFill {
+  height: 100%;
+  background-color: var(--colors-primary-600);
+  border-radius: var(--borderRadius-full);
+  transition: width 0.3s ease, background-color 0.2s ease;
+}
+
+.linearLabel {
+  font-size: var(--typography-fontSize-sm);
+  font-weight: var(--typography-fontWeight-medium);
+  color: var(--colors-neutral-700);
+  white-space: nowrap;
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* Circular Progress */
+.circular {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.circularSvg {
+  display: block;
+  transform: rotate(0deg);
+}
+
+.circularTrack {
+  stroke: var(--colors-neutral-200);
+}
+
+.circularFill {
+  stroke: var(--colors-primary-600);
+  transition: stroke-dasharray 0.3s ease, stroke 0.2s ease;
+}
+
+.circularLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--typography-fontSize-base);
+  font-weight: var(--typography-fontWeight-semibold);
+  color: var(--colors-neutral-700);
+}
+
+/* Tamanhos - Linear */
+.linear.sm .linearTrack {
+  height: 0.5rem;
+}
+
+.linear.sm .linearLabel {
+  font-size: var(--typography-fontSize-xs);
+}
+
+.linear.md .linearTrack {
+  height: 0.75rem;
+}
+
+.linear.md .linearLabel {
+  font-size: var(--typography-fontSize-sm);
+}
+
+.linear.lg .linearTrack {
+  height: 1rem;
+}
+
+.linear.lg .linearLabel {
+  font-size: var(--typography-fontSize-base);
+}
+
+/* Tamanhos - Circular */
+.circular.sm {
+  width: 3rem;
+  height: 3rem;
+}
+
+.circular.sm .circularLabel {
+  font-size: var(--typography-fontSize-xs);
+}
+
+.circular.md {
+  width: 5rem;
+  height: 5rem;
+}
+
+.circular.md .circularLabel {
+  font-size: var(--typography-fontSize-base);
+}
+
+.circular.lg {
+  width: 7rem;
+  height: 7rem;
+}
+
+.circular.lg .circularLabel {
+  font-size: var(--typography-fontSize-lg);
+}
+
+/* Temas - Linear */
+.linear.primary .linearFill {
+  background-color: var(--colors-primary-600);
+}
+
+.linear.secondary .linearFill {
+  background-color: var(--colors-secondary-600);
+}
+
+.linear.success .linearFill {
+  background-color: var(--colors-success-600);
+}
+
+.linear.warning .linearFill {
+  background-color: var(--colors-warning-600);
+}
+
+.linear.error .linearFill {
+  background-color: var(--colors-error-600);
+}
+
+/* Temas - Circular */
+.circular.primary .circularFill {
+  stroke: var(--colors-primary-600);
+}
+
+.circular.secondary .circularFill {
+  stroke: var(--colors-secondary-600);
+}
+
+.circular.success .circularFill {
+  stroke: var(--colors-success-600);
+}
+
+.circular.warning .circularFill {
+  stroke: var(--colors-warning-600);
+}
+
+.circular.error .circularFill {
+  stroke: var(--colors-error-600);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 640px) {
+  .linear.lg .linearTrack {
+    height: 0.875rem;
+  }
+  
+  .circular.lg {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .circular.lg .circularLabel {
+    font-size: var(--typography-fontSize-base);
+  }
+}
