@@ -1,0 +1,334 @@
+{
+    "content": [
+        {
+            "type": "Layout",
+            "props": {
+                "id": "layout-confirmacao",
+                "maxWidth": "md",
+                "children": [
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-confirmacao",
+                            "variant": "elevated",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "confirmacao-titulo",
+                                        "content": "Confirmar Publicação",
+                                        "as": "h2",
+                                        "size": "3xl",
+                                        "weight": "bold",
+                                        "color": "primary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "confirmacao-mensagem",
+                                        "content": "Você está prestes a publicar a questão #1345 para uso pelos educadores.",
+                                        "as": "p",
+                                        "size": "lg",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "confirmacao-alerta",
+                                        "content": "⚠️ Esta ação tornará a questão disponível imediatamente para todos os educadores da plataforma.",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "warning"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-resumo",
+                            "variant": "bordered",
+                            "padding": "md",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "resumo-titulo",
+                                        "content": "Resumo da Questão",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "resumo-id",
+                                        "content": "ID: #1345",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "resumo-tema",
+                                        "content": "Tema: Frações equivalentes",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "resumo-disciplina",
+                                        "content": "Disciplina: Matemática · 6º ano",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "resumo-autor",
+                                        "content": "Autor: Prof.ª Ana Souza",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "resumo-revisor",
+                                        "content": "Revisor: Coordenação Pedagógica",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-checklist",
+                            "variant": "bordered",
+                            "padding": "md",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "checklist-titulo",
+                                        "content": "Verificações de Qualidade",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "check-clareza",
+                                        "content": "✔ Enunciado claro e objetivo",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "check-respostas",
+                                        "content": "✔ Alternativas corretas validadas",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "check-bncc",
+                                        "content": "✔ Alinhamento com BNCC verificado",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "check-dificuldade",
+                                        "content": "✔ Nível de dificuldade adequado ao público",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "check-feedback",
+                                        "content": "✔ Feedback pedagógico incluído",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-acoes-confirmacao",
+                            "variant": "elevated",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "acoes-pergunta",
+                                        "content": "Deseja continuar com a publicação?",
+                                        "as": "p",
+                                        "size": "lg",
+                                        "weight": "medium",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-confirmar",
+                                        "text": "Sim, publicar agora",
+                                        "variant": "primary",
+                                        "size": "lg"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-voltar",
+                                        "text": "Não, voltar à edição",
+                                        "variant": "outline",
+                                        "size": "lg"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-cancelar-acao",
+                                        "text": "Cancelar",
+                                        "variant": "ghost",
+                                        "size": "md"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-sucesso",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "sucesso-icone",
+                                        "content": "✅",
+                                        "as": "p",
+                                        "size": "5xl",
+                                        "weight": "bold",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "sucesso-titulo",
+                                        "content": "Questão Publicada com Sucesso!",
+                                        "as": "h2",
+                                        "size": "3xl",
+                                        "weight": "bold",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "sucesso-mensagem",
+                                        "content": "A questão #1345 está agora disponível para uso pelos educadores da plataforma EDUCACROSS.",
+                                        "as": "p",
+                                        "size": "lg",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "sucesso-proximos",
+                                        "content": "Próximas ações: Você pode revisar mais questões pendentes ou voltar ao dashboard.",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "muted"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-proxima",
+                                        "text": "Revisar próxima questão",
+                                        "variant": "primary",
+                                        "size": "lg"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-dashboard",
+                                        "text": "Voltar ao Dashboard",
+                                        "variant": "outline",
+                                        "size": "lg"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "root": {
+        "props": {
+            "title": "BackOffice | Revisão de Questões · Confirmação"
+        }
+    },
+    "zones": {}
+}

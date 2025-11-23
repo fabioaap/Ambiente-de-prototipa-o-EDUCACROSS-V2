@@ -1,0 +1,305 @@
+{
+    "content": [
+        {
+            "type": "Layout",
+            "props": {
+                "id": "layout-edicao",
+                "maxWidth": "xl",
+                "children": [
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "edicao-titulo",
+                            "content": "Editar Questão · #1345",
+                            "as": "h1",
+                            "size": "4xl",
+                            "weight": "bold",
+                            "color": "primary"
+                        }
+                    },
+                    {
+                        "type": "Text",
+                        "props": {
+                            "id": "edicao-descricao",
+                            "content": "Ajuste o enunciado, respostas e feedback pedagógico antes de publicar.",
+                            "as": "p",
+                            "size": "lg",
+                            "weight": "normal",
+                            "color": "muted"
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-enunciado",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "enunciado-label",
+                                        "content": "Enunciado da Questão",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "enunciado-helper",
+                                        "content": "Descreva a pergunta de forma clara e objetiva.",
+                                        "as": "p",
+                                        "size": "sm",
+                                        "weight": "normal",
+                                        "color": "muted"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "enunciado-exemplo",
+                                        "content": "Exemplo atual: Considerando a pizza abaixo dividida em 8 fatias, quais frações representam a mesma quantidade de pizza que 3/8? Justifique sua resposta.",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-respostas",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "respostas-label",
+                                        "content": "Alternativas de Resposta",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "alternativa-a",
+                                        "content": "A) 6/16 (Correta)",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "alternativa-b",
+                                        "content": "B) 9/24 (Correta)",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "medium",
+                                        "color": "success"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "alternativa-c",
+                                        "content": "C) 3/4 (Incorreta)",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "alternativa-d",
+                                        "content": "D) 1/2 (Incorreta)",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-feedback",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "feedback-label",
+                                        "content": "Feedback Pedagógico",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "feedback-helper",
+                                        "content": "Adicione orientações para o educador aplicar esta questão.",
+                                        "as": "p",
+                                        "size": "sm",
+                                        "weight": "normal",
+                                        "color": "muted"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "feedback-exemplo",
+                                        "content": "Sugestão: Usar material concreto (pizzas de papel) para alunos com dificuldade em frações equivalentes. Reforçar o conceito de que frações equivalentes representam a mesma quantidade.",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-metadados",
+                            "variant": "bordered",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "metadados-label",
+                                        "content": "Metadados e Classificação",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "meta-disciplina",
+                                        "content": "Disciplina: Matemática",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "meta-serie",
+                                        "content": "Série: 6º ano · Ensino Fundamental",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "meta-dificuldade",
+                                        "content": "Nível de dificuldade: Médio",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                },
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "meta-tempo",
+                                        "content": "Tempo estimado: 15 minutos",
+                                        "as": "p",
+                                        "size": "base",
+                                        "weight": "normal",
+                                        "color": "default"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "Card",
+                        "props": {
+                            "id": "card-acoes",
+                            "variant": "elevated",
+                            "padding": "lg",
+                            "children": [
+                                {
+                                    "type": "Text",
+                                    "props": {
+                                        "id": "acoes-label",
+                                        "content": "Ações",
+                                        "as": "h3",
+                                        "size": "xl",
+                                        "weight": "semibold",
+                                        "color": "secondary"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-salvar",
+                                        "text": "Salvar alterações",
+                                        "variant": "primary",
+                                        "size": "lg"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-cancelar",
+                                        "text": "Cancelar",
+                                        "variant": "ghost",
+                                        "size": "lg"
+                                    }
+                                },
+                                {
+                                    "type": "Button",
+                                    "props": {
+                                        "id": "botao-preview",
+                                        "text": "Visualizar prévia",
+                                        "variant": "outline",
+                                        "size": "md"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "root": {
+        "props": {
+            "title": "BackOffice | Revisão de Questões · Edição"
+        }
+    },
+    "zones": {}
+}
