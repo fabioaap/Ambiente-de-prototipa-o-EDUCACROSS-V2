@@ -1,0 +1,275 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-main",
+        "maxWidth": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "emoji-finish",
+        "content": "🏁",
+        "as": "p",
+        "size": "5xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "title-conclusao",
+        "content": "🎉 Parabéns!",
+        "as": "h1",
+        "size": "5xl",
+        "weight": "bold",
+        "color": "success"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "subtitle-conclusao",
+        "content": "Você completou o onboarding e está pronto para explorar a plataforma!",
+        "as": "h2",
+        "size": "xl",
+        "weight": "medium",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-resumo",
+        "variant": "elevated",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "resumo-title",
+        "content": "✨ O que você aprendeu:",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "aprendeu-1",
+        "content": "✓ Como criar sua conta e confirmar email",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "aprendeu-2",
+        "content": "✓ Como fazer login na plataforma",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "aprendeu-3",
+        "content": "✓ Como personalizar suas preferências",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "aprendeu-4",
+        "content": "✓ Como ganhar badges e pontos",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-proximos-passos",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "proximos-title",
+        "content": "🚀 Próximos Passos",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "primary"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-1",
+        "content": "1️⃣ Explore os três domínios principais:",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-1-details",
+        "content": "   • BackOffice - Administração e gestão de conteúdo",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-1-details-2",
+        "content": "   • FrontOffice - Aprendizado e atividades",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-1-details-3",
+        "content": "   • Game - Jogos educativos e desafios",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-2",
+        "content": "2️⃣ Complete seu perfil com foto e informações adicionais",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-3",
+        "content": "3️⃣ Jogue seu primeiro mini-game e ganhe mais pontos",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "passo-4",
+        "content": "4️⃣ Conecte-se com outros estudantes e educadores",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-recursos",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "recursos-title",
+        "content": "📖 Recursos Adicionais",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-central-ajuda",
+        "text": "📚 Central de Ajuda",
+        "variant": "outline",
+        "size": "md"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-tutoriais",
+        "text": "🎥 Tutoriais em Vídeo",
+        "variant": "outline",
+        "size": "md"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-comunidade",
+        "text": "👥 Comunidade",
+        "variant": "outline",
+        "size": "md"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-explorar",
+        "text": "🚀 Explorar Plataforma",
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "footer-mensagem",
+        "content": "Bem-vindo à família EDUCACROSS! Estamos felizes em tê-lo conosco. 💙",
+        "as": "p",
+        "size": "lg",
+        "weight": "medium",
+        "color": "primary"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Conclusão"
+    }
+  },
+  "zones": {}
+}

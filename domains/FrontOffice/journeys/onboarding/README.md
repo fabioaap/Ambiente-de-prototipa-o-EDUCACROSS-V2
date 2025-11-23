@@ -15,29 +15,56 @@ Criar uma experiência de onboarding intuitiva e orientada que guie novos usuár
 ## 🔗 Protótipos Relacionados
 
 - [Tela de Boas-vindas](http://localhost:3000/frontoffice/onboarding/welcome)
-- [Tutorial: Navegação](http://localhost:3000/frontoffice/onboarding/tutorial-nav)
-- [Tutorial: Primeiro Jogo](http://localhost:3000/frontoffice/onboarding/tutorial-game)
-- [Confirmação](http://localhost:3000/frontoffice/onboarding/done)
+- [Cadastro de Usuário](http://localhost:3000/frontoffice/onboarding/cadastro)
+- [Confirmação de Email](http://localhost:3000/frontoffice/onboarding/confirmacao)
+- [Primeiro Login](http://localhost:3000/frontoffice/onboarding/primeiro-login)
+- [Configurar Preferências](http://localhost:3000/frontoffice/onboarding/preferencias)
+- [Conclusão do Onboarding](http://localhost:3000/frontoffice/onboarding/conclusao)
 
 ## 🧩 Componentes Utilizados
 
-- `Layout` - Container principal responsivo
-- `Button` - CTAs (Começar, Próximo, Pular, Continuar)
-- `Card` - Cards informativos
-- `Text` - Tipografia (títulos, descrições, labels)
-- `Progress` - Indicador de progresso do onboarding (NOVO)
-- `Stepper` - Passos visuais (NOVO)
+- `Layout` - Container principal responsivo (maxWidth: sm, md, lg)
+- `Button` - CTAs (Começar, Próximo, Pular, Continuar, Salvar)
+  * Variantes: primary, secondary, outline, ghost
+  * Tamanhos: sm, md, lg
+- `Card` - Cards informativos e containers
+  * Variantes: default, bordered, elevated
+  * Padding: none, sm, md, lg
+- `Text` - Tipografia completa
+  * Elementos: p, h1, h2, h3, h4, h5, h6
+  * Tamanhos: xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl
+  * Pesos: normal, medium, semibold, bold
+  * Cores: default, muted, primary, secondary, success, warning, error
 
-**Componentes novos necessários**:
-- [ ] `Progress` - Barra de progresso do onboarding
-- [ ] `Stepper` - Indicador de passos (1 de 4, etc)
-- [ ] `InfoBox` - Caixa de informação/dica
+**Componentes implementados via Text (simulação)**:
+- Input fields (email, password, código)
+- Radio buttons (tipo de usuário, tema)
+- Checkboxes (notificações, interesses)
+- Select (idioma)
+
+**Componentes novos necessários (identificados)**:
+- [ ] `Input` - Campo de texto real com validações
+- [ ] `Radio` - Botão de opção única
+- [ ] `Checkbox` - Caixa de seleção múltipla
+- [ ] `Select` - Lista suspensa
+- [ ] `Progress` - Barra de progresso do onboarding (visual)
+- [ ] `Badge` - Distintivo/medalha (componente de gamificação)
 
 ## 📊 Status
 
-**Status atual**: 🚧 Em andamento
+**Status atual**: ✅ Concluído (Prototipação)
 
-**Última atualização**: 2025-11-20
+**Última atualização**: 2025-11-23
+
+**Páginas criadas**:
+- ✅ Welcome (Boas-vindas)
+- ✅ Cadastro (Formulário de registro)
+- ✅ Confirmação (Verificação de email)
+- ✅ Primeiro Login (Autenticação + Badge)
+- ✅ Preferências (Configurações personalizadas)
+- ✅ Conclusão (Finalização e próximos passos)
+
+**Total**: 6 páginas completas no Studio
 
 ## 💡 Decisões de Design
 
@@ -64,28 +91,53 @@ Criar uma experiência de onboarding intuitiva e orientada que guie novos usuár
 ```
 Acesso (novo usuário)
       ↓
-[1] Tela de Boas-vindas
-    - Mensagem de boas-vindas
+[1] Tela de Boas-vindas (/welcome)
+    - Mensagem de boas-vindas com emoji 👋
     - O que é EDUCACROSS
-    - Principais benefícios
-    - CTA: "Começar" ou "Pular"
+    - Principais benefícios (4 itens)
+    - CTA: "Começar Agora" ou "Pular Tutorial"
       ↓
-[2] Tutorial: Navegação
-    - Como usar o menu
-    - Explorar domínios
-    - Encontrar jornadas
-    - CTA: "Próximo" ou "Pular"
+[2] Cadastro (/cadastro)
+    - Formulário com validações
+      * Nome completo
+      * Email (com ajuda contextual)
+      * Senha (mínimo 8 caracteres, letras e números)
+      * Confirmar senha
+      * Tipo de usuário (Estudante/Educador/Responsável)
+    - Termos de uso
+    - CTA: "Criar Conta" ou "Voltar"
       ↓
-[3] Tutorial: Primeiro Jogo
-    - Jogar um mini-game
-    - Ganhar primeiro badge
-    - Entender mecânica
-    - CTA: "Próximo" ou "Pular"
+[3] Confirmação de Email (/confirmacao)
+    - Email enviado com código de 6 dígitos
+    - Campo para inserir código
+    - Opção de reenviar email
+    - Dica sobre validade (15 minutos) e pasta spam
+    - CTA: "Verificar Código"
       ↓
-[4] Conclusão
-    - Resumo do que aprendeu
-    - Recursos adicionais
-    - Próximos passos
+[4] Primeiro Login (/primeiro-login)
+    - Confirmação de sucesso 🎉
+    - Formulário de login
+      * Email (pré-preenchido)
+      * Senha
+    - Primeiro Badge desbloqueado: "Bem-vindo ao EDUCACROSS" 🎖️
+    - +50 pontos
+    - CTA: "Entrar na Plataforma"
+      ↓
+[5] Configurar Preferências (/preferencias)
+    - Idioma (select)
+    - Tema (claro/escuro/automático)
+    - Notificações (email, push, novidades, dicas)
+    - Áreas de interesse (Matemática, Português, Ciências, etc)
+    - CTA: "Salvar e Continuar" ou "Configurar Depois"
+      ↓
+[6] Conclusão (/conclusao)
+    - Parabéns! 🏁
+    - Resumo do que aprendeu (4 itens)
+    - Próximos passos recomendados (4 itens)
+    - Recursos adicionais:
+      * Central de Ajuda
+      * Tutoriais em Vídeo
+      * Comunidade
     - CTA: "Explorar Plataforma"
       ↓
 Home (onboarding completo)
@@ -99,15 +151,60 @@ Home (onboarding completo)
 - **Ícones**: Usar emojis grandes (64px) ou ícones SVG
 - **Animações**: Suaves, não distrativas (200-300ms)
 
+## ✅ Validações Necessárias
+
+### Cadastro
+- **Nome completo**: 
+  * Obrigatório
+  * Mínimo 3 caracteres
+  * Apenas letras e espaços
+- **Email**:
+  * Obrigatório
+  * Formato válido (regex: `^[^\s@]+@[^\s@]+\.[^\s@]+$`)
+  * Verificar se já existe no sistema
+- **Senha**:
+  * Obrigatório
+  * Mínimo 8 caracteres
+  * Deve conter pelo menos: 1 letra maiúscula, 1 letra minúscula, 1 número
+  * Não pode conter o nome ou email do usuário
+- **Confirmar senha**:
+  * Obrigatório
+  * Deve ser idêntica à senha
+- **Tipo de usuário**:
+  * Obrigatório (Estudante/Educador/Responsável)
+
+### Confirmação de Email
+- **Código de verificação**:
+  * Obrigatório
+  * Exatamente 6 dígitos numéricos
+  * Válido por 15 minutos após envio
+  * Máximo 3 tentativas incorretas antes de bloquear
+
+### Primeiro Login
+- **Email**:
+  * Obrigatório
+  * Deve existir no sistema
+- **Senha**:
+  * Obrigatório
+  * Máximo 5 tentativas incorretas antes de bloquear temporariamente (15 min)
+
+### Preferências
+- **Idioma**: Obrigatório (padrão: Português Brasil)
+- **Tema**: Obrigatório (padrão: Automático)
+- **Notificações**: Opcional (padrão: todas habilitadas)
+- **Áreas de interesse**: Opcional (mínimo 1 recomendado)
+
 ## 🔜 Próximos Passos
 
-- [ ] Validar wireframe com PM/UX
-- [ ] Criar mockups no Figma
-- [ ] Implementar componentes `Progress` e `Stepper`
-- [ ] Criar páginas no Studio
-- [ ] Adicionar analytics para tracking
+- [x] Validar wireframe com PM/UX
+- [x] Criar mockups no Figma (simulado via Studio)
+- [x] Criar páginas no Studio (6 páginas completas)
+- [ ] Implementar componentes faltantes (`Input`, `Radio`, `Checkbox`, `Select`, `Progress`, `Badge`)
+- [ ] Adicionar analytics para tracking (quando backend disponível)
 - [ ] Testes A/B (onboarding vs sem onboarding)
 - [ ] Coletar feedback de usuários
+- [ ] Implementar validações reais de formulário
+- [ ] Integrar com backend de autenticação
 
 ## 📎 Referências
 

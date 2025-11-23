@@ -1,0 +1,185 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-main",
+        "maxWidth": "md"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "progress-indicator",
+        "content": "Passo 3 de 4",
+        "as": "p",
+        "size": "sm",
+        "weight": "medium",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "emoji-success",
+        "content": "🎉",
+        "as": "p",
+        "size": "5xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "title-login",
+        "content": "Email Confirmado!",
+        "as": "h1",
+        "size": "4xl",
+        "weight": "bold",
+        "color": "success"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "subtitle-login",
+        "content": "Sua conta foi criada com sucesso. Agora faça seu primeiro login.",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-login",
+        "variant": "elevated",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-email",
+        "content": "Email",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-email",
+        "content": "[Input: joao.silva@email.com]",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-password",
+        "content": "Senha",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-password",
+        "content": "[Input: ••••••••]",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-entrar",
+        "text": "Entrar na Plataforma",
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-badge",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "emoji-badge",
+        "content": "🎖️",
+        "as": "p",
+        "size": "4xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "badge-title",
+        "content": "Primeiro Badge Desbloqueado!",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "bold",
+        "color": "warning"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "badge-name",
+        "content": "🌟 Bem-vindo ao EDUCACROSS",
+        "as": "p",
+        "size": "lg",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "badge-description",
+        "content": "Parabéns! Você completou seu cadastro e ganhou seu primeiro badge. Continue explorando para desbloquear mais conquistas!",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "badge-points",
+        "content": "⭐ +50 pontos",
+        "as": "p",
+        "size": "base",
+        "weight": "bold",
+        "color": "warning"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Primeiro Login"
+    }
+  },
+  "zones": {}
+}

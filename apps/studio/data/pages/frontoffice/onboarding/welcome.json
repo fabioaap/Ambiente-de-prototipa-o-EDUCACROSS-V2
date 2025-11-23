@@ -1,0 +1,150 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-main",
+        "maxWidth": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "emoji-welcome",
+        "content": "👋",
+        "as": "p",
+        "size": "5xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "title-welcome",
+        "content": "Bem-vindo à EDUCACROSS!",
+        "as": "h1",
+        "size": "4xl",
+        "weight": "bold",
+        "color": "primary"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "subtitle-welcome",
+        "content": "Plataforma de aprendizagem gamificada para estudantes e educadores",
+        "as": "h2",
+        "size": "xl",
+        "weight": "medium",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-intro",
+        "variant": "elevated",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "intro-text",
+        "content": "Em apenas 3 minutos, você saberá como começar sua jornada de aprendizado na plataforma mais divertida e eficaz do mercado.",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-benefits",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "benefits-title",
+        "content": "O que você vai encontrar:",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "benefit-1",
+        "content": "📚 Conteúdo educacional de qualidade em múltiplos domínios",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "benefit-2",
+        "content": "🎮 Experiência gamificada com badges, pontos e desafios",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "benefit-3",
+        "content": "👥 Comunidade ativa de estudantes e educadores",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "benefit-4",
+        "content": "📊 Acompanhamento de progresso personalizado",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-start",
+        "text": "Começar Agora",
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-skip",
+        "text": "Pular Tutorial",
+        "variant": "ghost",
+        "size": "md"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Boas-vindas"
+    }
+  },
+  "zones": {}
+}

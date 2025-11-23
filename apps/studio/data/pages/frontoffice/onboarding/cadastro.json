@@ -1,0 +1,219 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-main",
+        "maxWidth": "md"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "progress-indicator",
+        "content": "Passo 1 de 4",
+        "as": "p",
+        "size": "sm",
+        "weight": "medium",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "title-cadastro",
+        "content": "Crie sua Conta",
+        "as": "h1",
+        "size": "4xl",
+        "weight": "bold",
+        "color": "primary"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "subtitle-cadastro",
+        "content": "Preencha os dados abaixo para começar sua jornada",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-form",
+        "variant": "elevated",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-nome",
+        "content": "Nome Completo",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-nome-placeholder",
+        "content": "[Input: Digite seu nome completo]",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-email",
+        "content": "Email",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-email-placeholder",
+        "content": "[Input: seu@email.com]",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "help-email",
+        "content": "Usaremos este email para enviar notificações importantes",
+        "as": "p",
+        "size": "sm",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-password",
+        "content": "Senha",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-password-placeholder",
+        "content": "[Input: ••••••••]",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "help-password",
+        "content": "Mínimo de 8 caracteres, com letras e números",
+        "as": "p",
+        "size": "sm",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-confirm-password",
+        "content": "Confirmar Senha",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-confirm-password-placeholder",
+        "content": "[Input: ••••••••]",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-role",
+        "content": "Você é:",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "role-options",
+        "content": "[Radio] 👨‍🎓 Estudante  |  [Radio] 👨‍🏫 Educador  |  [Radio] 👪 Responsável",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-criar-conta",
+        "text": "Criar Conta",
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-voltar",
+        "text": "Voltar",
+        "variant": "outline",
+        "size": "md"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "terms",
+        "content": "Ao criar uma conta, você concorda com nossos Termos de Uso e Política de Privacidade",
+        "as": "p",
+        "size": "xs",
+        "weight": "normal",
+        "color": "muted"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Cadastro"
+    }
+  },
+  "zones": {}
+}

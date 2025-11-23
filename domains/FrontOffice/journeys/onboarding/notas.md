@@ -114,16 +114,29 @@ POST /api/onboarding/complete
 
 ## ✅ Checklist de Implementação
 
-- [ ] Criar 4 páginas no Studio
-- [ ] Implementar componente `Progress`
-- [ ] Implementar componente `Stepper`
-- [ ] Adicionar localStorage para tracking
-- [ ] Adicionar Analytics/Mixpanel
-- [ ] Testes com usuários
+- [x] Criar 6 páginas no Studio
+  - [x] Welcome (Boas-vindas)
+  - [x] Cadastro
+  - [x] Confirmação de email
+  - [x] Primeiro login
+  - [x] Preferências
+  - [x] Conclusão
+- [x] Atualizar README da jornada com links e fluxo completo
+- [x] Documentar validações necessárias
+- [x] Identificar componentes faltantes
+- [ ] Implementar componente `Input` no Design System
+- [ ] Implementar componente `Radio` no Design System
+- [ ] Implementar componente `Checkbox` no Design System
+- [ ] Implementar componente `Select` no Design System
+- [ ] Implementar componente `Progress` no Design System
+- [ ] Implementar componente `Badge` no Design System
+- [ ] Adicionar localStorage para tracking de progresso
+- [ ] Adicionar Analytics/Mixpanel (quando disponível)
+- [ ] Testes com usuários reais
 - [ ] Ajustar copy baseado em feedback
 - [ ] Mobile testing (iOS, Android)
 - [ ] Documentação para PMs
 
 ---
 
-**Última atualização**: 2025-11-20
+**Última atualização**: 2025-11-23

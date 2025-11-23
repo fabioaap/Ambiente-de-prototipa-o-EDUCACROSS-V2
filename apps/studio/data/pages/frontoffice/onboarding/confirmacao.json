@@ -1,0 +1,180 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-main",
+        "maxWidth": "md"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "progress-indicator",
+        "content": "Passo 2 de 4",
+        "as": "p",
+        "size": "sm",
+        "weight": "medium",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "emoji-email",
+        "content": "📧",
+        "as": "p",
+        "size": "5xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "title-confirmacao",
+        "content": "Confirme seu Email",
+        "as": "h1",
+        "size": "4xl",
+        "weight": "bold",
+        "color": "primary"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "subtitle-confirmacao",
+        "content": "Enviamos um código de verificação para seu email",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-info",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "email-sent",
+        "content": "✉️ Email enviado para: joao.silva@email.com",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "instruction",
+        "content": "Verifique sua caixa de entrada (e também o spam) e insira o código de 6 dígitos abaixo:",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-code-input",
+        "variant": "elevated",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "label-code",
+        "content": "Código de Verificação",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "input-code-placeholder",
+        "content": "[Input: _ _ _ _ _ _]",
+        "as": "p",
+        "size": "2xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-verificar",
+        "text": "Verificar Código",
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "resend-text",
+        "content": "Não recebeu o código?",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-reenviar",
+        "text": "Reenviar Email",
+        "variant": "ghost",
+        "size": "md"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-help",
+        "variant": "bordered",
+        "padding": "md"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "help-title",
+        "content": "💡 Dica",
+        "as": "p",
+        "size": "base",
+        "weight": "semibold",
+        "color": "warning"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "help-text",
+        "content": "O código expira em 15 minutos. Se não encontrar o email, verifique a pasta de spam ou lixo eletrônico.",
+        "as": "p",
+        "size": "sm",
+        "weight": "normal",
+        "color": "default"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Confirmação de Email"
+    }
+  },
+  "zones": {}
+}

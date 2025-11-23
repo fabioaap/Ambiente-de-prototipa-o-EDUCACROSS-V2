@@ -1,0 +1,320 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "id": "layout-main",
+        "maxWidth": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "progress-indicator",
+        "content": "Passo 4 de 4",
+        "as": "p",
+        "size": "sm",
+        "weight": "medium",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "emoji-settings",
+        "content": "⚙️",
+        "as": "p",
+        "size": "5xl",
+        "weight": "bold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "title-preferencias",
+        "content": "Configure suas Preferências",
+        "as": "h1",
+        "size": "4xl",
+        "weight": "bold",
+        "color": "primary"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "subtitle-preferencias",
+        "content": "Personalize sua experiência na plataforma",
+        "as": "p",
+        "size": "lg",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-idioma",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "idioma-title",
+        "content": "🌍 Idioma",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "idioma-description",
+        "content": "Escolha o idioma da interface da plataforma",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "idioma-options",
+        "content": "[Select] Português (Brasil) ▼",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-tema",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "tema-title",
+        "content": "🎨 Tema",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "tema-description",
+        "content": "Selecione a aparência da plataforma",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "tema-options",
+        "content": "[Radio] ☀️ Claro  |  [Radio] 🌙 Escuro  |  [Radio] 🔄 Automático",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-notificacoes",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "notificacoes-title",
+        "content": "🔔 Notificações",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "notificacoes-description",
+        "content": "Escolha quais notificações você deseja receber",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "notif-email",
+        "content": "[Checkbox] ✓ Notificações por email",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "notif-push",
+        "content": "[Checkbox] ✓ Notificações push no navegador",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "notif-novidades",
+        "content": "[Checkbox] ✓ Novidades e atualizações da plataforma",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "notif-dicas",
+        "content": "[Checkbox] ✓ Dicas e sugestões de aprendizado",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "id": "card-interesses",
+        "variant": "bordered",
+        "padding": "lg"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesses-title",
+        "content": "📚 Áreas de Interesse",
+        "as": "h3",
+        "size": "2xl",
+        "weight": "semibold",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesses-description",
+        "content": "Selecione seus tópicos de interesse para recomendações personalizadas",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "muted"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesse-matematica",
+        "content": "[Checkbox] ✓ Matemática",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesse-portugues",
+        "content": "[Checkbox] ✓ Português",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesse-ciencias",
+        "content": "[Checkbox] □ Ciências",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesse-historia",
+        "content": "[Checkbox] □ História",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "id": "interesse-geografia",
+        "content": "[Checkbox] □ Geografia",
+        "as": "p",
+        "size": "base",
+        "weight": "normal",
+        "color": "default"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-salvar",
+        "text": "Salvar e Continuar",
+        "variant": "primary",
+        "size": "lg"
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "id": "btn-pular",
+        "text": "Configurar Depois",
+        "variant": "outline",
+        "size": "md"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "FrontOffice | Onboarding · Preferências"
+    }
+  },
+  "zones": {}
+}
