@@ -11,29 +11,43 @@ if (!fs.existsSync(PAGES_DIR)) {
   fs.mkdirSync(PAGES_DIR, { recursive: true });
 }
 
+// Função auxiliar para encontrar todos os arquivos JSON recursivamente
+function getAllJsonFiles(dir: string, baseDir: string = dir): string[] {
+  const results: string[] = [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    
+    if (entry.isDirectory()) {
+      results.push(...getAllJsonFiles(fullPath, baseDir));
+    } else if (entry.name.endsWith('.json') && entry.name !== '.gitkeep') {
+      const relativePath = path.relative(baseDir, fullPath);
+      results.push(relativePath.replace(/\\/g, '/').replace('.json', ''));
+    }
+  }
+
+  return results;
+}
+
 export function generateStaticParams() {
   if (!fs.existsSync(PAGES_DIR)) return [];
 
-  const files = fs.readdirSync(PAGES_DIR);
-  return files
-    .filter(file => file.endsWith('.json'))
-    .map(file => {
-      const slug = file.replace('.json', '');
-      return {
-        slug: slug === 'index' ? [] : slug.split('/'),
-      };
-    });
+  const pages = getAllJsonFiles(PAGES_DIR);
+  return pages.map(page => ({
+    slug: page.split('/'),
+  }));
 }
 
 interface PageProps {
   params: Promise<{
-    slug?: string[];
+    slug: string[];
   }>;
 }
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const pagePath = slug ? slug.join('/') : 'index';
+  const pagePath = slug.join('/');
   const filePath = path.join(PAGES_DIR, `${pagePath}.json`);
 
   let data: Data;
