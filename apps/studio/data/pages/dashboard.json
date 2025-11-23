@@ -3,23 +3,29 @@
         {
             "type": "Text",
             "props": {
-                "text": "Dashboard",
-                "variant": "h1",
-                "align": "left"
+                "id": "text-dash-1",
+                "content": "Dashboard",
+                "as": "h1",
+                "size": "4xl",
+                "weight": "bold",
+                "color": "primary"
             }
         },
         {
             "type": "Card",
             "props": {
-                "title": "Bem-vindo ao Dashboard",
-                "children": "Esta é a visão geral do sistema."
+                "id": "card-dash-1",
+                "variant": "elevated",
+                "padding": "md"
             }
         },
         {
             "type": "Button",
             "props": {
+                "id": "btn-dash-1",
                 "text": "Ação Principal",
-                "variant": "primary"
+                "variant": "primary",
+                "size": "md"
             }
         }
     ],
@@ -27,5 +33,20 @@
         "props": {
             "title": "Dashboard"
         }
+    },
+    "zones": {
+        "card-dash-1:content": [
+            {
+                "type": "Text",
+                "props": {
+                    "id": "text-card-1",
+                    "content": "Bem-vindo ao Dashboard. Esta é a visão geral do sistema.",
+                    "as": "p",
+                    "size": "base",
+                    "weight": "normal",
+                    "color": "default"
+                }
+            }
+        ]
     }
 }

@@ -154,10 +154,12 @@ export const puckConfig: Config = {
         padding: 'md',
         children: [] as ReactNode[],
       },
-      render: ({ variant, padding, children }: CardProps) => {
+      render: ({ variant, padding }) => {
         return (
           <Card variant={variant} padding={padding}>
-            {children}
+            <div style={{ padding: '8px', border: '1px dashed #ccc', borderRadius: '4px' }}>
+              Card Content (DropZone disabled)
+            </div>
           </Card>
         );
       },
@@ -180,8 +182,14 @@ export const puckConfig: Config = {
         maxWidth: 'xl',
         children: [] as ReactNode[],
       },
-      render: ({ maxWidth, children }: LayoutProps) => {
-        return <Layout maxWidth={maxWidth}>{children}</Layout>;
+      render: ({ maxWidth }) => {
+        return (
+          <Layout maxWidth={maxWidth}>
+            <div style={{ padding: '8px', border: '1px dashed #ccc', borderRadius: '4px' }}>
+              Layout Content (DropZone disabled)
+            </div>
+          </Layout>
+        );
       },
     },
   },
