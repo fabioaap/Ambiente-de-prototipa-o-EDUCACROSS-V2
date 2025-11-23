@@ -3,27 +3,38 @@
 
 param(
     [ValidateSet("sprint2-p1", "sprint2-p2", "documentation", "all")]
-    [string]$DryRun = $ErrorActionPreference = "Stop"
+    [string]$Label = "all",
+    [switch]$DryRun = $false
+)
+
+$ErrorActionPreference = "Stop"
 
 Write-Host "🔍 Procurando PRs com 'ready-to-merge'..."
 
-$prs.Count -eq 0) {
+$prs = @(gh pr list --label "ready-to-merge" --state open --json number,title,statusCheckRollup | ConvertFrom-Json)
+
+if ($prs.Count -eq 0) {
     Write-Host "✅ Nenhuma PR para mergear no momento"
     exit 0
 }
 
-Write-Host "Found $prs.Count) PR(s) ready to merge"
+Write-Host "Found $($prs.Count) PR(s) ready to merge"
 
-foreach ($prs) {
-    $pr.number
-    $pr.title
-    $pr.statusCheckRollup
+foreach ($pr in $prs) {
+    $prNumber = $pr.number
+    $title = $pr.title
+    $status = $pr.statusCheckRollup
 
-    if ($prNumber: $DryRun) {
-            gh pr merge $prNumber"
+    if ($status -eq "PASS") {
+        Write-Host "✅ PR #$prNumber: $title"
+        
+        if (-not $DryRun) {
+            gh pr merge $prNumber --squash --delete-branch
+            Write-Host "🔄 Merged PR #$prNumber"
         }
     } else {
-        Write-Host "⏳ PR #$status"
+        Write-Host "⏳ PR #$prNumber still pending: $status"
     }
 }
 
+Write-Host "`nDone!"
