@@ -244,7 +244,7 @@ export const MobileView: Story = {
 /**
  * Componente para demonstrar dados dinâmicos ao vivo
  */
-const LiveLeaderboard = (args: typeof LiveUpdates.args) => {
+const LiveLeaderboard = (args: { entries: LeaderboardEntry[]; maxEntries?: number; highlightTop3?: boolean; showAvatar?: boolean }) => {
   const [entries, setEntries] = React.useState(args.entries || []);
 
   React.useEffect(() => {
