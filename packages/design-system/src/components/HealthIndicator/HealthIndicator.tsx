@@ -82,17 +82,12 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
       className,
     ].filter(Boolean).join(' ');
 
-    const formatTimestamp = (timestamp?: string) => {
-      if (!timestamp) return null;
-      return timestamp;
-    };
-
     return (
       <div ref={ref} className={classNames} {...props}>
         {title && <h3 className={styles.title}>{title}</h3>}
         
         <div className={styles.metricsGrid}>
-          {metrics.map((metric, index) => {
+          {metrics.map((metric) => {
             const MetricWrapper = metric.href ? 'a' : 'div';
             const wrapperProps = metric.href 
               ? {
@@ -104,7 +99,7 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
               : { className: styles.metric };
 
             return (
-              <MetricWrapper key={index} {...wrapperProps}>
+              <MetricWrapper key={`${metric.label}-${metric.status}`} {...wrapperProps}>
                 <div className={styles.metricContent}>
                   <div className={styles.metricHeader}>
                     <span className={styles.metricLabel}>{metric.label}</span>
@@ -130,7 +125,7 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
                   
                   {showTimestamps && metric.lastUpdated && (
                     <div className={styles.metricTimestamp}>
-                      {formatTimestamp(metric.lastUpdated)}
+                      {metric.lastUpdated}
                     </div>
                   )}
                 </div>
