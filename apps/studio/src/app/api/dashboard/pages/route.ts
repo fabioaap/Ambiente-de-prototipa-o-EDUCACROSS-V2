@@ -15,6 +15,43 @@ interface DashboardPage {
   description?: string
 }
 
+interface HealthMetrics {
+  timestamp: string
+  git: {
+    branch: string
+    commit: string
+    lastCommitDate: string | null
+  }
+  build: {
+    status: 'success' | 'partial' | 'error'
+    builds: Array<{ name: string; status: string }>
+    message: string
+  }
+  lint: {
+    status: 'success' | 'warning' | 'error'
+    warnings: number
+    errors: number
+    message: string
+  }
+  bundle: {
+    status: 'success' | 'missing' | 'error'
+    size: number
+    sizeFormatted: string
+    message: string
+  }
+  lastBuild: {
+    status: 'success' | 'missing' | 'error'
+    timestamp: string | null
+    message: string
+  }
+  dependencies: {
+    status: 'success' | 'warning' | 'error'
+    outdated: number
+    packages: string[]
+    message: string
+  }
+}
+
 interface DashboardResponse {
   pages: DashboardPage[]
   stats: {
@@ -26,6 +63,7 @@ interface DashboardResponse {
     storybook: 'online' | 'building' | 'offline'
   }
   domains: Record<string, { count: number; color: string }>
+  health?: HealthMetrics
 }
 
 const DOMAIN_COLORS: Record<string, string> = {
@@ -88,9 +126,23 @@ async function scanPagesDirectory(dir: string, prefix = ''): Promise<DashboardPa
   return pages
 }
 
+async function loadHealthMetrics(): Promise<HealthMetrics | null> {
+  try {
+    const metricsPath = path.join(process.cwd(), 'apps/studio/data/health-metrics.json')
+    const content = await fs.readFile(metricsPath, 'utf-8')
+    return JSON.parse(content)
+  } catch {
+    console.warn('Health metrics not found, returning null')
+    return null
+  }
+}
+
 export async function GET() {
   try {
-    const pages = await scanPagesDirectory('')
+    const [pages, healthMetrics] = await Promise.all([
+      scanPagesDirectory(''),
+      loadHealthMetrics(),
+    ])
 
     // Agrupar por domínio e contar
     const domainCounts: Record<string, number> = {
@@ -119,8 +171,8 @@ export async function GET() {
         totalDomains: activeDomains.length,
         activeDomains,
         lastUpdated: new Date().toISOString(),
-        buildStatus: 'success',
-        storybook: 'online',
+        buildStatus: healthMetrics?.build.status === 'success' ? 'success' : 'failed',
+        storybook: healthMetrics?.bundle.status === 'success' ? 'online' : 'offline',
       },
       domains: {
         BackOffice: {
@@ -136,6 +188,7 @@ export async function GET() {
           color: DOMAIN_COLORS.Game,
         },
       },
+      ...(healthMetrics && { health: healthMetrics }),
     }
 
     return NextResponse.json(response)

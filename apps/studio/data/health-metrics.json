@@ -1,0 +1,53 @@
+{
+  "timestamp": "2025-11-23T06:35:49.437Z",
+  "git": {
+    "branch": "copilot/add-dashboard-health-indicators",
+    "commit": "b79ffff",
+    "lastCommitDate": "2025-11-23 06:29:22 +0000"
+  },
+  "build": {
+    "status": "success",
+    "builds": [
+      {
+        "name": "tokens",
+        "status": "success"
+      },
+      {
+        "name": "design-system",
+        "status": "success"
+      },
+      {
+        "name": "storybook",
+        "status": "success"
+      },
+      {
+        "name": "studio",
+        "status": "success"
+      }
+    ],
+    "message": "Todos os builds estão atualizados"
+  },
+  "lint": {
+    "status": "warning",
+    "warnings": 12,
+    "errors": 0,
+    "message": "12 aviso(s)"
+  },
+  "bundle": {
+    "status": "success",
+    "size": 7498983,
+    "sizeFormatted": "7.15 MB",
+    "message": "Bundle gerado: 7.15 MB"
+  },
+  "lastBuild": {
+    "status": "success",
+    "timestamp": "2025-11-23T06:32:44.143Z",
+    "message": "Último build: 23/11/2025, 06:32:44"
+  },
+  "dependencies": {
+    "status": "success",
+    "outdated": 0,
+    "packages": [],
+    "message": "Todas as dependências estão atualizadas"
+  }
+}

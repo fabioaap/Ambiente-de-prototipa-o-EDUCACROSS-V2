@@ -20,7 +20,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "domains:index": "node scripts/generate-domains-index.mjs",
     "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static",
-    "gen:journeys": "node ./scripts/gen-journeys-index.js"
+    "gen:journeys": "node ./scripts/gen-journeys-index.js",
+    "health:check": "node scripts/collect-health-metrics.mjs",
+    "health:watch": "node scripts/collect-health-metrics.mjs --json"
   },
   "devDependencies": {
     "@prototipo/eslint-config": "workspace:*",
