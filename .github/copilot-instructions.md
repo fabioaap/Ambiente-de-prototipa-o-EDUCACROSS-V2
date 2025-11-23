@@ -1,159 +1,182 @@
 # EDUCACROSS Prototipação – Copilot Instructions
 
-## 🎯 Contexto e Propósito
+**Status**: Production-ready for Sprint 2 (P1) execution  
+**Last Updated**: 2025-11-22  
+**Scope**: pnpm monorepo + Next.js 15 (App Router) + React 18 + Puck OSS + Storybook 8
 
-Este é um **ambiente de prototipação orientado a jornadas**, não um repositório de produção. O foco é velocidade, clareza e qualidade para PMs, designers e desenvolvedores explorarem fluxos reais antes de implementação.
+---
 
-**Stack Principal:**
-- Monorepo com `pnpm workspaces` (Node 22 LTS, pnpm 9.14.4+)
-- React 18 + Next.js 15 (App Router) + TypeScript 5
-- Puck OSS (page builder visual) + Storybook 8 (ESM-only)
-- Design tokens + biblioteca de componentes reutilizáveis
+## 🎯 Contexto Executivo
 
-## 📁 Estrutura e Responsabilidades
+Este é um **ambiente de prototipação orientado a jornadas**, não produção. Foco: velocidade, clareza, qualidade para PMs/designers/devs explorarem fluxos reais.
 
+**Stack Crítico**:
+- **Node**: 22 LTS (enforce via `.nvmrc`)
+- **pnpm**: 9.14.4+ (monorepo with workspaces)
+- **TypeScript**: 5 (strict mode)
+- **Build**: tsup (design-system), Next.js (studio), Storybook (ESM-only)
+
+**Big Picture**:
 ```
 packages/
-  ├── design-system/  → Componentes React (Button, Text, Card, Layout)
-  │                      Exporta ESM + CommonJS via tsup, com "use client"
-  └── tokens/         → Design tokens (cores, tipografia, espaçamentos)
-                          Exporta CSS variables + JS/TS
+  ├─ design-system/ → React components (Button, Input, Card, Layout, Text)
+  │   Exporta ESM + CJS via tsup com "use client" directive
+  └─ tokens/ → Design tokens (cores, tipografia, espaçamentos)
+     Exporta CSS variables + JS/TS exports
 
 apps/
-  ├── studio/         → Next.js com Puck integrado
-  │                      Rota `/studio` = editor visual
-  │                      Outras rotas = render de páginas JSON do localStorage
-  └── storybook/      → Catálogo visual de componentes (ESM-only, porta 6006)
+  ├─ studio/ → Next.js 15 com Puck integrado
+  │   /studio = editor visual Puck
+  │   /pages = renderização JSON do localStorage
+  │   API: GET/POST /api/pages (C-R-U-D)
+  └─ storybook/ → Catálogo visual (ESM-only, porta 6006)
 
-domains/             → Jornadas de prototipagem (BackOffice, FrontOffice, Game)
-                         Cada jornada = pasta em kebab-case com README, notas e links
+domains/ → Jornadas de prototipagem (BackOffice, FrontOffice, Game)
+  Estrutura: domains/{dominio}/journeys/{jornada}/README.md + links
 ```
 
-**Comunicação entre pacotes:**
-- `studio` consome `@prototipo/design-system` + `@prototipo/tokens` via workspace
-- `storybook` também consome ambos
-- Componentes do DS usam CSS Modules + tokens CSS variables
+---
 
 ## 🔨 Workflows Essenciais
 
-### Desenvolvimento
-
+### Setup & Build
 ```bash
-# Instalar todas as dependências do monorepo
-pnpm install
+# Verificar ambiente (agente deve fazer isso primeiro)
+node --version  # Esperado: v22.x.x
+pnpm --version  # Esperado: 9.14.4+
 
-# Iniciar Studio (editor visual Puck na porta 3000)
-pnpm dev:studio
+# Instalar dependências (frozen-lockfile obrigatório em CI)
+pnpm install --frozen-lockfile
 
-# Iniciar Storybook (catálogo de componentes na porta 6006)
-pnpm dev:storybook
-
-# Build de todos os pacotes (ordem: tokens → design-system → apps)
+# Build COMPLETO (ordem: tokens → design-system → studio/storybook)
 pnpm build
 
-# Lint em todos os workspaces
+# Lint (ESLint + Prettier em todos os workspaces)
 pnpm lint
 
-# Tipo-check
+# Type-check (TypeScript strict)
 pnpm -r type-check
+
+# Dev com watchers (Studio em 3000, Storybook em 6006)
+pnpm dev:studio &
+pnpm dev:storybook &
 ```
 
-### Builds Específicos
-
-```bash
-# Tokens: gera CSS variables + exports JS/TS
-pnpm build:tokens
-
-# Design System: compila com tsup (CJS + ESM com "use client")
-pnpm build:design-system
-
-# Studio + Storybook: builds normais Next.js e Storybook
-pnpm build:studio
-pnpm build:storybook
-```
-
-**Checklist essencial antes de commitar:**
+**Checklist antes de commitar**:
 1. `pnpm build` sem erros
 2. `pnpm lint` sem warnings críticos
-3. Páginas no Studio + stories no Storybook funcionando
+3. `pnpm -r type-check` = 0 errors
+4. Nenhum `console.error` em dev
+5. Stories/pages funcionando
 
-## 🎨 Padrões de Componentes
+### Git & GitHub Flow
+```bash
+# Feature branch (issue-code-description)
+git checkout -b feature/c2-studio-sidebar-pages
 
-### Estrutura de Arquivo
+# Commit padrão
+git commit -m "type(scope): description (issue #XX)"
+# Types: feat, fix, docs, ci, chore, refactor
+# Scopes: studio, design-system, tokens, storybook
 
+# Push + PR (GitHub Actions valida automaticamente)
+git push -u origin feature/{...}
+# GitHub Actions (sprint-2-validation.yml):
+#   - validate-setup
+#   - pnpm build + lint + type-check
+#   - report + notify-main
+
+# Merge via squash (GitHub web UI ou)
+gh pr merge <NUMBER> --squash
 ```
-packages/design-system/src/components/Button/
-  ├── Button.tsx         → Componente React com JSDoc + props interface
-  ├── Button.module.css  → Estilos CSS Modules
-  └── Button.stories.tsx → Story no Storybook
-```
 
-### Convenção de Componentes
+---
+
+## 📐 Padrões de Código
+
+### Componentes (Design System)
+
+**Arquivo**: `packages/design-system/src/components/{Component}/{Component}.tsx`
 
 ```tsx
-// Exemplo: Button.tsx
 import React from 'react';
-import styles from './Button.module.css';
+import styles from './{Component}.module.css';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Variante visual (primary, secondary, outline, ghost) */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  /** Tamanho (sm, md, lg) */
+export interface {Component}Props extends React.HTMLAttributes<HTMLElement> {
+  /** Descrição JSDoc para cada prop */
+  variant?: 'primary' | 'secondary';
   size?: 'sm' | 'md' | 'lg';
-  /** Ocupar 100% da largura do container */
-  fullWidth?: boolean;
   children: React.ReactNode;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', fullWidth = false, className = '', ...props }, ref) => {
+export const {Component} = React.forwardRef<HTMLElement, {Component}Props>(
+  ({ variant = 'primary', size = 'md', className = '', ...props }, ref) => {
     const classNames = [
-      styles.button,
+      styles.component,
       styles[variant],
       styles[size],
-      fullWidth && styles.fullWidth,
       className,
     ].filter(Boolean).join(' ');
-
-    return <button ref={ref} className={classNames} {...props} />;
+    return <element ref={ref} className={classNames} {...props} />;
   }
 );
-Button.displayName = 'Button';
+{Component}.displayName = '{Component}';
+
+export type { {Component}Props };
 ```
 
-**Regras:**
-- Use `forwardRef` para componentes de baixo nível (botões, inputs, etc.)
-- CSS Modules com BEM simples: `styles.button`, `styles.primary`, `styles.size`
-- Props interface explícita com JSDoc para cada prop
-- Sempre exportar tipos (`export type { ButtonProps }`)
+**Regras**:
+- `forwardRef` para componentes baixo-nível
+- CSS Modules: `styles.component`, `styles.variant`, `styles.size`
+- Props interface com JSDoc
+- `export type { Props }` (tipo exportado)
 
-### Consumindo Tokens
+### Tokens
 
-```css
-/* Button.module.css */
-.button {
-  padding: var(--space-md);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-md);
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-base);
+Arquivo: `packages/tokens/src/tokens.json`
+
+```json
+{
+  "color": {
+    "primary": { "value": "#...", "type": "color" },
+    "secondary": { "value": "#...", "type": "color" }
+  },
+  "space": {
+    "sm": { "value": "8px", "type": "dimension" }
+  }
 }
 ```
 
-**Tokens disponíveis** (`packages/tokens/src/tokens.json`):
-- `--color-*` (primary, secondary, neutral, success, warning, error)
-- `--space-*` (xs, sm, md, lg, xl)
-- `--radius-*` (sm, md, lg)
-- `--font-family-*`, `--font-size-*`, `--font-weight-*`
-- `--shadow-*`
+Build: `pnpm build:tokens` → gera `--color-primary`, `--space-sm` CSS variables + JS exports
 
-## 📄 Configuração de Puck no Studio
+### CSS Modules
+
+Consumir tokens em componentes:
+
+```css
+.button {
+  padding: var(--space-md);
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-base);
+  color: var(--color-neutral-900);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+```
+
+---
+
+## 🎨 Puck Integration (Studio)
 
 Arquivo: `apps/studio/src/config/puck.config.tsx`
 
-**Cada componente precisa ser registrado:**
-
 ```tsx
+import { Config } from '@measured/puck';
+
 export const puckConfig: Config = {
   components: {
     Button: {
@@ -164,12 +187,11 @@ export const puckConfig: Config = {
           options: [
             { label: 'Primary', value: 'primary' },
             { label: 'Secondary', value: 'secondary' },
-            // ...
           ],
         },
       },
-      render: ({ text, variant, size }) => (
-        <Button variant={variant} size={size}>{text}</Button>
+      render: ({ text, variant }) => (
+        <Button variant={variant}>{text}</Button>
       ),
     },
     // ... mais componentes
@@ -177,101 +199,217 @@ export const puckConfig: Config = {
 };
 ```
 
-**Mudança de componentes do DS → atualizar puckConfig**
+**Workflow**:
+1. Novo componente no DS → adicionar story no Storybook
+2. Registrar em `puckConfig.components`
+3. Testar em `/studio` (Puck editor)
+4. Renderizar via `[...slug]/page.tsx`
 
-## 🎯 Jornadas e Domínios
+---
 
-Padrão para adicionar nova jornada em `domains/{dominio}/journeys/`:
+## 📁 Estrutura de Jornadas
 
+Template em: `domains/template-jornada.md`
+
+Padrão:
 ```
-domains/BackOffice/journeys/nova-jornada/
-  ├── README.md           # Objetivo, decisões, componentes usados
-  ├── notas.md           # Notas de design/UX
-  └── links.md           # Links para Studio, Figma, etc
+domains/{DOMINIO}/journeys/{nome-jornada}/
+  ├─ README.md (objetivo, status, componentes, links)
+  ├─ notas.md (decisões UX/design)
+  └─ links.md (Studio, Figma, etc)
 ```
 
-**Template README:**
-
+**README template**:
 ```markdown
-# Jornada: Nova Jornada
+# Jornada: {Nome}
 
 ## Objetivo
-[Descrever o resultado de negócio ou experiência esperada]
+[Resultado esperado de UX/negócio]
 
 ## Status
-- [ ] Planejamento
+- [x] Planejamento
 - [ ] Em andamento
 - [ ] Concluído
-- [ ] Arquivado
 
-## Componentes do DS Utilizados
-- Button (variant primary, size md)
-- Text (h1, base, bold)
-- Card (elevated)
+## Componentes Utilizados
+- Button (primary, md)
+- Text (h1, bold)
 
 ## Links
-- [Studio: Nova Página](http://localhost:3000/nova-jornada)
-- [Figma: Design Ref](...)
+- [Studio](http://localhost:3000/{slug})
+- [Figma]({url})
 ```
 
-## ⚙️ Configuração TypeScript e Build
+---
 
-**tsup.config.ts** (design-system):
+## 🚀 Sprint 2 Execution (P1 Issues)
 
-```ts
-// Gera ESM + CJS, adiciona "use client" no banner
-// Estilos CSS devem ser importados manualmente
-// Sourcemaps e type definitions automáticas
+**5 Issues prontas para execução** (docs em raiz):
+
+1. **#10 (G6)** – `CONTRIBUTING.md` (1-2d, independente)
+2. **#6 (C2)** – Studio Sidebar (3-4d, paralelo, depende C1 ✅)
+3. **#9 (G4)** – Script índice jornadas (2-3d, paralelo)
+4. **#7 (B4)** – Acessibilidade DS (4-5d, habilita #8)
+5. **#8 (D2)** – Addon Storybook A11y (2-3d, depende #7)
+
+**Guias em Raiz**:
+- `START_SPRINT2.md` – Bem-vindo em 60s
+- `RUN_SPRINT2.md` ⭐ – Guia PRINCIPAL (5 issues detalhadas)
+- `SPRINT2_STATUS.md` – Timeline, riscos, métricas
+- `SPRINT2_QUICK_START.md` – Setup 5min (Codespaces)
+- `SPRINT2_GITHUB_ACTIONS.md` – CI/CD automation
+- `docs/sprint-2-planning.md` – Planejamento técnico
+- `docs/sprint-2-execution-prompt.md` – Scripts copy-paste
+
+**GitHub Actions** (automático):
+- `.github/workflows/sprint-2-validation.yml` → 4 jobs (setup, build+lint+type-check, report, notify)
+- Roda em push/PR → bloqueia merge se falhar
+- Duração esperada: ~180s (3 min)
+
+---
+
+## ⚙️ Build & Package Management
+
+### tsup.config.ts (Design System)
+- **Exporta**: ESM + CJS
+- **Adiciona**: `"use client"` directive (banner)
+- **Sourcemaps**: automáticas
+- **Types**: geradas via tsc
+
+### Next.js (Studio)
+- **Router**: App Router (📁 estrutura de diretórios é rotas)
+- **Layouts**: `layout.tsx` (global em `app/`, sidebar)
+- **Dynamic Routes**: `app/[[...slug]]/page.tsx` (renderiza JSON)
+- **API**: Route handlers em `app/api/pages/route.ts`
+- **Styles**: CSS Modules + global `globals.css`
+
+### Storybook (ESM-only)
+- **Manager**: Vite
+- **Stories**: `*.stories.tsx` em `apps/storybook/src/stories/`
+- **Addons**: `@storybook/addon-a11y`, `@storybook/addon-essentials`
+- **Config**: `.storybook/main.ts` (TypeScript)
+
+---
+
+## 🔍 Debugging & Troubleshooting
+
+### Build Falha
+```bash
+# Limpar cache
+pnpm clean
+
+# Reinstalar (frozen-lockfile)
+pnpm install --frozen-lockfile
+
+# Rebuildar individual
+pnpm build:tokens
+pnpm build:design-system
+pnpm build:studio
+pnpm build:storybook
+
+# Ver erro específico
+pnpm build --verbose
 ```
 
-**Next.js** (studio): App Router, sem pages router. Use layout.tsx para estrutura global.
+### Lint/Type Errors
+```bash
+# Rodar local (antes de push)
+pnpm lint
+pnpm -r type-check
 
-**Storybook**: ESM-only com Vite. Stories em `.stories.tsx`.
+# Fixar automáticamente
+pnpm lint --fix
+```
 
-## 🚨 Decisões Arquiteturais
+### Port Conflicts
+```bash
+# Kill processos anteriores
+npx kill-port 3000 6006
 
-1. **Monorepo com workspaces** → facilita compartilhamento de código e versionamento sincronizado
-2. **CSS Modules + tokens CSS variables** → sem dependência de Tailwind, máximo controle
-3. **Puck para prototipagem visual** → reduz tempo de designer→dev e permite iteração rápida
-4. **localStorage para persistência** → suficiente para fase de prototipagem
-5. **TypeScript strict** → evita erros sutis em componentes reutilizáveis
-6. **Node 22 LTS** → estável, performance, não versões cutting-edge
+# Reiniciar devs
+pnpm dev:studio &
+pnpm dev:storybook &
+```
 
-## 🤖 Instruções para Agentes IA
+### GitHub Actions Falha
+1. Clique "Re-run all jobs" (pode ser timeout/fluke)
+2. Leia logs em Actions tab → step que falhou
+3. Rode localmente: `pnpm build && pnpm lint && pnpm -r type-check`
+4. Fix + commit + push novamente
 
-### Quando modificar componentes do DS:
-1. Manter interface de props estável (adicionar, não remover)
-2. Atualizar stories no Storybook
-3. Rodar `pnpm build:design-system` e verificar tipos
-4. Se novo componente: adicionar à `packages/design-system/src/index.ts`
-5. Registrar no puckConfig se for usado no Studio
+---
 
-### Quando adicionar nova jornada:
-1. Criar pasta em `domains/{dominio}/journeys/nome-jornada/`
-2. Documentar em README com objetivo, componentes, links
-3. Criar página correspondente no Studio (rota dinâmica ou estática)
-4. Linkar no backlog se for complexa
+## 📊 Decision Log (Por Quê Desse Jeito?)
 
-### Quando adicionar novos tokens:
-1. Editar `packages/tokens/src/tokens.json`
-2. Rodar `pnpm build:tokens`
-3. Verificar export em JS + CSS variables
-4. Atualizar componentes do DS para usar novos tokens
+| Decisão | Razão | Trade-off |
+|---------|-------|-----------|
+| **pnpm workspaces** | Monorepo + link automático + lock file | Curva aprendizado |
+| **CSS Modules** | Sem runtime, tree-shake safe | Não há utility classes |
+| **Puck para editor** | Visual, sem código, rápido | Limited customization |
+| **Storybook ESM-only** | Performance, modern tooling | Sem CommonJS |
+| **Next.js App Router** | File-based routing, server components | Migrando de pages |
+| **Node 22 LTS** | Estável, não cutting-edge | Muda em Apr 2027 |
 
-## 📚 Referências Internas
+---
 
-- `docs/backlog.md` → Roadmap e políticas
-- `domains/README.md` → Guia de jornadas
-- `packages/design-system/README.md` → Exemplos de componentes
-- `.github/agents/` → Instruções especializadas (Frontend, DevOps)
+## 💾 Key Files to Know
 
-## ✅ Definition of Done
+| Arquivo | Propósito |
+|---------|-----------|
+| `.nvmrc` | Node version (22.x.x) |
+| `pnpm-workspace.yaml` | Define workspaces |
+| `package.json` (root) | Scripts: `pnpm dev:studio`, `pnpm build`, etc |
+| `packages/design-system/package.json` | Exports: `main` (CJS), `module` (ESM), `types` |
+| `packages/tokens/src/tokens.json` | Fonte de verdade para design tokens |
+| `apps/studio/src/config/puck.config.tsx` | Registro de componentes para Puck |
+| `apps/studio/src/app/[[...slug]]/page.tsx` | Renderiza páginas JSON do localStorage |
+| `.github/workflows/sprint-2-validation.yml` | CI/CD automation |
+| `docs/sprint-2-planning.md` | Contexto técnico de P1 |
 
-Código pronto quando:
-- [ ] Build completo sem erros (`pnpm build`)
-- [ ] TypeScript sem problemas (`pnpm -r type-check`)
-- [ ] Lint passa (`pnpm lint`)
-- [ ] Stories/exemplos no Storybook (se componente)
+---
+
+## ✅ Checklist para Agents
+
+Quando modificar componentes DS:
+- [ ] Manter interface de props estável (adicionar, não remover)
+- [ ] Atualizar stories no Storybook
+- [ ] Rodar `pnpm build:design-system` e verificar tipos
+- [ ] Novo componente? Adicionar em `packages/design-system/src/index.ts`
+- [ ] Registrar em `puckConfig` se for usado em Studio
+
+Quando adicionar jornada:
+- [ ] Criar pasta em `domains/{dominio}/journeys/{nome}/`
+- [ ] Documentar em README com objetivo, componentes, links
+- [ ] Criar página correspondente no Studio
+- [ ] Linkar em `domains/README.md` ou índice
+
+Quando adicionar novos tokens:
+- [ ] Editar `packages/tokens/src/tokens.json`
+- [ ] Rodar `pnpm build:tokens`
+- [ ] Verificar CSS variables + JS exports
+- [ ] Atualizar componentes DS para usar novos tokens
+
+Antes de mergear PR:
+- [ ] `pnpm build` sem erros
+- [ ] `pnpm lint` sem warnings críticos
+- [ ] `pnpm -r type-check` sem erros
+- [ ] Stories/exemplos funcionando (se componente)
 - [ ] Página no Studio funcional (se jornada)
 - [ ] README/docs atualizado
-- [ ] Nenhum console.error em dev
+- [ ] Nenhum `console.error` em dev
+
+---
+
+## 🎓 Learning Resources
+
+- **Monorepo pnpm**: Veja `pnpm-workspace.yaml` + `package.json` (root)
+- **Design tokens**: `packages/tokens/README.md` + `src/tokens.json`
+- **Componentes padrão**: `packages/design-system/src/components/*/`
+- **Puck integration**: `apps/studio/src/config/puck.config.tsx`
+- **Jornadas**: `domains/README.md` + examples em `domains/*/`
+- **Sprint 2 docs**: `RUN_SPRINT2.md` (guia principal)
+
+---
+
+**Próximo Passo para Agents**: Sempre começar em `RUN_SPRINT2.md` ou `START_SPRINT2.md` para contexto de issue/jornada específica.
+
