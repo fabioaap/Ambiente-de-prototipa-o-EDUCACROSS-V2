@@ -54,6 +54,7 @@ $ pnpm gen:journeys
 - **Game**: 0 journeys
 - **Total**: 3 domains, 2 journeys
 - **Last updated**: 2025-11-23
+- **Node version**: v22.21.1 (per .nvmrc)
 
 ### Conclusion
 
@@ -121,7 +122,7 @@ The script:
 - Lessons learned
 
 **Test Results**:
-- ✅ Environment: Node 20.19.5, pnpm 9.14.4
+- ✅ Environment: Node v22.21.1 (per .nvmrc), pnpm 9.14.4
 - ✅ Dependencies: 507 packages installed
 - ✅ Build tokens: Success
 - ✅ Build design-system: Success
