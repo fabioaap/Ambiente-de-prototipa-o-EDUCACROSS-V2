@@ -1,0 +1,28 @@
+name: Auto Request Changes
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for console.error
+        id: check
+        run: |
+          if grep -r "console\.error" src/ --include="*.ts" --include="*.tsx" 2>/dev/null; then
+            echo "HAS_ERRORS=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Request Changes
+        if: steps.check.outputs.HAS_ERRORS == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              event: 'REQUEST_CHANGES',
+              body: '🚨 Found console.error in code. Please remove before merging.'
+            })
