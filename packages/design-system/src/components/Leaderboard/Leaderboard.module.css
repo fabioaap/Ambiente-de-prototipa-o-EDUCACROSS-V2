@@ -1,0 +1,275 @@
+/* Container principal */
+.leaderboard {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--color-neutral-50, #fafafa);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-md, 16px);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--space-xl, 32px);
+  color: var(--color-neutral-500, #6b7280);
+  font-size: var(--font-size-base, 16px);
+}
+
+/* Tabela */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Cabeçalhos */
+.table thead tr {
+  border-bottom: 2px solid var(--color-neutral-200, #e5e7eb);
+}
+
+.table th {
+  padding: var(--space-sm, 12px) var(--space-xs, 8px);
+  text-align: left;
+  font-weight: var(--font-weight-semibold, 600);
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-neutral-700, #374151);
+  white-space: nowrap;
+}
+
+.rankHeader {
+  width: 60px;
+  text-align: center;
+}
+
+.avatarHeader {
+  width: 50px;
+}
+
+.nameHeader {
+  min-width: 150px;
+}
+
+.scoreHeader {
+  width: 120px;
+  text-align: right;
+}
+
+.badgeHeader {
+  width: 70px;
+  text-align: center;
+}
+
+/* Células */
+.table tbody tr {
+  border-bottom: 1px solid var(--color-neutral-100, #f3f4f6);
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: var(--color-neutral-100, #f3f4f6);
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table td {
+  padding: var(--space-md, 16px) var(--space-xs, 8px);
+  font-size: var(--font-size-base, 16px);
+  color: var(--color-neutral-900, #111827);
+}
+
+/* Top 3 destaque */
+.topThree {
+  background-color: var(--color-warning-50, #fffbeb);
+}
+
+.topThree:hover {
+  background-color: var(--color-warning-100, #fef3c7);
+}
+
+/* Coluna de ranking */
+.rankCell {
+  text-align: center;
+  font-weight: var(--font-weight-bold, 700);
+}
+
+.rankNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full, 9999px);
+  background-color: var(--color-neutral-200, #e5e7eb);
+  color: var(--color-neutral-700, #374151);
+  font-size: var(--font-size-sm, 14px);
+}
+
+.topThree .rankNumber {
+  background-color: var(--color-warning-200, #fde68a);
+  color: var(--color-warning-900, #78350f);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* Avatar */
+.avatarCell {
+  padding: var(--space-sm, 12px) var(--space-xs, 8px);
+}
+
+.avatar,
+.avatarInitials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+}
+
+.avatar {
+  object-fit: cover;
+}
+
+.avatarInitials {
+  background: linear-gradient(135deg, var(--color-primary, #3b82f6), var(--color-secondary, #8b5cf6));
+  color: white;
+  font-weight: var(--font-weight-semibold, 600);
+  font-size: var(--font-size-sm, 14px);
+}
+
+/* Nome */
+.nameCell {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.name {
+  display: block;
+  color: var(--color-neutral-900, #111827);
+}
+
+/* Pontuação */
+.scoreCell {
+  text-align: right;
+}
+
+.score {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-primary, #3b82f6);
+  font-size: var(--font-size-lg, 18px);
+}
+
+.topThree .score {
+  color: var(--color-warning-700, #a16207);
+}
+
+/* Badge */
+.badgeCell {
+  text-align: center;
+  padding: var(--space-sm, 12px) var(--space-xs, 8px);
+}
+
+/* Variantes */
+.compact .table th,
+.compact .table td {
+  padding: var(--space-xs, 8px) var(--space-xs, 8px);
+}
+
+.compact .avatar,
+.compact .avatarInitials {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-xs, 12px);
+}
+
+.compact .score {
+  font-size: var(--font-size-base, 16px);
+}
+
+.detailed {
+  padding: var(--space-lg, 24px);
+}
+
+.detailed .table th,
+.detailed .table td {
+  padding: var(--space-md, 16px);
+}
+
+.detailed .avatar,
+.detailed .avatarInitials {
+  width: 48px;
+  height: 48px;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 640px) {
+  .leaderboard {
+    padding: var(--space-sm, 12px);
+  }
+
+  .table th,
+  .table td {
+    padding: var(--space-sm, 12px) var(--space-xs, 8px);
+    font-size: var(--font-size-sm, 14px);
+  }
+
+  .rankHeader {
+    width: 50px;
+  }
+
+  .avatarHeader {
+    width: 40px;
+  }
+
+  .nameHeader {
+    min-width: 120px;
+  }
+
+  .scoreHeader {
+    width: 100px;
+  }
+
+  .badgeHeader {
+    width: 60px;
+  }
+
+  .avatar,
+  .avatarInitials {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-xs, 12px);
+  }
+
+  .rankNumber {
+    min-width: 28px;
+    height: 28px;
+    font-size: var(--font-size-xs, 12px);
+  }
+
+  .score {
+    font-size: var(--font-size-base, 16px);
+  }
+
+  .name {
+    font-size: var(--font-size-sm, 14px);
+  }
+
+  /* Esconder badge em telas muito pequenas */
+  .badgeHeader,
+  .badgeCell {
+    display: none;
+  }
+}

@@ -8,6 +8,7 @@ export { Checkbox } from './components/Checkbox/Checkbox';
 export { Radio } from './components/Radio/Radio';
 export { Switch } from './components/Switch/Switch';
 export { Badge } from './components/Badge/Badge';
+export { Leaderboard } from './components/Leaderboard/Leaderboard';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -19,3 +20,4 @@ export type { CheckboxProps } from './components/Checkbox/Checkbox';
 export type { RadioProps } from './components/Radio/Radio';
 export type { SwitchProps } from './components/Switch/Switch';
 export type { BadgeProps } from './components/Badge/Badge';
+export type { LeaderboardProps, LeaderboardEntry } from './components/Leaderboard/Leaderboard';
