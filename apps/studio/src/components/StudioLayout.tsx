@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, Suspense } from 'react';
 import { PagesList } from './PagesList';
 import styles from './StudioLayout.module.css';
 
@@ -36,7 +36,9 @@ export function StudioLayout({ children }: StudioLayoutProps) {
         </div>
 
         <nav className={styles.sidebarContent}>
-          <PagesList />
+          <Suspense fallback={<div style={{ padding: '1rem', textAlign: 'center', color: '#6b7280' }}>Carregando...</div>}>
+            <PagesList />
+          </Suspense>
         </nav>
 
         <div className={styles.sidebarFooter}>
