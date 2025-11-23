@@ -51,12 +51,14 @@ function Merge-PR {
         if ($?) {
             Write-Host "✅ Build OK" -ForegroundColor Green
             return $true
-        } else {
+        }
+        else {
             Write-Host "❌ Build falhou! Revertendo..." -ForegroundColor Red
             git revert -m 1 HEAD --no-edit
             return $false
         }
-    } else {
+    }
+    else {
         Write-Host "❌ Merge falhou!" -ForegroundColor Red
         return $false
     }
@@ -107,7 +109,8 @@ $merge38 = Read-Host
 if ($merge38 -eq "s") {
     $result38 = Merge-PR -PRNumber 38 -Title "Index script (G4)" -CommitMessage "feat(scripts): Add automatic journey index generator (Fixes #9)"
     if (-not $result38) { exit 1 }
-} else {
+}
+else {
     Write-Host "⏭️  Pulando PR #38 por enquanto" -ForegroundColor Yellow
 }
 

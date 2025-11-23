@@ -45,7 +45,8 @@ Write-Host "⚠️  Deseja prosseguir com merge de 7 PRs? (s/n): " -ForegroundCo
 $confirm = Read-Host
 if ($confirm -ne "s") {
     Write-Host "⏭️  Saltando Step 2.1" -ForegroundColor Yellow
-} else {
+}
+else {
     Write-Host "`n🔄 Iniciando merge das 7 PRs..." -ForegroundColor Green
     
     $prsToMerge = @(47, 33, 27, 22, 21, 19, 18)
@@ -67,7 +68,8 @@ if ($confirm -ne "s") {
         if ($?) {
             Write-Host "    ✅ Mergeado" -ForegroundColor Green
             $successCount++
-        } else {
+        }
+        else {
             Write-Host "    ❌ Erro ao mergear" -ForegroundColor Red
             Write-Host "       Error: $result" -ForegroundColor Red
             $failCount++
@@ -140,7 +142,8 @@ switch ($dashboardChoice) {
             # TODO: Implementar lógica de rebase
             Write-Host "⚠️  Lógica de rebase não implementada neste script" -ForegroundColor Yellow
             $dashboardStrategy = "MEGA-PR_PENDING"
-        } else {
+        }
+        else {
             Write-Host "⏭️  Pulando Dashboard por enquanto" -ForegroundColor Yellow
             $dashboardStrategy = "SKIPPED"
         }
@@ -183,7 +186,8 @@ if ($closeObs -eq "s") {
     gh pr close 24 --comment "✅ Propósito alcançado – backlog atualizado em docs/backlog.md"
     
     Write-Host "✅ PRs obsoletas fechadas" -ForegroundColor Green
-} else {
+}
+else {
     Write-Host "⏭️  Mantendo PRs obsoletas abertas" -ForegroundColor Yellow
 }
 
@@ -204,7 +208,8 @@ git pull origin main 2>&1 | Out-Null
 $buildResult = pnpm build 2>&1 | Select-Object -Last 1
 if ($buildResult -match "built successfully" -or $buildResult -match "built in") {
     Write-Host "✅ Build OK" -ForegroundColor Green
-} else {
+}
+else {
     Write-Host "⚠️  Build pode ter issues (verificar manualmente)" -ForegroundColor Yellow
 }
 
