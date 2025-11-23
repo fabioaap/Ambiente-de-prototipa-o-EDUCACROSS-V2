@@ -67,20 +67,20 @@ on:
 
 **Steps**:
 1. Checkout código
-2. Verificar Node version (>= 20.0.0)
+2. Verificar Node version (>= 22.0.0)
 3. Verificar pnpm version (>= 8.0.0)
 4. Reportar versões
 
 **Duração esperada**: ~30s
 
 **Fail conditions**:
-- Node < 20.0.0
+- Node < 22.0.0
 - pnpm não instalado
 - pnpm < 8.0.0
 
 **Output**:
 ```
-✓ Node version: v20.19.5
+✓ Node version: v22.21.1
 ✓ pnpm version: 9.14.4
 ✓ Environment validated successfully
 ```
@@ -91,7 +91,7 @@ on:
 
 **Steps**:
 1. Checkout código
-2. Setup Node 20
+2. Setup Node 22
 3. Install pnpm
 4. Install dependencies (`pnpm install --frozen-lockfile`)
 5. Build tokens (`pnpm build:tokens`)
@@ -270,7 +270,7 @@ Disponíveis em todos os workflows:
 
 ```yaml
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'  # Node 22 LTS (as per .nvmrc)
   PNPM_VERSION: '9.14.4'
   CI: true
 ```
