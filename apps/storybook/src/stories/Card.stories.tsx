@@ -173,3 +173,56 @@ export const LargePadding: Story = {
     ),
   },
 };
+
+// Accessibility Stories
+export const AccessibleRegion: Story = {
+  args: {
+    variant: 'bordered',
+    padding: 'md',
+    role: 'region',
+    'aria-label': 'Resumo do pedido',
+    children: (
+      <>
+        <Text as="h3" size="xl" weight="semibold" style={{ marginBottom: '0.5rem' }}>
+          Total: R$ 150,00
+        </Text>
+        <Text color="muted">
+          3 itens no carrinho
+        </Text>
+      </>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Card como região acessível com role="region" e aria-label. Útil para seções importantes da página.',
+      },
+    },
+  },
+};
+
+export const ClickableAccessible: Story = {
+  args: {
+    variant: 'elevated',
+    padding: 'md',
+    clickable: true,
+    onClick: () => alert('Navegando para detalhes...'),
+    children: (
+      <>
+        <Text as="h3" size="xl" weight="semibold" style={{ marginBottom: '0.5rem' }}>
+          Card Clicável
+        </Text>
+        <Text color="muted">
+          Card clicável renderizado como button para acessibilidade total
+        </Text>
+      </>
+    ),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Cards clicáveis usam <button> semanticamente correto, navegável por teclado com foco visível.',
+      },
+    },
+  },
+};

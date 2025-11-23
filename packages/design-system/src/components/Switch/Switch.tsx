@@ -38,6 +38,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
             role="switch"
             id={switchId}
             className={switchClassName}
+            aria-checked={props.checked ?? false}
             aria-invalid={error}
             aria-describedby={
               errorText

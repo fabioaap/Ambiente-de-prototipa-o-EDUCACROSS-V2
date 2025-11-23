@@ -15,6 +15,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    */
   fullWidth?: boolean;
   /**
+   * Label acessível para botões apenas com ícones (obrigatório se children for apenas ícone)
+   */
+  'aria-label'?: string;
+  /**
    * Conteúdo do botão
    */
   children: React.ReactNode;
