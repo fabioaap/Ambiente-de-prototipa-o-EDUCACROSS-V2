@@ -54,6 +54,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     const clampedValue = Math.min(Math.max(0, value), max);
     const percentage = (clampedValue / max) * 100;
 
+    // Constantes para SVG circular (raio = 45, circunferência = 2πr)
+    const CIRCLE_RADIUS = 45;
+    const FULL_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS; // ≈ 282.7
+
     const classNames = [
       styles.progress,
       styles[variant],
@@ -65,6 +69,9 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       .join(' ');
 
     if (variant === 'circular') {
+      // Calcular o strokeDasharray com base na porcentagem
+      const progressLength = (percentage / 100) * FULL_CIRCUMFERENCE;
+
       return (
         <div
           ref={ref}
@@ -81,7 +88,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
               className={styles.circularTrack}
               cx="50"
               cy="50"
-              r="45"
+              r={CIRCLE_RADIUS}
               fill="none"
               strokeWidth="10"
             />
@@ -89,10 +96,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
               className={styles.circularFill}
               cx="50"
               cy="50"
-              r="45"
+              r={CIRCLE_RADIUS}
               fill="none"
               strokeWidth="10"
-              strokeDasharray={`${percentage * 2.827} 282.7`}
+              strokeDasharray={`${progressLength} ${FULL_CIRCUMFERENCE}`}
               strokeLinecap="round"
               transform="rotate(-90 50 50)"
             />
