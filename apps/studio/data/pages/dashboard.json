@@ -1,0 +1,31 @@
+{
+  "content": [
+    {
+      "type": "Text",
+      "props": {
+        "text": "Dashboard",
+        "variant": "h1",
+        "align": "left"
+      }
+    },
+    {
+      "type": "Card",
+      "props": {
+        "title": "Bem-vindo ao Dashboard",
+        "children": "Esta é a visão geral do sistema."
+      }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "text": "Ação Principal",
+        "variant": "primary"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Dashboard"
+    }
+  }
+}

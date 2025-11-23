@@ -7,6 +7,7 @@ Este índice é gerado automaticamente via `scripts/generate-domains-index.mjs`.
 
 | Jornada | Status | Descrição | Links |
 |---------|--------|-----------|-------|
+| [**Jornada: Dashboard (H)**](./BackOffice/journeys/Dashboard/README.md) | 📋 Planejamento | Jornada Dashboard | [Docs](./BackOffice/journeys/Dashboard/README.md) |
 | [**Jornada: Revisão de Questões**](./BackOffice/journeys/revisao-questoes/README.md) | 🚧 Em construção | Jornada revisao-questoes | [Docs](./BackOffice/journeys/revisao-questoes/README.md) |
 
 ## 📂 FrontOffice
@@ -18,5 +19,5 @@ Este índice é gerado automaticamente via `scripts/generate-domains-index.mjs`.
 
 ---
 
-**Total de Jornadas**: 2
+**Total de Jornadas**: 3
 **Atualizado em**: 2025-11-23

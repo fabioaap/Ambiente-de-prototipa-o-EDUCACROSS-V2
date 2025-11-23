@@ -12,8 +12,17 @@ if (!fs.existsSync(PAGES_DIR)) {
 }
 
 export function generateStaticParams() {
-  // Retorna uma lista de rotas estáticas se houver páginas salvas
-  return [];
+  if (!fs.existsSync(PAGES_DIR)) return [];
+  
+  const files = fs.readdirSync(PAGES_DIR);
+  return files
+    .filter(file => file.endsWith('.json'))
+    .map(file => {
+      const slug = file.replace('.json', '');
+      return {
+        slug: slug === 'index' ? [] : slug.split('/'),
+      };
+    });
 }
 
 interface PageProps {
