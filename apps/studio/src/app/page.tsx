@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Layout, Text, Button, Card } from '@prototipo/design-system';
+import { Layout, Text, Button, Card, Badge } from '@prototipo/design-system';
 
 export default function Home() {
   return (
@@ -36,15 +36,29 @@ export default function Home() {
         </Card>
 
         <Card variant="elevated" padding="lg">
-          <Text as="h2" size="2xl" weight="semibold" style={{ marginBottom: '1rem' }}>
-            Storybook
-          </Text>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+            <Text as="h2" size="2xl" weight="semibold">
+              Storybook
+            </Text>
+            <Badge variant="success" size="sm">
+              ✓ Disponível
+            </Badge>
+          </div>
           <Text color="muted" style={{ marginBottom: '1.5rem' }}>
             Catálogo de componentes do Design System.
           </Text>
-          <Button variant="secondary" fullWidth disabled>
-            Em Breve
-          </Button>
+          <a
+            href={process.env.NODE_ENV === 'development' 
+              ? 'http://localhost:6006' 
+              : 'https://educacross-storybook.vercel.app'}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
+          >
+            <Button variant="secondary" fullWidth>
+              Abrir Storybook
+            </Button>
+          </a>
         </Card>
 
         <Card variant="elevated" padding="lg">

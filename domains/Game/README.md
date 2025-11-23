@@ -1,5 +1,8 @@
 # Game - Jornadas de Prototipação
 
+[![Storybook](https://img.shields.io/badge/Storybook-Docs-FF4785?logo=storybook)](https://educacross-storybook.vercel.app)
+[![Build Status](https://img.shields.io/badge/build-passing-success)](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/actions)
+
 Esta pasta contém todas as jornadas de prototipagem relacionadas ao **Game** (área de jogos e missões) do sistema EDUCACROSS.
 
 ## Estrutura
