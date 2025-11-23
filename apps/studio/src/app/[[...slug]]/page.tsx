@@ -13,7 +13,7 @@ if (!fs.existsSync(PAGES_DIR)) {
 
 export function generateStaticParams() {
   if (!fs.existsSync(PAGES_DIR)) return [];
-  
+
   const files = fs.readdirSync(PAGES_DIR);
   return files
     .filter(file => file.endsWith('.json'))

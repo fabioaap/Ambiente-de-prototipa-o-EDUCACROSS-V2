@@ -64,6 +64,9 @@ export const Info: Story = {
 };
 
 export const Sizes: Story = {
+  args: {
+    children: 'Sizes',
+  },
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
       <Badge size="sm" variant="info">Small</Badge>
@@ -74,6 +77,9 @@ export const Sizes: Story = {
 };
 
 export const AllVariants: Story = {
+  args: {
+    children: 'Variants',
+  },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Badge variant="default">Default</Badge>
