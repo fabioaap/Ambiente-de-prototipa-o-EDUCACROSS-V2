@@ -1,6 +1,6 @@
 # Índice de Jornadas - EDUCACROSS Prototipação
 
-**Última atualização**: 2025-11-20
+**Última atualização**: 2025-11-23
 
 > Este arquivo é gerado automaticamente. Para regenerar, execute: `pnpm gen:journeys`
 
@@ -24,14 +24,16 @@
 
 **[📖 Documentação do Domínio](./Game/README.md)**
 
-*(sem jornadas)*
+### Jornadas
+
+- **[game-hub](./Game/journeys/game-hub/README.md)** - 🎮 Espaço central para prototipagem de componentes e fluxos lúdicos/educacionais (Em andamento)
 
 ---
 
 ## 📊 Estatísticas
 
 - **Domínios**: 3
-- **Jornadas**: 1
+- **Jornadas**: 2
 
 ## 🚀 Próximos Passos
 

@@ -78,7 +78,11 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ## Jornadas Existentes
 
-_(Esta seção será atualizada conforme jornadas forem criadas)_
+### 🎮 [Game Hub](./journeys/game-hub/)
+**Status**: 🚧 Em andamento  
+**Descrição**: Espaço central para prototipagem de componentes e fluxos lúdicos/educacionais. Hub de jogos com menu principal, leaderboard, cards de progresso e modais de resultados.  
+**Componentes principais**: Card, Button, Badge, Progress (novo), Leaderboard (novo), Modal (novo)  
+**Data de criação**: 2025-11-23
 
 ---
 
