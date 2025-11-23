@@ -4,6 +4,10 @@ import path from 'path';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
+// Constantes
+const DEFAULT_TITLE = 'Sem título';
+const DEFAULT_STATUS = 'active';
+
 // Interface para o formato de resposta esperado
 interface PageInfo {
   id: string;
@@ -69,27 +73,35 @@ async function scanPagesDirectory(
         pages.push(...subPages);
       } else if (entry.isFile() && entry.name.endsWith('.json')) {
         // Ler arquivo JSON
-        const content = await fs.readFile(entryPath, 'utf-8');
-        const data = JSON.parse(content);
-        const stats = await fs.stat(entryPath);
+        try {
+          const content = await fs.readFile(entryPath, 'utf-8');
+          const data = JSON.parse(content);
+          const stats = await fs.stat(entryPath);
 
-        // Remover extensão .json do slug
-        const cleanSlug = slug.replace(/\.json$/, '');
-        
-        // Gerar ID único baseado no slug
-        const pageId = cleanSlug.replace(/\//g, '-');
+          // Remover extensão .json do slug
+          const cleanSlug = slug.replace(/\.json$/, '');
+          
+          // Gerar ID único baseado no slug
+          const pageId = cleanSlug.replace(/\//g, '-');
 
-        // Determinar status (por enquanto sempre 'active', pode ser expandido)
-        const status: PageInfo['status'] = data.root?.props?.status || 'active';
+          // Determinar status com fallback para padrão
+          const status: PageInfo['status'] = data.root?.props?.status || DEFAULT_STATUS;
 
-        pages.push({
-          id: pageId,
-          slug: cleanSlug,
-          title: data.root?.props?.title || cleanSlug.split('/').pop() || 'Sem título',
-          domain: determineDomain(cleanSlug),
-          lastModified: stats.mtime.toISOString(),
-          status,
-        });
+          pages.push({
+            id: pageId,
+            slug: cleanSlug,
+            title: data.root?.props?.title || cleanSlug.split('/').pop() || DEFAULT_TITLE,
+            domain: determineDomain(cleanSlug),
+            lastModified: stats.mtime.toISOString(),
+            status,
+          });
+        } catch (parseError) {
+          // Log error para arquivo JSON malformado mas continua processando outros arquivos
+          console.error(
+            `Error parsing JSON file ${entryPath}:`,
+            parseError instanceof Error ? parseError.message : 'Unknown error'
+          );
+        }
       }
     }
   } catch (error) {
