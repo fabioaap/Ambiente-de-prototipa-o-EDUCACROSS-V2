@@ -54,7 +54,7 @@ $ pnpm gen:journeys
 - **Game**: 0 journeys
 - **Total**: 3 domains, 2 journeys
 - **Last updated**: 2025-11-23
-- **Node version**: v22.21.1 (per .nvmrc)
+- **Environment**: Node v22.21.1 (verified per .nvmrc), pnpm 9.14.4
 
 ### Conclusion
 

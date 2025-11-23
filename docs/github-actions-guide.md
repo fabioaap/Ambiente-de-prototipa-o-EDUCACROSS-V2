@@ -270,8 +270,8 @@ Disponíveis em todos os workflows:
 
 ```yaml
 env:
-  NODE_VERSION: '22'  # Node 22 LTS (as per .nvmrc)
-  PNPM_VERSION: '9.14.4'
+  NODE_VERSION: '22'  # Node 22 LTS (as per .nvmrc: v22.21.1)
+  PNPM_VERSION: '9.14.4'  # Minimum: 8.0.0 (as per package.json: >=8.0.0)
   CI: true
 ```
 
