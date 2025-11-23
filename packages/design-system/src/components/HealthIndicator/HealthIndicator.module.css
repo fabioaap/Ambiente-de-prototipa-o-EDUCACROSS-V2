@@ -1,0 +1,214 @@
+.healthIndicator {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 1rem);
+  padding: var(--space-lg, 1.5rem);
+  background-color: var(--color-neutral-50, #f9fafb);
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--color-neutral-200, #e5e7eb);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-neutral-900, #111827);
+  line-height: 1.5;
+}
+
+/* Grid de métricas */
+.metricsGrid {
+  display: grid;
+  gap: var(--space-md, 1rem);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Mobile: 1 coluna */
+@media (max-width: 640px) {
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: 2 colunas */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3+ colunas dependendo do espaço */
+@media (min-width: 1025px) {
+  .metricsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Métrica individual */
+.metric, .metricLink {
+  display: block;
+  padding: var(--space-md, 1rem);
+  background-color: white;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-neutral-200, #e5e7eb);
+  transition: all 0.2s ease;
+}
+
+.metricLink {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.metricLink:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  border-color: var(--color-primary-300, #93c5fd);
+}
+
+.metricLink:focus-visible {
+  outline: 2px solid var(--color-primary-500, #3b82f6);
+  outline-offset: 2px;
+}
+
+.metricContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs, 0.5rem);
+}
+
+/* Header da métrica */
+.metricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm, 0.75rem);
+}
+
+.metricLabel {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-neutral-600, #4b5563);
+  flex: 1;
+}
+
+/* Status badge */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full, 50%);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-bold, 700);
+  transition: all 0.2s ease;
+}
+
+.statusBadge.success {
+  background-color: var(--color-success-100, #dcfce7);
+  color: var(--color-success-700, #15803d);
+  border: 1px solid var(--color-success-300, #86efac);
+}
+
+.statusBadge.warning {
+  background-color: var(--color-warning-100, #fef3c7);
+  color: var(--color-warning-700, #a16207);
+  border: 1px solid var(--color-warning-300, #fde047);
+}
+
+.statusBadge.error {
+  background-color: var(--color-error-100, #fee2e2);
+  color: var(--color-error-700, #b91c1c);
+  border: 1px solid var(--color-error-300, #fca5a5);
+}
+
+.statusBadge.loading {
+  background-color: var(--color-neutral-100, #f3f4f6);
+  color: var(--color-neutral-600, #4b5563);
+  border: 1px solid var(--color-neutral-300, #d1d5db);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Valor da métrica */
+.metricValue {
+  font-size: var(--font-size-2xl, 1.5rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-neutral-900, #111827);
+  line-height: 1.2;
+}
+
+/* Descrição */
+.metricDescription {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-neutral-600, #4b5563);
+  line-height: 1.4;
+}
+
+/* Timestamp */
+.metricTimestamp {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--color-neutral-500, #6b7280);
+  font-style: italic;
+}
+
+/* Variante compact */
+.healthIndicator.compact .metricsGrid {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-sm, 0.75rem);
+}
+
+.healthIndicator.compact .metric,
+.healthIndicator.compact .metricLink {
+  padding: var(--space-sm, 0.75rem);
+}
+
+.healthIndicator.compact .metricValue {
+  font-size: var(--font-size-xl, 1.25rem);
+}
+
+.healthIndicator.compact .metricLabel {
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+.healthIndicator.compact .statusBadge {
+  width: 20px;
+  height: 20px;
+  font-size: var(--font-size-xs, 0.75rem);
+}
+
+/* Acessibilidade - Alto contraste */
+@media (prefers-contrast: high) {
+  .metric, .metricLink {
+    border-width: 2px;
+  }
+  
+  .statusBadge {
+    border-width: 2px;
+  }
+}
+
+/* Acessibilidade - Movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .metricLink,
+  .statusBadge {
+    transition: none;
+  }
+  
+  .statusBadge.loading {
+    animation: none;
+  }
+  
+  .metricLink:hover {
+    transform: none;
+  }
+}
