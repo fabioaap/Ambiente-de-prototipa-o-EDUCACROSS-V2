@@ -41,7 +41,8 @@ Write-Info "Verificando pré-requisitos..."
 try {
     $ghVersion = gh --version
     Write-Step "GitHub CLI detectada: $ghVersion"
-} catch {
+}
+catch {
     Write-Error "GitHub CLI não instalada. Execute: winget install GitHub.cli"
     exit 1
 }
@@ -50,7 +51,8 @@ try {
 try {
     $gitVersion = git --version
     Write-Step "Git detectado: $gitVersion"
-} catch {
+}
+catch {
     Write-Error "Git não instalado"
     exit 1
 }
@@ -59,7 +61,8 @@ try {
 try {
     $pnpmVersion = pnpm --version
     Write-Step "pnpm detectado: v$pnpmVersion"
-} catch {
+}
+catch {
     Write-Error "pnpm não instalado"
     exit 1
 }
@@ -93,13 +96,14 @@ Ou:
 
 if ($Mode -eq "manual") {
     $choice = Read-Host "Escolha uma opção (0-6)"
-} else {
+}
+else {
     $choice = "6"
     Write-Info "Modo automático: executando TUDO"
 }
 
 function Execute-Block1 {
-    Write-Host "`n" + ("="*80)
+    Write-Host "`n" + ("=" * 80)
     Write-Step "BLOCO 1: Criar WORKFLOW.md"
     
     $workflowContent = @"
@@ -273,7 +277,7 @@ Tempo esperado por job:
 }
 
 function Execute-Block2 {
-    Write-Host "`n" + ("="*80)
+    Write-Host "`n" + ("=" * 80)
     Write-Step "BLOCO 2: Scripts de Automação"
     
     # Script 1: auto-merge-prs.ps1
@@ -395,7 +399,7 @@ switch (`$Action) {
 }
 
 function Execute-Block3 {
-    Write-Host "`n" + ("="*80)
+    Write-Host "`n" + ("=" * 80)
     Write-Step "BLOCO 3: GitHub Actions Workflows"
     
     Write-Info "Criando workflows em .github/workflows/..."
@@ -470,7 +474,7 @@ jobs:
 }
 
 function Execute-Block4 {
-    Write-Host "`n" + ("="*80)
+    Write-Host "`n" + ("=" * 80)
     Write-Step "BLOCO 4: Validação & Teste"
     
     Write-Info "Executando validação local..."
@@ -526,7 +530,7 @@ Next: Fase 3 (Monitoring + Retrospective)
 }
 
 function Execute-Block5 {
-    Write-Host "`n" + ("="*80)
+    Write-Host "`n" + ("=" * 80)
     Write-Step "BLOCO 5: Commit & Merge"
     
     Write-Info "Commitando arquivos da Fase 2..."
