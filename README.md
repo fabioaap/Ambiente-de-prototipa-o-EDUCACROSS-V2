@@ -61,6 +61,34 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 └── pnpm-workspace.yaml      # Configuração do monorepo
 ```
 
+## 🔵 Sprint 2 – Execução & PRs
+
+**Status**: ✅ Validado e pronto para merge (2025-11-22)
+
+### Artefatos de Execução [A] [B] [C]
+
+| Artefato | Arquivo | Status |
+|----------|---------|--------|
+| **[A] Review Checklists** | Comentários em PRs #42, #40, #38, #35, #36 | ✅ 5/5 postadas |
+| **[B] PR Tracking** | [docs/sprint-2-prs.md](docs/sprint-2-prs.md) | ✅ Criada |
+| **[C] Build Report** | [docs/sprint-2-build-report.md](docs/sprint-2-build-report.md) | ✅ Validado |
+
+### Quick Navigation
+- 📋 **Plano Completo**: [RUN_SPRINT2.md](RUN_SPRINT2.md) – Guia principal com 5 issues
+- 📊 **Status Dashboard**: [docs/sprint-2-status.md](docs/sprint-2-status.md) – Timeline e métricas
+- 📝 **Referência Rápida**: [SPRINT2_ARTIFACTS_REFERENCE.md](SPRINT2_ARTIFACTS_REFERENCE.md) – Links e checklists
+- 🤖 **AI Agent Guide**: [.github/copilot-instructions.md](.github/copilot-instructions.md) – Contexto Sprint 2
+- 🔄 **CI/CD Automation**: [.github/workflows/sprint-2-validation.yml](.github/workflows/sprint-2-validation.yml) – GitHub Actions
+
+### PRs P1 em Review (Ordem de Merge Recomendada)
+1. **#40** (G6) – [CONTRIBUTING.md](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/40)
+2. **#42** (C2) – [Dynamic Page Navigation](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/42) ⭐ Critical Path
+3. **#38** (G4) – [Automatic Journey Index](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/38)
+4. **#35** (B4) – [Accessibility Improvements](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/35)
+5. **#36** (D2) – [Storybook A11y Addon](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/36)
+
+---
+
 ## 🚀 Getting Started
 
 ### Pré-requisitos
