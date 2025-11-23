@@ -1,10 +1,63 @@
 import type { Config, DefaultComponentProps } from '@measured/puck';
 import { Button, Text, Card, Layout } from '@prototipo/design-system';
 import { z } from 'zod';
+import { ReactNode } from 'react';
 
-/** Tipo para o contexto Puck passado para os componentes */
+/** 
+ * Tipo para o contexto Puck passado para os componentes.
+ * Inclui renderDropZone e flag de edição.
+ */
 type PuckContext = {
-  renderDropZone: React.ComponentType<{ zone: string }>;
+  renderDropZone: React.ComponentType<{
+    zone: string;
+    allow?: string[];
+    disallow?: string[];
+    style?: React.CSSProperties;
+  }>;
+  isEditing: boolean;
+};
+
+/**
+ * Componente de erro de validação reutilizável.
+ * Renderiza mensagens de erro de forma consistente.
+ */
+const ValidationError = ({ message }: { message: string }): ReactNode => (
+  <div
+    style={{
+      padding: '12px 16px',
+      backgroundColor: '#fee',
+      color: '#c00',
+      borderRadius: '4px',
+      border: '1px solid #fcc',
+      fontSize: '14px',
+      fontFamily: 'system-ui, sans-serif',
+    }}
+  >
+    <strong>Erro de validação:</strong> {message}
+  </div>
+);
+
+/**
+ * Helper para validar props com Zod e retornar erro visual se inválido.
+ * @param schema - Schema Zod para validação
+ * @param props - Props a serem validadas
+ * @param componentName - Nome do componente para logging
+ * @returns null se válido, ReactNode com erro se inválido
+ */
+const validateProps = <T,>(
+  schema: z.ZodSchema<T>,
+  props: unknown,
+  componentName: string
+): ReactNode | null => {
+  const result = schema.safeParse(props);
+
+  if (!result.success) {
+    const errorMessage = result.error.errors.map((e) => e.message).join(', ');
+    console.error(`Erro na validação do ${componentName}:`, result.error);
+    return <ValidationError message={errorMessage} />;
+  }
+
+  return null;
 };
 
 /**
@@ -97,12 +150,8 @@ export const puckConfig: Config = {
       },
       render: ({ text, variant, size }: ButtonProps) => {
         // Validar props em runtime
-        const validatedProps = buttonPropsSchema.safeParse({ text, variant, size });
-        
-        if (!validatedProps.success) {
-          console.error('Erro na validação do Button:', validatedProps.error);
-          return <div style={{ color: 'red', padding: '8px' }}>Erro: Props inválidas</div>;
-        }
+        const error = validateProps(buttonPropsSchema, { text, variant, size }, 'Button');
+        if (error) return error;
 
         return (
           <Button variant={variant} size={size}>
