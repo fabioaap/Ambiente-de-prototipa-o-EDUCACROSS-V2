@@ -115,12 +115,12 @@ export const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
             <tr>
               <th className={styles.rankHeader} scope="col">Pos.</th>
               {showAvatar && <th className={styles.avatarHeader} scope="col">
-                <span className="sr-only">Avatar</span>
+                <span className={styles.srOnly}>Avatar</span>
               </th>}
               <th className={styles.nameHeader} scope="col">Nome</th>
               <th className={styles.scoreHeader} scope="col">Pontuação</th>
               {highlightTop3 && <th className={styles.badgeHeader} scope="col">
-                <span className="sr-only">Distintivo</span>
+                <span className={styles.srOnly}>Distintivo</span>
               </th>}
             </tr>
           </thead>
