@@ -21,9 +21,11 @@
   "scripts": {
     "build": "node scripts/build-tokens.mjs",
     "dev": "node scripts/build-tokens.mjs --watch",
-    "lint": "eslint scripts"
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "chokidar": "^4.0.3"
+    "@prototipo/eslint-config": "workspace:*",
+    "chokidar": "^4.0.3",
+    "eslint": "^9.15.0"
   }
 }
