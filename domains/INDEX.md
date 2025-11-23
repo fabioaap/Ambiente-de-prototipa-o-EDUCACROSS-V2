@@ -1,6 +1,6 @@
 # Índice de Jornadas - EDUCACROSS Prototipação
 
-**Última atualização**: 2025-11-20
+**Última atualização**: 2025-11-23
 
 > Este arquivo é gerado automaticamente. Para regenerar, execute: `pnpm gen:journeys`
 
@@ -18,7 +18,9 @@
 
 **[📖 Documentação do Domínio](./FrontOffice/README.md)**
 
-*(sem jornadas)*
+### Jornadas
+
+- **[onboarding](./FrontOffice/journeys/onboarding/README.md)** - Jornada prototipada
 
 ## Game
 
@@ -31,7 +33,7 @@
 ## 📊 Estatísticas
 
 - **Domínios**: 3
-- **Jornadas**: 1
+- **Jornadas**: 2
 
 ## 🚀 Próximos Passos
 
