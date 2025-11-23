@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Config } from '@measured/puck';
-import { Button, Text, Card, Layout } from '@prototipo/design-system';
+import { Button, Text, Card, Layout, Progress } from '@prototipo/design-system';
 
 export type ButtonProps = {
   text: string;
@@ -25,6 +25,15 @@ export type CardProps = {
 export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
   children: ReactNode[];
+};
+
+export type ProgressProps = {
+  value: number;
+  max: number;
+  variant: 'linear' | 'circular';
+  size: 'sm' | 'md' | 'lg';
+  theme: 'primary' | 'secondary' | 'success' | 'warning' | 'error';
+  showLabel: boolean;
 };
 
 export const puckConfig: Config = {
@@ -189,6 +198,71 @@ export const puckConfig: Config = {
               Layout Content (DropZone disabled)
             </div>
           </Layout>
+        );
+      },
+    },
+    Progress: {
+      fields: {
+        value: {
+          type: 'number',
+          min: 0,
+          max: 100,
+        },
+        max: {
+          type: 'number',
+          min: 1,
+        },
+        variant: {
+          type: 'select',
+          options: [
+            { label: 'Linear', value: 'linear' },
+            { label: 'Circular', value: 'circular' },
+          ],
+        },
+        size: {
+          type: 'select',
+          options: [
+            { label: 'Small', value: 'sm' },
+            { label: 'Medium', value: 'md' },
+            { label: 'Large', value: 'lg' },
+          ],
+        },
+        theme: {
+          type: 'select',
+          options: [
+            { label: 'Primary', value: 'primary' },
+            { label: 'Secondary', value: 'secondary' },
+            { label: 'Success', value: 'success' },
+            { label: 'Warning', value: 'warning' },
+            { label: 'Error', value: 'error' },
+          ],
+        },
+        showLabel: {
+          type: 'radio',
+          options: [
+            { label: 'Yes', value: true },
+            { label: 'No', value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        value: 50,
+        max: 100,
+        variant: 'linear',
+        size: 'md',
+        theme: 'primary',
+        showLabel: true,
+      },
+      render: ({ value, max, variant, size, theme, showLabel }: ProgressProps) => {
+        return (
+          <Progress
+            value={value}
+            max={max}
+            variant={variant}
+            size={size}
+            theme={theme}
+            showLabel={showLabel}
+          />
         );
       },
     },
