@@ -318,6 +318,8 @@
 
 ### Estado de Sucesso (dentro da mesma página)
 
+> ⚠️ **Nota de Implementação**: Em uma aplicação real, o card de sucesso seria exibido APÓS o usuário clicar em "Publicar", substituindo os cards de confirmação através de renderização condicional (state management). Na prototipação estática com JSON do Puck, ambos os cards estão presentes no mesmo arquivo para demonstrar os dois estados do fluxo. Em produção, usar state (ex: `isSuccess`) para alternar entre os cards.
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                                                 [Perfil ▼]  │

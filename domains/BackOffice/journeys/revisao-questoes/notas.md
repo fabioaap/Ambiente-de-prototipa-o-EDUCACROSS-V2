@@ -2,12 +2,12 @@
 
 ## 📅 Histórico de Feedback
 
-### Feedback inicial (20/11/2025)
+### Feedback inicial (2025-11-20)
 - PM solicitou destaque para tempo médio de revisão por questão → incluir métrica na próxima iteração do dashboard.
 - Designers pediram componente de badge para status (pendente/aprovado/revisar) – requisito registrado no backlog (B4/B5).
 - Revisores querem campo rápido para comentários pré-definidos ao solicitar ajustes.
 
-### Atualização de implementação (23/11/2025)
+### Atualização de implementação (2025-11-23)
 - ✅ Criadas 4 páginas completas no Studio: lista, detalhe, edição e confirmação
 - ✅ Documentação expandida no README seguindo template oficial
 - ✅ Arquivo links.md criado com todas as URLs e referências
