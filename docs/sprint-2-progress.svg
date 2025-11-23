@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="260" viewBox="0 0 700 260">
+  <style>
+    .bg { fill: #f7fafc; }
+    .axis { stroke: #94a3b8; stroke-width: 1; }
+    .label { font-family: Inter, Arial, sans-serif; font-size: 12px; fill: #102a43; }
+    .title { font-family: Inter, Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+    .bar { fill: #06b6d4; }
+    .bar-done { fill: #10b981; }
+    .bar-warn { fill: #f59e0b; }
+  </style>
+  <rect class="bg" width="700" height="260" rx="6" />
+  <text x="20" y="30" class="title">Progresso do Projeto – Sprint 2 (Resumo) — 2025-11-22</text>
+
+  <!-- Axes labels -->
+  <text x="40" y="240" class="label">P0 Concluído</text>
+  <text x="170" y="240" class="label">Docs Ready</text>
+  <text x="300" y="240" class="label">CI/CD</text>
+  <text x="430" y="240" class="label">S2 In Progress</text>
+  <text x="560" y="240" class="label">S2 Completed</text>
+
+  <!-- Bars -->
+  <!-- P0 Completed: 100% -->
+  <rect x="40" y="60" width="80" height="160" class="bar-done" rx="4" />
+  <text x="70" y="55" text-anchor="middle" class="label">100%</text>
+
+  <!-- Docs Ready: 100% -->
+  <rect x="170" y="60" width="80" height="160" class="bar-done" rx="4" />
+  <text x="210" y="55" text-anchor="middle" class="label">100%</text>
+
+  <!-- CI/CD: 100% -->
+  <rect x="300" y="60" width="80" height="160" class="bar-done" rx="4" />
+  <text x="340" y="55" text-anchor="middle" class="label">100%</text>
+
+  <!-- S2 In Progress: 100% (5/5 PR open) -->
+  <rect x="430" y="60" width="80" height="160" class="bar" rx="4" />
+  <text x="470" y="55" text-anchor="middle" class="label">100% (5/5)</text>
+
+  <!-- S2 Completed: 0% -->
+  <rect x="560" y="220" width="80" height="0" class="bar-warn" rx="4" />
+  <text x="600" y="215" text-anchor="middle" class="label">0% (0/5)</text>
+
+  <!-- Footnote -->
+  <text x="20" y="250" class="label">Legenda: S2 In Progress = % prioritized Sprint 2 issues with PRs open</text>
+  <text x="20" y="267" class="label">Fonte: `git`, `gh` PR list e arquivos de Sprint 2 (docs/)</text>
+</svg>

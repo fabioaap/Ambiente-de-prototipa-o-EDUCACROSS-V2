@@ -10,6 +10,27 @@ Ambiente de prototipação orientado a jornadas (não-produtivo). Este backlog r
 | P1    | 11    | 0         | 0% | 🔴 **Sprint 2 iniciada em 2025-11-22** – C2, B4, D2, G4, G6 em backlog |
 | P2    | 4     | 0         | 0% | 🟡 Planejado para Sprint 3 (após P1 estabilizar) |
 
+## 🧭 Progresso Atual (0825 snapshots em 2025-11-22)
+> Métricas rápidas extraídas de branches, PRs e documentação.
+
+| Categoria | Métrica | Valor |
+|---|---:|---:|
+| P0 — Sprint 1 | Issues concluídas | 5 / 5 (100%) |
+| Sprint 2 (prioritários) | PRs abertas / Iniciado | 5 / 5 (100%) |
+| Sprint 2 (prioritários) | PRs mergeadas / Concluído | 0 / 5 (0%) |
+| Docs de suporte Sprint 2 | Criados | 6 / 6 (100%) |
+| CI / GitHub Actions | Arquivo workflow presente | ✅ `.github/workflows/sprint-2-validation.yml` |
+| Build / Lint local | Verificação básica | ✅ `pnpm build` + `pnpm lint` (sem regressões críticas) |
+
+Gráfico resumido do progresso: `docs/sprint-2-progress.svg`
+
+![Sprint 2 Progress](./sprint-2-progress.svg)
+
+> Notas:
+- "Iniciado" = branch/PR foi criado (atividade registrada)
+- "Concluído" = PR mergeado e issue fechada
+- Para completar S2: faça QA, code review e merge das PRs em aberto
+
 ### ✅ Sprint 1 – Concluído e Mergeado (PR #30)
 - ✅ **#1 (C1)** – Studio API Persistência → **Fechada**
 - ✅ **#2 (B1)** – Form Components → **Fechada**
