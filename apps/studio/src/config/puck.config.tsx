@@ -1,34 +1,74 @@
-import type { ReactNode } from 'react';
-import type { Config } from '@measured/puck';
+import type { Config, DefaultComponentProps } from '@measured/puck';
 import { Button, Text, Card, Layout } from '@prototipo/design-system';
+import { z } from 'zod';
 
-export type ButtonProps = {
-  text: string;
-  variant: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size: 'sm' | 'md' | 'lg';
+/** Tipo para o contexto Puck passado para os componentes */
+type PuckContext = {
+  renderDropZone: React.ComponentType<{ zone: string }>;
 };
 
-export type TextProps = {
-  content: string;
-  as: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  size: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
-  weight: 'normal' | 'medium' | 'semibold' | 'bold';
-  color: 'default' | 'muted' | 'primary' | 'secondary' | 'success' | 'warning' | 'error';
-};
+/**
+ * Schema de validação para props do componente Button.
+ * Valida texto, variante e tamanho do botão.
+ */
+export const buttonPropsSchema = z.object({
+  text: z.string().min(1, 'Texto do botão é obrigatório'),
+  variant: z.enum(['primary', 'secondary', 'outline', 'ghost']),
+  size: z.enum(['sm', 'md', 'lg']),
+});
 
-export type CardProps = {
-  variant: 'default' | 'bordered' | 'elevated';
-  padding: 'none' | 'sm' | 'md' | 'lg';
-  children: ReactNode[];
-};
+/**
+ * Schema de validação para props do componente Text.
+ * Valida conteúdo, tag HTML, tamanho, peso e cor do texto.
+ */
+export const textPropsSchema = z.object({
+  content: z.string().min(1, 'Conteúdo do texto é obrigatório'),
+  as: z.enum(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
+  size: z.enum(['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl']),
+  weight: z.enum(['normal', 'medium', 'semibold', 'bold']),
+  color: z.enum(['default', 'muted', 'primary', 'secondary', 'success', 'warning', 'error']),
+});
 
-export type LayoutProps = {
-  maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
-  children: ReactNode[];
-};
+/**
+ * Schema de validação para props do componente Card.
+ * Valida variante e padding do card.
+ */
+export const cardPropsSchema = z.object({
+  variant: z.enum(['default', 'bordered', 'elevated']),
+  padding: z.enum(['none', 'sm', 'md', 'lg']),
+});
 
+/**
+ * Schema de validação para props do componente Layout.
+ * Valida largura máxima do layout.
+ */
+export const layoutPropsSchema = z.object({
+  maxWidth: z.enum(['sm', 'md', 'lg', 'xl', '2xl', 'full']),
+});
+
+/** Props do componente Button para uso no Puck */
+export type ButtonProps = z.infer<typeof buttonPropsSchema>;
+
+/** Props do componente Text para uso no Puck */
+export type TextProps = z.infer<typeof textPropsSchema>;
+
+/** Props do componente Card para uso no Puck (com suporte a DropZone) */
+export type CardProps = z.infer<typeof cardPropsSchema>;
+
+/** Props do componente Layout para uso no Puck (com suporte a DropZone) */
+export type LayoutProps = z.infer<typeof layoutPropsSchema>;
+
+/**
+ * Configuração principal do Puck com componentes do Design System.
+ * Define campos, props padrão e renderização para cada componente.
+ */
 export const puckConfig: Config = {
   components: {
+    /**
+     * Componente Button - Botão interativo do design system.
+     * Suporta múltiplas variantes (primary, secondary, outline, ghost)
+     * e tamanhos (sm, md, lg).
+     */
     Button: {
       fields: {
         text: { type: 'text' },
@@ -52,10 +92,18 @@ export const puckConfig: Config = {
       },
       defaultProps: {
         text: 'Click me',
-        variant: 'primary',
-        size: 'md',
+        variant: 'primary' as const,
+        size: 'md' as const,
       },
       render: ({ text, variant, size }: ButtonProps) => {
+        // Validar props em runtime
+        const validatedProps = buttonPropsSchema.safeParse({ text, variant, size });
+        
+        if (!validatedProps.success) {
+          console.error('Erro na validação do Button:', validatedProps.error);
+          return <div style={{ color: 'red', padding: '8px' }}>Erro: Props inválidas</div>;
+        }
+
         return (
           <Button variant={variant} size={size}>
             {text}
@@ -63,6 +111,10 @@ export const puckConfig: Config = {
         );
       },
     },
+    /**
+     * Componente Text - Elemento de texto com suporte a heading e paragraph.
+     * Controla tag HTML, tamanho, peso da fonte e cores.
+     */
     Text: {
       fields: {
         content: { type: 'textarea' },
@@ -116,12 +168,20 @@ export const puckConfig: Config = {
       },
       defaultProps: {
         content: 'Enter your text here',
-        as: 'p',
-        size: 'base',
-        weight: 'normal',
-        color: 'default',
+        as: 'p' as const,
+        size: 'base' as const,
+        weight: 'normal' as const,
+        color: 'default' as const,
       },
       render: ({ content, as, size, weight, color }: TextProps) => {
+        // Validar props em runtime
+        const validatedProps = textPropsSchema.safeParse({ content, as, size, weight, color });
+        
+        if (!validatedProps.success) {
+          console.error('Erro na validação do Text:', validatedProps.error);
+          return <div style={{ color: 'red', padding: '8px' }}>Erro: Props inválidas</div>;
+        }
+
         return (
           <Text as={as} size={size} weight={weight} color={color}>
             {content}
@@ -129,6 +189,11 @@ export const puckConfig: Config = {
         );
       },
     },
+    /**
+     * Componente Card - Container com variantes de estilo.
+     * Suporta conteúdo aninhado via DropZone.
+     * Permite drag-and-drop de outros componentes dentro do card.
+     */
     Card: {
       fields: {
         variant: {
@@ -150,20 +215,33 @@ export const puckConfig: Config = {
         },
       },
       defaultProps: {
-        variant: 'default',
-        padding: 'md',
-        children: [] as ReactNode[],
+        variant: 'default' as const,
+        padding: 'md' as const,
       },
-      render: ({ variant, padding }) => {
+      render: ({ variant, padding, puck }: CardProps & DefaultComponentProps & { puck: PuckContext }) => {
+        // Validar props em runtime
+        const validatedProps = cardPropsSchema.safeParse({ variant, padding });
+        
+        if (!validatedProps.success) {
+          console.error('Erro na validação do Card:', validatedProps.error);
+          return <div style={{ color: 'red', padding: '8px' }}>Erro: Props inválidas</div>;
+        }
+
+        const { renderDropZone: DropZone } = puck;
+
         return (
           <Card variant={variant} padding={padding}>
-            <div style={{ padding: '8px', border: '1px dashed #ccc', borderRadius: '4px' }}>
-              Card Content (DropZone disabled)
-            </div>
+            {/* DropZone permite adicionar componentes dentro do Card */}
+            <DropZone zone="card-content" />
           </Card>
         );
       },
     },
+    /**
+     * Componente Layout - Container de layout responsivo.
+     * Suporta conteúdo aninhado via DropZone.
+     * Controla largura máxima e centralização do conteúdo.
+     */
     Layout: {
       fields: {
         maxWidth: {
@@ -179,15 +257,23 @@ export const puckConfig: Config = {
         },
       },
       defaultProps: {
-        maxWidth: 'xl',
-        children: [] as ReactNode[],
+        maxWidth: 'xl' as const,
       },
-      render: ({ maxWidth }) => {
+      render: ({ maxWidth, puck }: LayoutProps & DefaultComponentProps & { puck: PuckContext }) => {
+        // Validar props em runtime
+        const validatedProps = layoutPropsSchema.safeParse({ maxWidth });
+        
+        if (!validatedProps.success) {
+          console.error('Erro na validação do Layout:', validatedProps.error);
+          return <div style={{ color: 'red', padding: '8px' }}>Erro: Props inválidas</div>;
+        }
+
+        const { renderDropZone: DropZone } = puck;
+
         return (
           <Layout maxWidth={maxWidth}>
-            <div style={{ padding: '8px', border: '1px dashed #ccc', borderRadius: '4px' }}>
-              Layout Content (DropZone disabled)
-            </div>
+            {/* DropZone permite adicionar componentes dentro do Layout */}
+            <DropZone zone="layout-content" />
           </Layout>
         );
       },
