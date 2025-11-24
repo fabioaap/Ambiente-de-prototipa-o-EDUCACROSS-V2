@@ -7,14 +7,14 @@ Este documento serve como o "Cérebro" para a execução autônoma ou assistida 
 | ID | Título | Prioridade | Depende de | Status Dependência | Estado Atual |
 |----|--------|------------|------------|--------------------|--------------|
 | **#59** | **Puck Refactor (DropZone)** | **P1 (CRÍTICA)** | - | ✅ Resolvida | **✅ CONCLUÍDA** |
-| **#56** | BackOffice Jornada | P1 | - | ✅ Resolvida | **🟢 PRONTA** |
-| **#57** | FrontOffice Onboarding | P1 | - | ✅ Resolvida | **🟢 PRONTA** |
-| **#60** | Progress Component | P2 | - | ✅ Resolvida | **🟢 PRONTA** |
-| **#61** | Leaderboard Component | P2 | - | ✅ Resolvida | **🟢 PRONTA** |
+| **#60** | Progress Component | P2 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
+| **#61** | Leaderboard Component | P2 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
+| **#56** | BackOffice Jornada | P1 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
+| **#57** | FrontOffice Onboarding | P1 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
 | #53 | Dashboard API | P2 | #59 | ✅ Resolvida | **🟢 PRONTA** |
 | #54 | Dashboard UI | P2 | #53 | 🔴 Bloqueada | 🔴 AGUARDANDO |
 | #55 | Health Metrics | P2 | #54 | 🔴 Bloqueada | 🔴 AGUARDANDO |
-| #58 | Game Hub | P2 | #61 | 🔴 Bloqueada | 🔴 AGUARDANDO |
+| #58 | Game Hub | P2 | #61 | ✅ Resolvida | **🟢 PRONTA** |
 
 *(Issues #4, #11, #13, #14, #15 são referências antigas e serão fechadas automaticamente ao final da sprint)*
 
@@ -90,17 +90,100 @@ Inicie a execução agora.
   - Type-check: ✅ Passou
   - Próximo desbloqueado: #53 (Dashboard API)
   
-- [ ] **#56 BackOffice**
-  - Status: 🟢 PRONTA (Paralelo)
-  
-- [ ] **#57 FrontOffice**
-  - Status: 🟢 PRONTA (Paralelo)
+- [x] **#60 Progress Component**
+  - Status: ✅ CONCLUÍDA (2025-11-24)
+  - Ação: Implementado componente Progress com variantes linear e circular
+  - Arquivos criados:
+    - `packages/design-system/src/components/Progress/Progress.tsx`
+    - `packages/design-system/src/components/Progress/Progress.module.css`
+    - `apps/storybook/src/stories/Progress.stories.tsx`
+  - Funcionalidades:
+    - Variante linear (barra horizontal)
+    - Variante circular (SVG-based)
+    - 3 tamanhos: sm, md, lg
+    - 5 cores: primary, secondary, success, warning, error
+    - Labels opcionais (porcentagem ou customizado)
+    - Acessibilidade completa (ARIA attributes)
+  - Build: ✅ Passou (166ms ESM, 165ms CJS)
+  - Type-check: ✅ Passou (0 errors)
+  - Lint: ✅ Passou
+  - Tempo: ~2 horas
 
-- [ ] **#60 Progress**
-  - Status: 🟢 PRONTA (Paralelo)
+- [x] **#61 Leaderboard Component**
+  - Status: ✅ CONCLUÍDA (2025-11-24)
+  - Ação: Implementado componente Leaderboard para rankings
+  - Arquivos criados:
+    - `packages/design-system/src/components/Leaderboard/Leaderboard.tsx`
+    - `packages/design-system/src/components/Leaderboard/Leaderboard.module.css`
+    - `apps/storybook/src/stories/Leaderboard.stories.tsx`
+  - Funcionalidades:
+    - Ordenação automática por score
+    - Medalhas top 3 (🥇🥈🥉)
+    - Suporte a avatares (imagens ou iniciais)
+    - Badges de usuário
+    - Highlight de usuário específico
+    - Paginação/limite
+    - Empty state
+    - Acessibilidade completa (role="table")
+    - Responsivo para mobile
+  - Build: ✅ Passou (166ms ESM, 165ms CJS)
+  - Type-check: ✅ Passou (0 errors)
+  - Lint: ✅ Passou
+  - Tempo: ~2.5 horas
 
-- [ ] **#61 Leaderboard**
-  - Status: 🟢 PRONTA (Paralelo)
+- [x] **#56 BackOffice Jornada (Revisão de Questões)**
+  - Status: ✅ CONCLUÍDA (2025-11-24)
+  - Ação: Documentação completa da jornada de revisão de questões
+  - Arquivos criados/atualizados:
+    - `domains/BackOffice/journeys/revisao-questoes/README.md` (atualizado com detalhes completos)
+    - `domains/BackOffice/journeys/revisao-questoes/links.md` (novo)
+  - Conteúdo documentado:
+    - Objetivo e contexto de negócio detalhado
+    - Fluxo completo da jornada (Lista → Detalhe → Confirmação)
+    - Componentes utilizados e futuros
+    - Decisões de design (4 decisões documentadas)
+    - Métricas de sucesso (KPIs primários e secundários)
+    - Próximos passos categorizados (curto/médio/longo prazo)
+    - Links para Studio, Storybook, referências
+  - Páginas existentes:
+    - `/backoffice/revisao-questoes/lista` ✅
+    - `/backoffice/revisao-questoes/detalhe` ✅
+  - Componentes disponíveis: 100% (Card, Button, Badge, Text, Layout, Input, Select, Progress, Leaderboard)
+  - Tempo: ~1.5 horas
+
+- [x] **#57 FrontOffice Onboarding**
+  - Status: ✅ CONCLUÍDA (2025-11-24)
+  - Ação: Documentação completa da jornada de onboarding de usuários
+  - Arquivos criados/atualizados:
+    - `domains/FrontOffice/journeys/onboarding/README.md` (atualizado com detalhes completos)
+    - `domains/FrontOffice/journeys/onboarding/links.md` (novo)
+  - Conteúdo documentado:
+    - Objetivo e contexto de negócio detalhado
+    - Fluxo completo de 4 etapas (Welcome → Tutorial Nav → Tutorial Game → Done)
+    - Fluxo visual em ASCII art
+    - Componentes utilizados por etapa
+    - 5 decisões de design documentadas
+    - Guia de estilos e componentes detalhado
+    - Métricas de sucesso (KPIs primários e secundários)
+    - Analytics a implementar
+    - Próximos passos categorizados (curto/médio/longo prazo)
+    - Benchmarks e referências externas
+    - Links para Studio, Storybook, recursos
+  - Páginas planejadas:
+    - `/frontoffice/onboarding/welcome` 📋
+    - `/frontoffice/onboarding/tutorial-nav` 📋
+    - `/frontoffice/onboarding/tutorial-game` 📋
+    - `/frontoffice/onboarding/done` 📋
+  - Componentes disponíveis: 100% (Layout, Button, Card, Text, Progress, Badge, Input, Checkbox, Leaderboard)
+  - Tempo: ~2 horas
+
+---
+
+**TOTAL DE ISSUES CONCLUÍDAS**: 5 (4 paralelas + 1 blocker crítico anterior)
+
+**Próximas issues desbloqueadas**:
+- ✅ #53 (Dashboard API) - Já estava pronta após #59
+- ✅ #58 (Game Hub) - Desbloqueado após #61
 
 ---
 
