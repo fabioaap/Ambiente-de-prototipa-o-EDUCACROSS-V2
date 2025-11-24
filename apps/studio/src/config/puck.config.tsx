@@ -1,5 +1,6 @@
 import type { Config } from '@measured/puck';
-import { Button, Text, Card, Layout } from '@prototipo/design-system';
+import { Button, Text, Card, Layout, Badge, Progress } from '@prototipo/design-system';
+import React from 'react';
 
 export type ButtonProps = {
   text: string;
@@ -22,6 +23,47 @@ export type CardProps = {
 
 export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+};
+
+/**
+ * Tipos para componentes do Game Hub
+ * Usados para listar, filtrar e exibir jogos educacionais
+ */
+export type GameCardProps = {
+  /** Título do jogo */
+  title: string;
+  /** Descrição breve do jogo */
+  description: string;
+  /** Emoji ou placeholder para thumbnail */
+  thumbnail: string;
+  /** Categoria educacional do jogo */
+  category: 'math' | 'language' | 'science' | 'logic';
+  /** Nível de dificuldade */
+  difficulty: 'easy' | 'medium' | 'hard';
+  /** Tempo estimado de jogo */
+  estimatedTime: string;
+  /** Progresso do jogador (0-100) */
+  progress: number;
+  /** Status especial do jogo */
+  status: 'new' | 'popular' | 'completed' | 'none';
+  /** Slug para navegação */
+  slug: string;
+};
+
+export type GameFilterProps = {
+  /** Label para o grupo de filtros */
+  label: string;
+  /** Mostrar filtro de categoria */
+  showCategoryFilter: boolean;
+  /** Mostrar filtro de dificuldade */
+  showDifficultyFilter: boolean;
+};
+
+export type GameGridProps = {
+  /** Número de colunas no grid */
+  columns: '2' | '3' | '4';
+  /** Gap entre os cards */
+  gap: 'sm' | 'md' | 'lg';
 };
 
 export const puckConfig: Config = {
@@ -180,6 +222,324 @@ export const puckConfig: Config = {
           <Layout maxWidth={maxWidth}>
             {puck.renderDropZone({ zone: `${id}:content` })}
           </Layout>
+        );
+      },
+    },
+
+    /**
+     * GameCard - Card de jogo para o Game Hub
+     * Exibe informações do jogo com thumbnail, categoria, dificuldade e progresso
+     */
+    GameCard: {
+      fields: {
+        title: { type: 'text' },
+        description: { type: 'textarea' },
+        thumbnail: { type: 'text' },
+        category: {
+          type: 'select',
+          options: [
+            { label: 'Matemática', value: 'math' },
+            { label: 'Linguagem', value: 'language' },
+            { label: 'Ciências', value: 'science' },
+            { label: 'Lógica', value: 'logic' },
+          ],
+        },
+        difficulty: {
+          type: 'select',
+          options: [
+            { label: 'Fácil', value: 'easy' },
+            { label: 'Médio', value: 'medium' },
+            { label: 'Difícil', value: 'hard' },
+          ],
+        },
+        estimatedTime: { type: 'text' },
+        progress: { type: 'number' },
+        status: {
+          type: 'select',
+          options: [
+            { label: 'Nenhum', value: 'none' },
+            { label: 'Novo', value: 'new' },
+            { label: 'Popular', value: 'popular' },
+            { label: 'Concluído', value: 'completed' },
+          ],
+        },
+        slug: { type: 'text' },
+      },
+      defaultProps: {
+        title: 'Nome do Jogo',
+        description: 'Descrição breve do jogo educacional',
+        thumbnail: '🎮',
+        category: 'math',
+        difficulty: 'medium',
+        estimatedTime: '10-15 min',
+        progress: 0,
+        status: 'none',
+        slug: 'game-slug',
+      },
+      render: ({
+        title,
+        description,
+        thumbnail,
+        category,
+        difficulty,
+        estimatedTime,
+        progress,
+        status,
+      }: GameCardProps) => {
+        const categoryLabels: Record<string, string> = {
+          math: 'Matemática',
+          language: 'Linguagem',
+          science: 'Ciências',
+          logic: 'Lógica',
+        };
+        const categoryColors: Record<string, string> = {
+          math: '#3b82f6',
+          language: '#22c55e',
+          science: '#f59e0b',
+          logic: '#8b5cf6',
+        };
+        const difficultyLabels: Record<string, string> = {
+          easy: 'Fácil',
+          medium: 'Médio',
+          hard: 'Difícil',
+        };
+        const statusVariants: Record<string, 'success' | 'warning' | 'info' | 'default'> = {
+          new: 'info',
+          popular: 'warning',
+          completed: 'success',
+          none: 'default',
+        };
+        const statusLabels: Record<string, string> = {
+          new: 'Novo',
+          popular: 'Popular',
+          completed: 'Concluído',
+          none: '',
+        };
+
+        return (
+          <Card variant="elevated" padding="md">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {/* Header com thumbnail e status */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <span style={{ fontSize: '48px', lineHeight: 1 }}>{thumbnail}</span>
+                {status !== 'none' && (
+                  <Badge variant={statusVariants[status]} size="sm">
+                    {statusLabels[status]}
+                  </Badge>
+                )}
+              </div>
+
+              {/* Título e descrição */}
+              <div>
+                <Text as="h3" size="xl" weight="semibold" color="default">
+                  {title}
+                </Text>
+                <Text as="p" size="sm" color="muted">
+                  {description}
+                </Text>
+              </div>
+
+              {/* Metadados */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    fontSize: '12px',
+                    backgroundColor: categoryColors[category],
+                    color: 'white',
+                  }}
+                >
+                  {categoryLabels[category]}
+                </span>
+                <span
+                  style={{
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    fontSize: '12px',
+                    backgroundColor: '#e5e7eb',
+                    color: '#374151',
+                  }}
+                >
+                  {difficultyLabels[difficulty]}
+                </span>
+                <span
+                  style={{
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    fontSize: '12px',
+                    backgroundColor: '#e5e7eb',
+                    color: '#374151',
+                  }}
+                >
+                  ⏱️ {estimatedTime}
+                </span>
+              </div>
+
+              {/* Progresso */}
+              {progress > 0 && (
+                <div>
+                  <Progress value={progress} size="sm" color="primary" showLabel />
+                </div>
+              )}
+
+              {/* Botão de ação */}
+              <Button variant="primary" size="md">
+                {progress > 0 && progress < 100 ? 'Continuar' : progress === 100 ? 'Jogar Novamente' : 'Jogar'}
+              </Button>
+            </div>
+          </Card>
+        );
+      },
+    },
+
+    /**
+     * GameFilter - Filtros para o Game Hub
+     * Permite filtrar jogos por categoria e dificuldade
+     */
+    GameFilter: {
+      fields: {
+        label: { type: 'text' },
+        showCategoryFilter: { type: 'radio', options: [
+          { label: 'Sim', value: true },
+          { label: 'Não', value: false },
+        ]},
+        showDifficultyFilter: { type: 'radio', options: [
+          { label: 'Sim', value: true },
+          { label: 'Não', value: false },
+        ]},
+      },
+      defaultProps: {
+        label: 'Filtrar jogos',
+        showCategoryFilter: true,
+        showDifficultyFilter: true,
+      },
+      render: ({ label, showCategoryFilter, showDifficultyFilter }: GameFilterProps) => {
+        return (
+          <Card variant="bordered" padding="md">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <Text as="h3" size="lg" weight="semibold" color="default">
+                {label}
+              </Text>
+
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                {showCategoryFilter && (
+                  <div style={{ flex: '1 1 200px' }}>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        marginBottom: '4px',
+                        color: '#374151',
+                      }}
+                    >
+                      Categoria
+                    </label>
+                    <select
+                      style={{
+                        width: '100%',
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        border: '1px solid #d1d5db',
+                        fontSize: '14px',
+                        backgroundColor: 'white',
+                      }}
+                    >
+                      <option value="">Todas as categorias</option>
+                      <option value="math">Matemática</option>
+                      <option value="language">Linguagem</option>
+                      <option value="science">Ciências</option>
+                      <option value="logic">Lógica</option>
+                    </select>
+                  </div>
+                )}
+
+                {showDifficultyFilter && (
+                  <div style={{ flex: '1 1 200px' }}>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '14px',
+                        fontWeight: 500,
+                        marginBottom: '4px',
+                        color: '#374151',
+                      }}
+                    >
+                      Dificuldade
+                    </label>
+                    <select
+                      style={{
+                        width: '100%',
+                        padding: '8px 12px',
+                        borderRadius: '6px',
+                        border: '1px solid #d1d5db',
+                        fontSize: '14px',
+                        backgroundColor: 'white',
+                      }}
+                    >
+                      <option value="">Todas as dificuldades</option>
+                      <option value="easy">Fácil</option>
+                      <option value="medium">Médio</option>
+                      <option value="hard">Difícil</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+            </div>
+          </Card>
+        );
+      },
+    },
+
+    /**
+     * GameGrid - Grid responsivo para exibir GameCards
+     * Container que organiza os cards de jogos em colunas
+     */
+    GameGrid: {
+      fields: {
+        columns: {
+          type: 'select',
+          options: [
+            { label: '2 Colunas', value: '2' },
+            { label: '3 Colunas', value: '3' },
+            { label: '4 Colunas', value: '4' },
+          ],
+        },
+        gap: {
+          type: 'select',
+          options: [
+            { label: 'Pequeno', value: 'sm' },
+            { label: 'Médio', value: 'md' },
+            { label: 'Grande', value: 'lg' },
+          ],
+        },
+      },
+      defaultProps: {
+        columns: '3',
+        gap: 'md',
+      },
+      render: ({ columns, gap, puck, id }: GameGridProps & { puck: { renderDropZone: (opts: { zone: string }) => React.ReactNode }; id: string }) => {
+        const gapSizes: Record<string, string> = {
+          sm: '12px',
+          md: '20px',
+          lg: '32px',
+        };
+
+        // Usar minmax com base no número de colunas para responsividade
+        const minWidth = columns === '4' ? '240px' : columns === '2' ? '320px' : '280px';
+
+        return (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}, 1fr))`,
+              gap: gapSizes[gap],
+              width: '100%',
+            }}
+          >
+            {puck.renderDropZone({ zone: `${id}:cards` })}
+          </div>
         );
       },
     },
