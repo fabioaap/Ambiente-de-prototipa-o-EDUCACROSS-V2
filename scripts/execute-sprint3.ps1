@@ -436,15 +436,19 @@ function Generate-ExecutionReport {
     $report += ""
     $report += "## 🎯 Grafo de Dependências"
     $report += ""
-    $report += "```"
+    $report += '```'
     foreach ($issueNum in ($issueGraph.Keys | Sort-Object)) {
         $issue = $issueGraph[$issueNum]
         if ($issue.DependsOn.Count -gt 0) {
-            $deps = ($issue.DependsOn | ForEach-Object { "#$_" }) -join ", "
+            $depsList = @()
+            foreach ($dep in $issue.DependsOn) {
+                $depsList += "#$dep"
+            }
+            $deps = $depsList -join ", "
             $report += "#$issueNum [$($issue.Title)] depende de: $deps"
         }
     }
-    $report += "```"
+    $report += '```'
     $report += ""
     
     $report += "---"
