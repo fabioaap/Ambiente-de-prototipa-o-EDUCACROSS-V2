@@ -78,7 +78,11 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ## Jornadas Existentes
 
-_(Esta seção será atualizada conforme jornadas forem criadas)_
+### 1. [Game Hub](./journeys/game-hub/)
+**Status**: 🟢 Documentação Completa | 🔄 Prototipagem em Andamento  
+**Objetivo**: Hub centralizado para acesso a todos os jogos educacionais  
+**Componentes**: Card, Button, Progress, Leaderboard, Badge, Text, Layout  
+**Links**: [README](./journeys/game-hub/README.md) | [Notas UX](./journeys/game-hub/notas.md) | [Links](./journeys/game-hub/links.md)
 
 ---
 
