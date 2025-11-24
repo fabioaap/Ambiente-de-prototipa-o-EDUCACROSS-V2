@@ -6,12 +6,12 @@ Este documento serve como o "Cérebro" para a execução autônoma ou assistida 
 
 | ID | Título | Prioridade | Depende de | Status Dependência | Estado Atual |
 |----|--------|------------|------------|--------------------|--------------|
-| **#59** | **Puck Refactor (DropZone)** | **P1 (CRÍTICA)** | - | ✅ Resolvida | **🟢 PRONTA** |
+| **#59** | **Puck Refactor (DropZone)** | **P1 (CRÍTICA)** | - | ✅ Resolvida | **✅ CONCLUÍDA** |
 | **#56** | BackOffice Jornada | P1 | - | ✅ Resolvida | **🟢 PRONTA** |
 | **#57** | FrontOffice Onboarding | P1 | - | ✅ Resolvida | **🟢 PRONTA** |
 | **#60** | Progress Component | P2 | - | ✅ Resolvida | **🟢 PRONTA** |
 | **#61** | Leaderboard Component | P2 | - | ✅ Resolvida | **🟢 PRONTA** |
-| #53 | Dashboard API | P2 | #59 | 🔴 Bloqueada | 🔴 AGUARDANDO |
+| #53 | Dashboard API | P2 | #59 | ✅ Resolvida | **🟢 PRONTA** |
 | #54 | Dashboard UI | P2 | #53 | 🔴 Bloqueada | 🔴 AGUARDANDO |
 | #55 | Health Metrics | P2 | #54 | 🔴 Bloqueada | 🔴 AGUARDANDO |
 | #58 | Game Hub | P2 | #61 | 🔴 Bloqueada | 🔴 AGUARDANDO |
@@ -82,9 +82,13 @@ Inicie a execução agora.
 
 ## 4. 🔄 LOG DE EXECUÇÃO
 
-- [ ] **#59 Puck Refactor**
-  - Status: 🟢 PRONTA
-  - Ação: Iniciar imediatamente.
+- [x] **#59 Puck Refactor**
+  - Status: ✅ CONCLUÍDA (2025-11-24)
+  - Ação: Implementado suporte a DropZone usando `puck.renderDropZone()`
+  - Arquivos: `apps/studio/src/config/puck.config.tsx`, `docs/puck-zones-implementation.md`
+  - Build: ✅ Passou
+  - Type-check: ✅ Passou
+  - Próximo desbloqueado: #53 (Dashboard API)
   
 - [ ] **#56 BackOffice**
   - Status: 🟢 PRONTA (Paralelo)
