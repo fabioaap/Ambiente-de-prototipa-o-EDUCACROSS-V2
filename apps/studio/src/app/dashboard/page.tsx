@@ -165,7 +165,7 @@ export default function DashboardPage() {
                 Score: {health.healthScore}/100
               </Text>
             </div>
-            
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
               <HealthIndicator
                 title="Build"
@@ -196,7 +196,7 @@ export default function DashboardPage() {
                 size="sm"
               />
             </div>
-            
+
             <Text size="xs" color="muted" style={{ display: 'block', paddingTop: '1rem', borderTop: '1px solid var(--color-neutral-200)' }}>
               Última atualização: {new Date(health.lastChecked).toLocaleString('pt-BR')}
             </Text>
