@@ -4,6 +4,123 @@ import path from 'path';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
+// ============================================================================
+// TIPOS TYPESCRIPT
+// ============================================================================
+
+interface PageData {
+  id: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  content: Record<string, unknown>;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data: PageData[];
+  error: string | null;
+  total: number;
+  timestamp: string;
+}
+
+// ============================================================================
+// MOCK DATA (para MVP de prototipagem)
+// ============================================================================
+
+const MOCK_PAGES: PageData[] = [
+  {
+    id: 'backoffice-dashboard-001',
+    title: 'Dashboard Administrativo',
+    slug: 'backoffice/dashboard',
+    createdAt: '2025-11-01T10:00:00.000Z',
+    updatedAt: '2025-11-23T14:30:00.000Z',
+    content: {
+      root: {
+        props: { title: 'Dashboard Administrativo', layout: 'default' },
+      },
+      content: [
+        { type: 'Hero', props: { title: 'Bem-vindo ao BackOffice', variant: 'primary' } },
+        { type: 'Card', props: { title: 'Métricas', content: 'Visão geral do sistema' } },
+      ],
+      zones: {},
+    },
+  },
+  {
+    id: 'backoffice-users-002',
+    title: 'Gestão de Usuários',
+    slug: 'backoffice/users',
+    createdAt: '2025-11-05T11:15:00.000Z',
+    updatedAt: '2025-11-22T16:45:00.000Z',
+    content: {
+      root: {
+        props: { title: 'Gestão de Usuários', layout: 'admin' },
+      },
+      content: [
+        { type: 'Text', props: { text: 'Lista de usuários cadastrados', variant: 'h2' } },
+        { type: 'DataTable', props: { columns: ['Nome', 'Email', 'Status'] } },
+      ],
+      zones: {},
+    },
+  },
+  {
+    id: 'frontoffice-home-003',
+    title: 'Página Inicial',
+    slug: 'frontoffice/home',
+    createdAt: '2025-11-10T09:00:00.000Z',
+    updatedAt: '2025-11-24T12:00:00.000Z',
+    content: {
+      root: {
+        props: { title: 'Página Inicial', layout: 'public' },
+      },
+      content: [
+        { type: 'Hero', props: { title: 'Educacross', subtitle: 'Plataforma Educacional', variant: 'secondary' } },
+        { type: 'FeatureGrid', props: { columns: 3 } },
+      ],
+      zones: {},
+    },
+  },
+  {
+    id: 'game-hub-004',
+    title: 'Central de Jogos',
+    slug: 'game/hub',
+    createdAt: '2025-11-12T13:20:00.000Z',
+    updatedAt: '2025-11-23T18:10:00.000Z',
+    content: {
+      root: {
+        props: { title: 'Central de Jogos', layout: 'game' },
+      },
+      content: [
+        { type: 'GameCard', props: { title: 'Quiz Matemático', difficulty: 'medium' } },
+        { type: 'GameCard', props: { title: 'Desafio Científico', difficulty: 'hard' } },
+      ],
+      zones: {},
+    },
+  },
+  {
+    id: 'frontoffice-about-005',
+    title: 'Sobre Nós',
+    slug: 'frontoffice/about',
+    createdAt: '2025-11-15T14:00:00.000Z',
+    updatedAt: '2025-11-20T10:30:00.000Z',
+    content: {
+      root: {
+        props: { title: 'Sobre Nós', layout: 'public' },
+      },
+      content: [
+        { type: 'Text', props: { text: 'Nossa História', variant: 'h1' } },
+        { type: 'Text', props: { text: 'Texto sobre a missão da plataforma...', variant: 'body' } },
+      ],
+      zones: {},
+    },
+  },
+];
+
+// ============================================================================
+// HANDLERS
+// ============================================================================
+
 // Garantir que o diretório existe
 async function ensureDir() {
   try {
@@ -13,35 +130,84 @@ async function ensureDir() {
   }
 }
 
-// GET /api/pages - Lista todas as páginas
-export async function GET() {
+/**
+ * GET /api/pages
+ * 
+ * Lista páginas criadas no Puck Studio com suporte a paginação.
+ * 
+ * Query params:
+ * - limit: número máximo de resultados (padrão: todos)
+ * - offset: número de registros a pular (padrão: 0)
+ * 
+ * Response:
+ * - success: boolean
+ * - data: array de páginas
+ * - error: mensagem de erro ou null
+ * - total: número total de páginas (antes da paginação)
+ * - timestamp: data/hora da requisição
+ */
+export async function GET(request: NextRequest) {
   try {
-    await ensureDir();
-    const files = await fs.readdir(PAGES_DIR);
-    const jsonFiles = files.filter((f) => f.endsWith('.json'));
-    
-    const pages = await Promise.all(
-      jsonFiles.map(async (file) => {
-        const filePath = path.join(PAGES_DIR, file);
-        const content = await fs.readFile(filePath, 'utf-8');
-        const data = JSON.parse(content);
-        const slug = file.replace('.json', '');
-        
-        return {
-          slug,
-          title: data.root?.props?.title || slug,
-          lastModified: (await fs.stat(filePath)).mtime,
+    const { searchParams } = new URL(request.url);
+    const limit = searchParams.get('limit');
+    const offset = searchParams.get('offset');
+
+    // Usar mock data para MVP
+    let pages = [...MOCK_PAGES];
+    const total = pages.length;
+
+    // Aplicar paginação se fornecida
+    if (offset !== null) {
+      const offsetNum = parseInt(offset, 10);
+      if (isNaN(offsetNum) || offsetNum < 0) {
+        const errorResponse: ApiResponse = {
+          success: false,
+          data: [],
+          error: 'Invalid offset parameter',
+          total: 0,
+          timestamp: new Date().toISOString(),
         };
-      })
-    );
-    
-    return NextResponse.json({ pages });
+        return NextResponse.json(errorResponse, { status: 400 });
+      }
+      pages = pages.slice(offsetNum);
+    }
+
+    if (limit !== null) {
+      const limitNum = parseInt(limit, 10);
+      if (isNaN(limitNum) || limitNum <= 0) {
+        const errorResponse: ApiResponse = {
+          success: false,
+          data: [],
+          error: 'Invalid limit parameter',
+          total: 0,
+          timestamp: new Date().toISOString(),
+        };
+        return NextResponse.json(errorResponse, { status: 400 });
+      }
+      pages = pages.slice(0, limitNum);
+    }
+
+    const response: ApiResponse = {
+      success: true,
+      data: pages,
+      error: null,
+      total,
+      timestamp: new Date().toISOString(),
+    };
+
+    return NextResponse.json(response);
   } catch (error) {
     console.error('Error listing pages:', error);
-    return NextResponse.json(
-      { error: 'Failed to list pages' },
-      { status: 500 }
-    );
+    
+    const errorResponse: ApiResponse = {
+      success: false,
+      data: [],
+      error: error instanceof Error ? error.message : 'Failed to list pages',
+      total: 0,
+      timestamp: new Date().toISOString(),
+    };
+
+    return NextResponse.json(errorResponse, { status: 500 });
   }
 }
 

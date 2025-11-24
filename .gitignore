@@ -55,3 +55,7 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+
+# Turbo cache
+.turbo/
+*.turbo-*.log
