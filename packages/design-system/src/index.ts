@@ -9,6 +9,7 @@ export { Radio } from './components/Radio/Radio';
 export { Switch } from './components/Switch/Switch';
 export { Badge } from './components/Badge/Badge';
 export { Progress } from './components/Progress/Progress';
+export { Leaderboard } from './components/Leaderboard/Leaderboard';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -21,3 +22,4 @@ export type { RadioProps } from './components/Radio/Radio';
 export type { SwitchProps } from './components/Switch/Switch';
 export type { BadgeProps } from './components/Badge/Badge';
 export type { ProgressProps } from './components/Progress/Progress';
+export type { LeaderboardProps, LeaderboardEntry } from './components/Leaderboard/Leaderboard';
