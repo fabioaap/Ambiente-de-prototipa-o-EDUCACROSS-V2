@@ -5,6 +5,7 @@
 param(
     [switch]$DryRun = $false,
     [switch]$Parallel = $false,
+    [switch]$Verbose = $false,
     [string]$ReportPath = "sprint3-execution-report.md",
     [int]$MaxRetries = 3
 )
@@ -17,6 +18,20 @@ $script:ExecutionLog = @()
 $script:StartTime = Get-Date
 $script:FailedIssues = @()
 $script:CompletedIssues = @()
+
+# 🔧 Helpers
+function Get-SafeString {
+    param([string]$Value)
+    if ([string]::IsNullOrWhiteSpace($Value)) { return "" }
+    return [string]$Value
+}
+
+function Write-VerboseMessage {
+    param([string]$Message)
+    if ($Verbose) {
+        Write-Host "   🔍 $Message" -ForegroundColor DarkGray
+    }
+}
 
 # 📋 CONFIGURAÇÃO DO GRAFO DE DEPENDÊNCIAS
 $issueGraph = @{
@@ -85,8 +100,10 @@ function Invoke-IssueExecution {
     
     # Ler descrição da issue
     Write-Host "   📖 Lendo descrição da issue..."
+    $bodyWarning = ""
+    $issueBodyRaw = ""
     try {
-        $issueBody = (gh issue view $IssueNumber --json body --jq '.body') 2>$null
+        $issueBodyRaw = (gh issue view $IssueNumber --json body --jq '.body') 2>$null
         if ($LASTEXITCODE -ne 0) {
             throw "Falha ao ler issue #$IssueNumber"
         }
@@ -97,6 +114,12 @@ function Invoke-IssueExecution {
         $script:FailedIssues += @{ Number = $IssueNumber; Error = "Failed to read issue" }
         return $false
     }
+    $issueBody = Get-SafeString -Value $issueBodyRaw
+    if ([string]::IsNullOrWhiteSpace($issueBodyRaw)) {
+        $bodyWarning = "Descrição da issue indisponível no GitHub."
+        Write-Host "   ⚠️ Issue #$IssueNumber sem descrição no GitHub - usando fallback." -ForegroundColor Yellow
+    }
+    Write-VerboseMessage -Message "Issue #$IssueNumber carregada (tamanho do corpo: $($issueBody.Length) caracteres)"
     
     # Determinar qual agente usar baseado no título/labels
     $agentType = Get-AgentForIssue -Issue $issue -IssueBody $issueBody
@@ -108,7 +131,7 @@ function Invoke-IssueExecution {
         Write-Host "   ⏸️ DRY RUN - Simulando execução da issue #$IssueNumber" -ForegroundColor Yellow
         Write-Host "   📊 Agente selecionado: $agentType" -ForegroundColor Yellow
         Write-Host "   ⏱️  Tempo estimado: $($issue.Effort) horas" -ForegroundColor Yellow
-        Add-ExecutionLog -IssueNumber $IssueNumber -Status "DryRun-Execute" -Duration 0 -Agent $agentType
+        Add-ExecutionLog -IssueNumber $IssueNumber -Status "DryRun-Execute" -Duration 0 -Agent $agentType -Warning $bodyWarning
         return $true
     }
     
@@ -123,7 +146,7 @@ function Invoke-IssueExecution {
     Write-Host "   3. Aguarde a conclusão da execução" -ForegroundColor Yellow
     Write-Host "   4. Execute este script novamente para continuar" -ForegroundColor Yellow
     
-    Add-ExecutionLog -IssueNumber $IssueNumber -Status "Pending" -Agent $agentType
+    Add-ExecutionLog -IssueNumber $IssueNumber -Status "Pending" -Agent $agentType -Warning $bodyWarning
     return $false
 }
 
@@ -131,16 +154,17 @@ function Invoke-IssueExecution {
 function Get-AgentForIssue {
     param($Issue, $IssueBody)
     
-    $title = $Issue.Title.ToLower()
-    $body = $IssueBody.ToLower()
+    $title = Get-SafeString -Value $Issue.Title
+    $body = Get-SafeString -Value $IssueBody
+    $searchTarget = ($title + " " + $body).ToLower()
     
     # DevOps: CI/CD, GitHub Actions, workflows
-    if ($title -match "ci|cd|github actions|workflow|pipeline|deploy") {
+    if ($searchTarget -match "ci|cd|github actions|workflow|pipeline|deploy") {
         return "DevOps"
     }
     
     # FullStack: Componentes, APIs, UI, jornadas
-    if ($title -match "component|api|ui|jornada|dashboard|studio|puck") {
+    if ($searchTarget -match "component|api|ui|jornada|dashboard|studio|puck") {
         return "FullStack"
     }
     
@@ -157,15 +181,21 @@ function Build-AgentPrompt {
         [string]$AgentType
     )
     
-    $issueTitle = $Issue.Title
+    $issueTitle = Get-SafeString -Value $Issue.Title
     $issuePriority = $Issue.Priority
     $issueEffort = $Issue.Effort
+    $contextSection = if ([string]::IsNullOrWhiteSpace($IssueBody)) {
+        "Sem descrição disponível no GitHub. Consulte labels e histórico da issue antes de implementar."
+    }
+    else {
+        $IssueBody
+    }
     
     return @"
 ISSUE `#$IssueNumber`: $issueTitle
 
 CONTEXTO:
-$IssueBody
+$contextSection
 
 REQUISITOS DE IMPLEMENTAÇÃO:
 1. ✅ Implemente TODAS as funcionalidades descritas na issue acima
@@ -190,7 +220,8 @@ function Add-ExecutionLog {
         [string]$Status,
         [double]$Duration = 0,
         [string]$Error = "",
-        [string]$Agent = ""
+        [string]$Agent = "",
+        [string]$Warning = ""
     )
     
     $script:ExecutionLog += [PSCustomObject]@{
@@ -200,6 +231,7 @@ function Add-ExecutionLog {
         Duration    = [Math]::Round($Duration, 2)
         Error       = $Error
         Agent       = $Agent
+        Warning     = $Warning
     }
 }
 
@@ -426,11 +458,11 @@ function Generate-ExecutionReport {
     
     $report += "## 📋 Log de Execução"
     $report += ""
-    $report += "| Timestamp | Issue | Status | Duração (s) | Agente | Erro |"
-    $report += "|-----------|-------|--------|-------------|--------|------|"
+    $report += "| Timestamp | Issue | Status | Duração (s) | Agente | Erro | Alerta |"
+    $report += "|-----------|-------|--------|-------------|--------|------|--------|"
     
     foreach ($entry in $script:ExecutionLog) {
-        $report += "| $($entry.Timestamp) | #$($entry.IssueNumber) | $($entry.Status) | $($entry.Duration) | $($entry.Agent) | $($entry.Error) |"
+        $report += "| $($entry.Timestamp) | #$($entry.IssueNumber) | $($entry.Status) | $($entry.Duration) | $($entry.Agent) | $($entry.Error) | $($entry.Warning) |"
     }
     
     $report += ""
@@ -493,6 +525,16 @@ catch {
     Write-Host "❌ ERRO: GitHub CLI (gh) não encontrado!" -ForegroundColor Red
     Write-Host "   Instale: https://cli.github.com/" -ForegroundColor Yellow
     Write-Host "   Depois execute: gh auth login" -ForegroundColor Yellow
+    exit 1
+}
+
+try {
+    gh auth status 1>$null 2>$null
+    Write-Host "✅ Autenticação GitHub confirmada" -ForegroundColor Green
+}
+catch {
+    Write-Host "❌ ERRO: gh não está autenticado" -ForegroundColor Red
+    Write-Host "   Execute: gh auth login" -ForegroundColor Yellow
     exit 1
 }
 

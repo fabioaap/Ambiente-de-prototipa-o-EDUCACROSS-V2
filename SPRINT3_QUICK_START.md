@@ -98,6 +98,22 @@ pnpm dev:storybook      # Funcional no localhost:6006
 git status              # Tree limpo
 \\\
 
+## 🤖 EXECUTOR AUTOMATIZADO
+
+```bash
+# Simulação sequencial com logs detalhados
+pwsh -NoLogo -File ./scripts/execute-sprint3.ps1 -DryRun -Verbose
+
+# Paralelo para issues independentes após validar o sequencial
+pwsh -NoLogo -File ./scripts/execute-sprint3.ps1 -DryRun -Parallel -Verbose
+
+# Execução real (sem -DryRun). Utilize o modo paralelo apenas se desejar lotes simultâneos
+pwsh -NoLogo -File ./scripts/execute-sprint3.ps1 -Parallel
+```
+
+- O relatório `sprint3-execution-report.md` agora contém a coluna **Alerta**. Qualquer issue sem descrição disparará um aviso, mas não interromperá a execução.
+- Se o modo paralelo ficar travado, execute novamente sem `-Parallel` para usar o fallback sequencial e liberar o fluxo.
+
 ---
 
 **Status**: ✅ PRONTO PARA INICIAR
