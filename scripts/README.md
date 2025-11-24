@@ -1,8 +1,45 @@
-# Scripts - Sprint 3 Auto Executor
+# Scripts - Automação de Sprints
 
 Este diretório contém scripts de automação para o projeto EDUCACROSS.
 
-## 📁 Arquivos
+## 📁 Arquivos Principais
+
+### `execute-sprint3.ps1` ⭐ NEW!
+
+Script PowerShell avançado para automação de Sprint 3 com suporte a execução paralela e agentes customizados.
+
+**Funcionalidades**:
+- ✅ Resolução automática de dependências entre issues
+- ✅ Execução sequencial ou paralela
+- ✅ Seleção inteligente de agentes (DevOps/FullStack)
+- ✅ Retry logic com backoff exponencial
+- ✅ Geração de relatórios Markdown detalhados
+- ✅ Modo dry-run para validação
+- ✅ Tracking de tempo e performance
+
+**Uso**:
+```powershell
+# Modo sequencial padrão
+.\scripts\execute-sprint3.ps1
+
+# Modo dry-run (simulação, recomendado primeiro)
+.\scripts\execute-sprint3.ps1 -DryRun
+
+# Modo paralelo (mais rápido)
+.\scripts\execute-sprint3.ps1 -Parallel
+
+# Combinações
+.\scripts\execute-sprint3.ps1 -Parallel -DryRun
+.\scripts\execute-sprint3.ps1 -ReportPath "reports/sprint3.md" -MaxRetries 5
+```
+
+**Requisitos**:
+- PowerShell 7+
+- GitHub CLI (`gh`) instalado e autenticado
+
+**Documentação Completa**: [`docs/execute-sprint3-guide.md`](../docs/execute-sprint3-guide.md)
+
+---
 
 ### `sprint3_auto_executor.py`
 
@@ -57,6 +94,37 @@ pip install -r scripts/requirements.txt
 ```
 
 ## 🚀 Quick Start
+
+### PowerShell Script (Recomendado para Windows/cross-platform)
+
+1. **Verificar requisitos**:
+```powershell
+# PowerShell 7+
+$PSVersionTable.PSVersion
+
+# GitHub CLI
+gh --version
+gh auth status
+```
+
+2. **Executar em dry-run** (primeiro):
+```powershell
+.\scripts\execute-sprint3.ps1 -DryRun
+```
+
+3. **Conferir relatório**:
+```powershell
+cat sprint3-execution-report.md
+```
+
+4. **Executar de verdade**:
+```powershell
+.\scripts\execute-sprint3.ps1
+# Ou em modo paralelo para velocidade
+.\scripts\execute-sprint3.ps1 -Parallel
+```
+
+### Python Script (Alternativa)
 
 1. **Instalar dependências**:
 ```bash

@@ -86,7 +86,7 @@ function Invoke-IssueExecution {
     # Ler descrição da issue
     Write-Host "   📖 Lendo descrição da issue..."
     try {
-        $issueBody = gh issue view $IssueNumber --json body --jq '.body' 2>&1
+        $issueBody = (gh issue view $IssueNumber --json body --jq '.body') 2>$null
         if ($LASTEXITCODE -ne 0) {
             throw "Falha ao ler issue #$IssueNumber"
         }
@@ -221,10 +221,11 @@ function Start-SprintExecution {
         Write-Host "`n📊 ITERAÇÃO $iteration - Verificando issues abertas..." -ForegroundColor Cyan
         
         try {
-            $openIssues = gh issue list --state open --json number 2>&1 | ConvertFrom-Json
+            $openIssuesJson = (gh issue list --state open --json number) 2>$null
             if ($LASTEXITCODE -ne 0) {
                 throw "Falha ao listar issues"
             }
+            $openIssues = $openIssuesJson | ConvertFrom-Json
             $openCount = $openIssues.Count
         }
         catch {
@@ -241,7 +242,7 @@ function Start-SprintExecution {
         }
         
         # Obter lista de números de issues abertas
-        $openNumbers = $openIssues | ForEach-Object { [int]$_.number }
+        $openNumbers = $openIssues | ForEach-Object { $_.number -as [int] }
         
         if ($Parallel) {
             # Modo paralelo: executa todas as issues disponíveis simultaneamente
@@ -435,15 +436,15 @@ function Generate-ExecutionReport {
     $report += ""
     $report += "## 🎯 Grafo de Dependências"
     $report += ""
-    $report += "``````"
+    $report += "```"
     foreach ($issueNum in ($issueGraph.Keys | Sort-Object)) {
         $issue = $issueGraph[$issueNum]
         if ($issue.DependsOn.Count -gt 0) {
-            $deps = ($issue.DependsOn | ForEach-Object { "`#$_" }) -join ", "
-            $report += "`#$issueNum [$($issue.Title)] depende de: $deps"
+            $deps = ($issue.DependsOn | ForEach-Object { "#$_" }) -join ", "
+            $report += "#$issueNum [$($issue.Title)] depende de: $deps"
         }
     }
-    $report += "``````"
+    $report += "```"
     $report += ""
     
     $report += "---"

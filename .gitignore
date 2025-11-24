@@ -46,6 +46,7 @@ Thumbs.db
 
 # Sprint 3 Auto Executor artifacts
 sprint3-autoexecutor-*.log
+sprint3-execution-report.md
 report-*.md
 
 # Python
