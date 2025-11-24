@@ -1,0 +1,65 @@
+# SPRINT3 EXECUTOR FIX PROMPT - SUMMARY
+
+## What Was Created
+📄 SPRINT3_EXECUTOR_FIX_PROMPT.md - 800 lines comprehensive prompt
+
+## Purpose
+Instructs another agent to fix bug in scripts/execute-sprint3.ps1 that prevents Sprint 3 automation
+
+## Bug Being Fixed
+- Error: "You cannot call a method on a null-valued expression"
+- Location: Get-AgentForIssue function (line 135)
+- Cause: Calling .ToLower() on null $IssueBody
+
+## Requirements Covered (from problem statement)
+✅ 1. Map PR #74 context (copilot/execute-sprint3-script branch)
+✅ 2. Capture objectives from SPRINT3_EXECUTION_MASTER.md & SPRINT3_QUICK_START.md
+✅ 3. Describe DryRun bug (null in Get-AgentForIssue per sprint3-execution-report.md)
+✅ 4. Indicate relevant script sections (Invoke-IssueExecution, Get-AgentForIssue, Build-AgentPrompt)
+✅ 5. Detail mandatory requirements (null handling, graph continuity, logs)
+✅ 6. Specify validations (pnpm lint, type-check, build, pwsh DryRun sequential/parallel)
+✅ 7. Include doc/cleanup instructions (MASTER.md, guide.md, report.md, .turbo)
+✅ 8. Guarantee commit/PR message templates
+✅ 9. Confirm fallback (both sequential & parallel modes required and implemented)
+
+## Prompt Structure
+1. Executive Summary - Bug overview, priority, branch
+2. Project Context - Stack, docs, 14-issue graph (9 main + 5 legacy)
+3. Bug Description - Symptom, root cause (line-by-line), additional problems
+4. Mandatory Requirements - 4 sections with PowerShell code fixes
+5. Validations - 7 steps (lint, type-check, build, DryRun×2, verbose, empty body test)
+6. Documentation/Cleanup - 5 subsections (MASTER.md, guide.md, report.md, cache, commit/PR)
+7. Fallback Discussion - Sequential vs Parallel modes (both required)
+8. Completion Checklist - 4 categories (code, validations, docs, git)
+9. Support/References - Docs, commands, contact info
+10. Execution Call-to-Action - Clear next steps
+
+## Code Review
+✅ Passed with 3 issues fixed:
+- Removed hardcoded absolute path
+- Fixed nested backticks in commit template
+- Improved test issue creation to avoid conflicts
+
+## CodeQL
+✅ N/A (documentation-only change)
+
+## Usage
+Give SPRINT3_EXECUTOR_FIX_PROMPT.md to any agent (DevOps or FullStack) to implement the fix.
+
+## Success Criteria (for executor agent)
+- 0 errors in pnpm lint/type-check/build
+- DryRun processes 14 issues without CriticalError
+- Report shows correct dependency graph
+- Documentation updated
+- PR approved
+
+## Files Modified
+- SPRINT3_EXECUTOR_FIX_PROMPT.md (created, 800 lines)
+
+## Next Steps
+1. Hand off SPRINT3_EXECUTOR_FIX_PROMPT.md to executor agent
+2. Agent implements fixes in execute-sprint3.ps1
+3. Agent validates with 7 validation steps
+4. Agent updates documentation
+5. Agent creates PR with provided template
+6. Sprint 3 automation unblocked, 14 issues can execute automatically
