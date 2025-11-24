@@ -101,3 +101,12 @@ Inicie a execução agora.
 ---
 
 **Instrução para o Agente**: Sempre que finalizar uma issue, edite este arquivo, marque a issue com ✅ e atualize o status das issues dependentes para "✅ Resolvida" se o blocker sumir.
+
+---
+
+## 5. 🛠️ Automação & Troubleshooting
+
+- Use `pwsh -NoLogo -File .\scripts\execute-sprint3.ps1 -DryRun -Verbose` para simular o ciclo completo de forma sequencial. Adicione `-Parallel` quando quiser processar issues independentes em lote.
+- O relatório `sprint3-execution-report.md` agora traz uma coluna **Alerta**; caso uma issue esteja sem descrição no GitHub, o executor registra um aviso e segue com fallback de contexto.
+- Sempre confirme autenticação (`gh auth status`) antes de rodar a automação e valide o ambiente com `pnpm lint`, `pnpm -r type-check` e `pnpm build`.
+- Se o modo paralelo sinalizar deadlock, repita o comando sem `-Parallel` para usar o fallback sequencial e desbloquear a execução.
