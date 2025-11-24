@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { Render, Data } from '@measured/puck';
+import { Render } from '@measured/puck/rsc';
+import type { Data } from '@measured/puck';
 import Link from 'next/link';
-import { puckConfig } from '@/config/puck.config';
+import { puckConfig } from '@/config/puck.config.server';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 

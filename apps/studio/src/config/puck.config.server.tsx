@@ -1,11 +1,18 @@
-'use client';
+/**
+ * Configuração Puck para React Server Components (RSC)
+ * Usada para renderização estática de páginas (sem editor)
+ * Não inclui DropZone, pois RSC não suporta componentes interativos do Puck
+ */
 
 import type { Config } from '@measured/puck';
-import { DropZone } from '@measured/puck';
 import { Button, Text, Card, Layout } from '@prototipo/design-system';
 import type { ButtonProps, TextProps, CardProps, LayoutProps } from './puck.types';
 
-export type { ButtonProps, TextProps, CardProps, LayoutProps } from './puck.types';
+type RenderDropZone = (props: { zone: string }) => React.ReactNode;
+
+type PuckContext = {
+  renderDropZone: RenderDropZone;
+};
 
 export const puckConfig: Config = {
   components: {
@@ -133,10 +140,10 @@ export const puckConfig: Config = {
         variant: 'default',
         padding: 'md',
       },
-      render: ({ variant, padding }: CardProps) => {
+      render: ({ variant, padding, puck }: CardProps & { puck: PuckContext }) => {
         return (
           <Card variant={variant} padding={padding}>
-            <DropZone zone="card-content" />
+            {puck.renderDropZone({ zone: 'card-content' })}
           </Card>
         );
       },
@@ -158,10 +165,10 @@ export const puckConfig: Config = {
       defaultProps: {
         maxWidth: 'xl',
       },
-      render: ({ maxWidth }: LayoutProps) => {
+      render: ({ maxWidth, puck }: LayoutProps & { puck: PuckContext }) => {
         return (
           <Layout maxWidth={maxWidth}>
-            <DropZone zone="layout-content" />
+            {puck.renderDropZone({ zone: 'layout-content' })}
           </Layout>
         );
       },
