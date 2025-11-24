@@ -7,12 +7,12 @@
 
 | Métrica | Valor | Trend |
 |---------|-------|-------|
-| **Issues Abertas** | 5 | ↘️ |
-| **Issues Fechadas** | 11 | ↗️ |
-| **Total Issues** | 16 | |
-| **Taxa de Conclusão** | 68% | ✅ |
-| **Sprint 2 (P1)** | 100% | ✅ |
-| **Sprint 3 (P2)** | 20% | 🔥 |
+| **Issues Abertas** | 14 | ↗️ (Sprint 3 criadas) |
+| **Issues Fechadas** | 11 | ✅ |
+| **Total Issues** | 25 | |
+| **Taxa de Conclusão** | 44% | ✅ |
+| **Sprint 2 (P1)** | 100% | ✅ COMPLETO |
+| **Sprint 3 (P2)** | 0% | 📋 INICIADA |
 
 ---
 
@@ -34,68 +34,82 @@
 | #6 | C2 - Studio: sidebar navigation | P1 | ✅ FECHADA |
 | #7 | B4 - Design System: accessibility | P1 | ✅ FECHADA |
 | #8 | D2 - Storybook: A11y addon | P1 | ✅ FECHADA |
-| #9 | G4 - Script: index journeys | P1 | ✅ **FECHADA** (Hoje) |
+| #9 | G4 - Script: index journeys | P1 | ✅ FECHADA |
 | #10 | G6 - CONTRIBUTING.md | P1 | ✅ FECHADA |
-
-### Sprint 3 (P2) - EM PROGRESSO 🔥
-
-| # | Título | Prioridade | Status |
-|---|--------|-----------|--------|
-| #12 | H1 - Dashboard: planning | P2 | ✅ **FECHADA** (Hoje) |
-| #16 | H5 - Dashboard: report generator | P2 | ✅ **FECHADA** (Hoje) |
+| #12 | H1 - Dashboard: planning | P2 | ✅ FECHADA |
+| #16 | H5 - Dashboard: report generator | P2 | ✅ FECHADA |
 
 ---
 
-## 📋 ISSUES ABERTAS (5 no total)
+## 📋 ISSUES ABERTAS (14 no total)
 
-### Sprint 3 (P2) - DASHBOARD 📊
+### Sprint 3 (P1) - CRÍTICAS
 
-| # | Título | Prioridade | Bloqueadores | Status |
-|---|--------|-----------|--------------|--------|
-| #11 | H - Dashboard Epic | P2 | Nenhum | 📋 **ABERTA** |
-| #13 | H2 - Dashboard: UI (Cards) | P2 | Nenhum | 📋 **ABERTA** |
-| #14 | H3 - Dashboard: Features | P2 | Nenhum | 📋 **ABERTA** |
-| #15 | H4 - Dashboard: Health Metrics | P2 | Nenhum | 📋 **ABERTA** |
+| # | Código | Título | Prioridade | Bloqueadores | Esforço |
+|---|--------|--------|-----------|--------------|---------|
+| #59 | PUCK | Puck Refactor - DropZone | P1 | Nenhum | 2.5h ⚠️ |
+| #57 | F1.1 | FrontOffice: Onboarding (5 telas) | P1 | Nenhum | 4h |
+| #56 | E1.1 | BackOffice: Revisão (3 telas) | P1 | Nenhum | 5h |
 
-### Épicos Contínuos
+### Sprint 3 (P2) - DASHBOARD SEQUENCIAL
 
-| # | Título | Prioridade | Status |
-|---|--------|-----------|--------|
-| #4 | E1 - Domains Structure | Epic | 🔄 **EM ANDAMENTO** |
+| # | Código | Título | Prioridade | Bloqueadores | Esforço |
+|---|--------|--------|-----------|--------------|---------|
+| #53 | H2.1 | Dashboard API: GET /api/pages | P2 | Nenhum | 2h |
+| #54 | H2.2 | Dashboard UI: Listagem de páginas | P2 | #53 | 3h |
+| #55 | H2.3 | Health Indicators: Estatísticas | P2 | #54 | 4h |
+
+### Sprint 3 (P2) - COMPONENTES & GAME
+
+| # | Código | Título | Prioridade | Bloqueadores | Esforço |
+|---|--------|--------|-----------|--------------|---------|
+| #60 | DS.1 | Design System: Progress Component | P2 | Nenhum | 2h |
+| #61 | DS.2 | Design System: Leaderboard Component | P2 | Nenhum | 2.5h |
+| #58 | G1.1 | Game: Hub (integração #60 + #61) | P2 | #61 | 3h |
 
 ---
 
 ## 🔄 PROGRESSO POR SPRINT
 
 ### Sprint 1 (P0) – INFRA BASE
-\\\`nStatus: 100% ✅ COMPLETO
-Resultado: Infra base pronta, todos os workspaces compilando
-\\\`n
+`
+Status: 100% ✅ COMPLETO (4/4 issues fechadas)
+`
+
 ### Sprint 2 (P1) – FEATURES CRÍTICAS
-\\\`nStatus: 100% ✅ COMPLETO
-├─ ✅ C2: Studio sidebar
-├─ ✅ B4: Design System A11y
-├─ ✅ D2: Storybook A11y addon
-├─ ✅ G6: CONTRIBUTING.md
-└─ ✅ G4: Index journeys script (FECHADA HOJE)
+`
+Status: 100% ✅ COMPLETO (6/6 issues fechadas)
+`
 
-Resultado: Features principais prontas, scripts de automação rodando.
-\\\`n
-### Sprint 3 (P2) – DASHBOARD EPIC
-\\\`nStatus: 20% 🔥 (2/6 fechadas)
-├─ ✅ H1: Dashboard planning (FECHADA HOJE)
-├─ ✅ H5: Report generator (FECHADA HOJE)
-├─ 📋 H2: Dashboard UI (Cards)
-├─ 📋 H3: Dashboard features
-├─ 📋 H4: Health metrics
-└─ 📋 H: Epic Dashboard
+### Sprint 3 (P2) – DASHBOARD & JORNADAS
+`
+Status: 0% 📋 INICIADA (0/14 issues fechadas)
+Estimativa Total: ~31 horas | Equipe: 4 devs | Duração: 1.5 sprints
+`
 
-Resultado: Planejamento concluído, estrutura inicial criada.
-\\\`n
 ---
 
-## 🚀 PRÓXIMOS PASSOS IMEDIATOS
+## 🚀 PRÓXIMOS PASSOS
 
-1. **Executar Issue #13 (H2)**: Implementar componentes visuais do Dashboard (Cards de atalho).
-2. **Executar Issue #14 (H3)**: Implementar lista de jornadas recentes.
-3. **Executar Issue #15 (H4)**: Integrar métricas reais de saúde do repositório.
+### Imediato (próximos 2 dias)
+**#59 (Puck Refactor)** – ⚠️ BLOCKER  
+
+### Paralelo
+#56, #57, #60, #61 (jornadas e componentes)
+
+### Sequencial (após #59)
+#53 → #54 → #55 (Dashboard sequencial)
+
+---
+
+## 🔗 DOCUMENTAÇÃO RELACIONADA
+
+- **🧠 CÉREBRO DE EXECUÇÃO**: `docs/SPRINT3_EXECUTION_MASTER.md` (Algoritmo de decisão)
+- **ROADMAP Detalhado**: `docs/ROADMAP_ISSUES_SPRINT3.md` (mermaid graphs)
+- **Guia Rápido**: `SPRINT3_QUICK_START.md` (comandos copy-paste)
+- **Relatório de Limpeza**: `docs/pr-cleanup-report.md` (19 PRs fechadas)
+
+---
+
+**Última atualização**: 2025-11-23 23:55 (UTC-3)  
+**Status**: Sprint 3 com 14 issues criadas (44% conclusão)

@@ -102,5 +102,14 @@ Estimativa Total: ~31 horas | Equipe: 4 devs | Duração: 1.5 sprints
 
 ---
 
-**Última atualização**: 2025-11-23 23:30 (UTC-3)  
+## 🔗 DOCUMENTAÇÃO RELACIONADA
+
+- **🧠 CÉREBRO DE EXECUÇÃO**: `docs/SPRINT3_EXECUTION_MASTER.md` (Algoritmo de decisão)
+- **ROADMAP Detalhado**: `docs/ROADMAP_ISSUES_SPRINT3.md` (mermaid graphs)
+- **Guia Rápido**: `SPRINT3_QUICK_START.md` (comandos copy-paste)
+- **Relatório de Limpeza**: `docs/pr-cleanup-report.md` (19 PRs fechadas)
+
+---
+
+**Última atualização**: 2025-11-23 23:55 (UTC-3)  
 **Status**: Sprint 3 com 14 issues criadas (44% conclusão)
