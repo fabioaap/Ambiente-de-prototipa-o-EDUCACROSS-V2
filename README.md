@@ -93,6 +93,69 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ---
 
+## 🟢 Sprint 3 – Dashboard & Game Hub
+
+**Status**: 🟢 56% Completo (5/9 issues principais fechadas) | Fase 3 pronta para execução (2025-11-24)
+
+### Progresso
+
+| Fase | Issues | Status | PRs |
+|------|--------|--------|-----|
+| ✅ Fase 1 | #59 (Puck Refactor) | FECHADA | [#76](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/76) |
+| ✅ Fase 2 | #56, #57, #60, #61 (Jornadas + Componentes) | FECHADAS | [#78](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/78) |
+| 🟡 Fase 3 | #53, #54, #55, #58 (Dashboard + Game) | PRONTAS | ⏳ Em execução |
+| 🔲 Fase 4 | #4, #11, #13, #14, #15 (Legacy closure) | AGENDADAS | ⏳ Após Fase 3 |
+
+### Issues Restantes – Pronta para Copiar & Colar
+
+🚀 **[FASE3_PROMPTS_EXECUCAO.md](./FASE3_PROMPTS_EXECUCAO.md)** ⭐
+
+Este é o documento principal para executar as 4 issues restantes. Contém:
+- 4 prompts prontos para copiar e colar no Copilot
+- Instruções detalhadas de dependências
+- Checklists de validação
+- Sequência recomendada (sequencial ou paralela)
+
+### Quick Links – Sprint 3
+
+| Documento | Propósito |
+|-----------|-----------|
+| [FASE3_PROMPTS_EXECUCAO.md](./FASE3_PROMPTS_EXECUCAO.md) ⭐ | **Prompts prontos para copiar (#53, #54, #55, #58)** |
+| [SPRINT3_DOCUMENTATION_INDEX.md](./SPRINT3_DOCUMENTATION_INDEX.md) | Índice central e navegação |
+| [SPRINT3_EXECUTION_DETAILED.md](./SPRINT3_EXECUTION_DETAILED.md) | Especificações técnicas detalhadas |
+| [docs/SPRINT3_EXECUTION_MASTER.md](./docs/SPRINT3_EXECUTION_MASTER.md) | Algoritmo de seleção + status table |
+| [docs/puck-zones-implementation.md](./docs/puck-zones-implementation.md) | Referência técnica: DropZone pattern |
+
+### Como Começar Fase 3
+
+1. Abra [FASE3_PROMPTS_EXECUCAO.md](./FASE3_PROMPTS_EXECUCAO.md)
+2. Copie o **PROMPT A** (issue #53 – Dashboard API)
+3. Cole no Copilot com modo `Fullstack_programmer`
+4. Siga as instruções detalhadas
+5. Após #53 pronta, copie **PROMPT B** ou **PROMPT C** (paralelo)
+6. Respite até tudo estar pronto
+
+**Tempo Total**: ~11.5h (pode ser paralelo em 2 agentes ~6h)
+
+### Grafo de Dependências (Fase 3)
+
+```
+INICIAR AGORA (sem blockers):
+  ├─ #53 (Dashboard API — 3h)
+  │   └─→ #54 (Dashboard UI — 3h)
+  │       └─→ #55 (Health Metrics — 2h)
+  │
+  └─ #58 (Game Hub — 3h) [paralelo]
+
+Sequência recomendada:
+  1. Inicie #53
+  2. Quando #53 ok, inicie #54 + #58 (paralelo)
+  3. Quando #54 ok, inicie #55
+  4. Validar tudo + fechar legacy issues
+```
+
+---
+
 ## 🚀 Getting Started
 
 ### Pré-requisitos
