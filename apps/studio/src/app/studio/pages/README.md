@@ -1,10 +1,11 @@
 # Dashboard de Páginas do Studio
 
-**Issue #54** - Dashboard UI (Sprint 3, Fase 3)
+**Issue #54** - Dashboard UI (Sprint 3, Fase 3)  
+**Issue #55** - Health Metrics (Sprint 3, Fase 3) ✅ **ADICIONADO**
 
 ## 📋 Descrição
 
-Interface React/Next.js que consome o endpoint GET `/api/pages` para exibir uma listagem visual de todas as páginas criadas no Puck Studio.
+Interface React/Next.js que consome o endpoint GET `/api/pages` para exibir uma listagem visual de todas as páginas criadas no Puck Studio, com indicadores de saúde do repositório.
 
 ## 🎯 Funcionalidades
 
@@ -27,6 +28,32 @@ Cada card de página mostra:
 - **✏️ Editar**: Abre o editor Puck (rota `/studio?page={slug}`)
 - **🗑️ Deletar**: Confirmação (MVP - apenas alerta, implementação futura)
 - **+ Nova Página**: Botão global que redireciona para `/studio`
+
+### 🏥 Indicadores de Saúde (Issue #55)
+
+Seção nova adicionada ao dashboard exibindo 5 métricas mockadas:
+
+1. **Build Status** ✅
+   - Status: Passando / Falhou
+   - Badge colorido (success/error)
+   - Última build timestamp
+
+2. **Commits Last 24h** 📝
+   - Número de commits nas últimas 24 horas
+   - Ícone visual
+
+3. **Open Issues** 🐛
+   - Quantidade de issues abertas
+   - Subtexto contextual
+
+4. **Open PRs** 🔀
+   - PRs aguardando review
+   - Status em tempo real (mock)
+
+5. **Test Coverage** 🧪
+   - Percentual de cobertura (85%)
+   - Progress bar visual
+   - Usa componente `Progress` do Design System
 
 ## 🚀 Como Acessar
 
@@ -51,15 +78,17 @@ apps/studio/src/app/studio/pages/
 ### Dependências
 - **API**: GET `/api/pages` (Issue #53 ✅)
 - **Design System**: 
-  - `Card` - Container dos itens
+  - `Card` - Container dos itens e métricas
   - `Button` - Ações (Editar, Deletar, Nova Página)
   - `Text` - Tipografia
-  - `Badge` - Indicador de domínio
+  - `Badge` - Indicador de domínio e status
+  - `Progress` - Barra de progresso (cobertura de testes) **NOVO**
 - **Next.js**: Router para navegação
 
 ### Tipos TypeScript
 
 ```typescript
+// Páginas
 interface PageData {
   id: string;
   title: string;
@@ -76,15 +105,41 @@ interface ApiResponse {
   total: number;
   timestamp: string;      // ISO8601
 }
+
+// Health Metrics (NOVO - Issue #55)
+interface HealthStatus {
+  status: 'success' | 'warning' | 'error';
+  label: string;
+  lastBuild?: string;
+}
+
+interface MetricCount {
+  count: number;
+  label: string;
+}
+
+interface CoverageMetric {
+  percentage: number;
+  label: string;
+}
+
+interface HealthMetrics {
+  buildStatus: HealthStatus;
+  commits24h: MetricCount;
+  openIssues: MetricCount;
+  openPRs: MetricCount;
+  testCoverage: CoverageMetric;
+}
 ```
 
 ## 🎨 Design
 
 ### Layout
-- **Grid Responsivo**: Auto-fill com minmax(340px, 1fr)
+- **Grid Responsivo de Páginas**: Auto-fill com minmax(340px, 1fr)
+- **Grid Responsivo de Métricas**: Auto-fit com minmax(220px, 1fr) **NOVO**
 - **Mobile**: 1 coluna
-- **Tablet**: 2 colunas
-- **Desktop**: 3-4 colunas (dependendo da largura)
+- **Tablet**: 2 colunas (métricas adaptam)
+- **Desktop**: 3-4 colunas para páginas, 5 colunas para métricas (>1440px)
 
 ### Estados Visuais
 - **Hover**: Card levanta levemente (translateY + shadow)
@@ -96,6 +151,7 @@ Usa variáveis CSS do Design System:
 - `--color-primary`
 - `--color-neutral-{100,200,800}`
 - `--color-error`
+- `--space-{xs,sm,md,lg,xl,2xl}` **NOVO**
 
 ## 🧪 Testes
 
@@ -154,12 +210,15 @@ O endpoint `/api/pages` retorna 5 páginas de exemplo:
 
 ## 🔄 Próximos Passos (Futuros)
 
-### Issue #55 - Health Metrics
-- Adicionar indicadores de saúde das páginas
-- Métricas de performance (tempo de load, erros)
-- Status (publicado, rascunho, arquivado)
+### ✅ Issue #55 - Health Metrics (CONCLUÍDO)
+- ✅ Adicionar indicadores de saúde das páginas
+- ✅ 5 métricas mockadas (Build, Commits, Issues, PRs, Coverage)
+- ✅ Layout responsivo integrado ao dashboard
+- ✅ Usa componentes do Design System (Progress, Badge, Card)
 
 ### Melhorias Futuras
+- [ ] Conectar métricas a dados reais via API GitHub
+- [ ] Adicionar refresh automático (polling a cada 30s)
 - [ ] Implementar DELETE /api/pages/:slug (funcionalidade de deletar)
 - [ ] Adicionar filtros por domínio
 - [ ] Adicionar busca por título/slug
@@ -167,6 +226,7 @@ O endpoint `/api/pages` retorna 5 páginas de exemplo:
 - [ ] Adicionar paginação (quando houver muitas páginas)
 - [ ] Adicionar preview thumbnail (screenshot da página)
 - [ ] Adicionar bulk actions (deletar múltiplas)
+- [ ] Adicionar gráfico de tendências para métricas
 
 ## 🐛 Troubleshooting
 
@@ -200,6 +260,10 @@ O endpoint `/api/pages` retorna 5 páginas de exemplo:
 - [x] Exibe todas informações requeridas
 - [x] Botões de ação funcionam
 - [x] Responsivo (mobile, tablet, desktop)
+- [x] **Health Metrics renderizando (Issue #55)** ✅
+- [x] **5 métricas visíveis com mock data** ✅
+- [x] **Progress bar funcionando** ✅
+- [x] **Grid responsivo de métricas** ✅
 
 ### Técnico
 - [x] TypeScript strict mode (sem erros)
@@ -218,8 +282,10 @@ O endpoint `/api/pages` retorna 5 páginas de exemplo:
 
 ## 📚 Referências
 
-- **Issue #54**: Dashboard UI
+- **Issue #54**: Dashboard UI ✅
+- **Issue #55**: Health Metrics ✅ **CONCLUÍDO**
 - **Issue #53**: Dashboard API (dependência ✅)
+- **Issue #60**: Progress Component (dependência ✅)
 - **Design System**: `/packages/design-system/`
 - **Documentação Sprint 3**: `/SPRINT3_EXECUTION_DETAILED.md`
 
@@ -227,5 +293,7 @@ O endpoint `/api/pages` retorna 5 páginas de exemplo:
 
 **Implementado em**: 2025-11-24  
 **Sprint**: 3 (Fase 3/4)  
-**Tempo Estimado**: 3h  
-**Tempo Real**: ~2h
+**Tempo Estimado Issue #54**: 3h  
+**Tempo Real Issue #54**: ~2h  
+**Tempo Estimado Issue #55**: 2h  
+**Tempo Real Issue #55**: ~1.5h ✅

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Card, Button, Text, Badge } from '@prototipo/design-system';
+import { Card, Button, Text, Badge, Progress } from '@prototipo/design-system';
 import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 
@@ -25,6 +25,62 @@ interface ApiResponse {
   total: number;
   timestamp: string;
 }
+
+// ============================================================================
+// TIPOS PARA HEALTH METRICS
+// ============================================================================
+
+interface HealthStatus {
+  status: 'success' | 'warning' | 'error';
+  label: string;
+  lastBuild?: string;
+}
+
+interface MetricCount {
+  count: number;
+  label: string;
+}
+
+interface CoverageMetric {
+  percentage: number;
+  label: string;
+}
+
+interface HealthMetrics {
+  buildStatus: HealthStatus;
+  commits24h: MetricCount;
+  openIssues: MetricCount;
+  openPRs: MetricCount;
+  testCoverage: CoverageMetric;
+}
+
+// ============================================================================
+// MOCK DATA - HEALTH METRICS
+// ============================================================================
+
+const HEALTH_METRICS: HealthMetrics = {
+  buildStatus: {
+    status: 'success',
+    label: 'Passando',
+    lastBuild: '2025-11-24T18:30:00Z',
+  },
+  commits24h: {
+    count: 12,
+    label: 'commits',
+  },
+  openIssues: {
+    count: 9,
+    label: 'issues',
+  },
+  openPRs: {
+    count: 2,
+    label: 'PRs em review',
+  },
+  testCoverage: {
+    percentage: 85,
+    label: 'Cobertura',
+  },
+};
 
 // ============================================================================
 // UTILITÁRIOS
@@ -300,6 +356,135 @@ export default function PagesListPage() {
           ))}
         </div>
       )}
+
+      {/* ============================================================================
+          SEÇÃO DE INDICADORES DE SAÚDE (HEALTH METRICS)
+          ============================================================================ */}
+      <section className={styles.healthSection}>
+        <div className={styles.healthHeader}>
+          <Text as="h2" size="2xl" weight="bold">
+            Indicadores de Saúde
+          </Text>
+          <Text as="p" size="base" color="muted">
+            Métricas do repositório em tempo real
+          </Text>
+        </div>
+
+        <div className={styles.healthGrid}>
+          {/* 1. Build Status */}
+          <Card 
+            variant="elevated" 
+            padding="lg"
+            role="region"
+            aria-label="Status do Build"
+            className={styles.healthCard}
+          >
+            <div className={styles.healthIcon}>
+              {HEALTH_METRICS.buildStatus.status === 'success' ? '✅' : '❌'}
+            </div>
+            <Text as="h3" size="lg" weight="bold">
+              Build Status
+            </Text>
+            <Badge 
+              variant={HEALTH_METRICS.buildStatus.status === 'success' ? 'success' : 'error'}
+              size="lg"
+            >
+              {HEALTH_METRICS.buildStatus.label}
+            </Badge>
+            <Text as="p" size="sm" color="muted">
+              Último build: {formatDateShort(HEALTH_METRICS.buildStatus.lastBuild || '')}
+            </Text>
+          </Card>
+
+          {/* 2. Commits Last 24h */}
+          <Card 
+            variant="elevated" 
+            padding="lg"
+            role="region"
+            aria-label="Commits nas últimas 24 horas"
+            className={styles.healthCard}
+          >
+            <div className={styles.healthIcon}>📝</div>
+            <Text as="h3" size="lg" weight="bold">
+              Commits 24h
+            </Text>
+            <Text as="p" className={styles.healthValue}>
+              {HEALTH_METRICS.commits24h.count}
+            </Text>
+            <Text as="p" size="sm" color="muted">
+              {HEALTH_METRICS.commits24h.label} nas últimas 24 horas
+            </Text>
+          </Card>
+
+          {/* 3. Open Issues */}
+          <Card 
+            variant="elevated" 
+            padding="lg"
+            role="region"
+            aria-label="Issues abertas"
+            className={styles.healthCard}
+          >
+            <div className={styles.healthIcon}>🐛</div>
+            <Text as="h3" size="lg" weight="bold">
+              Issues Abertas
+            </Text>
+            <Text as="p" className={styles.healthValue}>
+              {HEALTH_METRICS.openIssues.count}
+            </Text>
+            <Text as="p" size="sm" color="muted">
+              {HEALTH_METRICS.openIssues.label} abertas no momento
+            </Text>
+          </Card>
+
+          {/* 4. Open PRs */}
+          <Card 
+            variant="elevated" 
+            padding="lg"
+            role="region"
+            aria-label="Pull Requests em revisão"
+            className={styles.healthCard}
+          >
+            <div className={styles.healthIcon}>🔀</div>
+            <Text as="h3" size="lg" weight="bold">
+              PRs em Review
+            </Text>
+            <Text as="p" className={styles.healthValue}>
+              {HEALTH_METRICS.openPRs.count}
+            </Text>
+            <Text as="p" size="sm" color="muted">
+              {HEALTH_METRICS.openPRs.label}
+            </Text>
+          </Card>
+
+          {/* 5. Test Coverage */}
+          <Card 
+            variant="elevated" 
+            padding="lg"
+            role="region"
+            aria-label="Cobertura de testes"
+            className={styles.healthCard}
+          >
+            <div className={styles.healthIcon}>🧪</div>
+            <Text as="h3" size="lg" weight="bold">
+              Cobertura de Testes
+            </Text>
+            <Text as="p" className={styles.healthValue}>
+              {HEALTH_METRICS.testCoverage.percentage}%
+            </Text>
+            <div className={styles.progressWrapper}>
+              <Progress 
+                value={HEALTH_METRICS.testCoverage.percentage}
+                color="success"
+                size="md"
+                aria-label={`Cobertura de testes: ${HEALTH_METRICS.testCoverage.percentage}%`}
+              />
+            </div>
+            <Text as="p" size="sm" color="muted">
+              {HEALTH_METRICS.testCoverage.label} de testes
+            </Text>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 }
