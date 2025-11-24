@@ -6,11 +6,11 @@ Este documento serve como o "Cérebro" para a execução autônoma ou assistida 
 
 | ID | Título | Prioridade | Depende de | Status Dependência | Estado Atual |
 |----|--------|------------|------------|--------------------|--------------|
-| **#59** | **Puck Refactor (DropZone)** | **P1 (CRÍTICA)** | - | ✅ Resolvida | **✅ CONCLUÍDA** |
-| **#60** | Progress Component | P2 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
-| **#61** | Leaderboard Component | P2 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
-| **#56** | BackOffice Jornada | P1 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
-| **#57** | FrontOffice Onboarding | P1 | - | ✅ Resolvida | **✅ CONCLUÍDA** |
+| **#59** | **Puck Refactor (DropZone)** | **P1 (CRÍTICA)** | - | ✅ Resolvida | **✅ FECHADA** |
+| **#60** | Progress Component | P2 | - | ✅ Resolvida | **✅ FECHADA** |
+| **#61** | Leaderboard Component | P2 | - | ✅ Resolvida | **✅ FECHADA** |
+| **#56** | BackOffice Jornada | P1 | - | ✅ Resolvida | **✅ FECHADA** |
+| **#57** | FrontOffice Onboarding | P1 | - | ✅ Resolvida | **✅ FECHADA** |
 | #53 | Dashboard API | P2 | #59 | ✅ Resolvida | **🟢 PRONTA** |
 | #54 | Dashboard UI | P2 | #53 | 🔴 Bloqueada | 🔴 AGUARDANDO |
 | #55 | Health Metrics | P2 | #54 | 🔴 Bloqueada | 🔴 AGUARDANDO |
@@ -179,11 +179,27 @@ Inicie a execução agora.
 
 ---
 
-**TOTAL DE ISSUES CONCLUÍDAS**: 5 (4 paralelas + 1 blocker crítico anterior)
+**TOTAL DE ISSUES CONCLUÍDAS**: 5 de 9 (56%)
 
-**Próximas issues desbloqueadas**:
-- ✅ #53 (Dashboard API) - Já estava pronta após #59
-- ✅ #58 (Game Hub) - Desbloqueado após #61
+**Progresso**:
+- ✅ Fase 1: #59 (Blocker Crítico)
+- ✅ Fase 2: #56, #57, #60, #61 (4 Paralelos)
+- 🟢 Fase 3: #53, #58 (Próximas - sem bloqueios)
+- 🔴 Fase 4: #54, #55 (Sequencial, aguardando #53)
+- 📦 Fase 5: #4, #11, #13, #14, #15 (Legadas - fechar ao final)
+
+**Próximas issues prontas para agente**:
+- ✅ #53 (Dashboard API) - Sem dependências pendentes
+- ✅ #58 (Game Hub) - #61 já foi completada
+
+**Timeline até agora**:
+- Fase 1 (#59): 0h (já existia, apenas mergeada)
+- Fase 2 (#56, #57, #60, #61): ~4-5h (1 agente, paralelo)
+- **Total**: ~4-5 horas de desenvolvimento real
+
+---
+
+**Próximo passo**: Agente 2 deve executar #53 (Dashboard API), depois cadeia #54→#55, depois #58 (Game Hub)
 
 ---
 
