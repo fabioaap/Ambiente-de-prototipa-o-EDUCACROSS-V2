@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Layout, Text, Card, Button, Input, Badge, HealthIndicator } from '@prototipo/design-system';
+import { Layout, Text, Card, Button, Input, Badge } from '@prototipo/design-system';
 
 interface Page {
   id: string;
@@ -43,11 +43,11 @@ export default function DashboardPage() {
       setLoading(true);
       setError(null);
       const response = await fetch('/api/pages');
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch pages');
       }
-      
+
       const data: ApiResponse = await response.json();
       setPages(data.pages);
       setFilteredPages(data.pages);
@@ -89,16 +89,16 @@ export default function DashboardPage() {
     }).format(date);
   }
 
-  function getDomainColor(domain: string): 'primary' | 'secondary' | 'success' | 'warning' | 'danger' {
+  function getDomainColor(domain: string): 'error' | 'default' | 'success' | 'warning' | 'info' {
     switch (domain) {
       case 'BackOffice':
-        return 'primary';
+        return 'info';
       case 'FrontOffice':
         return 'success';
       case 'Game':
         return 'warning';
       default:
-        return 'secondary';
+        return 'default';
     }
   }
 
@@ -116,40 +116,42 @@ export default function DashboardPage() {
       </div>
 
       {/* Filters */}
-      <Card variant="bordered" padding="md" style={{ marginBottom: '2rem' }}>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-          <div style={{ flex: '1 1 300px' }}>
-            <Text as="label" size="sm" weight="semibold" style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Buscar
-            </Text>
-            <Input
-              type="text"
-              placeholder="Buscar por título ou slug..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ width: '100%' }}
-            />
-          </div>
-          
-          <div style={{ flex: '0 1 200px' }}>
-            <Text as="label" size="sm" weight="semibold" style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Domínio
-            </Text>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {domains.map((domain) => (
-                <Button
-                  key={domain}
-                  variant={domainFilter === domain ? 'primary' : 'outline'}
-                  size="sm"
-                  onClick={() => setDomainFilter(domain)}
-                >
-                  {domain === 'all' ? 'Todos' : domain}
-                </Button>
-              ))}
+      <div style={{ marginBottom: '2rem' }}>
+        <Card variant="bordered" padding="md">
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
+            <div style={{ flex: '1 1 300px' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '14px', fontWeight: '600' }}>
+                Buscar
+              </label>
+              <Input
+                type="text"
+                placeholder="Buscar por título ou slug..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{ width: '100%' }}
+              />
+            </div>
+
+            <div style={{ flex: '0 1 200px' }}>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '14px', fontWeight: '600' }}>
+                Domínio
+              </label>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                {domains.map((domain) => (
+                  <Button
+                    key={domain}
+                    variant={domainFilter === domain ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={() => setDomainFilter(domain)}
+                  >
+                    {domain === 'all' ? 'Todos' : domain}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </div>
 
       {/* Loading State */}
       {loading && (
@@ -162,22 +164,22 @@ export default function DashboardPage() {
 
       {/* Error State */}
       {error && !loading && (
-        <Card variant="bordered" padding="lg" style={{ borderColor: 'var(--color-danger)', backgroundColor: 'var(--color-danger-50)' }}>
-          <Text color="danger" weight="semibold">
+        <div style={{ borderColor: 'var(--color-danger)', backgroundColor: 'var(--color-danger-50)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--color-danger)' }}>
+          <Text weight="semibold">
             Erro ao carregar páginas
           </Text>
-          <Text color="danger" size="sm" style={{ marginTop: '0.5rem' }}>
+          <Text size="sm" style={{ marginTop: '0.5rem' }}>
             {error}
           </Text>
           <Button
-            variant="danger"
+            variant="outline"
             size="sm"
             onClick={fetchPages}
             style={{ marginTop: '1rem' }}
           >
             Tentar Novamente
           </Button>
-        </Card>
+        </div>
       )}
 
       {/* Empty State */}
@@ -223,7 +225,7 @@ export default function DashboardPage() {
               Mostrando {filteredPages.length} de {pages.length} páginas
             </Text>
           </div>
-          
+
           <div
             style={{
               display: 'grid',
