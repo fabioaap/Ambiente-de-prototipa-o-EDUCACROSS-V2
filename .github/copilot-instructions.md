@@ -96,6 +96,48 @@ git push -u origin feature/{...}
 gh pr merge <NUMBER> --squash
 ```
 
+### SpecKit Integration (PR Quality Validation)
+
+**O que é**: Validador automático de PRs que garante qualidade sem review manual repetitivo.
+
+**Como usar**:
+
+1. **Após abrir PR**, comente:
+   ```
+   /spec
+   ```
+
+2. **SpecKit valida automaticamente**:
+   - ✅ Título segue conventional commits? (feat/fix/docs/chore/refactor)
+   - ✅ Descrição tem min 50 caracteres?
+   - ✅ Labels obrigatórios presentes?
+   - ✅ Componentes DS têm stories no Storybook?
+   - ✅ Jornadas têm README com seções obrigatórias?
+   - ✅ APIs têm response schema definido?
+   - ✅ Build passa? Lint OK? Type-check OK?
+
+3. **SpecKit posta relatório claro**:
+   ```
+   ✅ PR Title Format
+   ✅ PR Description Length
+   ✅ Component Stories (6/6)
+   ✅ Build Status
+   ❌ Journey Documentation (faltam links.md)
+   ```
+
+4. **Dev ajusta** conforme relatório e roda `/spec` novamente
+
+5. **Quando TUDO ✅**: Safe to merge!
+
+**Benefícios**:
+- Reduz review loops de 3-4 para 1 iteração
+- Zero surpresas ao mergear (qualidade garantida)
+- Documentação sempre atualizada
+- Histórico de Git limpo (conventional commits)
+- Devs mais rápidos (feedback imediato)
+
+**Especificações** estão em `.github/spec.yml` — customize conforme necessário.
+
 ---
 
 ## 📐 Padrões de Código
@@ -447,12 +489,25 @@ pnpm dev:storybook &
 | `apps/studio/src/app/[[...slug]]/page.tsx`  | Renderiza páginas JSON do localStorage         |
 | `.github/workflows/sprint-2-validation.yml` | CI/CD automation                               |
 | `docs/sprint-2-planning.md`                 | Contexto técnico de P1                         |
+| `.github/spec.yml`                          | SpecKit specifications (PR validation config)  |
 
 ---
 
 ## ✅ Checklist para Agents
 
-Quando modificar componentes DS:
+### Antes de qualquer ação:
+
+1. **Verificar ambiente**:
+   - [ ] `node --version` → v22.x.x
+   - [ ] `pnpm --version` → 9.14.4+
+   - [ ] `git --version` → 2.52.0+
+
+2. **Ler instruções e specs**:
+   - [ ] Entender o projeto (repositório, stack, arquitetura)
+   - [ ] Verificar `.github/spec.yml` para requirements
+   - [ ] Ler issue/prompt completo antes de começar
+
+### Quando modificar componentes DS:
 
 - [ ] Manter interface de props estável (adicionar, não remover)
 - [ ] Atualizar stories no Storybook
@@ -483,6 +538,12 @@ Antes de mergear PR:
 - [ ] Página no Studio funcional (se jornada)
 - [ ] README/docs atualizado
 - [ ] Nenhum `console.error` em dev
+- [ ] **SpecKit validação**: Postar `/spec` em comentário de PR
+  - [ ] Todos os checks ✅ (título, descrição, labels, stories, docs)
+  - [ ] Se algum ❌, ajustar conforme relatório e rodar `/spec` novamente
+  - [ ] Apenas mergear quando TUDO estiver ✅
+
+**SpecKit é obrigatório antes de mergear qualquer PR!**
 
 ---
 
