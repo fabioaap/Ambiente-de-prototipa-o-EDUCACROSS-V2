@@ -6,6 +6,9 @@ import { puckConfig } from '@/config/puck.config';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
+// Rotas reservadas que não devem ser geradas pela catch-all
+const RESERVED_ROUTES = ['dashboard', 'studio', 'api'];
+
 // Criar o diretório se não existir
 if (!fs.existsSync(PAGES_DIR)) {
   fs.mkdirSync(PAGES_DIR, { recursive: true });
@@ -22,6 +25,11 @@ export function generateStaticParams() {
       return {
         slug: slug === 'index' ? [] : slug.split('/'),
       };
+    })
+    // Filtrar rotas reservadas para evitar conflito
+    .filter(params => {
+      const firstSegment = params.slug?.[0];
+      return !RESERVED_ROUTES.includes(firstSegment || '');
     });
 }
 
