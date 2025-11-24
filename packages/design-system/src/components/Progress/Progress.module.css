@@ -1,0 +1,124 @@
+@import '@prototipo/tokens/tokens.css';
+
+.progress {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--typography-fontFamily-sans);
+}
+
+/* Linear variant */
+.linear {
+  flex-direction: row;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.linearTrack {
+  flex: 1;
+  height: 100%;
+  background-color: var(--colors-neutral-200);
+  border-radius: var(--borderRadius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.linearFill {
+  height: 100%;
+  border-radius: var(--borderRadius-full);
+  transition: width 0.3s ease;
+}
+
+.linearLabel {
+  font-size: var(--typography-fontSize-sm);
+  font-weight: var(--typography-fontWeight-medium);
+  color: var(--colors-neutral-700);
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* Circular variant */
+.circular {
+  flex-direction: column;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circularSvg {
+  transform: rotate(0deg);
+}
+
+.circularBackground {
+  fill: none;
+  stroke: var(--colors-neutral-200);
+}
+
+.circularForeground {
+  fill: none;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.circularLabel {
+  position: absolute;
+  font-size: var(--typography-fontSize-xs);
+  font-weight: var(--typography-fontWeight-semibold);
+  color: var(--colors-neutral-700);
+}
+
+/* Size variants for linear */
+.linear.sm .linearTrack {
+  height: 0.375rem; /* 6px */
+}
+
+.linear.md .linearTrack {
+  height: 0.5rem; /* 8px */
+}
+
+.linear.lg .linearTrack {
+  height: 0.75rem; /* 12px */
+}
+
+/* Size variants for circular labels */
+.circular.sm .circularLabel {
+  font-size: var(--typography-fontSize-xs);
+}
+
+.circular.md .circularLabel {
+  font-size: var(--typography-fontSize-sm);
+}
+
+.circular.lg .circularLabel {
+  font-size: var(--typography-fontSize-base);
+}
+
+/* Color variants */
+.primary .linearFill,
+.primary .circularForeground {
+  background-color: var(--colors-primary-600);
+  stroke: var(--colors-primary-600);
+}
+
+.secondary .linearFill,
+.secondary .circularForeground {
+  background-color: var(--colors-secondary-600);
+  stroke: var(--colors-secondary-600);
+}
+
+.success .linearFill,
+.success .circularForeground {
+  background-color: var(--colors-success-500);
+  stroke: var(--colors-success-500);
+}
+
+.warning .linearFill,
+.warning .circularForeground {
+  background-color: var(--colors-warning-500);
+  stroke: var(--colors-warning-500);
+}
+
+.error .linearFill,
+.error .circularForeground {
+  background-color: var(--colors-error-500);
+  stroke: var(--colors-error-500);
+}
