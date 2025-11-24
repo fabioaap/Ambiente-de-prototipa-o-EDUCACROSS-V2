@@ -1,0 +1,305 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { Card, Button, Text, Badge } from '@prototipo/design-system';
+import { useRouter } from 'next/navigation';
+import styles from './page.module.css';
+
+// ============================================================================
+// TIPOS TYPESCRIPT
+// ============================================================================
+
+interface PageData {
+  id: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+  updatedAt: string;
+  content: Record<string, unknown>;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data: PageData[];
+  error: string | null;
+  total: number;
+  timestamp: string;
+}
+
+// ============================================================================
+// UTILITÁRIOS
+// ============================================================================
+
+/**
+ * Extrai o domínio do slug
+ * Ex: "backoffice/dashboard" -> "BackOffice"
+ */
+function extractDomain(slug: string): string {
+  const parts = slug.split('/');
+  const domain = parts[0] || 'Geral';
+  
+  // Capitalizar e formatar
+  const domainMap: Record<string, string> = {
+    'backoffice': 'BackOffice',
+    'frontoffice': 'FrontOffice',
+    'game': 'Game Hub',
+    'admin': 'Administração',
+  };
+  
+  return domainMap[domain.toLowerCase()] || domain.charAt(0).toUpperCase() + domain.slice(1);
+}
+
+/**
+ * Formata data ISO para formato legível em português
+ * Ex: "2025-11-23T14:30:00.000Z" -> "23 de novembro de 2025"
+ */
+function formatDate(isoDate: string): string {
+  const date = new Date(isoDate);
+  const options: Intl.DateTimeFormatOptions = { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  };
+  return date.toLocaleDateString('pt-BR', options);
+}
+
+/**
+ * Formata data para formato curto
+ * Ex: "2025-11-23T14:30:00.000Z" -> "23/11/2025 14:30"
+ */
+function formatDateShort(isoDate: string): string {
+  const date = new Date(isoDate);
+  const dateStr = date.toLocaleDateString('pt-BR');
+  const timeStr = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  return `${dateStr} ${timeStr}`;
+}
+
+// ============================================================================
+// COMPONENTE PRINCIPAL
+// ============================================================================
+
+export default function PagesListPage() {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [pages, setPages] = useState<PageData[]>([]);
+  const router = useRouter();
+
+  // ============================================================================
+  // EFEITOS
+  // ============================================================================
+
+  useEffect(() => {
+    fetchPages();
+  }, []);
+
+  // ============================================================================
+  // FUNÇÕES DE FETCH
+  // ============================================================================
+
+  async function fetchPages() {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch('/api/pages');
+      
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      const data: ApiResponse = await response.json();
+
+      if (data.success) {
+        setPages(data.data);
+      } else {
+        setError(data.error || 'Falha ao carregar páginas');
+      }
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido';
+      setError(`Erro ao buscar páginas: ${errorMessage}`);
+      console.error('Error fetching pages:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // ============================================================================
+  // HANDLERS DE AÇÕES
+  // ============================================================================
+
+  function handleEdit(slug: string) {
+    router.push(`/studio?page=${slug}`);
+  }
+
+  function handleView(slug: string) {
+    router.push(`/${slug}`);
+  }
+
+  function handleDelete(page: PageData) {
+    // MVP: Apenas alerta (implementação futura)
+    if (window.confirm(`Tem certeza que deseja deletar "${page.title}"?`)) {
+      alert(`Funcionalidade de deletar será implementada em breve.\nPágina: ${page.title}`);
+      // TODO: Implementar DELETE /api/pages/:slug
+    }
+  }
+
+  function handleNewPage() {
+    router.push('/studio');
+  }
+
+  // ============================================================================
+  // RENDERIZAÇÃO DE ESTADOS
+  // ============================================================================
+
+  if (loading) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Text as="h1" size="3xl" weight="bold">
+            Páginas Criadas
+          </Text>
+        </div>
+        <div className={styles.loadingState}>
+          <Text as="p" size="lg" color="muted">
+            Carregando páginas...
+          </Text>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Text as="h1" size="3xl" weight="bold">
+            Páginas Criadas
+          </Text>
+        </div>
+        <div className={styles.errorState}>
+          <Text as="p" size="lg" color="error">
+            ⚠️ {error}
+          </Text>
+          <Button onClick={fetchPages} variant="secondary">
+            Tentar Novamente
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // ============================================================================
+  // RENDERIZAÇÃO PRINCIPAL
+  // ============================================================================
+
+  return (
+    <div className={styles.container}>
+      {/* Cabeçalho */}
+      <div className={styles.header}>
+        <div className={styles.headerLeft}>
+          <Text as="h1" size="3xl" weight="bold">
+            Páginas Criadas
+          </Text>
+          <Text as="p" size="base" color="muted">
+            Total de {pages.length} {pages.length === 1 ? 'página' : 'páginas'}
+          </Text>
+        </div>
+        <div className={styles.headerRight}>
+          <Button onClick={handleNewPage} variant="primary">
+            + Nova Página
+          </Button>
+        </div>
+      </div>
+
+      {/* Lista de Páginas */}
+      {pages.length === 0 ? (
+        <div className={styles.emptyState}>
+          <Text as="p" size="lg" color="muted">
+            Nenhuma página criada ainda.
+          </Text>
+          <Button onClick={handleNewPage} variant="primary">
+            Criar Primeira Página
+          </Button>
+        </div>
+      ) : (
+        <div className={styles.grid}>
+          {pages.map((page) => (
+            <Card 
+              key={page.id} 
+              variant="elevated" 
+              padding="lg"
+              className={styles.pageCard}
+            >
+              {/* Cabeçalho do Card */}
+              <div className={styles.cardHeader}>
+                <div className={styles.cardHeaderLeft}>
+                  <Text as="h2" size="xl" weight="bold">
+                    {page.title}
+                  </Text>
+                  <Badge variant="default">
+                    {extractDomain(page.slug)}
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Informações da Página */}
+              <div className={styles.cardInfo}>
+                <div className={styles.infoItem}>
+                  <Text as="span" size="sm" weight="bold" color="muted">
+                    Slug:
+                  </Text>
+                  <Text as="span" size="sm" className={styles.slug}>
+                    /{page.slug}
+                  </Text>
+                </div>
+
+                <div className={styles.infoItem}>
+                  <Text as="span" size="sm" weight="bold" color="muted">
+                    Última atualização:
+                  </Text>
+                  <Text as="span" size="sm">
+                    {formatDateShort(page.updatedAt)}
+                  </Text>
+                </div>
+
+                <div className={styles.infoItem}>
+                  <Text as="span" size="sm" weight="bold" color="muted">
+                    Criado em:
+                  </Text>
+                  <Text as="span" size="sm">
+                    {formatDate(page.createdAt)}
+                  </Text>
+                </div>
+              </div>
+
+              {/* Ações */}
+              <div className={styles.cardActions}>
+                <Button 
+                  onClick={() => handleView(page.slug)} 
+                  variant="secondary"
+                  className={styles.actionButton}
+                >
+                  👁️ Visualizar
+                </Button>
+                <Button 
+                  onClick={() => handleEdit(page.slug)} 
+                  variant="primary"
+                  className={styles.actionButton}
+                >
+                  ✏️ Editar
+                </Button>
+                <Button 
+                  onClick={() => handleDelete(page)} 
+                  variant="secondary"
+                  className={styles.actionButton}
+                >
+                  🗑️ Deletar
+                </Button>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
