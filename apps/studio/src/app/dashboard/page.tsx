@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Layout, Text, Card, Button, Input, Badge } from '@prototipo/design-system';
+import { Layout, Text, Card, Button, Input, Badge, HealthIndicator } from '@prototipo/design-system';
 
 interface Page {
   id: string;
@@ -116,7 +116,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Filters */}
-      <Card variant="outlined" padding="md" style={{ marginBottom: '2rem' }}>
+      <Card variant="bordered" padding="md" style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <div style={{ flex: '1 1 300px' }}>
             <Text as="label" size="sm" weight="semibold" style={{ display: 'block', marginBottom: '0.5rem' }}>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
 
       {/* Loading State */}
       {loading && (
-        <Card variant="outlined" padding="lg">
+        <Card variant="bordered" padding="lg">
           <Text color="muted" style={{ textAlign: 'center' }}>
             Carregando páginas...
           </Text>
@@ -162,7 +162,7 @@ export default function DashboardPage() {
 
       {/* Error State */}
       {error && !loading && (
-        <Card variant="outlined" padding="lg" style={{ borderColor: 'var(--color-danger)', backgroundColor: 'var(--color-danger-50)' }}>
+        <Card variant="bordered" padding="lg" style={{ borderColor: 'var(--color-danger)', backgroundColor: 'var(--color-danger-50)' }}>
           <Text color="danger" weight="semibold">
             Erro ao carregar páginas
           </Text>
@@ -182,7 +182,7 @@ export default function DashboardPage() {
 
       {/* Empty State */}
       {!loading && !error && filteredPages.length === 0 && pages.length > 0 && (
-        <Card variant="outlined" padding="lg">
+        <Card variant="bordered" padding="lg">
           <Text color="muted" style={{ textAlign: 'center' }}>
             Nenhuma página encontrada com os filtros aplicados.
           </Text>
@@ -202,7 +202,7 @@ export default function DashboardPage() {
       )}
 
       {!loading && !error && pages.length === 0 && (
-        <Card variant="outlined" padding="lg">
+        <Card variant="bordered" padding="lg">
           <Text color="muted" style={{ textAlign: 'center' }}>
             Nenhuma página disponível ainda.
           </Text>
