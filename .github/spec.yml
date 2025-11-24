@@ -1,0 +1,132 @@
+# GitHub SpecKit Configuration
+# This file defines specifications for the EDUCACROSS prototyping environment
+# Used to validate PRs, documentation, and code quality
+
+version: 1.0
+
+specs:
+  # PR Requirements
+  pr_requirements:
+    title:
+      pattern: '(feat|fix|docs|chore|refactor)\(.*\):.*'
+      description: 'PR title must follow conventional commits format'
+    
+    body:
+      min_length: 50
+      description: 'PR description must be at least 50 characters'
+      
+    labels:
+      required: true
+      min_count: 1
+      allowed:
+        - 'type:feature'
+        - 'type:bugfix'
+        - 'type:docs'
+        - 'priority:P1'
+        - 'priority:P2'
+
+  # Code Quality
+  code_quality:
+    typescript:
+      strict_mode: true
+      eslint_enabled: true
+      
+    coverage:
+      minimum: 70
+      
+    build:
+      required: true
+      script: 'pnpm build'
+
+  # Design System Components
+  components:
+    Button:
+      status: 'stable'
+      stories_min: 5
+      
+    Card:
+      status: 'stable'
+      stories_min: 3
+      
+    Progress:
+      status: 'stable'
+      stories_min: 6
+      
+    Leaderboard:
+      status: 'stable'
+      stories_min: 4
+      
+    HealthIndicator:
+      status: 'beta'
+      stories_min: 8
+
+  # Documentation
+  documentation:
+    journeys:
+      required:
+        - 'domains/BackOffice/journeys/*/README.md'
+        - 'domains/FrontOffice/journeys/*/README.md'
+        - 'domains/Game/journeys/*/README.md'
+    
+    components:
+      required:
+        - 'packages/design-system/src/components/*/README.md'
+        - 'apps/storybook/src/stories/*.stories.tsx'
+
+  # Sprint 3 Deliverables
+  sprint3:
+    dashboard_api:
+      endpoint: '/api/pages'
+      method: 'GET'
+      required_params:
+        - 'limit'
+        - 'offset'
+      required_response_fields:
+        - 'success'
+        - 'data'
+        - 'total'
+        - 'timestamp'
+    
+    dashboard_ui:
+      location: 'apps/studio/src/app/dashboard/page.tsx'
+      features:
+        - 'search_by_title'
+        - 'filter_by_domain'
+        - 'responsive_layout'
+        - 'loading_states'
+    
+    health_metrics:
+      component: 'HealthIndicator'
+      variants:
+        - 'build_status'
+        - 'health_score'
+        - 'metrics'
+      
+    game_hub:
+      location: 'domains/Game/journeys/game-hub/README.md'
+      sections:
+        - 'objetivo'
+        - 'status'
+        - 'componentes_utilizados'
+        - 'links'
+
+# Validation Rules
+validation:
+  on_pr:
+    - 'check_title_format'
+    - 'check_description'
+    - 'check_labels'
+    - 'run_build'
+    - 'run_type_check'
+    - 'verify_component_stories'
+    
+  on_merge:
+    - 'verify_all_checks_passed'
+    - 'verify_no_console_errors'
+    - 'update_changelog'
+
+# Reporting
+reporting:
+  format: 'github_comment'
+  include_metrics: true
+  include_timeline: true
