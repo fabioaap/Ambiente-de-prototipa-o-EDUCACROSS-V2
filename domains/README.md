@@ -20,4 +20,4 @@ Este índice é gerado automaticamente via `scripts/generate-domains-index.mjs`.
 ---
 
 **Total de Jornadas**: 3
-**Atualizado em**: 2025-11-23
+**Atualizado em**: 2025-11-24
