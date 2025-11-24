@@ -184,7 +184,7 @@ REQUISITOS DE IMPLEMENTAÇÃO:
 3. ✅ Execute validações: pnpm build && pnpm lint && pnpm -r type-check
 4. ✅ Adicione testes se aplicável (seguindo padrões existentes)
 5. ✅ Atualize documentação relevante
-6. ✅ Use report_progress para commitar: "feat(`#$IssueNumber): $issueTitle (fix `#$IssueNumber)"
+6. ✅ Use report_progress para commitar: \"feat(#$IssueNumber): $issueTitle (fix #$IssueNumber)\"
 7. ✅ Execute code_review e codeql_checker antes de finalizar
 
 PRIORIDADE: $issuePriority
@@ -337,7 +337,7 @@ Execute estas validações NA ORDEM após implementar o fix:
 
 ### 1. Lint
 ```bash
-cd /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2
+# No diretório raiz do repositório
 pnpm lint
 ```
 **Critério de Aceitação:** Warnings aceitáveis, 0 erros críticos
@@ -382,15 +382,25 @@ pwsh scripts/execute-sprint3.ps1 -DryRun -Verbose
 **Critério de Aceitação:** Logs DEBUG exibem informações de depuração
 
 ### 7. Teste com Issue Sem Corpo
-Crie uma issue de teste vazia para validar:
+
+**OPCIONAL mas RECOMENDADO:** Validar comportamento com issue vazia.
+
+Primeiro, verifique o próximo número de issue disponível:
 ```bash
-gh issue create --title "Test Empty Body" --body ""
-# Anote o número da issue (ex: #999)
+# Obter última issue criada para evitar conflito
+gh issue list --limit 1 --json number --jq '.[0].number'
+# Use um número acima do último (ex: se último é 62, use 100 para segurança)
 ```
 
-Edite temporariamente `$issueGraph` no script para incluir:
+Crie uma issue de teste vazia:
+```bash
+gh issue create --title "Test Empty Body - DELETE ME" --body ""
+# Anote o número retornado (ex: #100)
+```
+
+Edite temporariamente `$issueGraph` no script para incluir (use o número real):
 ```powershell
-"999" = @{ Title = "Test Empty Body"; DependsOn = @(); Priority = 4; Effort = 0 }
+"100" = @{ Title = "Test Empty Body"; DependsOn = @(); Priority = 4; Effort = 0 }
 ```
 
 Execute DryRun:
@@ -399,14 +409,15 @@ pwsh scripts/execute-sprint3.ps1 -DryRun
 ```
 
 **Critérios de Aceitação:**
-- ✅ Script processa issue #999 sem erro
-- ✅ Log mostra aviso: "Issue #999 sem descrição"
-- ✅ Relatório lista #999 com warning
+- ✅ Script processa a issue de teste sem erro
+- ✅ Log mostra aviso: "Issue #[NUM] sem descrição"
+- ✅ Relatório lista issue de teste com warning
 - ✅ Agente selecionado baseado no título (FullStack por padrão)
 
 Limpar:
 ```bash
-gh issue close 999 --comment "Issue de teste"
+gh issue close [NUM] --comment "Issue de teste - pode deletar"
+# Remover entrada do $issueGraph no script
 ```
 
 ---
