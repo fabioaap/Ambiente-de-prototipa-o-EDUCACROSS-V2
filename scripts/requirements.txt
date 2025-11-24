@@ -1,0 +1,8 @@
+# Sprint 3 Auto Executor - Python Dependencies
+
+# HTTP client library for GitHub API interactions
+requests>=2.31.0,<3.0.0
+
+# Optional: Enhanced CLI output (not required, but useful)
+# colorama>=0.4.6  # For colored terminal output
+# rich>=13.0.0     # For rich terminal output and progress bars

@@ -22,8 +22,8 @@ $issueGraph = @{
     "58" = @{ Title = "Game Hub"; DependsOn = @("61"); Priority = 2; Effort = 3 }
     
     # Issues legadas para fechar (5 issues)
-    "4" = @{ Title = "Epic BackOffice Old"; DependsOn = @("56"); Priority = 3; Effort = 0; Action = "close" }
-    "11" = @{ Title = "Epic Dashboard Old"; DependsOn = @("53","54","55"); Priority = 3; Effort = 0; Action = "close" }
+    "4"  = @{ Title = "Epic BackOffice Old"; DependsOn = @("56"); Priority = 3; Effort = 0; Action = "close" }
+    "11" = @{ Title = "Epic Dashboard Old"; DependsOn = @("53", "54", "55"); Priority = 3; Effort = 0; Action = "close" }
     "13" = @{ Title = "Dashboard API Old"; DependsOn = @("53"); Priority = 3; Effort = 0; Action = "close" }
     "14" = @{ Title = "Dashboard UI Old"; DependsOn = @("54"); Priority = 3; Effort = 0; Action = "close" }
     "15" = @{ Title = "Health Metrics Old"; DependsOn = @("55"); Priority = 3; Effort = 0; Action = "close" }
@@ -49,11 +49,11 @@ function Get-NextAvailableIssue {
         
         if ($allDepsResolved) {
             $readyIssues += @{
-                Number = $issueNum
+                Number   = $issueNum
                 Priority = $issue.Priority
-                Effort = $issue.Effort
-                Title = $issue.Title
-                Action = $issue.Action
+                Effort   = $issue.Effort
+                Title    = $issue.Title
+                Action   = $issue.Action
             }
         }
     }

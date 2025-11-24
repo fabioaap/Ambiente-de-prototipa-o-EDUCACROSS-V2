@@ -43,3 +43,14 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Sprint 3 Auto Executor artifacts
+sprint3-autoexecutor-*.log
+report-*.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
