@@ -11,10 +11,12 @@ Repositório de prototipação frontend orientado a jornadas, utilizando React, 
 ## 🌐 Ambientes Disponíveis
 
 ### Produção
+
 - **🎨 Studio:** [educacross-studio.vercel.app](https://educacross-studio.vercel.app)
 - **📚 Storybook:** [educacross-storybook.vercel.app](https://educacross-storybook.vercel.app)
 
 ### Staging (v0.2-beta)
+
 - **🎨 Studio Staging:** [educacross-studio-staging.vercel.app](https://educacross-studio-staging.vercel.app)
 - **📚 Storybook Staging:** [educacross-storybook-staging.vercel.app](https://educacross-storybook-staging.vercel.app)
 
@@ -67,13 +69,14 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ### Artefatos de Execução [A] [B] [C]
 
-| Artefato | Arquivo | Status |
-|----------|---------|--------|
-| **[A] Review Checklists** | Comentários em PRs #42, #40, #38, #35, #36 | ✅ 5/5 postadas |
-| **[B] PR Tracking** | [docs/sprint-2-prs.md](docs/sprint-2-prs.md) | ✅ Criada |
-| **[C] Build Report** | [docs/sprint-2-build-report.md](docs/sprint-2-build-report.md) | ✅ Validado |
+| Artefato                  | Arquivo                                                        | Status          |
+| ------------------------- | -------------------------------------------------------------- | --------------- |
+| **[A] Review Checklists** | Comentários em PRs #42, #40, #38, #35, #36                     | ✅ 5/5 postadas |
+| **[B] PR Tracking**       | [docs/sprint-2-prs.md](docs/sprint-2-prs.md)                   | ✅ Criada       |
+| **[C] Build Report**      | [docs/sprint-2-build-report.md](docs/sprint-2-build-report.md) | ✅ Validado     |
 
 ### Quick Navigation
+
 - 📋 **Plano Completo**: [RUN_SPRINT2.md](RUN_SPRINT2.md) – Guia principal com 5 issues
 - 📊 **Status Dashboard**: [docs/sprint-2-status.md](docs/sprint-2-status.md) – Timeline e métricas
 - 📝 **Referência Rápida**: [SPRINT2_ARTIFACTS_REFERENCE.md](SPRINT2_ARTIFACTS_REFERENCE.md) – Links e checklists
@@ -81,6 +84,7 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 - 🔄 **CI/CD Automation**: [.github/workflows/sprint-2-validation.yml](.github/workflows/sprint-2-validation.yml) – GitHub Actions
 
 ### PRs P1 em Review (Ordem de Merge Recomendada)
+
 1. **#40** (G6) – [CONTRIBUTING.md](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/40)
 2. **#42** (C2) – [Dynamic Page Navigation](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/42) ⭐ Critical Path
 3. **#38** (G4) – [Automatic Journey Index](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/pull/38)
@@ -151,6 +155,7 @@ pnpm lint
 ### Tokens (`packages/tokens`)
 
 Contém todos os design tokens do sistema:
+
 - Cores (primary, secondary, neutral, success, warning, error)
 - Tipografia (font families, sizes, weights)
 - Espaçamentos
@@ -159,6 +164,7 @@ Contém todos os design tokens do sistema:
 - Breakpoints
 
 Os tokens são exportados em:
+
 - **CSS variables** (`tokens.css`)
 - **JavaScript/TypeScript** (ESM e CommonJS)
 
@@ -167,12 +173,14 @@ Os tokens são exportados em:
 Biblioteca de componentes React reutilizáveis:
 
 **Componentes Base:**
+
 - **Button** - Botões com variantes (primary, secondary, outline, ghost)
 - **Text** - Tipografia com controle completo
 - **Card** - Containers com diferentes estilos
 - **Layout** - Sistema de layout responsivo
 
 **Componentes de Formulário:** 🆕
+
 - **Input** - Text, email, password, number, etc.
 - **Select** - Dropdown com options e optgroups
 - **Checkbox** - Checkbox com label e estados
@@ -180,6 +188,7 @@ Biblioteca de componentes React reutilizáveis:
 - **Switch** - Toggle switch animado
 
 Todos os componentes:
+
 - Consomem tokens do `@prototipo/tokens`
 - São documentados no Storybook
 - Incluem acessibilidade (ARIA, keyboard navigation)
@@ -200,6 +209,7 @@ O Studio é um app Next.js que integra o Puck OSS como editor visual.
 Os componentes disponíveis no Puck são configurados em `apps/studio/src/config/puck.config.tsx`.
 
 Para adicionar um novo componente:
+
 1. Crie o componente no `packages/design-system`
 2. Adicione a configuração no `puck.config.tsx`
 3. O componente estará disponível no editor
@@ -231,6 +241,7 @@ Visite: http://localhost:6006
 As pastas dentro de `domains/` (BackOffice, FrontOffice, Game) são organizadas por **jornadas de prototipagem**.
 
 Cada domínio contém:
+
 - **README.md**: Visão geral do domínio e objetivos
 - **journeys/**: Diretório com as jornadas documentadas
 
@@ -378,6 +389,8 @@ packages/design-system
 
 ## 📖 Documentação Adicional
 
+### Geral
+
 - [Tokens README](./packages/tokens/README.md)
 - [Design System README](./packages/design-system/README.md)
 - [Studio README](./apps/studio/README.md)
@@ -389,9 +402,24 @@ packages/design-system
 - [Domínios e Jornadas](./domains/README.md)
 - [Automação GitHub](./scripts/gh/README.md) 🆕
 
+### Sprint 2
+
+- [Guia Principal Sprint 2](./RUN_SPRINT2.md)
+- [Quick Start Sprint 2](./SPRINT2_QUICK_START.md)
+- [Status Sprint 2](./SPRINT2_STATUS.md)
+
+### Sprint 3 🆕
+
+- [📚 Índice de Documentação Sprint 3](./SPRINT3_DOCUMENTATION_INDEX.md) ⭐ - **Comece aqui**
+- [Execução Detalhada Sprint 3](./SPRINT3_EXECUTION_DETAILED.md) - Prompts prontos
+- [Quick Start Sprint 3](./SPRINT3_QUICK_START.md)
+- [Status Final Sprint 3](./SPRINT3_FINAL_STATUS.md)
+- [Checkpoint Sprint 3](./SPRINT3_CHECKPOINT.md)
+
 ## 🐛 Troubleshooting
 
 ### Erro de versão do Node
+
 ```bash
 nvm use
 # ou
@@ -400,12 +428,14 @@ nvm use 22.21.1
 ```
 
 ### Dependências desatualizadas
+
 ```bash
 pnpm clean
 pnpm install
 ```
 
 ### Build falhando
+
 ```bash
 # Rebuild tudo do zero
 pnpm clean
@@ -414,6 +444,7 @@ pnpm build
 ```
 
 ### Storybook não carrega componentes
+
 ```bash
 # Rebuild o design system primeiro
 pnpm build:tokens
