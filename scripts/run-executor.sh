@@ -116,8 +116,15 @@ fi
 # Check dependencies
 echo "📦 Verificando dependências Python..."
 if ! python3 -c "import requests" 2>/dev/null; then
-    echo -e "${YELLOW}⚠️  requests não encontrado. Instalando...${NC}"
-    pip install -r "$SCRIPT_DIR/requirements.txt"
+    echo -e "${YELLOW}⚠️  requests não encontrado.${NC}"
+    read -p "Instalar dependências automaticamente? (s/N): " install_deps
+    if [ "$install_deps" = "s" ] || [ "$install_deps" = "S" ]; then
+        pip install --user -r "$SCRIPT_DIR/requirements.txt"
+    else
+        echo -e "${RED}❌ Dependências não instaladas. Instale manualmente:${NC}"
+        echo "  pip install -r $SCRIPT_DIR/requirements.txt"
+        exit 1
+    fi
 fi
 echo -e "${GREEN}✓ Dependências OK${NC}"
 echo ""

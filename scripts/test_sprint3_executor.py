@@ -6,8 +6,15 @@ Test script for Sprint 3 Auto Executor - validates logic without GitHub API call
 import sys
 import os
 
-# Add scripts directory to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'scripts'))
+# Import from same directory
+sys.path.insert(0, os.path.dirname(__file__))
+
+try:
+    from sprint3_auto_executor import Issue, IssueExecutor
+except ImportError as e:
+    print(f"Error importing sprint3_auto_executor: {e}")
+    print("Make sure sprint3_auto_executor.py is in the same directory")
+    sys.exit(1)
 
 # Mock minimal GitHub response
 class MockIssue:
@@ -57,7 +64,6 @@ def test_dependency_detection():
 
 def test_topological_sort():
     """Test topological sort with mock issues"""
-    from sprint3_auto_executor import Issue, IssueExecutor, GitHubClient
     
     # Create mock executor (won't call API)
     class MockClient:

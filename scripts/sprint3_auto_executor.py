@@ -22,10 +22,11 @@ from typing import Dict, List, Optional, Tuple
 
 import requests
 
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
-REPO_OWNER = "fabioaap"
-REPO_NAME = "Ambiente-de-prototipa-o-EDUCACROSS-V2"
-PROJECT_NUMBER = 1  # ajuste para o quadro Kanban correto
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+REPO_OWNER = os.environ.get("REPO_OWNER", "fabioaap")
+REPO_NAME = os.environ.get("REPO_NAME", "Ambiente-de-prototipa-o-EDUCACROSS-V2")
+DEFAULT_BRANCH = os.environ.get("DEFAULT_BRANCH", "main")
+PROJECT_NUMBER = int(os.environ.get("PROJECT_NUMBER", "1"))
 SESSION_ID = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
 
 logging.basicConfig(
@@ -36,23 +37,27 @@ logging.basicConfig(
 
 API_BASE = "https://api.github.com"
 GRAPHQL_ENDPOINT = f"{API_BASE}/graphql"
-HEADERS = {"Authorization": f"bearer {GITHUB_TOKEN}"}
-REST_HEADERS = {
-    "Accept": "application/vnd.github+json",
-    "Authorization": f"Bearer {GITHUB_TOKEN}",
-    "X-GitHub-Api-Version": "2022-11-28",
-}
+
+def get_auth_headers():
+    """Get authentication headers - only call after token validation"""
+    if not GITHUB_TOKEN:
+        raise RuntimeError("GITHUB_TOKEN não configurado")
+    return {
+        "Authorization": f"bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
 
 
 class GitHubClient:
     def __init__(self):
         self.session = requests.Session()
-        self.session.headers.update(REST_HEADERS)
+        self.session.headers.update(get_auth_headers())
 
     def graphql(self, query: str, variables: Dict = None):
         payload = {"query": query, "variables": variables or {}}
         for attempt in range(3):
-            resp = self.session.post(GRAPHQL_ENDPOINT, json=payload, headers=HEADERS)
+            resp = self.session.post(GRAPHQL_ENDPOINT, json=payload)
             if resp.status_code == 200:
                 data = resp.json()
                 if "errors" in data:
@@ -105,8 +110,9 @@ class Issue:
             # Dashboard API might depend on refactor issues
             matches = re.findall(r"#(\d+)", self.body)
             for num in matches:
-                if num != str(self.number):
-                    self.dependencies.add(int(num))
+                num_int = int(num)
+                if num_int != self.number:
+                    self.dependencies.add(num_int)
         
         # Game Hub heuristics
         if "game hub" in title_lower or "game" in title_lower:
@@ -270,7 +276,7 @@ class IssueExecutor:
         payload = {
             "title": f"feat: auto resolve issue #{issue.number}",
             "head": branch,
-            "base": "main",
+            "base": DEFAULT_BRANCH,
             "body": f"Automated resolution for issue #{issue.number}.\n\nCloses #{issue.number}",
             "draft": False,
         }
