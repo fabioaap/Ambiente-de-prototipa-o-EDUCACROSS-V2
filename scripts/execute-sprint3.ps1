@@ -131,7 +131,7 @@ function Invoke-IssueExecution {
         Write-Host "   ⏸️ DRY RUN - Simulando execução da issue #$IssueNumber" -ForegroundColor Yellow
         Write-Host "   📊 Agente selecionado: $agentType" -ForegroundColor Yellow
         Write-Host "   ⏱️  Tempo estimado: $($issue.Effort) horas" -ForegroundColor Yellow
-        Add-ExecutionLog -IssueNumber $IssueNumber -Status "DryRun-Execute" -Duration 0 -Agent $agentType -Warning $bodyWarning
+    Add-ExecutionLog -IssueNumber $IssueNumber -Status "DryRun-Execute" -Duration 0 -Agent $agentType -Warning $bodyWarning
         return $true
     }
     
@@ -220,8 +220,8 @@ function Add-ExecutionLog {
         [string]$Status,
         [double]$Duration = 0,
         [string]$Error = "",
-        [string]$Agent = "",
-        [string]$Warning = ""
+    [string]$Agent = "",
+    [string]$Warning = ""
     )
     
     $script:ExecutionLog += [PSCustomObject]@{
