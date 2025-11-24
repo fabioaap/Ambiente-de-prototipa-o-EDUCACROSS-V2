@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import type { Config } from '@measured/puck';
 import { Button, Text, Card, Layout } from '@prototipo/design-system';
 
@@ -19,12 +18,10 @@ export type TextProps = {
 export type CardProps = {
   variant: 'default' | 'bordered' | 'elevated';
   padding: 'none' | 'sm' | 'md' | 'lg';
-  children: ReactNode[];
 };
 
 export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
-  children: ReactNode[];
 };
 
 export const puckConfig: Config = {
@@ -152,14 +149,11 @@ export const puckConfig: Config = {
       defaultProps: {
         variant: 'default',
         padding: 'md',
-        children: [] as ReactNode[],
       },
-      render: ({ variant, padding }) => {
+      render: ({ variant, padding, puck, id }) => {
         return (
           <Card variant={variant} padding={padding}>
-            <div style={{ padding: '8px', border: '1px dashed #ccc', borderRadius: '4px' }}>
-              Card Content (DropZone disabled)
-            </div>
+            {puck.renderDropZone({ zone: `${id}:content` })}
           </Card>
         );
       },
@@ -180,14 +174,11 @@ export const puckConfig: Config = {
       },
       defaultProps: {
         maxWidth: 'xl',
-        children: [] as ReactNode[],
       },
-      render: ({ maxWidth }) => {
+      render: ({ maxWidth, puck, id }) => {
         return (
           <Layout maxWidth={maxWidth}>
-            <div style={{ padding: '8px', border: '1px dashed #ccc', borderRadius: '4px' }}>
-              Layout Content (DropZone disabled)
-            </div>
+            {puck.renderDropZone({ zone: `${id}:content` })}
           </Layout>
         );
       },
