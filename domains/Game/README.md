@@ -78,7 +78,18 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ## Jornadas Existentes
 
-_(Esta seção será atualizada conforme jornadas forem criadas)_
+### 1. [Game Hub](./journeys/game-hub/)
+**Status**: 🚧 Em andamento  
+**Objetivo**: Hub central para acessar todos os jogos educacionais disponíveis na plataforma  
+**Componentes principais**: 
+- Card, Button, Text, Badge (Design System)
+- Progress (#60), Leaderboard (#61) (Domínio Game)
+
+**Links rápidos**:
+- [README completo](./journeys/game-hub/README.md)
+- [Links e referências](./journeys/game-hub/links.md)
+- [Notas e decisões](./journeys/game-hub/notas.md)
+- [Issue #58](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/issues/58)
 
 ---
 
