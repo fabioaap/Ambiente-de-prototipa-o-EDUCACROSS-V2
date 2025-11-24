@@ -3,9 +3,3 @@
 > studio@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/apps/studio
 > eslint .
 
-
-/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/apps/studio/src/app/dashboard/page.tsx
-  37:6  warning  React Hook useEffect has a missing dependency: 'filterPages'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-
-✖ 1 problem (0 errors, 1 warning)
-

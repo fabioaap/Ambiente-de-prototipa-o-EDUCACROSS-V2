@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Layout, Text, Card, Button, Input, Badge } from '@prototipo/design-system';
 import { HealthIndicator } from '@prototipo/design-system';
+import { HealthMetricsPanel } from '@/components/widgets/HealthMetricsWidgets';
+import { useHealthMetricsMock } from '@/lib/use-health-metrics';
 
 interface Page {
   id: string;
@@ -46,6 +48,9 @@ export default function DashboardPage() {
   const [domainFilter, setDomainFilter] = useState<string>('all');
   const [health, setHealth] = useState<HealthMetrics | null>(null);
   const [healthLoading, setHealthLoading] = useState(true);
+  
+  // Hook para métricas de saúde expandidas (uptime, latency, error rate)
+  const healthMetrics = useHealthMetricsMock();
 
   useEffect(() => {
     fetchPages();
@@ -203,6 +208,18 @@ export default function DashboardPage() {
           </Card>
         </div>
       )}
+
+      {/* Health Metrics Widgets - KPIs de Uptime, Latência e Taxa de Erro */}
+      <HealthMetricsPanel
+        metrics={healthMetrics.metrics}
+        loading={healthMetrics.loading}
+        error={healthMetrics.error}
+        onRetry={healthMetrics.refetch}
+        title="Métricas de Performance"
+        size="sm"
+        enableExport={true}
+        lastUpdated={healthMetrics.lastUpdated || undefined}
+      />
 
       {/* Filters */}
       <div style={{ marginBottom: '2rem' }}>
