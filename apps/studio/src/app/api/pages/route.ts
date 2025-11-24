@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { randomUUID } from 'crypto';
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
 
@@ -13,29 +14,83 @@ async function ensureDir() {
   }
 }
 
+// Inferir domínio baseado no título ou slug
+function inferDomain(title: string, slug: string): string {
+  const titleLower = title.toLowerCase();
+  const slugLower = slug.toLowerCase();
+  
+  if (titleLower.includes('game') || slugLower.includes('game') || 
+      titleLower.includes('jogo') || slugLower.includes('leaderboard')) {
+    return 'Game';
+  } else if (titleLower.includes('dashboard') || titleLower.includes('admin') || 
+             titleLower.includes('backoffice') || slugLower.includes('dashboard')) {
+    return 'BackOffice';
+  } else if (titleLower.includes('home') || titleLower.includes('sobre') || 
+             titleLower.includes('contato') || slugLower.includes('front')) {
+    return 'FrontOffice';
+  }
+  
+  return 'FrontOffice'; // default
+}
+
 // GET /api/pages - Lista todas as páginas
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await ensureDir();
     const files = await fs.readdir(PAGES_DIR);
     const jsonFiles = files.filter((f) => f.endsWith('.json'));
     
-    const pages = await Promise.all(
+    // Query params para filtros e paginação
+    const searchParams = request.nextUrl.searchParams;
+    const domainFilter = searchParams.get('domain');
+    const statusFilter = searchParams.get('status');
+    const limit = parseInt(searchParams.get('limit') || '100', 10);
+    const offset = parseInt(searchParams.get('offset') || '0', 10);
+    
+    let pages = await Promise.all(
       jsonFiles.map(async (file) => {
         const filePath = path.join(PAGES_DIR, file);
         const content = await fs.readFile(filePath, 'utf-8');
         const data = JSON.parse(content);
         const slug = file.replace('.json', '');
+        const stats = await fs.stat(filePath);
+        const title = data.root?.props?.title || slug;
+        const domain = data.domain || inferDomain(title, slug);
+        const status = data.status || 'active';
         
         return {
+          id: data.id || randomUUID(),
           slug,
-          title: data.root?.props?.title || slug,
-          lastModified: (await fs.stat(filePath)).mtime,
+          title,
+          domain,
+          lastModified: stats.mtime.toISOString(),
+          status,
         };
       })
     );
     
-    return NextResponse.json({ pages });
+    // Store total before filtering
+    const totalPages = pages.length;
+    
+    // Aplicar filtros
+    if (domainFilter) {
+      pages = pages.filter(p => p.domain === domainFilter);
+    }
+    if (statusFilter) {
+      pages = pages.filter(p => p.status === statusFilter);
+    }
+    
+    // Aplicar paginação
+    const filteredTotal = pages.length;
+    const paginatedPages = pages.slice(offset, offset + limit);
+    
+    return NextResponse.json({ 
+      pages: paginatedPages,
+      total: totalPages,
+      filtered: filteredTotal,
+      limit,
+      offset,
+    });
   } catch (error) {
     console.error('Error listing pages:', error);
     return NextResponse.json(
@@ -74,7 +129,18 @@ export async function POST(request: NextRequest) {
       // Arquivo não existe, pode criar
     }
     
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+    // Enriquecer dados com metadata
+    const title = data.root?.props?.title || sanitizedSlug;
+    const enrichedData = {
+      ...data,
+      id: data.id || randomUUID(),
+      domain: data.domain || inferDomain(title, sanitizedSlug),
+      status: data.status || 'active',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    
+    await fs.writeFile(filePath, JSON.stringify(enrichedData, null, 2));
     
     return NextResponse.json({
       success: true,
