@@ -60,7 +60,13 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
 
     if (href) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={styles.link}>
+        <a 
+          href={href} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className={styles.link}
+          aria-label={`${title}: ${value}. Opens in new tab`}
+        >
           {content}
         </a>
       );

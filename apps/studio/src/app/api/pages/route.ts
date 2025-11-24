@@ -69,6 +69,9 @@ export async function GET(request: NextRequest) {
       })
     );
     
+    // Store total before filtering
+    const totalPages = pages.length;
+    
     // Aplicar filtros
     if (domainFilter) {
       pages = pages.filter(p => p.domain === domainFilter);
@@ -78,12 +81,13 @@ export async function GET(request: NextRequest) {
     }
     
     // Aplicar paginação
-    const total = pages.length;
+    const filteredTotal = pages.length;
     const paginatedPages = pages.slice(offset, offset + limit);
     
     return NextResponse.json({ 
       pages: paginatedPages,
-      total,
+      total: totalPages,
+      filtered: filteredTotal,
       limit,
       offset,
     });
