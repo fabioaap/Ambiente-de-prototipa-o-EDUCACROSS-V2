@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Layout, Text, Card, Button, Input, Badge } from '@prototipo/design-system';
 import { HealthIndicator } from '@prototipo/design-system';
+import styles from './dashboard.module.css';
 
 interface Page {
   id: string;
@@ -90,7 +91,6 @@ export default function DashboardPage() {
       setHealth(data.data);
     } catch (err) {
       console.error('Error fetching health metrics:', err);
-      // Silently fail - health indicators are optional
     } finally {
       setHealthLoading(false);
     }
@@ -99,12 +99,10 @@ export default function DashboardPage() {
   function filterPages() {
     let filtered = [...pages];
 
-    // Filter by domain
     if (domainFilter !== 'all') {
       filtered = filtered.filter(page => page.domain === domainFilter);
     }
 
-    // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(page =>
@@ -140,124 +138,166 @@ export default function DashboardPage() {
     }
   }
 
-  const domains = ['all', 'BackOffice', 'FrontOffice', 'Game'];
+  const domainOptions = [
+    { value: 'all', label: 'Todos', icon: '📋' },
+    { value: 'BackOffice', label: 'BackOffice', icon: '📊' },
+    { value: 'FrontOffice', label: 'FrontOffice', icon: '🌐' },
+    { value: 'Game', label: 'Game', icon: '🎮' },
+  ];
+
+  const getHealthScoreColor = (score: number) => {
+    if (score >= 90) return '#10b981';
+    if (score >= 70) return '#f59e0b';
+    if (score >= 50) return '#ef4444';
+    return '#7c3aed';
+  };
 
   return (
-    <Layout maxWidth="xl" paddingY="lg">
-      <div style={{ marginBottom: '2rem' }}>
-        <Text as="h1" size="4xl" weight="bold" color="primary">
-          Dashboard de Páginas
-        </Text>
-        <Text as="p" size="lg" color="muted" style={{ marginTop: '0.5rem' }}>
-          Visualize e gerencie todas as páginas prototipadas no Studio
-        </Text>
+    <Layout maxWidth="2xl" paddingY="lg">
+      {/* Header Section */}
+      <div className={styles.header}>
+        <div className={styles.headerContent}>
+          <Text as="h1" size="4xl" weight="bold">
+            Dashboard
+          </Text>
+          <Text as="p" size="base" color="muted" className={styles.healthHeaderDescription}>
+            Gerencie todas as páginas prototipadas
+          </Text>
+        </div>
+        <Link href="/studio" className={styles.createButton}>
+          <Button variant="primary" size="md">
+            ➕ Nova Página
+          </Button>
+        </Link>
       </div>
 
-      {/* Health Indicator Section */}
+      {/* Health Score Section */}
       {!healthLoading && health && (
-        <div style={{ marginBottom: '2rem' }}>
-          <Card variant="elevated" padding="md">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <Text as="h2" size="xl" weight="semibold">
+        <Card variant="elevated" padding="lg" className={styles.healthCard}>
+          <div className={styles.healthHeader}>
+            <div>
+              <Text as="h2" size="lg" weight="semibold">
                 Saúde do Sistema
               </Text>
+            </div>
+            <div className={styles.scoreContainer}>
+              <div
+                className={styles.scoreCircle}
+                style={{
+                  background: `conic-gradient(${getHealthScoreColor(health.healthScore)} ${health.healthScore * 3.6}deg, #e5e7eb 0deg)`,
+                }}
+              >
+                <div className={styles.scoreInner}>
+                  <Text weight="bold" size="lg">
+                    {health.healthScore}
+                  </Text>
+                </div>
+              </div>
               <Text size="sm" color="muted">
-                Score: {health.healthScore}/100
+                {health.healthStatus === 'excellent' && '🎉 Excelente'}
+                {health.healthStatus === 'good' && '✅ Bom'}
+                {health.healthStatus === 'warning' && '⚠️ Aviso'}
+                {health.healthStatus === 'critical' && '🚨 Crítico'}
               </Text>
             </div>
+          </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
-              <HealthIndicator
-                title="Build"
-                value={health.buildStatus === 'success' ? '✅' : health.buildStatus === 'warning' ? '⚠️' : '❌'}
-                status={health.buildStatus === 'success' ? 'success' : health.buildStatus === 'warning' ? 'warning' : 'error'}
-                description={health.buildStatus}
-                size="sm"
-              />
-              <HealthIndicator
-                title="Lint"
-                value={health.lintStatus === 'success' ? '✅' : health.lintStatus === 'warning' ? '⚠️' : '❌'}
-                status={health.lintStatus === 'success' ? 'success' : health.lintStatus === 'warning' ? 'warning' : 'error'}
-                description={health.lintStatus}
-                size="sm"
-              />
-              <HealthIndicator
-                title="Type Check"
-                value={health.typeCheckStatus === 'success' ? '✅' : '❌'}
-                status={health.typeCheckStatus === 'success' ? 'success' : 'error'}
-                description={health.typeCheckStatus}
-                size="sm"
-              />
-              <HealthIndicator
-                title="Dependencies"
-                value={health.dependenciesHealth === 'healthy' ? '✅' : health.dependenciesHealth === 'outdated' ? '⚠️' : '❌'}
-                status={health.dependenciesHealth === 'healthy' ? 'success' : health.dependenciesHealth === 'outdated' ? 'warning' : 'error'}
-                description={health.dependenciesHealth}
-                size="sm"
-              />
+          <div className={styles.healthGrid}>
+            <HealthIndicator
+              title="Build"
+              value={health.buildStatus === 'success' ? '✅' : health.buildStatus === 'warning' ? '⚠️' : '❌'}
+              status={health.buildStatus === 'success' ? 'success' : health.buildStatus === 'warning' ? 'warning' : 'error'}
+              description={health.buildStatus}
+              size="sm"
+            />
+            <HealthIndicator
+              title="Lint"
+              value={health.lintStatus === 'success' ? '✅' : health.lintStatus === 'warning' ? '⚠️' : '❌'}
+              status={health.lintStatus === 'success' ? 'success' : health.lintStatus === 'warning' ? 'warning' : 'error'}
+              description={health.lintStatus}
+              size="sm"
+            />
+            <HealthIndicator
+              title="Type Check"
+              value={health.typeCheckStatus === 'success' ? '✅' : '❌'}
+              status={health.typeCheckStatus === 'success' ? 'success' : 'error'}
+              description={health.typeCheckStatus}
+              size="sm"
+            />
+            <HealthIndicator
+              title="Dependencies"
+              value={health.dependenciesHealth === 'healthy' ? '✅' : health.dependenciesHealth === 'outdated' ? '⚠️' : '❌'}
+              status={health.dependenciesHealth === 'healthy' ? 'success' : health.dependenciesHealth === 'outdated' ? 'warning' : 'error'}
+              description={health.dependenciesHealth}
+              size="sm"
+            />
+          </div>
+
+          <Text size="xs" color="muted" className={styles.lastChecked}>
+            Última atualização: {new Date(health.lastChecked).toLocaleString('pt-BR')}
+          </Text>
+        </Card>
+      )}
+
+      {/* Filters Section */}
+      <Card variant="bordered" padding="lg" className={styles.filtersCard}>
+        <div className={styles.filtersGrid}>
+          <div className={styles.searchContainer}>
+            <label className={styles.label}>🔍 Buscar</label>
+            <Input
+              type="text"
+              placeholder="Título ou slug..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles.input}
+            />
+          </div>
+
+          <div className={styles.domainContainer}>
+            <label className={styles.label}>📂 Domínio</label>
+            <div className={styles.domainButtons}>
+              {domainOptions.map((domain) => (
+                <button
+                  key={domain.value}
+                  className={`${styles.domainButton} ${domainFilter === domain.value ? styles.active : ''}`}
+                  onClick={() => setDomainFilter(domain.value)}
+                >
+                  <span>{domain.icon}</span>
+                  <span>{domain.label}</span>
+                </button>
+              ))}
             </div>
+          </div>
+        </div>
+      </Card>
 
-            <Text size="xs" color="muted" style={{ display: 'block', paddingTop: '1rem', borderTop: '1px solid var(--color-neutral-200)' }}>
-              Última atualização: {new Date(health.lastChecked).toLocaleString('pt-BR')}
-            </Text>
-          </Card>
+      {/* Stats */}
+      {!loading && !error && (
+        <div className={styles.stats}>
+          <Text size="sm" color="muted">
+            <strong>{filteredPages.length}</strong> de <strong>{pages.length}</strong> páginas
+            {searchQuery && ` • Buscando: "${searchQuery}"`}
+            {domainFilter !== 'all' && ` • Filtro: ${domainFilter}`}
+          </Text>
         </div>
       )}
 
-      {/* Filters */}
-      <div style={{ marginBottom: '2rem' }}>
-        <Card variant="bordered" padding="md">
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-            <div style={{ flex: '1 1 300px' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '14px', fontWeight: '600' }}>
-                Buscar
-              </label>
-              <Input
-                type="text"
-                placeholder="Buscar por título ou slug..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ width: '100%' }}
-              />
-            </div>
-
-            <div style={{ flex: '0 1 200px' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '14px', fontWeight: '600' }}>
-                Domínio
-              </label>
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                {domains.map((domain) => (
-                  <Button
-                    key={domain}
-                    variant={domainFilter === domain ? 'primary' : 'outline'}
-                    size="sm"
-                    onClick={() => setDomainFilter(domain)}
-                  >
-                    {domain === 'all' ? 'Todos' : domain}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
-
       {/* Loading State */}
       {loading && (
-        <Card variant="bordered" padding="lg">
+        <Card variant="bordered" padding="lg" className={styles.emptyState}>
           <Text color="muted" style={{ textAlign: 'center' }}>
-            Carregando páginas...
+            ⏳ Carregando páginas...
           </Text>
         </Card>
       )}
 
       {/* Error State */}
       {error && !loading && (
-        <div style={{ borderColor: 'var(--color-danger)', backgroundColor: 'var(--color-danger-50)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--color-danger)' }}>
-          <Text weight="semibold">
-            Erro ao carregar páginas
+        <Card variant="bordered" padding="lg" className={styles.errorState}>
+          <Text weight="semibold" color="error">
+            ❌ Erro ao carregar
           </Text>
-          <Text size="sm" style={{ marginTop: '0.5rem' }}>
+          <Text size="sm" color="muted" style={{ marginTop: '0.5rem' }}>
             {error}
           </Text>
           <Button
@@ -268,16 +308,16 @@ export default function DashboardPage() {
           >
             Tentar Novamente
           </Button>
-        </div>
+        </Card>
       )}
 
-      {/* Empty State */}
+      {/* Empty States */}
       {!loading && !error && filteredPages.length === 0 && pages.length > 0 && (
-        <Card variant="bordered" padding="lg">
-          <Text color="muted" style={{ textAlign: 'center' }}>
-            Nenhuma página encontrada com os filtros aplicados.
+        <Card variant="bordered" padding="lg" className={styles.emptyState}>
+          <Text color="muted" style={{ textAlign: 'center', fontSize: '16px' }}>
+            😴 Nenhuma página com esses filtros
           </Text>
-          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+          <div className={styles.clearFiltersCenter}>
             <Button
               variant="outline"
               size="sm"
@@ -293,13 +333,13 @@ export default function DashboardPage() {
       )}
 
       {!loading && !error && pages.length === 0 && (
-        <Card variant="bordered" padding="lg">
-          <Text color="muted" style={{ textAlign: 'center' }}>
-            Nenhuma página disponível ainda.
+        <Card variant="bordered" padding="lg" className={styles.emptyState}>
+          <Text color="muted" style={{ textAlign: 'center', fontSize: '16px' }}>
+            🚀 Nenhuma página ainda
           </Text>
           <Text size="sm" color="muted" style={{ textAlign: 'center', marginTop: '0.5rem' }}>
             Crie sua primeira página no{' '}
-            <Link href="/studio" style={{ color: 'var(--color-primary)' }}>
+            <Link href="/studio" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
               Puck Studio
             </Link>
           </Text>
@@ -308,55 +348,46 @@ export default function DashboardPage() {
 
       {/* Pages Grid */}
       {!loading && !error && filteredPages.length > 0 && (
-        <>
-          <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text size="sm" color="muted">
-              Mostrando {filteredPages.length} de {pages.length} páginas
-            </Text>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '1.5rem',
-            }}
-          >
-            {filteredPages.map((page) => (
-              <Card key={page.id} variant="elevated" padding="md">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                  <Text as="h3" size="xl" weight="semibold">
+        <div className={styles.pagesGrid}>
+          {filteredPages.map((page) => (
+            <Card key={page.id} variant="elevated" padding="lg" className={styles.pageCard}>
+              <div className={styles.pageHeader}>
+                <div>
+                  <Text as="h3" size="lg" weight="semibold">
                     {page.title}
                   </Text>
-                  <Badge variant={getDomainColor(page.domain)} size="sm">
-                    {page.domain}
-                  </Badge>
                 </div>
+                <Badge variant={getDomainColor(page.domain)} size="sm">
+                  {page.domain}
+                </Badge>
+              </div>
 
-                <Text size="sm" color="muted" style={{ marginBottom: '0.5rem' }}>
-                  <strong>Slug:</strong> /{page.slug}
-                </Text>
-
-                <Text size="sm" color="muted" style={{ marginBottom: '1rem' }}>
-                  <strong>Última modificação:</strong> {formatDate(page.lastModified)}
-                </Text>
-
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  <Link href={`/${page.slug}`} style={{ flex: '1' }}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      Visualizar
-                    </Button>
-                  </Link>
-                  <Link href={`/studio?slug=${page.slug}`} style={{ flex: '1' }}>
-                    <Button variant="primary" size="sm" fullWidth>
-                      Editar
-                    </Button>
-                  </Link>
+              <div className={styles.pageContent}>
+                <div className={styles.pageMeta}>
+                  <Text size="sm" color="muted">
+                    <code>/{page.slug}</code>
+                  </Text>
+                  <Text size="xs" color="muted">
+                    {formatDate(page.lastModified)}
+                  </Text>
                 </div>
-              </Card>
-            ))}
-          </div>
-        </>
+              </div>
+
+              <div className={styles.pageActions}>
+                <Link href={`/${page.slug}`} style={{ flex: 1 }}>
+                  <Button variant="outline" size="sm" fullWidth>
+                    👁️ Visualizar
+                  </Button>
+                </Link>
+                <Link href={`/studio?slug=${page.slug}`} style={{ flex: 1 }}>
+                  <Button variant="primary" size="sm" fullWidth>
+                    ✏️ Editar
+                  </Button>
+                </Link>
+              </div>
+            </Card>
+          ))}
+        </div>
       )}
     </Layout>
   );
