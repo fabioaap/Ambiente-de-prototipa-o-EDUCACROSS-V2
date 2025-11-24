@@ -77,7 +77,7 @@ From `@measured/puck` v0.16.2 types:
 
 ```typescript
 type PuckContext = {
-  renderDropZone: React.FC<DropZoneProps>;
+  renderDropZone: (props: DropZoneProps) => JSX.Element;
   isEditing: boolean;
 };
 
@@ -187,10 +187,17 @@ pnpm build
 A: DropZone is only available in the client bundle. Use `puck.renderDropZone` instead.
 
 **Q: How do I access the zone name?**  
-A: Use the `id` prop: `puck.renderDropZone({ zone: \`\${id}:content\` })`
+A: Use the `id` prop:
+```typescript
+puck.renderDropZone({ zone: `${id}:content` })
+```
 
 **Q: Can I have multiple zones per component?**  
-A: Yes! Just use different zone names: `${id}:header`, `${id}:body`, etc.
+A: Yes! Just use different zone names:
+```typescript
+puck.renderDropZone({ zone: `${id}:header` })
+puck.renderDropZone({ zone: `${id}:body` })
+```
 
 **Q: How do I type-check the render function?**  
 A: TypeScript automatically infers `puck` and `id` from the component signature. No manual typing needed.
