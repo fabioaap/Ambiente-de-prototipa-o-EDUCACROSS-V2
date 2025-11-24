@@ -12,7 +12,7 @@ on:
         required: true
         type: boolean
         default: true
-  
+
   # Execução agendada (desabilitada por padrão, descomentar para ativar)
   # schedule:
   #   - cron: '0 */12 * * *'  # A cada 12 horas
@@ -29,24 +29,24 @@ jobs:
     name: Execute Issues Auto
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Necessário para criar branches
-      
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: 'pip'
-      
+
       - name: Install Python dependencies
         run: |
           pip install --upgrade pip
           pip install -r scripts/requirements.txt
-      
+
       - name: Run Sprint 3 Auto Executor
         id: executor
         env:
@@ -60,7 +60,7 @@ jobs:
             python3 scripts/sprint3_auto_executor.py
           fi
         continue-on-error: true
-      
+
       - name: Upload execution report
         uses: actions/upload-artifact@v4
         if: always()
@@ -70,13 +70,13 @@ jobs:
             report-*.md
             sprint3-autoexecutor-*.log
           retention-days: 30
-      
+
       - name: Display report summary
         if: always()
         run: |
           echo "## 📊 Sprint 3 Auto Executor - Resumo" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ -f report-*.md ]; then
             REPORT_FILE=$(ls -t report-*.md | head -1)
             echo "### Relatório Gerado" >> $GITHUB_STEP_SUMMARY
@@ -85,13 +85,13 @@ jobs:
           else
             echo "⚠️ Nenhum relatório gerado" >> $GITHUB_STEP_SUMMARY
           fi
-      
+
       - name: Check execution status
         if: steps.executor.outcome == 'failure'
         run: |
           echo "❌ Execução falhou. Verifique os logs acima."
           exit 1
-      
+
       - name: Success message
         if: steps.executor.outcome == 'success'
         run: |
