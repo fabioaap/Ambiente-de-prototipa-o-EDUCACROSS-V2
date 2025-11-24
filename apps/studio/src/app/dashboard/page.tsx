@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Layout, Text, Card, Button, Input, Badge } from '@prototipo/design-system';
+import { HealthIndicator } from '@prototipo/design-system';
 
 interface Page {
   id: string;
@@ -20,6 +21,22 @@ interface ApiResponse {
   offset: number;
 }
 
+interface HealthMetrics {
+  buildStatus: 'success' | 'failure' | 'warning';
+  lintStatus: 'success' | 'failure' | 'warning';
+  typeCheckStatus: 'success' | 'failure';
+  dependenciesHealth: 'healthy' | 'outdated' | 'vulnerable';
+  healthScore: number;
+  healthStatus: 'excellent' | 'good' | 'warning' | 'critical';
+  lastChecked: string;
+}
+
+interface HealthResponse {
+  success: boolean;
+  data: HealthMetrics;
+  timestamp: string;
+}
+
 export default function DashboardPage() {
   const [pages, setPages] = useState<Page[]>([]);
   const [filteredPages, setFilteredPages] = useState<Page[]>([]);
@@ -27,10 +44,12 @@ export default function DashboardPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [domainFilter, setDomainFilter] = useState<string>('all');
+  const [health, setHealth] = useState<HealthMetrics | null>(null);
+  const [healthLoading, setHealthLoading] = useState(true);
 
   useEffect(() => {
     fetchPages();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchHealth();
   }, []);
 
   useEffect(() => {
@@ -55,6 +74,25 @@ export default function DashboardPage() {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function fetchHealth() {
+    try {
+      setHealthLoading(true);
+      const response = await fetch('/api/health');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch health metrics');
+      }
+
+      const data: HealthResponse = await response.json();
+      setHealth(data.data);
+    } catch (err) {
+      console.error('Error fetching health metrics:', err);
+      // Silently fail - health indicators are optional
+    } finally {
+      setHealthLoading(false);
     }
   }
 
@@ -114,6 +152,57 @@ export default function DashboardPage() {
           Visualize e gerencie todas as páginas prototipadas no Studio
         </Text>
       </div>
+
+      {/* Health Indicator Section */}
+      {!healthLoading && health && (
+        <div style={{ marginBottom: '2rem' }}>
+          <Card variant="elevated" padding="md">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <Text as="h2" size="xl" weight="semibold">
+                Saúde do Sistema
+              </Text>
+              <Text size="sm" color="muted">
+                Score: {health.healthScore}/100
+              </Text>
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+              <HealthIndicator
+                title="Build"
+                value={health.buildStatus === 'success' ? '✅' : health.buildStatus === 'warning' ? '⚠️' : '❌'}
+                status={health.buildStatus === 'success' ? 'success' : health.buildStatus === 'warning' ? 'warning' : 'error'}
+                description={health.buildStatus}
+                size="sm"
+              />
+              <HealthIndicator
+                title="Lint"
+                value={health.lintStatus === 'success' ? '✅' : health.lintStatus === 'warning' ? '⚠️' : '❌'}
+                status={health.lintStatus === 'success' ? 'success' : health.lintStatus === 'warning' ? 'warning' : 'error'}
+                description={health.lintStatus}
+                size="sm"
+              />
+              <HealthIndicator
+                title="Type Check"
+                value={health.typeCheckStatus === 'success' ? '✅' : '❌'}
+                status={health.typeCheckStatus === 'success' ? 'success' : 'error'}
+                description={health.typeCheckStatus}
+                size="sm"
+              />
+              <HealthIndicator
+                title="Dependencies"
+                value={health.dependenciesHealth === 'healthy' ? '✅' : health.dependenciesHealth === 'outdated' ? '⚠️' : '❌'}
+                status={health.dependenciesHealth === 'healthy' ? 'success' : health.dependenciesHealth === 'outdated' ? 'warning' : 'error'}
+                description={health.dependenciesHealth}
+                size="sm"
+              />
+            </div>
+            
+            <Text size="xs" color="muted" style={{ display: 'block', paddingTop: '1rem', borderTop: '1px solid var(--color-neutral-200)' }}>
+              Última atualização: {new Date(health.lastChecked).toLocaleString('pt-BR')}
+            </Text>
+          </Card>
+        </div>
+      )}
 
       {/* Filters */}
       <div style={{ marginBottom: '2rem' }}>
