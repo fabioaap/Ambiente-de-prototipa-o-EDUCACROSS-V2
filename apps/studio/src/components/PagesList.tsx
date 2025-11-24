@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import styles from './PagesList.module.css';
 
 interface PageInfo {
@@ -13,6 +13,7 @@ interface PageInfo {
 
 export function PagesList() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentSlug = searchParams.get('page');
 
@@ -113,6 +114,28 @@ export function PagesList() {
 
   return (
     <div className={styles.container}>
+      {/* Navegação Principal */}
+      <nav className={styles.mainNav} aria-label="Navegação principal">
+        <Link 
+          href="/dashboard" 
+          className={`${styles.navItem} ${pathname === '/dashboard' ? styles.navItemActive : ''}`}
+          title="Ir para Dashboard"
+        >
+          <span className={styles.navIcon} aria-hidden="true">📊</span>
+          <span className={styles.navLabel}>Dashboard</span>
+        </Link>
+        <Link 
+          href="/studio" 
+          className={`${styles.navItem} ${pathname === '/studio' ? styles.navItemActive : ''}`}
+          title="Ir para Editor"
+        >
+          <span className={styles.navIcon} aria-hidden="true">✏️</span>
+          <span className={styles.navLabel}>Editor</span>
+        </Link>
+      </nav>
+
+      <hr className={styles.divider} />
+
       <h2>📄 Minhas Páginas</h2>
 
       {/* Criar nova página */}

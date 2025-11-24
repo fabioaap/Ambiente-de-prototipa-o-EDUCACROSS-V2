@@ -1,363 +1,409 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Layout, Text, Card, Button, Input, Badge } from '@prototipo/design-system';
+import { Layout, Text, Card, Button, Badge, Progress } from '@prototipo/design-system';
 import { HealthIndicator } from '@prototipo/design-system';
+import { useDashboardSummary } from '@/hooks/useDashboardSummary';
+import styles from './dashboard.module.css';
 
-interface Page {
-  id: string;
-  slug: string;
-  title: string;
-  domain: string;
-  lastModified: string;
-  status: string;
+/**
+ * Componente Skeleton para loading state
+ */
+function Skeleton({ className }: { className?: string }) {
+  return <div className={`${styles.skeleton} ${className || ''}`} />;
 }
 
-interface ApiResponse {
-  pages: Page[];
-  total: number;
-  limit: number;
-  offset: number;
+/**
+ * Componente de skeleton para KPI cards
+ */
+function KpiSkeleton() {
+  return (
+    <Card variant="elevated" padding="md">
+      <div className={styles.kpiCard}>
+        <Skeleton className={styles.skeletonTextSmall} />
+        <Skeleton className={styles.skeletonTextLarge} />
+      </div>
+    </Card>
+  );
 }
 
-interface HealthMetrics {
-  buildStatus: 'success' | 'failure' | 'warning';
-  lintStatus: 'success' | 'failure' | 'warning';
-  typeCheckStatus: 'success' | 'failure';
-  dependenciesHealth: 'healthy' | 'outdated' | 'vulnerable';
-  healthScore: number;
-  healthStatus: 'excellent' | 'good' | 'warning' | 'critical';
-  lastChecked: string;
+/**
+ * Componente de skeleton para health cards
+ */
+function HealthSkeleton() {
+  return (
+    <Card variant="bordered" padding="sm">
+      <Skeleton className={styles.skeletonHealthCard} />
+    </Card>
+  );
 }
 
-interface HealthResponse {
-  success: boolean;
-  data: HealthMetrics;
-  timestamp: string;
+/**
+ * Componente de skeleton para page cards
+ */
+function PageSkeleton() {
+  return (
+    <Card variant="bordered" padding="md">
+      <div className={styles.pageCard}>
+        <Skeleton className={styles.skeletonText} />
+        <Skeleton className={styles.skeletonTextSmall} />
+        <Skeleton className={styles.skeletonTextSmall} />
+      </div>
+    </Card>
+  );
 }
 
+/**
+ * Formata data para exibição em pt-BR
+ */
+function formatDate(isoString: string): string {
+  const date = new Date(isoString);
+  return new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
+}
+
+/**
+ * Retorna cor do badge de domínio
+ */
+function getDomainBadgeVariant(domain: string): 'error' | 'default' | 'success' | 'warning' | 'info' {
+  switch (domain) {
+    case 'BackOffice':
+      return 'info';
+    case 'FrontOffice':
+      return 'success';
+    case 'Game':
+      return 'warning';
+    default:
+      return 'default';
+  }
+}
+
+/**
+ * Retorna ícone do domínio
+ */
+function getDomainIcon(domain: string): string {
+  switch (domain) {
+    case 'BackOffice':
+      return '🏢';
+    case 'FrontOffice':
+      return '🎓';
+    case 'Game':
+      return '🎮';
+    default:
+      return '📄';
+  }
+}
+
+/**
+ * Retorna status visual para health
+ */
+function getHealthIcon(status: string): string {
+  switch (status) {
+    case 'success':
+    case 'healthy':
+      return '✅';
+    case 'warning':
+    case 'outdated':
+      return '⚠️';
+    case 'failure':
+    case 'error':
+    case 'vulnerable':
+      return '❌';
+    default:
+      return '❓';
+  }
+}
+
+/**
+ * Dashboard Page - Shell UI com KPIs e métricas
+ */
 export default function DashboardPage() {
-  const [pages, setPages] = useState<Page[]>([]);
-  const [filteredPages, setFilteredPages] = useState<Page[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [domainFilter, setDomainFilter] = useState<string>('all');
-  const [health, setHealth] = useState<HealthMetrics | null>(null);
-  const [healthLoading, setHealthLoading] = useState(true);
-
-  useEffect(() => {
-    fetchPages();
-    fetchHealth();
-  }, []);
-
-  useEffect(() => {
-    filterPages();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pages, searchQuery, domainFilter]);
-
-  async function fetchPages() {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await fetch('/api/pages');
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch pages');
-      }
-
-      const data: ApiResponse = await response.json();
-      setPages(data.pages);
-      setFilteredPages(data.pages);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function fetchHealth() {
-    try {
-      setHealthLoading(true);
-      const response = await fetch('/api/health');
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch health metrics');
-      }
-
-      const data: HealthResponse = await response.json();
-      setHealth(data.data);
-    } catch (err) {
-      console.error('Error fetching health metrics:', err);
-      // Silently fail - health indicators are optional
-    } finally {
-      setHealthLoading(false);
-    }
-  }
-
-  function filterPages() {
-    let filtered = [...pages];
-
-    // Filter by domain
-    if (domainFilter !== 'all') {
-      filtered = filtered.filter(page => page.domain === domainFilter);
-    }
-
-    // Filter by search query
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(page =>
-        page.title.toLowerCase().includes(query) ||
-        page.slug.toLowerCase().includes(query)
-      );
-    }
-
-    setFilteredPages(filtered);
-  }
-
-  function formatDate(isoString: string): string {
-    const date = new Date(isoString);
-    return new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(date);
-  }
-
-  function getDomainColor(domain: string): 'error' | 'default' | 'success' | 'warning' | 'info' {
-    switch (domain) {
-      case 'BackOffice':
-        return 'info';
-      case 'FrontOffice':
-        return 'success';
-      case 'Game':
-        return 'warning';
-      default:
-        return 'default';
-    }
-  }
-
-  const domains = ['all', 'BackOffice', 'FrontOffice', 'Game'];
+  const { data, isLoading, isError, error, refresh } = useDashboardSummary();
 
   return (
     <Layout maxWidth="xl" paddingY="lg">
-      <div style={{ marginBottom: '2rem' }}>
-        <Text as="h1" size="4xl" weight="bold" color="primary">
-          Dashboard de Páginas
-        </Text>
-        <Text as="p" size="lg" color="muted" style={{ marginTop: '0.5rem' }}>
-          Visualize e gerencie todas as páginas prototipadas no Studio
-        </Text>
-      </div>
-
-      {/* Health Indicator Section */}
-      {!healthLoading && health && (
-        <div style={{ marginBottom: '2rem' }}>
-          <Card variant="elevated" padding="md">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <Text as="h2" size="xl" weight="semibold">
-                Saúde do Sistema
-              </Text>
-              <Text size="sm" color="muted">
-                Score: {health.healthScore}/100
-              </Text>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
-              <HealthIndicator
-                title="Build"
-                value={health.buildStatus === 'success' ? '✅' : health.buildStatus === 'warning' ? '⚠️' : '❌'}
-                status={health.buildStatus === 'success' ? 'success' : health.buildStatus === 'warning' ? 'warning' : 'error'}
-                description={health.buildStatus}
-                size="sm"
-              />
-              <HealthIndicator
-                title="Lint"
-                value={health.lintStatus === 'success' ? '✅' : health.lintStatus === 'warning' ? '⚠️' : '❌'}
-                status={health.lintStatus === 'success' ? 'success' : health.lintStatus === 'warning' ? 'warning' : 'error'}
-                description={health.lintStatus}
-                size="sm"
-              />
-              <HealthIndicator
-                title="Type Check"
-                value={health.typeCheckStatus === 'success' ? '✅' : '❌'}
-                status={health.typeCheckStatus === 'success' ? 'success' : 'error'}
-                description={health.typeCheckStatus}
-                size="sm"
-              />
-              <HealthIndicator
-                title="Dependencies"
-                value={health.dependenciesHealth === 'healthy' ? '✅' : health.dependenciesHealth === 'outdated' ? '⚠️' : '❌'}
-                status={health.dependenciesHealth === 'healthy' ? 'success' : health.dependenciesHealth === 'outdated' ? 'warning' : 'error'}
-                description={health.dependenciesHealth}
-                size="sm"
-              />
-            </div>
-
-            <Text size="xs" color="muted" style={{ display: 'block', paddingTop: '1rem', borderTop: '1px solid var(--color-neutral-200)' }}>
-              Última atualização: {new Date(health.lastChecked).toLocaleString('pt-BR')}
-            </Text>
-          </Card>
-        </div>
-      )}
-
-      {/* Filters */}
-      <div style={{ marginBottom: '2rem' }}>
-        <Card variant="bordered" padding="md">
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'flex-end' }}>
-            <div style={{ flex: '1 1 300px' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '14px', fontWeight: '600' }}>
-                Buscar
-              </label>
-              <Input
-                type="text"
-                placeholder="Buscar por título ou slug..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{ width: '100%' }}
-              />
-            </div>
-
-            <div style={{ flex: '0 1 200px' }}>
-              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '14px', fontWeight: '600' }}>
-                Domínio
-              </label>
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                {domains.map((domain) => (
-                  <Button
-                    key={domain}
-                    variant={domainFilter === domain ? 'primary' : 'outline'}
-                    size="sm"
-                    onClick={() => setDomainFilter(domain)}
-                  >
-                    {domain === 'all' ? 'Todos' : domain}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* Loading State */}
-      {loading && (
-        <Card variant="bordered" padding="lg">
-          <Text color="muted" style={{ textAlign: 'center' }}>
-            Carregando páginas...
+      <div className={styles.container}>
+        {/* Header */}
+        <header className={styles.header}>
+          <Text as="h1" size="4xl" weight="bold" color="primary" className={styles.headerTitle}>
+            Dashboard
           </Text>
-        </Card>
-      )}
+          <Text as="p" size="lg" color="muted" className={styles.headerSubtitle}>
+            Visão geral do ambiente de prototipação EDUCACROSS
+          </Text>
+        </header>
 
-      {/* Error State */}
-      {error && !loading && (
-        <div style={{ borderColor: 'var(--color-danger)', backgroundColor: 'var(--color-danger-50)', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--color-danger)' }}>
-          <Text weight="semibold">
-            Erro ao carregar páginas
-          </Text>
-          <Text size="sm" style={{ marginTop: '0.5rem' }}>
-            {error}
-          </Text>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={fetchPages}
-            style={{ marginTop: '1rem' }}
-          >
-            Tentar Novamente
-          </Button>
-        </div>
-      )}
-
-      {/* Empty State */}
-      {!loading && !error && filteredPages.length === 0 && pages.length > 0 && (
-        <Card variant="bordered" padding="lg">
-          <Text color="muted" style={{ textAlign: 'center' }}>
-            Nenhuma página encontrada com os filtros aplicados.
-          </Text>
-          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                setSearchQuery('');
-                setDomainFilter('all');
-              }}
-            >
-              Limpar Filtros
+        {/* Estado de Erro */}
+        {isError && (
+          <div className={styles.errorBanner} role="alert">
+            <span className={styles.errorIcon} aria-hidden="true">⚠️</span>
+            <h2 className={styles.errorTitle}>Erro ao carregar dados</h2>
+            <p className={styles.errorMessage}>
+              {error?.message || 'Não foi possível conectar à API do dashboard.'}
+            </p>
+            <Button variant="primary" size="sm" onClick={() => refresh()}>
+              Tentar Novamente
             </Button>
           </div>
-        </Card>
-      )}
+        )}
 
-      {!loading && !error && pages.length === 0 && (
-        <Card variant="bordered" padding="lg">
-          <Text color="muted" style={{ textAlign: 'center' }}>
-            Nenhuma página disponível ainda.
-          </Text>
-          <Text size="sm" color="muted" style={{ textAlign: 'center', marginTop: '0.5rem' }}>
-            Crie sua primeira página no{' '}
-            <Link href="/studio" style={{ color: 'var(--color-primary)' }}>
-              Puck Studio
-            </Link>
-          </Text>
-        </Card>
-      )}
+        {/* KPIs Grid - Loading */}
+        {isLoading && (
+          <section className={styles.section} aria-label="Carregando KPIs">
+            <div className={styles.kpiGrid}>
+              <KpiSkeleton />
+              <KpiSkeleton />
+              <KpiSkeleton />
+              <KpiSkeleton />
+            </div>
+          </section>
+        )}
 
-      {/* Pages Grid */}
-      {!loading && !error && filteredPages.length > 0 && (
-        <>
-          <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text size="sm" color="muted">
-              Mostrando {filteredPages.length} de {pages.length} páginas
-            </Text>
-          </div>
+        {/* KPIs Grid - Dados carregados */}
+        {!isLoading && !isError && data && (
+          <>
+            {/* KPIs Principais */}
+            <section className={styles.section} aria-label="Indicadores principais">
+              <div className={styles.kpiGrid}>
+                <Card variant="elevated" padding="md" role="region" aria-label="Total de páginas">
+                  <div className={styles.kpiCard}>
+                    <span className={styles.kpiLabel}>Total de Páginas</span>
+                    <span className={styles.kpiValue}>{data.stats.totalPages}</span>
+                  </div>
+                </Card>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: '1.5rem',
-            }}
-          >
-            {filteredPages.map((page) => (
-              <Card key={page.id} variant="elevated" padding="md">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                  <Text as="h3" size="xl" weight="semibold">
-                    {page.title}
+                <Card variant="elevated" padding="md" role="region" aria-label="Domínios ativos">
+                  <div className={styles.kpiCard}>
+                    <span className={styles.kpiLabel}>Domínios Ativos</span>
+                    <span className={styles.kpiValue}>{data.stats.totalDomains}</span>
+                  </div>
+                </Card>
+
+                <Card variant="elevated" padding="md" role="region" aria-label="Score de saúde">
+                  <div className={styles.kpiCard}>
+                    <span className={styles.kpiLabel}>Score de Saúde</span>
+                    <span className={styles.kpiValue}>{data.health.healthScore}/100</span>
+                  </div>
+                </Card>
+
+                <Card variant="elevated" padding="md" role="region" aria-label="Status do sistema">
+                  <div className={styles.kpiCard}>
+                    <span className={styles.kpiLabel}>Status</span>
+                    <span className={styles.kpiValue}>
+                      {data.health.healthStatus === 'excellent' ? '🟢' : 
+                       data.health.healthStatus === 'good' ? '🟡' : 
+                       data.health.healthStatus === 'warning' ? '🟠' : '🔴'}
+                      {' '}
+                      {data.health.healthStatus.charAt(0).toUpperCase() + data.health.healthStatus.slice(1)}
+                    </span>
+                  </div>
+                </Card>
+              </div>
+            </section>
+
+            {/* Saúde e Domínios lado a lado */}
+            <div className={styles.twoColumnGrid}>
+              {/* Saúde do Sistema */}
+              <section className={styles.section} aria-label="Saúde do sistema">
+                <Card variant="bordered" padding="md">
+                  <div className={styles.sectionHeader}>
+                    <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
+                      Saúde do Sistema
+                    </Text>
+                    <Progress 
+                      value={data.health.healthScore} 
+                      size="sm" 
+                      color={data.health.healthScore >= 80 ? 'success' : data.health.healthScore >= 60 ? 'warning' : 'error'}
+                      aria-label={`Score de saúde: ${data.health.healthScore}%`}
+                    />
+                  </div>
+
+                  <div className={styles.healthGrid}>
+                    <HealthIndicator
+                      title="Build"
+                      value={getHealthIcon(data.health.buildStatus)}
+                      status={data.health.buildStatus === 'success' ? 'success' : data.health.buildStatus === 'warning' ? 'warning' : 'error'}
+                      description={data.health.buildStatus}
+                      size="sm"
+                    />
+                    <HealthIndicator
+                      title="Lint"
+                      value={getHealthIcon(data.health.lintStatus)}
+                      status={data.health.lintStatus === 'success' ? 'success' : data.health.lintStatus === 'warning' ? 'warning' : 'error'}
+                      description={data.health.lintStatus}
+                      size="sm"
+                    />
+                    <HealthIndicator
+                      title="Type Check"
+                      value={getHealthIcon(data.health.typeCheckStatus)}
+                      status={data.health.typeCheckStatus === 'success' ? 'success' : 'error'}
+                      description={data.health.typeCheckStatus}
+                      size="sm"
+                    />
+                    <HealthIndicator
+                      title="Dependências"
+                      value={getHealthIcon(data.health.dependenciesHealth)}
+                      status={data.health.dependenciesHealth === 'healthy' ? 'success' : data.health.dependenciesHealth === 'outdated' ? 'warning' : 'error'}
+                      description={data.health.dependenciesHealth}
+                      size="sm"
+                    />
+                  </div>
+
+                  <Text size="xs" color="muted" style={{ marginTop: '1rem' }}>
+                    Última atualização: {formatDate(data.health.lastChecked)}
                   </Text>
-                  <Badge variant={getDomainColor(page.domain)} size="sm">
-                    {page.domain}
-                  </Badge>
+                </Card>
+              </section>
+
+              {/* Domínios */}
+              <section className={styles.section} aria-label="Páginas por domínio">
+                <Card variant="bordered" padding="md">
+                  <div className={styles.sectionHeader}>
+                    <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
+                      Páginas por Domínio
+                    </Text>
+                  </div>
+
+                  <div className={styles.domainsGrid}>
+                    {Object.entries(data.domains).map(([domain, info]) => (
+                      <div key={domain} className={styles.domainCard}>
+                        <div 
+                          className={styles.domainIcon} 
+                          style={{ backgroundColor: info.color }}
+                          aria-hidden="true"
+                        >
+                          {getDomainIcon(domain)}
+                        </div>
+                        <div className={styles.domainInfo}>
+                          <div className={styles.domainName}>{domain}</div>
+                          <div className={styles.domainCount}>
+                            {info.count} {info.count === 1 ? 'página' : 'páginas'}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </section>
+            </div>
+
+            {/* Páginas Recentes */}
+            <section className={styles.section} aria-label="Páginas recentes">
+              <Card variant="bordered" padding="md">
+                <div className={styles.sectionHeader}>
+                  <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
+                    Páginas Recentes
+                  </Text>
+                  <Link href="/studio" className={styles.link}>
+                    <Button variant="outline" size="sm">
+                      Nova Página
+                    </Button>
+                  </Link>
                 </div>
 
-                <Text size="sm" color="muted" style={{ marginBottom: '0.5rem' }}>
-                  <strong>Slug:</strong> /{page.slug}
-                </Text>
+                {data.recentPages.length === 0 ? (
+                  <div className={styles.emptyState}>
+                    <span className={styles.emptyIcon} aria-hidden="true">📄</span>
+                    <h3 className={styles.emptyTitle}>Nenhuma página criada ainda</h3>
+                    <p className={styles.emptyMessage}>
+                      Comece criando sua primeira página no Puck Studio.
+                    </p>
+                    <Link href="/studio">
+                      <Button variant="primary" size="md">
+                        Criar Página
+                      </Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div className={styles.recentPagesGrid}>
+                    {data.recentPages.map((page) => (
+                      <Card key={page.id} variant="elevated" padding="md">
+                        <div className={styles.pageCard}>
+                          <div className={styles.pageHeader}>
+                            <h3 className={styles.pageTitle}>{page.name}</h3>
+                            <Badge variant={getDomainBadgeVariant(page.domain)} size="sm">
+                              {page.domain}
+                            </Badge>
+                          </div>
 
-                <Text size="sm" color="muted" style={{ marginBottom: '1rem' }}>
-                  <strong>Última modificação:</strong> {formatDate(page.lastModified)}
-                </Text>
+                          <p className={styles.pageMeta}>
+                            <strong>Slug:</strong> /{page.slug}
+                          </p>
 
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                  <Link href={`/${page.slug}`} style={{ flex: '1' }}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      Visualizar
-                    </Button>
-                  </Link>
-                  <Link href={`/studio?slug=${page.slug}`} style={{ flex: '1' }}>
-                    <Button variant="primary" size="sm" fullWidth>
-                      Editar
-                    </Button>
-                  </Link>
+                          <p className={styles.pageMeta}>
+                            <strong>Atualizado:</strong> {formatDate(page.updatedAt)}
+                          </p>
+
+                          <div className={styles.pageActions}>
+                            <Link href={page.viewUrl} style={{ flex: 1 }}>
+                              <Button variant="outline" size="sm" fullWidth>
+                                Visualizar
+                              </Button>
+                            </Link>
+                            <Link href={page.editUrl} style={{ flex: 1 }}>
+                              <Button variant="primary" size="sm" fullWidth>
+                                Editar
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            </section>
+
+            {/* Footer */}
+            <footer className={styles.footer}>
+              Última atualização: {formatDate(data.stats.lastUpdated)}
+            </footer>
+          </>
+        )}
+
+        {/* Loading completo */}
+        {isLoading && (
+          <>
+            <section className={styles.section}>
+              <div className={styles.twoColumnGrid}>
+                <Card variant="bordered" padding="md">
+                  <Skeleton className={styles.skeletonText} />
+                  <div className={styles.healthGrid} style={{ marginTop: '1rem' }}>
+                    <HealthSkeleton />
+                    <HealthSkeleton />
+                    <HealthSkeleton />
+                    <HealthSkeleton />
+                  </div>
+                </Card>
+                <Card variant="bordered" padding="md">
+                  <Skeleton className={styles.skeletonText} />
+                  <div className={styles.domainsGrid} style={{ marginTop: '1rem' }}>
+                    <Skeleton className={styles.skeletonCard} />
+                    <Skeleton className={styles.skeletonCard} />
+                    <Skeleton className={styles.skeletonCard} />
+                  </div>
+                </Card>
+              </div>
+            </section>
+
+            <section className={styles.section}>
+              <Card variant="bordered" padding="md">
+                <Skeleton className={styles.skeletonText} />
+                <div className={styles.recentPagesGrid} style={{ marginTop: '1rem' }}>
+                  <PageSkeleton />
+                  <PageSkeleton />
+                  <PageSkeleton />
                 </div>
               </Card>
-            ))}
-          </div>
-        </>
-      )}
+            </section>
+          </>
+        )}
+      </div>
     </Layout>
   );
 }
