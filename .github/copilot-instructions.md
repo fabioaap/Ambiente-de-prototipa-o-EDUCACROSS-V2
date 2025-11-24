@@ -1,8 +1,9 @@
 # EDUCACROSS Prototipação – Copilot Instructions
 
-**Status**: Production-ready for Sprint 2 (P1) execution  
-**Last Updated**: 2025-11-22  
-**Scope**: pnpm monorepo + Next.js 15 (App Router) + React 18 + Puck OSS + Storybook 8
+**Status**: Production-ready for Sprint 2 & 3 execution  
+**Last Updated**: 2025-11-24  
+**Scope**: pnpm monorepo + Next.js 15 (App Router) + React 18 + Puck OSS + Storybook 8  
+**Current Sprint**: Sprint 3 (Fase 3/4 - Dashboard & Game Hub)
 
 ---
 
@@ -11,12 +12,14 @@
 Este é um **ambiente de prototipação orientado a jornadas**, não produção. Foco: velocidade, clareza, qualidade para PMs/designers/devs explorarem fluxos reais.
 
 **Stack Crítico**:
+
 - **Node**: 22 LTS (enforce via `.nvmrc`)
 - **pnpm**: 9.14.4+ (monorepo with workspaces)
 - **TypeScript**: 5 (strict mode)
 - **Build**: tsup (design-system), Next.js (studio), Storybook (ESM-only)
 
 **Big Picture**:
+
 ```
 packages/
   ├─ design-system/ → React components (Button, Input, Card, Layout, Text)
@@ -40,6 +43,7 @@ domains/ → Jornadas de prototipagem (BackOffice, FrontOffice, Game)
 ## 🔨 Workflows Essenciais
 
 ### Setup & Build
+
 ```bash
 # Verificar ambiente (agente deve fazer isso primeiro)
 node --version  # Esperado: v22.x.x
@@ -63,6 +67,7 @@ pnpm dev:storybook &
 ```
 
 **Checklist antes de commitar**:
+
 1. `pnpm build` sem erros
 2. `pnpm lint` sem warnings críticos
 3. `pnpm -r type-check` = 0 errors
@@ -70,6 +75,7 @@ pnpm dev:storybook &
 5. Stories/pages funcionando
 
 ### Git & GitHub Flow
+
 ```bash
 # Feature branch (issue-code-description)
 git checkout -b feature/c2-studio-sidebar-pages
@@ -126,6 +132,7 @@ export type { {Component}Props };
 ```
 
 **Regras**:
+
 - `forwardRef` para componentes baixo-nível
 - CSS Modules: `styles.component`, `styles.variant`, `styles.size`
 - Props interface com JSDoc
@@ -175,24 +182,22 @@ Consumir tokens em componentes:
 Arquivo: `apps/studio/src/config/puck.config.tsx`
 
 ```tsx
-import { Config } from '@measured/puck';
+import { Config } from "@measured/puck";
 
 export const puckConfig: Config = {
   components: {
     Button: {
       fields: {
-        text: { type: 'text' },
+        text: { type: "text" },
         variant: {
-          type: 'select',
+          type: "select",
           options: [
-            { label: 'Primary', value: 'primary' },
-            { label: 'Secondary', value: 'secondary' },
+            { label: "Primary", value: "primary" },
+            { label: "Secondary", value: "secondary" },
           ],
         },
       },
-      render: ({ text, variant }) => (
-        <Button variant={variant}>{text}</Button>
-      ),
+      render: ({ text, variant }) => <Button variant={variant}>{text}</Button>,
     },
     // ... mais componentes
   },
@@ -200,6 +205,7 @@ export const puckConfig: Config = {
 ```
 
 **Workflow**:
+
 1. Novo componente no DS → adicionar story no Storybook
 2. Registrar em `puckConfig.components`
 3. Testar em `/studio` (Puck editor)
@@ -212,6 +218,7 @@ export const puckConfig: Config = {
 Template em: `domains/template-jornada.md`
 
 Padrão:
+
 ```
 domains/{DOMINIO}/journeys/{nome-jornada}/
   ├─ README.md (objetivo, status, componentes, links)
@@ -220,22 +227,27 @@ domains/{DOMINIO}/journeys/{nome-jornada}/
 ```
 
 **README template**:
+
 ```markdown
 # Jornada: {Nome}
 
 ## Objetivo
+
 [Resultado esperado de UX/negócio]
 
 ## Status
+
 - [x] Planejamento
 - [ ] Em andamento
 - [ ] Concluído
 
 ## Componentes Utilizados
+
 - Button (primary, md)
 - Text (h1, bold)
 
 ## Links
+
 - [Studio](http://localhost:3000/{slug})
 - [Figma]({url})
 ```
@@ -253,6 +265,7 @@ domains/{DOMINIO}/journeys/{nome-jornada}/
 5. **#8 (D2)** – Addon Storybook A11y (2-3d, depende #7)
 
 **Guias em Raiz**:
+
 - `START_SPRINT2.md` – Bem-vindo em 60s
 - `RUN_SPRINT2.md` ⭐ – Guia PRINCIPAL (5 issues detalhadas)
 - `SPRINT2_STATUS.md` – Timeline, riscos, métricas
@@ -262,21 +275,85 @@ domains/{DOMINIO}/journeys/{nome-jornada}/
 - `docs/sprint-2-execution-prompt.md` – Scripts copy-paste
 
 **GitHub Actions** (automático):
+
 - `.github/workflows/sprint-2-validation.yml` → 4 jobs (setup, build+lint+type-check, report, notify)
 - Roda em push/PR → bloqueia merge se falhar
 - Duração esperada: ~180s (3 min)
 
 ---
 
+## 🚀 Sprint 3 Execution (Dashboard & Game Hub)
+
+**Status**: ✅ Fase 1 e 2 completadas (5/9 issues) | 🟢 Fase 3 e 4 prontas para execução
+
+### Documentação Principal
+
+**Índice Central**: `SPRINT3_DOCUMENTATION_INDEX.md` ⭐ – Ponto de entrada para toda documentação Sprint 3
+
+**Guias de Execução**:
+
+- `SPRINT3_EXECUTION_DETAILED.md` ⭐ – Prompts prontos para copiar (Issues #53, #54, #55, #58)
+- `AGENT_PHASE2_DASHBOARD.md` – Resumo das 4 issues restantes (alternativo)
+- `SPRINT3_CHECKPOINT.md` – Status após Fase 2
+- `SPRINT3_FINAL_STATUS.md` – Progresso atual e métricas
+- `SPRINT3_QUICK_START.md` – Setup rápido em 5 minutos
+- `docs/SPRINT3_EXECUTION_MASTER.md` – Algoritmo e status técnico
+
+### Issues Restantes (Fase 3)
+
+| #   | Título         | Prioridade | Depende de | Tipo     | Tempo Est |
+| --- | -------------- | ---------- | ---------- | -------- | --------- |
+| #53 | Dashboard API  | P2         | #59 ✅     | Backend  | 3h        |
+| #54 | Dashboard UI   | P2         | #53 ⏳     | Frontend | 3h        |
+| #55 | Health Metrics | P2         | #54 ⏳     | Feature  | 2h        |
+| #58 | Game Hub       | P2         | #61 ✅     | Jornada  | 3h        |
+
+### Grafo de Dependências
+
+```
+CADEIA SEQUENCIAL:
+#53 (Dashboard API)
+  ↓
+#54 (Dashboard UI)
+  ↓
+#55 (Health Metrics)
+
+PARALELO:
+#58 (Game Hub) — pode rodar em paralelo com a cadeia
+```
+
+### Issues Legadas (Fase 4)
+
+5 issues serão fechadas após conclusão das issues principais:
+
+- #4 (BackOffice Epic)
+- #11 (Dashboard Epic)
+- #13 (Endpoint API)
+- #14 (Dashboard POC)
+- #15 (Health Indicators)
+
+### Como Começar
+
+1. **Leia**: `SPRINT3_DOCUMENTATION_INDEX.md` (5 min)
+2. **Abra**: `SPRINT3_EXECUTION_DETAILED.md` (guia principal)
+3. **Copie**: PROMPT correspondente à issue que quer executar
+4. **Execute**: Seguindo as instruções detalhadas
+
+**Progresso Atual**: 5/9 issues fechadas (56%) | Tempo Restante: ~11.5 horas
+
+---
+
 ## ⚙️ Build & Package Management
 
 ### tsup.config.ts (Design System)
+
 - **Exporta**: ESM + CJS
 - **Adiciona**: `"use client"` directive (banner)
 - **Sourcemaps**: automáticas
 - **Types**: geradas via tsc
 
 ### Next.js (Studio)
+
 - **Router**: App Router (📁 estrutura de diretórios é rotas)
 - **Layouts**: `layout.tsx` (global em `app/`, sidebar)
 - **Dynamic Routes**: `app/[[...slug]]/page.tsx` (renderiza JSON)
@@ -284,6 +361,7 @@ domains/{DOMINIO}/journeys/{nome-jornada}/
 - **Styles**: CSS Modules + global `globals.css`
 
 ### Storybook (ESM-only)
+
 - **Manager**: Vite
 - **Stories**: `*.stories.tsx` em `apps/storybook/src/stories/`
 - **Addons**: `@storybook/addon-a11y`, `@storybook/addon-essentials`
@@ -294,6 +372,7 @@ domains/{DOMINIO}/journeys/{nome-jornada}/
 ## 🔍 Debugging & Troubleshooting
 
 ### Build Falha
+
 ```bash
 # Limpar cache
 pnpm clean
@@ -312,6 +391,7 @@ pnpm build --verbose
 ```
 
 ### Lint/Type Errors
+
 ```bash
 # Rodar local (antes de push)
 pnpm lint
@@ -322,6 +402,7 @@ pnpm lint --fix
 ```
 
 ### Port Conflicts
+
 ```bash
 # Kill processos anteriores
 npx kill-port 3000 6006
@@ -332,6 +413,7 @@ pnpm dev:storybook &
 ```
 
 ### GitHub Actions Falha
+
 1. Clique "Re-run all jobs" (pode ser timeout/fluke)
 2. Leia logs em Actions tab → step que falhou
 3. Rode localmente: `pnpm build && pnpm lint && pnpm -r type-check`
@@ -341,36 +423,37 @@ pnpm dev:storybook &
 
 ## 📊 Decision Log (Por Quê Desse Jeito?)
 
-| Decisão | Razão | Trade-off |
-|---------|-------|-----------|
-| **pnpm workspaces** | Monorepo + link automático + lock file | Curva aprendizado |
-| **CSS Modules** | Sem runtime, tree-shake safe | Não há utility classes |
-| **Puck para editor** | Visual, sem código, rápido | Limited customization |
-| **Storybook ESM-only** | Performance, modern tooling | Sem CommonJS |
-| **Next.js App Router** | File-based routing, server components | Migrando de pages |
-| **Node 22 LTS** | Estável, não cutting-edge | Muda em Apr 2027 |
+| Decisão                | Razão                                  | Trade-off              |
+| ---------------------- | -------------------------------------- | ---------------------- |
+| **pnpm workspaces**    | Monorepo + link automático + lock file | Curva aprendizado      |
+| **CSS Modules**        | Sem runtime, tree-shake safe           | Não há utility classes |
+| **Puck para editor**   | Visual, sem código, rápido             | Limited customization  |
+| **Storybook ESM-only** | Performance, modern tooling            | Sem CommonJS           |
+| **Next.js App Router** | File-based routing, server components  | Migrando de pages      |
+| **Node 22 LTS**        | Estável, não cutting-edge              | Muda em Apr 2027       |
 
 ---
 
 ## 💾 Key Files to Know
 
-| Arquivo | Propósito |
-|---------|-----------|
-| `.nvmrc` | Node version (22.x.x) |
-| `pnpm-workspace.yaml` | Define workspaces |
-| `package.json` (root) | Scripts: `pnpm dev:studio`, `pnpm build`, etc |
-| `packages/design-system/package.json` | Exports: `main` (CJS), `module` (ESM), `types` |
-| `packages/tokens/src/tokens.json` | Fonte de verdade para design tokens |
-| `apps/studio/src/config/puck.config.tsx` | Registro de componentes para Puck |
-| `apps/studio/src/app/[[...slug]]/page.tsx` | Renderiza páginas JSON do localStorage |
-| `.github/workflows/sprint-2-validation.yml` | CI/CD automation |
-| `docs/sprint-2-planning.md` | Contexto técnico de P1 |
+| Arquivo                                     | Propósito                                      |
+| ------------------------------------------- | ---------------------------------------------- |
+| `.nvmrc`                                    | Node version (22.x.x)                          |
+| `pnpm-workspace.yaml`                       | Define workspaces                              |
+| `package.json` (root)                       | Scripts: `pnpm dev:studio`, `pnpm build`, etc  |
+| `packages/design-system/package.json`       | Exports: `main` (CJS), `module` (ESM), `types` |
+| `packages/tokens/src/tokens.json`           | Fonte de verdade para design tokens            |
+| `apps/studio/src/config/puck.config.tsx`    | Registro de componentes para Puck              |
+| `apps/studio/src/app/[[...slug]]/page.tsx`  | Renderiza páginas JSON do localStorage         |
+| `.github/workflows/sprint-2-validation.yml` | CI/CD automation                               |
+| `docs/sprint-2-planning.md`                 | Contexto técnico de P1                         |
 
 ---
 
 ## ✅ Checklist para Agents
 
 Quando modificar componentes DS:
+
 - [ ] Manter interface de props estável (adicionar, não remover)
 - [ ] Atualizar stories no Storybook
 - [ ] Rodar `pnpm build:design-system` e verificar tipos
@@ -378,18 +461,21 @@ Quando modificar componentes DS:
 - [ ] Registrar em `puckConfig` se for usado em Studio
 
 Quando adicionar jornada:
+
 - [ ] Criar pasta em `domains/{dominio}/journeys/{nome}/`
 - [ ] Documentar em README com objetivo, componentes, links
 - [ ] Criar página correspondente no Studio
 - [ ] Linkar em `domains/README.md` ou índice
 
 Quando adicionar novos tokens:
+
 - [ ] Editar `packages/tokens/src/tokens.json`
 - [ ] Rodar `pnpm build:tokens`
 - [ ] Verificar CSS variables + JS exports
 - [ ] Atualizar componentes DS para usar novos tokens
 
 Antes de mergear PR:
+
 - [ ] `pnpm build` sem erros
 - [ ] `pnpm lint` sem warnings críticos
 - [ ] `pnpm -r type-check` sem erros
@@ -408,8 +494,11 @@ Antes de mergear PR:
 - **Puck integration**: `apps/studio/src/config/puck.config.tsx`
 - **Jornadas**: `domains/README.md` + examples em `domains/*/`
 - **Sprint 2 docs**: `RUN_SPRINT2.md` (guia principal)
+- **Sprint 3 docs**: `SPRINT3_DOCUMENTATION_INDEX.md` ⭐ (índice central)
 
 ---
 
-**Próximo Passo para Agents**: Sempre começar em `RUN_SPRINT2.md` ou `START_SPRINT2.md` para contexto de issue/jornada específica.
+**Próximo Passo para Agents**:
 
+- **Sprint 2**: Começar em `RUN_SPRINT2.md` ou `START_SPRINT2.md`
+- **Sprint 3**: Começar em `SPRINT3_DOCUMENTATION_INDEX.md` para navegação completa ou `SPRINT3_EXECUTION_DETAILED.md` para prompts prontos
