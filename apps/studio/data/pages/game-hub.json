@@ -3,154 +3,41 @@
     {
       "type": "Layout",
       "props": {
-        "id": "layout-gamehub",
-        "maxWidth": "xl"
+        "maxWidth": "xl",
+        "id": "layout-1",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-1",
+              "content": "Bem-vindo ao Studio",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-2",
+              "content": "Comece a construir sua jornada arrastando componentes da barra lateral.",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          }
+        ]
       }
     }
   ],
   "root": {
     "props": {
-      "title": "Game Hub"
+      "title": "Nova Página"
     }
   },
   "zones": {
-    "layout-gamehub:content": [
-      {
-        "type": "Text",
-        "props": {
-          "id": "gamehub-title",
-          "content": "🎮 Game Hub",
-          "as": "h1",
-          "size": "4xl",
-          "weight": "bold",
-          "color": "primary"
-        }
-      },
-      {
-        "type": "Text",
-        "props": {
-          "id": "gamehub-subtitle",
-          "content": "Explore os jogos educacionais e desafie seus conhecimentos!",
-          "as": "p",
-          "size": "lg",
-          "weight": "normal",
-          "color": "muted"
-        }
-      },
-      {
-        "type": "GameFilter",
-        "props": {
-          "id": "gamehub-filter",
-          "label": "Filtrar jogos",
-          "showCategoryFilter": true,
-          "showDifficultyFilter": true
-        }
-      },
-      {
-        "type": "GameGrid",
-        "props": {
-          "id": "gamehub-grid",
-          "columns": "3",
-          "gap": "md"
-        }
-      }
-    ],
-    "gamehub-grid:cards": [
-      {
-        "type": "GameCard",
-        "props": {
-          "id": "game-math-1",
-          "title": "Desafio Matemático",
-          "description": "Resolva problemas matemáticos e desafie seus amigos!",
-          "thumbnail": "🧮",
-          "category": "math",
-          "difficulty": "medium",
-          "estimatedTime": "10-15 min",
-          "progress": 75,
-          "status": "popular",
-          "slug": "math-challenge"
-        }
-      },
-      {
-        "type": "GameCard",
-        "props": {
-          "id": "game-lang-1",
-          "title": "Mestre das Palavras",
-          "description": "Expanda seu vocabulário neste jogo de palavras",
-          "thumbnail": "📚",
-          "category": "language",
-          "difficulty": "easy",
-          "estimatedTime": "5-10 min",
-          "progress": 100,
-          "status": "completed",
-          "slug": "word-master"
-        }
-      },
-      {
-        "type": "GameCard",
-        "props": {
-          "id": "game-sci-1",
-          "title": "Quiz de Ciências",
-          "description": "Teste seus conhecimentos científicos",
-          "thumbnail": "🔬",
-          "category": "science",
-          "difficulty": "hard",
-          "estimatedTime": "15-20 min",
-          "progress": 0,
-          "status": "new",
-          "slug": "science-quiz"
-        }
-      },
-      {
-        "type": "GameCard",
-        "props": {
-          "id": "game-logic-1",
-          "title": "Quebra-Cabeças Lógicos",
-          "description": "Exercite seu raciocínio com desafios lógicos",
-          "thumbnail": "🧩",
-          "category": "logic",
-          "difficulty": "medium",
-          "estimatedTime": "10-15 min",
-          "progress": 30,
-          "status": "none",
-          "slug": "logic-puzzles"
-        }
-      },
-      {
-        "type": "GameCard",
-        "props": {
-          "id": "game-math-2",
-          "title": "Tabuada Turbo",
-          "description": "Pratique a tabuada de forma divertida",
-          "thumbnail": "⚡",
-          "category": "math",
-          "difficulty": "easy",
-          "estimatedTime": "5-10 min",
-          "progress": 0,
-          "status": "popular",
-          "slug": "times-tables"
-        }
-      },
-      {
-        "type": "GameCard",
-        "props": {
-          "id": "game-lang-2",
-          "title": "Caça-Palavras",
-          "description": "Encontre palavras escondidas no grid",
-          "thumbnail": "🔍",
-          "category": "language",
-          "difficulty": "easy",
-          "estimatedTime": "5-10 min",
-          "progress": 50,
-          "status": "none",
-          "slug": "word-search"
-        }
-      }
-    ]
-  },
-  "id": "game-hub-page",
-  "domain": "Game",
-  "status": "active",
-  "createdAt": "2025-11-24T22:00:00.000Z",
-  "updatedAt": "2025-11-24T22:00:00.000Z"
+    "layout-1:layout-1:content": []
+  }
 }

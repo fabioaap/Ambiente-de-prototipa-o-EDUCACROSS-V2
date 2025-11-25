@@ -56,12 +56,12 @@ export interface DashboardSummaryResponse {
  */
 async function fetcher<T>(url: string): Promise<T> {
   const response = await fetch(url);
-  
+
   if (!response.ok) {
     const error = new Error('Erro ao carregar dados do dashboard');
     throw error;
   }
-  
+
   return response.json();
 }
 
@@ -84,8 +84,8 @@ export function useDashboardSummary() {
   );
 
   return {
-    data: data?.data,
-    isLoading,
+    data: data?.data || undefined,
+    isLoading: isLoading && !data,
     isValidating,
     isError: !!error,
     error,

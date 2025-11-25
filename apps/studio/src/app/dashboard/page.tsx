@@ -2,59 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Layout, Text, Card, Button, Badge, Progress, Input, Select } from '@prototipo/design-system';
-import { HealthIndicator } from '@prototipo/design-system';
-import { HealthMetricsPanel } from '@/components/widgets/HealthMetricsWidgets';
-import { useHealthMetrics } from '@/lib/use-health-metrics';
-import { useDashboardSummary } from '@/hooks/useDashboardSummary';
-import styles from './dashboard.module.css';
-
-/**
- * Componente Skeleton para loading state
- */
-function Skeleton({ className }: { className?: string }) {
-  return <div className={`${styles.skeleton} ${className || ''}`} />;
-}
-
-/**
- * Componente de skeleton para KPI cards
- */
-function KpiSkeleton() {
-  return (
-    <Card variant="elevated" padding="md">
-      <div className={styles.kpiCard}>
-        <Skeleton className={styles.skeletonTextSmall} />
-        <Skeleton className={styles.skeletonTextLarge} />
-      </div>
-    </Card>
-  );
-}
-
-/**
- * Componente de skeleton para health cards
- */
-function HealthSkeleton() {
-  return (
-    <Card variant="bordered" padding="sm">
-      <Skeleton className={styles.skeletonHealthCard} />
-    </Card>
-  );
-}
-
-/**
- * Componente de skeleton para page cards
- */
-function PageSkeleton() {
-  return (
-    <Card variant="bordered" padding="md">
-      <div className={styles.pageCard}>
-        <Skeleton className={styles.skeletonText} />
-        <Skeleton className={styles.skeletonTextSmall} />
-        <Skeleton className={styles.skeletonTextSmall} />
-      </div>
-    </Card>
-  );
-}
+import { Button } from '@/components/shadcn/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/shadcn/Card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/shadcn/Table';
 
 /**
  * Formata data para exibição em pt-BR
@@ -71,393 +21,397 @@ function formatDate(isoString: string): string {
 }
 
 /**
- * Retorna cor do badge de domínio
+ * Skeleton para Loading states
  */
-function getDomainBadgeVariant(domain: string): 'error' | 'default' | 'success' | 'warning' | 'info' {
-  switch (domain) {
-    case 'BackOffice':
-      return 'info';
-    case 'FrontOffice':
-      return 'success';
-    case 'Game':
-      return 'warning';
-    default:
-      return 'default';
-  }
+function Skeleton({ width = 'w-full', height = 'h-4' }: { width?: string; height?: string }) {
+  return <div className={`${width} ${height} bg-gray-200 rounded animate-pulse`} />;
 }
 
 /**
- * Retorna ícone do domínio
+ * Status Badge com cores
  */
-function getDomainIcon(domain: string): string {
-  switch (domain) {
-    case 'BackOffice':
-      return '🏢';
-    case 'FrontOffice':
-      return '🎓';
-    case 'Game':
-      return '🎮';
-    default:
-      return '📄';
-  }
+function StatusBadge({ status }: { status: string }) {
+  const colors: Record<string, string> = {
+    excellent: 'bg-green-100 text-green-800',
+    good: 'bg-blue-100 text-blue-800',
+    warning: 'bg-yellow-100 text-yellow-800',
+    critical: 'bg-red-100 text-red-800',
+    success: 'bg-green-100 text-green-800',
+    healthy: 'bg-green-100 text-green-800',
+    outdated: 'bg-yellow-100 text-yellow-800',
+    error: 'bg-red-100 text-red-800',
+    vulnerable: 'bg-red-100 text-red-800',
+  };
+
+  return (
+    <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${colors[status] || 'bg-gray-100 text-gray-800'}`}>
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </span>
+  );
 }
 
 /**
- * Retorna status visual para health
+ * KPI Card Component
  */
-function getHealthIcon(status: string): string {
-  switch (status) {
-    case 'success':
-    case 'healthy':
-      return '✅';
-    case 'warning':
-    case 'outdated':
-      return '⚠️';
-    case 'failure':
-    case 'error':
-    case 'vulnerable':
-      return '❌';
-    default:
-      return '❓';
-  }
+function KPICard({ label, value, icon }: { label: string; value: string | number; icon: string }) {
+  return (
+    <Card className="hover:shadow-lg transition-shadow">
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-gray-600">{label}</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">{value}</p>
+          </div>
+          <span className="text-4xl">{icon}</span>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
 
 /**
- * Dashboard Page - Shell UI com KPIs e métricas
+ * Health Indicator Card
+ */
+function HealthCard({
+  title,
+  status,
+  value,
+}: {
+  title: string;
+  status: string;
+  value: string;
+}) {
+  return (
+    <div className="p-4 border border-gray-200 rounded-lg">
+      <div className="flex items-center justify-between mb-2">
+        <p className="text-sm font-medium text-gray-700">{title}</p>
+        <StatusBadge status={status} />
+      </div>
+      <p className="text-lg font-semibold text-gray-900">{value}</p>
+    </div>
+  );
+}
+
+/**
+ * Domain Card
+ */
+function DomainCard({ name, count, color }: { name: string; count: number; color: string }) {
+  const domainEmoji: Record<string, string> = {
+    BackOffice: '🏢',
+    FrontOffice: '🎓',
+    Game: '🎮',
+    Other: '📄',
+  };
+
+  return (
+    <div className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+      <div className="flex items-center gap-3">
+        <div
+          className="w-12 h-12 rounded-lg flex items-center justify-center text-xl"
+          style={{ backgroundColor: color }}
+        >
+          {domainEmoji[name] || '📄'}
+        </div>
+        <div>
+          <p className="font-semibold text-gray-900">{name}</p>
+          <p className="text-sm text-gray-600">{count} página{count !== 1 ? 's' : ''}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Dashboard Page com Shadcn UI
  */
 export default function DashboardPage() {
-  const { data, isLoading, isError, error, refresh } = useDashboardSummary();
-  const healthMetrics = useHealthMetrics();
-  // Search & filter state for Recent Pages section
+  const [data, setData] = React.useState<any>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [isError, setIsError] = React.useState(false);
+  const [error, setError] = React.useState<any>(null);
   const [q, setQ] = React.useState('');
   const [debouncedQ, setDebouncedQ] = React.useState(q);
   const [domainFilter, setDomainFilter] = React.useState('All');
 
-  // Debounce q updates – 300ms
+  // Fetch data
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/dashboard/summary');
+        if (!response.ok) throw new Error('Falha ao carregar');
+        const json = await response.json();
+        setData(json.data);
+        setIsError(false);
+      } catch (err) {
+        setError(err);
+        setIsError(true);
+        setData(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // Debounce search query
   React.useEffect(() => {
     const id = setTimeout(() => setDebouncedQ(q), 300);
     return () => clearTimeout(id);
   }, [q]);
 
-  return (
-    <Layout maxWidth="xl" paddingY="lg">
-      <div className={styles.container}>
-        {/* Header */}
-        <header className={styles.header}>
-          <Text as="h1" size="4xl" weight="bold" color="primary" className={styles.headerTitle}>
-            Dashboard
-          </Text>
-          <Text as="p" size="lg" color="muted" className={styles.headerSubtitle}>
-            Visão geral do ambiente de prototipação EDUCACROSS
-          </Text>
-        </header>
+  const refresh = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/dashboard/summary');
+      if (!response.ok) throw new Error('Falha ao carregar');
+      const json = await response.json();
+      setData(json.data);
+      setIsError(false);
+    } catch (err) {
+      setError(err);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-        {/* Estado de Erro */}
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Dashboard</h1>
+          <p className="text-lg text-gray-600">Visão geral do ambiente de prototipação EDUCACROSS</p>
+        </div>
+
+        {/* Error State */}
         {isError && (
-          <div className={styles.errorBanner} role="alert">
-            <span className={styles.errorIcon} aria-hidden="true">⚠️</span>
-            <h2 className={styles.errorTitle}>Erro ao carregar dados</h2>
-            <p className={styles.errorMessage}>
-              {error?.message || 'Não foi possível conectar à API do dashboard.'}
-            </p>
-            <Button variant="primary" size="sm" onClick={() => refresh()}>
-              Tentar Novamente
-            </Button>
+          <div className="mb-8 p-6 bg-red-50 border border-red-200 rounded-lg">
+            <div className="flex items-start gap-4">
+              <span className="text-2xl">⚠️</span>
+              <div>
+                <h3 className="font-semibold text-red-900 mb-1">Erro ao carregar dashboard</h3>
+                <p className="text-red-800 mb-4">{error?.message || 'Não foi possível conectar à API.'}</p>
+                <Button variant="primary" size="sm" onClick={() => refresh()}>
+                  Tentar Novamente
+                </Button>
+              </div>
+            </div>
           </div>
         )}
 
-        {/* KPIs Grid - Loading */}
+        {/* Loading State */}
         {isLoading && (
-          <section className={styles.section} aria-label="Carregando KPIs">
-            <div className={styles.kpiGrid}>
-              <KpiSkeleton />
-              <KpiSkeleton />
-              <KpiSkeleton />
-              <KpiSkeleton />
+          <div className="space-y-8">
+            {/* KPI Skeletons */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <Card key={i}>
+                  <CardContent className="p-6">
+                    <Skeleton height="h-6" className="mb-3" />
+                    <Skeleton height="h-10" width="w-2/3" />
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          </section>
+            {/* Content Skeleton */}
+            <Card>
+              <CardContent className="p-6">
+                <Skeleton height="h-6" className="mb-4" />
+                <div className="space-y-3">
+                  {[1, 2, 3].map((i) => (
+                    <Skeleton key={i} height="h-12" />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )}
 
-        {/* KPIs Grid - Dados carregados */}
+        {/* Data Loaded State */}
         {!isLoading && !isError && data && (
-          <>
-            {/* KPIs Principais */}
-            <section className={styles.section} aria-label="Indicadores principais">
-              <div className={styles.kpiGrid}>
-                <Card variant="elevated" padding="md" role="region" aria-label="Total de páginas">
-                  <div className={styles.kpiCard}>
-                    <span className={styles.kpiLabel}>Total de Páginas</span>
-                    <span className={styles.kpiValue}>{data.stats.totalPages}</span>
-                  </div>
-                </Card>
-
-                <Card variant="elevated" padding="md" role="region" aria-label="Domínios ativos">
-                  <div className={styles.kpiCard}>
-                    <span className={styles.kpiLabel}>Domínios Ativos</span>
-                    <span className={styles.kpiValue}>{data.stats.totalDomains}</span>
-                  </div>
-                </Card>
-
-                <Card variant="elevated" padding="md" role="region" aria-label="Score de saúde">
-                  <div className={styles.kpiCard}>
-                    <span className={styles.kpiLabel}>Score de Saúde</span>
-                    <span className={styles.kpiValue}>{data.health.healthScore}/100</span>
-                  </div>
-                </Card>
-
-                <Card variant="elevated" padding="md" role="region" aria-label="Status do sistema">
-                  <div className={styles.kpiCard}>
-                    <span className={styles.kpiLabel}>Status</span>
-                    <span className={styles.kpiValue}>
-                      {data.health.healthStatus === 'excellent' ? '🟢' :
-                        data.health.healthStatus === 'good' ? '🟡' :
-                          data.health.healthStatus === 'warning' ? '🟠' : '🔴'}
-                      {' '}
-                      {data.health.healthStatus.charAt(0).toUpperCase() + data.health.healthStatus.slice(1)}
-                    </span>
-                  </div>
-                </Card>
-              </div>
-            </section>
-
-            {/* Métricas de Performance */}
-            <section className={styles.section} aria-label="Métricas de performance">
-              <HealthMetricsPanel
-                metrics={healthMetrics.metrics}
-                loading={healthMetrics.loading}
-                error={healthMetrics.error}
-                onRetry={healthMetrics.refetch}
-                title="Métricas de Performance"
-                size="sm"
-                enableExport
-                lastUpdated={healthMetrics.lastUpdated || undefined}
-              />
-            </section>
-
-            {/* Saúde e Domínios lado a lado */}
-            <div className={styles.twoColumnGrid}>
-              {/* Saúde do Sistema */}
-              <section className={styles.section} aria-label="Saúde do sistema">
-                <Card variant="bordered" padding="md">
-                  <div className={styles.sectionHeader}>
-                    <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
-                      Saúde do Sistema
-                    </Text>
-                    <Progress
-                      value={data.health.healthScore}
-                      size="sm"
-                      color={data.health.healthScore >= 80 ? 'success' : data.health.healthScore >= 60 ? 'warning' : 'error'}
-                      aria-label={`Score de saúde: ${data.health.healthScore}%`}
-                    />
-                  </div>
-
-                  <div className={styles.healthGrid}>
-                    <HealthIndicator
-                      title="Build"
-                      value={getHealthIcon(data.health.buildStatus)}
-                      status={data.health.buildStatus === 'success' ? 'success' : data.health.buildStatus === 'warning' ? 'warning' : 'error'}
-                      description={data.health.buildStatus}
-                      size="sm"
-                    />
-                    <HealthIndicator
-                      title="Lint"
-                      value={getHealthIcon(data.health.lintStatus)}
-                      status={data.health.lintStatus === 'success' ? 'success' : data.health.lintStatus === 'warning' ? 'warning' : 'error'}
-                      description={data.health.lintStatus}
-                      size="sm"
-                    />
-                    <HealthIndicator
-                      title="Type Check"
-                      value={getHealthIcon(data.health.typeCheckStatus)}
-                      status={data.health.typeCheckStatus === 'success' ? 'success' : 'error'}
-                      description={data.health.typeCheckStatus}
-                      size="sm"
-                    />
-                    <HealthIndicator
-                      title="Dependências"
-                      value={getHealthIcon(data.health.dependenciesHealth)}
-                      status={data.health.dependenciesHealth === 'healthy' ? 'success' : data.health.dependenciesHealth === 'outdated' ? 'warning' : 'error'}
-                      description={data.health.dependenciesHealth}
-                      size="sm"
-                    />
-                  </div>
-
-                  <Text size="xs" color="muted" style={{ marginTop: '1rem' }}>
-                    Última atualização: {formatDate(data.health.lastChecked)}
-                  </Text>
-                </Card>
-              </section>
-
-              {/* Domínios */}
-              <section className={styles.section} aria-label="Páginas por domínio">
-                <Card variant="bordered" padding="md">
-                  <div className={styles.sectionHeader}>
-                    <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
-                      Páginas por Domínio
-                    </Text>
-                  </div>
-
-                  <div className={styles.domainsGrid}>
-                    {Object.entries(data.domains).map(([domain, info]) => (
-                      <div key={domain} className={styles.domainCard}>
-                        <div
-                          className={styles.domainIcon}
-                          style={{ backgroundColor: info.color }}
-                          aria-hidden="true"
-                        >
-                          {getDomainIcon(domain)}
-                        </div>
-                        <div className={styles.domainInfo}>
-                          <div className={styles.domainName}>{domain}</div>
-                          <div className={styles.domainCount}>
-                            {info.count} {info.count === 1 ? 'página' : 'páginas'}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              </section>
+          <div className="space-y-8">
+            {/* KPIs Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <KPICard label="Total de Páginas" value={data.stats.totalPages} icon="📄" />
+              <KPICard label="Domínios Ativos" value={data.stats.totalDomains} icon="🗂️" />
+              <KPICard label="Health Score" value={`${data.health.healthScore}/100`} icon="💚" />
+              <KPICard label="Status" value={data.health.healthStatus} icon={data.health.healthStatus === 'excellent' ? '🟢' : '🟡'} />
             </div>
 
-            {/* Páginas Recentes */}
-            <section className={styles.section} aria-label="Páginas recentes">
-              <Card variant="bordered" padding="md">
-                <div className={styles.sectionHeader}>
-                  <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
-                    Páginas Recentes
-                  </Text>
-                  <div className={styles.filters}>
-                    <Input
-                      placeholder="Buscar título..."
-                      aria-label="Buscar páginas por título"
-                      value={q}
-                      onChange={(e) => setQ((e.target as HTMLInputElement).value)}
-                      fullWidth={false}
-                      className={styles.filterField}
-                    />
-                    <Select
-                      aria-label="Filtrar por domínio"
-                      value={domainFilter}
-                      onChange={(e) => setDomainFilter((e.target as HTMLSelectElement).value)}
-                      options={[{ value: 'All', label: 'Todos' }, ...(data ? Object.keys(data.domains).map((d) => ({ value: d, label: d })) : [])]}
-                      fullWidth={false}
-                      className={styles.filterField}
-                    />
-                    <Link href="/studio" className={styles.link}>
-                      <Button variant="outline" size="sm">
-                        Nova Página
-                      </Button>
-                    </Link>
+            {/* Health & Domains - Two Column */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Health Status */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Saúde do Sistema</CardTitle>
+                  <CardDescription>Status dos componentes críticos</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="mb-4">
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">Score</span>
+                        <span className="text-sm font-bold text-gray-900">{data.health.healthScore}%</span>
+                      </div>
+                      <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full transition-all ${data.health.healthScore >= 80
+                            ? 'bg-green-500'
+                            : data.health.healthScore >= 60
+                              ? 'bg-yellow-500'
+                              : 'bg-red-500'
+                            }`}
+                          style={{ width: `${data.health.healthScore}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <HealthCard title="Build" status={data.health.buildStatus} value={data.health.buildStatus === 'success' ? '✅' : '❌'} />
+                      <HealthCard title="Lint" status={data.health.lintStatus} value={data.health.lintStatus === 'success' ? '✅' : '❌'} />
+                      <HealthCard title="Type Check" status={data.health.typeCheckStatus} value={data.health.typeCheckStatus === 'success' ? '✅' : '❌'} />
+                      <HealthCard title="Dependências" status={data.health.dependenciesHealth} value={data.health.dependenciesHealth === 'healthy' ? '✅' : '⚠️'} />
+                    </div>
+
+                    <p className="text-xs text-gray-500 pt-4 border-t">Última atualização: {formatDate(data.health.lastChecked)}</p>
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Domains */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Páginas por Domínio</CardTitle>
+                  <CardDescription>Distribuição dos conteúdos</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {Object.entries(data.domains).map(([domain, info]) => (
+                      <DomainCard
+                        key={domain}
+                        name={domain}
+                        count={info.count}
+                        color={info.color}
+                      />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Recent Pages Table */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Páginas Recentes</CardTitle>
+                <CardDescription>Últimas páginas criadas e modificadas</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {/* Filters */}
+                <div className="mb-6 flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="text"
+                    placeholder="🔍 Buscar por título..."
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  />
+                  <select
+                    value={domainFilter}
+                    onChange={(e) => setDomainFilter(e.target.value)}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    title="Filtrar por domínio"
+                  >
+                    <option value="All">Todos os domínios</option>
+                    {Object.keys(data.domains).map((domain) => (
+                      <option key={domain} value={domain}>
+                        {domain}
+                      </option>
+                    ))}
+                  </select>
+                  <Link href="/studio">
+                    <Button variant="primary" size="md">
+                      + Nova Página
+                    </Button>
+                  </Link>
                 </div>
 
-                {data.recentPages.length === 0 ? (
-                  <div className={styles.emptyState}>
-                    <span className={styles.emptyIcon} aria-hidden="true">📄</span>
-                    <h3 className={styles.emptyTitle}>Nenhuma página criada ainda</h3>
-                    <p className={styles.emptyMessage}>
-                      Comece criando sua primeira página no Puck Studio.
-                    </p>
+                {/* Table */}
+                {data.recentPages.filter((p) => {
+                  if (domainFilter !== 'All' && p.domain !== domainFilter) return false;
+                  if (!debouncedQ) return true;
+                  return p.name.toLowerCase().includes(debouncedQ.toLowerCase());
+                }).length === 0 ? (
+                  <div className="text-center py-12">
+                    <p className="text-4xl mb-2">📄</p>
+                    <p className="text-lg font-semibold text-gray-900 mb-1">Nenhuma página encontrada</p>
+                    <p className="text-gray-600 mb-4">Crie sua primeira página no Puck Studio</p>
                     <Link href="/studio">
-                      <Button variant="primary" size="md">
-                        Criar Página
-                      </Button>
+                      <Button variant="primary">Criar Página</Button>
                     </Link>
                   </div>
                 ) : (
-                  <div className={styles.recentPagesGrid}>
-                    {data.recentPages
-                      .filter((page) => {
-                        // filter by domain if domainFilter != 'All'
-                        if (domainFilter !== 'All' && page.domain !== domainFilter) return false;
-                        // filter by text query (title)
-                        if (!debouncedQ) return true;
-                        return page.name.toLowerCase().includes(debouncedQ.toLowerCase());
-                      })
-                      .map((page) => (
-                        <Card key={page.id} variant="elevated" padding="md">
-                          <div className={styles.pageCard}>
-                            <div className={styles.pageHeader}>
-                              <h3 className={styles.pageTitle}>{page.name}</h3>
-                              <Badge variant={getDomainBadgeVariant(page.domain)} size="sm">
-                                {page.domain}
-                              </Badge>
-                            </div>
-
-                            <p className={styles.pageMeta}>
-                              <strong>Slug:</strong> /{page.slug}
-                            </p>
-
-                            <p className={styles.pageMeta}>
-                              <strong>Atualizado:</strong> {formatDate(page.updatedAt)}
-                            </p>
-
-                            <div className={styles.pageActions}>
-                              <Link href={page.viewUrl} style={{ flex: 1 }}>
-                                <Button variant="outline" size="sm" fullWidth>
-                                  Visualizar
-                                </Button>
-                              </Link>
-                              <Link href={page.editUrl} style={{ flex: 1 }}>
-                                <Button variant="primary" size="sm" fullWidth>
-                                  Editar
-                                </Button>
-                              </Link>
-                            </div>
-                          </div>
-                        </Card>
-                      ))}
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-1/4">Título</TableHead>
+                          <TableHead className="w-1/4">Slug</TableHead>
+                          <TableHead className="w-1/5">Domínio</TableHead>
+                          <TableHead className="w-1/5">Modificado</TableHead>
+                          <TableHead className="text-right">Ações</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {data.recentPages
+                          .filter((p) => {
+                            if (domainFilter !== 'All' && p.domain !== domainFilter) return false;
+                            if (!debouncedQ) return true;
+                            return p.name.toLowerCase().includes(debouncedQ.toLowerCase());
+                          })
+                          .map((page) => (
+                            <TableRow key={page.id}>
+                              <TableCell className="font-medium text-gray-900">{page.name}</TableCell>
+                              <TableCell className="text-gray-600 font-mono text-sm">/{page.slug}</TableCell>
+                              <TableCell>
+                                <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                  {page.domain}
+                                </span>
+                              </TableCell>
+                              <TableCell className="text-gray-600 text-sm">{formatDate(page.updatedAt)}</TableCell>
+                              <TableCell className="text-right">
+                                <div className="flex gap-2 justify-end">
+                                  <Link href={page.viewUrl}>
+                                    <Button variant="outline" size="sm">
+                                      Ver
+                                    </Button>
+                                  </Link>
+                                  <Link href={page.editUrl}>
+                                    <Button variant="primary" size="sm">
+                                      Editar
+                                    </Button>
+                                  </Link>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
                   </div>
                 )}
-              </Card>
-            </section>
-
-            {/* Footer */}
-            <footer className={styles.footer}>
-              Última atualização: {formatDate(data.stats.lastUpdated)}
-            </footer>
-          </>
+              </CardContent>
+            </Card>
+          </div>
         )}
 
-        {/* Loading completo */}
-        {isLoading && (
-          <>
-            <section className={styles.section}>
-              <div className={styles.twoColumnGrid}>
-                <Card variant="bordered" padding="md">
-                  <Skeleton className={styles.skeletonText} />
-                  <div className={styles.healthGrid} style={{ marginTop: '1rem' }}>
-                    <HealthSkeleton />
-                    <HealthSkeleton />
-                    <HealthSkeleton />
-                    <HealthSkeleton />
-                  </div>
-                </Card>
-                <Card variant="bordered" padding="md">
-                  <Skeleton className={styles.skeletonText} />
-                  <div className={styles.domainsGrid} style={{ marginTop: '1rem' }}>
-                    <Skeleton className={styles.skeletonCard} />
-                    <Skeleton className={styles.skeletonCard} />
-                    <Skeleton className={styles.skeletonCard} />
-                  </div>
-                </Card>
-              </div>
-            </section>
-
-            <section className={styles.section}>
-              <Card variant="bordered" padding="md">
-                <Skeleton className={styles.skeletonText} />
-                <div className={styles.recentPagesGrid} style={{ marginTop: '1rem' }}>
-                  <PageSkeleton />
-                  <PageSkeleton />
-                  <PageSkeleton />
-                </div>
-              </Card>
-            </section>
-          </>
-        )}
+        {/* Footer */}
+        <footer className="mt-12 pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
+          <p>EDUCACROSS Prototipação © 2024</p>
+          {data && <p className="mt-1">Última atualização: {formatDate(data.stats.lastUpdated)}</p>}
+        </footer>
       </div>
-    </Layout>
+    </div>
   );
 }
+
