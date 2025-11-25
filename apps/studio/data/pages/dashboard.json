@@ -1,52 +1,43 @@
 {
-    "content": [
-        {
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "layout-1",
+        "children": [
+          {
             "type": "Text",
             "props": {
-                "id": "text-dash-1",
-                "content": "Dashboard",
-                "as": "h1",
-                "size": "4xl",
-                "weight": "bold",
-                "color": "primary"
+              "id": "text-1",
+              "content": "Bem-vindo ao Studio",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
             }
-        },
-        {
-            "type": "Card",
+          },
+          {
+            "type": "Text",
             "props": {
-                "id": "card-dash-1",
-                "variant": "elevated",
-                "padding": "md"
+              "id": "text-2",
+              "content": "Comece a construir sua jornada arrastando componentes da barra lateral.",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
             }
-        },
-        {
-            "type": "Button",
-            "props": {
-                "id": "btn-dash-1",
-                "text": "Ação Principal",
-                "variant": "primary",
-                "size": "md"
-            }
-        }
-    ],
-    "root": {
-        "props": {
-            "title": "Dashboard"
-        }
-    },
-    "zones": {
-        "card-dash-1:content": [
-            {
-                "type": "Text",
-                "props": {
-                    "id": "text-card-1",
-                    "content": "Bem-vindo ao Dashboard. Esta é a visão geral do sistema.",
-                    "as": "p",
-                    "size": "base",
-                    "weight": "normal",
-                    "color": "default"
-                }
-            }
+          }
         ]
+      }
     }
+  ],
+  "root": {
+    "props": {
+      "title": "Nova Página"
+    }
+  },
+  "zones": {
+    "layout-1:layout-1:content": []
+  }
 }

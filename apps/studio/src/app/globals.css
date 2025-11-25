@@ -1,4 +1,10 @@
-* {
+/* Import design tokens first */
+@import './design-tokens.css';
+
+/* Reset */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -12,11 +18,44 @@ body {
 
 body {
   font-family: var(--typography-fontFamily-sans);
-  color: var(--colors-neutral-900);
-  background: var(--colors-neutral-50);
+  color: var(--color-fg-primary);
+  background: var(--color-bg-primary);
+  line-height: var(--type-base-lh);
+  font-size: var(--type-base);
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 a {
-  color: inherit;
+  color: var(--color-primary-600);
   text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary-600);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: var(--radius-lg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400);
 }
