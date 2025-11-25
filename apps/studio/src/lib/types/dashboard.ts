@@ -35,6 +35,44 @@ export interface DashboardKPI {
 }
 
 /**
+ * Estatísticas agregadas do dashboard
+ */
+export interface DashboardStats {
+    /** Total de páginas mapeadas */
+    totalPages: number;
+    /** Quantidade de domínios que possuem páginas */
+    totalDomains: number;
+    /** Lista de domínios com atividade */
+    activeDomains: string[];
+    /** Timestamp da última atualização */
+    lastUpdated: string;
+}
+
+/**
+ * Distribuição de páginas por domínio
+ */
+export interface DashboardDomainSummary {
+    count: number;
+    color: string;
+}
+
+/**
+ * Dados das páginas recentes exibidas no dashboard
+ */
+export interface DashboardRecentPage {
+    id: string;
+    slug: string;
+    name: string;
+    domain: 'BackOffice' | 'FrontOffice' | 'Game' | 'Other';
+    status: 'draft' | 'published';
+    editUrl: string;
+    viewUrl: string;
+    createdAt: string;
+    updatedAt: string;
+    description?: string;
+}
+
+/**
  * Payload de resposta do endpoint /api/dashboard/summary
  */
 export interface DashboardSummaryResponse {
@@ -48,6 +86,14 @@ export interface DashboardSummaryResponse {
         healthScore: number;
         /** Timestamp da última verificação */
         lastUpdated: string;
+        /** Estatísticas agregadas */
+        stats: DashboardStats;
+        /** Distribuição por domínios */
+        domains: Record<string, DashboardDomainSummary>;
+        /** Métricas detalhadas de saúde */
+        health: HealthMetricsDetail;
+        /** Últimas páginas editadas */
+        recentPages: DashboardRecentPage[];
     };
     /** Timestamp da resposta */
     timestamp: string;
