@@ -185,6 +185,17 @@
   line-height: var(--type-sm-lh);
 }
 
+/* ============ FILTERS (search + domain) ============ */
+.filters {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.filterField {
+  min-width: 160px;
+}
+
 /* ============ HEALTH GRID PREMIUM ============ */
 .healthGrid {
   display: grid;
@@ -476,12 +487,10 @@
 
 /* ============ SKELETONS (LOADING STATE) ============ */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--color-neutral-200) 25%,
-    var(--color-neutral-100) 50%,
-    var(--color-neutral-200) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--color-neutral-200) 25%,
+      var(--color-neutral-100) 50%,
+      var(--color-neutral-200) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   border-radius: var(--radius-md);
@@ -491,6 +500,7 @@
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -554,8 +564,15 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .errorTitle {
@@ -615,8 +632,15 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .emptyTitle {
@@ -705,6 +729,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -716,6 +741,7 @@
     opacity: 0;
     transform: translateY(-16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -732,6 +758,7 @@
 
 /* ============ MEDIA QUERIES & ACCESSIBILITY ============ */
 @media (prefers-reduced-motion: reduce) {
+
   .skeleton,
   .fadeInAnimation,
   .slideDownAnimation,
@@ -753,6 +780,7 @@
 }
 
 @media (prefers-contrast: more) {
+
   .kpiCard,
   .pageCard,
   .domainCard {

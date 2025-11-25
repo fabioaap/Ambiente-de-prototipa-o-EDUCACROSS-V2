@@ -225,6 +225,8 @@ Criar interface visual que lista páginas criadas no Studio, consumindo o endpoi
    - Tratamento de erros (se API falhar)
    - Ordenação por coluna (título, data)
    - Paginação (10 itens por página)
+   - Pesquisa por título (query `q`), atualizando listagem enquanto digita (debounce 300ms)
+   - Filtrar por domain (query `domain`), dropdown com domains extraídos do `pages` array
 
 3. **Design**
    - Use componentes do Design System: Card, Button, Text, Badge
@@ -315,6 +317,11 @@ export default function PagesPage() {
 - [x] Responsivo (mobile + desktop)
 - [x] Botões funcionam (editar, deletar, duplicar — podem ser stubs)
 - [x] Build passes: `pnpm build && pnpm lint && pnpm -r type-check`
+ - [x] Pesquisa por título funciona (query `q`) com resultados atualizados
+ - [x] Filtro por domain funciona e combina com os valores do endpoint (query `domain`)
+ - [x] Ordenação e paginação atualizam resultado com query params
+ - [x] Loading skeletons visíveis durante fetch
+ - [x] No results state (empty message) exibido quando não há correspondências
 
 #### Como Testar
 

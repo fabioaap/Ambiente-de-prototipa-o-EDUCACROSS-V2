@@ -61,6 +61,7 @@ PRÓXIMA SEQUÊNCIA:
 2. #54 — Dashboard UI (P2, 3h) — Depende de #53 ✅
    - Cria interface visual para listar páginas
    - Usa endpoint de #53
+   - Inclui: pesquisa por título (debounce 300ms), filtro por domínio (All + domain options), loading skeletons, responsividade e paginação simples
    - Precisa estar PRONTA antes de #55
 
 3. #55 — Health Metrics (P2, 2h) — Depende de #54 ✅

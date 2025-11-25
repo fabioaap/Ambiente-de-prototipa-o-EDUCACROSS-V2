@@ -56,7 +56,7 @@
 | # | Código | Título | Prioridade | Bloqueadores | Esforço |
 |---|--------|--------|-----------|--------------|---------|
 | #53 | H2.1 | Dashboard API: GET /api/pages | P2 | Nenhum | 2h |
-| #54 | H2.2 | Dashboard UI: Listagem de páginas | P2 | #53 | 3h |
+| #54 | H2.2 | Dashboard UI: Listagem de páginas (search, filter, responsive, loading states) | P2 | #53 | 4h |
 | #55 | H2.3 | Health Indicators: Estatísticas | P2 | #54 | 4h |
 
 ### Sprint 3 (P2) - COMPONENTES & GAME
@@ -86,6 +86,15 @@ Status: 100% ✅ COMPLETO (6/6 issues fechadas)
 Status: 0% 📋 INICIADA (0/14 issues fechadas)
 Estimativa Total: ~31 horas | Equipe: 4 devs | Duração: 1.5 sprints
 `
+
+### NOVO (Backlog): SpecKit + Code-to-Figma
+
+| # | Código | Título | Prioridade | Bloqueadores | Esforço |
+|---|--------|--------|-----------|--------------|---------|
+| #62 | CI.1 | SpecKit – PR validation & sprint rules (update `.github/spec.yml`) | P2 | Nenhum | 1h |
+| #63 | C2.2 | Code-to-Figma integration – backlog review & docs | P2 | Nenhum | 2h |
+
+> Observação: `#62` garante que as validações do `spec.yml` (PR title, body length, labels, code-quality checks) sejam explicitamente revisadas e adicionadas ao backlog como tasks, enquanto `#63` formaliza pendências e integrações pendentes do `figma-sync-engine` monorepo.
 
 ---
 

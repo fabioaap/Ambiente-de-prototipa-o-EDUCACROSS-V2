@@ -1,7 +1,8 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
-import { Layout, Text, Card, Button, Badge, Progress } from '@prototipo/design-system';
+import { Layout, Text, Card, Button, Badge, Progress, Input, Select } from '@prototipo/design-system';
 import { HealthIndicator } from '@prototipo/design-system';
 import { HealthMetricsPanel } from '@/components/widgets/HealthMetricsWidgets';
 import { useHealthMetrics } from '@/lib/use-health-metrics';
@@ -127,6 +128,16 @@ function getHealthIcon(status: string): string {
 export default function DashboardPage() {
   const { data, isLoading, isError, error, refresh } = useDashboardSummary();
   const healthMetrics = useHealthMetrics();
+  // Search & filter state for Recent Pages section
+  const [q, setQ] = React.useState('');
+  const [debouncedQ, setDebouncedQ] = React.useState(q);
+  const [domainFilter, setDomainFilter] = React.useState('All');
+
+  // Debounce q updates – 300ms
+  React.useEffect(() => {
+    const id = setTimeout(() => setDebouncedQ(q), 300);
+    return () => clearTimeout(id);
+  }, [q]);
 
   return (
     <Layout maxWidth="xl" paddingY="lg">
@@ -316,11 +327,29 @@ export default function DashboardPage() {
                   <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
                     Páginas Recentes
                   </Text>
-                  <Link href="/studio" className={styles.link}>
-                    <Button variant="outline" size="sm">
-                      Nova Página
-                    </Button>
-                  </Link>
+                  <div className={styles.filters}>
+                    <Input
+                      placeholder="Buscar título..."
+                      aria-label="Buscar páginas por título"
+                      value={q}
+                      onChange={(e) => setQ((e.target as HTMLInputElement).value)}
+                      fullWidth={false}
+                      className={styles.filterField}
+                    />
+                    <Select
+                      aria-label="Filtrar por domínio"
+                      value={domainFilter}
+                      onChange={(e) => setDomainFilter((e.target as HTMLSelectElement).value)}
+                      options={[{ value: 'All', label: 'Todos' }, ...(data ? Object.keys(data.domains).map((d) => ({ value: d, label: d })) : [])]}
+                      fullWidth={false}
+                      className={styles.filterField}
+                    />
+                    <Link href="/studio" className={styles.link}>
+                      <Button variant="outline" size="sm">
+                        Nova Página
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
 
                 {data.recentPages.length === 0 ? (
@@ -338,39 +367,47 @@ export default function DashboardPage() {
                   </div>
                 ) : (
                   <div className={styles.recentPagesGrid}>
-                    {data.recentPages.map((page) => (
-                      <Card key={page.id} variant="elevated" padding="md">
-                        <div className={styles.pageCard}>
-                          <div className={styles.pageHeader}>
-                            <h3 className={styles.pageTitle}>{page.name}</h3>
-                            <Badge variant={getDomainBadgeVariant(page.domain)} size="sm">
-                              {page.domain}
-                            </Badge>
+                    {data.recentPages
+                      .filter((page) => {
+                        // filter by domain if domainFilter != 'All'
+                        if (domainFilter !== 'All' && page.domain !== domainFilter) return false;
+                        // filter by text query (title)
+                        if (!debouncedQ) return true;
+                        return page.name.toLowerCase().includes(debouncedQ.toLowerCase());
+                      })
+                      .map((page) => (
+                        <Card key={page.id} variant="elevated" padding="md">
+                          <div className={styles.pageCard}>
+                            <div className={styles.pageHeader}>
+                              <h3 className={styles.pageTitle}>{page.name}</h3>
+                              <Badge variant={getDomainBadgeVariant(page.domain)} size="sm">
+                                {page.domain}
+                              </Badge>
+                            </div>
+
+                            <p className={styles.pageMeta}>
+                              <strong>Slug:</strong> /{page.slug}
+                            </p>
+
+                            <p className={styles.pageMeta}>
+                              <strong>Atualizado:</strong> {formatDate(page.updatedAt)}
+                            </p>
+
+                            <div className={styles.pageActions}>
+                              <Link href={page.viewUrl} style={{ flex: 1 }}>
+                                <Button variant="outline" size="sm" fullWidth>
+                                  Visualizar
+                                </Button>
+                              </Link>
+                              <Link href={page.editUrl} style={{ flex: 1 }}>
+                                <Button variant="primary" size="sm" fullWidth>
+                                  Editar
+                                </Button>
+                              </Link>
+                            </div>
                           </div>
-
-                          <p className={styles.pageMeta}>
-                            <strong>Slug:</strong> /{page.slug}
-                          </p>
-
-                          <p className={styles.pageMeta}>
-                            <strong>Atualizado:</strong> {formatDate(page.updatedAt)}
-                          </p>
-
-                          <div className={styles.pageActions}>
-                            <Link href={page.viewUrl} style={{ flex: 1 }}>
-                              <Button variant="outline" size="sm" fullWidth>
-                                Visualizar
-                              </Button>
-                            </Link>
-                            <Link href={page.editUrl} style={{ flex: 1 }}>
-                              <Button variant="primary" size="sm" fullWidth>
-                                Editar
-                              </Button>
-                            </Link>
-                          </div>
-                        </div>
-                      </Card>
-                    ))}
+                        </Card>
+                      ))}
                   </div>
                 )}
               </Card>
