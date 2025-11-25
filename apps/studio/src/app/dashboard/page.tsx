@@ -198,9 +198,9 @@ export default function DashboardPage() {
                   <div className={styles.kpiCard}>
                     <span className={styles.kpiLabel}>Status</span>
                     <span className={styles.kpiValue}>
-                      {data.health.healthStatus === 'excellent' ? '🟢' : 
-                       data.health.healthStatus === 'good' ? '🟡' : 
-                       data.health.healthStatus === 'warning' ? '🟠' : '🔴'}
+                      {data.health.healthStatus === 'excellent' ? '🟢' :
+                        data.health.healthStatus === 'good' ? '🟡' :
+                          data.health.healthStatus === 'warning' ? '🟠' : '🔴'}
                       {' '}
                       {data.health.healthStatus.charAt(0).toUpperCase() + data.health.healthStatus.slice(1)}
                     </span>
@@ -232,9 +232,9 @@ export default function DashboardPage() {
                     <Text as="h2" size="xl" weight="semibold" className={styles.sectionTitle}>
                       Saúde do Sistema
                     </Text>
-                    <Progress 
-                      value={data.health.healthScore} 
-                      size="sm" 
+                    <Progress
+                      value={data.health.healthScore}
+                      size="sm"
                       color={data.health.healthScore >= 80 ? 'success' : data.health.healthScore >= 60 ? 'warning' : 'error'}
                       aria-label={`Score de saúde: ${data.health.healthScore}%`}
                     />
@@ -289,8 +289,8 @@ export default function DashboardPage() {
                   <div className={styles.domainsGrid}>
                     {Object.entries(data.domains).map(([domain, info]) => (
                       <div key={domain} className={styles.domainCard}>
-                        <div 
-                          className={styles.domainIcon} 
+                        <div
+                          className={styles.domainIcon}
                           style={{ backgroundColor: info.color }}
                           aria-hidden="true"
                         >
