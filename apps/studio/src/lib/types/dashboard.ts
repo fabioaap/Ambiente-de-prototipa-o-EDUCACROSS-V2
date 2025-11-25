@@ -94,6 +94,8 @@ export interface DashboardSummaryResponse {
         health: HealthMetricsDetail;
         /** Últimas páginas editadas */
         recentPages: DashboardRecentPage[];
+        /** Links úteis e atalhos para ferramentas e jornadas */
+        navigationLinks: DashboardNavigationLink[];
     };
     /** Timestamp da resposta */
     timestamp: string;
@@ -127,6 +129,14 @@ export interface DashboardHealthResponse {
     data: HealthMetricsDetail;
     /** Timestamp da resposta */
     timestamp: string;
+}
+
+export interface DashboardNavigationLink {
+    title: string;
+    description?: string;
+    url: string;
+    category: 'storybook' | 'journeys' | 'docs' | 'other';
+    variant?: 'primary' | 'secondary';
 }
 
 /**

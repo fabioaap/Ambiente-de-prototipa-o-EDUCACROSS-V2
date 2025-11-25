@@ -17,6 +17,7 @@ import {
   DashboardDomainSummary,
   DashboardStats,
   HealthMetricsDetail,
+  DashboardNavigationLink,
 } from '@/lib/types/dashboard';
 
 const DOMAIN_COLORS: Record<string, string> = {
@@ -27,6 +28,8 @@ const DOMAIN_COLORS: Record<string, string> = {
 };
 
 const PAGES_DIR = path.join(process.cwd(), 'data', 'pages');
+const STORYBOOK_URL = process.env.NEXT_STORYBOOK_URL ?? 'http://localhost:6006';
+const JOURNEYS_INDEX_URL = process.env.JOURNEYS_INDEX_URL ?? '/domains';
 
 /**
  * Escaneia diretório de páginas recursivamente e gera metadados para o dashboard
@@ -150,6 +153,32 @@ function buildKpis(stats: DashboardStats, domains: Record<string, DashboardDomai
   ];
 }
 
+function buildNavigationLinks(): DashboardNavigationLink[] {
+  return [
+    {
+      title: 'Storybook',
+      description: 'Explorar componentes e estados no Storybook.',
+      url: STORYBOOK_URL,
+      category: 'storybook',
+      variant: 'primary',
+    },
+    {
+      title: 'Domínios & Jornadas',
+      description: 'Navegar pelo catálogo de jornadas prototipadas.',
+      url: JOURNEYS_INDEX_URL,
+      category: 'journeys',
+      variant: 'secondary',
+    },
+    {
+      title: 'Documentação do Projeto',
+      description: 'Acessar notas, status e tutoriais das jornadas.',
+      url: '/docs',
+      category: 'docs',
+      variant: 'secondary',
+    },
+  ];
+}
+
 function toHealthDetail(score: number, metrics: Awaited<ReturnType<typeof aggregateHealthMetrics>>): HealthMetricsDetail {
   const healthStatus: HealthStatusType = getHealthStatus(score);
   return {
@@ -199,6 +228,7 @@ export async function GET(request: Request) {
         domains,
         health: healthDetail,
         recentPages,
+        navigationLinks: buildNavigationLinks(),
       },
       timestamp: new Date().toISOString(),
     };
