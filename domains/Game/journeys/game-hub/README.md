@@ -8,10 +8,33 @@ Criar um hub centralizado para acesso a todos os jogos educacionais disponíveis
 
 - [x] Planejamento
 - [x] Estrutura de documentação
-- [ ] Prototipagem no Puck Studio
-- [ ] Integração de componentes
+- [x] Prototipagem no Puck Studio
+- [x] Integração de componentes
 - [ ] Testes de usabilidade
 - [ ] Concluído
+
+## 🚀 Quick Start
+
+### Acessar o Game Hub
+
+```bash
+# Desenvolvimento local
+pnpm dev:studio
+
+# Acessar no navegador
+http://localhost:3000/game-hub
+
+# Editar no Puck Studio
+http://localhost:3000/studio?page=game-hub
+```
+
+### Componentes Puck Disponíveis
+
+O Game Hub utiliza 3 novos componentes no Puck:
+
+1. **GameCard** - Card individual de jogo
+2. **GameFilter** - Filtros por categoria e dificuldade
+3. **GameGrid** - Grid responsivo para layout dos cards
 
 ## Fluxo da Jornada
 
@@ -208,7 +231,8 @@ interface LeaderboardEntry {
 ## Links
 
 - [Studio - Game Hub](http://localhost:3000/game-hub)
-- [Studio - Editor](http://localhost:3000/studio?slug=game-hub)
+- [Studio - Editor](http://localhost:3000/studio?page=game-hub)
+- [Storybook - GameCard Component](http://localhost:6006/?path=/story/game-hub-gamecard--default)
 - [Storybook - Progress Component](http://localhost:6006/?path=/story/components-progress--default)
 - [Storybook - Leaderboard Component](http://localhost:6006/?path=/story/components-leaderboard--default)
 - [Design System](../../packages/design-system/)
@@ -241,22 +265,23 @@ interface LeaderboardEntry {
 
 ## Próximos Passos
 
-1. **Implementação no Puck Studio**
-   - [ ] Criar página `/game-hub` com cards mockados
-   - [ ] Configurar componentes no `puck.config.tsx`
-   - [ ] Testar responsividade
+1. **Implementação no Puck Studio** ✅
+   - [x] Criar página `/game-hub` com cards mockados
+   - [x] Configurar componentes no `puck.config.tsx`
+   - [x] Testar responsividade
 
-2. **Integração de Componentes**
-   - [ ] Integrar Progress component (#60)
-   - [ ] Integrar Leaderboard component (#61)
-   - [ ] Criar game card personalizado se necessário
+2. **Integração de Componentes** ✅
+   - [x] Integrar Progress component (#60)
+   - [x] Integrar Leaderboard component (#61)
+   - [x] Criar game card personalizado se necessário
 
-3. **Dados Mockados**
-   - [ ] Criar arquivo JSON com jogos exemplo
-   - [ ] Implementar lógica de filtros
-   - [ ] Simular progresso do jogador
+3. **Dados Mockados** ✅
+   - [x] Criar arquivo JSON com jogos exemplo
+   - [x] Implementar lógica de filtros
+   - [x] Simular progresso do jogador
 
 4. **Testes**
+   - [x] Story no Storybook para GameCard
    - [ ] Testar navegação entre páginas
    - [ ] Validar acessibilidade
    - [ ] Testar em dispositivos móveis

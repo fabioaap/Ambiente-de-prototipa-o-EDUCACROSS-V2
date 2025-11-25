@@ -4,10 +4,12 @@
 
 ### Studio
 - [Game Hub - Visualizar](http://localhost:3000/game-hub)
-- [Game Hub - Editar no Puck](http://localhost:3000/studio?slug=game-hub)
+- [Game Hub - Editar no Puck](http://localhost:3000/studio?page=game-hub)
 - [Dashboard](http://localhost:3000/dashboard)
 
 ### Storybook
+- [GameCard Component](http://localhost:6006/?path=/story/game-hub-gamecard--default)
+- [GameCard Grid](http://localhost:6006/?path=/story/game-hub-gamecard--game-card-grid)
 - [Progress Component](http://localhost:6006/?path=/story/components-progress--default)
 - [Leaderboard Component](http://localhost:6006/?path=/story/components-leaderboard--default)
 - [Card Component](http://localhost:6006/?path=/story/components-card--default)
