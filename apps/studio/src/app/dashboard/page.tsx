@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { Layout, Text, Card, Button, Badge, Progress } from '@prototipo/design-system';
 import { HealthIndicator } from '@prototipo/design-system';
+import { HealthMetricsPanel } from '@/components/widgets/HealthMetricsWidgets';
+import { useHealthMetrics } from '@/lib/use-health-metrics';
 import { useDashboardSummary } from '@/hooks/useDashboardSummary';
 import styles from './dashboard.module.css';
 
@@ -124,6 +126,7 @@ function getHealthIcon(status: string): string {
  */
 export default function DashboardPage() {
   const { data, isLoading, isError, error, refresh } = useDashboardSummary();
+  const healthMetrics = useHealthMetrics();
 
   return (
     <Layout maxWidth="xl" paddingY="lg">
@@ -204,6 +207,20 @@ export default function DashboardPage() {
                   </div>
                 </Card>
               </div>
+            </section>
+
+            {/* Métricas de Performance */}
+            <section className={styles.section} aria-label="Métricas de performance">
+              <HealthMetricsPanel
+                metrics={healthMetrics.metrics}
+                loading={healthMetrics.loading}
+                error={healthMetrics.error}
+                onRetry={healthMetrics.refetch}
+                title="Métricas de Performance"
+                size="sm"
+                enableExport
+                lastUpdated={healthMetrics.lastUpdated || undefined}
+              />
             </section>
 
             {/* Saúde e Domínios lado a lado */}
