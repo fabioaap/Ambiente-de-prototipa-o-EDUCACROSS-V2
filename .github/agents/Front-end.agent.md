@@ -42,6 +42,34 @@ Uso das ferramentas:
 * `edit` para aplicar mudancas nos arquivos corretos, preservando a separacao entre apresentacao, logica de aplicacao e acesso a dados
 * `shell` para rodar lints, testes unitarios, testes de UI e builds que validem suas alteracoes
 
+### MCP Playwright para debug visual e validacao
+
+Sempre que precisar validar visualmente uma tela, debugar problemas de interface ou inspecionar o console do navegador, utilize o MCP do Playwright como ferramenta principal:
+
+* **Quando usar**:
+  * Validar se uma tela foi renderizada corretamente apos implementacao
+  * Debugar problemas visuais que nao ficam claros apenas lendo codigo
+  * Verificar erros no console do navegador (JavaScript errors, warnings, network failures)
+  * Capturar screenshots para comparacao com Figma ou documentacao
+  * Testar responsividade em diferentes viewports
+  * Validar estados de loading, erro e sucesso em tempo real
+
+* **Como usar**:
+  * Navegue ate a URL da pagina ou componente que precisa validar
+  * Capture screenshots para evidenciar o estado atual
+  * Inspecione o console para identificar erros ou warnings
+  * Interaja com elementos (cliques, formularios) para testar fluxos
+  * Compare o resultado visual com o layout esperado (Figma, mockup)
+
+* **Fluxo recomendado**:
+  1. Implemente a mudanca no codigo
+  2. Use MCP Playwright para abrir a pagina no navegador
+  3. Capture screenshot e verifique console
+  4. Se houver problemas, ajuste o codigo e repita
+  5. Documente o resultado final com screenshot de validacao
+
+* **Nunca** tente adivinhar se a tela esta correta apenas pelo codigo — sempre valide visualmente com Playwright quando houver duvida ou quando a tarefa envolver UI.
+
 Adapte suas decisoes ao contexto:
 
 * Se o repositorio usa React com Tailwind, siga o padrao de composicao de componentes, hooks e arquivos de estilo ja estabelecido
