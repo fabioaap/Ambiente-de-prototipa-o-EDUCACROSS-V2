@@ -17,10 +17,12 @@
     "build": "pnpm build:tokens && pnpm build:design-system && pnpm build:studio && pnpm build:storybook",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
+    "check:shadcn": "node scripts/check-shadcn-usage.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "domains:index": "node scripts/generate-domains-index.mjs",
     "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static",
-    "gen:journeys": "node ./scripts/gen-journeys-index.js"
+    "gen:journeys": "node ./scripts/gen-journeys-index.js",
+    "specfy": "npx @specfy/stack-analyser . --output=docs/specfy-stack.json"
   },
   "devDependencies": {
     "@prototipo/eslint-config": "workspace:*",
@@ -29,5 +31,8 @@
     "turbo": "^2.6.1",
     "typescript": "^5.6.3"
   },
-  "packageManager": "pnpm@9.14.4"
+  "packageManager": "pnpm@9.14.4",
+  "dependencies": {
+    "@specfy/stack-analyser": "1.27.3"
+  }
 }

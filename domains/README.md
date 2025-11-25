@@ -3,6 +3,8 @@
 Este índice é gerado automaticamente via `scripts/generate-domains-index.mjs`.
 **Não edite manualmente a tabela.**
 
+> **Nota de componentes:** Toda documentação de jornadas deve referenciar apenas componentes do `@prototipo/design-system`. Importações de `@/components/ui/*` (shadcn) são proibidas neste diretório para manter consistência com Storybook e Figma.
+
 ## 📂 BackOffice
 
 | Jornada | Status | Descrição | Links |

@@ -2,6 +2,12 @@
 
 Biblioteca de componentes React para o sistema de prototipação EDUCACROSS.
 
+## Política de Uso
+
+- Componentes deste pacote são a **única** fonte autorizada para docs, domains e demais apps fora de `apps/studio/src/app/(dashboard|studio)`.
+- Shadcn UI (`@/components/ui/*`) permanece restrito às rotas do Studio e do Dashboard para permitir experimentação sem comprometer jornadas documentadas.
+- Se precisar de uma variação que hoje só existe no shadcn, abra PR adicionando o componente aqui antes de usá-lo em `domains/**` ou Storybook.
+
 ## Componentes
 
 ### Button
