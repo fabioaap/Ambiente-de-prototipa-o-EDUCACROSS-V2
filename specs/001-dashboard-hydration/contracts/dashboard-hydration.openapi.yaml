@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Dashboard Hydration Resilience Contracts
+  version: 0.1.0
+  description: >-
+    Reference contracts for `/dashboard` data dependencies and hydration telemetry.
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/dashboard/summary:
+    get:
+      summary: Fetch dashboard KPIs
+      description: Existing endpoint consumed by `/dashboard`; documented to ensure payload stability during hydration fixes.
+      responses:
+        '200':
+          description: Summary payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummary'
+  /api/observability/hydration-events:
+    post:
+      summary: Ingest hydration mismatch snapshots
+      description: Internal log sink used by `dashboardLogger`. Implemented as structured log emission; HTTP signature documented for consistency even if dispatched via console/file appenders.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HydrationSnapshot'
+      responses:
+        '202':
+          description: Event accepted for async processing
+components:
+  schemas:
+    DashboardSummary:
+      type: object
+      required:
+        - totalPages
+        - totalJourneys
+        - totalDomains
+        - recentUpdates
+        - kpis
+        - healthIndicators
+      properties:
+        totalPages:
+          type: integer
+          minimum: 0
+        totalJourneys:
+          type: integer
+          minimum: 0
+        totalDomains:
+          type: integer
+          minimum: 0
+        recentUpdates:
+          type: integer
+          minimum: 0
+        kpis:
+          type: array
+          items:
+            type: object
+            required: [label, value, trend, change]
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+              trend:
+                type: string
+                enum: [up, down, flat]
+              change:
+                type: string
+        healthIndicators:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthIndicator'
+    HealthIndicator:
+      type: object
+      required: [name, status, value, threshold, message]
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum: [healthy, warning, critical]
+        value:
+          type: number
+        threshold:
+          type: number
+        message:
+          type: string
+    HydrationSnapshot:
+      type: object
+      required:
+        - route
+        - serverAttributes
+        - clientAttributes
+        - timestamp
+        - correlationId
+        - severity
+      properties:
+        route:
+          type: string
+          description: Route where mismatch occurred (e.g., `/dashboard`).
+        serverAttributes:
+          type: object
+          additionalProperties:
+            type: string
+        clientAttributes:
+          type: object
+          additionalProperties:
+            type: string
+        extensionFingerprint:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+        correlationId:
+          type: string
+          format: uuid
+        severity:
+          type: string
+          enum: [info, warn, error]
+```

@@ -76,9 +76,11 @@ const trendMeta = {
   stable: { label: 'estável', prefix: '~', tone: 'text-muted-foreground' },
 };
 
-const skeletonArray = Array.from({ length: 4 });
+const PLACEHOLDER_DATE = '2024-01-01T00:00:00.000Z';
+const KPI_SKELETON_INDICES = Array.from({ length: 4 }, (_, index) => index);
+const DOMAIN_SKELETON_INDICES = Array.from({ length: 3 }, (_, index) => index);
 
-function formatDate(iso: string): string {
+function formatDate(iso: string = PLACEHOLDER_DATE): string {
   return new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
     month: '2-digit',
@@ -211,7 +213,7 @@ function LoadingState() {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {skeletonArray.map((_, index) => (
+        {KPI_SKELETON_INDICES.map((index) => (
           <Card key={`kpi-skeleton-${index}`}>
             <CardHeader className="pb-2">
               <Skeleton className="h-4 w-28" />
@@ -238,7 +240,7 @@ function LoadingState() {
             <Skeleton className="h-5 w-32" />
           </CardHeader>
           <CardContent className="space-y-3">
-            {skeletonArray.slice(0, 3).map((_, index) => (
+            {DOMAIN_SKELETON_INDICES.map((index) => (
               <Skeleton key={`domain-skeleton-${index}`} className="h-10 w-full" />
             ))}
           </CardContent>
@@ -310,7 +312,12 @@ export default function DashboardPage() {
 
   const filteredPages = React.useMemo(() => {
     if (!data) return [];
-    return data.recentPages.filter((page) => {
+    const orderedPages = [...data.recentPages].sort((pageA, pageB) => {
+      const diff = Date.parse(pageB.updatedAt) - Date.parse(pageA.updatedAt);
+      if (diff !== 0) return diff;
+      return pageA.slug.localeCompare(pageB.slug);
+    });
+    return orderedPages.filter((page) => {
       const matchesDomain = domainFilter === 'All' || page.domain === domainFilter;
       const term = debouncedSearch.trim().toLowerCase();
       if (!term) {
@@ -321,12 +328,25 @@ export default function DashboardPage() {
     });
   }, [data, domainFilter, debouncedSearch]);
 
-  const domainOptions = React.useMemo(() => {
+  const orderedDomains = React.useMemo(() => {
     if (!data) return [];
-    return Object.keys(data.domains);
+    return Object.entries(data.domains).sort(([domainA, infoA], [domainB, infoB]) => {
+      if (infoB.count !== infoA.count) {
+        return infoB.count - infoA.count;
+      }
+      return domainA.localeCompare(domainB);
+    });
   }, [data]);
 
-  const quickLinks = data?.navigationLinks ?? [];
+  const domainOptions = React.useMemo(() => {
+    if (!data) return [];
+    return Object.keys(data.domains).sort((domainA, domainB) => domainA.localeCompare(domainB));
+  }, [data]);
+
+  const quickLinks = React.useMemo(() => {
+    if (!data) return [];
+    return [...data.navigationLinks].sort((linkA, linkB) => linkA.title.localeCompare(linkB.title));
+  }, [data]);
 
   return (
     <div className="flex-1 bg-background">
@@ -427,7 +447,7 @@ export default function DashboardPage() {
                   <CardDescription>Última atualização {formatDate(data.stats.lastUpdated)}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {Object.entries(data.domains).map(([domainName, info]) => (
+                  {orderedDomains.map(([domainName, info]) => (
                     <DomainItem key={domainName} name={domainName} count={info.count} />
                   ))}
                 </CardContent>

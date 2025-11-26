@@ -17,6 +17,7 @@
     "build": "pnpm build:tokens && pnpm build:design-system && pnpm build:studio && pnpm build:storybook",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
+    "test:dashboard-hydration": "pnpm --filter studio test:dashboard-hydration",
     "check:shadcn": "node scripts/check-shadcn-usage.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "domains:index": "node scripts/generate-domains-index.mjs",

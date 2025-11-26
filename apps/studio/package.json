@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
+    "test:dashboard-hydration": "vitest run src/tests/dashboard-hydration/hydration.spec.ts",
     "test:watch": "vitest"
   },
   "dependencies": {
