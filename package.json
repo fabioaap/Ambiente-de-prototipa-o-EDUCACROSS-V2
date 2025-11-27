@@ -4,17 +4,19 @@
   "private": true,
   "description": "Repositório de prototipação frontend orientado a jornadas com Puck, React e Storybook",
   "engines": {
-    "node": ">=20.0.0",
-    "pnpm": ">=8.0.0"
+    "node": "22.21.1",
+    "pnpm": ">=9.14.4"
   },
   "scripts": {
     "dev:studio": "pnpm --filter studio dev",
-    "dev:storybook": "pnpm --filter storybook dev",
+    "dev:hub": "pnpm --filter experience-hub dev",
+    "dev:storybook": "pnpm --filter experience-hub dev",
     "build:studio": "pnpm --filter studio build",
-    "build:storybook": "pnpm --filter storybook build",
+    "build:hub": "pnpm --filter experience-hub build",
+    "build:storybook": "pnpm --filter experience-hub build",
     "build:tokens": "pnpm --filter @prototipo/tokens build",
     "build:design-system": "pnpm --filter @prototipo/design-system build",
-    "build": "pnpm build:tokens && pnpm build:design-system && pnpm build:studio && pnpm build:storybook",
+    "build": "pnpm build:tokens && pnpm build:design-system && pnpm build:hub && pnpm build:studio",
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "test:dashboard-hydration": "pnpm --filter studio test:dashboard-hydration",
