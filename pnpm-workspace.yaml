@@ -3,3 +3,4 @@ packages:
   - "apps/*"
   - "domains/studio"
   - "domains/storybook"
+  - "code-to-figma/*"
