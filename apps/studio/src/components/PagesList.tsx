@@ -212,6 +212,15 @@ export function PagesList() {
           ))}
         </ul>
       )}
+
+      {/* Link para Flow Builder */}
+      <Link href="/flow" className={styles.flowLink}>
+        <span className={styles.flowLinkIcon}>🔀</span>
+        <span className={styles.flowLinkText}>
+          <span className={styles.flowLinkTitle}>Flow Builder</span>
+          <span className={styles.flowLinkDescription}>Visualize fluxos de navegação</span>
+        </span>
+      </Link>
     </div>
   );
 }

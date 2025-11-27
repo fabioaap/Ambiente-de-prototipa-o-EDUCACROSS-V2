@@ -1,0 +1,136 @@
+.pageNode {
+  min-width: 200px;
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pageNode:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.pageNode:active {
+  cursor: grabbing;
+}
+
+.pageNode.selected {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
+.pageNode:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Indicador de domínio (barra lateral esquerda) */
+.domainIndicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+/* Conteúdo do nó */
+.content {
+  padding: 12px 12px 12px 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+
+/* Informações do nó */
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.slug {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+}
+
+/* Status badges */
+.status {
+  font-size: 0.625rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.statusActive {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.statusDraft {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.statusArchived {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+/* Domínio */
+.domain {
+  display: flex;
+}
+
+.domainBadge {
+  font-size: 0.625rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* Handles de conexão */
+.handle {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: #3b82f6 !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 50% !important;
+  transition: transform 0.2s ease;
+}
+
+.handle:hover {
+  transform: scale(1.3);
+}

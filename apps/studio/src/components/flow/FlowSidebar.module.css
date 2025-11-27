@@ -1,0 +1,288 @@
+.sidebar {
+  width: 280px;
+  height: 100%;
+  background-color: #f9fafb;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.25rem 0;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Estatísticas */
+.stats {
+  display: flex;
+  padding: 0.75rem 1rem;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.statItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f3f4f6;
+  border-radius: 6px;
+}
+
+.statLabel {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.statValue {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Seções */
+.section {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.75rem 0;
+}
+
+/* Input group para adicionar página */
+.inputGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.addButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addButton:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.addButton:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.addButton:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Ações */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 40px;
+}
+
+.actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.actionButton:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.buttonIcon {
+  font-size: 1rem;
+}
+
+.syncButton {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+
+.syncButton:hover:not(:disabled) {
+  background-color: #bfdbfe;
+}
+
+.exportButton {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-color: #6ee7b7;
+}
+
+.exportButton:hover:not(:disabled) {
+  background-color: #a7f3d0;
+}
+
+.importButton {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fcd34d;
+}
+
+.importButton:hover:not(:disabled) {
+  background-color: #fde68a;
+}
+
+.clearButton {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.clearButton:hover:not(:disabled) {
+  background-color: #fecaca;
+}
+
+.fileInput {
+  display: none;
+}
+
+/* Dicas */
+.tips {
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.tipsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.tipsList li {
+  padding: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.tipsList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+}
+
+/* Links */
+.links {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #ffffff;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #1d4ed8;
+}
+
+.link:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .sidebar {
+    width: 100%;
+    max-width: 280px;
+  }
+}

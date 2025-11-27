@@ -253,3 +253,51 @@
 .cancelBtn:hover {
   background: #dc2626;
 }
+
+/* Link para Flow Builder */
+.flowLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  border: 1px solid #93c5fd;
+  border-radius: 8px;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.flowLink:hover {
+  background: linear-gradient(135deg, #bfdbfe 0%, #c7d2fe 100%);
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.flowLink:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.flowLinkIcon {
+  font-size: 1.25rem;
+}
+
+.flowLinkText {
+  display: flex;
+  flex-direction: column;
+}
+
+.flowLinkTitle {
+  font-weight: 600;
+}
+
+.flowLinkDescription {
+  font-size: 0.75rem;
+  color: #6366f1;
+  font-weight: 400;
+}
