@@ -120,7 +120,7 @@ export function pagesToNodes(pages: PageInfo[]): Node[] {
  * Gera um ID único para novos nós
  */
 export function generateNodeId(): string {
-  return `page-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  return `page-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
 }
 
 /**
