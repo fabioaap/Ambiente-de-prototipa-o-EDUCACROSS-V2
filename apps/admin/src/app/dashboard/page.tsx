@@ -31,6 +31,7 @@ import {
     Search,
     Sparkles,
 } from 'lucide-react';
+import ThemeToggle from '@/components/theme/ThemeToggle';
 
 import type {
     DashboardNavigationLink,
@@ -412,15 +413,18 @@ export default function DashboardPage() {
                             </div>
                         )}
                     </div>
-                    <Button
-                        variant="outline"
-                        onClick={() => void fetchSummary()}
-                        disabled={isLoading}
-                        className="w-full md:w-auto"
-                    >
-                        <RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} aria-hidden />
-                        Atualizar dados
-                    </Button>
+                    <div className="flex items-center gap-2">
+                        <Button
+                            variant="outline"
+                            onClick={() => void fetchSummary()}
+                            disabled={isLoading}
+                            className="w-full md:w-auto"
+                        >
+                            <RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} aria-hidden />
+                            Atualizar dados
+                        </Button>
+                        <ThemeToggle />
+                    </div>
                 </div>
 
                 {isError && (
