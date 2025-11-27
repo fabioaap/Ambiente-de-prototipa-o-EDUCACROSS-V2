@@ -45,28 +45,30 @@ export const ComSelecao: Story = {
 };
 
 // Story com onChange
-export const Interativo: Story = {
-  render: () => {
-    const [selectedRede, setSelectedRede] = useState<string>();
+const InterativoComponent = () => {
+  const [selectedRede, setSelectedRede] = useState<string>();
 
-    return (
-      <div style={{ padding: '20px' }}>
-        <NetworkFilter
-          redes={redesMock}
-          selectedRede={selectedRede}
-          onRedeChange={setSelectedRede}
-          label="Filtrar por Rede"
-        />
-        {selectedRede ? (
-          <p style={{ marginTop: '16px', color: '#374151' }}>
-            Rede selecionada: <strong>{selectedRede}</strong>
-          </p>
-        ) : (
-          <p style={{ marginTop: '16px', color: '#9CA3AF' }}>Nenhuma rede selecionada</p>
-        )}
-      </div>
-    );
-  },
+  return (
+    <div style={{ padding: '20px' }}>
+      <NetworkFilter
+        redes={redesMock}
+        selectedRede={selectedRede}
+        onRedeChange={setSelectedRede}
+        label="Filtrar por Rede"
+      />
+      {selectedRede ? (
+        <p style={{ marginTop: '16px', color: '#374151' }}>
+          Rede selecionada: <strong>{selectedRede}</strong>
+        </p>
+      ) : (
+        <p style={{ marginTop: '16px', color: '#9CA3AF' }}>Nenhuma rede selecionada</p>
+      )}
+    </div>
+  );
+};
+
+export const Interativo: Story = {
+  render: () => <InterativoComponent />,
 };
 
 // Story sem opção "Todas as redes"
@@ -89,11 +91,10 @@ export const LabelCustomizado: Story = {
 };
 
 // Story em Contexto - Lista de Questões com Filtro
-export const EmContexto: Story = {
-  render: () => {
-    const [selectedRede, setSelectedRede] = useState<string>();
+const EmContextoComponent = () => {
+  const [selectedRede, setSelectedRede] = useState<string>();
 
-    const questoesMock = [
+  const questoesMock = [
       {
         id: '13749',
         codigo: '13749',
@@ -184,5 +185,8 @@ export const EmContexto: Story = {
         </div>
       </div>
     );
-  },
-};
+  };
+
+  export const EmContexto: Story = {
+    render: () => <EmContextoComponent />,
+  };

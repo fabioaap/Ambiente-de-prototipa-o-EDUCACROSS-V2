@@ -86,41 +86,43 @@ export const ComSelectButton: Story = {
 };
 
 // Story interativa com abertura/fechamento
+const InterativaComponent = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <button
+        onClick={() => setIsOpen(true)}
+        style={{
+          padding: '10px 16px',
+          backgroundColor: '#3B82F6',
+          color: '#FFFFFF',
+          border: 'none',
+          borderRadius: '8px',
+          fontSize: '14px',
+          fontWeight: 600,
+          cursor: 'pointer',
+        }}
+      >
+        Abrir Modal
+      </button>
+
+      <QuestionDetailModal
+        questao={questaoMock}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        showSelectButton={true}
+        onSelect={(q) => {
+          alert(`Questão ${q.codigo} selecionada!`);
+          setIsOpen(false);
+        }}
+      />
+    </div>
+  );
+};
+
 export const Interativa: Story = {
-  render: () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-      <div style={{ padding: '20px' }}>
-        <button
-          onClick={() => setIsOpen(true)}
-          style={{
-            padding: '10px 16px',
-            backgroundColor: '#3B82F6',
-            color: '#FFFFFF',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: 600,
-            cursor: 'pointer',
-          }}
-        >
-          Abrir Modal
-        </button>
-
-        <QuestionDetailModal
-          questao={questaoMock}
-          isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          showSelectButton={true}
-          onSelect={(q) => {
-            alert(`Questão ${q.codigo} selecionada!`);
-            setIsOpen(false);
-          }}
-        />
-      </div>
-    );
-  },
+  render: () => <InterativaComponent />,
 };
 
 // Story com questão de múltiplas habilidades
@@ -168,14 +170,13 @@ export const Rejeitada: Story = {
 };
 
 // Story com lista de questões + modal
-export const ComListaDeQuestoes: Story = {
-  render: () => {
-    const [selectedQuestao, setSelectedQuestao] = useState<QuestionData | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+const ComListaDeQuestoesComponent = () => {
+  const [selectedQuestao, setSelectedQuestao] = useState<QuestionData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const questoesMock: QuestionData[] = [questaoMock, questaoEmRevisao];
+  const questoesMock: QuestionData[] = [questaoMock, questaoEmRevisao];
 
-    return (
+  return (
       <div style={{ padding: '20px', maxWidth: '700px' }}>
         <h2 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '16px' }}>
           Banco de Questões
@@ -241,12 +242,15 @@ export const ComListaDeQuestoes: Story = {
             }}
             showSelectButton={true}
             onSelect={(q) => {
-              alert(`Questão ${q.codigo} selecionada!`);
-              setIsModalOpen(false);
-            }}
-          />
-        )}
-      </div>
-    );
-  },
+            alert(`Questão ${q.codigo} selecionada!`);
+            setIsModalOpen(false);
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
+export const ComListaDeQuestoes: Story = {
+  render: () => <ComListaDeQuestoesComponent />,
 };
