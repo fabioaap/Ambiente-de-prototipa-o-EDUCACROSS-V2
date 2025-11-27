@@ -13,6 +13,11 @@ out/
 .next/
 storybook-static/
 
+# Turbo cache
+.turbo/cache/
+.turbo/turbo-*.log
+apps/*/.turbo/turbo-*.log
+
 # Misc
 .DS_Store
 *.pem
