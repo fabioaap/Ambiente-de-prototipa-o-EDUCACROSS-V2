@@ -101,9 +101,36 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ## 🟢 Sprint 3 – Dashboard & Game Hub
 
-**Status**: 🟢 56% Completo (5/9 issues principais fechadas) | Fase 3 pronta para execução (2025-11-24)
+**Status**: 🟢 60% Completo (6/9 issues principais fechadas) | Fase 2 ✅ completa, Fase 3 pronta (2025-11-25)
 
-### Progresso
+### Experience Hub – Consolidação Storybook ✅ NOVO
+
+**Phase 2 Concluída** (2025-11-25):
+- ✅ Migração de `apps/storybook` → `apps/experience-hub/storybook` completa
+- ✅ Workspace reconfigurado (7 projetos)
+- ✅ Scripts `pnpm dev:hub`, `pnpm build:hub` operacionais
+- ✅ Guardrails Shadcn validados
+- 📋 Documentação: [PHASE2_COMPLETION_REPORT.md](./PHASE2_COMPLETION_REPORT.md)
+- 📋 Próximos passos: [PHASE3_EXECUTION_PLAN.md](./PHASE3_EXECUTION_PLAN.md)
+
+**Quick Commands**:
+```bash
+pnpm dev:hub           # Storybook em http://localhost:6006
+pnpm build:hub         # Build da hub
+pnpm check:shadcn      # Validar guardrails
+```
+
+**Estrutura**:
+```
+apps/experience-hub/
+├── storybook/         # Storybook 8 (ESM)
+│   ├── .storybook/
+│   ├── src/stories/
+│   └── package.json
+└── README.md          # Documentação
+```
+
+### Progresso Geral
 
 | Fase | Issues | Status | PRs |
 |------|--------|--------|-----|
