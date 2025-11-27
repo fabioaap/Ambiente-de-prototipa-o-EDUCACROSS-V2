@@ -53,8 +53,9 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 │   ├── README.md
 │   └── backlog.md           # Backlog e roadmap
 ├── apps/
-│   ├── studio/              # App Next.js com Puck (editor visual)
-│   └── storybook/           # Catálogo de componentes
+│   ├── experience-hub/      # Hub consolidado (Storybook + utilidades)
+│   │   └── storybook/       # Catálogo de componentes
+│   └── studio/              # App Next.js com Puck (editor visual)
 ├── packages/
 │   ├── design-system/       # Biblioteca de componentes React
 │   └── tokens/              # Design tokens (cores, tipografia, etc)

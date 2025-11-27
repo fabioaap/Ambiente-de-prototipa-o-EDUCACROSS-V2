@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+#### 🏠 Experience Hub Consolidation
+- Created `apps/experience-hub/` directory for centralized Storybook and utilities
+- Migrated Storybook from `apps/storybook` to `apps/experience-hub/storybook`
+- New scripts: `pnpm dev:hub`, `pnpm build:hub`
+- Backwards-compatible aliases: `pnpm dev:storybook`, `pnpm build:storybook`
+- Experience Hub README with complete documentation
+
+#### 📚 Documentation Updates
+- Updated `domains/README.md` with Experience Hub links
+- Updated `domains/INDEX.md` with all current journeys (4 total)
+- Updated `SPRINT3_FINAL_STATUS.md` with Experience Hub progress
+
+### Changed
+
+#### 🔄 Project Structure
+- Storybook now lives under `apps/experience-hub/storybook`
+- Package name changed from `storybook` to `experience-hub`
+- Updated `pnpm-workspace.yaml` to include `apps/experience-hub/*`
+- Updated root `package.json` scripts to reference `experience-hub`
+
+### Removed
+- Removed legacy `apps/storybook` directory (migrated to experience-hub)
+
+---
+
 ## [0.2.0-beta] - 2025-11-20
 
 ### Added

@@ -1,7 +1,50 @@
 # 🎉 SPRINT 3 — CHECKPOINT DE PROGRESSO
 
-**Data**: 2025-11-24 20:15 UTC  
-**Status**: ✅ FASE 2 COMPLETA — 5 de 9 issues fechadas (56%)
+**Data**: 2025-11-27 01:45 UTC  
+**Status**: ✅ FASE 3 EM ANDAMENTO — Experience Hub Consolidation
+
+---
+
+## 🆕 EXPERIENCE HUB CONSOLIDATION
+
+### O que foi feito
+
+1. **Migração do Storybook**
+   - ✅ Storybook movido de `apps/storybook` para `apps/experience-hub/storybook`
+   - ✅ Nome do pacote alterado de `storybook` para `experience-hub`
+   - ✅ Configurações `.storybook/main.ts` e `preview.ts` mantidas
+
+2. **Novos Scripts**
+   - ✅ `pnpm dev:hub` - Inicia Experience Hub (Storybook) na porta 6006
+   - ✅ `pnpm build:hub` - Build do Experience Hub
+   - ✅ `pnpm dev:storybook` - Alias para `pnpm dev:hub` (retrocompatibilidade)
+   - ✅ `pnpm build:storybook` - Alias para `pnpm build:hub` (retrocompatibilidade)
+
+3. **Documentação Atualizada**
+   - ✅ `apps/experience-hub/README.md` criado
+   - ✅ `domains/README.md` atualizado com links para Experience Hub
+   - ✅ `domains/INDEX.md` atualizado com todas as jornadas
+
+4. **Validações Passando**
+   - ✅ `pnpm build` - OK
+   - ✅ `pnpm lint` - OK (apenas warnings)
+   - ✅ `pnpm -r type-check` - OK
+   - ✅ `pnpm check:shadcn` - OK
+
+### Estrutura Atual
+
+```
+apps/
+├── experience-hub/        # NOVO - Hub consolidado
+│   ├── README.md          # Documentação do hub
+│   └── storybook/         # Storybook migrado
+│       ├── .storybook/    # Configuração
+│       ├── src/stories/   # Stories
+│       └── package.json   # Nome: experience-hub
+└── studio/                # Next.js + Puck (intacto)
+    ├── src/app/dashboard  # Dashboard com Shadcn
+    └── ...
+```
 
 ---
 

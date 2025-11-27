@@ -5,6 +5,14 @@ Este índice é gerado automaticamente via `scripts/generate-domains-index.mjs`.
 
 > **Nota de componentes:** Toda documentação de jornadas deve referenciar apenas componentes do `@prototipo/design-system`. Importações de `@/components/ui/*` (shadcn) são proibidas neste diretório para manter consistência com Storybook e Figma.
 
+## 🔗 Links Rápidos
+
+| Recurso | URL | Descrição |
+|---------|-----|-----------|
+| **Experience Hub (Storybook)** | http://localhost:6006 | Catálogo de componentes |
+| **Studio** | http://localhost:3000/studio | Editor Puck |
+| **Dashboard** | http://localhost:3000/dashboard | Dashboard operacional |
+
 ## 📂 BackOffice
 
 | Jornada | Status | Descrição | Links |
@@ -22,4 +30,4 @@ Este índice é gerado automaticamente via `scripts/generate-domains-index.mjs`.
 ---
 
 **Total de Jornadas**: 3
-**Atualizado em**: 2025-11-23
+**Atualizado em**: 2025-11-27
