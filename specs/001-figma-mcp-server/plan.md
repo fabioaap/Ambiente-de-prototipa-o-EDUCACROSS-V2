@@ -10,14 +10,16 @@ Build a run-ready MCP server (STDIO) that calls the official Figma REST API to e
 ## Technical Context
 
 **Language/Version**: TypeScript 5.6 on Node.js 22.21.1 (pnpm workspace)  
-**Primary Dependencies**: `@modelcontextprotocol/sdk` (TypeScript server utilities), `undici` (HTTP client), Figma REST API v1, `dotenv` for secrets, `zod` for validating tool IO payloads  
-**Storage**: In-memory processing only; outputs written to repo files (`packages/tokens/src/tokens.json`, `domains/BackOffice/journeys/exibir-campo-uso/assets/*`)  
-**Testing**: `vitest` + `supertest` for MCP handlers, contract snapshot tests for generated token payloads, smoke scripts invoking CLI via `pnpm mcp:figma:test`  
-**Target Platform**: Local MCP hosts (VS Code + Claude Desktop) running on Windows/macOS; server exposed via STDIO or `node` child process  
-**Project Type**: Multi-app monorepo (Next.js dashboards + code-to-figma utilities + design-system packages)  
-**Performance Goals**: `get_design_tokens` returns payload < 5s for Jornada frame; `get_selection_snapshot` delivers preview < 30s as per SC-002; no tool call exceeds Figma 60 req/min quota  
-**Constraints**: Must keep pnpm `build:tokens → build:design-system → build` order green, avoid stdout logging in STDIO mode, respect FIGMA API rate limits and secrets, keep generated files ASCII/JSON stable for Storybook exports  
-**Scale/Scope**: Supports ≤5 concurrent MCP users refreshing Jornada 4800 artifacts; touches `code-to-figma`, `packages/tokens`, `packages/design-system`, `apps/studio`, `apps/storybook`, and `domains/BackOffice/journeys/exibir-campo-uso`
+**Primary Dependencies**: `@modelcontextprotocol/sdk`, `undici`, Figma REST API v1, `dotenv`, `zod`  
+**Storage**: In-memory processing only; outputs escritos em `packages/tokens/src/tokens.json` e `domains/BackOffice/journeys/exibir-campo-uso/assets/*`  
+**Testing**: `vitest` + `supertest` para handlers MCP, contratos/snapshots para tokens, smoke scripts `pnpm mcp:figma:test`  
+**Target Platform**: Hosts MCP (VS Code, Cursor, Claude Code, Windsurf, Amazon Q, Warp etc.) em Windows/macOS/Linux. Servidor local expõe STDIO + shim HTTP em `http://127.0.0.1:3845/mcp`; modo remoto opcional aponta para `https://mcp.figma.com/mcp`.  
+**Project Type**: Monorepo Next.js + code-to-figma utilities + design-system  
+**Performance Goals**: `get_design_tokens` <5s, `get_selection_snapshot` <30s (SC-002) e todas as ferramentas respeitam `<=60 req/min` (rate limit nível 1) e notificam quando contas Starter/Visualizador atingem 6 chamadas/mês (limite documentado).  
+**Constraints**: Manter ordem `pnpm build:tokens → build:design-system → build`, não logar em stdout no STDIO, proteger segredos e refletir avisos do guia MCP (feedback popup, limites por plano, fallback remoto).  
+**Scale/Scope**: ≤5 usuários MCP locais para Jornada 4800; toca `code-to-figma`, `packages/tokens`, `packages/design-system`, `apps/studio`, `apps/storybook`, `domains/BackOffice/journeys/exibir-campo-uso`.  
+**Fork Provenance**: `code-to-figma/` continua sendo o fork do plugin externo; customizações MCP permanecem aqui e PRs upstream podem ser abertos a partir deste workspace.  
+**Client Catalog Reference**: Quickstart trará instruções específicas para VS Code, Cursor, Claude Code e demais clientes listados no catálogo oficial MCP (atualizar ao detectar novos suportes).
 
 ## Constitution Check
 
@@ -52,7 +54,11 @@ code-to-figma/
 │   │   ├── index.ts              # FastMCP server entry
 │   │   ├── tools/getDesignTokens.ts
 │   │   ├── tools/getSelectionSnapshot.ts
-│   │   └── services/figmaClient.ts
+│   │   ├── services/figmaClient.ts
+│   │   └── instrumentation/metrics.ts
+│   ├── scripts/
+│   │   ├── writeTokensFromMcp.ts  # orchestrates tokens pipeline + build order
+│   │   └── saveSnapshotArtifact.ts # persists snapshots + SLA instrumentation
 │   ├── package.json (workspace)
 │   └── tests/
 │       ├── tokens.test.ts
@@ -80,7 +86,7 @@ domains/BackOffice/journeys/exibir-campo-uso/
 └── assets/figma-snapshots/*      # artifacts from get_selection_snapshot
 ```
 
-**Structure Decision**: Extend the existing `code-to-figma` workspace with a dedicated `figma-mcp-server` package so tooling lives alongside figma-sync-engine, while downstream packages (`packages/tokens`, `apps/studio`, docs/domains) consume the generated artifacts.
+**Structure Decision**: Extend the existing `code-to-figma` workspace with a dedicated `figma-mcp-server` package so tooling lives alongside figma-sync-engine, while downstream packages (`packages/tokens`, `apps/studio`, docs/domains) consume the generated artifacts. The new `scripts/` subpasta concentra orquestrações que escrevem arquivos (tokens, snapshots) e hospeda instrumentações de SLA usadas pelos testes e pelo CLI de saúde.
 
 ## Complexity Tracking
 

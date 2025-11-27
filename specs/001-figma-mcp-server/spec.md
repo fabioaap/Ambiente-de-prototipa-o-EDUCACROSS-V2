@@ -71,6 +71,8 @@ Constitution alignment: garante que `@prototipo/design-system` use tokens fiéis
 - **FR-007**: `/api/health` e `/api/dashboard/health` MUST incluir campo `figmaMcpServer` com status (`ok`, `degraded`, `offline`), timestamp da última sincronização e link para logs.
 - **FR-008**: Documentation MUST cover troubleshooting (rate limits, auth errors, stale frames) em `domains/BackOffice/journeys/exibir-campo-uso/README.md` e no `FIGMA_INTEGRATION_PLAN.md`.
 - **FR-009**: Server MUST provide unit/integration hooks (ex.: contract tests ou script `pnpm test:mcp`) que validem shape dos tokens antes de liberá-los para o design system.
+- **FR-010**: MCP server MUST suportar tanto o endpoint local (`http://127.0.0.1:3845/mcp`) quanto o remoto oficial (`https://mcp.figma.com/mcp`), documentando exemplos de `.vscode/mcp.json` para clientes como VS Code, Cursor e Claude Code.
+- **FR-011**: MCP server MUST monitorar o número de chamadas por usuário, alertando e registrando quando contas Starter/Viewer atingirem o limite de 6 execuções/mês ou quando o rate limit de 60 req/min for alcançado.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -90,5 +92,5 @@ Constitution alignment: garante que `@prototipo/design-system` use tokens fiéis
 
 - **SC-001**: 100% das atualizações de tokens da Jornada 4800 passam a ser geradas via `get_design_tokens`, eliminando edições manuais em `tokens.json` dentro de 2 dias úteis.
 - **SC-002**: Em 95% das execuções, `get_selection_snapshot` entrega preview atualizado em menos de 30 segundos, permitindo revisão assíncrona.
-- **SC-003**: `/api/health` reporta `figmaMcpServer.status = ok` durante pelo menos 90% do horário útil (9h-18h BRT) na semana de validação.
+- **SC-003**: `/api/health` reporta `figmaMcpServer.status = ok` durante pelo menos 90% do horário útil (9h-18h BRT) na semana de validação, com logs/relatórios em `docs/PROGRESS_DASHBOARD.md` comprovando o uptime.
 - **SC-004**: Storybook e Studio recebem tokens sincronizados e não apresentam discrepâncias visuais (0 bugs registrados em `ISSUES_BACKLOG_STATUS.md`) após dois ciclos completos de build.
