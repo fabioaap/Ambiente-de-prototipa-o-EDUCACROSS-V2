@@ -12,6 +12,13 @@
 - Cores sugeridas: (aguardando importação)
 - Tipografia: usar body-sm ou body-xs para badge
 
+### Dados Simulados para Prototipagem
+- **Não vamos usar API real** de questões
+- Criar arquivo JSON mock: `domains/studio/data/backoffice/questoes-mock.json`
+- Redes iniciais: Canoas (azul), Porto Alegre (vermelho), Gravataí (verde)
+- ~50 questões total (15-20 por rede, mix de status: aprovada/em-revisao/rejeitada)
+- Usar em Puck Studio e Storybook para demonstrar componentes
+
 ### Pontos Técnicos
 1. **Campo `uso` na API**: Confirmar estrutura
    - Ex: `uso: "Canoas"` ou `usoId: "123", usoNome: "Canoas"`?
@@ -42,8 +49,8 @@
 
 ### Bloqueadores Atuais
 - ⏳ Tokens do Figma (cores, tipografia)
-- ⏳ Confirmação de estrutura de API para `uso`
-- ⏳ Mapeamento final de redes/contextos
+- ✅ Dados de questões - Serão mockados (não bloqueia mais)
+- ⏳ Confirmação de estrutura de API para `uso` (para fase pós-prototipagem)
 
 ### Screenshots para Referência
 - Imagem 1: Banco de Questões -> Aba Aprovadas (com anotações "filtro uso" e "add uso")

@@ -70,6 +70,59 @@ Garantir que usuários de BackOffice consigam identificar de qual rede é cada q
 
 ---
 
+## 🧪 Estratégia de Prototipagem (Dados Simulados)
+
+> Para esta fase de prototipagem, **não usaremos API real de questões**. Todos os dados serão mockados.
+
+### Dados Simulados
+
+**Questões Mock**: Arquivo será criado em `domains/studio/data/pages/backoffice/questoes-mock.json`
+
+Estrutura:
+```json
+{
+  "questoes": [
+    {
+      "id": "13749",
+      "codigo": "13749",
+      "enunciado": "Qual é o resultado de 2 + 2?",
+      "alternativas": ["3", "4", "5", "6"],
+      "gabarito": "4",
+      "disciplina": "Matemática",
+      "topico": "1.17.4 Números Inteiros",
+      "nivel": "Fácil",
+      "autor": "GG",
+      "criador": "FM",
+      "revisor": "BC",
+      "dataCriacao": "2025-11-20T10:30:00Z",
+      "uso": "Canoas",
+      "status": "aprovada",
+      "habilidades": ["EF07MA01"]
+    },
+    // ... mais questões com diferentes valores de "uso"
+  ],
+  "redes": [
+    { "id": "1", "nome": "Canoas", "cor": "#3B82F6", "sigla": "CNS" },
+    { "id": "2", "nome": "Porto Alegre", "cor": "#EF4444", "sigla": "POA" },
+    { "id": "3", "nome": "Gravataí", "cor": "#10B981", "sigla": "GRV" }
+  ]
+}
+```
+
+### Quantidade de Dados Mock
+
+- **Questões por rede**: ~15-20 por rede (total ~50 questões)
+- **Redes**: 3 redes inicialmente (Canoas, Porto Alegre, Gravataí)
+- **Estados**: Mix de "aprovada", "em-revisao", "rejeitada"
+
+### Local dos Mocks
+
+- **Arquivo JSON**: `domains/studio/data/backoffice/questoes-mock.json`
+- **Utilização no Studio**: Importar em componentes que precisam listar questões
+- **Utilização em Storybook**: Usar para demonstrar componentes com dados variados
+
+---
+
 ## 🧩 Componentes Utilizados
 
 ### Componentes Existentes do Design System
@@ -101,8 +154,10 @@ Garantir que usuários de BackOffice consigam identificar de qual rede é cada q
 
 ## 📐 Data Model / Estrutura de Dados
 
+> Para prototipagem, usaremos mocks. Após validação, essa interface será implementada no backend real.
+
 ```typescript
-// Estrutura esperada de uma Questão com USO
+// Estrutura de uma Questão (para prototipagem com mocks)
 interface Questao {
   id: string;              // ex: "13749"
   codigo: string;          // ex: "13749"
@@ -117,20 +172,19 @@ interface Questao {
   revisor: string;
   dataCriacao: string;     // ISO 8601
   
-  // NOVO CAMPO
-  uso: string;             // rede/contexto: "Canoas", "Porto Alegre", etc
-  usoId?: string;          // ID da rede (para normalizacao)
+  // NOVO CAMPO (Protótipo)
+  uso: string;             // rede/contexto: "Canoas", "Porto Alegre", "Gravataí"
   
   status: "aprovada" | "em-revisao" | "rejeitada";
   habilidades: string[];   // ex: ["EF07MA01", "EF07MA03"]
 }
 
-// Estrutura de Rede (Uso)
+// Estrutura de Rede (para prototipagem)
 interface Rede {
   id: string;
   nome: string;
-  cor?: string;            // hex color para badge
-  sigla?: string;          // "CNS" para Canoas, "POA" para Porto Alegre
+  cor: string;             // hex color para badge
+  sigla: string;           // "CNS" para Canoas, "POA" para Porto Alegre
 }
 ```
 
@@ -186,8 +240,8 @@ Aguardando importação do Figma. Será necessário:
 
 - [ ] **Design Tokens do Figma** - Cores e tipografia de redes
 - [ ] **Mapeamento de Redes** - Lista definitiva de redes/contextos
-- [ ] **API de Questões** - Confirmação que campo `uso` está disponível
-- [ ] **Mocks de Dados** - Para testes com diferentes redes
+- [x] **Mocks de Dados** - Serão simulados para prototipagem (não depende de API real)
+- ⏳ **API de Questões** - Integração futura (pós-prototipagem)
 
 ---
 
