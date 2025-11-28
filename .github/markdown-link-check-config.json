@@ -15,6 +15,30 @@
     {
       "pattern": "^mailto:",
       "comment": "Ignore email addresses"
+    },
+    {
+      "pattern": "^https?://(www\\.)?figma\\.com",
+      "comment": "Ignore Figma links (often private or placeholders)"
+    },
+    {
+      "pattern": "^https?://.*\\.vercel\\.app",
+      "comment": "Ignore Vercel preview links"
+    },
+    {
+      "pattern": "^https?://xd\\.adobe\\.com",
+      "comment": "Ignore Adobe XD links"
+    },
+    {
+      "pattern": "^https?://www\\.w3\\.org",
+      "comment": "Ignore W3C links (often block bots)"
+    },
+    {
+      "pattern": "^https?://www\\.researchgate\\.net",
+      "comment": "Ignore ResearchGate (blocks bots)"
+    },
+    {
+      "pattern": "^https?://www\\.npmjs\\.com",
+      "comment": "Ignore NPM (blocks bots)"
     }
   ],
   "timeout": "20s",
@@ -23,6 +47,7 @@
   "fallbackRetryDelay": "30s",
   "aliveStatusCodes": [
     200,
-    206
+    206,
+    403
   ]
 }
