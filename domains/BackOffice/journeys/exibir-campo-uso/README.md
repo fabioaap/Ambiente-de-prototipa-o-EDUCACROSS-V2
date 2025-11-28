@@ -50,6 +50,22 @@ Esta pasta contém:
 
 ---
 
+## 🖼️ Referência visual (Figma)
+
+Export do frame de referência (node `8565:17355`). Use para comparação pixel a pixel com a página do Studio (`/backoffice/exibir-campo-uso`).
+
+![Figma Reference](./figma-reference.png)
+
+Checklist de validação rápida:
+- Sidebar: largura `265px`, itens e seções conforme Figma.
+- Breadcrumb: textos e ordem iguais ao `Frame 27`.
+- Tabs: títulos e estado ativo conforme Figma.
+- Filtros (Busca Tema): 4 inputs (linha 1), 2 blocos (linha 2), botões e campo de busca.
+- Tabela: 10 colunas com larguras exatas `[18, 146, 132, 154, 80, 87, 61, 62, 134, 84]`.
+- Footer: contador + paginação (96x28 e 98x28).
+
+---
+
 ## 🚀 Fluxo da Jornada
 
 ### 1. Lista de Questões Aprovadas (Banco de Questões)
