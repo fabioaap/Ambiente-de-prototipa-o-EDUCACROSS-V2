@@ -20,6 +20,7 @@ import {
 import pino from 'pino';
 import { loadConfig } from './config.js';
 import { invokeGetDesignTokens } from './tools/getDesignTokens.js';
+import { invokeGetFrameSnapshot } from './tools/getFrameSnapshot.js';
 
 // Configure structured logging to stderr (stdout is reserved for MCP protocol)
 const logger = pino({
@@ -72,8 +73,8 @@ async function main() {
             },
           },
           {
-            name: 'get_selection_snapshot',
-            description: 'Capture metadata and preview of a Figma selection',
+            name: 'get_frame_snapshot',
+            description: 'Get a visual snapshot (PNG image) of a Figma frame or node',
             inputSchema: {
               type: 'object',
               properties: {
@@ -85,10 +86,14 @@ async function main() {
                   type: 'string',
                   description: 'Node ID to snapshot',
                 },
-                includePreview: {
-                  type: 'boolean',
-                  description: 'Include base64 preview image',
-                  default: true,
+                format: {
+                  type: 'string',
+                  enum: ['png', 'jpg', 'svg'],
+                  description: 'Image format (default: png)',
+                },
+                scale: {
+                  type: 'number',
+                  description: 'Image scale (default: 2)',
                 },
               },
               required: ['fileId', 'nodeId'],
@@ -119,17 +124,15 @@ async function main() {
           };
         }
 
-        // get_selection_snapshot - Phase 4 implementation pending
-        if (name === 'get_selection_snapshot') {
+        // US2: get_frame_snapshot tool implementation
+        if (name === 'get_frame_snapshot') {
+          const result = await invokeGetFrameSnapshot(args);
+          
           return {
             content: [
               {
                 type: 'text',
-                text: JSON.stringify({
-                  message: 'get_selection_snapshot - Implementation pending (Phase 4)',
-                  fileId: args?.fileId,
-                  nodeId: args?.nodeId,
-                }, null, 2),
+                text: JSON.stringify(result, null, 2),
               },
             ],
           };
