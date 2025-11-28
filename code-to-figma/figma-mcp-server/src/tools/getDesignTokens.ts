@@ -48,11 +48,12 @@ export async function getDesignTokens(
     // Step 1: Fetch frame data from Figma API
     const response = await figmaClient.getFrameNodes(fileId, frameId);
 
-    if (!response.nodes || !response.nodes[frameId]) {
+    if (!response.nodes || !(response.nodes as Record<string, unknown>)[frameId]) {
       throw new Error(`Frame ${frameId} not found in file ${fileId}`);
     }
 
-    const frameNode: FigmaNode = response.nodes[frameId].document;
+    const frameData = (response.nodes as Record<string, { document: FigmaNode }>)[frameId];
+    const frameNode: FigmaNode = frameData.document;
 
     // Step 2: Transform to TokenSet with validation
     const tokenSet = mapFigmaFrameToTokenSet(frameNode, {

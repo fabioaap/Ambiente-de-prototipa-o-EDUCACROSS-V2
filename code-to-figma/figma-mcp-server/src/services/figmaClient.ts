@@ -104,7 +104,7 @@ export class FigmaClient {
         throw new Error(`Figma API error: ${response.statusCode}`);
       }
 
-      return await response.body.json();
+      return (await response.body.json()) as Record<string, unknown>;
     });
   }
 
