@@ -30,7 +30,9 @@ describe('getDesignTokens Integration', () => {
     // Clear previous test outputs
     try {
       await fs.rm(path.dirname(tempOutputPath), { recursive: true, force: true });
-    } catch {}
+    } catch {
+      // Ignore if directory doesn't exist
+    }
     await fs.mkdir(path.dirname(tempOutputPath), { recursive: true });
 
     // Reset mocks

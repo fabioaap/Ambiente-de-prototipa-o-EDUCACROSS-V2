@@ -13,7 +13,6 @@
 
 import { figmaClient } from '../services/figmaClient.js';
 import { mapFigmaFrameToTokenSet, type TokenSet, type FigmaNode } from '../schemas/tokenSet.js';
-import { getConfig } from '../config.js';
 import fs from 'fs/promises';
 import path from 'path';
 import pino from 'pino';
@@ -79,8 +78,9 @@ export async function getDesignTokens(
     }
 
     return tokenSet;
-  } catch (error: any) {
-    logger.error({ error: error.message, fileId, frameId }, 'Failed to get design tokens');
+  } catch (error) {
+    const err = error as Error;
+    logger.error({ error: err.message, fileId, frameId }, 'Failed to get design tokens');
     throw error;
   }
 }
@@ -105,9 +105,10 @@ async function writeTokenSetToFile(tokenSet: TokenSet, outputPath: string): Prom
   try {
     const existingContent = await fs.readFile(outputPath, 'utf-8');
     existingTokens = JSON.parse(existingContent);
-  } catch (error: any) {
-    if (error.code !== 'ENOENT') {
-      logger.warn({ error: error.message }, 'Failed to read existing tokens, will overwrite');
+  } catch (error) {
+    const err = error as NodeJS.ErrnoException;
+    if (err.code !== 'ENOENT') {
+      logger.warn({ error: err.message }, 'Failed to read existing tokens, will overwrite');
     }
   }
 
@@ -158,7 +159,6 @@ export async function invokeGetDesignTokens(args: unknown): Promise<GetDesignTok
   }
 
   // Use default output path if not specified
-  const config = getConfig();
   const defaultOutputPath = path.join(
     process.cwd(),
     '../../packages/tokens/src/tokens.json'

@@ -20,20 +20,24 @@ export interface FigmaNode {
   name: string;
   type: string;
   children?: FigmaNode[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface FigmaFileResponse {
   name: string;
   lastModified: string;
   document: FigmaNode;
-  components: Record<string, any>;
-  styles: Record<string, any>;
+  components: Record<string, unknown>;
+  styles: Record<string, unknown>;
 }
 
 export interface FigmaImageResponse {
   err: string | null;
   images: Record<string, string>;
+}
+
+interface FigmaApiError extends Error {
+  statusCode?: number;
 }
 
 export class FigmaClient {
@@ -51,13 +55,14 @@ export class FigmaClient {
   ): Promise<T> {
     try {
       return await fn();
-    } catch (error: any) {
-      if (retries === 0 || error.statusCode === 401 || error.statusCode === 403) {
+    } catch (error) {
+      const err = error as FigmaApiError;
+      if (retries === 0 || err.statusCode === 401 || err.statusCode === 403) {
         throw error;
       }
 
       // Retry on rate limit or server errors
-      if (error.statusCode === 429 || error.statusCode >= 500) {
+      if (err.statusCode === 429 || (err.statusCode && err.statusCode >= 500)) {
         await new Promise((resolve) => setTimeout(resolve, delay));
         return this.retryWithBackoff(fn, retries - 1, delay * 2);
       }
@@ -78,11 +83,11 @@ export class FigmaClient {
         throw new Error(`Figma API error: ${response.statusCode}`);
       }
 
-      return await response.body.json() as FigmaFileResponse;
+      return (await response.body.json()) as FigmaFileResponse;
     });
   }
 
-  async getNodes(fileId: string, nodeIds: string[]): Promise<any> {
+  async getNodes(fileId: string, nodeIds: string[]): Promise<Record<string, unknown>> {
     const ids = nodeIds.join(',');
     
     return this.retryWithBackoff(async () => {
@@ -107,7 +112,7 @@ export class FigmaClient {
    * Get specific frame nodes with their children
    * Convenience method for getNodes that returns structured response
    */
-  async getFrameNodes(fileId: string, frameId: string): Promise<any> {
+  async getFrameNodes(fileId: string, frameId: string): Promise<Record<string, unknown>> {
     return this.getNodes(fileId, [frameId]);
   }
 
@@ -134,7 +139,7 @@ export class FigmaClient {
         throw new Error(`Figma API error: ${response.statusCode}`);
       }
 
-      return await response.body.json() as FigmaImageResponse;
+      return (await response.body.json()) as FigmaImageResponse;
     });
   }
 }

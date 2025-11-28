@@ -63,7 +63,7 @@ function runCommand(command: string, args: string[], cwd: string): Promise<boole
 async function logSyncToProgress(result: TokenSyncResult): Promise<void> {
   const dashboardPath = path.join(
     process.cwd(),
-    '../../docs/PROGRESS_DASHBOARD.md'
+    '../../PROGRESS_DASHBOARD.md'
   );
 
   try {
@@ -83,8 +83,9 @@ async function logSyncToProgress(result: TokenSyncResult): Promise<void> {
     // Append to dashboard
     await fs.appendFile(dashboardPath, logEntry, 'utf-8');
     console.error(`✓ Logged sync to ${dashboardPath}`);
-  } catch (error: any) {
-    console.error(`⚠ Failed to log to PROGRESS_DASHBOARD.md: ${error.message}`);
+  } catch (error) {
+    const err = error as Error;
+    console.error(`⚠ Failed to log to PROGRESS_DASHBOARD.md: ${err.message}`);
   }
 }
 
@@ -166,10 +167,11 @@ async function main() {
     console.error(`📖 Next: Review changes and commit to git\n`);
 
     process.exit(0);
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as Error;
     const duration = Date.now() - startTime;
     
-    console.error(`\n❌ Token sync failed: ${error.message}\n`);
+    console.error(`\n❌ Token sync failed: ${err.message}\n`);
 
     const failureResult: TokenSyncResult = {
       success: false,
@@ -177,7 +179,7 @@ async function main() {
       stats: { colors: 0, typography: 0, spacing: 0 },
       buildResults: { tokens: false, designSystem: false },
       duration,
-      error: error.message,
+      error: err.message,
     };
 
     await logSyncToProgress(failureResult);

@@ -136,16 +136,17 @@ async function main() {
         }
 
         throw new Error(`Unknown tool: ${name}`);
-      } catch (error: any) {
-        logger.error({ error: error.message, tool: name }, 'Tool execution failed');
+      } catch (error) {
+        const err = error as Error;
+        logger.error({ error: err.message, tool: name }, 'Tool execution failed');
         
         return {
           content: [
             {
               type: 'text',
               text: JSON.stringify({
-                error: error.name || 'Error',
-                message: error.message,
+                error: err.name || 'Error',
+                message: err.message,
                 tool: name,
               }, null, 2),
             },
