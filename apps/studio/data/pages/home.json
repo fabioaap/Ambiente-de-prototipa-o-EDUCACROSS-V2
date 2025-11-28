@@ -1,0 +1,72 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "Layout-54219d29-b8aa-4c40-b9a7-51e66e9db613"
+      }
+    },
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "layout-1",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-1",
+              "content": "Bem-vindo ao Studio",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-2",
+              "content": "Comece a construir sua jornada arrastando componentes da barra lateral.",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "Text",
+      "props": {
+        "content": "dfdfsdf",
+        "as": "h3",
+        "size": "base",
+        "weight": "normal",
+        "color": "default",
+        "id": "Text-237ff0dd-1589-45ea-8fe9-1e15575487ac"
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Nova Página"
+    }
+  },
+  "zones": {
+    "layout-1:layout-1:content": [
+      {
+        "type": "Button",
+        "props": {
+          "text": "Click me",
+          "variant": "primary",
+          "size": "md",
+          "id": "Button-5b915357-f8fe-4397-98d5-8c3ac2f6cc53"
+        }
+      }
+    ],
+    "Layout-54219d29-b8aa-4c40-b9a7-51e66e9db613:Layout-54219d29-b8aa-4c40-b9a7-51e66e9db613:content": []
+  }
+}
