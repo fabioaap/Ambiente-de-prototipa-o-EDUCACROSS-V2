@@ -7,15 +7,21 @@ Servidor MCP (Model Context Protocol) para integração com o Figma, permitindo 
 | User Story | Descrição | Status |
 |------------|-----------|--------|
 | **US1** | Importar tokens reais da Jornada 4800 | ✅ Concluído |
-| **US2** | Gerar snapshots visuais (PNG) de frames | ⏳ Pendente |
+| **US2** | Gerar snapshots visuais (PNG) de frames | ✅ Concluído |
 
 ## 🛠️ Ferramentas Disponíveis
 
 ### `get_design_tokens`
 Extrai tokens de design (cores, tipografia, espaçamento) de um arquivo Figma e retorna em formato JSON estruturado.
 
-- **Input**: `fileKey` (ID do arquivo Figma)
+- **Input**: `fileId` (ID do arquivo Figma), `frameId` (ID do frame)
 - **Output**: JSON com tokens categorizados (colors, typography, spacing, shadows, borderRadius).
+
+### `get_frame_snapshot`
+Gera uma imagem (snapshot) de um frame ou nó específico do Figma.
+
+- **Input**: `fileId`, `nodeId`, `format` (png, jpg, svg), `scale` (1-4)
+- **Output**: URL da imagem gerada.
 
 ## 🚀 Como Usar
 
