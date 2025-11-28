@@ -7,9 +7,12 @@
 - **Problema atual**: Campo USO não é visível nas listas, causando confusão
 - **Solução**: Exibir badge com rede + filtro + CTA para detalhes
 
-### Observações do Figma (Aguardando Tokens)
-- Redes identificadas: Canoas, Porto Alegre, ...
-- Cores sugeridas: (aguardando importação)
+### Observações do Figma
+- **Arquivo**: Sz4z0rpDmocXZ8LylxEgqF
+- **Node**: 8565:17355 (Frame: Exibir Campo USO)
+- **Status MCP**: ✅ Tokens extraídos com sucesso
+- **Cores extraídas**: Disponíveis em `packages/tokens/src/tokens.json`
+- Redes identificadas: Canoas, Porto Alegre, Gravataí
 - Tipografia: usar body-sm ou body-xs para badge
 
 ### Dados Simulados para Prototipagem
@@ -48,8 +51,9 @@
 6. Testes e validação
 
 ### Bloqueadores Atuais
-- ⏳ Tokens do Figma (cores, tipografia)
+- ✅ Tokens do Figma (cores, tipografia) - Extraídos via MCP
 - ✅ Dados de questões - Serão mockados (não bloqueia mais)
+- ✅ Página inicial criada e renderizando
 - ⏳ Confirmação de estrutura de API para `uso` (para fase pós-prototipagem)
 
 ### Screenshots para Referência

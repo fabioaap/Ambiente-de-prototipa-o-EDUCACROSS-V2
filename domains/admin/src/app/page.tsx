@@ -66,7 +66,7 @@ const resourceLinks = [
     {
         label: "Design Tokens",
         description: "Fonte de cores, spacing e tipografia",
-        href: `${REPO_URL}/blob/main/apps/studio/src/app/design-tokens.css`,
+        href: `${REPO_URL}/blob/main/domains/studio/src/app/design-tokens.css`,
         tag: "Sistema"
     },
     {

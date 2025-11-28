@@ -1,0 +1,60 @@
+{
+  "questoes": [
+    {
+      "id": "13749",
+      "codigo": "13749",
+      "enunciado": "Qual é o resultado de 2 + 2?",
+      "alternativas": ["3", "4", "5", "6"],
+      "gabarito": "4",
+      "disciplina": "Matemática",
+      "topico": "1.17.4 Números Inteiros",
+      "nivel": "Fácil",
+      "autor": "GG",
+      "criador": "FM",
+      "revisor": "BC",
+      "dataCriacao": "2025-11-20T10:30:00Z",
+      "uso": "Canoas",
+      "status": "aprovada",
+      "habilidades": ["EF07MA01"]
+    },
+    {
+      "id": "13750",
+      "codigo": "13750",
+      "enunciado": "Qual a capital do RS?",
+      "alternativas": ["Canoas", "Porto Alegre", "Pelotas", "Caxias"],
+      "gabarito": "Porto Alegre",
+      "disciplina": "Geografia",
+      "topico": "Capitais",
+      "nivel": "Fácil",
+      "autor": "GG",
+      "criador": "FM",
+      "revisor": "BC",
+      "dataCriacao": "2025-11-21T10:30:00Z",
+      "uso": "Porto Alegre",
+      "status": "aprovada",
+      "habilidades": ["EF07GE01"]
+    },
+    {
+      "id": "13751",
+      "codigo": "13751",
+      "enunciado": "Quanto é 10 / 2?",
+      "alternativas": ["2", "5", "10", "20"],
+      "gabarito": "5",
+      "disciplina": "Matemática",
+      "topico": "Divisão",
+      "nivel": "Médio",
+      "autor": "GG",
+      "criador": "FM",
+      "revisor": "BC",
+      "dataCriacao": "2025-11-22T10:30:00Z",
+      "uso": "Gravataí",
+      "status": "em-revisao",
+      "habilidades": ["EF07MA02"]
+    }
+  ],
+  "redes": [
+    { "id": "1", "nome": "Canoas", "cor": "#3B82F6", "sigla": "CNS" },
+    { "id": "2", "nome": "Porto Alegre", "cor": "#EF4444", "sigla": "POA" },
+    { "id": "3", "nome": "Gravataí", "cor": "#10B981", "sigla": "GRV" }
+  ]
+}

@@ -22,11 +22,22 @@ Garantir que usuários de BackOffice consigam identificar de qual rede é cada q
 
 - 📋 **Planejamento** - Jornada em fase de descoberta/especificação
 - ✅ **Integração MCP Figma** - Servidor MCP configurado e tokens extraídos (Node: 8565:17355)
-- 🚧 **Prototipagem** - Primeira tela criada em `domains/studio/src/app/backoffice/exibir-campo-uso/page.tsx` (Build OK)
+- ✅ **Prototipagem** - Página criada em `page.tsx` nesta pasta (Build OK)
+- ✅ **Página Visualizável** - Acesse: http://localhost:3000/backoffice/exibir-campo-uso
 - [ ] Integração de componentes visuais baseados no snapshot
 - [ ] Implementação de mocks e filtros (Parcialmente feito)
 - [ ] Testes de usabilidade
 - [ ] Concluído
+
+---
+
+## 📂 Estrutura da Jornada
+
+Esta pasta contém:
+- **README.md** - Documentação completa da jornada
+- **links.md** - Referências e links úteis
+- **notas.md** - Anotações técnicas e de desenvolvimento
+- **page.tsx** - Código React da página (Next.js App Router)
 
 ---
 
