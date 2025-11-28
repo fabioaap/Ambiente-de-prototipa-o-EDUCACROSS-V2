@@ -1,0 +1,24 @@
+# Prevent publishing repository-only metadata
+.vscode/
+.github/
+.specify/
+docs/
+domains/
+
+# Build artifacts and caches
+.next/
+dist/
+build/
+out/
+storybook-static/
+.turbo/
+turbo/
+coverage/
+reports/
+
+# Environment and local config
+.env*
+*.log
+
+# Dependency folders
+node_modules/

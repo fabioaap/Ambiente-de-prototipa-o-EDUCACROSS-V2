@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Figma MCP Tools
+  version: 0.1.0
+  description: |
+    Contract describing the two MCP tools exposed via STDIO commands. Each tool is
+    modeled here as an HTTP-like invocation so we can reason about inputs/outputs
+    and reuse schemas in automated tests.
+servers:
+  - url: mcp://figma-mcp-server
+paths:
+  /tools/get-design-tokens:
+    post:
+      summary: Extract design tokens from a specific Figma frame
+      operationId: getDesignTokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetDesignTokensInput'
+      responses:
+        '200':
+          description: Token payload ready to merge into packages/tokens
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenSet'
+        '422':
+          description: Validation error (invalid frame, auth, or schema mismatch)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolError'
+  /tools/get-selection-snapshot:
+    post:
+      summary: Capture metadata + thumbnail of the active Figma selection
+      operationId: getSelectionSnapshot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetSelectionSnapshotInput'
+      responses:
+        '200':
+          description: Snapshot metadata with embedded preview
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotArtifact'
+        '404':
+          description: Selection not found or access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolError'
+components:
+  schemas:
+    GetDesignTokensInput:
+      type: object
+      required: [fileId, frameId]
+      properties:
+        fileId:
+          type: string
+          description: Figma file key (e.g., Sz4z0rpDmocXZ8LylxEgqF)
+        frameId:
+          type: string
+          description: Node or frame identifier (e.g., 8565:17355)
+        writeTo:
+          type: string
+          description: Optional path override for output JSON (defaults to packages/tokens/src/tokens.json)
+    GetSelectionSnapshotInput:
+      type: object
+      required: [fileId, nodeId]
+      properties:
+        fileId:
+          type: string
+        nodeId:
+          type: string
+        includePreview:
+          type: boolean
+          default: true
+          description: Toggle base64 PNG export via Figma /images API
+        outputDir:
+          type: string
+          description: Optional directory for saving snapshot artifacts (default domains/BackOffice/journeys/exibir-campo-uso/assets)
+    TokenSet:
+      type: object
+      required: [metadata, colors]
+      properties:
+        metadata:
+          type: object
+          required: [sourceFrameId, sourceFileId, exportedAt, version]
+          properties:
+            sourceFrameId: { type: string }
+            sourceFileId: { type: string }
+            exportedAt: { type: string, format: date-time }
+            version: { type: string }
+        colors:
+          type: object
+          additionalProperties:
+            type: string
+            pattern: '^#([0-9A-Fa-f]{6})$'
+        typography:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TypographyToken'
+        spacing:
+          type: object
+          additionalProperties:
+            type: string
+            pattern: '^[0-9]+px$'
+        shadows:
+          type: object
+          additionalProperties:
+            type: string
+    TypographyToken:
+      type: object
+      required: [fontFamily, fontSize, fontWeight]
+      properties:
+        fontFamily: { type: string }
+        fontSize: { type: number }
+        fontWeight: { type: number }
+        lineHeight:
+          oneOf:
+            - type: number
+            - type: string
+              pattern: '^[0-9]+%$'
+    SnapshotArtifact:
+      type: object
+      required: [documentName, frameName, exportedAt, previewBase64]
+      properties:
+        documentName: { type: string }
+        frameName: { type: string }
+        exportedAt: { type: string, format: date-time }
+        dimensions:
+          type: object
+          properties:
+            width: { type: number }
+            height: { type: number }
+        layers:
+          type: array
+          items:
+            type: object
+            properties:
+              nodeId: { type: string }
+              name: { type: string }
+              type: { type: string }
+        previewBase64:
+          type: string
+          description: Data URI or raw base64 string of PNG thumbnail ≤ 2 MB
+        notesPath:
+          type: string
+    ToolError:
+      type: object
+      required: [error, message]
+      properties:
+        error: { type: string }
+        message: { type: string }
+        details:
+          type: object
+          additionalProperties: true

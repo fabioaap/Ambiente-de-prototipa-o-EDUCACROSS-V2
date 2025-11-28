@@ -192,11 +192,47 @@ interface DashboardStats {
 
 ## 📋 Tarefas para Próximas Issues
 
-### H2 - Criar Endpoint
+### H2 - Criar Endpoint ✅ IMPLEMENTADO
 ```bash
-# Novo arquivo: apps/studio/src/app/api/dashboard/pages/route.ts
-# GET /api/dashboard/pages
-# Retorna estrutura acima
+# Endpoints criados:
+# GET /api/dashboard/summary - Resumo com KPIs e status
+# GET /api/dashboard/health - Métricas detalhadas de saúde
+# GET /api/dashboard/pages - Lista de páginas (já existente)
+```
+
+#### Novos Endpoints (Sprint 3 - Issue #84)
+
+**GET /api/dashboard/summary**
+```json
+{
+  "success": true,
+  "data": {
+    "status": "excellent",
+    "kpis": [
+      { "name": "Páginas Criadas", "value": 12, "unit": "pages", "trend": "up", "changePercent": 8.5 }
+    ],
+    "healthScore": 100,
+    "lastUpdated": "2025-11-24T10:30:00Z"
+  },
+  "timestamp": "2025-11-24T10:30:00Z"
+}
+```
+
+**GET /api/dashboard/health**
+```json
+{
+  "success": true,
+  "data": {
+    "buildStatus": "success",
+    "lintStatus": "success",
+    "typeCheckStatus": "success",
+    "dependenciesHealth": "healthy",
+    "healthScore": 100,
+    "healthStatus": "excellent",
+    "lastChecked": "2025-11-24T10:30:00Z"
+  },
+  "timestamp": "2025-11-24T10:30:00Z"
+}
 ```
 
 ### H3 - UI Dashboard

@@ -1,0 +1,26 @@
+# Dependencies and package locks
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build and cache outputs
+.next/
+dist/
+build/
+out/
+storybook-static/
+.turbo/
+turbo/
+
+# Coverage and reports
+coverage/
+reports/
+*.log
+
+# Environment files
+.env*
+
+# Generated artifacts
+specs/**/artifacts/
+*.tsbuildinfo

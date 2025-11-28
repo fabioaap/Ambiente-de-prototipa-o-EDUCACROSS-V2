@@ -13,9 +13,15 @@ out/
 .next/
 storybook-static/
 
+# Turbo cache
+.turbo/
+
 # Misc
 .DS_Store
 *.pem
+
+# Turbo
+.turbo/
 
 # Debug
 npm-debug.log*
@@ -55,3 +61,4 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+.env.local

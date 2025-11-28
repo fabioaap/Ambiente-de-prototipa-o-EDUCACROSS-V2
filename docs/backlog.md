@@ -1,115 +1,138 @@
-# 📊 STATUS ATUALIZADO – ISSUES & BACKLOG
-**Data**: 2025-11-23 | **Última atualização**: 23:59 (UTC-3)
+# 📋 BACKLOG CONSOLIDADO — Ambiente de Prototipação EDUCACROSS
+
+**Última atualização**: 25/11/2025  
+**Branch**: `feature/code-to-figma-integration`
 
 ---
 
-## 🎯 RESUMO EXECUTIVO
+## 📌 Como usar este backlog
 
-| Métrica | Valor | Trend |
-|---------|-------|-------|
-| **Issues Abertas** | 14 | ↗️ (Sprint 3 criadas) |
-| **Issues Fechadas** | 11 | ✅ |
-| **Total Issues** | 25 | |
-| **Taxa de Conclusão** | 44% | ✅ |
-| **Sprint 2 (P1)** | 100% | ✅ COMPLETO |
-| **Sprint 3 (P2)** | 0% | 📋 INICIADA |
+- **Checkboxes**: marque `[x]` quando concluir uma tarefa
+- **Seções**: Desenvolvimento (técnico) + Entrega Educacross (business/jurídico)
+- **Referências**: documentos de suporte listados no final
+- **Atualização**: faça PR sempre que um item avançar
 
 ---
 
-## ✅ ISSUES FECHADAS (11 no total)
+## 🔷 SEÇÃO 1: DESENVOLVIMENTO (Sprints & Issues)
 
-### Sprint 1 (P0) - COMPLETO ✅
+### Sprint 1 (P0) — INFRA BASE ✅ COMPLETO
 
-| # | Título | Prioridade | Status |
-|---|--------|-----------|--------|
-| #1 | C1 - Studio: inicial setup | P0 | ✅ FECHADA |
-| #2 | B1 - Design System: base | P0 | ✅ FECHADA |
-| #3 | D1 - Storybook: setup | P0 | ✅ FECHADA |
-| #5 | F1 - Tooling: ESLint + Prettier | P0 | ✅ FECHADA |
+- [x] #1 C1 - Studio: inicial setup
+- [x] #2 B1 - Design System: base
+- [x] #3 D1 - Storybook: setup
+- [x] #5 F1 - Tooling: ESLint + Prettier
 
-### Sprint 2 (P1) - COMPLETO ✅
+### Sprint 2 (P1) — FEATURES CRÍTICAS ✅ COMPLETO
 
-| # | Título | Prioridade | Status |
-|---|--------|-----------|--------|
-| #6 | C2 - Studio: sidebar navigation | P1 | ✅ FECHADA |
-| #7 | B4 - Design System: accessibility | P1 | ✅ FECHADA |
-| #8 | D2 - Storybook: A11y addon | P1 | ✅ FECHADA |
-| #9 | G4 - Script: index journeys | P1 | ✅ FECHADA |
-| #10 | G6 - CONTRIBUTING.md | P1 | ✅ FECHADA |
-| #12 | H1 - Dashboard: planning | P2 | ✅ FECHADA |
-| #16 | H5 - Dashboard: report generator | P2 | ✅ FECHADA |
+- [x] #6 C2 - Studio: sidebar navigation
+- [x] #7 B4 - Design System: accessibility
+- [x] #8 D2 - Storybook: A11y addon
+- [x] #9 G4 - Script: index journeys
+- [x] #10 G6 - CONTRIBUTING.md
+- [x] #12 H1 - Dashboard: planning
+- [x] #16 H5 - Dashboard: report generator
 
----
+### Sprint 3 (P1) — CRÍTICAS
 
-## 📋 ISSUES ABERTAS (14 no total)
+- [ ] #59 PUCK - Puck Refactor DropZone (2.5h) ⚠️ BLOCKER
+- [ ] #57 F1.1 - FrontOffice: Onboarding 5 telas (4h)
+- [ ] #56 E1.1 - BackOffice: Revisão 3 telas (5h)
 
-### Sprint 3 (P1) - CRÍTICAS
+### Sprint 3 (P2) — DASHBOARD SEQUENCIAL
 
-| # | Código | Título | Prioridade | Bloqueadores | Esforço |
-|---|--------|--------|-----------|--------------|---------|
-| #59 | PUCK | Puck Refactor - DropZone | P1 | Nenhum | 2.5h ⚠️ |
-| #57 | F1.1 | FrontOffice: Onboarding (5 telas) | P1 | Nenhum | 4h |
-| #56 | E1.1 | BackOffice: Revisão (3 telas) | P1 | Nenhum | 5h |
+- [x] #53 H2.1 - Dashboard API: GET /api/dashboard/summary ✅
+- [x] #54 H2.2 - Dashboard UI: KPIs, Health, Recent Pages, Atalhos ✅
+- [ ] #55 H2.3 - Health Indicators: Estatísticas avançadas (4h)
 
-### Sprint 3 (P2) - DASHBOARD SEQUENCIAL
+### Sprint 3 (P2) — COMPONENTES & GAME
 
-| # | Código | Título | Prioridade | Bloqueadores | Esforço |
-|---|--------|--------|-----------|--------------|---------|
-| #53 | H2.1 | Dashboard API: GET /api/pages | P2 | Nenhum | 2h |
-| #54 | H2.2 | Dashboard UI: Listagem de páginas | P2 | #53 | 3h |
-| #55 | H2.3 | Health Indicators: Estatísticas | P2 | #54 | 4h |
+- [ ] #60 DS.1 - Design System: Progress Component (2h)
+- [ ] #61 DS.2 - Design System: Leaderboard Component (2.5h)
+- [ ] #58 G1.1 - Game Hub (depende #61) (3h)
 
-### Sprint 3 (P2) - COMPONENTES & GAME
+### Backlog Técnico
 
-| # | Código | Título | Prioridade | Bloqueadores | Esforço |
-|---|--------|--------|-----------|--------------|---------|
-| #60 | DS.1 | Design System: Progress Component | P2 | Nenhum | 2h |
-| #61 | DS.2 | Design System: Leaderboard Component | P2 | Nenhum | 2.5h |
-| #58 | G1.1 | Game: Hub (integração #60 + #61) | P2 | #61 | 3h |
+- [ ] #62 CI.1 - SpecKit: PR validation & sprint rules (1h)
+- [ ] #63 C2.2 - Code-to-Figma integration: docs & backlog (2h)
 
 ---
 
-## 🔄 PROGRESSO POR SPRINT
+## 🔶 SEÇÃO 2: ENTREGA EDUCACROSS (Business & Jurídico)
 
-### Sprint 1 (P0) – INFRA BASE
-`
-Status: 100% ✅ COMPLETO (4/4 issues fechadas)
-`
+### Alta Prioridade
 
-### Sprint 2 (P1) – FEATURES CRÍTICAS
-`
-Status: 100% ✅ COMPLETO (6/6 issues fechadas)
-`
+- [x] Dashboard API com `navigationLinks` para Storybook/jornadas
+- [x] Dashboard UI com atalhos rápidos (Storybook, Domínios, Docs)
+- [ ] Minuta de cessão de direitos (`docs/minuta-cessao-de-direitos.md`)
+  - [x] Rascunho criado
+  - [ ] Revisão pelo Jurídico
+  - [ ] Inclusão de Anexo A (inventário de entregáveis)
+- [ ] Inventário de Entregáveis (`docs/NOTICE_ENTREGAVEIS.md`)
+- [ ] Inventário Background IP (`docs/INVENTARIO-BACKGROUND-IP.md`)
 
-### Sprint 3 (P2) – DASHBOARD & JORNADAS
-`
-Status: 0% 📋 INICIADA (0/14 issues fechadas)
-Estimativa Total: ~31 horas | Equipe: 4 devs | Duração: 1.5 sprints
-`
+### Média Prioridade
 
----
+- [ ] Script `pnpm sync:educacross` — empacotar Storybook + domains + docs
+- [ ] Repositório de teste (`fabioaap/educacross-sync-test`) para validar sync
+- [ ] Checklist de migração (`docs/checklist-entrega-educacross.md`)
+- [ ] Instruções de migração (`docs/instrucoes-migracao-educacross.md`)
+- [ ] CI/CD para GitHub Pages no repo destino
 
-## 🚀 PRÓXIMOS PASSOS
+### Baixa Prioridade
 
-### Imediato (próximos 2 dias)
-**#59 (Puck Refactor)** – ⚠️ BLOCKER  
+- [ ] Game Hub (#58) — jornada Game consolidada
+- [ ] Cobertura Storybook completa (stories para todos componentes)
+- [ ] Code-to-Figma pipeline funcional
 
-### Paralelo
-#56, #57, #60, #61 (jornadas e componentes)
+### Tarefas Administrativas
 
-### Sequencial (após #59)
-#53 → #54 → #55 (Dashboard sequencial)
-
----
-
-## 🔗 DOCUMENTAÇÃO RELACIONADA
-
-- **🧠 CÉREBRO DE EXECUÇÃO**: `docs/SPRINT3_EXECUTION_MASTER.md` (Algoritmo de decisão)
-- **ROADMAP Detalhado**: `docs/ROADMAP_ISSUES_SPRINT3.md` (mermaid graphs)
-- **Guia Rápido**: `SPRINT3_QUICK_START.md` (comandos copy-paste)
-- **Relatório de Limpeza**: `docs/pr-cleanup-report.md` (19 PRs fechadas)
+- [ ] Redigir e-mail padrão para RH/Jurídico com minuta e Anexo A
+- [ ] Registrar cronograma de entregas recorrentes (ex.: a cada sprint)
+- [ ] Criar template de PR para transferências (diretórios/arquivos incluídos)
 
 ---
 
-**Última atualização**: 2025-11-23 23:55 (UTC-3)  
-**Status**: Sprint 3 com 14 issues criadas (44% conclusão)
+## 📊 MÉTRICAS
+
+| Métrica | Valor | Status |
+|---------|-------|--------|
+| Issues Fechadas | 11 | ✅ |
+| Issues Abertas | 14 | 📋 |
+| Taxa de Conclusão | 44% | |
+| Sprint 1 (P0) | 100% | ✅ COMPLETO |
+| Sprint 2 (P1) | 100% | ✅ COMPLETO |
+| Sprint 3 (P2) | ~20% | 🚧 EM ANDAMENTO |
+| Entrega Educacross | ~30% | 🚧 EM ANDAMENTO |
+
+---
+
+## 🚀 PRÓXIMOS PASSOS IMEDIATOS
+
+1. [ ] Criar `docs/NOTICE_ENTREGAVEIS.md` e `docs/INVENTARIO-BACKGROUND-IP.md` — 1 dia
+2. [ ] Gerar script `pnpm sync:educacross` e checklist — 1-2 dias
+3. [ ] Criar repo de teste e validar sync — 1 dia
+4. [ ] Enviar minuta para Jurídico com Anexo A — 2-4 dias
+
+---
+
+## 📚 REFERÊNCIAS (Documentos Anexos)
+
+### Jurídico & Estratégia
+- [`docs/minuta-cessao-de-direitos.md`](./minuta-cessao-de-direitos.md) — minuta rascunho de cessão de direitos
+- [`docs/estrategia-migracao-educacross.md`](./estrategia-migracao-educacross.md) — estratégia recorrente de migração
+
+### Técnico
+- [`apps/studio/src/app/api/dashboard/summary/route.ts`](../apps/studio/src/app/api/dashboard/summary/route.ts) — API do dashboard
+- [`apps/studio/src/app/dashboard/page.tsx`](../apps/studio/src/app/dashboard/page.tsx) — UI do dashboard
+- [`docs/SPRINT3_EXECUTION_DETAILED.md`](./SPRINT3_EXECUTION_DETAILED.md) — sprints e tarefas fase 3
+
+### Pendentes (a criar)
+- `docs/NOTICE_ENTREGAVEIS.md` — inventário de entregáveis
+- `docs/INVENTARIO-BACKGROUND-IP.md` — inventário Background IP
+- `docs/checklist-entrega-educacross.md` — checklist de migração
+- `docs/instrucoes-migracao-educacross.md` — instruções de migração
+
+---
+
+**Última atualização**: 25/11/2025 | **Autor**: DevOps Agent

@@ -1,0 +1,1313 @@
+{
+  "id": "LQMEpGvlNkoQ",
+  "name": "main",
+  "path": [
+    "/"
+  ],
+  "tech": null,
+  "edges": [],
+  "inComponent": null,
+  "childs": [
+    {
+      "id": "6yRtGfC2h3Xx",
+      "name": "prototipacao-educa",
+      "path": [
+        "\\package.json",
+        "\\apps\\studio\\components.json",
+        "\\code-to-figma\\figma-sync-engine\\.env.example",
+        "\\code-to-figma\\scripts",
+        "\\code-to-figma\\scripts\\.env.example",
+        "\\scripts"
+      ],
+      "tech": null,
+      "edges": [
+        {
+          "target": "0V7WBk8UtGhS",
+          "read": true,
+          "write": true
+        },
+        {
+          "target": "vO0WQfz7y6Vh",
+          "read": true,
+          "write": true
+        }
+      ],
+      "inComponent": null,
+      "childs": [
+        {
+          "id": "YRNK0051uVpV",
+          "name": "@prototipo/design-system",
+          "path": [
+            "\\packages\\design-system\\package.json"
+          ],
+          "tech": null,
+          "edges": [],
+          "inComponent": null,
+          "childs": [],
+          "techs": [
+            "css",
+            "eslint",
+            "javascript",
+            "jsx",
+            "nodejs",
+            "react",
+            "typescript"
+          ],
+          "languages": {
+            "JavaScript": 1,
+            "JSON": 2,
+            "Markdown": 1,
+            "CSS": 13,
+            "TypeScript": 18
+          },
+          "licenses": [],
+          "dependencies": [
+            [
+              "npm",
+              "@prototipo/tokens",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@prototipo/eslint-config",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@storybook/react",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/types",
+              "^8.6.14"
+            ],
+            [
+              "npm",
+              "@types/react",
+              "^18.3.12"
+            ],
+            [
+              "npm",
+              "@types/react-dom",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "eslint",
+              "^9.15.0"
+            ],
+            [
+              "npm",
+              "react",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "react-dom",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "tsup",
+              "^8.3.5"
+            ],
+            [
+              "npm",
+              "typescript",
+              "^5.6.3"
+            ]
+          ],
+          "reason": [
+            "eslint matched: /^eslint$/",
+            "react matched: /^react$/",
+            "typescript matched: /^typescript$/",
+            "matched file: tsconfig.json",
+            "matched file: eslint.config.mjs",
+            "matched file: package.json",
+            "matched extension: .mjs",
+            "matched extension: .ts",
+            "matched extension: .css",
+            "matched extension: .tsx"
+          ]
+        },
+        {
+          "id": "hFsrTmXkDjKg",
+          "name": "@prototipo/eslint-config",
+          "path": [
+            "\\packages\\eslint-config\\package.json"
+          ],
+          "tech": null,
+          "edges": [],
+          "inComponent": null,
+          "childs": [],
+          "techs": [
+            "javascript",
+            "nodejs"
+          ],
+          "languages": {
+            "JavaScript": 3,
+            "JSON": 1,
+            "Markdown": 1
+          },
+          "licenses": [],
+          "dependencies": [
+            [
+              "npm",
+              "@eslint/js",
+              "^9.15.0"
+            ],
+            [
+              "npm",
+              "@typescript-eslint/eslint-plugin",
+              "^8.14.0"
+            ],
+            [
+              "npm",
+              "@typescript-eslint/parser",
+              "^8.14.0"
+            ],
+            [
+              "npm",
+              "eslint-plugin-react",
+              "^7.37.2"
+            ],
+            [
+              "npm",
+              "eslint-plugin-react-hooks",
+              "^5.0.0"
+            ]
+          ],
+          "reason": [
+            "matched file: package.json",
+            "matched extension: .js"
+          ]
+        },
+        {
+          "id": "mHbM5rftROFi",
+          "name": "@prototipo/tokens",
+          "path": [
+            "\\packages\\tokens\\package.json"
+          ],
+          "tech": null,
+          "edges": [],
+          "inComponent": null,
+          "childs": [],
+          "techs": [
+            "eslint",
+            "javascript",
+            "nodejs"
+          ],
+          "languages": {
+            "JavaScript": 2,
+            "JSON": 2,
+            "Markdown": 1
+          },
+          "licenses": [],
+          "dependencies": [
+            [
+              "npm",
+              "@prototipo/eslint-config",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "chokidar",
+              "^4.0.3"
+            ],
+            [
+              "npm",
+              "eslint",
+              "^9.15.0"
+            ]
+          ],
+          "reason": [
+            "eslint matched: /^eslint$/",
+            "matched file: eslint.config.mjs",
+            "matched file: package.json",
+            "matched extension: .mjs"
+          ]
+        },
+        {
+          "id": "yCQcFCQQW6tD",
+          "name": "Figma",
+          "path": [
+            "\\code-to-figma\\figma-sync-engine\\.env.example"
+          ],
+          "tech": "figma",
+          "edges": [],
+          "inComponent": null,
+          "childs": [],
+          "techs": [],
+          "languages": {},
+          "licenses": [],
+          "dependencies": [],
+          "reason": [
+            "figma matched env: FIGMA_"
+          ]
+        },
+        {
+          "id": "0V7WBk8UtGhS",
+          "name": "GitHub",
+          "path": [
+            "\\package.json",
+            "\\apps\\studio\\components.json"
+          ],
+          "tech": "github",
+          "edges": [],
+          "inComponent": null,
+          "childs": [],
+          "techs": [],
+          "languages": {},
+          "licenses": [],
+          "dependencies": [],
+          "reason": [
+            "matched file: .github"
+          ]
+        },
+        {
+          "id": "AkBVGPflLJRM",
+          "name": "figma-sync-engine-monorepo",
+          "path": [
+            "\\code-to-figma\\figma-sync-engine\\package.json"
+          ],
+          "tech": null,
+          "edges": [
+            {
+              "target": "ZndpQUlFQSne",
+              "read": true,
+              "write": true
+            },
+            {
+              "target": "QoGVrXdKijRN",
+              "read": true,
+              "write": true
+            },
+            {
+              "target": "Uu58Z30JVMjU",
+              "read": true,
+              "write": true
+            }
+          ],
+          "inComponent": null,
+          "childs": [
+            {
+              "id": "6bVA0yhpcuZ6",
+              "name": "@figma-sync-engine/autolayout-interpreter",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\packages\\autolayout-interpreter\\package.json"
+              ],
+              "tech": null,
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [
+                "nodejs",
+                "typescript",
+                "vitest"
+              ],
+              "languages": {
+                "JSON": 2,
+                "TypeScript": 4
+              },
+              "licenses": [],
+              "dependencies": [
+                [
+                  "npm",
+                  "typescript",
+                  "^5.3.3"
+                ],
+                [
+                  "npm",
+                  "vitest",
+                  "^1.0.0"
+                ]
+              ],
+              "reason": [
+                "typescript matched: /^typescript$/",
+                "vitest matched: /^vitest$/",
+                "matched file: tsconfig.json",
+                "matched file: package.json",
+                "matched file: vitest.config.ts",
+                "matched extension: .ts"
+              ]
+            },
+            {
+              "id": "fUlfWfkUg6J6",
+              "name": "@figma-sync-engine/example-react-button",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\examples\\react-button\\package.json"
+              ],
+              "tech": null,
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [
+                "javascript",
+                "jsx",
+                "nodejs",
+                "react",
+                "storybook",
+                "typescript"
+              ],
+              "languages": {
+                "TypeScript": 4,
+                "JSON": 4,
+                "JavaScript": 36,
+                "SVG": 2,
+                "HTML": 2,
+                "Text": 9
+              },
+              "licenses": [],
+              "dependencies": [
+                [
+                  "npm",
+                  "react",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "react-dom",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "@storybook/addon-essentials",
+                  "^8.6.14"
+                ],
+                [
+                  "npm",
+                  "@storybook/react",
+                  "^8.6.14"
+                ],
+                [
+                  "npm",
+                  "@storybook/react-vite",
+                  "^8.6.14"
+                ],
+                [
+                  "npm",
+                  "storybook",
+                  "^8.6.14"
+                ],
+                [
+                  "npm",
+                  "typescript",
+                  "^5.3.3"
+                ]
+              ],
+              "reason": [
+                "react matched: /^react$/",
+                "storybook matched: /^storybook$/",
+                "typescript matched: /^typescript$/",
+                "matched file: tsconfig.json",
+                "matched file: package.json",
+                "matched file: .storybook",
+                "matched extension: .ts",
+                "matched extension: .tsx",
+                "matched extension: .js"
+              ]
+            },
+            {
+              "id": "zhDiaCJUMP6X",
+              "name": "@figma-sync-engine/figma-plugin-lite",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\packages\\figma-plugin-lite\\package.json"
+              ],
+              "tech": null,
+              "edges": [
+                {
+                  "target": "lKiyAptw2JV0",
+                  "read": true,
+                  "write": true
+                }
+              ],
+              "inComponent": null,
+              "childs": [
+                {
+                  "id": "lKiyAptw2JV0",
+                  "name": "Figma",
+                  "path": [
+                    "\\code-to-figma\\figma-sync-engine\\packages\\figma-plugin-lite\\package.json"
+                  ],
+                  "tech": "figma",
+                  "edges": [],
+                  "inComponent": null,
+                  "childs": [],
+                  "techs": [],
+                  "languages": {},
+                  "licenses": [],
+                  "dependencies": [],
+                  "reason": [
+                    "figma matched: /^@figma\\//"
+                  ]
+                }
+              ],
+              "techs": [
+                "figma",
+                "jsx",
+                "nodejs",
+                "react",
+                "typescript",
+                "vite"
+              ],
+              "languages": {
+                "TypeScript": 4,
+                "JSON": 3,
+                "HTML": 1
+              },
+              "licenses": [],
+              "dependencies": [
+                [
+                  "npm",
+                  "@figma/plugin-typings",
+                  "^1.82.0"
+                ],
+                [
+                  "npm",
+                  "@types/react",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "@types/react-dom",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "@vitejs/plugin-react",
+                  "^4.0.0"
+                ],
+                [
+                  "npm",
+                  "react",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "react-dom",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "typescript",
+                  "^5.3.3"
+                ],
+                [
+                  "npm",
+                  "vite",
+                  "^5.0.0"
+                ]
+              ],
+              "reason": [
+                "figma matched: /^@figma\\//",
+                "react matched: /^react$/",
+                "typescript matched: /^typescript$/",
+                "vite matched: /^vite$/",
+                "matched file: tsconfig.json",
+                "matched file: package.json",
+                "matched extension: .tsx",
+                "matched extension: .ts"
+              ]
+            },
+            {
+              "id": "KaDAYfMjMmL1",
+              "name": "@figma-sync-engine/html-to-figma-core",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\packages\\html-to-figma-core\\package.json"
+              ],
+              "tech": null,
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [
+                "nodejs",
+                "typescript",
+                "vitest"
+              ],
+              "languages": {
+                "JSON": 2,
+                "TypeScript": 5
+              },
+              "licenses": [],
+              "dependencies": [
+                [
+                  "npm",
+                  "@builder.io/html-to-figma",
+                  "0.0.3"
+                ],
+                [
+                  "npm",
+                  "typescript",
+                  "^5.3.3"
+                ]
+              ],
+              "reason": [
+                "typescript matched: /^typescript$/",
+                "matched file: tsconfig.json",
+                "matched file: package.json",
+                "matched file: vitest.config.ts",
+                "matched extension: .ts"
+              ]
+            },
+            {
+              "id": "JcYZmQXqsrCR",
+              "name": "@figma-sync-engine/storybook-addon-export",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\packages\\storybook-addon-export\\package.json"
+              ],
+              "tech": null,
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [
+                "jsx",
+                "nodejs",
+                "react",
+                "typescript",
+                "vite",
+                "vitest"
+              ],
+              "languages": {
+                "JSON": 2,
+                "TypeScript": 15
+              },
+              "licenses": [],
+              "dependencies": [
+                [
+                  "npm",
+                  "@storybook/addons",
+                  "^7.6.17"
+                ],
+                [
+                  "npm",
+                  "@storybook/manager-api",
+                  "^7.6.17"
+                ],
+                [
+                  "npm",
+                  "@storybook/preview-api",
+                  "^7.6.17"
+                ],
+                [
+                  "npm",
+                  "react",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "react-dom",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "@types/react",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "@types/react-dom",
+                  "^18.2.0"
+                ],
+                [
+                  "npm",
+                  "typescript",
+                  "^5.3.3"
+                ],
+                [
+                  "npm",
+                  "vite",
+                  "^5.0.0"
+                ]
+              ],
+              "reason": [
+                "react matched: /^react$/",
+                "typescript matched: /^typescript$/",
+                "vite matched: /^vite$/",
+                "matched file: tsconfig.json",
+                "matched file: package.json",
+                "matched file: vitest.config.ts",
+                "matched extension: .tsx",
+                "matched extension: .ts"
+              ]
+            },
+            {
+              "id": "Uu58Z30JVMjU",
+              "name": "GitHub",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\package.json"
+              ],
+              "tech": "github",
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [],
+              "languages": {},
+              "licenses": [],
+              "dependencies": [],
+              "reason": [
+                "matched file: .github"
+              ]
+            },
+            {
+              "id": "ZndpQUlFQSne",
+              "name": "Playwright",
+              "path": [
+                "\\code-to-figma\\figma-sync-engine\\package.json"
+              ],
+              "tech": "playwright",
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [],
+              "languages": {},
+              "licenses": [],
+              "dependencies": [],
+              "reason": [
+                "playwright matched: /^@playwright\\/test$/",
+                "matched: playwright"
+              ]
+            }
+          ],
+          "techs": [
+            "bash",
+            "eslint",
+            "github",
+            "javascript",
+            "nodejs",
+            "playwright",
+            "pnpm",
+            "prettier",
+            "turborepo",
+            "typescript",
+            "vitest"
+          ],
+          "languages": {
+            "JavaScript": 1,
+            "JSON": 8,
+            "Markdown": 56,
+            "YAML": 3,
+            "TypeScript": 5,
+            "PowerShell": 1,
+            "Shell": 1,
+            "HTML": 1
+          },
+          "licenses": [],
+          "dependencies": [
+            [
+              "npm",
+              "@playwright/test",
+              "^1.56.1"
+            ],
+            [
+              "npm",
+              "@types/node",
+              "^20.10.0"
+            ],
+            [
+              "npm",
+              "@typescript-eslint/eslint-plugin",
+              "^7.18.0"
+            ],
+            [
+              "npm",
+              "@typescript-eslint/parser",
+              "^7.18.0"
+            ],
+            [
+              "npm",
+              "eslint",
+              "^8.56.0"
+            ],
+            [
+              "npm",
+              "eslint-plugin-react",
+              "^7.35.0"
+            ],
+            [
+              "npm",
+              "jsdom",
+              "^27.2.0"
+            ],
+            [
+              "npm",
+              "playwright",
+              "^1.40.0"
+            ],
+            [
+              "npm",
+              "prettier",
+              "^3.1.0"
+            ],
+            [
+              "npm",
+              "turbo",
+              "^1.12.0"
+            ],
+            [
+              "npm",
+              "typescript",
+              "^5.3.3"
+            ],
+            [
+              "npm",
+              "vitest",
+              "^1.0.0"
+            ]
+          ],
+          "reason": [
+            "playwright matched: /^@playwright\\/test$/",
+            "matched: playwright",
+            "eslint matched: /^eslint$/",
+            "prettier matched: /^prettier$/",
+            "turborepo matched: /^turbo$/",
+            "typescript matched: /^typescript$/",
+            "vitest matched: /^vitest$/",
+            "matched file: playwright.config.ts",
+            "matched file: turbo.json",
+            "matched file: tsconfig.base.json",
+            "matched file: .eslintrc.cjs",
+            "matched file: .prettierrc",
+            "matched file: pnpm-lock.yaml",
+            "matched file: .github",
+            "matched file: package.json",
+            "matched extension: .sh",
+            "matched extension: .cjs",
+            "matched extension: .ts"
+          ]
+        },
+        {
+          "id": "YgPON1A1hl6f",
+          "name": "storybook",
+          "path": [
+            "\\apps\\storybook\\package.json"
+          ],
+          "tech": null,
+          "edges": [],
+          "inComponent": "om9aHVLlY7xp",
+          "childs": [
+            {
+              "id": "om9aHVLlY7xp",
+              "name": "Vercel",
+              "path": [
+                "\\apps\\storybook\\package.json"
+              ],
+              "tech": "vercel",
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [],
+              "languages": {},
+              "licenses": [],
+              "dependencies": [],
+              "reason": [
+                "matched file: vercel.json"
+              ]
+            }
+          ],
+          "techs": [
+            "css",
+            "eslint",
+            "javascript",
+            "jsx",
+            "nodejs",
+            "react",
+            "storybook",
+            "typescript",
+            "vercel",
+            "vite"
+          ],
+          "languages": {
+            "TypeScript": 18,
+            "Markdown": 6,
+            "JavaScript": 70,
+            "JSON": 6,
+            "CSS": 1,
+            "SVG": 2,
+            "HTML": 2,
+            "Text": 1
+          },
+          "licenses": [],
+          "dependencies": [
+            [
+              "npm",
+              "@prototipo/design-system",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@prototipo/tokens",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "react",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "react-dom",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "@chromatic-com/storybook",
+              "^3.2.2"
+            ],
+            [
+              "npm",
+              "@prototipo/eslint-config",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@storybook/addon-a11y",
+              "^8.6.14"
+            ],
+            [
+              "npm",
+              "@storybook/addon-essentials",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/addon-interactions",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/addon-links",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/addon-onboarding",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/blocks",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/react",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/react-vite",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@storybook/test",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "@types/react",
+              "^18.3.12"
+            ],
+            [
+              "npm",
+              "@types/react-dom",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "eslint",
+              "^9.15.0"
+            ],
+            [
+              "npm",
+              "storybook",
+              "^8.4.7"
+            ],
+            [
+              "npm",
+              "typescript",
+              "^5.6.3"
+            ],
+            [
+              "npm",
+              "vite",
+              "^6.0.1"
+            ]
+          ],
+          "reason": [
+            "react matched: /^react$/",
+            "eslint matched: /^eslint$/",
+            "storybook matched: /^storybook$/",
+            "typescript matched: /^typescript$/",
+            "vite matched: /^vite$/",
+            "matched file: vercel.json",
+            "matched file: tsconfig.json",
+            "matched file: eslint.config.mjs",
+            "matched file: package.json",
+            "matched file: .storybook",
+            "matched extension: .mjs",
+            "matched extension: .ts",
+            "matched extension: .tsx",
+            "matched extension: .css",
+            "matched extension: .js"
+          ]
+        },
+        {
+          "id": "ViWjJQMx0h1E",
+          "name": "studio",
+          "path": [
+            "\\apps\\studio\\package.json"
+          ],
+          "tech": null,
+          "edges": [
+            {
+              "target": "28GaAlQKNYeQ",
+              "read": true,
+              "write": true
+            }
+          ],
+          "inComponent": "6gubTjEopoUM",
+          "childs": [
+            {
+              "id": "28GaAlQKNYeQ",
+              "name": "Lucide Icons",
+              "path": [
+                "\\apps\\studio\\package.json"
+              ],
+              "tech": "lucideicons",
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [],
+              "languages": {},
+              "licenses": [],
+              "dependencies": [],
+              "reason": [
+                "lucideicons matched: /^lucide-react$/"
+              ]
+            },
+            {
+              "id": "6gubTjEopoUM",
+              "name": "Vercel",
+              "path": [
+                "\\apps\\studio\\package.json"
+              ],
+              "tech": "vercel",
+              "edges": [],
+              "inComponent": null,
+              "childs": [],
+              "techs": [],
+              "languages": {},
+              "licenses": [],
+              "dependencies": [],
+              "reason": [
+                "matched file: vercel.json"
+              ]
+            }
+          ],
+          "techs": [
+            "css",
+            "eslint",
+            "javascript",
+            "jsx",
+            "lucideicons",
+            "nextjs",
+            "nodejs",
+            "radixui",
+            "react",
+            "tailwind",
+            "testinglibrary",
+            "typescript",
+            "vercel",
+            "vitest"
+          ],
+          "languages": {
+            "JSON": 23,
+            "JavaScript": 8,
+            "TypeScript": 52,
+            "Markdown": 2,
+            "CSS": 7
+          },
+          "licenses": [],
+          "dependencies": [
+            [
+              "npm",
+              "@measured/puck",
+              "^0.16.0"
+            ],
+            [
+              "npm",
+              "@prototipo/design-system",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@prototipo/tokens",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@radix-ui/react-progress",
+              "^1.1.8"
+            ],
+            [
+              "npm",
+              "@radix-ui/react-select",
+              "^2.2.6"
+            ],
+            [
+              "npm",
+              "@radix-ui/react-slot",
+              "^1.2.4"
+            ],
+            [
+              "npm",
+              "class-variance-authority",
+              "^0.7.1"
+            ],
+            [
+              "npm",
+              "clsx",
+              "^2.1.1"
+            ],
+            [
+              "npm",
+              "lucide-react",
+              "^0.554.0"
+            ],
+            [
+              "npm",
+              "next",
+              "^15.0.3"
+            ],
+            [
+              "npm",
+              "react",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "react-dom",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "swr",
+              "^2.3.6"
+            ],
+            [
+              "npm",
+              "tailwind-merge",
+              "^3.4.0"
+            ],
+            [
+              "npm",
+              "@prototipo/eslint-config",
+              "workspace:*"
+            ],
+            [
+              "npm",
+              "@tailwindcss/postcss",
+              "^4.1.17"
+            ],
+            [
+              "npm",
+              "@testing-library/jest-dom",
+              "^6.9.1"
+            ],
+            [
+              "npm",
+              "@testing-library/react",
+              "^16.3.0"
+            ],
+            [
+              "npm",
+              "@types/node",
+              "^22.9.1"
+            ],
+            [
+              "npm",
+              "@types/react",
+              "^18.3.12"
+            ],
+            [
+              "npm",
+              "@types/react-dom",
+              "^18.3.1"
+            ],
+            [
+              "npm",
+              "@vitejs/plugin-react",
+              "^5.1.1"
+            ],
+            [
+              "npm",
+              "autoprefixer",
+              "^10.4.22"
+            ],
+            [
+              "npm",
+              "eslint",
+              "^9.15.0"
+            ],
+            [
+              "npm",
+              "happy-dom",
+              "^20.0.10"
+            ],
+            [
+              "npm",
+              "postcss",
+              "^8.5.6"
+            ],
+            [
+              "npm",
+              "tailwindcss",
+              "^4.1.17"
+            ],
+            [
+              "npm",
+              "tailwindcss-animate",
+              "^1.0.7"
+            ],
+            [
+              "npm",
+              "tw-animate-css",
+              "^1.4.0"
+            ],
+            [
+              "npm",
+              "typescript",
+              "^5.6.3"
+            ],
+            [
+              "npm",
+              "vitest",
+              "^4.0.13"
+            ]
+          ],
+          "reason": [
+            "radixui matched: /^@radix-ui\\/react-slot$/",
+            "lucideicons matched: /^lucide-react$/",
+            "nextjs matched: /^next$/",
+            "react matched: /^react$/",
+            "testinglibrary matched: /^@testing-library\\//",
+            "matched: testinglibrary",
+            "eslint matched: /^eslint$/",
+            "tailwind matched: /^tailwindcss$/",
+            "typescript matched: /^typescript$/",
+            "vitest matched: /^vitest$/",
+            "matched file: vercel.json",
+            "matched file: next.config.mjs",
+            "matched file: tsconfig.json",
+            "matched file: eslint.config.mjs",
+            "matched file: package.json",
+            "matched file: vitest.config.ts",
+            "matched extension: .js",
+            "matched extension: .ts",
+            "matched extension: .css",
+            "matched extension: .tsx"
+          ]
+        }
+      ],
+      "techs": [
+        "bash",
+        "eslint",
+        "figma",
+        "github",
+        "javascript",
+        "nodejs",
+        "npm",
+        "nvm",
+        "pnpm",
+        "prettier",
+        "python",
+        "shadcn",
+        "turborepo",
+        "typescript"
+      ],
+      "languages": {
+        "Markdown": 133,
+        "JSON": 11,
+        "YAML": 11,
+        "Python": 4,
+        "Text": 3,
+        "SVG": 2,
+        "JavaScript": 4,
+        "PowerShell": 7,
+        "Shell": 10
+      },
+      "licenses": [],
+      "dependencies": [
+        [
+          "npm",
+          "@specfy/stack-analyser",
+          "1.27.3"
+        ],
+        [
+          "npm",
+          "@prototipo/eslint-config",
+          "workspace:*"
+        ],
+        [
+          "npm",
+          "eslint",
+          "^9.15.0"
+        ],
+        [
+          "npm",
+          "prettier",
+          "^3.3.3"
+        ],
+        [
+          "npm",
+          "turbo",
+          "^2.6.1"
+        ],
+        [
+          "npm",
+          "typescript",
+          "^5.6.3"
+        ],
+        [
+          "python",
+          "httpx",
+          "0.27.0"
+        ],
+        [
+          "python",
+          "python-dotenv",
+          "1.0.0"
+        ],
+        [
+          "python",
+          "requests",
+          "2.31.0"
+        ]
+      ],
+      "reason": [
+        "eslint matched: /^eslint$/",
+        "prettier matched: /^prettier$/",
+        "turborepo matched: /^turbo$/",
+        "typescript matched: /^typescript$/",
+        "matched file: turbo.json",
+        "matched file: eslint.config.mjs",
+        "matched file: package-lock.json",
+        "matched file: .nvmrc",
+        "matched file: pnpm-lock.yaml",
+        "matched file: .github",
+        "matched file: package.json",
+        "matched extension: .mjs",
+        "matched file: requirements.txt",
+        "matched extension: .sh",
+        "matched extension: .js"
+      ]
+    }
+  ],
+  "techs": [],
+  "languages": {},
+  "licenses": [],
+  "dependencies": [],
+  "reason": []
+}

@@ -5,4 +5,22 @@
  */
 import baseConfig from '@prototipo/eslint-config';
 
-export default baseConfig;
+const normalizedConfig = Array.isArray(baseConfig) ? baseConfig : [baseConfig];
+
+export default [
+    ...normalizedConfig,
+    {
+        ignores: [
+            'node_modules/**',
+            'dist/**',
+            'build/**',
+            'out/**',
+            '.next/**',
+            'storybook-static/**',
+            'coverage/**',
+            'reports/**',
+            'specs/**/artifacts/**',
+            '**/*.tsbuildinfo',
+        ],
+    },
+];

@@ -1,0 +1,43 @@
+{
+  "content": [
+    {
+      "type": "Layout",
+      "props": {
+        "maxWidth": "xl",
+        "id": "layout-1",
+        "children": [
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-1",
+              "content": "Bem-vindo ao Studio",
+              "as": "h1",
+              "size": "4xl",
+              "weight": "bold",
+              "color": "primary"
+            }
+          },
+          {
+            "type": "Text",
+            "props": {
+              "id": "text-2",
+              "content": "Comece a construir sua jornada arrastando componentes da barra lateral.",
+              "as": "p",
+              "size": "lg",
+              "weight": "normal",
+              "color": "muted"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "root": {
+    "props": {
+      "title": "Nova Página"
+    }
+  },
+  "zones": {
+    "layout-1:layout-1:content": []
+  }
+}

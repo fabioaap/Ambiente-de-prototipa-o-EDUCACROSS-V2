@@ -1,0 +1,25 @@
+node_modules/
+.pnp/
+.pnp.js
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+storybook-static/
+
+# Coverage and reports
+coverage/
+reports/
+
+# Generated artifacts
+*.tsbuildinfo
+*.d.ts
+
+# Env and config
+.env*
+
+# Tool caches
+turbo/
+.turbo/

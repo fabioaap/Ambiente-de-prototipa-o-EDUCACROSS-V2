@@ -1,0 +1,41 @@
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta lint C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> turbo run lint
+
+turbo 2.6.1
+
+ÔÇó Packages in scope: @prototipo/design-system, @prototipo/eslint-config, @prototipo/tokens, storybook, studio
+ÔÇó Running lint in 5 packages
+ÔÇó Remote caching disabled
+@prototipo/tokens:lint: cache miss, executing 35b00a92803877dd
+studio:lint: cache miss, executing cca097322c8e9d24
+storybook:lint: cache miss, executing f93174d657816b37
+@prototipo/design-system:lint: cache miss, executing 51917dfd922d3c08
+studio:lint: 
+studio:lint: > studio@0.2.0-beta lint C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\apps\studio
+studio:lint: > eslint .
+studio:lint: 
+@prototipo/tokens:lint: 
+@prototipo/tokens:lint: > @prototipo/tokens@0.2.0-beta lint C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\packages\tokens
+@prototipo/tokens:lint: > eslint .
+@prototipo/tokens:lint: 
+@prototipo/design-system:lint: 
+@prototipo/design-system:lint: > @prototipo/design-system@0.2.0-beta lint C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\packages\design-system
+@prototipo/design-system:lint: > eslint .
+@prototipo/design-system:lint: 
+storybook:lint: 
+storybook:lint: > storybook@0.2.0-beta lint C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\apps\storybook
+storybook:lint: > eslint .
+storybook:lint: 
+storybook:lint: 
+storybook:lint: C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\apps\storybook\src\stories\Tokens.stories.tsx
+storybook:lint:   127:52  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+storybook:lint: 
+storybook:lint: Ô£û 1 problem (0 errors, 1 warning)
+storybook:lint: 
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    8.942s 
+

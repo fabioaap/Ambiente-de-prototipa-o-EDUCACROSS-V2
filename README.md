@@ -63,6 +63,12 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 └── pnpm-workspace.yaml      # Configuração do monorepo
 ```
 
+## 🎨 Política de Componentes
+
+- **Shadcn UI** é restrito às rotas do Studio (`/studio`) e do Dashboard (`/dashboard`) dentro de `apps/studio/src/app`. Essas telas exigem microinterações avançadas e podem importar de `@/components/ui/*`.
+- **Domains, docs e demais apps** devem utilizar apenas o Design System nativo exportado por `@prototipo/design-system` (ou HTML sem dependências externas). Isso mantém as jornadas documentadas estáveis e fáceis de sincronizar com Storybook/Figma.
+- O script `pnpm check:shadcn` falha o build caso seja detectado um import de `@/components/ui` fora dos diretórios permitidos. Execute-o localmente antes de abrir PRs para evitar regressões.
+
 ## 🔵 Sprint 2 – Execução & PRs
 
 **Status**: ✅ Validado e pronto para merge (2025-11-22)
@@ -95,9 +101,36 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ## 🟢 Sprint 3 – Dashboard & Game Hub
 
-**Status**: 🟢 56% Completo (5/9 issues principais fechadas) | Fase 3 pronta para execução (2025-11-24)
+**Status**: 🟢 60% Completo (6/9 issues principais fechadas) | Fase 2 ✅ completa, Fase 3 pronta (2025-11-25)
 
-### Progresso
+### Experience Hub – Consolidação Storybook ✅ NOVO
+
+**Phase 2 Concluída** (2025-11-25):
+- ✅ Migração de `apps/storybook` → `apps/experience-hub/storybook` completa
+- ✅ Workspace reconfigurado (7 projetos)
+- ✅ Scripts `pnpm dev:hub`, `pnpm build:hub` operacionais
+- ✅ Guardrails Shadcn validados
+- 📋 Documentação: [PHASE2_COMPLETION_REPORT.md](./PHASE2_COMPLETION_REPORT.md)
+- 📋 Próximos passos: [PHASE3_EXECUTION_PLAN.md](./PHASE3_EXECUTION_PLAN.md)
+
+**Quick Commands**:
+```bash
+pnpm dev:hub           # Storybook em http://localhost:6006
+pnpm build:hub         # Build da hub
+pnpm check:shadcn      # Validar guardrails
+```
+
+**Estrutura**:
+```
+apps/experience-hub/
+├── storybook/         # Storybook 8 (ESM)
+│   ├── .storybook/
+│   ├── src/stories/
+│   └── package.json
+└── README.md          # Documentação
+```
+
+### Progresso Geral
 
 | Fase | Issues | Status | PRs |
 |------|--------|--------|-----|
@@ -366,6 +399,16 @@ pnpm setup:gh:add-issues-to-project # Adicionar issues ao board
 **Pré-requisito**: `gh auth login` (GitHub CLI autenticado)
 
 Veja mais detalhes em [`scripts/gh/README.md`](./scripts/gh/README.md)
+
+## 🧭 Mapa de stack com Specfy
+
+Utilizamos o **Specfy Stack Analyser** para gerar um inventário automático das linguagens, dependências e serviços identificados no repositório.
+
+```bash
+pnpm specfy
+```
+
+O comando acima executa o analisador via CLI e salva o resultado em `docs/specfy-stack.json`, que pode ser usado em documentos de discovery, arquitetura e auditorias técnicas.
 
 ### Pacotes Individuais
 

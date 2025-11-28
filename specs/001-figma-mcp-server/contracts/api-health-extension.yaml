@@ -1,0 +1,50 @@
+openapi: 3.1.0
+info:
+  title: Studio Health API – MCP Extension
+  version: 0.1.0
+paths:
+  /api/health:
+    get:
+      summary: Return aggregate health plus MCP status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status, services]
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded, offline]
+        services:
+          type: object
+          properties:
+            figmaMcpServer:
+              $ref: '#/components/schemas/FigmaMcpHealth'
+            # existing keys (dashboardApi, storybook, etc.) remain unchanged
+    FigmaMcpHealth:
+      type: object
+      required: [service, status]
+      properties:
+        service:
+          type: string
+          const: figmaMcpServer
+        status:
+          type: string
+          enum: [ok, degraded, offline]
+        lastSync:
+          type: string
+          format: date-time
+          nullable: true
+        lastPayloadVersion:
+          type: string
+          nullable: true
+        details:
+          type: string
+          nullable: true
