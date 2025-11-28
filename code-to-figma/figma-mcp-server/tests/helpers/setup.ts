@@ -25,7 +25,7 @@ afterAll(() => {
 });
 
 // Reset config cache before each test
-beforeEach(() => {
+beforeEach(async () => {
   // Clear require cache for config module to force reload
   const configPath = new URL('../../src/config.js', import.meta.url).pathname;
   delete (await import('module')).default._cache[configPath];
