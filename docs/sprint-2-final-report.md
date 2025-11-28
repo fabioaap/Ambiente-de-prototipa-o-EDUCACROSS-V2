@@ -40,10 +40,10 @@
 ## 📁 ARQUIVOS CRIADOS/MODIFICADOS
 
 ### Código
-- ✅ `apps/studio/src/app/api/dashboard/pages/route.ts` (147 linhas)
-- ✅ `apps/studio/data/pages/frontoffice/onboarding/*.json` (4 arquivos)
-- ✅ `apps/studio/data/pages/game/missoes-ilha-1/*.json` (3 arquivos)
-- ✅ Sidebar improvements em `apps/studio/src/app/studio/components/`
+- ✅ `domains/studio/src/app/api/dashboard/pages/route.ts` (147 linhas)
+- ✅ `domains/studio/data/pages/frontoffice/onboarding/*.json` (4 arquivos)
+- ✅ `domains/studio/data/pages/game/missoes-ilha-1/*.json` (3 arquivos)
+- ✅ Sidebar improvements em `domains/studio/src/app/studio/components/`
 - ✅ Acessibilidade: `packages/design-system/` updates
 
 ### Documentação

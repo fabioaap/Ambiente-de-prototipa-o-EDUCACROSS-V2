@@ -116,7 +116,7 @@ Remove uma página.
 
 ## Armazenamento
 
-As páginas são salvas como arquivos JSON em `apps/studio/data/pages/`:
+As páginas são salvas como arquivos JSON em `domains/studio/data/pages/`:
 - Formato: `{slug}.json`
 - Exemplo: `home.json`, `sobre.json`, `contato.json`
 

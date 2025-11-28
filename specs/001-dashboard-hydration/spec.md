@@ -9,11 +9,11 @@
 
 ### Session 2025-11-25
 
-- Q: What evidence is required to prove `/dashboard` stays aligned com a estética dos componentes Shadcn? → A: Realizar uma auditoria estática garantindo que `apps/studio/src/app/dashboard` importe apenas primitives aprovadas e anexar screenshots antes/depois mostrando o layout final com o visual Shadcn.
+- Q: What evidence is required to prove `/dashboard` stays aligned com a estética dos componentes Shadcn? → A: Realizar uma auditoria estática garantindo que `domains/studio/src/app/dashboard` importe apenas primitives aprovadas e anexar screenshots antes/depois mostrando o layout final com o visual Shadcn.
 
 ## User Scenarios & Testing *(mandatory)*
 
-Each journey cites `domains/BackOffice/journeys/Dashboard`, Studio slug `dashboard`, and the `/dashboard` route inside `apps/studio/src/app/dashboard/page.tsx` plus `apps/studio/src/app/layout.tsx` where the `<html>` attributes currently diverge.
+Each journey cites `domains/BackOffice/journeys/Dashboard`, Studio slug `dashboard`, and the `/dashboard` route inside `domains/studio/src/app/dashboard/page.tsx` plus `domains/studio/src/app/layout.tsx` where the `<html>` attributes currently diverge.
 
 ### User Story 1 - Dashboard loads without hydration mismatch (Priority: P1)
 
@@ -32,7 +32,7 @@ BackOffice gestores acessam `http://localhost:3000/dashboard` (Studio slug `dash
 
 ### User Story 2 - Observabilidade sinaliza divergências estruturais (Priority: P2)
 
-QA e desenvolvedores precisam receber sinalização proativa quando qualquer hidratação incorreta reaparecer durante regressões de `apps/studio/src/app/layout.tsx` ou `/dashboard`, para que possam comparar snapshots `serverAttributes` vs `clientAttributes` sem depender do console local.
+QA e desenvolvedores precisam receber sinalização proativa quando qualquer hidratação incorreta reaparecer durante regressões de `domains/studio/src/app/layout.tsx` ou `/dashboard`, para que possam comparar snapshots `serverAttributes` vs `clientAttributes` sem depender do console local.
 
 **Why this priority**: Mantém rastreabilidade com `docs/qa-dashboard-testing.md` e evita que erros silenciosos cheguem aos playbooks em `SPRINT3_HEALTH_INDICATORS_REPORT.md`.
 
@@ -69,16 +69,16 @@ O time de QA precisa de instruções claras em `docs/qa-dashboard-testing.md` e 
 
 ## Requirements *(mandatory)*
 
-Constitution alignment: alterações concentram-se em `apps/studio/src/app/layout.tsx`, `apps/studio/src/app/dashboard/page.tsx`, `docs/qa-dashboard-testing.md` e métricas `dashboardLogger`. Devem respeitar o Design System Shadcn (já permitido para Dashboard/Studio) e manter contratos tipados de `/api/dashboard/summary` apenas como consumidores (sem mudar payloads).
+Constitution alignment: alterações concentram-se em `domains/studio/src/app/layout.tsx`, `domains/studio/src/app/dashboard/page.tsx`, `docs/qa-dashboard-testing.md` e métricas `dashboardLogger`. Devem respeitar o Design System Shadcn (já permitido para Dashboard/Studio) e manter contratos tipados de `/api/dashboard/summary` apenas como consumidores (sem mudar payloads).
 
 ### Functional Requirements
 
-- **FR-001**: O elemento `<html>` definido em `apps/studio/src/app/layout.tsx` deve produzir uma lista determinística de atributos (lang, data-theme, classes) independente do ambiente cliente, para evitar divergências com atributos injetados por extensões.
+- **FR-001**: O elemento `<html>` definido em `domains/studio/src/app/layout.tsx` deve produzir uma lista determinística de atributos (lang, data-theme, classes) independente do ambiente cliente, para evitar divergências com atributos injetados por extensões.
 - **FR-002**: O layout deve normalizar classes externas — seja filtrando-as antes da renderização ou aplicando `suppressHydrationWarning` apenas no nível `<html>` — garantindo que componentes Shadcn (`Card`, `Badge`, `Progress`, `Button`) continuem obedecendo ao mesmo tree.
 - **FR-003**: `/dashboard` deve registrar via `dashboardLogger` (ou telemetry equivalente) qualquer evento `onRecoverableError` de hidratação, incluindo `serverAttributes`, `clientAttributes` e `correlationId`, sem interromper o usuário final.
 - **FR-004**: Deve existir um teste automatizado (end-to-end ou integração) que falha quando o console contém mensagens de hidratação durante o carregamento do slug `dashboard`.
 - **FR-005**: A documentação em `docs/qa-dashboard-testing.md` e em `domains/BackOffice/journeys/Dashboard/README.md` deve incorporar passos para habilitar/desabilitar extensões, aplicar throttling de rede e capturar evidências visuais.
-- **FR-006**: Estados de loading, erro e sucesso do dashboard precisam continuar usando apenas componentes de `@prototipo/design-system`/Shadcn aprovados; quaisquer novos wrappers devem ser registrados em `apps/studio/src/config/puck.config.tsx` se forem expostos ao Studio, e cada entrega deve comprovar isso com (a) auditoria estática de imports em `apps/studio/src/app/dashboard` e (b) screenshots antes/depois demonstrando o visual Shadcn.
+- **FR-006**: Estados de loading, erro e sucesso do dashboard precisam continuar usando apenas componentes de `@prototipo/design-system`/Shadcn aprovados; quaisquer novos wrappers devem ser registrados em `domains/studio/src/config/puck.config.tsx` se forem expostos ao Studio, e cada entrega deve comprovar isso com (a) auditoria estática de imports em `domains/studio/src/app/dashboard` e (b) screenshots antes/depois demonstrando o visual Shadcn.
 - **FR-007**: O mecanismo de fetch (`useEffect` + fetch ou `useDashboardSummary`) deve apresentar fallback determinístico (ex.: placeholders de data) para evitar que timestamps `Date.now()` causem alterações na árvore server/client durante o primeiro render.
 
 ### Key Entities *(include if feature involves data)*

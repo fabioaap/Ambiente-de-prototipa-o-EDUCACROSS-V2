@@ -1,14 +1,14 @@
 # 📦 Pull Request Summary - Dashboard Migration
 
 ## 🎯 Objetivo
-Migrar o dashboard completo do `domains/studio` para `apps/admin` com Shadcn UI, incluindo 4 etapas: migração, componentes, navegação e APIs.
+Migrar o dashboard completo do `domains/studio` para `domains/admin` com Shadcn UI, incluindo 4 etapas: migração, componentes, navegação e APIs.
 
 ---
 
 ## 📋 Mudanças Implementadas
 
 ### 1. Dashboard Page (Etapa 1)
-**Arquivo**: `apps/admin/src/app/dashboard/page.tsx`
+**Arquivo**: `domains/admin/src/app/dashboard/page.tsx`
 - 574 linhas de componente React com funcionalidades completas
 - Componentes internos:
   - KPICard: Exibe métrica com tendência
@@ -29,7 +29,7 @@ Migrar o dashboard completo do `domains/studio` para `apps/admin` com Shadcn UI,
 - ✅ Error boundary com retry
 
 ### 2. Shadcn UI Components (Etapa 2)
-**Diretório**: `apps/admin/src/components/ui/`
+**Diretório**: `domains/admin/src/components/ui/`
 
 Componentes criados:
 - `button.tsx` - Com variantes (default, outline, ghost, destructive, secondary, link)
@@ -52,7 +52,7 @@ Componentes criados:
 ```
 
 ### 3. Types e Interfaces (Etapa 4)
-**Arquivo**: `apps/admin/src/lib/types/dashboard.ts`
+**Arquivo**: `domains/admin/src/lib/types/dashboard.ts`
 - 182 linhas de tipos TypeScript
 - Interfaces principais:
   - `DashboardSummaryResponse`: Resposta da API
@@ -63,7 +63,7 @@ Componentes criados:
   - `DashboardNavigationLink`: Link de navegação
 
 ### 4. API Mock (Etapa 4)
-**Arquivo**: `apps/admin/src/app/api/dashboard/summary/route.ts`
+**Arquivo**: `domains/admin/src/app/api/dashboard/summary/route.ts`
 - Endpoint GET `/api/dashboard/summary`
 - Mock data completo com:
   - 4 KPIs
@@ -76,24 +76,24 @@ Componentes criados:
 
 ### 5. Atualizações de Config
 
-**`apps/admin/package.json`**:
+**`domains/admin/package.json`**:
 - Adicionadas 3 dependências Radix UI
 - Bumped para próxima minor version
 
-**`apps/admin/components.json`**:
+**`domains/admin/components.json`**:
 - Criado com configuração Shadcn
 - Paths para components e utils
 
-**`apps/admin/src/lib/utils.ts`**:
+**`domains/admin/src/lib/utils.ts`**:
 - Utility `cn()` para merge de classes Tailwind
 
-**`apps/admin/src/app/page.tsx`**:
+**`domains/admin/src/app/page.tsx`**:
 - Link para dashboard como card destacado (azul)
 - Redireção de home para dashboard
 
 ### 6. Estrutura de Pastas
 ```
-apps/admin/src/
+domains/admin/src/
 ├── app/
 │   ├── dashboard/
 │   │   └── page.tsx          (New - 574 linhas)
@@ -242,6 +242,6 @@ Este PR implementa as 4 etapas solicitadas:
 ---
 
 **Type**: Feature  
-**Scope**: apps/admin  
+**Scope**: domains/admin  
 **Breaking**: No  
 **Closes**: #XX (referência issue se aplicável)

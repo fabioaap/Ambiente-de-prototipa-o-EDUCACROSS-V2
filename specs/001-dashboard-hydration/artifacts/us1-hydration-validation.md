@@ -11,7 +11,7 @@
 
 _Output excerpt:_
 ```
-RUN  v4.0.13 apps/studio
+RUN  v4.0.13 domains/studio
 ↓ src/tests/dashboard-hydration/hydration.spec.ts (1 test | 1 skipped)
 ```
 
@@ -26,6 +26,6 @@ Unable to toggle the Fusion browser extension inside this headless environment, 
 
 ## Observations
 
-- `apps/studio/src/app/layout.tsx` now applies deterministic `<html>` attributes (`bg-neutral-950 text-neutral-50`, `data-theme="dark"`) and scopes `suppressHydrationWarning` to the root node only.
-- `apps/studio/src/app/dashboard/page.tsx` sorts domains/pages deterministically so extension timing can no longer reorder nodes between server/client renders.
+- `domains/studio/src/app/layout.tsx` now applies deterministic `<html>` attributes (`bg-neutral-950 text-neutral-50`, `data-theme="dark"`) and scopes `suppressHydrationWarning` to the root node only.
+- `domains/studio/src/app/dashboard/page.tsx` sorts domains/pages deterministically so extension timing can no longer reorder nodes between server/client renders.
 - Additional screenshots can be saved under `specs/001-dashboard-hydration/artifacts/us1/` after completing the manual browser run on a machine with the Fusion extension available.

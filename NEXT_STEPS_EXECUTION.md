@@ -34,7 +34,7 @@
 **Meta**: Iniciar desenvolvimento da P2
 - [ ] **H1 (#12) - Planejamento & Estrutura**:
   - Criar branch `feature/h1-dashboard-planning`
-  - Criar estrutura de rotas: `apps/studio/src/app/dashboard/`
+  - Criar estrutura de rotas: `domains/studio/src/app/dashboard/`
   - Definir Layout base (`layout.tsx`)
   - Documentar arquitetura em `domains/BackOffice/journeys/Dashboard/README.md`
 - [ ] **H2 (#13) - UI Base**:

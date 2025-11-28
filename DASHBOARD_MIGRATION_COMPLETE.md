@@ -92,7 +92,7 @@ interface DashboardSummaryResponse {
 
 ### Novos Arquivos
 ```
-apps/admin/src/
+domains/admin/src/
 ├── app/
 │   ├── dashboard/
 │   │   └── page.tsx                    (574 linhas - componente principal)
@@ -119,7 +119,7 @@ apps/admin/src/
 │   └── utils.ts                         (cn utility)
 └── ...
 
-apps/admin/
+domains/admin/
 ├── components.json                      (Configuração Shadcn)
 ├── package.json                         (✅ Com novos deps Radix UI)
 └── ...

@@ -3,7 +3,7 @@
 
 ## Platform Overview
 - Stack: Node 22.21.1 (.nvmrc enforced), pnpm 9.14.4+, TypeScript 5 strict, Next.js 15 App Router, SWR, React 18.
-- Repo map: apps/studio (Next app + Puck), apps/storybook (ESM catalog), packages/design-system, packages/tokens, code-to-figma/, domains/ journeys.
+- Repo map: domains/studio (Next app + Puck), domains/storybook (ESM catalog), packages/design-system, packages/tokens, code-to-figma/, domains/ journeys.
 - Data flow: design-system exports feed Storybook and Studio; Studio dashboard consumes /api/dashboard/* handlers backed by local JSON mocks.
 
 ## Setup & Commands
@@ -20,15 +20,15 @@
 
 ## Design System & Tokens
 - Components in packages/design-system/src/components/* require 'use client', React.forwardRef, CSS Modules, and fully documented props.
-- Export new components via packages/design-system/src/index.ts and add matching stories under apps/storybook.
+- Export new components via packages/design-system/src/index.ts and add matching stories under domains/storybook.
 - Styling must reference tokens from packages/tokens/src/tokens.json; regenerate with pnpm build:tokens after edits.
-- Register DS components in apps/studio/src/config/puck.config.tsx so Puck and Studio pages stay in sync.
+- Register DS components in domains/studio/src/config/puck.config.tsx so Puck and Studio pages stay in sync.
 
 ## Studio, Dashboard, APIs
-- apps/studio/src/app/dashboard uses client components with SWR, skeleton placeholders, and ErrorBanner fallbacks; mirror existing KPIGrid/HealthSection patterns.
-- APIs live under apps/studio/src/app/api/{segment}/route.ts; declare response interfaces, wrap in try/catch, and Response.json errors with status codes.
+- domains/studio/src/app/dashboard uses client components with SWR, skeleton placeholders, and ErrorBanner fallbacks; mirror existing KPIGrid/HealthSection patterns.
+- APIs live under domains/studio/src/app/api/{segment}/route.ts; declare response interfaces, wrap in try/catch, and Response.json errors with status codes.
 - Maintain parity across /api/dashboard/summary, /api/dashboard/health, /api/dashboard/pages, /api/health, and /api/health/metrics when adjusting data shapes.
-- Keep Studio pages (apps/studio/src/app/[[...slug]]/page.tsx) aligned with domains docs so dashboard links resolve.
+- Keep Studio pages (domains/studio/src/app/[[...slug]]/page.tsx) aligned with domains docs so dashboard links resolve.
 
 ## Journeys & Content
 - Each domains/{domain}/journeys/{journey}/ folder needs README.md (objective, status, components, links), notas.md, and links.md per template.

@@ -21,8 +21,10 @@ Garantir que usuários de BackOffice consigam identificar de qual rede é cada q
 ## 📊 Status
 
 - 📋 **Planejamento** - Jornada em fase de descoberta/especificação
-- [ ] Prototipagem no Puck Studio
-- [ ] Integração de componentes
+- ✅ **Integração MCP Figma** - Servidor MCP configurado e tokens extraídos (Node: 8565:17355)
+- 🚧 **Prototipagem** - Primeira tela criada em `domains/studio/src/app/backoffice/exibir-campo-uso/page.tsx` (Build OK)
+- [ ] Integração de componentes visuais baseados no snapshot
+- [ ] Implementação de mocks e filtros (Parcialmente feito)
 - [ ] Testes de usabilidade
 - [ ] Concluído
 

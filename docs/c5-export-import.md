@@ -130,7 +130,7 @@ Ou usar a UI do Studio para fazer upload.
 
 ### Integrar na página do Studio
 
-1. Abrir `apps/studio/src/app/studio/page.tsx`
+1. Abrir `domains/studio/src/app/studio/page.tsx`
 2. Importar component:
 
 ```tsx
@@ -160,13 +160,13 @@ import { ExportImport } from '@/components/ExportImport';
 ## Arquivos Criados/Modificados
 
 ```
-apps/studio/src/app/api/pages/
+domains/studio/src/app/api/pages/
 ├── export/
 │   └── route.ts (novo - 43 linhas)
 └── import/
     └── route.ts (novo - 108 linhas)
 
-apps/studio/src/components/
+domains/studio/src/components/
 ├── ExportImport.tsx (novo - 147 linhas)
 └── ExportImport.module.css (novo - 130 linhas)
 
@@ -184,7 +184,7 @@ docs/
 ## Referências
 
 - **Backlog**: `docs/backlog.md` (Epic C – Studio)
-- **API Pattern**: `apps/studio/src/app/api/pages/route.ts`
+- **API Pattern**: `domains/studio/src/app/api/pages/route.ts`
 - **TypeScript**: Strict mode, no implicit any
 
 ---

@@ -172,7 +172,7 @@ Status: ✅ Totalmente responsivo
 
 ### Código
 - **Arquivos modificados**: 1
-  - `apps/admin/src/app/dashboard/page.tsx` (50+ linhas)
+  - `domains/admin/src/app/dashboard/page.tsx` (50+ linhas)
 - **Componentes criados**: 1
   - `PageCard` (novo componente reutilizável)
 - **Linhas adicionadas**: ~65
@@ -316,7 +316,7 @@ UX: ✅ Perfeito para mobile
 ## 💾 ARQUIVOS ALTERADOS
 
 ```
-M apps/admin/src/app/dashboard/page.tsx (+50 -15 linhas)
+M domains/admin/src/app/dashboard/page.tsx (+50 -15 linhas)
   - Removido label "Visão geral"
   - Reduzido tamanho h1
   - Aumentado gap em health metrics

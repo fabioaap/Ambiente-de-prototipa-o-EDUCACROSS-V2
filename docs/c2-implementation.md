@@ -79,7 +79,7 @@ router.push(`/studio?page=${slug}`);
 ### Localmente
 ```bash
 # Terminal 1
-cd apps/studio
+cd domains/studio
 pnpm dev
 # Acessar http://localhost:3000/studio
 
@@ -106,15 +106,15 @@ pnpm dev
 
 ## Código Alterado
 
-### `apps/studio/src/components/PagesList.tsx`
+### `domains/studio/src/components/PagesList.tsx`
 - **Linhas antes**: 109
 - **Linhas depois**: 180
 - **Mudanças**: +71 linhas (renaming, acessibilidade, navegação)
 
-### `apps/studio/src/components/PagesList.module.css`
+### `domains/studio/src/components/PagesList.module.css`
 - **Adicionado**: `.itemActions`, `.actionBtn`, `.renameForm`, `.renameBtn`, `.cancelBtn`, `.active`
 
-### `apps/studio/src/components/StudioLayout.module.css`
+### `domains/studio/src/components/StudioLayout.module.css`
 - **Adicionado**: Focus-visible, hover states, hit target improvements
 
 ---

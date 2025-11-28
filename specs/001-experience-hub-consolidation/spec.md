@@ -28,7 +28,7 @@ Consolidar Storybook e dashboards em um único "Experience Hub" (ex.: `apps/expe
 
 **Why this priority**: Sem um hub centralizado os stakeholders não conseguem navegar entre journeys sem quebrar o Studio ou o dashboard; o CSS global atual interfere no `/dashboard` e bloqueia execuções de Sprint 3.
 
-**Independent Test**: Rodar `pnpm dev:hub` (ou `pnpm dev:storybook` apontando para o novo caminho) e verificar que todas as stories/jornadas renderizam sem afetar `/dashboard` em `apps/studio`; executar `pnpm build` sem vazamento de CSS global.
+**Independent Test**: Rodar `pnpm dev:hub` (ou `pnpm dev:storybook` apontando para o novo caminho) e verificar que todas as stories/jornadas renderizam sem afetar `/dashboard` em `domains/studio`; executar `pnpm build` sem vazamento de CSS global.
 
 **Acceptance Scenarios**:
 
@@ -43,7 +43,7 @@ Garantir que o Studio (Puck) continue servindo exclusivamente o conteúdo de `do
 
 **Why this priority**: O Constitution exige rastreabilidade completa; se um fluxo for atualizado no hub mas não no Studio/domains, PMs perdem confiança nas jornadas e nos dashboards.
 
-**Independent Test**: Abrir `apps/studio` em `/pages/{slug}` para cada journey listada e comparar com o README/links atualizado; verificar que `pnpm check:shadcn` continua aprovando pois nenhum arquivo em `domains` ou `apps/studio/src/app/[[...slug]]` importa Shadcn.
+**Independent Test**: Abrir `domains/studio` em `/pages/{slug}` para cada journey listada e comparar com o README/links atualizado; verificar que `pnpm check:shadcn` continua aprovando pois nenhum arquivo em `domains` ou `domains/studio/src/app/[[...slug]]` importa Shadcn.
 
 **Acceptance Scenarios**:
 
@@ -54,7 +54,7 @@ Garantir que o Studio (Puck) continue servindo exclusivamente o conteúdo de `do
 
 ### User Story 3 - Dashboard raiz pronto para Shadcn controlado (Priority: P3)
 
-Limpar o `/dashboard` atual (em `apps/studio/src/app/dashboard`) removendo dependências do Storybook antigo, reinstalar Shadcn apenas após a remoção do CSS genérico e documentar que o novo hub é o único lugar onde Shadcn vive fora do Studio.
+Limpar o `/dashboard` atual (em `domains/studio/src/app/dashboard`) removendo dependências do Storybook antigo, reinstalar Shadcn apenas após a remoção do CSS genérico e documentar que o novo hub é o único lugar onde Shadcn vive fora do Studio.
 
 **Why this priority**: O dashboard é vitrine para stakeholders; precisamos garantir que o CSS antigo não quebre o layout e que a reinstalação do Shadcn siga os guardrails.
 
@@ -63,7 +63,7 @@ Limpar o `/dashboard` atual (em `apps/studio/src/app/dashboard`) removendo depen
 **Acceptance Scenarios**:
 
 1. **Given** o CSS global removido, **When** carrego `/dashboard`, **Then** os widgets renderizam usando tokens/design-system sem conflitos visuais.
-2. **Given** a necessidade de componentes avançados, **When** reinstalo Shadcn no dashboard raiz, **Then** o script de verificação passa e nenhum arquivo de `domains/*` ou `apps/studio` fora do dashboard referencia Shadcn.
+2. **Given** a necessidade de componentes avançados, **When** reinstalo Shadcn no dashboard raiz, **Then** o script de verificação passa e nenhum arquivo de `domains/*` ou `domains/studio` fora do dashboard referencia Shadcn.
 
 ---
 
@@ -86,10 +86,10 @@ Constitution alignment: call out which `@prototipo/design-system` components, to
 
 ### Functional Requirements
 
-- **FR-001 (Hub Structure)**: Storybook deve residir em um único pacote sob `apps/experience-hub/storybook` (nome final confirmado no plan.md) e só carregar stories vinculadas a `domains/*`.
-- **FR-002 (CSS Isolation)**: Remover o CSS global do Storybook antigo para que `/dashboard` em `apps/studio` não receba estilos inesperados.
+- **FR-001 (Hub Structure)**: Storybook deve residir em um único pacote sob `domains/storybook` (nome final confirmado no plan.md) e só carregar stories vinculadas a `domains/*`.
+- **FR-002 (CSS Isolation)**: Remover o CSS global do Storybook antigo para que `/dashboard` em `domains/studio` não receba estilos inesperados.
 - **FR-003 (Docs Sync)**: Atualizar `domains/{domain}/journeys/{journey}/{README,links,notas}.md` e `domains/README.md` para apontar para o novo hub e slugs correto no Studio.
-- **FR-004 (Studio Integrity)**: `apps/studio/src/app/[[...slug]]` deve continuar lendo apenas dados de `domains/*` e manter "localStorage JSON" em sincronia com as journeys.
+- **FR-004 (Studio Integrity)**: `domains/studio/src/app/[[...slug]]` deve continuar lendo apenas dados de `domains/*` e manter "localStorage JSON" em sincronia com as journeys.
 - **FR-005 (Experience Hub Scripts)**: Adicionar scripts dedicados (`pnpm dev:hub`, `pnpm build:hub`) e documentar no README principal como executar o novo pacote.
 - **FR-006 (Design System Guardrail)**: UI fora do dashboard raiz não pode usar Shadcn; qualquer uso deve ser restrito ao hub/dash e validado com `pnpm check:shadcn`.
 - **FR-007 (Observabilidade)**: Caso haja alteração em `/api/dashboard/*` ou `/api/health`, atualizar interfaces TypeScript e `docs/health-metrics-widgets.md`.

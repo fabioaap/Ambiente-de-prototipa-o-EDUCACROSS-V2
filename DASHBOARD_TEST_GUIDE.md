@@ -291,7 +291,7 @@ pnpm lint --fix
 ### API retorna erro
 ```bash
 # Verificar mock data em:
-# apps/admin/src/app/api/dashboard/summary/route.ts
+# domains/admin/src/app/api/dashboard/summary/route.ts
 
 # Testar curl
 curl http://localhost:3000/api/dashboard/summary

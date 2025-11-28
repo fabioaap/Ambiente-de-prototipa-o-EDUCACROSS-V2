@@ -12,7 +12,7 @@ Os Health Metrics Widgets fornecem visualização de KPIs de saúde do sistema n
 ### Componentes
 
 ```
-apps/studio/src/
+domains/studio/src/
 ├── components/widgets/
 │   ├── HealthMetricsWidgets.tsx     # Componentes de widget KPI e painel
 │   └── HealthMetricsWidgets.module.css
@@ -221,7 +221,7 @@ const { metrics, loading, error, refetch } = useHealthMetricsError();
 
 ## Storybook
 
-As stories estão disponíveis em `apps/storybook/src/stories/HealthMetricsWidgets.stories.tsx`:
+As stories estão disponíveis em `domains/storybook/src/stories/HealthMetricsWidgets.stories.tsx`:
 
 - **UptimeSuccess/Warning/Error**: Estados do widget de uptime
 - **LatencySuccess/Warning/Error**: Estados do widget de latência
@@ -234,7 +234,7 @@ As stories estão disponíveis em `apps/storybook/src/stories/HealthMetricsWidge
 
 ## Testes
 
-Testes unitários em `apps/studio/src/__tests__/`:
+Testes unitários em `domains/studio/src/__tests__/`:
 
 - `metrics-formatter.test.ts`: Testes dos utilitários de formatação
 - `metrics-export.test.ts`: Testes do hook de exportação
@@ -246,7 +246,7 @@ pnpm --filter studio test
 
 ## Integração na Página
 
-O painel está integrado na página de Dashboard (`apps/studio/src/app/dashboard/page.tsx`):
+O painel está integrado na página de Dashboard (`domains/studio/src/app/dashboard/page.tsx`):
 
 ```tsx
 import { HealthMetricsPanel } from '@/components/widgets/HealthMetricsWidgets';

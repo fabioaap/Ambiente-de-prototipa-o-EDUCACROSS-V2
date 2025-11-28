@@ -62,8 +62,8 @@ CRITÉRIO DE SUCESSO:
 
 REFERÊNCIAS:
 - Design System: packages/design-system/src/components/
-- Storybook: apps/storybook/src/stories/
-- Puck Config: apps/studio/src/config/puck.config.tsx
+- Storybook: domains/storybook/src/stories/
+- Puck Config: domains/studio/src/config/puck.config.tsx
 - Tokens: packages/tokens/src/tokens.json
 - Documentação DropZone: docs/puck-zones-implementation.md (para contexto de #59)
 

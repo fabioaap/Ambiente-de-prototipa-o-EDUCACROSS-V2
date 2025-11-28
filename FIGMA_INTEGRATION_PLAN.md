@@ -46,7 +46,7 @@ Total: **13 componentes** com **31+ stories** = Pronto para exportação
 │                     EDUCACROSS Project                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  apps/storybook/                                               │
+│  domains/storybook/                                               │
 │  ├─ Button.stories.tsx (5 variantes)                           │
 │  ├─ Card.stories.tsx (3 variantes)                             │
 │  └─ ... (31+ total)                                            │
@@ -155,7 +155,7 @@ EOF
 
 #### 3.1 Instalar Addon no Storybook
 ```bash
-cd apps/storybook
+cd domains/storybook
 
 # Instalar dependência do addon
 pnpm add -D @figma-sync-engine/storybook-addon-export
@@ -178,7 +178,7 @@ export default config;
 
 #### 3.3 Validar Instalação
 ```bash
-cd apps/storybook
+cd domains/storybook
 pnpm dev:storybook
 
 # Verificar:
@@ -193,7 +193,7 @@ pnpm dev:storybook
 
 #### 4.1 Iniciar Storybook
 ```bash
-cd apps/storybook
+cd domains/storybook
 pnpm dev:storybook
 # Acessa: http://localhost:6006
 ```
@@ -249,7 +249,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'apps/storybook/**'
+      - 'domains/storybook/**'
       - 'packages/design-system/**'
 
 jobs:
@@ -293,7 +293,7 @@ jobs:
 # Workflow: Criar Componente + Exportar para Figma
 
 1. Implementar componente em `packages/design-system/`
-2. Criar stories em `apps/storybook/src/stories/`
+2. Criar stories em `domains/storybook/src/stories/`
 3. Rodar: `pnpm dev:storybook`
 4. Testar visualmente no Storybook
 5. Clicar "Export to Figma" no painel

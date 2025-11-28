@@ -27,8 +27,8 @@
 **5 Tarefas Completadas** (T101–T105):
 
 1. ✅ **T101** – Migração de Storybook completa
-   - De: `apps/storybook/`
-   - Para: `apps/experience-hub/storybook/`
+   - De: `domains/storybook/`
+   - Para: `domains/storybook/`
    - Arquivos: `.storybook/`, `src/`, `package.json`, config files
 
 2. ✅ **T102** – Configuração Storybook validada
@@ -41,7 +41,7 @@
    - `pnpm-workspace.yaml` reconfigurado
 
 4. ✅ **T104** – Storybook legado removido
-   - `apps/storybook` deletado
+   - `domains/storybook` deletado
    - Nenhum conflito de CSS global
 
 5. ✅ **T105** – Validação completa
@@ -108,7 +108,7 @@ apps/
 cat PHASE3_EXECUTION_PLAN.md
 
 # Ou comece direto
-grep -r "apps/storybook" domains/ || echo "✅ Clean"
+grep -r "domains/storybook" domains/ || echo "✅ Clean"
 pnpm check:shadcn
 ```
 
@@ -159,9 +159,9 @@ pnpm build 2>&1 | head -50
 + apps/experience-hub/                    (novo dir)
   + apps/experience-hub/README.md         (novo)
   + apps/experience-hub/package.json      (novo)
-  + apps/experience-hub/storybook/        (migrado)
+  + domains/storybook/        (migrado)
 
-- apps/storybook/                         (removido)
+- domains/storybook/                         (removido)
 
 ~ package.json                            (scripts atualizados)
 ~ pnpm-workspace.yaml                     (config atualizado)
@@ -196,7 +196,7 @@ pnpm build 2>&1 | head -50
 | Conflito CSS global | Verificação manual + teste build | ✅ Mitigado |
 | Importações circulares | Type-check forçado | ✅ Mitigado |
 | Referências hardcoded | Grep search + manual review | ✅ Mitigado |
-| Workspace duplicado | Remoção limpa de `apps/storybook` | ✅ Mitigado |
+| Workspace duplicado | Remoção limpa de `domains/storybook` | ✅ Mitigado |
 | Break em dev servers | Teste de `dev:hub` e `dev:studio` | ✅ Mitigado |
 
 ---

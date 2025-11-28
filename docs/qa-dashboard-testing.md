@@ -423,7 +423,7 @@ Qualquer contexto relevante
 - `docs/c2-implementation.md` - Implementação da Sidebar
 - `docs/backlog.md` - Roadmap do projeto
 - `docs/accessibility-audit.md` - Auditoria de acessibilidade
-- `apps/studio/src/app/api/pages/README.md` - Documentação da API
+- `domains/studio/src/app/api/pages/README.md` - Documentação da API
 
 ### Links Úteis
 - [Puck Documentation](https://puckeditor.com/docs)

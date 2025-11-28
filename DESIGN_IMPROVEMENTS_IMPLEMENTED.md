@@ -2,7 +2,7 @@
 
 **Data**: 27 de novembro de 2025  
 **Status**: ✅ IMPLEMENTADO & VALIDADO  
-**Arquivo**: `apps/admin/src/app/dashboard/page.tsx`
+**Arquivo**: `domains/admin/src/app/dashboard/page.tsx`
 
 ---
 
@@ -24,7 +24,7 @@ Implementadas as 3 melhorias de **Priority 1** da critique de design:
 
 ### 1️⃣ Redução de Information Density no Header
 
-**Arquivo**: `apps/admin/src/app/dashboard/page.tsx` (linhas 354-365)
+**Arquivo**: `domains/admin/src/app/dashboard/page.tsx` (linhas 354-365)
 
 ```tsx
 // ANTES
@@ -48,7 +48,7 @@ Implementadas as 3 melhorias de **Priority 1** da critique de design:
 
 ### 2️⃣ Aumentado Spacing em Health Metrics
 
-**Arquivo**: `apps/admin/src/app/dashboard/page.tsx` (linhas 413-415)
+**Arquivo**: `domains/admin/src/app/dashboard/page.tsx` (linhas 413-415)
 
 ```tsx
 // ANTES
@@ -76,7 +76,7 @@ Implementadas as 3 melhorias de **Priority 1** da critique de design:
 
 ### 3️⃣ Responsive Table → Card Layout
 
-**Arquivo**: `apps/admin/src/app/dashboard/page.tsx` (linhas 510-567)
+**Arquivo**: `domains/admin/src/app/dashboard/page.tsx` (linhas 510-567)
 
 #### Novo componente `PageCard`:
 
@@ -147,7 +147,7 @@ function PageCard({ page }: { page: SummaryData['recentPages'][number] }) {
 
 ### 4️⃣ BONUS: Melhorado Quick Links Section
 
-**Arquivo**: `apps/admin/src/app/dashboard/page.tsx` (linhas 470-483)
+**Arquivo**: `domains/admin/src/app/dashboard/page.tsx` (linhas 470-483)
 
 ```tsx
 // ANTES

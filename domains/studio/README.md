@@ -10,7 +10,7 @@ Aplicação Next.js com Puck integrado para prototipação visual.
 - **Componentes do Design System**: Integração completa com `@prototipo/design-system`
 - **Dashboard API**: Endpoints para métricas de saúde e KPIs do sprint
 
-> **Política de componentes**: Somente `apps/studio/src/app/studio` e `apps/studio/src/app/dashboard` podem importar `@/components/ui/*` (shadcn). Qualquer outra rota ou app deve usar apenas o Design System nativo.
+> **Política de componentes**: Somente `domains/studio/src/app/studio` e `domains/studio/src/app/dashboard` podem importar `@/components/ui/*` (shadcn). Qualquer outra rota ou app deve usar apenas o Design System nativo.
 
 ## Navegação
 

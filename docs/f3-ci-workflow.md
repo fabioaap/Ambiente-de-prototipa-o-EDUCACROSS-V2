@@ -34,7 +34,7 @@ O workflow executa dois jobs em sequência:
 
 ### Artefatos
 - **Nome**: `storybook-static`
-- **Caminho**: `apps/storybook/storybook-static`
+- **Caminho**: `domains/storybook/storybook-static`
 - **Retenção**: 7 dias
 - **Upload**: Sempre (mesmo se build falhar, para análise)
 
@@ -64,7 +64,7 @@ pnpm lint
 pnpm build
 
 # 3. Verificar artifacts
-ls -la apps/storybook/storybook-static/
+ls -la domains/storybook/storybook-static/
 ```
 
 ## Próximos Passos (Sprint 3+)

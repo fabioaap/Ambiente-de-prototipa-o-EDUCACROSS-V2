@@ -167,7 +167,7 @@ This is why you should NOT import DropZone directly - it only exists client-side
 Build succeeds with proper zones implementation:
 
 ```bash
-cd apps/studio
+cd domains/studio
 pnpm build
 # ✓ Compiled successfully
 # ✓ Type checking passed
@@ -176,9 +176,9 @@ pnpm build
 
 ## References
 
-- Puck Config: `apps/studio/src/config/puck.config.tsx`
-- Example Data: `apps/studio/data/pages/dashboard.json`
-- Render Component: `apps/studio/src/app/[[...slug]]/page.tsx`
+- Puck Config: `domains/studio/src/config/puck.config.tsx`
+- Example Data: `domains/studio/data/pages/dashboard.json`
+- Render Component: `domains/studio/src/app/[[...slug]]/page.tsx`
 - Puck Docs: https://puckeditor.com/docs/api-reference/configuration/component-config
 
 ## Troubleshooting

@@ -69,7 +69,7 @@ Este documento contém **tudo o que você precisa**:
 **Desbloqueia**: #54, #55
 
 **O que fazer**:
-- Criar `apps/studio/src/app/api/pages/route.ts`
+- Criar `domains/studio/src/app/api/pages/route.ts`
 - Implementar `GET /api/pages`
 - Response: JSON com `{success, data, error, total, timestamp}`
 - Suportar query params: `?limit=10&offset=0`
@@ -86,7 +86,7 @@ Este documento contém **tudo o que você precisa**:
 **Desbloqueia**: #55
 
 **O que fazer**:
-- Criar `apps/studio/src/app/studio/pages/page.tsx`
+- Criar `domains/studio/src/app/studio/pages/page.tsx`
 - Consumir `GET /api/pages` (de #53)
 - Exibir tabela/grid com: thumbnail, título, slug, data, ações
 - Usar componentes DS: Card, Button, Text, Badge

@@ -14,7 +14,7 @@ Issue: **D2 - Storybook: Addon A11y e validações**
 
 ### 1. Configuração Global do Addon A11y
 
-**Arquivo**: `apps/storybook/.storybook/preview.ts`
+**Arquivo**: `domains/storybook/.storybook/preview.ts`
 
 Adicionada configuração global de acessibilidade:
 - **Regras habilitadas**: color-contrast, label, button-name
@@ -23,7 +23,7 @@ Adicionada configuração global de acessibilidade:
 
 ### 2. Stories de Exemplo de Acessibilidade
 
-**Arquivo**: `apps/storybook/src/stories/Accessibility.stories.tsx`
+**Arquivo**: `domains/storybook/src/stories/Accessibility.stories.tsx`
 
 Criadas 8 stories demonstrando:
 
@@ -98,14 +98,14 @@ pnpm dev:storybook
 
 ## 📁 Arquivos Modificados
 
-- `apps/storybook/.storybook/preview.ts` - Configuração global do a11y
-- `apps/storybook/README.md` - Documentação atualizada
+- `domains/storybook/.storybook/preview.ts` - Configuração global do a11y
+- `domains/storybook/README.md` - Documentação atualizada
 
 ## 📄 Arquivos Criados
 
-- `apps/storybook/ACESSIBILIDADE.md` - Documentação técnica completa
-- `apps/storybook/GUIA-VISUAL-A11Y.md` - Guia visual passo a passo
-- `apps/storybook/src/stories/Accessibility.stories.tsx` - Stories de exemplo
+- `domains/storybook/ACESSIBILIDADE.md` - Documentação técnica completa
+- `domains/storybook/GUIA-VISUAL-A11Y.md` - Guia visual passo a passo
+- `domains/storybook/src/stories/Accessibility.stories.tsx` - Stories de exemplo
 
 ## 🎯 Como Usar
 

@@ -49,8 +49,8 @@ Sprint 2 começou focando nas issues P1 de **maior impacto imediato**. Implement
   - Comportamento de grupos (MultipleCheckboxes)
 
 **Arquivos modificados:**
-- `apps/storybook/src/stories/Input.stories.tsx`
-- `apps/storybook/src/stories/Checkbox.stories.tsx`
+- `domains/storybook/src/stories/Input.stories.tsx`
+- `domains/storybook/src/stories/Checkbox.stories.tsx`
 
 **Impacto:**
 - Interações visíveis no Storybook

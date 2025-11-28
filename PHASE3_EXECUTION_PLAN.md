@@ -35,7 +35,7 @@ Atualizar documentação global que aponta para jornadas e hub.
 
 1. **`domains/README.md`**
    - [ ] Adicionar seção "Experience Hub Integration" explicando como jornadas se conectam ao hub
-   - [ ] Verificar se há links hardcoded para `apps/storybook` e atualizar para `experience-hub`
+   - [ ] Verificar se há links hardcoded para `domains/storybook` e atualizar para `experience-hub`
    - [ ] Exemplo de alteração:
      ```markdown
      ## Experience Hub
@@ -50,14 +50,14 @@ Atualizar documentação global que aponta para jornadas e hub.
    - [ ] Garantir que o índice está em sync com estrutura atual
 
 3. **`PROGRESS_DASHBOARD.md`**
-   - [ ] Atualizar seção "Experience Hub Status" com novo layout (`apps/experience-hub/storybook`)
-   - [ ] Registrar que Storybook agora está em `apps/experience-hub/storybook/storybook-static`
+   - [ ] Atualizar seção "Experience Hub Status" com novo layout (`domains/storybook`)
+   - [ ] Registrar que Storybook agora está em `domains/storybook/storybook-static`
 
 ### Validação
 
 ```bash
 # Checar se há referências legadas
-grep -r "apps/storybook" domains/ || echo "✅ Nenhuma referência legacy"
+grep -r "domains/storybook" domains/ || echo "✅ Nenhuma referência legacy"
 grep -r "experience-hub" domains/ | wc -l
 # Esperar: >5 referências
 ```
@@ -134,8 +134,8 @@ Cada jornada tem:
 Para **cada jornada**, validar:
 
 - [ ] README.md inclui link "Experience Hub" ou "Storybook"
-- [ ] links.md não tem URLs hardcoded para `apps/storybook` ou `localhost:6006`
-- [ ] notas.md sem referências a paths legados (`apps/storybook/**`)
+- [ ] links.md não tem URLs hardcoded para `domains/storybook` ou `localhost:6006`
+- [ ] notas.md sem referências a paths legados (`domains/storybook/**`)
 - [ ] Componentes mencionados existem em `@prototipo/design-system`
 - [ ] Studio slug correto (ex: `/dashboard` mapeado para jornada certa)
 
@@ -149,24 +149,24 @@ Garantir que Studio não mais depende do Storybook antigo e está usando design-
 
 ### Arquivos-Alvo
 
-1. **`apps/studio/src/config/puck.config.tsx`**
-   - [ ] Procurar por imports que referenciem `apps/storybook` ou `../../../apps/storybook`
+1. **`domains/studio/src/config/puck.config.tsx`**
+   - [ ] Procurar por imports que referenciem `domains/storybook` ou `../../../domains/storybook`
    - [ ] Esperado: NÃO deve haver nenhum import do Storybook; apenas do design-system
    - [ ] Comando:
      ```bash
-     grep -n "storybook\|Storybook" apps/studio/src/config/puck.config.tsx || echo "✅ Clean"
+     grep -n "storybook\|Storybook" domains/studio/src/config/puck.config.tsx || echo "✅ Clean"
      ```
 
-2. **`apps/studio/src/app/[[...slug]]/page.tsx`**
+2. **`domains/studio/src/app/[[...slug]]/page.tsx`**
    - [ ] Mesma validação
    - [ ] Este arquivo rota para jornadas; deve consumir apenas de `domains/`
 
-3. **`apps/studio/src/app/dashboard/`** (Componentes do dashboard)
+3. **`domains/studio/src/app/dashboard/`** (Componentes do dashboard)
    - [ ] Procurar por imports de Storybook
    - [ ] Procurar por imports diretos de `@shadcn/ui` (ERRO: só permitido em dashboard!)
    - [ ] Comando:
      ```bash
-     find apps/studio/src/app/dashboard -name "*.tsx" -o -name "*.ts" | xargs grep -l "@shadcn/ui" | head -5
+     find domains/studio/src/app/dashboard -name "*.tsx" -o -name "*.ts" | xargs grep -l "@shadcn/ui" | head -5
      # Esperado: Pode ter alguns (dashboard é permitido); mas NÃO deve ter "storybook"
      ```
 
@@ -184,7 +184,7 @@ pnpm build:studio 2>&1 | tail -20
 
 ### Descrição
 
-Rodar validação de guardrails para garantir que Shadcn está restrito a `apps/studio/src/app/{studio,dashboard}/`.
+Rodar validação de guardrails para garantir que Shadcn está restrito a `domains/studio/src/app/{studio,dashboard}/`.
 
 ### Comando Principal
 
@@ -203,14 +203,14 @@ Se `check:shadcn` falhar, debugar manualmente:
 
 ```bash
 # Buscar todos os imports de @shadcn/ui
-grep -r "@shadcn/ui" apps/studio/src/app --include="*.tsx" --include="*.ts"
+grep -r "@shadcn/ui" domains/studio/src/app --include="*.tsx" --include="*.ts"
 
 # Esperado: Apenas em
-# - apps/studio/src/app/studio/...
-# - apps/studio/src/app/dashboard/...
+# - domains/studio/src/app/studio/...
+# - domains/studio/src/app/dashboard/...
 
 # Não esperado em:
-# - apps/studio/src/app/journeys/... (não existe mais)
+# - domains/studio/src/app/journeys/... (não existe mais)
 # - domains/...
 # - apps/experience-hub/...
 ```
@@ -234,7 +234,7 @@ grep -r "@shadcn/ui" apps/studio/src/app --include="*.tsx" --include="*.ts"
 - [ ] BackOffice/revisao-questoes – Idem
 - [ ] FrontOffice/onboarding – Idem
 - [ ] Game/game-hub – Idem
-- [ ] Nenhuma referência a `apps/storybook` em nenhuma jornada
+- [ ] Nenhuma referência a `domains/storybook` em nenhuma jornada
 
 ### T203: Studio
 - [ ] `puck.config.tsx` – Sem imports de Storybook
@@ -251,9 +251,9 @@ grep -r "@shadcn/ui" apps/studio/src/app --include="*.tsx" --include="*.ts"
 
 ## Notas & Troubleshooting
 
-### Se encontrar referência a `apps/storybook`
+### Se encontrar referência a `domains/storybook`
 
-1. Identificar arquivo: `grep -r "apps/storybook" . --include="*.md" --include="*.tsx" --include="*.ts"`
+1. Identificar arquivo: `grep -r "domains/storybook" . --include="*.md" --include="*.tsx" --include="*.ts"`
 2. Editar arquivo e substituir por:
    - Se for URL: `https://experience-hub.vercel.app/`
    - Se for import path: `@prototipo/design-system`

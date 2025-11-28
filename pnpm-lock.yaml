@@ -28,7 +28,7 @@ importers:
         specifier: ^5.6.3
         version: 5.9.3
 
-  apps/admin:
+  domains/admin:
     dependencies:
       '@radix-ui/react-primitive':
         specifier: ^2.1.4

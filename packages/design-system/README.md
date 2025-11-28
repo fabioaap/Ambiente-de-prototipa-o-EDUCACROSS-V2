@@ -4,7 +4,7 @@ Biblioteca de componentes React para o sistema de prototipação EDUCACROSS.
 
 ## Política de Uso
 
-- Componentes deste pacote são a **única** fonte autorizada para docs, domains e demais apps fora de `apps/studio/src/app/(dashboard|studio)`.
+- Componentes deste pacote são a **única** fonte autorizada para docs, domains e demais apps fora de `domains/studio/src/app/(dashboard|studio)`.
 - Shadcn UI (`@/components/ui/*`) permanece restrito às rotas do Studio e do Dashboard para permitir experimentação sem comprometer jornadas documentadas.
 - Se precisar de uma variação que hoje só existe no shadcn, abra PR adicionando o componente aqui antes de usá-lo em `domains/**` ou Storybook.
 
@@ -97,7 +97,7 @@ Todos os componentes seguem as diretrizes WCAG 2.1 AA e incluem:
 - **Contraste de Cores**: Mínimo 4.5:1 para texto normal, 3:1 para componentes
 - **Mensagens de Erro**: Anunciadas automaticamente com `role="alert"`
 
-Para mais detalhes, consulte a [documentação de acessibilidade no Storybook](../../apps/storybook/src/stories/Accessibility.mdx).
+Para mais detalhes, consulte a [documentação de acessibilidade no Storybook](../../domains/storybook/src/stories/Accessibility.mdx).
 
 ### Checklist de Acessibilidade
 

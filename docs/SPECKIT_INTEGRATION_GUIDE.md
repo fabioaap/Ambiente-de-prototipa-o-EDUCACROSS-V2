@@ -172,7 +172,7 @@ for (const req of spec.requirements) {
   
   // Exemplo: Verificar se arquivo existe para #53
   if (req.id === 'spec-53') {
-    const apiFile = 'apps/studio/src/app/api/pages/route.ts';
+    const apiFile = 'domains/studio/src/app/api/pages/route.ts';
     if (!fs.existsSync(apiFile)) {
       results.issues.push(`${req.id}: Arquivo ${apiFile} não encontrado`);
       passed = false;
@@ -187,7 +187,7 @@ for (const req of spec.requirements) {
   
   // Exemplo: Verificar se página existe para #54
   if (req.id === 'spec-54') {
-    const uiFile = 'apps/studio/src/app/studio/pages/page.tsx';
+    const uiFile = 'domains/studio/src/app/studio/pages/page.tsx';
     if (!fs.existsSync(uiFile)) {
       results.issues.push(`${req.id}: Arquivo ${uiFile} não encontrado`);
       passed = false;
@@ -333,7 +333,7 @@ git checkout -b feature/c53-dashboard-api
 cat .github/specs/sprint3.yml | grep -A 15 "spec-53"
 
 # 3. Implementar API conforme criteria
-# ... escrever apps/studio/src/app/api/pages/route.ts ...
+# ... escrever domains/studio/src/app/api/pages/route.ts ...
 
 # 4. Validar localmente (ANTES de push)
 node scripts/validate-specs.js

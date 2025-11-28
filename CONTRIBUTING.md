@@ -19,14 +19,10 @@ Obrigado por seu interesse em contribuir! Este guia ajudará você a entender co
 
 ```
 .
-├── apps/                      # Aplicações (Next.js, Storybook)
+├── domains/                   # Aplicações e Jornadas
 │   ├── studio/               # Editor visual (Puck + Next.js)
 │   ├── storybook/            # Documentação de componentes
-│   └── data/pages/           # Páginas persistidas do Studio
-├── packages/                  # Pacotes compartilhados
-│   ├── tokens/               # Design tokens (cores, tipografia, etc.)
-│   └── design-system/        # Componentes React
-├── domains/                   # Jornadas de negócio
+│   ├── admin/                # App administrativo
 │   ├── BackOffice/           # Jornadas administrativas
 │   ├── FrontOffice/          # Jornadas de usuário
 │   └── Game/                 # Jornadas gamificadas
@@ -184,7 +180,7 @@ Use o template:
 # 1. Acessar http://localhost:3000/studio
 # 2. Criar nova página com slug: {dominio}/{jornada}/{pagina}
 # 3. Usar componentes do Design System
-# 4. Salvar - arquivo criado em apps/studio/data/pages/
+# 4. Salvar - arquivo criado em domains/studio/data/pages/
 ```
 
 #### 4. Adicionar ao Índice
@@ -268,14 +264,14 @@ export type { BadgeProps } from './components/Badge/Badge';
 
 ```bash
 # Criar story
-touch apps/storybook/src/stories/Badge.stories.tsx
+touch domains/storybook/src/stories/Badge.stories.tsx
 ```
 
 Ver seção [Stories no Storybook](#stories-no-storybook) abaixo para template.
 
 #### 5. Adicionar ao Puck (Opcional)
 
-Se o componente será usado no Studio, adicionar em `apps/studio/src/config/puck.config.tsx`:
+Se o componente será usado no Studio, adicionar em `domains/studio/src/config/puck.config.tsx`:
 
 ```tsx
 export const puckConfig: Config = {
@@ -322,8 +318,8 @@ pnpm lint
 ```bash
 git add packages/design-system/src/components/Badge
 git add packages/design-system/src/index.ts
-git add apps/storybook/src/stories/Badge.stories.tsx
-git add apps/studio/src/config/puck.config.tsx  # se aplicável
+git add domains/storybook/src/stories/Badge.stories.tsx
+git add domains/studio/src/config/puck.config.tsx  # se aplicável
 git commit -m "feat(design-system): adicionar componente Badge"
 ```
 
@@ -538,7 +534,7 @@ Closes #123
 ## 🆘 Precisa de Ajuda?
 
 - 📖 Consulte o [Backlog](docs/backlog.md)
-- 🎨 Veja exemplos em [stories](apps/storybook/src/stories)
+- 🎨 Veja exemplos em [stories](domains/storybook/src/stories)
 - 📁 Explore [jornadas existentes](domains/)
 - 💬 Abra uma issue com perguntas
 
