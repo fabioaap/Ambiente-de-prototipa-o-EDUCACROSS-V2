@@ -50,15 +50,15 @@
 
 ### Tests for User Story 1
 
-- [ ] T010 [P] [US1] Add contract test `code-to-figma/figma-mcp-server/tests/tokenSet.contract.test.ts` validating the Zod schema against fixture payloads.
-- [ ] T011 [P] [US1] Create integration test `tests/getDesignTokens.integration.test.ts` that stubs Figma API responses and asserts the tool writes the correct `packages/tokens/src/tokens.json` diff.
+- [X] T010 [P] [US1] Add contract test `code-to-figma/figma-mcp-server/tests/tokenSet.contract.test.ts` validating the Zod schema against fixture payloads.
+- [X] T011 [P] [US1] Create integration test `tests/getDesignTokens.integration.test.ts` that stubs Figma API responses and asserts the tool writes the correct `packages/tokens/src/tokens.json` diff.
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Define `tokenSetSchema` + layer-to-token mappers in `src/schemas/tokenSet.ts`, covering colors, typography, spacing, and metadata fields.
-- [ ] T013 [US1] Implement `tools/getDesignTokens.ts` to fetch layers via `figmaClient`, normalize values, and emit the schema-safe payload.
-- [ ] T014 [US1] Register the `get_design_tokens` tool within `src/index.ts` so the STDIO server exposes it to MCP hosts.
-- [ ] T015 [US1] Implement file-writer orchestration (`scripts/writeTokensFromMcp.ts`) that persists JSON under `packages/tokens/src/tokens.json` and triggers `pnpm build:tokens && pnpm build:design-system` per Quickstart.
+- [X] T012 [P] [US1] Define `tokenSetSchema` + layer-to-token mappers in `src/schemas/tokenSet.ts`, covering colors, typography, spacing, and metadata fields.
+- [X] T013 [US1] Implement `tools/getDesignTokens.ts` to fetch layers via `figmaClient`, normalize values, and emit the schema-safe payload.
+- [X] T014 [US1] Register the `get_design_tokens` tool within `src/index.ts` so the STDIO server exposes it to MCP hosts.
+- [X] T015 [US1] Implement file-writer orchestration (`scripts/writeTokensFromMcp.ts`) that persists JSON under `packages/tokens/src/tokens.json` and triggers `pnpm build:tokens && pnpm build:design-system` per Quickstart.
 - [ ] T016 [US1] Update Design System consumption (e.g., `packages/design-system/src/theme/tokens.ts` and Jornada #4800 components) to read the new token keys without manual mapping.
 - [ ] T017 [US1] Refresh Storybook artifacts (`domains/storybook/src/stories/*` and `apps/storybook/.storybook/preview.ts`) so Jornada #4800 stories visually reflect the exported tokens.
 - [ ] T018 [US1] Document the automated token flow in `domains/BackOffice/journeys/exibir-campo-uso/README.md` and `docs/FIGMA_INTEGRATION_PLAN.md`, including the command sequence from Quickstart Section 4.
