@@ -97,9 +97,9 @@ jobs:
           if [ -f "scripts/gen-journeys-index.js" ]; then
             echo "✅ G4: Script exists"
             node scripts/gen-journeys-index.js
-            if [ -f "domains/JOURNEYS.md" ]; then
+            if [ -f "domains/INDEX.md" ]; then
               echo "✅ G4: Index generated successfully"
-              head -20 domains/JOURNEYS.md
+              head -20 domains/INDEX.md
             else
               echo "❌ G4: Index not generated"
               exit 1
