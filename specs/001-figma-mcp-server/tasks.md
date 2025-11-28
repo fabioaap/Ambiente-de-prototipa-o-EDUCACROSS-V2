@@ -32,11 +32,11 @@
 
 **Purpose**: Core infrastructure that every user story depends on. No story work can begin until these are complete.
 
-- [ ] T005 Implement `code-to-figma/figma-mcp-server/src/config.ts` to load/validate env vars with zod and expose safe config helpers.
-- [ ] T006 [P] Create reusable Figma REST client (`services/figmaClient.ts`) using `undici`, covering `/files/{file}/nodes` and `/images` endpoints with retry/backoff.
-- [ ] T007 [P] Wire `@modelcontextprotocol/sdk` STDIO runner (`src/server.ts`) with structured logging to stderr/pino so tool handlers can register safely.
-- [ ] T008 Configure Vitest + test utilities (`figma-mcp-server/vitest.config.ts`, `tests/helpers/mockFigma.ts`) to support contract/integration tests required by FR-009.
-- [ ] T009 Add placeholder entry in `.vscode/mcp.json` pointing to `pnpm mcp:figma:start` so local hosts discover the server once stories land.
+- [X] T005 Implement `code-to-figma/figma-mcp-server/src/config.ts` to load/validate env vars with zod and expose safe config helpers.
+- [X] T006 [P] Create reusable Figma REST client (`services/figmaClient.ts`) using `undici`, covering `/files/{file}/nodes` and `/images` endpoints with retry/backoff.
+- [X] T007 [P] Wire `@modelcontextprotocol/sdk` STDIO runner (`src/server.ts`) with structured logging to stderr/pino so tool handlers can register safely.
+- [X] T008 Configure Vitest + test utilities (`figma-mcp-server/vitest.config.ts`, `tests/helpers/mockFigma.ts`) to support contract/integration tests required by FR-009.
+- [X] T009 Add placeholder entry in `.vscode/mcp.json` pointing to `pnpm mcp:figma:start` so local hosts discover the server once stories land.
 
 **Checkpoint**: After T005–T009, the package boots (even with stub tools) and testing infrastructure exists; user stories may now execute in parallel.
 
