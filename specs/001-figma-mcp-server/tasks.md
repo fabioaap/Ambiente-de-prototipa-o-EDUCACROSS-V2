@@ -59,9 +59,9 @@
 - [X] T013 [US1] Implement `tools/getDesignTokens.ts` to fetch layers via `figmaClient`, normalize values, and emit the schema-safe payload.
 - [X] T014 [US1] Register the `get_design_tokens` tool within `src/index.ts` so the STDIO server exposes it to MCP hosts.
 - [X] T015 [US1] Implement file-writer orchestration (`scripts/writeTokensFromMcp.ts`) that persists JSON under `packages/tokens/src/tokens.json` and triggers `pnpm build:tokens && pnpm build:design-system` per Quickstart.
-- [ ] T016 [US1] Update Design System consumption (e.g., `packages/design-system/src/theme/tokens.ts` and Jornada #4800 components) to read the new token keys without manual mapping.
-- [ ] T017 [US1] Refresh Storybook artifacts (`domains/storybook/src/stories/*` and `apps/storybook/.storybook/preview.ts`) so Jornada #4800 stories visually reflect the exported tokens.
-- [ ] T018 [US1] Document the automated token flow in `domains/BackOffice/journeys/exibir-campo-uso/README.md` and `docs/FIGMA_INTEGRATION_PLAN.md`, including the command sequence from Quickstart Section 4.
+- [X] T016 [US1] Update Design System consumption (e.g., `packages/design-system/src/theme/tokens.ts` and Jornada #4800 components) to read the new token keys without manual mapping.
+- [X] T017 [US1] Refresh Storybook artifacts (`domains/storybook/src/stories/*` and `apps/storybook/.storybook/preview.ts`) so Jornada #4800 stories visually reflect the exported tokens.
+- [X] T018 [US1] Document the automated token flow in `domains/BackOffice/journeys/exibir-campo-uso/README.md` and `docs/FIGMA_INTEGRATION_PLAN.md`, including the command sequence from Quickstart Section 4.
 
 **Checkpoint**: `get_design_tokens` is independently usable, updates propagate through tokens → design-system → Storybook, and documentation reflects the workflow.
 
