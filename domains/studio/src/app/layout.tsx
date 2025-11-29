@@ -4,6 +4,7 @@ import '@prototipo/design-system/index.css';
 import '@measured/puck/puck.css';
 import './globals.css';
 
+import { HydrationErrorObserver } from '@/components/HydrationErrorObserver';
 import { normalizeRootAttributes } from '@/lib/hydration/normalizeRootAttributes';
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html {...rootAttributes.attributes} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground">
+        <HydrationErrorObserver />
         {children}
       </body>
     </html>
