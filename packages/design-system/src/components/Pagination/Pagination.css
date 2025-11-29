@@ -19,7 +19,7 @@
   padding: var(--spacing-2);
   background-color: white;
   border: 1px solid var(--colors-neutral-300);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--borderRadius-md);
   color: var(--colors-neutral-700);
   font-size: var(--font-sizes-sm);
   font-weight: var(--font-weights-medium);
@@ -43,16 +43,16 @@
   min-width: 2.5rem;
 }
 
-.Pagination_pageButton.active {
-  background-color: var(--colors-primary-500);
-  border-color: var(--colors-primary-500);
+.Pagination_pageButton.Pagination_active {
+  background-color: var(--colors-primary-600);
+  border-color: var(--colors-primary-600);
   color: white;
   font-weight: var(--font-weights-semibold);
 }
 
-.Pagination_pageButton.active:hover {
-  background-color: var(--colors-primary-600);
-  border-color: var(--colors-primary-600);
+.Pagination_pageButton.Pagination_active:hover {
+  background-color: var(--colors-primary-700);
+  border-color: var(--colors-primary-700);
 }
 
 .Pagination_icon {

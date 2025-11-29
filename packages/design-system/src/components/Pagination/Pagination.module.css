@@ -19,7 +19,7 @@
   padding: var(--spacing-2);
   background-color: white;
   border: 1px solid var(--colors-neutral-300);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--borderRadius-md);
   color: var(--colors-neutral-700);
   font-size: var(--font-sizes-sm);
   font-weight: var(--font-weights-medium);

@@ -2,7 +2,8 @@
 
 .Card_card {
   background-color: white;
-  border-radius: var(--borderRadius-lg);
+  border-radius: var(--borderRadius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
 }
 
