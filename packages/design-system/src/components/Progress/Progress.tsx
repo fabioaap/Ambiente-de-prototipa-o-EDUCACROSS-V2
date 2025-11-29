@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Progress.module.css';
+import './Progress.css';
 
 export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -57,10 +57,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     const displayLabel = label || `${Math.round(clampedValue)}%`;
 
     const classNames = [
-      styles.progress,
-      styles[variant],
-      styles[size],
-      styles[color],
+      "Progress_progress",
+      `Progress_${variant}`,
+      `Progress_${size}`,
+      `Progress_${color}`,
       className,
     ]
       .filter(Boolean)
@@ -86,14 +86,14 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
           {...props}
         >
           <svg
-            className={styles.circularSvg}
+            className={"Progress_circularSvg"}
             width={svgSize}
             height={svgSize}
             viewBox={`0 0 ${svgSize} ${svgSize}`}
           >
             {/* Background circle */}
             <circle
-              className={styles.circularBackground}
+              className={"Progress_circularBackground"}
               cx={svgSize / 2}
               cy={svgSize / 2}
               r={radius}
@@ -101,7 +101,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             />
             {/* Progress circle */}
             <circle
-              className={styles.circularForeground}
+              className={"Progress_circularForeground"}
               cx={svgSize / 2}
               cy={svgSize / 2}
               r={radius}
@@ -112,7 +112,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             />
           </svg>
           {showLabel && (
-            <span className={styles.circularLabel}>{displayLabel}</span>
+            <span className={"Progress_circularLabel"}>{displayLabel}</span>
           )}
         </div>
       );
@@ -130,13 +130,13 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         aria-label={ariaLabel || 'Progress indicator'}
         {...props}
       >
-        <div className={styles.linearTrack}>
+        <div className={"Progress_linearTrack"}>
           <div
-            className={styles.linearFill}
+            className={"Progress_linearFill"}
             style={{ width: `${clampedValue}%` }}
           />
         </div>
-        {showLabel && <span className={styles.linearLabel}>{displayLabel}</span>}
+        {showLabel && <span className={"Progress_linearLabel"}>{displayLabel}</span>}
       </div>
     );
   }

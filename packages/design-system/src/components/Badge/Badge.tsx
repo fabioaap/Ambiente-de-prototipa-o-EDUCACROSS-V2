@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Badge.module.css';
+import './Badge.css';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Variante visual do badge */
@@ -15,9 +15,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   ({ variant = 'default', size = 'md', className = '', children, ...props }, ref) => {
     const classNames = [
-      styles.badge,
-      styles[variant],
-      styles[size],
+      "Badge_badge",
+      `Badge_${variant}`,
+      `Badge_${size}`,
       className,
     ].filter(Boolean).join(' ');
 

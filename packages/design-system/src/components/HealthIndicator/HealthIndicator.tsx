@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './HealthIndicator.module.css';
+import './HealthIndicator.css';
 
 export type HealthStatus = 'success' | 'warning' | 'error' | 'info';
 
@@ -36,9 +36,9 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
     ref
   ) => {
     const classNames = [
-      styles.healthIndicator,
-      styles[status],
-      styles[size],
+      "HealthIndicator_healthIndicator",
+      `HealthIndicator_${status}`,
+      `HealthIndicator_${size}`,
       className,
     ]
       .filter(Boolean)
@@ -46,15 +46,15 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
 
     const content = (
       <div ref={ref} className={classNames} {...props}>
-        <div className={styles.header}>
-          {icon && <span className={styles.icon}>{icon}</span>}
-          <span className={styles.title}>{title}</span>
+        <div className={"HealthIndicator_header"}>
+          {icon && <span className={"HealthIndicator_icon"}>{icon}</span>}
+          <span className={"HealthIndicator_title"}>{title}</span>
         </div>
-        <div className={styles.content}>
-          <div className={styles.value}>{value}</div>
-          {description && <div className={styles.description}>{description}</div>}
+        <div className={"HealthIndicator_content"}>
+          <div className={"HealthIndicator_value"}>{value}</div>
+          {description && <div className={"HealthIndicator_description"}>{description}</div>}
         </div>
-        <div className={styles.statusIndicator} />
+        <div className={"HealthIndicator_statusIndicator"} />
       </div>
     );
 
@@ -64,7 +64,7 @@ export const HealthIndicator = React.forwardRef<HTMLDivElement, HealthIndicatorP
           href={href} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className={styles.link}
+          className={"HealthIndicator_link"}
           aria-label={`${title}: ${value}. Opens in new tab`}
         >
           {content}

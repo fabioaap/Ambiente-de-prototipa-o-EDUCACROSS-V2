@@ -1,5 +1,22 @@
 import type { Config } from '@measured/puck';
-import { Button, Text, Card, Layout, Badge, Progress } from '@prototipo/design-system';
+import {
+  Button,
+  Text,
+  Card,
+  Layout,
+  Badge,
+  Progress,
+  Sidebar,
+  Breadcrumb,
+  Tabs,
+  PageHeader,
+  ToolbarButtons,
+  ActionButtons,
+  Pagination,
+  DataTable,
+  FilterGroup,
+  Modal,
+} from '@prototipo/design-system';
 import React from 'react';
 
 export type ButtonProps = {
@@ -542,6 +559,227 @@ export const puckConfig: Config = {
           </div>
         );
       },
+    },
+
+    /**
+     * BackOffice Suite - Componentes para interfaces administrativas
+     */
+
+    Sidebar: {
+      fields: {
+        items: {
+          type: 'array',
+          arrayFields: {
+            id: { type: 'text' },
+            label: { type: 'text' },
+            href: { type: 'text' },
+            active: { type: 'radio', options: [{ label: 'Sim', value: true }, { label: 'Não', value: false }] },
+          },
+        },
+        collapsed: {
+          type: 'radio',
+          options: [
+            { label: 'Sim', value: true },
+            { label: 'Não', value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        items: [
+          { id: 'dashboard', label: 'Dashboard', href: '/dashboard', active: true },
+          { id: 'users', label: 'Usuários', href: '/users', active: false },
+        ],
+        collapsed: false,
+      },
+      render: ({ items, collapsed }) => <Sidebar items={items} collapsed={collapsed} />,
+    },
+
+    Breadcrumb: {
+      fields: {
+        items: {
+          type: 'array',
+          arrayFields: {
+            label: { type: 'text' },
+            href: { type: 'text' },
+          },
+        },
+      },
+      defaultProps: {
+        items: [
+          { label: 'Home', href: '/' },
+          { label: 'Página Atual' },
+        ],
+      },
+      render: ({ items }) => <Breadcrumb items={items} />,
+    },
+
+    Tabs: {
+      fields: {
+        tabs: {
+          type: 'array',
+          arrayFields: {
+            id: { type: 'text' },
+            label: { type: 'text' },
+            badge: { type: 'number' },
+          },
+        },
+        defaultValue: { type: 'text' },
+      },
+      defaultProps: {
+        tabs: [
+          { id: 'tab1', label: 'Tab 1' },
+          { id: 'tab2', label: 'Tab 2' },
+        ],
+        defaultValue: 'tab1',
+      },
+      render: ({ tabs, defaultValue }) => (
+        <Tabs tabs={tabs} value={defaultValue} onChange={() => {}} />
+      ),
+    },
+
+    PageHeader: {
+      fields: {
+        title: { type: 'text' },
+        count: { type: 'number' },
+        subtitle: { type: 'text' },
+      },
+      defaultProps: {
+        title: 'Título da Página',
+      },
+      render: ({ title, count, subtitle }) => (
+        <PageHeader title={title} count={count} subtitle={subtitle} />
+      ),
+    },
+
+    DataTable: {
+      fields: {
+        columns: {
+          type: 'array',
+          arrayFields: {
+            key: { type: 'text' },
+            label: { type: 'text' },
+            sortable: { type: 'radio', options: [{ label: 'Sim', value: true }, { label: 'Não', value: false }] },
+          },
+        },
+        striped: {
+          type: 'radio',
+          options: [
+            { label: 'Sim', value: true },
+            { label: 'Não', value: false },
+          ],
+        },
+        hoverable: {
+          type: 'radio',
+          options: [
+            { label: 'Sim', value: true },
+            { label: 'Não', value: false },
+          ],
+        },
+      },
+      defaultProps: {
+        columns: [
+          { key: 'id', label: 'ID', sortable: true },
+          { key: 'name', label: 'Nome', sortable: true },
+        ],
+        data: [],
+        striped: true,
+        hoverable: true,
+      },
+      render: ({ columns, striped, hoverable }) => (
+        <DataTable
+          columns={columns}
+          data={[
+            { id: 1, name: 'Item 1' },
+            { id: 2, name: 'Item 2' },
+          ]}
+          striped={striped}
+          hoverable={hoverable}
+        />
+      ),
+    },
+
+    Pagination: {
+      fields: {
+        currentPage: { type: 'number' },
+        totalPages: { type: 'number' },
+      },
+      defaultProps: {
+        currentPage: 1,
+        totalPages: 10,
+      },
+      render: ({ currentPage, totalPages }) => (
+        <Pagination currentPage={currentPage} totalPages={totalPages} onChange={() => {}} />
+      ),
+    },
+
+    FilterGroup: {
+      fields: {
+        filters: {
+          type: 'array',
+          arrayFields: {
+            id: { type: 'text' },
+            type: { type: 'select', options: [{ label: 'Input', value: 'input' }, { label: 'Select', value: 'select' }] },
+            label: { type: 'text' },
+          },
+        },
+        layout: {
+          type: 'select',
+          options: [
+            { label: 'Horizontal', value: 'horizontal' },
+            { label: 'Vertical', value: 'vertical' },
+            { label: 'Grid', value: 'grid' },
+          ],
+        },
+      },
+      defaultProps: {
+        filters: [
+          { id: 'search', type: 'input', label: 'Buscar' },
+        ],
+        layout: 'horizontal',
+      },
+      render: ({ filters, layout }) => (
+        <FilterGroup filters={filters} values={{}} onChange={() => {}} layout={layout} />
+      ),
+    },
+
+    Modal: {
+      fields: {
+        title: { type: 'text' },
+        size: {
+          type: 'select',
+          options: [
+            { label: 'Pequeno', value: 'small' },
+            { label: 'Médio', value: 'medium' },
+            { label: 'Grande', value: 'large' },
+          ],
+        },
+      },
+      defaultProps: {
+        open: false,
+        title: 'Título do Modal',
+        size: 'medium',
+      },
+      render: ({ title, size, puck, id }) => (
+        <Modal open={false} onClose={() => {}} title={title} size={size}>
+          {puck?.renderDropZone?.({ zone: `${id}:content` })}
+        </Modal>
+      ),
+    },
+
+    ToolbarButtons: {
+      fields: {},
+      defaultProps: {},
+      render: () => (
+        <ToolbarButtons onImport={() => {}} onExport={() => {}} />
+      ),
+    },
+
+    ActionButtons: {
+      fields: {},
+      defaultProps: {},
+      render: () => (
+        <ActionButtons onView={() => {}} onEdit={() => {}} onDelete={() => {}} />
+      ),
     },
   },
 };

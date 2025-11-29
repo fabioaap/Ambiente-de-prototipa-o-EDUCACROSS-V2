@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.module.css';
+import './Button.css';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -41,11 +41,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const classNames = [
-      styles.button,
-      styles[variant],
-      styles[size],
-      fullWidth && styles.fullWidth,
-      disabled && styles.disabled,
+      'Button_button',
+      `Button_${variant}`,
+      `Button_${size}`,
+      fullWidth && 'Button_fullWidth',
+      disabled && 'Button_disabled',
       className,
     ]
       .filter(Boolean)

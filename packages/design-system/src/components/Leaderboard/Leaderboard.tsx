@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Leaderboard.module.css';
+import './Leaderboard.css';
 import { Badge } from '../Badge/Badge';
 
 export interface LeaderboardEntry {
@@ -84,7 +84,7 @@ export const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
         .toUpperCase();
     };
 
-    const classNames = [styles.leaderboard, className].filter(Boolean).join(' ');
+    const classNames = ["Leaderboard_leaderboard", className].filter(Boolean).join(' ');
 
     return (
       <div
@@ -94,20 +94,20 @@ export const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
         aria-label={ariaLabel || 'Leaderboard'}
         {...props}
       >
-        <div className={styles.header} role="rowgroup">
-          <div className={styles.headerRow} role="row">
-            <div className={styles.headerCell} role="columnheader">
+        <div className={"Leaderboard_header"} role="rowgroup">
+          <div className={"Leaderboard_headerRow"} role="row">
+            <div className={"Leaderboard_headerCell"} role="columnheader">
               Pos
             </div>
-            <div className={styles.headerCell} role="columnheader">
+            <div className={"Leaderboard_headerCell"} role="columnheader">
               Usuário
             </div>
-            <div className={styles.headerCell} role="columnheader">
+            <div className={"Leaderboard_headerCell"} role="columnheader">
               Pontuação
             </div>
           </div>
         </div>
-        <div className={styles.body} role="rowgroup">
+        <div className={"Leaderboard_body"} role="rowgroup">
           {sortedEntries.map((entry, index) => {
             const position = index + 1;
             const positionBadge = getPositionBadge(position);
@@ -116,36 +116,36 @@ export const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
             return (
               <div
                 key={entry.id}
-                className={`${styles.row} ${isHighlighted ? styles.highlighted : ''}`}
+                className={`${"Leaderboard_row"} ${isHighlighted ? "Leaderboard_highlighted" : ''}`}
                 role="row"
               >
-                <div className={styles.cell} role="cell">
-                  <span className={styles.position}>
+                <div className={"Leaderboard_cell"} role="cell">
+                  <span className={"Leaderboard_position"}>
                     {positionBadge ? (
-                      <span className={styles.badge} aria-label={`Posição ${position}`}>
+                      <span className={"Leaderboard_badge"} aria-label={`Posição ${position}`}>
                         {positionBadge}
                       </span>
                     ) : (
-                      <span className={styles.positionNumber}>{position}º</span>
+                      <span className={"Leaderboard_positionNumber"}>{position}º</span>
                     )}
                   </span>
                 </div>
-                <div className={styles.cell} role="cell">
-                  <div className={styles.userInfo}>
-                    <div className={styles.avatar}>
+                <div className={"Leaderboard_cell"} role="cell">
+                  <div className={"Leaderboard_userInfo"}>
+                    <div className={"Leaderboard_avatar"}>
                       {entry.avatar ? (
                         <img
                           src={entry.avatar}
                           alt={`Avatar de ${entry.name}`}
-                          className={styles.avatarImage}
+                          className={"Leaderboard_avatarImage"}
                         />
                       ) : (
-                        <span className={styles.avatarInitials}>
+                        <span className={"Leaderboard_avatarInitials"}>
                           {getInitials(entry.name)}
                         </span>
                       )}
                     </div>
-                    <span className={styles.userName}>{entry.name}</span>
+                    <span className={"Leaderboard_userName"}>{entry.name}</span>
                     {entry.badge && (
                       <Badge variant="info" size="sm">
                         {entry.badge}
@@ -153,15 +153,15 @@ export const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
                     )}
                   </div>
                 </div>
-                <div className={styles.cell} role="cell">
-                  <span className={styles.score}>{entry.score.toLocaleString()}</span>
+                <div className={"Leaderboard_cell"} role="cell">
+                  <span className={"Leaderboard_score"}>{entry.score.toLocaleString()}</span>
                 </div>
               </div>
             );
           })}
         </div>
         {entries.length === 0 && (
-          <div className={styles.empty}>
+          <div className={"Leaderboard_empty"}>
             <p>Nenhum resultado disponível</p>
           </div>
         )}

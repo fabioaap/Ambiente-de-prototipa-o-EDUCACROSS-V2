@@ -1,0 +1,71 @@
+.Select_select {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-neutral-900);
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-3) center;
+  padding-right: var(--spacing-10);
+}
+
+.Select_select:hover:not(:disabled) {
+  border-color: var(--color-neutral-400);
+}
+
+.Select_select:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-color: var(--color-primary-500);
+}
+
+.Select_select:disabled {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  cursor: not-allowed;
+}
+
+.Select_select.error {
+  border-color: var(--color-error-500);
+}
+
+.Select_select.error:focus-visible {
+  outline: 2px solid var(--color-error-600);
+  outline-offset: 2px;
+  border-color: var(--color-error-600);
+}
+
+.Select_selectWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.Select_label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-700);
+}
+
+.Select_label.required::after {
+  content: ' *';
+  color: var(--color-error-500);
+}
+
+.Select_helperText {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-600);
+}
+
+.Select_errorText {
+  font-size: var(--font-size-sm);
+  color: var(--color-error-600);
+}

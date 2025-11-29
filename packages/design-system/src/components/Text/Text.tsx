@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Text.module.css';
+import './Text.css';
 
 export interface TextProps {
   /**
@@ -50,11 +50,11 @@ export const Text: React.FC<TextProps> = ({
   children,
 }) => {
   const classNames = [
-    styles.text,
-    styles[`size-${size}`],
-    styles[`weight-${weight}`],
-    styles[`color-${color}`],
-    styles[`align-${align}`],
+    'Text_text',
+    `Text_size-${size}`,
+    `Text_weight-${weight}`,
+    `Text_color-${color}`,
+    `Text_align-${align}`,
     className,
   ]
     .filter(Boolean)

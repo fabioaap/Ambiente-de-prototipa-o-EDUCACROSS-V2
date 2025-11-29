@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Card.module.css';
+import './Card.css';
 
 export interface CardProps {
   /**
@@ -39,36 +39,121 @@ export interface CardProps {
 /**
  * Componente Card - Container com estilização consistente
  */
-export const Card: React.FC<CardProps> = ({
-  variant = 'default',
-  padding = 'md',
-  clickable = false,
-  onClick,
-  role,
-  'aria-label': ariaLabel,
-  className = '',
-  children,
-}) => {
-  const classNames = [
-    styles.card,
-    styles[variant],
-    styles[`padding-${padding}`],
-    clickable && styles.clickable,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({
+    variant = 'default',
+    padding = 'md',
+    clickable = false,
+    onClick,
+    role,
+    'aria-label': ariaLabel,
+    className = '',
+    children,
+  }, ref) => {
+    const classNames = [
+      'Card_card',
+      `Card_${variant}`,
+      `Card_padding-${padding}`,
+      clickable && 'Card_clickable',
+      className,
+    ]
+      .filter(Boolean)
+      .join(' ');
 
-  const Component = clickable ? 'button' : 'div';
+    const Component = clickable ? 'button' : 'div';
 
-  return (
-    <Component 
-      className={classNames} 
-      onClick={onClick}
-      role={role}
-      aria-label={ariaLabel}
-    >
-      {children}
-    </Component>
-  );
-};
+    return (
+      <Component 
+        ref={ref as any}
+        className={classNames} 
+        onClick={onClick}
+        role={role}
+        aria-label={ariaLabel}
+      >
+        {children}
+      </Component>
+    );
+  }
+);
+
+Card.displayName = 'Card';
+
+/**
+ * CardHeader - Cabeçalho do card com espaçamento padrão
+ */
+export const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className = '', ...props }, ref) => (
+  <div
+    ref={ref}
+    className={`Card_cardHeader ${className}`}
+    {...props}
+  />
+));
+
+CardHeader.displayName = 'CardHeader';
+
+/**
+ * CardTitle - Título do card
+ */
+export const CardTitle = React.forwardRef<
+  HTMLHeadingElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className = '', ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={`Card_cardTitle ${className}`}
+    {...props}
+  />
+));
+
+CardTitle.displayName = 'CardTitle';
+
+/**
+ * CardDescription - Descrição do card
+ */
+export const CardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className = '', ...props }, ref) => (
+  <p
+    ref={ref}
+    className={`Card_cardDescription ${className}`}
+    {...props}
+  />
+));
+
+CardDescription.displayName = 'CardDescription';
+
+/**
+ * CardContent - Conteúdo principal do card
+ */
+export const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className = '', ...props }, ref) => (
+  <div
+    ref={ref}
+    className={`Card_cardContent ${className}`}
+    {...props}
+  />
+));
+
+CardContent.displayName = 'CardContent';
+
+/**
+ * CardFooter - Rodapé do card
+ */
+export const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className = '', ...props }, ref) => (
+  <div
+    ref={ref}
+    className={`Card_cardFooter ${className}`}
+    {...props}
+  />
+));
+
+CardFooter.displayName = 'CardFooter';

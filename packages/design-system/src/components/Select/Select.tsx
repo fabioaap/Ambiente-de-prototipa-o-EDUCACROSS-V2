@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Select.module.css';
+import './Select.css';
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
@@ -30,8 +30,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`;
     const selectClassName = [
-      styles.select,
-      error && styles.error,
+      'Select_select',
+      error && 'Select_error',
       className,
     ].filter(Boolean).join(' ');
 
@@ -64,23 +64,23 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     }
 
     return (
-      <div className={styles.selectWrapper} style={{ width: fullWidth ? '100%' : 'auto' }}>
+      <div className="Select_selectWrapper" style={{ width: fullWidth ? '100%' : 'auto' }}>
         {label && (
           <label
             htmlFor={selectId}
-            className={`${styles.label} ${required ? styles.required : ''}`}
+            className={`Select_label ${required ? 'Select_required' : ''}`}
           >
             {label}
           </label>
         )}
         {renderSelect()}
         {errorText && (
-          <span id={`${selectId}-error`} className={styles.errorText} role="alert">
+          <span id={`${selectId}-error`} className="Select_errorText" role="alert">
             {errorText}
           </span>
         )}
         {!errorText && helperText && (
-          <span id={`${selectId}-helper`} className={styles.helperText}>
+          <span id={`${selectId}-helper`} className="Select_helperText">
             {helperText}
           </span>
         )}

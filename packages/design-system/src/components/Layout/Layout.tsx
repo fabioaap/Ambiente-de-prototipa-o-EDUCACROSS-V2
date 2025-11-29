@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Layout.module.css';
+import './Layout.css';
 
 export interface LayoutProps {
   /**
@@ -40,11 +40,11 @@ export const Layout: React.FC<LayoutProps> = ({
   children,
 }) => {
   const classNames = [
-    styles.layout,
-    styles[`max-${maxWidth}`],
-    styles[`px-${paddingX}`],
-    styles[`py-${paddingY}`],
-    centered && styles.centered,
+    'Layout_layout',
+    `Layout_max-${maxWidth}`,
+    `Layout_px-${paddingX}`,
+    `Layout_py-${paddingY}`,
+    centered && 'Layout_centered',
     className,
   ]
     .filter(Boolean)
