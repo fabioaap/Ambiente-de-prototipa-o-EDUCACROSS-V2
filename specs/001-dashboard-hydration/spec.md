@@ -73,7 +73,33 @@ Constitution alignment: alterações concentram-se em `domains/studio/src/app/la
 
 ### Functional Requirements
 
-- **FR-001**: O elemento `<html>` definido em `domains/studio/src/app/layout.tsx` deve produzir uma lista determinística de atributos (lang, data-theme, classes) independente do ambiente cliente, para evitar divergências com atributos injetados por extensões.
+- **FR-001**: O elemento `<html>` definido em `domains/studio/src/app/layout.tsx` deve produzir uma lista determinística de atributos independente do ambiente cliente, para evitar divergências com atributos injetados por extensões.
+  
+  **MANDATORY attributes** (devem sempre estar presentes com valores determinísticos):
+  - `lang="pt-BR"` (ou outra locale do projeto)
+  - `data-theme="light"` (ou valor derivado de configuração estática)
+  - `dir="ltr"` (direção de texto)
+  
+  **OPTIONAL attributes** (podem variar mas não causam mismatch):
+  - `class` (lista de classes CSS aplicadas pelo framework/Tailwind)
+  - `data-build-id` (Next.js build hash)
+  
+  **FORBIDDEN attributes** (nunca devem estar presentes no SSR):
+  - `style` (estilos inline dinâmicos)
+  - Quaisquer `data-*` custom não documentados (ex.: `data-fusion-loaded`, `data-extension-*`)
+  - Event handlers (`onClick`, `onLoad` etc.)
+  
+  **Extension Handling Strategy**:
+  1. **Detect**: Log no console (dev mode) quando atributos não-determinísticos são detectados no `<html>` durante hydration
+  2. **Normalize**: Aplicar `suppressHydrationWarning` apenas no `<html lang data-theme dir>` para permitir extensões injetarem classes sem quebrar React
+  3. **Suppress**: Ignorar atributos `data-*` injetados por extensões (não comparar durante hydration check)
+  4. **Log**: Enviar telemetria com lista de atributos extras detectados para análise futura
+  
+  **Acceptance Criteria**:
+  1. Com extensão "Fusion" ativa: `<html>` pode ter `class="fusion-extension-loaded"` sem gerar warning
+  2. Sem extensão: `<html>` contém apenas atributos MANDATORY + OPTIONAL documentados
+  3. DevTools React Components não mostra erros de hydration na árvore `html > body > ...`
+  4. Teste automatizado: comparar snapshot de atributos `<html>` entre 5 renders consecutivos com/sem extensões - deve ser idêntico exceto classes externas
 - **FR-002**: O layout deve normalizar classes externas — seja filtrando-as antes da renderização ou aplicando `suppressHydrationWarning` apenas no nível `<html>` — garantindo que componentes Shadcn (`Card`, `Badge`, `Progress`, `Button`) continuem obedecendo ao mesmo tree.
 - **FR-003**: `/dashboard` deve registrar via `dashboardLogger` (ou telemetry equivalente) qualquer evento `onRecoverableError` de hidratação, incluindo `serverAttributes`, `clientAttributes` e `correlationId`, sem interromper o usuário final.
 - **FR-004**: Deve existir um teste automatizado (end-to-end ou integração) que falha quando o console contém mensagens de hidratação durante o carregamento do slug `dashboard`.

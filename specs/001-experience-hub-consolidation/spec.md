@@ -95,9 +95,9 @@ Constitution alignment: call out which `@prototipo/design-system` components, to
 - **FR-007 (Observabilidade)**: Caso haja alteração em `/api/dashboard/*` ou `/api/health`, atualizar interfaces TypeScript e `docs/health-metrics-widgets.md`.
 - **FR-008 (Spec/Plan/Tasks Compliance)**: Manter plan.md/spec.md/tasks.md atualizados e anexar `/spec` no PR desta feature.
 
-*Clarificações pendentes*:
+*Decisões tomadas*:
 
-- **FR-009 (Deploy Target)**: NEEDS CLARIFICATION – definir se o Experience Hub terá deploy separado ou se segue a mesma pipeline do Studio/Storybook atuais.
+- **FR-009 (Deploy Target)**: O Experience Hub NÃO terá deploy separado na Phase 1. Ele residirá no mesmo workspace como `domains/storybook` e será executado localmente via `pnpm dev:storybook`. Stakeholders acessarão apenas via desenvolvimento local (localhost:6006) até uma decisão de deploy futuro ser formalizada em spec separado. Justificativa: reduzir overhead de CI/CD e focar em consolidação de journeys primeiro.
 
 ### Key Entities
 
@@ -115,6 +115,10 @@ Constitution alignment: call out which `@prototipo/design-system` components, to
 
 - **SC-001**: `pnpm build` + `pnpm lint` + `pnpm -r type-check` executam sem erros em < 4 minutos após a migração.
 - **SC-002**: `/dashboard` carrega sem `console.error` em menos de 3 segundos no ambiente local mesmo após a consolidação.
-- **SC-003**: 100% dos links listados em `domains/*/journeys/*/links.md` abrem páginas válidas (Studio ou Hub) verificadas manualmente.
+- **SC-003**: 100% dos links listados em `domains/*/journeys/*/links.md` abrem páginas válidas (Studio ou Hub) verificadas manualmente ou via teste automatizado que verifica status 200.
 - **SC-004**: `pnpm check:shadcn` permanece verde e nenhum arquivo fora do dashboard raiz importa `@/components/ui`.
+- **SC-005**: Cobertura de stories no Experience Hub: mínimo 80% dos componentes documentados em `packages/design-system/src/index.ts` possuem stories correspondentes renderizando corretamente em localhost:6006.
+- **SC-006**: Zero vazamento de CSS global: executar `pnpm dev:storybook` e `pnpm dev:studio` simultaneamente, abrir `/dashboard` e verificar via DevTools que nenhum seletor CSS vindo de Storybook afeta os widgets do dashboard (0 regras CSS não-scoped aplicadas aos elementos `.dashboard-*`).
+- **SC-007**: Tempo de startup do Storybook: `pnpm dev:storybook` deve completar em < 15 segundos na primeira execução (cache frio) e < 5 segundos em cache quente, medido via timestamp no log de console.
+- **SC-008**: Documentação atualizada: 100% dos arquivos `domains/*/README.md`, `domains/*/journeys/*/README.md`, e `domains/*/journeys/*/links.md` devem referenciar URLs corretas do novo hub (localhost:6006/...) e slugs do Studio (/pages/...), validado via grep ou link checker automatizado.
 

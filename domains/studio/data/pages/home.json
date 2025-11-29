@@ -30,6 +30,15 @@
           }
         ]
       }
+    },
+    {
+      "type": "Button",
+      "props": {
+        "text": "Click me",
+        "variant": "primary",
+        "size": "md",
+        "id": "Button-851ec5d5-433a-4432-a1af-fd7263115117"
+      }
     }
   ],
   "root": {
@@ -38,6 +47,16 @@
     }
   },
   "zones": {
-    "layout-1:layout-1:content": []
+    "layout-1:layout-1:content": [
+      {
+        "type": "Card",
+        "props": {
+          "variant": "default",
+          "padding": "md",
+          "id": "Card-20e51d18-e904-410b-9fbb-b70d2f029a87"
+        }
+      }
+    ],
+    "Card-20e51d18-e904-410b-9fbb-b70d2f029a87:Card-20e51d18-e904-410b-9fbb-b70d2f029a87:content": []
   }
 }
