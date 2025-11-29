@@ -12,7 +12,7 @@ Permitir que novas versões do Storybook, das jornadas/domínios e dos artefatos
    - Manter branches organizados por jornada/issue (ex.: `feature/jornada-literacia-digitale`).
    - Garantir builds: `pnpm build`, `pnpm lint`, `pnpm -r type-check`, `pnpm test` (se existir).
    - Registrar o estado em `docs/CHANGELOG`, `docs/NOTICE_ENTREGAVEIS.md` e o inventário de Background IP.
-   - Atualizar Storybook (`apps/storybook/`) e `domains/{dominio}/journeys/{jornada}` com histórias e README.
+   - Atualizar Storybook (`domains/storybook/`) e `domains/{dominio}/journeys/{jornada}` com histórias e README.
 
 2. **Pacote de entrega e checklist técnico**
    - Gerar artefatos reutilizáveis:
@@ -26,7 +26,7 @@ Permitir que novas versões do Storybook, das jornadas/domínios e dos artefatos
 
 3. **Migração/Atualização no repo Educacross**
    - Equipes Educacross recebem pacote ZIP, diff ou branch com os seguintes conteúdos:
-     - `apps/storybook/` com histórias e scripts.
+     - `domains/storybook/` com histórias e scripts.
      - `domains/` com jornadas e assets.
      - `packages/design-system/` e `packages/tokens/` com build e README.
    - Fornecer `docs/instrucoes-migracao-educacross.md` com:
@@ -43,7 +43,7 @@ Permitir que novas versões do Storybook, das jornadas/domínios e dos artefatos
 - `docs/minuta-cessao-de-direitos.md`: cláusulas e escopo da cessão.
 - `docs/NOTICE_ENTREGAVEIS.md`: inventário dos diretórios/arquivos cedidos.
 - `docs/INVENTARIO-BACKGROUND-IP.md`: lista do know-how reservado.
-- `apps/storybook/README.md`: instruções de execução e export.
+- `domains/storybook/README.md`: instruções de execução e export.
 - `domains/INDEX.md`: locais e status das jornadas.
 - `docs/checklist-entrega-educacross.md`: comando de migração e validações.
 

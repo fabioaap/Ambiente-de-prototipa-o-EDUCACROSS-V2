@@ -85,7 +85,7 @@ Inicie a execução agora.
 - [x] **#59 Puck Refactor**
   - Status: ✅ CONCLUÍDA (2025-11-24)
   - Ação: Implementado suporte a DropZone usando `puck.renderDropZone()`
-  - Arquivos: `apps/studio/src/config/puck.config.tsx`, `docs/puck-zones-implementation.md`
+  - Arquivos: `domains/studio/src/config/puck.config.tsx`, `docs/puck-zones-implementation.md`
   - Build: ✅ Passou
   - Type-check: ✅ Passou
   - Próximo desbloqueado: #53 (Dashboard API)
@@ -96,7 +96,7 @@ Inicie a execução agora.
   - Arquivos criados:
     - `packages/design-system/src/components/Progress/Progress.tsx`
     - `packages/design-system/src/components/Progress/Progress.module.css`
-    - `apps/storybook/src/stories/Progress.stories.tsx`
+    - `domains/storybook/src/stories/Progress.stories.tsx`
   - Funcionalidades:
     - Variante linear (barra horizontal)
     - Variante circular (SVG-based)
@@ -115,7 +115,7 @@ Inicie a execução agora.
   - Arquivos criados:
     - `packages/design-system/src/components/Leaderboard/Leaderboard.tsx`
     - `packages/design-system/src/components/Leaderboard/Leaderboard.module.css`
-    - `apps/storybook/src/stories/Leaderboard.stories.tsx`
+    - `domains/storybook/src/stories/Leaderboard.stories.tsx`
   - Funcionalidades:
     - Ordenação automática por score
     - Medalhas top 3 (🥇🥈🥉)

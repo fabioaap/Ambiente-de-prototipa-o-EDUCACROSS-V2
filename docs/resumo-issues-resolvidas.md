@@ -81,7 +81,7 @@ Este documento resume todo o trabalho realizado para listar issues pendentes, cr
 #### ✅ D1 - Storybook: Página de Tokens (Visual)
 
 **Implementação:**
-- ✅ `apps/storybook/src/stories/Tokens.mdx`
+- ✅ `domains/storybook/src/stories/Tokens.mdx`
 - ✅ Visualização completa de TODOS os tokens:
   - **Cores**: Primary, Secondary, Neutral, Success, Warning, Error
   - **Tipografia**: Font Families, Sizes, Weights, Line Heights
@@ -251,14 +251,14 @@ pnpm dev:storybook
 ## 🎯 Próximos Passos (Issues P0 Restantes)
 
 ### C1 - Studio: Persistência em Disco
-**Descrição**: Implementar API para salvar/ler páginas em `apps/studio/data/pages/*.json`
+**Descrição**: Implementar API para salvar/ler páginas em `domains/studio/data/pages/*.json`
 
 **Tarefas:**
 - [ ] Criar rota API Next.js em `/api/pages`
 - [ ] Implementar GET (listar/ler páginas)
 - [ ] Implementar POST (criar/atualizar páginas)
 - [ ] Integrar com localStorage existente
-- [ ] Criar diretório `apps/studio/data/pages/`
+- [ ] Criar diretório `domains/studio/data/pages/`
 
 ### E1 - domains/BackOffice: Revisão de Questões
 **Descrição**: Primeira jornada completa com componentes e protótipos

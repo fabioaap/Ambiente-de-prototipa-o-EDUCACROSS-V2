@@ -1,6 +1,6 @@
 # Índice de Jornadas - EDUCACROSS Prototipação
 
-**Última atualização**: 2025-11-20
+**Última atualização**: 2025-11-27
 
 > Este arquivo é gerado automaticamente. Para regenerar, execute: `pnpm gen:journeys`
 
@@ -13,6 +13,7 @@
 ### Jornadas
 
 - **[revisao-questoes](./BackOffice/journeys/revisao-questoes/README.md)** - Jornada prototipada
+- **[exibir-campo-uso](./BackOffice/journeys/exibir-campo-uso/README.md)** - Tarefa #4800: Exibir campo USO (rede) nas listas com filtro
 
 ## FrontOffice
 
@@ -30,8 +31,8 @@
 
 ## 📊 Estatísticas
 
-- **Domínios**: 3
-- **Jornadas**: 1
+- **Domínios**: 4
+- **Jornadas**: 4
 
 ## 🚀 Próximos Passos
 

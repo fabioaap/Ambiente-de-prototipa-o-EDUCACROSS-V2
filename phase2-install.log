@@ -1,0 +1,25 @@
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+Scope: all 6 workspace projects
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+   Ôò¡ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔò«
+   Ôöé                                                                   Ôöé
+   Ôöé                Update available! 9.14.4 ÔåÆ 10.23.0.                Ôöé
+   Ôöé   Changelog: https://github.com/pnpm/pnpm/releases/tag/v10.23.0   Ôöé
+   Ôöé                 Run "pnpm self-update" to update.                 Ôöé
+   Ôöé                                                                   Ôöé
+   Ôò░ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔò»
+
+
+dependencies:
++ @specfy/stack-analyser 1.27.3
+
+devDependencies:
++ @prototipo/eslint-config 0.2.0-beta <- packages\eslint-config
++ eslint 9.39.1
++ prettier 3.6.2
++ turbo 2.6.1
++ typescript 5.9.3
+
+Done in 3.1s

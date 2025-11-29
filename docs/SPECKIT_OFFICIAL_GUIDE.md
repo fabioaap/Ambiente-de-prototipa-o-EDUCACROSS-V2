@@ -304,7 +304,7 @@ O endpoint deve retornar um array de páginas com informações sobre cada uma
 (id, title, slug, createdAt, updatedAt, content).
 
 Critérios de Aceitação:
-- [ ] Arquivo: apps/studio/src/app/api/pages/route.ts
+- [ ] Arquivo: domains/studio/src/app/api/pages/route.ts
 - [ ] Método: GET /api/pages
 - [ ] Response inclui: success, data, error, total, timestamp
 - [ ] Query params opcionais: limit=10, offset=0
@@ -335,7 +335,7 @@ Automaticamente:
 ### 4. Agente Implementa
 
 ```typescript
-// apps/studio/src/app/api/pages/route.ts
+// domains/studio/src/app/api/pages/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {

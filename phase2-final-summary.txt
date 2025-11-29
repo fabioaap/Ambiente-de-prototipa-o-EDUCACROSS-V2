@@ -1,0 +1,18 @@
+=== Build Output (Última Linha) ===
+
+=== Lint Result ===
+
+=== Shadcn Validation ===
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta check:shadcn C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> node scripts/check-shadcn-usage.mjs
+
+Ô£à Nenhum uso indevido de shadcn encontrado.
+
+=== Workspace Count ===
+
+=== Experience Hub Directory ===
+
+=== Storybook Static Output ===
+Generated successfully

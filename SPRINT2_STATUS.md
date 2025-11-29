@@ -72,9 +72,9 @@ Bloqueador: C1 ✅ (API existe)
 Desbloqueador: Navegação Studio, E1 completo
 
 Artefatos:
-  - apps/studio/src/components/Sidebar.tsx [novo]
-  - apps/studio/src/app/layout.tsx [edit]
-  - apps/storybook/src/stories/Sidebar.stories.tsx [novo]
+  - domains/studio/src/components/Sidebar.tsx [novo]
+  - domains/studio/src/app/layout.tsx [edit]
+  - domains/storybook/src/stories/Sidebar.stories.tsx [novo]
   - API: GET /api/pages ✅ pronto
 
 Progresso:
@@ -157,8 +157,8 @@ Bloqueador: B4 ✅ (acessibilidade)
 Desbloqueador: Validação automática, CI a11y
 
 Artefatos:
-  - apps/storybook/package.json [edit] - instalação
-  - apps/storybook/.storybook/main.ts [edit] - addon config
+  - domains/storybook/package.json [edit] - instalação
+  - domains/storybook/.storybook/main.ts [edit] - addon config
   - README atualizado com docs de uso
 
 Progresso:

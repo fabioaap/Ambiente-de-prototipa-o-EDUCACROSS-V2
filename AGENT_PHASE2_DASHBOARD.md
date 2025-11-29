@@ -78,7 +78,7 @@ INSTRUÇÕES:
 **Para #53 (API):**
 1. Leia: gh issue view 53
 2. Contexto: Studio já renderiza JSON do localStorage
-3. Implemente GET /api/pages em apps/studio/src/app/api/pages/route.ts
+3. Implemente GET /api/pages em domains/studio/src/app/api/pages/route.ts
 4. Retorne: { success: true, data: [...], error: null }
 5. Teste com: curl http://localhost:3000/api/pages
 6. Valide: pnpm build && pnpm lint && pnpm -r type-check
@@ -124,9 +124,9 @@ PRÓXIMO PASSO AO TERMINAR:
 3. Próximo agente inicia legadas (#4, #11, #13, #14, #15)
 
 REFERÊNCIAS:
-- Studio API: apps/studio/src/app/api/
+- Studio API: domains/studio/src/app/api/
 - Components: packages/design-system/src/components/
-- Storybook: apps/storybook/src/stories/
+- Storybook: domains/storybook/src/stories/
 - Leaderboard (para #58): packages/design-system/src/components/Leaderboard/
 
 PRIORIDADE: ALTA

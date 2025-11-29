@@ -64,7 +64,7 @@ Implementar endpoint REST que retorna lista de páginas salvas (Puck JSON do Stu
 
 ===== IMPLEMENTAÇÃO =====
 
-ARQUIVO: apps/studio/src/app/api/pages/route.ts (novo)
+ARQUIVO: domains/studio/src/app/api/pages/route.ts (novo)
 
 TEMPLATE:
 import { NextRequest, NextResponse } from 'next/server';

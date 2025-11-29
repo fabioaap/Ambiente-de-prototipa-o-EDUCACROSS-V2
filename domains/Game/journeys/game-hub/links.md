@@ -20,7 +20,7 @@
 - [Design System](../../packages/design-system/)
 - [Progress Component](../../packages/design-system/src/components/Progress/)
 - [Leaderboard Component](../../packages/design-system/src/components/Leaderboard/)
-- [Puck Config](../../apps/studio/src/config/puck.config.tsx)
+- [Puck Config](../../domains/studio/src/config/puck.config.tsx)
 
 ## 📋 Documentação
 

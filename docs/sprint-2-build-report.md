@@ -76,7 +76,7 @@ Size Analysis:
 ```
 ✅ Manager built (575 ms)
 ✅ Preview built (15 s)
-✅ Output: apps/storybook/storybook-static/
+✅ Output: domains/storybook/storybook-static/
 
 Arquivos gerados:
   - 60+ asset bundles
@@ -96,8 +96,8 @@ Arquivos gerados:
 ### Executado em
 - `packages/tokens/scripts`
 - `packages/design-system/src`
-- `apps/storybook/src`
-- `apps/studio` (Next.js)
+- `domains/storybook/src`
+- `domains/studio` (Next.js)
 
 ### Resultado
 ```
@@ -106,7 +106,7 @@ Arquivos gerados:
 ⚠️ Warnings: 1 (não-crítico)
 
 Detalhe do warning:
-  📁 apps/storybook/src/stories/Tokens.stories.tsx:127:52
+  📁 domains/storybook/src/stories/Tokens.stories.tsx:127:52
   ⚠️ "Unexpected any. Specify a different type" (@typescript-eslint/no-explicit-any)
   
   → Severidade: LOW (arquivo de story, não em código de produção)
@@ -168,14 +168,14 @@ packages/design-system/
   ├─ dist/index.d.ts (Types, 4.54 KB)
   └─ dist/index.css (Estilos, 13.05 KB)
 
-apps/studio/
+domains/studio/
   ├─ .next/
   │  ├─ static/ (JS/CSS otimizado)
   │  ├─ server/ (Server-side routes)
   │  └─ standalone/ (Self-contained build)
   └─ public/ (Assets estáticos)
 
-apps/storybook/
+domains/storybook/
   └─ storybook-static/
      ├─ iframe.html
      ├─ manager.html
@@ -263,10 +263,10 @@ pnpm dev:storybook & # http://localhost:6006
 
 | Problema | Localização | Ação |
 |----------|-------------|------|
-| Warning `@typescript-eslint/no-explicit-any` | `apps/storybook/src/stories/Tokens.stories.tsx:127` | Refatorar em P2 (prioridade baixa) |
+| Warning `@typescript-eslint/no-explicit-any` | `domains/storybook/src/stories/Tokens.stories.tsx:127` | Refatorar em P2 (prioridade baixa) |
 | Aviso tsup "types" export order | `packages/design-system/package.json` | Não afeta funcionalidade; informativo |
 | Chunk size warning Storybook | Build log | Normal para Storybook; considerar lazy-load em P2 |
-| Next.js lint deprecation | `apps/studio/next lint` | Migrar para ESLint CLI em P2 |
+| Next.js lint deprecation | `domains/studio/next lint` | Migrar para ESLint CLI em P2 |
 
 ---
 

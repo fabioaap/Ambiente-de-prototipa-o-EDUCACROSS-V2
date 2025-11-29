@@ -21,7 +21,7 @@
 **Primary Dependencies**: Next.js App Router, SWR, Shadcn UI (scoped to Studio/Dashboard), `@prototipo/design-system`, `dashboardLogger` telemetry utilities  
 **Storage**: N/A (client state only; data fetched from existing `/api/dashboard/*` routes)  
 **Testing**: Existing pnpm scripts (`pnpm lint`, `pnpm -r type-check`, `pnpm --filter studio test`), plus dashboard hydration automation (end-to-end or integration)  
-**Target Platform**: Web (Studio app at `apps/studio`, served via Next.js)  
+**Target Platform**: Web (Studio app at `domains/studio`, served via Next.js)  
 **Project Type**: Web monorepo (pnpm workspaces with apps/packages)  
 **Performance Goals**: Eliminate hydration warnings in ≥95% of automated runs; maintain skeleton render under 400 ms on Slow 3G per SC-003  
 **Constraints**: Must keep dev/build pipeline green (tokens → design-system → studio/storybook), honor Node 22.21.1/pnpm 9.14.4, avoid console errors, and respect Shadcn scope  
@@ -31,8 +31,8 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.* Violations require entries in **Complexity Tracking**.
 
-1. **Run-Ready Prototypes Only** – Work happens inside `apps/studio` (layout + `/dashboard`). Builds stay green by running the mandated sequence (`pnpm build:tokens`, `pnpm build:design-system`, `pnpm build --filter studio`, then lint/type-check). Hydration fix removes console noise that currently blocks QA, and new automated test will run in CI to prevent regressions.
-2. **Single Design System Surface** – `/dashboard` already uses Shadcn + DS primitives; fixes will keep UI within `apps/studio/src/app/{dashboard}` and reuse existing components (Card, Badge, Skeleton, Progress). No new tokens needed; `'use client'` boundaries remain in page-level client component only.
+1. **Run-Ready Prototypes Only** – Work happens inside `domains/studio` (layout + `/dashboard`). Builds stay green by running the mandated sequence (`pnpm build:tokens`, `pnpm build:design-system`, `pnpm build --filter studio`, then lint/type-check). Hydration fix removes console noise that currently blocks QA, and new automated test will run in CI to prevent regressions.
+2. **Single Design System Surface** – `/dashboard` already uses Shadcn + DS primitives; fixes will keep UI within `domains/studio/src/app/{dashboard}` and reuse existing components (Card, Badge, Skeleton, Progress). No new tokens needed; `'use client'` boundaries remain in page-level client component only.
 3. **Documented Journeys Stay Traceable** – Update `domains/BackOffice/journeys/Dashboard/README.md`, `docs/qa-dashboard-testing.md`, and referenced sprint docs (e.g., `SPRINT3_HEALTH_INDICATORS_REPORT.md`) to describe the hydration resiliency steps and new QA checklist items.
 4. **Typed APIs & Observable Dashboards** – No API schema changes, but telemetry contracts expand: `dashboardLogger` (or companion utility) will emit structured `HydrationSnapshot` entries. `/api/health` does not change directly; instrumentation remains client-side but documented for observability consumers.
 5. **Automation-First Quality Gates** – This plan/spec pair precedes `/speckit.tasks`. We will capture Phase 0 research + Phase 1 design artifacts here, then ensure `/spec` passes on the PR. CI evidence: attach screenshots/logs from hydration test plus build/lint/type-check outputs per constitution.
@@ -72,7 +72,7 @@ domains/
   BackOffice/journeys/Dashboard/README.md  # Journey traceability updates
 ```
 
-**Structure Decision**: Single Next.js app inside `apps/studio` with supporting documentation under `docs/` and journey metadata under `domains/BackOffice/journeys/Dashboard`. No backend/package changes required beyond telemetry utilities already colocated with Studio.
+**Structure Decision**: Single Next.js app inside `domains/studio` with supporting documentation under `docs/` and journey metadata under `domains/BackOffice/journeys/Dashboard`. No backend/package changes required beyond telemetry utilities already colocated with Studio.
 
 ## Complexity Tracking
 

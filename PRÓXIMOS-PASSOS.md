@@ -56,7 +56,7 @@ Comentário modelo:
 **Estimativa**: 3-4 horas  
 **Status**: Não iniciada  
 **Critério de Aceitação**:
-- [ ] Sidebar exibe lista dinâmica de páginas (carregadas de `apps/studio/data/pages/`)
+- [ ] Sidebar exibe lista dinâmica de páginas (carregadas de `domains/studio/data/pages/`)
 - [ ] Ações: Criar página nova, renomear, deletar
 - [ ] Navegação ao clicar em página abre na área de edição
 - [ ] UI responsiva (mobile-friendly)
@@ -64,13 +64,13 @@ Comentário modelo:
 
 **Arquivos a Tocar**:
 ```
-apps/studio/src/components/
+domains/studio/src/components/
 ├── PagesList.tsx                    (EXISTENTE - melhorar)
 ├── PagesList.module.css             (EXISTENTE - estilos)
 ├── StudioLayout.tsx                 (EXISTENTE - refatorar)
 └── StudioLayout.module.css          (EXISTENTE - novos estilos)
 
-apps/studio/src/app/studio/
+domains/studio/src/app/studio/
 └── page.tsx                         (EXISTENTE - integrar sidebar)
 ```
 
@@ -84,7 +84,7 @@ pnpm dev:studio
 # Acessar: http://localhost:3000/studio
 
 # 3. Estudar estrutura atual
-cat apps/studio/data/pages/backoffice/revisao-questoes/lista.json
+cat domains/studio/data/pages/backoffice/revisao-questoes/lista.json
 
 # 4. Implementar
 # - Adicionar API call em PagesList.tsx para listar páginas
@@ -97,7 +97,7 @@ pnpm build:studio
 ```
 
 **Referências**:
-- `apps/studio/src/app/api/pages/README.md` - API endpoints
+- `domains/studio/src/app/api/pages/README.md` - API endpoints
 - `CONTRIBUTING.md` - Padrões de componentes React
 - `docs/accessibility-audit.md` - Checklist acessibilidade
 
@@ -116,7 +116,7 @@ pnpm build:studio
 git checkout -b feature/d2-addon-a11y
 
 # 1. Instalar dependências
-cd apps/storybook
+cd domains/storybook
 pnpm add -D @storybook/addon-a11y
 
 # 2. Configurar em .storybook/main.ts
@@ -162,7 +162,7 @@ cat > docs/dashboard-wireframe.md << 'EOF'
 EOF
 
 # 2. Criar story placeholder
-touch apps/storybook/src/stories/Dashboard.stories.tsx
+touch domains/storybook/src/stories/Dashboard.stories.tsx
 
 # 3. Documentar em docs/tarefas-ativas.md
 ```
@@ -180,7 +180,7 @@ git checkout -b feature/e2-onboarding-aluno
 
 # 1. Criar estrutura de diretórios
 mkdir -p domains/FrontOffice/journeys/onboarding-aluno
-mkdir -p apps/studio/data/pages/frontoffice/onboarding-aluno
+mkdir -p domains/studio/data/pages/frontoffice/onboarding-aluno
 
 # 2. Copiar template
 cp CONTRIBUTING.md domains/FrontOffice/journeys/onboarding-aluno/template.md
@@ -205,7 +205,7 @@ EOF
 pnpm gen:journeys
 
 # 5. Criar páginas no Studio (3 JSON files)
-touch apps/studio/data/pages/frontoffice/onboarding-aluno/{boas-vindas,perfil-inicial,tutorial}.json
+touch domains/studio/data/pages/frontoffice/onboarding-aluno/{boas-vindas,perfil-inicial,tutorial}.json
 ```
 
 ---

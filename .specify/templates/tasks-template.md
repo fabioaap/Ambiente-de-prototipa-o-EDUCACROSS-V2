@@ -26,7 +26,7 @@ description: "Task list template for feature implementation"
 - **Web app**: `backend/src/`, `frontend/src/`
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
-- **UI constraints**: Only `apps/studio/src/app/{studio,dashboard}/` may import `@/components/ui`; everywhere else MUST use `@prototipo/design-system` plus CSS Modules fed by tokens.
+- **UI constraints**: Only `domains/studio/src/app/{studio,dashboard}/` may import `@/components/ui`; everywhere else MUST use `@prototipo/design-system` plus CSS Modules fed by tokens.
 - **Documentation**: Journey collateral lives in `domains/{domain}/journeys/{journey}` and must gain explicit tasks for README/notes/link updates whenever the story touches that flow.
 
 <!-- 

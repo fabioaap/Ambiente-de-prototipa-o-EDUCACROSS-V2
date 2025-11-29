@@ -13,9 +13,9 @@
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-- [ ] T004 [P] Create `apps/studio/src/lib/hydration/types.ts` exporting the `HydrationSnapshot` and `DashboardRenderCheck` interfaces defined in `specs/001-dashboard-hydration/data-model.md`.
-- [ ] T005 [P] Scaffold `apps/studio/src/tests/dashboard-hydration/hydration.spec.ts` with a failing placeholder test plus shared helpers in `apps/studio/src/tests/dashboard-hydration/helpers.ts` so the automation suite exists before story work begins.
-- [ ] T006 Update `apps/studio/package.json` (and, if needed, root `package.json`) to expose a `test:dashboard-hydration` script that runs the new spec (`pnpm --filter studio test -- --group dashboard-hydration`) and document the command usage in `specs/001-dashboard-hydration/quickstart.md`.
+- [ ] T004 [P] Create `domains/studio/src/lib/hydration/types.ts` exporting the `HydrationSnapshot` and `DashboardRenderCheck` interfaces defined in `specs/001-dashboard-hydration/data-model.md`.
+- [ ] T005 [P] Scaffold `domains/studio/src/tests/dashboard-hydration/hydration.spec.ts` with a failing placeholder test plus shared helpers in `domains/studio/src/tests/dashboard-hydration/helpers.ts` so the automation suite exists before story work begins.
+- [ ] T006 Update `domains/studio/package.json` (and, if needed, root `package.json`) to expose a `test:dashboard-hydration` script that runs the new spec (`pnpm --filter studio test -- --group dashboard-hydration`) and document the command usage in `specs/001-dashboard-hydration/quickstart.md`.
 
 **Checkpoint**: Foundation ready — user stories can begin.
 
@@ -29,10 +29,10 @@
 
 ### Implementation Tasks
 
-- [x] T007 [US1] Implement `apps/studio/src/lib/hydration/normalizeRootAttributes.ts` to produce deterministic `<html>` class/data attributes and strip any extension-injected tokens before hydration.
-- [x] T008 [US1] Update `apps/studio/src/app/layout.tsx` to call the normalization helper, set the canonical `lang`, `data-theme`, and class list, and add a scoped `suppressHydrationWarning` only on the `<html>` element.
-- [x] T009 [P] [US1] Refactor `apps/studio/src/app/dashboard/page.tsx` to replace non-deterministic initial values (timestamps, random ordering) with static placeholders until SWR populates data, ensuring skeletons use consistent totals.
-- [x] T010 [P] [US1] Add unit coverage for the normalization helper in `apps/studio/src/lib/hydration/__tests__/normalizeRootAttributes.test.ts` to lock the deterministic attribute contract.
+- [x] T007 [US1] Implement `domains/studio/src/lib/hydration/normalizeRootAttributes.ts` to produce deterministic `<html>` class/data attributes and strip any extension-injected tokens before hydration.
+- [x] T008 [US1] Update `domains/studio/src/app/layout.tsx` to call the normalization helper, set the canonical `lang`, `data-theme`, and class list, and add a scoped `suppressHydrationWarning` only on the `<html>` element.
+- [x] T009 [P] [US1] Refactor `domains/studio/src/app/dashboard/page.tsx` to replace non-deterministic initial values (timestamps, random ordering) with static placeholders until SWR populates data, ensuring skeletons use consistent totals.
+- [x] T010 [P] [US1] Add unit coverage for the normalization helper in `domains/studio/src/lib/hydration/__tests__/normalizeRootAttributes.test.ts` to lock the deterministic attribute contract.
 - [x] T011 [US1] Rerun `/dashboard` with the targeted extension enabled and update `specs/001-dashboard-hydration/artifacts/us1-hydration-validation.md` (plus screenshots in `specs/001-dashboard-hydration/artifacts/us1/`) to prove the console stays clean.
 
 **Checkpoint**: User Story 1 delivers a hydration-warning-free dashboard view.
@@ -43,18 +43,18 @@
 
 **Goal**: Capture and surface `HydrationSnapshot` telemetry plus an automated regression test that fails on any hydration warning.
 
-**Independent Test**: Run `pnpm --filter studio test -- --group dashboard-hydration` to inject a mock extension class; confirm the test fails when warnings exist and passes once fixes land, while new logs appear in `apps/studio/.next/logs/dashboard.log` with correlation IDs.
+**Independent Test**: Run `pnpm --filter studio test -- --group dashboard-hydration` to inject a mock extension class; confirm the test fails when warnings exist and passes once fixes land, while new logs appear in `domains/studio/.next/logs/dashboard.log` with correlation IDs.
 
 ### Tests for User Story 2
 
-- [ ] T012 [P] [US2] Implement the Playwright (or equivalent) scenario in `apps/studio/src/tests/dashboard-hydration/hydration.spec.ts` that mounts `/dashboard`, injects `fusion-extension-loaded`, toggles Slow 3G throttling, and asserts no hydration warnings are emitted.
-- [ ] T013 [P] [US2] Extend the test helpers in `apps/studio/src/tests/dashboard-hydration/helpers.ts` to capture console output and serialize `DashboardRenderCheck` artifacts into `specs/001-dashboard-hydration/artifacts/us2-test-results.json`.
+- [ ] T012 [P] [US2] Implement the Playwright (or equivalent) scenario in `domains/studio/src/tests/dashboard-hydration/hydration.spec.ts` that mounts `/dashboard`, injects `fusion-extension-loaded`, toggles Slow 3G throttling, and asserts no hydration warnings are emitted.
+- [ ] T013 [P] [US2] Extend the test helpers in `domains/studio/src/tests/dashboard-hydration/helpers.ts` to capture console output and serialize `DashboardRenderCheck` artifacts into `specs/001-dashboard-hydration/artifacts/us2-test-results.json`.
 
 ### Implementation for User Story 2
 
-- [ ] T014 [US2] Enhance `apps/studio/src/lib/logger/dashboardLogger.ts` (or the module that exports it) to accept a `HydrationSnapshot` payload and persist structured JSON logs with `correlationId`.
-- [ ] T015 [US2] Wire a global `onRecoverableError` handler inside `apps/studio/src/app/layout.tsx` that normalizes server/client attributes, builds a `HydrationSnapshot`, and forwards it to `dashboardLogger` without throwing.
-- [ ] T016 [P] [US2] Create `apps/studio/src/lib/hydration/extensionFingerprint.ts` to derive fingerprints (e.g., `fusion-extension-loaded`) from attribute diffs so telemetry can group incidents.
+- [ ] T014 [US2] Enhance `domains/studio/src/lib/logger/dashboardLogger.ts` (or the module that exports it) to accept a `HydrationSnapshot` payload and persist structured JSON logs with `correlationId`.
+- [ ] T015 [US2] Wire a global `onRecoverableError` handler inside `domains/studio/src/app/layout.tsx` that normalizes server/client attributes, builds a `HydrationSnapshot`, and forwards it to `dashboardLogger` without throwing.
+- [ ] T016 [P] [US2] Create `domains/studio/src/lib/hydration/extensionFingerprint.ts` to derive fingerprints (e.g., `fusion-extension-loaded`) from attribute diffs so telemetry can group incidents.
 - [ ] T017 [US2] Document the new telemetry + automated test workflow inside `docs/SPRINT3_HEALTH_INDICATORS_REPORT.md` (observability chapter) referencing log locations and the `test:dashboard-hydration` command.
 
 **Checkpoint**: User Story 2 provides automated detection plus structured logs for any future hydration mismatch.

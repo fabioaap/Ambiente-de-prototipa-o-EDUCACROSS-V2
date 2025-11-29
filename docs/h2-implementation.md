@@ -12,11 +12,11 @@
 ### 1. Novo Endpoint Criado
 ```typescript
 // GET /api/dashboard/pages
-// Arquivo: apps/studio/src/app/api/dashboard/pages/route.ts
+// Arquivo: domains/studio/src/app/api/dashboard/pages/route.ts
 ```
 
 ✅ **Funcionalidades**:
-- Escaneia dinamicamente `apps/studio/data/pages/`
+- Escaneia dinamicamente `domains/studio/data/pages/`
 - Carrega metadados de cada página (JSON)
 - Detecta domínio pelo slug (BackOffice, FrontOffice, Game)
 - Retorna array ordenado por domínio + nome
@@ -103,7 +103,7 @@ http://localhost:3000/api/dashboard/pages
 
 ### 1. Scanning Recursivo
 ```typescript
-// Escaneia apps/studio/data/pages/ recursivamente
+// Escaneia domains/studio/data/pages/ recursivamente
 // Encontra todos arquivos .json
 // Monta slug baseado na estrutura de diretórios
 ```
@@ -169,7 +169,7 @@ http://localhost:3000/api/dashboard/pages
 
 ### H3 - UI Dashboard (3-4 horas)
 ```bash
-Criar: Component Dashboard.tsx em apps/studio/src/app/dashboard/page.tsx
+Criar: Component Dashboard.tsx em domains/studio/src/app/dashboard/page.tsx
 Funcionalidades:
 - Chamar GET /api/dashboard/pages
 - Renderizar cards por domínio
@@ -190,7 +190,7 @@ Adicionar ao endpoint:
 ## Exemplo de Integração (H3)
 
 ```typescript
-// apps/studio/src/app/dashboard/page.tsx
+// domains/studio/src/app/dashboard/page.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -225,7 +225,7 @@ export default function DashboardPage() {
 
 ## Código Adicionado
 
-**Arquivo novo**: `apps/studio/src/app/api/dashboard/pages/route.ts`
+**Arquivo novo**: `domains/studio/src/app/api/dashboard/pages/route.ts`
 - **Linhas**: 147
 - **Funções**: scanPagesDirectory, GET handler
 - **TypeScript**: Interfaces DashboardPage, DashboardResponse

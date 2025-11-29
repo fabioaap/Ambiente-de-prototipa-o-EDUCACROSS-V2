@@ -81,7 +81,7 @@ Para cada aplicação (Studio e Storybook), você precisa criar um projeto separ
 4. Configure:
    - **Project Name:** `educacross-studio-staging` (para staging)
    - **Framework Preset:** Next.js
-   - **Root Directory:** `apps/studio`
+   - **Root Directory:** `domains/studio`
    - **Build Command:** (deixe vazio, usa vercel.json)
    - **Output Directory:** (deixe vazio, usa vercel.json)
    - **Install Command:** (deixe vazio, usa vercel.json)
@@ -102,7 +102,7 @@ Para cada aplicação (Studio e Storybook), você precisa criar um projeto separ
 4. Configure:
    - **Project Name:** `educacross-storybook-staging` (para staging)
    - **Framework Preset:** Other
-   - **Root Directory:** `apps/storybook`
+   - **Root Directory:** `domains/storybook`
    - **Build Command:** (deixe vazio, usa vercel.json)
    - **Output Directory:** (deixe vazio, usa vercel.json)
    - **Install Command:** (deixe vazio, usa vercel.json)

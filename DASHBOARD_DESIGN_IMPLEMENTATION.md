@@ -167,16 +167,16 @@ Criado arquivo design-tokens.css com sistema completo:
 
 ## 📁 Arquivos Alterados
 
-1. **apps/studio/src/app/design-tokens.css** (Novo)
+1. **domains/studio/src/app/design-tokens.css** (Novo)
    - 500+ linhas de tokens
    - Sistema de design completo
 
-2. **apps/studio/src/app/globals.css** (Atualizado)
+2. **domains/studio/src/app/globals.css** (Atualizado)
    - Import de design-tokens.css
    - Estilos base melhorados
    - Scrollbar styling premium
 
-3. **apps/studio/src/app/dashboard/dashboard.module.css** (Refatorado)
+3. **domains/studio/src/app/dashboard/dashboard.module.css** (Refatorado)
    - 800+ linhas
    - Premium design patterns
    - Micro-interações completas

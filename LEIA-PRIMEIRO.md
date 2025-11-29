@@ -162,7 +162,7 @@ git status            # Ver mudanças
 ```bash
 # 1. Seguir template em CONTRIBUTING.md
 # 2. Criar em: packages/design-system/src/components/
-# 3. Story em: apps/storybook/src/stories/
+# 3. Story em: domains/storybook/src/stories/
 # 4. Exportar em: packages/design-system/src/index.ts
 # 5. Testar: pnpm dev:storybook
 ```
@@ -172,7 +172,7 @@ git status            # Ver mudanças
 # 1. Seguir template em CONTRIBUTING.md
 # 2. Criar em: domains/[DOMÍNIO]/journeys/[NOME]/
 # 3. Gerar índice: pnpm gen:journeys
-# 4. Criar páginas em: apps/studio/data/pages/
+# 4. Criar páginas em: domains/studio/data/pages/
 ```
 
 ### Commit & Push

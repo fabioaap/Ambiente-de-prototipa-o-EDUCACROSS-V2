@@ -83,8 +83,8 @@ CRITÉRIO DE SUCESSO:
 
 REFERÊNCIAS:
 - Design System: packages/design-system/src/components/
-- Storybook: apps/storybook/src/stories/
-- Puck Config: apps/studio/src/config/puck.config.tsx
+- Storybook: domains/storybook/src/stories/
+- Puck Config: domains/studio/src/config/puck.config.tsx
 - Tokens: packages/tokens/src/tokens.json
 
 PRIORIDADE: MÁXIMA

@@ -93,7 +93,7 @@ INSTRUÇÕES PARA CADA ISSUE:
    pnpm -r type-check  # Deve passar 0 errors
 
 5. Crie story no Storybook (se aplicável):
-   apps/storybook/src/stories/
+   domains/storybook/src/stories/
 
 6. Commit:
    git commit -m "feat(issue): <titulo-curto> (fix #<ID>)"
@@ -138,7 +138,7 @@ packages/design-system/src/components/
 
 **Storybook** (Exemplos visuais):
 ```
-apps/storybook/src/stories/
+domains/storybook/src/stories/
 ├── Button.stories.tsx
 ├── Card.stories.tsx
 ├── Layout.stories.tsx
@@ -147,7 +147,7 @@ apps/storybook/src/stories/
 
 **Puck Config** (Editor visual):
 ```
-apps/studio/src/config/puck.config.tsx
+domains/studio/src/config/puck.config.tsx
 ```
 
 **Tokens de Design**:

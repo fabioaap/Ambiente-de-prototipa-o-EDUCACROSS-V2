@@ -55,10 +55,10 @@ Implementadas **3 tarefas P2 em paralelo** conforme planejamento Sprint 3. Todas
 - ✅ Relatório detalhado de importação
 
 **Arquivos**:
-- `apps/studio/src/app/api/pages/export/route.ts` (43 linhas)
-- `apps/studio/src/app/api/pages/import/route.ts` (108 linhas)
-- `apps/studio/src/components/ExportImport.tsx` (147 linhas)
-- `apps/studio/src/components/ExportImport.module.css` (130 linhas)
+- `domains/studio/src/app/api/pages/export/route.ts` (43 linhas)
+- `domains/studio/src/app/api/pages/import/route.ts` (108 linhas)
+- `domains/studio/src/components/ExportImport.tsx` (147 linhas)
+- `domains/studio/src/components/ExportImport.module.css` (130 linhas)
 - `docs/c5-export-import.md` (145 linhas)
 
 **Validação**: ✅ Lint + Build passaram

@@ -44,7 +44,7 @@ DEPENDÊNCIAS:
 - Sem outros blockers
 
 REQUISITOS:
-1. Criar arquivo: apps/studio/src/app/api/pages/route.ts
+1. Criar arquivo: domains/studio/src/app/api/pages/route.ts
 2. Implementar GET /api/pages que retorna:
    {
      "success": boolean,
@@ -115,7 +115,7 @@ DEPENDÊNCIA:
 - Componentes de Design System: Card, Button, Text, Badge
 
 REQUISITOS:
-1. Arquivo: apps/studio/src/app/studio/pages/page.tsx (ou similar)
+1. Arquivo: domains/studio/src/app/studio/pages/page.tsx (ou similar)
 
 2. URL: http://localhost:3000/studio/pages
 
@@ -313,8 +313,8 @@ REQUISITOS:
    - HealthMetrics (container)
 
 6. Integração:
-   - Adicionar em apps/studio/src/app/studio/pages/page.tsx
-   - Ou em arquivo separado: apps/studio/src/app/studio/health/page.tsx
+   - Adicionar em domains/studio/src/app/studio/pages/page.tsx
+   - Ou em arquivo separado: domains/studio/src/app/studio/health/page.tsx
 
 7. Stories:
    - Criar stories no Storybook para HealthMetrics
@@ -452,7 +452,7 @@ Total: ~6h real (vs 11.5h sequencial)
 - [SPRINT3_EXECUTION_DETAILED.md](./SPRINT3_EXECUTION_DETAILED.md) — especificações completas
 
 **Código**:
-- [Puck config](./apps/studio/src/config/puck.config.tsx) — componentes registrados
+- [Puck config](./domains/studio/src/config/puck.config.tsx) — componentes registrados
 - [Design System](./packages/design-system/src/components/) — Button, Card, Text, etc
 - [Tokens](./packages/tokens/src/tokens.json) — cores, espaçamento, tipografia
 

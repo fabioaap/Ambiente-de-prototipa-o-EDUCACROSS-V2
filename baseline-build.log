@@ -1,0 +1,170 @@
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm build:tokens && pnpm build:design-system && pnpm build:hub && pnpm build:studio
+
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:tokens C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter @prototipo/tokens build
+
+.                                        | ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> @prototipo/tokens@0.2.0-beta build C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\packages\tokens
+> node scripts/build-tokens.mjs
+
+­ƒö¿ Building tokens...
+Ô£à Tokens built successfully!
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:design-system C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter @prototipo/design-system build
+
+.                                        | ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> @prototipo/design-system@0.2.0-beta build C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\packages\design-system
+> tsup
+
+Ôû▓ [WARNING] The condition "types" here will never be used as it comes after both "import" and "require" [package.json]
+
+    package.json:12:6:
+      12 Ôöé       "types": "./dist/index.d.ts"
+         ÔòÁ       ~~~~~~~
+
+  The "import" condition comes earlier and will be used for all "import" statements:
+
+    package.json:10:6:
+      10 Ôöé       "import": "./dist/index.mjs",
+         ÔòÁ       ~~~~~~~~
+
+  The "require" condition comes earlier and will be used for all "require" calls:
+
+    package.json:11:6:
+      11 Ôöé       "require": "./dist/index.js",
+         ÔòÁ       ~~~~~~~~~
+
+[34mCLI[39m Building entry: src/index.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.5.1
+[34mCLI[39m Using tsup config: C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\packages\design-system\tsup.config.ts
+[34mCLI[39m Target: es2020
+[34mCLI[39m Cleaning output folder
+[34mCJS[39m Build start
+[34mESM[39m Build start
+
+ WARN  Ôû▓ [WARNING] The condition "types" here will never be used as it comes after both "import" and "require" [package.json]
+
+    package.json:12:6:
+      12 Ôöé       "types": "./dist/index.d.ts"
+         ÔòÁ       ~~~~~~~
+
+  The "import" condition comes earlier and will be used for all "import" statements:
+
+    package.json:10:6:
+      10 Ôöé       "import": "./dist/index.mjs",
+         ÔòÁ       ~~~~~~~~
+
+  The "require" condition comes earlier and will be used for all "require" calls:
+
+    package.json:11:6:
+      11 Ôöé       "require": "./dist/index.js",
+         ÔòÁ       ~~~~~~~~~
+
+
+
+
+ WARN  Ôû▓ [WARNING] The condition "types" here will never be used as it comes after both "import" and "require" [package.json]
+
+    package.json:12:6:
+      12 Ôöé       "types": "./dist/index.d.ts"
+         ÔòÁ       ~~~~~~~
+
+  The "import" condition comes earlier and will be used for all "import" statements:
+
+    package.json:10:6:
+      10 Ôöé       "import": "./dist/index.mjs",
+         ÔòÁ       ~~~~~~~~
+
+  The "require" condition comes earlier and will be used for all "require" calls:
+
+    package.json:11:6:
+      11 Ôöé       "require": "./dist/index.js",
+         ÔòÁ       ~~~~~~~~~
+
+
+
+[32mESM[39m [1mdist\index.mjs     [22m[32m22.37 KB[39m
+[32mESM[39m [1mdist\index.css     [22m[32m22.52 KB[39m
+[32mESM[39m [1mdist\index.mjs.map [22m[32m69.05 KB[39m
+[32mESM[39m [1mdist\index.css.map [22m[32m39.50 KB[39m
+[32mESM[39m ÔÜí´©Å Build success in 352ms
+[32mCJS[39m [1mdist\index.css     [22m[32m22.52 KB[39m
+[32mCJS[39m [1mdist\index.js      [22m[32m26.33 KB[39m
+[32mCJS[39m [1mdist\index.css.map [22m[32m39.50 KB[39m
+[32mCJS[39m [1mdist\index.js.map  [22m[32m70.54 KB[39m
+[32mCJS[39m ÔÜí´©Å Build success in 354ms
+[34mDTS[39m Build start
+[32mDTS[39m ÔÜí´©Å Build success in 2633ms
+[32mDTS[39m [1mdist\index.d.ts  [22m[32m7.96 KB[39m
+[32mDTS[39m [1mdist\index.d.mts [22m[32m7.96 KB[39m
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:hub C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter experience-hub build
+
+.                                        | ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+No projects matched the filters in "C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2"
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:studio C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter studio build
+
+.                                        | ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> studio@0.2.0-beta build C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2\apps\studio
+> next build
+
+   Ôû▓ Next.js 15.5.6
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully in 9.9s
+   Linting and checking validity of types ...
+
+ ÔÜá The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+   Collecting page data ...
+   Generating static pages (0/17) ...
+   Generating static pages (4/17) 
+   Generating static pages (8/17) 
+   Generating static pages (12/17) 
+ Ô£ô Generating static pages (17/17)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+Ôöî Ôùï /_not-found                            986 B         103 kB
+Ôö£ ÔùÅ /[[...slug]]                           173 B         108 kB
+Ôö£   Ôö£ /game-hub
+Ôö£   Ôö£ /home
+Ôö£   Ôöö /teste
+Ôö£ ãÆ /api/dashboard/health                  149 B         102 kB
+Ôö£ ãÆ /api/dashboard/pages                   149 B         102 kB
+Ôö£ ãÆ /api/dashboard/summary                 149 B         102 kB
+Ôö£ ãÆ /api/health                            149 B         102 kB
+Ôö£ ãÆ /api/health/metrics                    149 B         102 kB
+Ôö£ ãÆ /api/pages                             149 B         102 kB
+Ôö£ ãÆ /api/pages/[slug]                      149 B         102 kB
+Ôö£ ãÆ /api/pages/export                      149 B         102 kB
+Ôö£ ãÆ /api/pages/import                      149 B         102 kB
+Ôö£ ãÆ /api/pages/rename                      149 B         102 kB
+Ôö£ Ôùï /dashboard                             44 kB         149 kB
+Ôöö Ôùï /studio                              92.1 kB         200 kB
++ First Load JS shared by all             102 kB
+  Ôö£ chunks/687-8bff823d103ea6f8.js       45.6 kB
+  Ôö£ chunks/ac1673c3-ca095cdd88f83a97.js  54.2 kB
+  Ôöö other shared chunks (total)          1.96 kB
+
+
+Ôùï  (Static)   prerendered as static content
+ÔùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ãÆ  (Dynamic)  server-rendered on demand
+

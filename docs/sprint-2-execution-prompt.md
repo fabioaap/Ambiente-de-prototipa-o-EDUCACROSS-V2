@@ -336,8 +336,8 @@ Documentar como contribuir ao projeto EDUCACROSS.
 git checkout feature/c2-studio-sidebar
 
 # Analisar estrutura atual
-cat apps/studio/src/components/StudioLayout.tsx
-cat apps/studio/src/components/PagesList.tsx
+cat domains/studio/src/components/StudioLayout.tsx
+cat domains/studio/src/components/PagesList.tsx
 
 # Verificar que a API está funcionando
 curl http://localhost:3000/api/pages
@@ -598,7 +598,7 @@ Fecha #7" --base main
 git checkout feature/d2-storybook-a11y-addon
 
 # Instalar addon
-cd apps/storybook
+cd domains/storybook
 pnpm add -D @storybook/addon-a11y
 
 # Atualizar main.ts

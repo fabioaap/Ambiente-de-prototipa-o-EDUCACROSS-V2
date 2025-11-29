@@ -81,4 +81,4 @@ _(Esta seção será atualizada conforme jornadas forem criadas)_
 
 ---
 
-**Nota**: Esta pasta contém apenas documentação. O código real está em `apps/studio` e `packages/*`.
+**Nota**: Esta pasta contém apenas documentação. O código real está em `domains/studio` e `packages/*`.

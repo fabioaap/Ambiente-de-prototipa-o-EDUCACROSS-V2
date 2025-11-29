@@ -36,7 +36,7 @@ Todas as 5 issues prioritárias do Sprint 1 foram **concluídas com sucesso**! O
 ### 2. **D1 - Página de Tokens no Storybook** ✅ `priority:P0` `type:task`
 
 **O que foi feito:**
-- ✅ Criada story completa em `apps/storybook/src/stories/Tokens.stories.tsx`
+- ✅ Criada story completa em `domains/storybook/src/stories/Tokens.stories.tsx`
 - ✅ Visualização interativa de todos os tokens:
   - **Cores**: 6 paletas (primary, secondary, success, warning, error, neutral)
   - **Tipografia**: Font families, tamanhos, pesos, line heights
@@ -48,7 +48,7 @@ Todas as 5 issues prioritárias do Sprint 1 foram **concluídas com sucesso**! O
 - ✅ Build do Storybook testado e funcionando
 
 **Arquivo criado:**
-- `apps/storybook/src/stories/Tokens.stories.tsx` (9.2 KB)
+- `domains/storybook/src/stories/Tokens.stories.tsx` (9.2 KB)
 
 **Impacto:**
 - Documentação visual completa dos tokens
@@ -91,14 +91,14 @@ Todas as 5 issues prioritárias do Sprint 1 foram **concluídas com sucesso**! O
   - `GET /api/pages/[slug]` - Ler página específica
   - `PUT /api/pages/[slug]` - Atualizar página
   - `DELETE /api/pages/[slug]` - Deletar página
-- ✅ Diretório `apps/studio/data/pages/` com exemplos reais
+- ✅ Diretório `domains/studio/data/pages/` com exemplos reais
 - ✅ Páginas de exemplo criadas para jornada BackOffice
-- ✅ Documentação em `apps/studio/src/app/api/pages/README.md`
+- ✅ Documentação em `domains/studio/src/app/api/pages/README.md`
 
 **Arquivos verificados:**
-- `apps/studio/src/app/api/pages/route.ts` - GET/POST OK
-- `apps/studio/src/app/api/pages/[slug]/route.ts` - GET/PUT/DELETE OK
-- `apps/studio/data/pages/backoffice/revisao-questoes/` - Dados reais
+- `domains/studio/src/app/api/pages/route.ts` - GET/POST OK
+- `domains/studio/src/app/api/pages/[slug]/route.ts` - GET/PUT/DELETE OK
+- `domains/studio/data/pages/backoffice/revisao-questoes/` - Dados reais
 
 **Impacto:**
 - API de persistência 100% funcional
@@ -124,8 +124,8 @@ Todas as 5 issues prioritárias do Sprint 1 foram **concluídas com sucesso**! O
 
 **Arquivos verificados:**
 - `domains/BackOffice/journeys/revisao-questoes/README.md` - Documentação OK
-- `apps/studio/data/pages/backoffice/revisao-questoes/lista.json` - Dados OK
-- `apps/studio/data/pages/backoffice/revisao-questoes/detalhe.json` - Dados OK
+- `domains/studio/data/pages/backoffice/revisao-questoes/lista.json` - Dados OK
+- `domains/studio/data/pages/backoffice/revisao-questoes/detalhe.json` - Dados OK
 
 **Impacto:**
 - Primeira jornada completa de prototipagem
@@ -158,14 +158,14 @@ Todas as 5 issues prioritárias do Sprint 1 foram **concluídas com sucesso**! O
 
 ### Ver Tokens no Storybook
 ```bash
-cd apps/storybook
+cd domains/storybook
 pnpm dev
 # Navegar para "Design System/Tokens" em http://localhost:6006
 ```
 
 ### Testar API de Persistência
 ```bash
-cd apps/studio
+cd domains/studio
 pnpm dev
 # Navegar para http://localhost:3000/studio
 # Editar uma página e salvar - dados persistem em data/pages/*.json
@@ -175,7 +175,7 @@ pnpm dev
 ```bash
 # Arquivos de documentação:
 cat domains/BackOffice/journeys/revisao-questoes/README.md
-cat apps/studio/data/pages/backoffice/revisao-questoes/lista.json
+cat domains/studio/data/pages/backoffice/revisao-questoes/lista.json
 ```
 
 ### Rodar Linter
@@ -256,7 +256,7 @@ pnpm lint
 | Issues Pendentes | `docs/issues-pendentes.md` |
 | Backlog Original | `docs/backlog.md` |
 | Tokens Studio | http://localhost:6006/?path=/story/design-system-tokens--colors |
-| API Persistência | `apps/studio/src/app/api/pages/README.md` |
+| API Persistência | `domains/studio/src/app/api/pages/README.md` |
 | Jornada BackOffice | `domains/BackOffice/journeys/revisao-questoes/` |
 
 ---

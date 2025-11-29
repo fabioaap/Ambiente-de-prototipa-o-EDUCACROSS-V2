@@ -111,7 +111,7 @@ Implementar endpoint REST que retorna lista de páginas salvas no localStorage (
 
 #### Especificação Técnica
 
-**Arquivo**: `apps/studio/src/app/api/pages/route.ts`
+**Arquivo**: `domains/studio/src/app/api/pages/route.ts`
 
 ```typescript
 // Template
@@ -240,7 +240,7 @@ Criar interface visual que lista páginas criadas no Studio, consumindo o endpoi
 
 #### Especificação Técnica
 
-**Arquivo**: `apps/studio/src/app/studio/pages/page.tsx`
+**Arquivo**: `domains/studio/src/app/studio/pages/page.tsx`
 
 ```typescript
 // Template
@@ -368,9 +368,9 @@ Implementar indicadores de saúde do repositório na Dashboard (build status, is
 
 #### Especificação Técnica
 
-**Arquivo**: `apps/studio/src/app/studio/pages/page.tsx` (adicionar seção de métricas)
+**Arquivo**: `domains/studio/src/app/studio/pages/page.tsx` (adicionar seção de métricas)
 
-Ou criar arquivo separado: `apps/studio/src/components/HealthMetrics.tsx`
+Ou criar arquivo separado: `domains/studio/src/components/HealthMetrics.tsx`
 
 ```typescript
 // Template
@@ -442,7 +442,7 @@ Implementar jornada de gamificação com Leaderboard (#61 já pronto).
 **Arquivos**:
 - `domains/Game/journeys/hub/README.md` (documentação)
 - `domains/Game/journeys/hub/links.md` (links)
-- `apps/studio/src/pages/game/` (páginas Studio, se usar)
+- `domains/studio/src/pages/game/` (páginas Studio, se usar)
 
 #### Acceptance Criteria
 
@@ -529,7 +529,7 @@ REQUISITOS:
    - Esperado: JSON com 'success: true'
 
 ARQUIVOS A CRIAR/EDITAR:
-- apps/studio/src/app/api/pages/route.ts (novo)
+- domains/studio/src/app/api/pages/route.ts (novo)
 
 PADRÕES:
 - Use Next.js Route Handlers (App Router)
@@ -596,8 +596,8 @@ REQUISITOS:
    - Responsividade OK
 
 ARQUIVOS:
-- apps/studio/src/app/studio/pages/page.tsx (novo, ou similar)
-- Possivelmente: apps/studio/src/components/PagesList.tsx (novo)
+- domains/studio/src/app/studio/pages/page.tsx (novo, ou similar)
+- Possivelmente: domains/studio/src/components/PagesList.tsx (novo)
 
 PADRÕES:
 - 'use client' (Client Component)
@@ -665,8 +665,8 @@ REQUISITOS:
    - Responsivo
 
 ARQUIVOS:
-- apps/studio/src/components/HealthMetrics.tsx (novo)
-- Incorporar em: apps/studio/src/app/studio/pages/page.tsx
+- domains/studio/src/components/HealthMetrics.tsx (novo)
+- Incorporar em: domains/studio/src/app/studio/pages/page.tsx
 
 PADRÕES:
 - 'use client' se precisar interatividade
@@ -742,7 +742,7 @@ REQUISITOS:
 ARQUIVOS:
 - domains/Game/journeys/hub/README.md (novo)
 - domains/Game/journeys/hub/links.md (novo)
-- Possivelmente: apps/studio/src/pages/game/* (planejado, não precisa implementar)
+- Possivelmente: domains/studio/src/pages/game/* (planejado, não precisa implementar)
 
 PADRÕES:
 - Siga template: domains/template-jornada.md
@@ -828,7 +828,7 @@ Comece AGORA (após #53, #54, #55, #58 prontos)!
 ### Por Issue: Checklist de Conclusão
 
 #### #53 (Dashboard API)
-- [ ] Arquivo apps/studio/src/app/api/pages/route.ts criado
+- [ ] Arquivo domains/studio/src/app/api/pages/route.ts criado
 - [ ] GET /api/pages responde com JSON
 - [ ] Response tem: success, data[], error, total, timestamp
 - [ ] Paginação funciona (limit, offset)
@@ -841,7 +841,7 @@ Comece AGORA (após #53, #54, #55, #58 prontos)!
 - [ ] Notifica que #54 + #58 podem começar
 
 #### #54 (Dashboard UI)
-- [ ] Arquivo apps/studio/src/app/studio/pages/page.tsx criado
+- [ ] Arquivo domains/studio/src/app/studio/pages/page.tsx criado
 - [ ] Página carrega dados de GET /api/pages (#53)
 - [ ] Mostra loading enquanto carrega
 - [ ] Trata erros se API falhar
@@ -856,7 +856,7 @@ Comece AGORA (após #53, #54, #55, #58 prontos)!
 - [ ] Notifica que #55 pode começar
 
 #### #55 (Health Metrics)
-- [ ] Arquivo apps/studio/src/components/HealthMetrics.tsx criado
+- [ ] Arquivo domains/studio/src/components/HealthMetrics.tsx criado
 - [ ] 5+ métricas exibidas
 - [ ] Build status: ✅ PASS / ❌ FAIL
 - [ ] Issues abertas: 4 (com trending)

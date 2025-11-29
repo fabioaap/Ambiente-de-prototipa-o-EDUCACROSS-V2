@@ -67,6 +67,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: storybook-static
-          path: apps/storybook/storybook-static
+          path: domains/storybook/storybook-static
           retention-days: 7
         if: always()

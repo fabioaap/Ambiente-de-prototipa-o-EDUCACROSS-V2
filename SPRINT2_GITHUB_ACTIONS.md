@@ -221,7 +221,7 @@ Sprint 2 Validation
 ❌ sprint2-validations
    - pnpm install (3.2s) ✓
    - pnpm build (FAILED at studio)
-     ERROR: apps/studio/src/app/page.tsx
+     ERROR: domains/studio/src/app/page.tsx
      Line 42: Property 'pages' does not exist on type '{}'
      
      Suggestion: Did you mean 'pages' in C2 Sidebar component?

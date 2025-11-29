@@ -21,7 +21,7 @@ pnpm add -D @storybook/addon-a11y@^8.4.7
 
 ### 2. Configuração do Addon
 
-**Arquivo**: `apps/storybook/.storybook/main.ts`
+**Arquivo**: `domains/storybook/.storybook/main.ts`
 ```typescript
 // Antes
 addons: [

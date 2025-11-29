@@ -1,7 +1,7 @@
 # Research: Dashboard Hydration Resilience
 
 ## Decision 1 – Root layout normalization strategy
-- **Decision**: Constrain `<html>` attributes inside `apps/studio/src/app/layout.tsx` by emitting a deterministic class list (`bg-neutral-950 text-neutral-50`, data-theme) and add a scoped `suppressHydrationWarning` on the `<html>` element only, so browser extensions that append classes (ex.: `fusion-extension-loaded`) no longer cause React to compare mismatched trees.
+- **Decision**: Constrain `<html>` attributes inside `domains/studio/src/app/layout.tsx` by emitting a deterministic class list (`bg-neutral-950 text-neutral-50`, data-theme) and add a scoped `suppressHydrationWarning` on the `<html>` element only, so browser extensions that append classes (ex.: `fusion-extension-loaded`) no longer cause React to compare mismatched trees.
 - **Rationale**: Next.js 15 App Router renders the root layout server-side; controlling the class list there ensures both server and client share identical markup before hydration. Restricting `suppressHydrationWarning` to the root maintains visibility into genuine mismatches deeper in the tree while preventing false positives triggered by third-party scripts.
 - **Alternatives considered**:
   1. **Strip third-party classes via mutation observer** – Rejected because it fights user extensions and can create race conditions before hydration completes.

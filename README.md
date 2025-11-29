@@ -65,7 +65,7 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ## 🎨 Política de Componentes
 
-- **Shadcn UI** é restrito às rotas do Studio (`/studio`) e do Dashboard (`/dashboard`) dentro de `apps/studio/src/app`. Essas telas exigem microinterações avançadas e podem importar de `@/components/ui/*`.
+- **Shadcn UI** é restrito às rotas do Studio (`/studio`) e do Dashboard (`/dashboard`) dentro de `domains/studio/src/app`. Essas telas exigem microinterações avançadas e podem importar de `@/components/ui/*`.
 - **Domains, docs e demais apps** devem utilizar apenas o Design System nativo exportado por `@prototipo/design-system` (ou HTML sem dependências externas). Isso mantém as jornadas documentadas estáveis e fáceis de sincronizar com Storybook/Figma.
 - O script `pnpm check:shadcn` falha o build caso seja detectado um import de `@/components/ui` fora dos diretórios permitidos. Execute-o localmente antes de abrir PRs para evitar regressões.
 
@@ -101,9 +101,36 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 
 ## 🟢 Sprint 3 – Dashboard & Game Hub
 
-**Status**: 🟢 56% Completo (5/9 issues principais fechadas) | Fase 3 pronta para execução (2025-11-24)
+**Status**: 🟢 60% Completo (6/9 issues principais fechadas) | Fase 2 ✅ completa, Fase 3 pronta (2025-11-25)
 
-### Progresso
+### Experience Hub – Consolidação Storybook ✅ NOVO
+
+**Phase 2 Concluída** (2025-11-25):
+- ✅ Migração de `domains/storybook` → `domains/storybook` completa
+- ✅ Workspace reconfigurado (7 projetos)
+- ✅ Scripts `pnpm dev:hub`, `pnpm build:hub` operacionais
+- ✅ Guardrails Shadcn validados
+- 📋 Documentação: [PHASE2_COMPLETION_REPORT.md](./PHASE2_COMPLETION_REPORT.md)
+- 📋 Próximos passos: [PHASE3_EXECUTION_PLAN.md](./PHASE3_EXECUTION_PLAN.md)
+
+**Quick Commands**:
+```bash
+pnpm dev:hub           # Storybook em http://localhost:6006
+pnpm build:hub         # Build da hub
+pnpm check:shadcn      # Validar guardrails
+```
+
+**Estrutura**:
+```
+apps/experience-hub/
+├── storybook/         # Storybook 8 (ESM)
+│   ├── .storybook/
+│   ├── src/stories/
+│   └── package.json
+└── README.md          # Documentação
+```
+
+### Progresso Geral
 
 | Fase | Issues | Status | PRs |
 |------|--------|--------|-----|
@@ -275,7 +302,7 @@ O Studio é um app Next.js que integra o Puck OSS como editor visual.
 
 ### Configuração de Componentes
 
-Os componentes disponíveis no Puck são configurados em `apps/studio/src/config/puck.config.tsx`.
+Os componentes disponíveis no Puck são configurados em `domains/studio/src/config/puck.config.tsx`.
 
 Para adicionar um novo componente:
 
@@ -399,14 +426,14 @@ pnpm lint                 # Lint
 pnpm type-check           # Verificação de tipos
 
 # Studio
-cd apps/studio
+cd domains/studio
 pnpm dev                  # Dev server
 pnpm build                # Production build
 pnpm start                # Start production
 pnpm lint                 # Lint
 
 # Storybook
-cd apps/storybook
+cd domains/storybook
 pnpm dev                  # Storybook dev
 pnpm build                # Build estático
 pnpm lint                 # Lint
@@ -421,12 +448,12 @@ pnpm lint                 # Lint
 
 ### Apps
 
-1. **Studio** (`apps/studio`)
+1. **Studio** (`domains/studio`)
    - Next.js 15 (App Router)
    - Puck OSS integrado
    - Renderização de páginas salvas
 
-2. **Storybook** (`apps/storybook`)
+2. **Storybook** (`domains/storybook`)
    - Storybook 8 (ESM-only)
    - Documentação interativa
    - Playground de componentes
@@ -445,11 +472,11 @@ pnpm lint                 # Lint
 ### Dependências
 
 ```
-apps/studio
+domains/studio
   ├── @prototipo/design-system
   └── @prototipo/tokens
 
-apps/storybook
+domains/storybook
   ├── @prototipo/design-system
   └── @prototipo/tokens
 
@@ -461,8 +488,8 @@ packages/design-system
 
 1. **Criar/atualizar tokens** em `packages/tokens/src/tokens.json`
 2. **Criar componentes** em `packages/design-system/src/components/`
-3. **Documentar no Storybook** criando stories em `apps/storybook/src/stories/`
-4. **Adicionar ao Puck** configurando em `apps/studio/src/config/puck.config.tsx`
+3. **Documentar no Storybook** criando stories em `domains/storybook/src/stories/`
+4. **Adicionar ao Puck** configurando em `domains/studio/src/config/puck.config.tsx`
 5. **Criar protótipos** usando o editor visual em `/studio`
 6. **Documentar jornadas** nas pastas de domínio (BackOffice, FrontOffice, Game)
 
@@ -472,8 +499,8 @@ packages/design-system
 
 - [Tokens README](./packages/tokens/README.md)
 - [Design System README](./packages/design-system/README.md)
-- [Studio README](./apps/studio/README.md)
-- [Storybook README](./apps/storybook/README.md)
+- [Studio README](./domains/studio/README.md)
+- [Storybook README](./domains/storybook/README.md)
 - [Documentação Central](./docs/README.md)
 - [Backlog do Projeto](./docs/backlog.md)
 - [Issues Pendentes](./docs/issues-pendentes.md) 🆕

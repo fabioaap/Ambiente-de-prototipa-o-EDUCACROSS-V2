@@ -41,7 +41,7 @@ Estende a configuração base com regras do Next.js:
 - Validações de Image, Link, etc.
 
 **Pacotes que usam:**
-- `apps/studio`
+- `domains/studio`
 
 ### Storybook (`@prototipo/eslint-config/storybook`)
 
@@ -53,7 +53,7 @@ Estende a configuração base com regras do Storybook:
 - Regras de acessibilidade
 
 **Pacotes que usam:**
-- `apps/storybook`
+- `domains/storybook`
 
 ## 🚀 Como Usar
 

@@ -109,7 +109,7 @@ Este documento lista todas as issues pendentes extraídas do `backlog.md`, organ
 - **Prioridade**: **P0**
 - **Labels**: `epic`, `priority:P0`, `domain:BackOffice`, `type:task`
 - **Status**: **CONCLUÍDO** ✅
-- **Critério de Aceitação**: É possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `apps/studio/data/pages`
+- **Critério de Aceitação**: É possível criar/abrir/salvar páginas pelo Studio; arquivos JSON visíveis em `domains/studio/data/pages`
 
 ### C2 – Lista de páginas no sidebar
 - **Descrição**: Lista de páginas no sidebar (carregar do filesystem) com criar/renomear/excluir

@@ -1,0 +1,7 @@
+ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:hub C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter experience-hub build
+
+.                                        | ÔÇëWARNÔÇë Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v22.20.0","pnpm":"9.14.4"})
+No projects matched the filters in "C:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2"

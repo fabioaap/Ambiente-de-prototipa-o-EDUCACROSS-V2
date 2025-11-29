@@ -29,7 +29,7 @@
    - Output artifact (`DashboardRenderCheck`) stored under `./artifacts/dashboard-hydration/`.
 
 4. **Review telemetry logs**
-   - Check `apps/studio/.next/logs/dashboard.log` (or configured logger destination) for `HydrationSnapshot` entries.
+   - Check `domains/studio/.next/logs/dashboard.log` (or configured logger destination) for `HydrationSnapshot` entries.
    - Ensure `severity` stays `info` after fixes; any `warn/error` must be triaged.
 
 5. **Update documentation**

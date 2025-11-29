@@ -8,7 +8,7 @@
 
 ## 🔧 Mudanças Implementadas
 
-### 1. Navegação Dinâmica (`apps/studio/src/app/studio/page.tsx`)
+### 1. Navegação Dinâmica (`domains/studio/src/app/studio/page.tsx`)
 
 **Problema**: Página sempre carregava `home`, ignorando query param `?page=slug`
 
@@ -30,7 +30,7 @@ useEffect(() => {
 }, [pageParam]);
 ```
 
-### 2. API de Rename (`apps/studio/src/app/api/pages/rename/route.ts`)
+### 2. API de Rename (`domains/studio/src/app/api/pages/rename/route.ts`)
 
 **Nova funcionalidade**: Endpoint para renomear páginas
 
@@ -46,7 +46,7 @@ Features:
 - Valida que novo nome não existe
 - Usa `fs.rename()` para operação atômica
 
-### 3. Integração Frontend (`apps/studio/src/components/PagesList.tsx`)
+### 3. Integração Frontend (`domains/studio/src/components/PagesList.tsx`)
 
 **Atualizado**: Função `finishRename()` agora funcional
 

@@ -1,0 +1,230 @@
+name: SpecKit Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'specs/**'
+      - 'packages/**'
+      - 'domains/**'
+      - '.specify/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate-specs:
+    name: Run SpecKit Analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.14.4
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Detect changed specs
+        id: detect-specs
+        run: |
+          CHANGED_SPECS=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep '^specs/' | cut -d'/' -f1-3 | sort -u || echo "")
+          
+          if [ -z "$CHANGED_SPECS" ]; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "::notice::No specs/ changes detected"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "specs_list<<EOF" >> $GITHUB_OUTPUT
+            echo "$CHANGED_SPECS" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate prerequisites
+        if: steps.detect-specs.outputs.has_changes == 'true'
+        run: |
+          if [ ! -f .specify/scripts/powershell/check-prerequisites.ps1 ]; then
+            echo "::error::Missing .specify/scripts/powershell/check-prerequisites.ps1"
+            exit 1
+          fi
+          if [ ! -f .specify/memory/constitution.md ]; then
+            echo "::error::Missing .specify/memory/constitution.md"
+            exit 1
+          fi
+
+      - name: Run SpecKit Analyze
+        if: steps.detect-specs.outputs.has_changes == 'true'
+        id: speckit-analyze
+        run: |
+          REPORT_FILE="speckit-analysis-report.md"
+          CRITICAL_COUNT=0
+          HIGH_COUNT=0
+          
+          echo "# 📊 SpecKit Analysis Report" > $REPORT_FILE
+          echo "" >> $REPORT_FILE
+          echo "**Date**: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $REPORT_FILE
+          echo "**PR**: #${{ github.event.pull_request.number }}" >> $REPORT_FILE
+          echo "" >> $REPORT_FILE
+          
+          while IFS= read -r spec_dir; do
+            if [ ! -z "$spec_dir" ]; then
+              echo "## Spec: $spec_dir" >> $REPORT_FILE
+              
+              # Check mandatory files
+              if [ ! -f "$spec_dir/spec.md" ]; then
+                echo "- ❌ **CRITICAL**: Missing spec.md" >> $REPORT_FILE
+                CRITICAL_COUNT=$((CRITICAL_COUNT + 1))
+              else
+                echo "- ✅ spec.md present" >> $REPORT_FILE
+              fi
+              
+              if [ ! -f "$spec_dir/plan.md" ]; then
+                echo "- ❌ **CRITICAL**: Missing plan.md" >> $REPORT_FILE
+                CRITICAL_COUNT=$((CRITICAL_COUNT + 1))
+              else
+                echo "- ✅ plan.md present" >> $REPORT_FILE
+              fi
+              
+              if [ ! -f "$spec_dir/tasks.md" ]; then
+                echo "- ⚠️ **HIGH**: Missing tasks.md" >> $REPORT_FILE
+                HIGH_COUNT=$((HIGH_COUNT + 1))
+              else
+                echo "- ✅ tasks.md present" >> $REPORT_FILE
+              fi
+              
+              # Check placeholders
+              if [ -f "$spec_dir/spec.md" ]; then
+                PLACEHOLDERS=$(grep -c "ACTION REQUIRED" "$spec_dir/spec.md" || echo 0)
+                if [ $PLACEHOLDERS -gt 0 ]; then
+                  echo "- ⚠️ **HIGH**: $PLACEHOLDERS unresolved placeholders" >> $REPORT_FILE
+                  HIGH_COUNT=$((HIGH_COUNT + 1))
+                fi
+                
+                NEEDS_CLARIFICATION=$(grep -c "NEEDS CLARIFICATION" "$spec_dir/spec.md" || echo 0)
+                if [ $NEEDS_CLARIFICATION -gt 0 ]; then
+                  echo "- ⚠️ **HIGH**: $NEEDS_CLARIFICATION items needing clarification" >> $REPORT_FILE
+                  HIGH_COUNT=$((HIGH_COUNT + 1))
+                fi
+              fi
+              
+              # Check Constitution Check
+              if [ -f "$spec_dir/plan.md" ]; then
+                if ! grep -q "Constitution Check" "$spec_dir/plan.md"; then
+                  echo "- ❌ **CRITICAL**: Missing Constitution Check" >> $REPORT_FILE
+                  CRITICAL_COUNT=$((CRITICAL_COUNT + 1))
+                else
+                  echo "- ✅ Constitution Check present" >> $REPORT_FILE
+                fi
+              fi
+              
+              echo "" >> $REPORT_FILE
+            fi
+          done <<< "${{ steps.detect-specs.outputs.specs_list }}"
+          
+          echo "---" >> $REPORT_FILE
+          echo "## Summary" >> $REPORT_FILE
+          echo "- **CRITICAL**: $CRITICAL_COUNT" >> $REPORT_FILE
+          echo "- **HIGH**: $HIGH_COUNT" >> $REPORT_FILE
+          echo "" >> $REPORT_FILE
+          
+          if [ $CRITICAL_COUNT -gt 0 ]; then
+            echo "❌ **VALIDATION FAILED** - Must resolve CRITICAL issues" >> $REPORT_FILE
+            echo "status=failed" >> $GITHUB_OUTPUT
+          elif [ $HIGH_COUNT -gt 0 ]; then
+            echo "⚠️ **VALIDATION WARNING** - Consider resolving HIGH issues" >> $REPORT_FILE
+            echo "status=warning" >> $GITHUB_OUTPUT
+          else
+            echo "✅ **VALIDATION PASSED** - All checks successful" >> $REPORT_FILE
+            echo "status=passed" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "report_path=$REPORT_FILE" >> $GITHUB_OUTPUT
+          echo "critical_count=$CRITICAL_COUNT" >> $GITHUB_OUTPUT
+
+      - name: Upload report
+        if: steps.detect-specs.outputs.has_changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: speckit-analysis-report
+          path: speckit-analysis-report.md
+          retention-days: 30
+
+      - name: Post PR comment
+        if: steps.detect-specs.outputs.has_changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const reportContent = fs.readFileSync('${{ steps.speckit-analyze.outputs.report_path }}', 'utf8');
+            const status = '${{ steps.speckit-analyze.outputs.status }}';
+            const emoji = status === 'passed' ? '✅' : status === 'warning' ? '⚠️' : '❌';
+            
+            const comment = `## ${emoji} SpecKit Validation Report
+
+${reportContent}
+
+---
+
+<details>
+<summary>📚 How to interpret this report</summary>
+
+- **CRITICAL**: Blocks merge - must be resolved
+- **HIGH**: Should be resolved before merge
+- **MEDIUM/LOW**: Optional improvements
+
+To regenerate locally:
+\`\`\`bash
+# Validate your spec changes
+pnpm lint
+pnpm -r type-check
+\`\`\`
+
+For more details, see [SpecKit documentation](.specify/README.md)
+</details>`;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(c => 
+              c.user.type === 'Bot' && c.body.includes('SpecKit Validation')
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: comment
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }
+
+      - name: Fail if critical
+        if: steps.speckit-analyze.outputs.status == 'failed'
+        run: |
+          echo "::error::SpecKit validation failed with ${{ steps.speckit-analyze.outputs.critical_count }} CRITICAL issues"
+          exit 1

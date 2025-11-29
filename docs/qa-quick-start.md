@@ -185,7 +185,7 @@ pnpm build
 ### Problema: Páginas não aparecem
 ```bash
 # Verificar se arquivos existem
-ls apps/studio/data/pages/
+ls domains/studio/data/pages/
 # Deve listar: home.json, backoffice/
 ```
 
