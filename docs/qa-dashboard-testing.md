@@ -433,6 +433,259 @@ Qualquer contexto relevante
 
 ---
 
-**Última Atualização**: 2025-11-20  
+**Última Atualização**: 2025-11-29  
 **Responsável**: QA Team  
 **Status**: 📋 Pronto para Uso
+
+---
+
+## 🔍 Cenário 8: Dashboard Hydration Resilience Testing
+
+**Persona**: QA Tester / Frontend Developer  
+**Objetivo**: Validate dashboard loads without React hydration warnings even with browser extensions  
+**URL**: `http://localhost:3000/dashboard`  
+**Added**: 2025-11-29 (Dashboard Hydration Resilience feature)
+
+### Pre-conditions
+- Dashboard is accessible at `/dashboard`
+- Browser DevTools console is open
+- Have at least one browser extension that modifies DOM (e.g., Fusion, DarkReader, Grammarly)
+
+### Test Setup
+
+#### Required Browser Extensions (for testing)
+1. **Fusion** (or similar extension that injects classes into `<html>`)
+2. **DarkReader** (optional - theme extension)
+3. **Any ad blocker** (optional - e.g., uBlock Origin)
+
+#### Network Throttling Profiles
+- **Normal**: No throttling
+- **Slow 3G**: DevTools Network tab → Throttling → Slow 3G
+- **Offline**: DevTools Network tab → Throttling → Offline
+
+### Test Scenarios
+
+#### Scenario 8.1: Clean Load (No Extensions)
+
+**Steps**:
+1. Open incognito/private window (disables all extensions)
+2. Navigate to `http://localhost:3000/dashboard`
+3. Open DevTools Console (F12 → Console tab)
+4. Reload page (Cmd/Ctrl + R)
+5. Observe console for first 10 seconds after page load
+
+**Expected Results**:
+- ✅ Dashboard renders completely
+- ✅ No `Hydration failed` warnings in console
+- ✅ No `Did not expect server HTML` errors
+- ✅ No `A tree hydrated` messages
+- ✅ KPI cards, health section, and pages table all visible
+
+**Failure Indicators**:
+- ❌ Any React hydration warning appears in console
+- ❌ Layout flickers or re-renders unexpectedly
+- ❌ Missing content after hydration
+
+---
+
+#### Scenario 8.2: Load with Extension Interference
+
+**Steps**:
+1. Enable Fusion (or similar) extension
+2. Navigate to `http://localhost:3000/dashboard`
+3. Open DevTools Console
+4. Reload page 5 times (Cmd/Ctrl + R)
+5. Check console after each reload
+
+**Expected Results**:
+- ✅ Dashboard renders on all 5 reloads
+- ✅ Zero hydration warnings across all reloads
+- ✅ Extension classes (e.g., `fusion-extension-loaded`) may appear in `<html>`
+- ✅ `suppressHydrationWarning` on `<html>` prevents false positives
+- ✅ Dashboard functionality unaffected
+
+**Acceptance Criteria**:
+- Must pass: 0 hydration warnings in 5 reloads
+- If any warning appears: Screenshot + full console log required
+
+---
+
+#### Scenario 8.3: Load with Slow 3G Throttling
+
+**Steps**:
+1. Open DevTools → Network tab
+2. Set throttling to "Slow 3G"
+3. Navigate to `http://localhost:3000/dashboard`
+4. Wait for full page load (up to 30 seconds)
+5. Check console for hydration warnings
+
+**Expected Results**:
+- ✅ Dashboard loads successfully (slower)
+- ✅ Skeleton placeholders render immediately
+- ✅ Data populates after SWR fetch completes
+- ✅ No hydration warnings despite slow load
+- ✅ No layout shift after data arrives
+
+**Performance Criteria**:
+- Skeleton render: < 400ms (per SC-003)
+- Full data load: < 10 seconds on Slow 3G
+- No cumulative layout shift (CLS)
+
+---
+
+#### Scenario 8.4: Combined Extension + Slow Network
+
+**Steps**:
+1. Enable Fusion extension
+2. Set network throttling to "Slow 3G"
+3. Navigate to `/dashboard`
+4. Reload page 3 times
+5. Verify console stays clean
+
+**Expected Results**:
+- ✅ Dashboard loads on all reloads
+- ✅ Zero hydration warnings
+- ✅ Telemetry logs (if enabled) show clean hydration
+- ✅ Extension fingerprint detected but no errors
+
+**This is the "stress test" scenario** - if this passes, dashboard hydration is truly resilient.
+
+---
+
+### Evidence Capture
+
+#### Screenshots to Capture
+1. **Console Clean State**: DevTools console showing zero errors after dashboard load
+2. **Network Waterfall**: Network tab showing request timing
+3. **Extension Classes**: Inspect `<html>` element to show extension classes present
+4. **Dashboard Rendered**: Full dashboard screenshot with data populated
+
+#### Save Evidence To:
+- `specs/001-dashboard-hydration/artifacts/us1-hydration-validation.md`
+- `specs/001-dashboard-hydration/artifacts/us1/` (screenshots folder)
+
+---
+
+### Automated Testing
+
+#### Run Automated Hydration Tests
+
+```bash
+# From repository root
+pnpm test:dashboard-hydration
+
+# Or directly
+pnpm --filter studio test:dashboard-hydration
+```
+
+**Expected Output**:
+```
+✓ src/tests/dashboard-hydration/hydration.spec.ts (4 tests) 
+  ✓ passes with no extension interference
+  ✓ passes with slow-3g network throttling
+  ✓ passes with fusion extension mock
+  ✓ passes with combined slow-3g and extension
+
+Test Files  1 passed (1)
+     Tests  4 passed (4)
+```
+
+**Failure Investigation**:
+If any test fails:
+1. Check test output for specific failure reason
+2. Review `DashboardRenderCheck` artifact in console
+3. Capture screenshot if `screenshotPath` is provided
+4. Check buffered logger for `HydrationSnapshot` entries
+
+---
+
+### Telemetry Validation
+
+#### Enable Development Logger
+
+Dashboard logger is automatically enabled in development mode. Check console for:
+
+```
+[Dashboard Logger] 2025-11-29T21:27:00.000Z [INFO] Dashboard loaded successfully
+```
+
+#### Trigger Hydration Mismatch (for testing telemetry)
+
+To verify telemetry captures mismatches:
+
+1. Temporarily remove `suppressHydrationWarning` from `domains/studio/src/app/layout.tsx`
+2. Reload dashboard with extension enabled
+3. Check console for:
+   - React hydration warning
+   - `[Dashboard Logger] [WARN] Hydration mismatch detected on /dashboard`
+4. Verify log includes:
+   - `correlationId` (UUID)
+   - `extensionFingerprint` (e.g., `fusion-extension-loaded`)
+   - `serverAttributes` and `clientAttributes` diff
+5. Restore `suppressHydrationWarning` after test
+
+**NOTE**: This is a destructive test - only run when validating telemetry system itself.
+
+---
+
+### Troubleshooting Common Issues
+
+#### Issue 1: Extension Not Detected
+
+**Symptom**: Test passes but extension classes should be present  
+**Solution**:
+- Verify extension is enabled (check browser extension manager)
+- Some extensions only inject on specific domains
+- Try different extension (DarkReader, Grammarly)
+
+#### Issue 2: False Positive Hydration Warning
+
+**Symptom**: Hydration warning appears even with `suppressHydrationWarning`  
+**Investigation**:
+- Check if warning is for `<html>` or deeper in tree
+- `suppressHydrationWarning` only covers root element
+- If warning is in `/dashboard` content, review `page.tsx` for non-deterministic values
+
+#### Issue 3: Slow 3G Test Timeout
+
+**Symptom**: Dashboard doesn't load within 30 seconds  
+**Solution**:
+- Verify network throttling is active (DevTools Network tab)
+- Check if APIs are responding (`/api/dashboard/summary`, `/api/dashboard/health`)
+- Review SWR configuration for timeout settings
+
+#### Issue 4: Test Fails in CI but Passes Locally
+
+**Symptom**: `pnpm test:dashboard-hydration` fails in GitHub Actions  
+**Investigation**:
+- CI may have different timing characteristics
+- Check if test is using `happy-dom` correctly
+- Verify no race conditions in console capture logic
+
+---
+
+### Acceptance Criteria Summary
+
+**Dashboard Hydration Resilience is PASS if**:
+- ✅ Scenario 8.1: Clean load - 0 warnings
+- ✅ Scenario 8.2: Extension load - 0 warnings in 5 reloads
+- ✅ Scenario 8.3: Slow 3G load - 0 warnings
+- ✅ Scenario 8.4: Combined stress test - 0 warnings in 3 reloads
+- ✅ Automated tests pass (`pnpm test:dashboard-hydration`)
+- ✅ Telemetry logs captured (development mode verification)
+
+**Fail Criteria**:
+- ❌ Any hydration warning in any scenario
+- ❌ Automated test suite fails
+- ❌ Dashboard doesn't render completely
+- ❌ Telemetry not capturing mismatch data (if tested)
+
+---
+
+### References
+
+- **Feature Spec**: `specs/001-dashboard-hydration/spec.md`
+- **Implementation Plan**: `specs/001-dashboard-hydration/plan.md`
+- **Tasks Breakdown**: `specs/001-dashboard-hydration/tasks.md`
+- **Quickstart Guide**: `specs/001-dashboard-hydration/quickstart.md`
+- **Telemetry Docs**: `SPRINT3_HEALTH_INDICATORS_REPORT.md` (Observability Chapter)

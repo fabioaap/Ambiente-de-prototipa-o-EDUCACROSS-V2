@@ -5,17 +5,17 @@
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-- [ ] T001 Run `pnpm install --frozen-lockfile` using the workspace manifest `package.json` (repo root) to ensure dependencies match Node 22.21.1/pnpm 9.14.4.
-- [ ] T002 Capture baseline `pnpm lint`, `pnpm -r type-check`, and `pnpm build` output from repository root (referencing `pnpm-workspace.yaml`) and archive the results in `specs/001-dashboard-hydration/artifacts/baseline-ci.md`.
-- [ ] T003 Record the current `/dashboard` hydration mismatch console trace while running `pnpm --filter studio dev` and save the log to `specs/001-dashboard-hydration/artifacts/baseline-console.md` for before/after comparison.
+- [x] T001 Run `pnpm install --frozen-lockfile` using the workspace manifest `package.json` (repo root) to ensure dependencies match Node 22.21.1/pnpm 9.14.4.
+- [x] T002 Capture baseline `pnpm lint`, `pnpm -r type-check`, and `pnpm build` output from repository root (referencing `pnpm-workspace.yaml`) and archive the results in `specs/001-dashboard-hydration/artifacts/baseline-ci.md`.
+- [x] T003 Record the current `/dashboard` hydration mismatch console trace while running `pnpm --filter studio dev` and save the log to `specs/001-dashboard-hydration/artifacts/baseline-console.md` for before/after comparison.
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-- [ ] T004 [P] Create `domains/studio/src/lib/hydration/types.ts` exporting the `HydrationSnapshot` and `DashboardRenderCheck` interfaces defined in `specs/001-dashboard-hydration/data-model.md`.
-- [ ] T005 [P] Scaffold `domains/studio/src/tests/dashboard-hydration/hydration.spec.ts` with a failing placeholder test plus shared helpers in `domains/studio/src/tests/dashboard-hydration/helpers.ts` so the automation suite exists before story work begins.
-- [ ] T006 Update `domains/studio/package.json` (and, if needed, root `package.json`) to expose a `test:dashboard-hydration` script that runs the new spec (`pnpm --filter studio test -- --group dashboard-hydration`) and document the command usage in `specs/001-dashboard-hydration/quickstart.md`.
+- [x] T004 [P] Create `domains/studio/src/lib/hydration/types.ts` exporting the `HydrationSnapshot` and `DashboardRenderCheck` interfaces defined in `specs/001-dashboard-hydration/data-model.md`.
+- [x] T005 [P] Scaffold `domains/studio/src/tests/dashboard-hydration/hydration.spec.ts` with a failing placeholder test plus shared helpers in `domains/studio/src/tests/dashboard-hydration/helpers.ts` so the automation suite exists before story work begins.
+- [x] T006 Update `domains/studio/package.json` (and, if needed, root `package.json`) to expose a `test:dashboard-hydration` script that runs the new spec (`pnpm --filter studio test -- --group dashboard-hydration`) and document the command usage in `specs/001-dashboard-hydration/quickstart.md`.
 
 **Checkpoint**: Foundation ready — user stories can begin.
 
@@ -47,14 +47,14 @@
 
 ### Tests for User Story 2
 
-- [ ] T012 [P] [US2] Implement the Playwright (or equivalent) scenario in `domains/studio/src/tests/dashboard-hydration/hydration.spec.ts` that mounts `/dashboard`, injects `fusion-extension-loaded`, toggles Slow 3G throttling, and asserts no hydration warnings are emitted.
-- [ ] T013 [P] [US2] Extend the test helpers in `domains/studio/src/tests/dashboard-hydration/helpers.ts` to capture console output and serialize `DashboardRenderCheck` artifacts into `specs/001-dashboard-hydration/artifacts/us2-test-results.json`.
+- [x] T012 [P] [US2] Implement the Playwright (or equivalent) scenario in `domains/studio/src/tests/dashboard-hydration/hydration.spec.ts` that mounts `/dashboard`, injects `fusion-extension-loaded`, toggles Slow 3G throttling, and asserts no hydration warnings are emitted.
+- [x] T013 [P] [US2] Extend the test helpers in `domains/studio/src/tests/dashboard-hydration/helpers.ts` to capture console output and serialize `DashboardRenderCheck` artifacts into `specs/001-dashboard-hydration/artifacts/us2-test-results.json`.
 
 ### Implementation for User Story 2
 
-- [ ] T014 [US2] Enhance `domains/studio/src/lib/logger/dashboardLogger.ts` (or the module that exports it) to accept a `HydrationSnapshot` payload and persist structured JSON logs with `correlationId`.
-- [ ] T015 [US2] Wire a global `onRecoverableError` handler inside `domains/studio/src/app/layout.tsx` that normalizes server/client attributes, builds a `HydrationSnapshot`, and forwards it to `dashboardLogger` without throwing.
-- [ ] T016 [P] [US2] Create `domains/studio/src/lib/hydration/extensionFingerprint.ts` to derive fingerprints (e.g., `fusion-extension-loaded`) from attribute diffs so telemetry can group incidents.
+- [x] T014 [US2] Enhance `domains/studio/src/lib/logger/dashboardLogger.ts` (or the module that exports it) to accept a `HydrationSnapshot` payload and persist structured JSON logs with `correlationId`.
+- [x] T015 [US2] Wire a global `onRecoverableError` handler inside `domains/studio/src/app/layout.tsx` that normalizes server/client attributes, builds a `HydrationSnapshot`, and forwards it to `dashboardLogger` without throwing.
+- [x] T016 [P] [US2] Create `domains/studio/src/lib/hydration/extensionFingerprint.ts` to derive fingerprints (e.g., `fusion-extension-loaded`) from attribute diffs so telemetry can group incidents.
 - [ ] T017 [US2] Document the new telemetry + automated test workflow inside `docs/SPRINT3_HEALTH_INDICATORS_REPORT.md` (observability chapter) referencing log locations and the `test:dashboard-hydration` command.
 
 **Checkpoint**: User Story 2 provides automated detection plus structured logs for any future hydration mismatch.
@@ -69,10 +69,10 @@
 
 ### Implementation Tasks
 
-- [ ] T018 [US3] Expand `docs/qa-dashboard-testing.md` with a dedicated section covering extension toggles, throttling setup, and evidence capture for hydration warnings.
-- [ ] T019 [US3] Update `domains/BackOffice/journeys/Dashboard/README.md` to describe the hydration resilience flow, include the `/dashboard` slug link, and reference the automation artifacts.
-- [ ] T020 [US3] Append the new QA steps and telemetry touchpoints to `SPRINT3_HEALTH_INDICATORS_REPORT.md`, ensuring the sprint report highlights the hydration regression guard.
-- [ ] T021 [US3] Add a short troubleshooting note plus links to artifacts inside `specs/001-dashboard-hydration/quickstart.md` so future agents know how to reproduce the QA scenario.
+- [x] T018 [US3] Expand `docs/qa-dashboard-testing.md` with a dedicated section covering extension toggles, throttling setup, and evidence capture for hydration warnings.
+- [x] T019 [US3] Update `domains/BackOffice/journeys/Dashboard/README.md` to describe the hydration resilience flow, include the `/dashboard` slug link, and reference the automation artifacts.
+- [x] T020 [US3] Append the new QA steps and telemetry touchpoints to `SPRINT3_HEALTH_INDICATORS_REPORT.md`, ensuring the sprint report highlights the hydration regression guard.
+- [x] T021 [US3] Add a short troubleshooting note plus links to artifacts inside `specs/001-dashboard-hydration/quickstart.md` so future agents know how to reproduce the QA scenario.
 
 **Checkpoint**: Documentation fully equips QA to validate hydration resilience independently.
 
@@ -80,8 +80,8 @@
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T022 [P] Run the full quickstart workflow (`specs/001-dashboard-hydration/quickstart.md`) end-to-end, capturing logs/screenshots that prove clean consoles and passing tests, and store them in `specs/001-dashboard-hydration/artifacts/final-verification.md`.
-- [ ] T023 Verify `pnpm lint`, `pnpm -r type-check`, `pnpm build`, and `pnpm --filter studio test -- --group dashboard-hydration` all pass after the changes, attaching summaries to `specs/001-dashboard-hydration/artifacts/final-ci.md`.
+- [x] T022 [P] Run the full quickstart workflow (`specs/001-dashboard-hydration/quickstart.md`) end-to-end, capturing logs/screenshots that prove clean consoles and passing tests, and store them in `specs/001-dashboard-hydration/artifacts/final-verification.md`.
+- [x] T023 Verify `pnpm lint`, `pnpm -r type-check`, `pnpm build`, and `pnpm --filter studio test -- --group dashboard-hydration` all pass after the changes, attaching summaries to `specs/001-dashboard-hydration/artifacts/final-ci.md`.
 - [ ] T024 [P] Run `/spec` on the eventual PR and ensure SpecKit reports ✅ for documentation, tests, and dashboards, linking the output inside `specs/001-dashboard-hydration/artifacts/spec-report.md`.
 
 ---
