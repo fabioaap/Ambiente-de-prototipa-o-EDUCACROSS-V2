@@ -1,6 +1,6 @@
 export { Button } from './components/Button/Button';
 export { Text } from './components/Text/Text';
-export { Card } from './components/Card/Card';
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './components/Card/Card';
 export { Layout } from './components/Layout/Layout';
 export { Input } from './components/Input/Input';
 export { Select } from './components/Select/Select';
