@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Skeleton.module.css';
+import './Skeleton.css';
 
 /**
  * Props para o componente Skeleton
@@ -77,9 +77,9 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
     const heightValue = typeof height === 'number' ? `${height}px` : height;
 
     const classes = [
-      styles.skeleton,
-      styles[variant],
-      animation !== 'none' && styles[animation],
+      "Skeleton_skeleton",
+      `Skeleton_${variant}`,
+      animation !== 'none' && `Skeleton_${animation}`,
       className,
     ]
       .filter(Boolean)

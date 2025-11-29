@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Table.module.css';
+import './Table.css';
 
 /**
  * Definição de uma coluna da tabela
@@ -134,10 +134,10 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
     ref
   ) => {
     const tableClasses = [
-      styles.table,
-      striped && styles.striped,
-      bordered && styles.bordered,
-      hoverable && styles.hoverable,
+      "Table_table",
+      striped && "Table_striped",
+      bordered && "Table_bordered",
+      hoverable && "Table_hoverable",
       className,
     ]
       .filter(Boolean)
@@ -158,31 +158,31 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
       if (!column.sortable) return null;
 
       if (sortState?.key !== column.key) {
-        return <span className={styles.sortIcon}>⇅</span>;
+        return <span className={"Table_sortIcon"}>⇅</span>;
       }
 
       return sortState.direction === 'asc' ? (
-        <span className={styles.sortIcon}>↑</span>
+        <span className={"Table_sortIcon"}>↑</span>
       ) : (
-        <span className={styles.sortIcon}>↓</span>
+        <span className={"Table_sortIcon"}>↓</span>
       );
     };
 
     return (
       <table ref={ref} className={tableClasses} {...rest}>
-        <thead className={styles.thead}>
+        <thead className={"Table_thead"}>
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
-                className={`${styles.th} ${column.sortable ? styles.sortable : ''}`}
+                className={`${"Table_th"} ${column.sortable ? "Table_sortable" : ''}`}
                 style={{
                   width: column.width,
                   textAlign: column.align || 'left',
                 }}
                 onClick={() => handleSort(column)}
               >
-                <div className={styles.thContent}>
+                <div className={"Table_thContent"}>
                   {column.label}
                   {getSortIcon(column)}
                 </div>
@@ -190,12 +190,12 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
             ))}
           </tr>
         </thead>
-        <tbody className={styles.tbody}>
+        <tbody className={"Table_tbody"}>
           {data.length === 0 ? (
             <tr>
               <td
                 colSpan={columns.length}
-                className={styles.emptyMessage}
+                className={"Table_emptyMessage"}
               >
                 {emptyMessage}
               </td>
@@ -206,7 +206,7 @@ const Table = React.forwardRef<HTMLTableElement, TableProps>(
                 {columns.map((column) => (
                   <td
                     key={column.key}
-                    className={styles.td}
+                    className={"Table_td"}
                     style={{ textAlign: column.align || 'left' }}
                   >
                     {String(row[column.key] ?? '')}

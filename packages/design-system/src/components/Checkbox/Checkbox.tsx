@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Checkbox.module.css';
+import './Checkbox.css';
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -24,14 +24,14 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
     const checkboxClassName = [
-      styles.checkbox,
-      error && styles.error,
+      "Checkbox_checkbox",
+      error && "Checkbox_error",
       className,
     ].filter(Boolean).join(' ');
 
     return (
       <div>
-        <div className={styles.checkboxWrapper}>
+        <div className={"Checkbox_checkboxWrapper"}>
           <input
             ref={ref}
             type="checkbox"
@@ -51,19 +51,19 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           {label && (
             <label
               htmlFor={checkboxId}
-              className={`${styles.label} ${disabled ? styles.disabled : ''}`}
+              className={`${"Checkbox_label"} ${disabled ? "Checkbox_disabled" : ''}`}
             >
               {label}
             </label>
           )}
         </div>
         {errorText && (
-          <div id={`${checkboxId}-error`} className={styles.errorText} role="alert">
+          <div id={`${checkboxId}-error`} className={"Checkbox_errorText"} role="alert">
             {errorText}
           </div>
         )}
         {!errorText && helperText && (
-          <div id={`${checkboxId}-helper`} className={styles.helperText}>
+          <div id={`${checkboxId}-helper`} className={"Checkbox_helperText"}>
             {helperText}
           </div>
         )}

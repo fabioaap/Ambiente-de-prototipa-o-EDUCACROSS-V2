@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Pagination.module.css';
+import './Pagination.css';
 
 /**
  * Props para o componente Pagination
@@ -83,18 +83,18 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     }
 
     return (
-      <nav className={styles.pagination} ref={ref} aria-label="Paginação">
-        <div className={styles.container}>
+      <nav className={"Pagination_pagination"} ref={ref} aria-label="Paginação">
+        <div className={"Pagination_container"}>
           {showFirstLast && (
             <button
               type="button"
-              className={styles.button}
+              className={"Pagination_button"}
               onClick={() => handlePageChange(1)}
               disabled={disabled || currentPage === 1}
               aria-label="Primeira página"
             >
               <svg
-                className={styles.icon}
+                className={"Pagination_icon"}
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"
@@ -118,13 +118,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           )}
           <button
             type="button"
-            className={styles.button}
+            className={"Pagination_button"}
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={disabled || currentPage === 1}
             aria-label="Página anterior"
           >
             <svg
-              className={styles.icon}
+              className={"Pagination_icon"}
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -143,7 +143,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           {paginationRange.map((pageNumber, index) => {
             if (pageNumber === DOTS) {
               return (
-                <span key={`dots-${index}`} className={styles.dots}>
+                <span key={`dots-${index}`} className={"Pagination_dots"}>
                   {DOTS}
                 </span>
               );
@@ -154,8 +154,8 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               <button
                 key={page}
                 type="button"
-                className={`${styles.button} ${styles.pageButton} ${
-                  page === currentPage ? styles.active : ''
+                className={`${"Pagination_button"} ${"Pagination_pageButton"} ${
+                  page === currentPage ? "Pagination_active" : ''
                 }`}
                 onClick={() => handlePageChange(page)}
                 disabled={disabled}
@@ -169,13 +169,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
 
           <button
             type="button"
-            className={styles.button}
+            className={"Pagination_button"}
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={disabled || currentPage === totalPages}
             aria-label="Próxima página"
           >
             <svg
-              className={styles.icon}
+              className={"Pagination_icon"}
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -193,13 +193,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           {showFirstLast && (
             <button
               type="button"
-              className={styles.button}
+              className={"Pagination_button"}
               onClick={() => handlePageChange(totalPages)}
               disabled={disabled || currentPage === totalPages}
               aria-label="Última página"
             >
               <svg
-                className={styles.icon}
+                className={"Pagination_icon"}
                 width="20"
                 height="20"
                 viewBox="0 0 20 20"

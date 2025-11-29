@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './ActionButtons.module.css';
+import './ActionButtons.css';
 
 /**
  * Props para o componente ActionButtons
@@ -39,20 +39,20 @@ export const ActionButtons = React.forwardRef<
     },
     ref
   ) => {
-    const sizeClass = styles[size];
+    const sizeClass = `ActionButtons_${size}`;
 
     return (
-      <div className={`${styles.actions} ${sizeClass}`} ref={ref}>
+      <div className={`${"ActionButtons_actions"} ${sizeClass}`} ref={ref}>
         {onView && (
           <button
             type="button"
-            className={`${styles.button} ${styles.view}`}
+            className={`${"ActionButtons_button"} ${"ActionButtons_view"}`}
             onClick={onView}
             aria-label={viewLabel}
             title={viewLabel}
           >
             <svg
-              className={styles.icon}
+              className={"ActionButtons_icon"}
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -77,13 +77,13 @@ export const ActionButtons = React.forwardRef<
         {onEdit && (
           <button
             type="button"
-            className={`${styles.button} ${styles.edit}`}
+            className={`${"ActionButtons_button"} ${"ActionButtons_edit"}`}
             onClick={onEdit}
             aria-label={editLabel}
             title={editLabel}
           >
             <svg
-              className={styles.icon}
+              className={"ActionButtons_icon"}
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -101,13 +101,13 @@ export const ActionButtons = React.forwardRef<
         {onDelete && (
           <button
             type="button"
-            className={`${styles.button} ${styles.delete}`}
+            className={`${"ActionButtons_button"} ${"ActionButtons_delete"}`}
             onClick={onDelete}
             aria-label={deleteLabel}
             title={deleteLabel}
           >
             <svg
-              className={styles.icon}
+              className={"ActionButtons_icon"}
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

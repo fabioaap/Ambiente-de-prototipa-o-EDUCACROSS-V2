@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import '@prototipo/tokens/tokens.css';
+import '@prototipo/design-system/index.css';
 import '@measured/puck/puck.css';
 import './globals.css';
 

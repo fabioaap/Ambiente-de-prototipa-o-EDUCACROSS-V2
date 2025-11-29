@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './FilterGroup.module.css';
+import './FilterGroup.css';
 
 /**
  * Props para o componente FilterGroup
@@ -41,13 +41,13 @@ export const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
       switch (filter.type) {
         case 'select':
           return (
-            <div key={filter.id} className={styles.filterItem}>
-              <label htmlFor={filter.id} className={styles.label}>
+            <div key={filter.id} className={"FilterGroup_filterItem"}>
+              <label htmlFor={filter.id} className={"FilterGroup_label"}>
                 {filter.label}
               </label>
               <select
                 id={filter.id}
-                className={styles.select}
+                className={"FilterGroup_select"}
                 value={currentValue}
                 onChange={(e) => handleInputChange(filter.id, e.target.value)}
               >
@@ -65,14 +65,14 @@ export const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
 
         case 'date':
           return (
-            <div key={filter.id} className={styles.filterItem}>
-              <label htmlFor={filter.id} className={styles.label}>
+            <div key={filter.id} className={"FilterGroup_filterItem"}>
+              <label htmlFor={filter.id} className={"FilterGroup_label"}>
                 {filter.label}
               </label>
               <input
                 type="date"
                 id={filter.id}
-                className={styles.input}
+                className={"FilterGroup_input"}
                 value={currentValue}
                 onChange={(e) => handleInputChange(filter.id, e.target.value)}
               />
@@ -82,14 +82,14 @@ export const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
         case 'input':
         default:
           return (
-            <div key={filter.id} className={styles.filterItem}>
-              <label htmlFor={filter.id} className={styles.label}>
+            <div key={filter.id} className={"FilterGroup_filterItem"}>
+              <label htmlFor={filter.id} className={"FilterGroup_label"}>
                 {filter.label}
               </label>
               <input
                 type="text"
                 id={filter.id}
-                className={styles.input}
+                className={"FilterGroup_input"}
                 placeholder={filter.placeholder || ''}
                 value={currentValue}
                 onChange={(e) => handleInputChange(filter.id, e.target.value)}
@@ -104,21 +104,21 @@ export const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
     );
 
     return (
-      <div className={styles.container} ref={ref}>
-        <div className={`${styles.filters} ${styles[layout]}`}>
+      <div className={"FilterGroup_container"} ref={ref}>
+        <div className={`${"FilterGroup_filters"} ${`FilterGroup_${layout}`}`}>
           {filters.map((filter) => renderFilter(filter))}
         </div>
         {onReset && (
           <button
             type="button"
-            className={`${styles.resetButton} ${
-              hasActiveFilters ? styles.active : ''
+            className={`${"FilterGroup_resetButton"} ${
+              hasActiveFilters ? "FilterGroup_active" : ''
             }`}
             onClick={onReset}
             disabled={!hasActiveFilters}
           >
             <svg
-              className={styles.resetIcon}
+              className={"FilterGroup_resetIcon"}
               width="16"
               height="16"
               viewBox="0 0 16 16"

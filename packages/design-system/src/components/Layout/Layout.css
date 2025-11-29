@@ -1,0 +1,32 @@
+@import '@prototipo/tokens/tokens.css';
+
+.Layout_layout {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Max Width */
+.Layout_max-sm { max-width: var(--breakpoints-sm); }
+.Layout_max-md { max-width: var(--breakpoints-md); }
+.Layout_max-lg { max-width: var(--breakpoints-lg); }
+.Layout_max-xl { max-width: var(--breakpoints-xl); }
+.Layout_max-2xl { max-width: var(--breakpoints-2xl); }
+.Layout_max-full { max-width: 100%; }
+
+/* Padding X */
+.Layout_px-none { padding-left: 0; padding-right: 0; }
+.Layout_px-sm { padding-left: var(--spacing-4); padding-right: var(--spacing-4); }
+.Layout_px-md { padding-left: var(--spacing-6); padding-right: var(--spacing-6); }
+.Layout_px-lg { padding-left: var(--spacing-8); padding-right: var(--spacing-8); }
+
+/* Padding Y */
+.Layout_py-none { padding-top: 0; padding-bottom: 0; }
+.Layout_py-sm { padding-top: var(--spacing-4); padding-bottom: var(--spacing-4); }
+.Layout_py-md { padding-top: var(--spacing-6); padding-bottom: var(--spacing-6); }
+.Layout_py-lg { padding-top: var(--spacing-8); padding-bottom: var(--spacing-8); }
+
+/* Centered */
+.Layout_centered {
+  margin-left: auto;
+  margin-right: auto;
+}

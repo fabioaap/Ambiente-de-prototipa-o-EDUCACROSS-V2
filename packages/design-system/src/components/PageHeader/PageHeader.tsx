@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './PageHeader.module.css';
+import './PageHeader.css';
 
 /**
  * Props para o componente PageHeader
@@ -20,18 +20,18 @@ export interface PageHeaderProps {
 export const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>(
   ({ title, count, subtitle, actions }, ref) => {
     return (
-      <div className={styles.header} ref={ref}>
-        <div className={styles.content}>
-          <div className={styles.titleWrapper}>
-            <h1 className={styles.title}>
+      <div className={"PageHeader_header"} ref={ref}>
+        <div className={"PageHeader_content"}>
+          <div className={"PageHeader_titleWrapper"}>
+            <h1 className={"PageHeader_title"}>
               {title}
               {count !== undefined && (
-                <span className={styles.count}>{count}</span>
+                <span className={"PageHeader_count"}>{count}</span>
               )}
             </h1>
-            {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+            {subtitle && <p className={"PageHeader_subtitle"}>{subtitle}</p>}
           </div>
-          {actions && <div className={styles.actions}>{actions}</div>}
+          {actions && <div className={"PageHeader_actions"}>{actions}</div>}
         </div>
       </div>
     );

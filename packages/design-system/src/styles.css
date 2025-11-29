@@ -1,0 +1,33 @@
+/**
+ * Design System - Global Styles Import
+ * Importa todos os CSS Modules dos componentes para bundle único
+ */
+
+/* Base Components */
+@import './components/Badge/Badge.module.css';
+@import './components/Button/Button.module.css';
+@import './components/Card/Card.module.css';
+@import './components/Checkbox/Checkbox.module.css';
+@import './components/HealthIndicator/HealthIndicator.module.css';
+@import './components/Input/Input.module.css';
+@import './components/Layout/Layout.module.css';
+@import './components/Leaderboard/Leaderboard.module.css';
+@import './components/Progress/Progress.module.css';
+@import './components/Radio/Radio.module.css';
+@import './components/Select/Select.module.css';
+@import './components/Switch/Switch.module.css';
+@import './components/Text/Text.module.css';
+
+/* BackOffice Components */
+@import './components/Skeleton/Skeleton.module.css';
+@import './components/Table/Table.module.css';
+@import './components/Sidebar/Sidebar.module.css';
+@import './components/Breadcrumb/Breadcrumb.module.css';
+@import './components/Tabs/Tabs.module.css';
+@import './components/DataTable/DataTable.module.css';
+@import './components/Pagination/Pagination.module.css';
+@import './components/FilterGroup/FilterGroup.module.css';
+@import './components/ActionButtons/ActionButtons.module.css';
+@import './components/PageHeader/PageHeader.module.css';
+@import './components/ToolbarButtons/ToolbarButtons.module.css';
+@import './components/Modal/Modal.module.css';

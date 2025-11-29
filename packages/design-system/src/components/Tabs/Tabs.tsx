@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import styles from './Tabs.module.css';
+import './Tabs.css';
 
 /**
  * Props para o componente Tabs
@@ -43,9 +43,9 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
     return (
-      <div className={styles.container} ref={ref}>
+      <div className={"Tabs_container"} ref={ref}>
         <div
-          className={`${styles.tabList} ${styles[variant]}`}
+          className={`${"Tabs_tabList"} ${`Tabs_${variant}`}`}
           role="tablist"
         >
           {tabs.map((tab) => {
@@ -58,12 +58,12 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
                 aria-selected={isActive}
                 aria-controls={`panel-${tab.id}`}
                 id={`tab-${tab.id}`}
-                className={`${styles.tab} ${isActive ? styles.active : ''}`}
+                className={`${"Tabs_tab"} ${isActive ? "Tabs_active" : ''}`}
                 onClick={() => handleTabClick(tab.id)}
               >
-                <span className={styles.label}>{tab.label}</span>
+                <span className={"Tabs_label"}>{tab.label}</span>
                 {tab.badge !== undefined && (
-                  <span className={styles.badge}>{tab.badge}</span>
+                  <span className={"Tabs_badge"}>{tab.badge}</span>
                 )}
               </button>
             );
@@ -74,7 +74,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
             role="tabpanel"
             id={`panel-${activeTab}`}
             aria-labelledby={`tab-${activeTab}`}
-            className={styles.panel}
+            className={"Tabs_panel"}
           >
             {activeTabData.content}
           </div>

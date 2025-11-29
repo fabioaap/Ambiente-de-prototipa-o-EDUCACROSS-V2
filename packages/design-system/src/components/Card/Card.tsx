@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Card.module.css';
+import './Card.css';
 
 export interface CardProps {
   /**
@@ -51,10 +51,10 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     children,
   }, ref) => {
     const classNames = [
-      styles.card,
-      styles[variant],
-      styles[`padding-${padding}`],
-      clickable && styles.clickable,
+      'Card_card',
+      `Card_${variant}`,
+      `Card_padding-${padding}`,
+      clickable && 'Card_clickable',
       className,
     ]
       .filter(Boolean)
@@ -87,7 +87,7 @@ export const CardHeader = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
   <div
     ref={ref}
-    className={`${styles.cardHeader} ${className}`}
+    className={`Card_cardHeader ${className}`}
     {...props}
   />
 ));
@@ -103,7 +103,7 @@ export const CardTitle = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
   <h3
     ref={ref}
-    className={`${styles.cardTitle} ${className}`}
+    className={`Card_cardTitle ${className}`}
     {...props}
   />
 ));
@@ -119,7 +119,7 @@ export const CardDescription = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
   <p
     ref={ref}
-    className={`${styles.cardDescription} ${className}`}
+    className={`Card_cardDescription ${className}`}
     {...props}
   />
 ));
@@ -135,7 +135,7 @@ export const CardContent = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
   <div
     ref={ref}
-    className={`${styles.cardContent} ${className}`}
+    className={`Card_cardContent ${className}`}
     {...props}
   />
 ));
@@ -151,7 +151,7 @@ export const CardFooter = React.forwardRef<
 >(({ className = '', ...props }, ref) => (
   <div
     ref={ref}
-    className={`${styles.cardFooter} ${className}`}
+    className={`Card_cardFooter ${className}`}
     {...props}
   />
 ));

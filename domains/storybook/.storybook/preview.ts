@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react';
 import '@prototipo/tokens/tokens.css';
+import '@prototipo/design-system/index.css';
+import './preview-fonts.css';
 
 const preview: Preview = {
   parameters: {

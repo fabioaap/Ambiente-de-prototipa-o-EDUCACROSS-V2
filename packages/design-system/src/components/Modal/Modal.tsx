@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './Modal.module.css';
+import './Modal.css';
 
 /**
  * Props para o componente Modal
@@ -87,31 +87,31 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     const modalContent = (
       <div
-        className={`${styles.overlay} ${open ? styles.show : ''}`}
+        className={`${"Modal_overlay"} ${open ? "Modal_show" : ''}`}
         onClick={handleOverlayClick}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? 'modal-title' : undefined}
       >
         <div
-          className={`${styles.modal} ${styles[size]}`}
+          className={`${"Modal_modal"} ${`Modal_${size}`}`}
           ref={modalRef}
           role="document"
         >
-          <div className={styles.header}>
+          <div className={"Modal_header"}>
             {title && (
-              <h2 id="modal-title" className={styles.title}>
+              <h2 id="modal-title" className={"Modal_title"}>
                 {title}
               </h2>
             )}
             <button
               type="button"
-              className={styles.closeButton}
+              className={"Modal_closeButton"}
               onClick={onClose}
               aria-label="Fechar modal"
             >
               <svg
-                className={styles.closeIcon}
+                className={"Modal_closeIcon"}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -127,10 +127,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               </svg>
             </button>
           </div>
-          <div className={styles.body} ref={ref}>
+          <div className={"Modal_body"} ref={ref}>
             {children}
           </div>
-          {footer && <div className={styles.footer}>{footer}</div>}
+          {footer && <div className={"Modal_footer"}>{footer}</div>}
         </div>
       </div>
     );

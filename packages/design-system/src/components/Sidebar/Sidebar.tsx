@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './Sidebar.module.css';
+import './Sidebar.css';
 
 /**
  * Props para o componente Sidebar
@@ -40,28 +40,28 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
 
     return (
       <aside
-        className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}
+        className={`${"Sidebar_sidebar"} ${collapsed ? "Sidebar_collapsed" : ''}`}
         ref={ref}
       >
-        {logo && <div className={styles.logo}>{logo}</div>}
-        <nav className={styles.nav}>
-          <ul className={styles.list}>
+        {logo && <div className={"Sidebar_logo"}>{logo}</div>}
+        <nav className={"Sidebar_nav"}>
+          <ul className={"Sidebar_list"}>
             {items.map((item) => {
               const isActive = item.active || item.id === activeItem;
               return (
-                <li key={item.id} className={styles.item}>
+                <li key={item.id} className={"Sidebar_item"}>
                   <a
                     href={item.href}
-                    className={`${styles.link} ${isActive ? styles.active : ''}`}
+                    className={`${"Sidebar_link"} ${isActive ? "Sidebar_active" : ''}`}
                     onClick={(e) => handleItemClick(e, item.id)}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {item.icon && (
-                      <span className={styles.icon}>{item.icon}</span>
+                      <span className={"Sidebar_icon"}>{item.icon}</span>
                     )}
-                    <span className={styles.label}>{item.label}</span>
+                    <span className={"Sidebar_label"}>{item.label}</span>
                     {item.badge && (
-                      <span className={styles.badge}>{item.badge}</span>
+                      <span className={"Sidebar_badge"}>{item.badge}</span>
                     )}
                   </a>
                 </li>

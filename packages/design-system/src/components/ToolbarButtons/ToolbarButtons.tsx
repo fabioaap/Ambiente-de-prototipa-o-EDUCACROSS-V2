@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './ToolbarButtons.module.css';
+import './ToolbarButtons.css';
 
 /**
  * Props para o componente ToolbarButtons
@@ -34,17 +34,17 @@ export const ToolbarButtons = React.forwardRef<
     ref
   ) => {
     return (
-      <div className={styles.toolbar} ref={ref}>
+      <div className={"ToolbarButtons_toolbar"} ref={ref}>
         {onImport && (
           <button
             type="button"
-            className={styles.button}
+            className={"ToolbarButtons_button"}
             onClick={onImport}
             disabled={disabled}
             aria-label={importLabel}
           >
             <svg
-              className={styles.icon}
+              className={"ToolbarButtons_icon"}
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -71,13 +71,13 @@ export const ToolbarButtons = React.forwardRef<
         {onExport && (
           <button
             type="button"
-            className={styles.button}
+            className={"ToolbarButtons_button"}
             onClick={onExport}
             disabled={disabled}
             aria-label={exportLabel}
           >
             <svg
-              className={styles.icon}
+              className={"ToolbarButtons_icon"}
               width="20"
               height="20"
               viewBox="0 0 20 20"

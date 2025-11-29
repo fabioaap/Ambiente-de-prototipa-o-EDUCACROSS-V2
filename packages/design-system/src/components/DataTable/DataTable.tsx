@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styles from './DataTable.module.css';
+import './DataTable.css';
 
 /**
  * Props para o componente DataTable
@@ -67,7 +67,7 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
     const renderSortIcon = (columnKey: string) => {
       if (!sortState || sortState.key !== columnKey) {
         return (
-          <svg className={styles.sortIcon} width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <svg className={"DataTable_sortIcon"} width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 4L11 8H5L8 4Z" fill="currentColor" opacity="0.3" />
             <path d="M8 12L5 8H11L8 12Z" fill="currentColor" opacity="0.3" />
           </svg>
@@ -76,14 +76,14 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
 
       if (sortState.direction === 'asc') {
         return (
-          <svg className={`${styles.sortIcon} ${styles.active}`} width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <svg className={`${"DataTable_sortIcon"} ${"DataTable_active"}`} width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 4L11 8H5L8 4Z" fill="currentColor" />
           </svg>
         );
       }
 
       return (
-        <svg className={`${styles.sortIcon} ${styles.active}`} width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <svg className={`${"DataTable_sortIcon"} ${"DataTable_active"}`} width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M8 12L5 8H11L8 12Z" fill="currentColor" />
         </svg>
       );
@@ -91,9 +91,9 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
 
     if (loading) {
       return (
-        <div className={styles.container} ref={ref}>
-          <div className={styles.loading}>
-            <div className={styles.spinner} />
+        <div className={"DataTable_container"} ref={ref}>
+          <div className={"DataTable_loading"}>
+            <div className={"DataTable_spinner"} />
             <p>Carregando dados...</p>
           </div>
         </div>
@@ -102,9 +102,9 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
 
     if (data.length === 0) {
       return (
-        <div className={styles.container} ref={ref}>
-          <div className={styles.empty}>
-            <svg className={styles.emptyIcon} width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <div className={"DataTable_container"} ref={ref}>
+          <div className={"DataTable_empty"}>
+            <svg className={"DataTable_emptyIcon"} width="48" height="48" viewBox="0 0 48 48" fill="none">
               <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" strokeWidth="2" />
               <path d="M16 20H32M16 28H24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
             </svg>
@@ -115,22 +115,22 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
     }
 
     return (
-      <div className={styles.container} ref={ref}>
-        <div className={styles.wrapper}>
-          <table className={styles.table}>
-            <thead className={styles.thead}>
+      <div className={"DataTable_container"} ref={ref}>
+        <div className={"DataTable_wrapper"}>
+          <table className={"DataTable_table"}>
+            <thead className={"DataTable_thead"}>
               <tr>
                 {columns.map((column) => {
                   const isSortable = sortable && column.sortable;
                   return (
                     <th
                       key={column.key}
-                      className={`${styles.th} ${styles[column.align || 'left']} ${
-                        isSortable ? styles.sortable : ''
+                      className={`${"DataTable_th"} ${`DataTable_${column.align || 'left'}`} ${
+                        isSortable ? "DataTable_sortable" : ''
                       }`}
                       onClick={() => isSortable && handleSort(column.key)}
                     >
-                      <div className={styles.thContent}>
+                      <div className={"DataTable_thContent"}>
                         <span>{column.label}</span>
                         {isSortable && renderSortIcon(column.key)}
                       </div>
@@ -139,19 +139,19 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
                 })}
               </tr>
             </thead>
-            <tbody className={styles.tbody}>
+            <tbody className={"DataTable_tbody"}>
               {data.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
-                  className={`${styles.tr} ${striped && rowIndex % 2 !== 0 ? styles.striped : ''} ${
-                    hoverable ? styles.hoverable : ''
-                  } ${onRowClick ? styles.clickable : ''}`}
+                  className={`${"DataTable_tr"} ${striped && rowIndex % 2 !== 0 ? "DataTable_striped" : ''} ${
+                    hoverable ? "DataTable_hoverable" : ''
+                  } ${onRowClick ? "DataTable_clickable" : ''}`}
                   onClick={() => onRowClick?.(row)}
                 >
                   {columns.map((column) => (
                     <td
                       key={column.key}
-                      className={`${styles.td} ${styles[column.align || 'left']}`}
+                      className={`${"DataTable_td"} ${`DataTable_${column.align || 'left'}`}`}
                     >
                       {column.render
                         ? column.render(row[column.key], row)

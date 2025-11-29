@@ -96,18 +96,17 @@ export const CustomEmptyMessage: Story = {
 };
 
 // Sortable table with state
-export const Sortable: Story = {
-  render: (args) => {
-    const [sortState, setSortState] = useState<{ key: string; direction: 'asc' | 'desc' } | undefined>(undefined);
-    const [sortedData, setSortedData] = useState(sampleData);
+const SortableTable = (args: TableProps) => {
+  const [sortState, setSortState] = useState<{ key: string; direction: 'asc' | 'desc' } | undefined>(undefined);
+  const [sortedData, setSortedData] = useState(sampleData);
 
-    const handleSort = (key: string, direction: 'asc' | 'desc') => {
-      setSortState({ key, direction });
-      const sorted = [...sampleData].sort((a, b) => {
-        const aValue = String(a[key]);
-        const bValue = String(b[key]);
-        if (direction === 'asc') {
-          return aValue.localeCompare(bValue);
+  const handleSort = (key: string, direction: 'asc' | 'desc') => {
+    setSortState({ key, direction });
+    const sorted = [...sampleData].sort((a, b) => {
+      const aValue = String(a[key]);
+      const bValue = String(b[key]);
+      if (direction === 'asc') {
+        return aValue.localeCompare(bValue);
         } else {
           return bValue.localeCompare(aValue);
         }
@@ -125,7 +124,10 @@ export const Sortable: Story = {
         hoverable
       />
     );
-  },
+};
+
+export const Sortable: Story = {
+  render: (args) => <SortableTable {...args} />,
 };
 
 // Custom column alignment
