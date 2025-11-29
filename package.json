@@ -22,6 +22,7 @@
     "lint": "turbo run lint",
     "type-check": "turbo run type-check",
     "test:dashboard-hydration": "pnpm --filter studio test:dashboard-hydration",
+    "sync:figma": "node scripts/sync-figma-tokens.mjs",
     "check:shadcn": "node scripts/check-shadcn-usage.mjs",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "domains:index": "node scripts/generate-domains-index.mjs",

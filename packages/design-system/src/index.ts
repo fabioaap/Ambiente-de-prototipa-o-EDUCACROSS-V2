@@ -11,6 +11,8 @@ export { Badge } from './components/Badge/Badge';
 export { Progress } from './components/Progress/Progress';
 export { Leaderboard } from './components/Leaderboard/Leaderboard';
 export { HealthIndicator } from './components/HealthIndicator/HealthIndicator';
+export { default as Skeleton } from './components/Skeleton';
+export { default as Table } from './components/Table';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -25,3 +27,5 @@ export type { BadgeProps } from './components/Badge/Badge';
 export type { ProgressProps } from './components/Progress/Progress';
 export type { LeaderboardProps, LeaderboardEntry } from './components/Leaderboard/Leaderboard';
 export type { HealthIndicatorProps, HealthStatus } from './components/HealthIndicator/HealthIndicator';
+export type { SkeletonProps } from './components/Skeleton';
+export type { TableProps, TableColumn, SortDirection } from './components/Table';
