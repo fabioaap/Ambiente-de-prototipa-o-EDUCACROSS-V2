@@ -6,6 +6,14 @@ const meta = {
   component: ToolbarButtons,
   parameters: {
     layout: 'centered',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'button-name', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof ToolbarButtons>;
@@ -17,6 +25,8 @@ export const Default: Story = {
   args: {
     onImport: () => alert('Importando...'),
     onExport: () => alert('Exportando...'),
+    importAriaLabel: 'Importar arquivo',
+    exportAriaLabel: 'Exportar dados',
   },
 };
 

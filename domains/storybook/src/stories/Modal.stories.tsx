@@ -7,6 +7,14 @@ const meta = {
   component: Modal,
   parameters: {
     layout: 'centered',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'dialog-name', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Modal>;
@@ -19,8 +27,8 @@ function ModalExample({ size = 'medium', title = 'Modal Title' }: { size?: 'smal
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Abrir Modal</Button>
-      <Modal open={open} onClose={() => setOpen(false)} title={title} size={size}>
+      <Button onClick={() => setOpen(true)} aria-label="Abrir modal">Abrir Modal</Button>
+      <Modal open={open} onClose={() => setOpen(false)} title={title} size={size} ariaLabel={title}>
         <div style={{ padding: '1rem 0' }}>
           <p>Este é o conteúdo do modal. Você pode adicionar qualquer elemento React aqui.</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

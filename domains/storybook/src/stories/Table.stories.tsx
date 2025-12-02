@@ -7,6 +7,14 @@ const meta = {
   component: Table,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'table', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Table>;
@@ -36,6 +44,7 @@ export const Default: Story = {
   args: {
     columns: sampleColumns,
     data: sampleData,
+    ariaLabel: 'Tabela de usuários',
   },
 };
 

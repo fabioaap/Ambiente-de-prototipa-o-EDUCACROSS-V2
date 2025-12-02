@@ -6,6 +6,14 @@ const meta = {
   component: Tabs,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'aria-roles', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Tabs>;
@@ -63,6 +71,7 @@ export const WithBadges: Story = {
         content: <div style={{ padding: '1rem' }}>Itens arquivados (30)</div>,
       },
     ],
+    ariaLabel: 'Navegação de abas',
   },
 };
 
@@ -87,6 +96,7 @@ export const EnclosedVariant: Story = {
         content: <div style={{ padding: '1rem' }}>Avaliações dos usuários</div>,
       },
     ],
+    ariaLabel: 'Abas de detalhes do produto',
   },
 };
 
@@ -111,5 +121,6 @@ export const ControlledMode: Story = {
       },
     ],
     onChange: (id: string) => console.log('Tab changed to:', id),
+    ariaLabel: 'Selecionar aba',
   },
 };

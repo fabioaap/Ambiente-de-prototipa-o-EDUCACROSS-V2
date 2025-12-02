@@ -7,6 +7,14 @@ const meta = {
   component: DataTable,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'table', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof DataTable>;
@@ -50,6 +58,7 @@ export const Sortable: Story = {
     onSort: (key: string, direction: 'asc' | 'desc') => {
       console.log(`Sorting by ${key} ${direction}`);
     },
+    ariaLabel: 'Tabela de usuários',
   },
 };
 

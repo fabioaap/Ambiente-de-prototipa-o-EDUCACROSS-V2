@@ -6,6 +6,13 @@ const meta = {
   component: Skeleton,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -36,6 +43,7 @@ export const Text: Story = {
     height: '1rem',
     variant: 'text',
     animation: 'pulse',
+    ariaLabel: 'Carregando texto',
   },
 };
 

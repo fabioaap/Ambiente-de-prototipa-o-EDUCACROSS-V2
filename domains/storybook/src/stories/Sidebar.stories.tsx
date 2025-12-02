@@ -6,6 +6,15 @@ const meta = {
   component: Sidebar,
   parameters: {
     layout: 'fullscreen',
+    a11y: {
+      // Garante verificação de foco e roles
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'aria-required-parent', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Sidebar>;
@@ -42,10 +51,10 @@ export const Default: Story = {
   args: {
     logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>EDUCACROSS</div>,
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', active: true },
-      { id: 'users', label: 'Usuários', icon: <UsersIcon />, href: '/users' },
-      { id: 'products', label: 'Produtos', icon: <DashboardIcon />, href: '/products' },
-      { id: 'settings', label: 'Configurações', icon: <SettingsIcon />, href: '/settings' },
+      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', active: true, ariaLabel: 'Ir para Dashboard' },
+      { id: 'users', label: 'Usuários', icon: <UsersIcon />, href: '/users', ariaLabel: 'Gerenciar usuários' },
+      { id: 'products', label: 'Produtos', icon: <DashboardIcon />, href: '/products', ariaLabel: 'Ver produtos' },
+      { id: 'settings', label: 'Configurações', icon: <SettingsIcon />, href: '/settings', ariaLabel: 'Abrir configurações' },
     ],
   },
 };
@@ -55,10 +64,10 @@ export const Collapsed: Story = {
     collapsed: true,
     logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>EC</div>,
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', active: true },
-      { id: 'users', label: 'Usuários', icon: <UsersIcon />, href: '/users' },
-      { id: 'products', label: 'Produtos', icon: <DashboardIcon />, href: '/products' },
-      { id: 'settings', label: 'Configurações', icon: <SettingsIcon />, href: '/settings' },
+      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', active: true, ariaLabel: 'Ir para Dashboard' },
+      { id: 'users', label: 'Usuários', icon: <UsersIcon />, href: '/users', ariaLabel: 'Gerenciar usuários' },
+      { id: 'products', label: 'Produtos', icon: <DashboardIcon />, href: '/products', ariaLabel: 'Ver produtos' },
+      { id: 'settings', label: 'Configurações', icon: <SettingsIcon />, href: '/settings', ariaLabel: 'Abrir configurações' },
     ],
   },
 };
@@ -67,10 +76,10 @@ export const WithBadges: Story = {
   args: {
     logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>ADMIN</div>,
     items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard' },
-      { id: 'messages', label: 'Mensagens', icon: <UsersIcon />, href: '/messages', badge: '12' },
-      { id: 'notifications', label: 'Notificações', icon: <DashboardIcon />, href: '/notifications', badge: '3' },
-      { id: 'tasks', label: 'Tarefas', icon: <SettingsIcon />, href: '/tasks', badge: '5', active: true },
+      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', ariaLabel: 'Ir para Dashboard' },
+      { id: 'messages', label: 'Mensagens', icon: <UsersIcon />, href: '/messages', badge: '12', ariaLabel: 'Abrir mensagens' },
+      { id: 'notifications', label: 'Notificações', icon: <DashboardIcon />, href: '/notifications', badge: '3', ariaLabel: 'Ver notificações' },
+      { id: 'tasks', label: 'Tarefas', icon: <SettingsIcon />, href: '/tasks', badge: '5', active: true, ariaLabel: 'Ir para tarefas' },
     ],
   },
 };

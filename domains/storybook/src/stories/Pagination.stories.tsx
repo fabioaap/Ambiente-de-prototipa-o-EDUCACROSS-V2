@@ -6,6 +6,14 @@ const meta = {
   component: Pagination,
   parameters: {
     layout: 'centered',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'button-name', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Pagination>;
@@ -18,6 +26,7 @@ export const FewPages: Story = {
     currentPage: 1,
     totalPages: 5,
     onChange: (page: number) => console.log('Page changed to:', page),
+    ariaLabel: 'Navegação de páginas',
   },
 };
 

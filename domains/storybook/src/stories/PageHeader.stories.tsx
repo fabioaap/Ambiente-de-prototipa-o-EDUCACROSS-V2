@@ -7,6 +7,13 @@ const meta = {
   component: PageHeader,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof PageHeader>;
@@ -35,8 +42,8 @@ export const WithActions: Story = {
     subtitle: 'Visualize e gerencie todos os pedidos',
     actions: (
       <>
-        <Button variant="outline">Filtrar</Button>
-        <Button variant="primary">Novo Pedido</Button>
+        <Button variant="outline" aria-label="Filtrar pedidos">Filtrar</Button>
+        <Button variant="primary" aria-label="Criar novo pedido">Novo Pedido</Button>
       </>
     ),
   },

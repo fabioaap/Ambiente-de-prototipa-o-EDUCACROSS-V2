@@ -7,6 +7,14 @@ const meta = {
   component: FilterGroup,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'label', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof FilterGroup>;
@@ -83,6 +91,7 @@ export const MixedFilters: Story = {
       console.log('Filter changed:', filterId, value);
     },
     onReset: () => console.log('Filters reset'),
+    ariaLabel: 'Filtros de busca',
   },
 };
 

@@ -6,6 +6,13 @@ const meta = {
   component: Breadcrumb,
   parameters: {
     layout: 'padded',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Breadcrumb>;
@@ -53,6 +60,7 @@ export const WithIcons: Story = {
       { label: 'Configurações', href: '/config' },
       { label: 'Perfil' },
     ],
+    ariaLabel: 'Você está aqui: Home / Configurações / Perfil',
   },
 };
 
@@ -64,5 +72,6 @@ export const CustomSeparator: Story = {
       { label: 'Vendas' },
     ],
     separator: '›',
+    ariaLabel: 'Caminho: Dashboard › Relatórios › Vendas',
   },
 };

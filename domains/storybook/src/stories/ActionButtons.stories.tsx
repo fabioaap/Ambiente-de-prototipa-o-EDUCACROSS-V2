@@ -6,6 +6,14 @@ const meta = {
   component: ActionButtons,
   parameters: {
     layout: 'centered',
+    a11y: {
+      config: {
+        rules: [
+          { id: 'aria-required-attr', enabled: true },
+          { id: 'button-name', enabled: true },
+        ],
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof ActionButtons>;
@@ -18,6 +26,9 @@ export const AllActions: Story = {
     onView: () => alert('Visualizar'),
     onEdit: () => alert('Editar'),
     onDelete: () => alert('Deletar'),
+    viewAriaLabel: 'Visualizar item',
+    editAriaLabel: 'Editar item',
+    deleteAriaLabel: 'Deletar item',
   },
 };
 
