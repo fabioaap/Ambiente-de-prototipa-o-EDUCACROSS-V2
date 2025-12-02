@@ -8,7 +8,7 @@
 
 ## TL;DR – O Que Foi Feito
 
-✅ **Phase 2 Completo**: Storybook migrado para `domains/storybook`
+✅ **Phase 2 Completo**: Storybook migrado para `apps/experience-hub/storybook`
 - Workspace reconfigurado (agora 7 projetos, antes 8)
 - Scripts funcionando: `pnpm dev:hub`, `pnpm build:hub`
 - Testes passando: build ✅, lint ✅, type-check ✅, guardrails Shadcn ✅
@@ -73,7 +73,7 @@ Se você quer **continuar daqui**:
 3. Tempo: ~45 min
 4. Comando útil:
    ```bash
-   grep -r "domains/storybook" domains/ || echo "✅ Clean"
+   grep -r "apps/storybook" domains/ || echo "✅ Clean"
    pnpm check:shadcn
    pnpm build 2>&1 | tail -20
    ```
@@ -105,7 +105,7 @@ Se tudo passou (✅ todos os testes acima):
 git add .
 git commit -m "feat(hub): consolidate storybook into experience-hub
 
-- Move domains/storybook → domains/storybook
+- Move apps/storybook → apps/experience-hub/storybook
 - Update workspace config and scripts
 - Remove legacy directory
 - Validate build, lint, type-check, guardrails
@@ -147,7 +147,7 @@ Packages:
 
 Apps:
   ✅ studio
-  ✅ storybook (em domains/storybook/)
+  ✅ storybook (em apps/experience-hub/storybook/)
   ✅ experience-hub (meta-workspace)
   ✅ (pendente: dashboard como sub-workspace?)
 
@@ -189,13 +189,13 @@ pnpm -r clean          # Remove dist, node_modules, .next, etc.
 ### Shadcn UI – Whitelist Restrita
 
 ✅ **PERMITIDO APENAS EM:**
-- `domains/studio/src/app/studio/**` (Puck visual page builder)
-- `domains/studio/src/app/dashboard/**` (Dashboard componentes)
+- `apps/studio/src/app/studio/**` (Puck visual page builder)
+- `apps/studio/src/app/dashboard/**` (Dashboard componentes)
 
 ❌ **PROIBIDO EM:**
 - `domains/**` (use `@prototipo/design-system`)
 - `apps/experience-hub/**` (use `@prototipo/design-system`)
-- `domains/studio/src/app/[[...slug]]/**` (use design-system)
+- `apps/studio/src/app/[[...slug]]/**` (use design-system)
 
 **Validar com:**
 ```bash
@@ -244,7 +244,7 @@ pnpm build:hub  # Debugar isolado
 
 ### "Storybook não inicia"
 ```bash
-rm -rf domains/storybook/node_modules/.vite
+rm -rf apps/experience-hub/storybook/node_modules/.vite
 pnpm dev:hub
 ```
 

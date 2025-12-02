@@ -117,14 +117,12 @@ export const Typography: Story = {
           {Object.entries(tokens.typography.lineHeight).map(([height, value]) => (
             <div key={height}>
               <p
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                style={{ lineHeight: parseFloat(value) as any, marginBottom: '0.5rem', color: '#666' }}>
+                style={{ lineHeight: parseFloat(value), marginBottom: '0.5rem', color: '#666' }}>
                 {height}: {value}
               </p>
               <p
-                 
                 style={{
-                  lineHeight: parseFloat(value) as any,
+                  lineHeight: parseFloat(value),
                   padding: '1rem',
                   backgroundColor: '#f5f5f5',
                   borderRadius: '4px',

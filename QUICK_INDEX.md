@@ -95,7 +95,7 @@ pnpm dev:studio &
    git add .
    git commit -m "feat(hub): consolidate storybook into experience-hub
 
-- Move domains/storybook → domains/storybook
+- Move apps/storybook → apps/experience-hub/storybook
 - Update workspace config and scripts
 - Remove legacy directory
 - Validate build, lint, type-check, guardrails

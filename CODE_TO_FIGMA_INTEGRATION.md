@@ -14,7 +14,7 @@ Automatizar a exportação de componentes do Storybook do projeto EDUCACROSS par
 ## 🏗️ Arquitetura
 
 ```
-domains/storybook/ (EDUCACROSS)
+apps/storybook/ (EDUCACROSS)
     ↓
 code-to-figma/figma-sync-engine/ (Exportador)
     ↓
@@ -60,7 +60,7 @@ FIGMA_FILE_ID=<seu-file-id>
 
 O Storybook já está em:
 ```
-domains/storybook/
+apps/storybook/
 ```
 
 Com 31+ stories para exportar:

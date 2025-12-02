@@ -9,7 +9,7 @@
 
 ## Resumo Executivo
 
-A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado de `domains/storybook` para `domains/storybook`, a estrutura de workspaces foi ajustada, e todos os testes de validação passaram (build, lint, type-check, guardrails Shadcn).
+A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado de `apps/storybook` para `apps/experience-hub/storybook`, a estrutura de workspaces foi ajustada, e todos os testes de validação passaram (build, lint, type-check, guardrails Shadcn).
 
 **Status dos Testes**:
 - ✅ `pnpm build` – Completo (tokens → design-system → storybook → studio)
@@ -24,12 +24,12 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 
 ### T101: Migração de Storybook ✅
 
-**Ação**: Copiar conteúdo de `domains/storybook` para `domains/storybook`
+**Ação**: Copiar conteúdo de `apps/storybook` para `apps/experience-hub/storybook`
 
 **Detalhes**:
 - Arquivos copiados: `.storybook/`, `src/stories/`, `.turbo/`, `package.json`, `tsconfig.json`, `eslint.config.mjs`, `vercel.json`
 - Estratégia usada: Cópia seletiva de diretórios + merge de configurações
-- Remediação: Remoção de `domains/storybook` para evitar conflitos duplos
+- Remediação: Remoção de `apps/storybook` para evitar conflitos duplos
 
 **Resultado**: ✅ Todos os arquivos migrados com sucesso
 
@@ -49,7 +49,7 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 **Ação**: Atualizar `pnpm dev:hub`, `pnpm build:hub` e workspace config
 
 **Detalhes**:
-- `pnpm-workspace.yaml` atualizado para incluir `domains/storybook` como workspace
+- `pnpm-workspace.yaml` atualizado para incluir `apps/experience-hub/storybook` como workspace
 - `package.json` (raiz) ajustado: `--filter storybook` agora aponta para o novo local
 - `apps/experience-hub/package.json` criado (metaworkspace vazio)
 - Scripts testados: `pnpm dev:hub`, `pnpm build:hub`, `pnpm dev:storybook` (alias)
@@ -58,10 +58,10 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 
 ### T104: Remoção de Storybook Legado ✅
 
-**Ação**: Remover `domains/storybook` completamente
+**Ação**: Remover `apps/storybook` completamente
 
 **Detalhes**:
-- Comando: `Remove-Item -Path "domains/storybook" -Recurse -Force`
+- Comando: `Remove-Item -Path "apps/storybook" -Recurse -Force`
 - CSS global: Verificado e sem conflitos adicionais encontrados
 - Impacto: Workspace count reduzido de 8 para 7
 
@@ -73,7 +73,7 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 
 **Detalhes**:
 - `pnpm build:hub` executado com sucesso (12.28s)
-- Storybook-static gerado corretamente em `domains/storybook/storybook-static`
+- Storybook-static gerado corretamente em `apps/experience-hub/storybook/storybook-static`
 - Full build (`pnpm build`) completado: tokens ✅, design-system ✅, storybook ✅, studio ✅
 - Lint: ✅ (1 warning aceitável)
 - Type-check: ✅ Sem regressão
@@ -87,12 +87,12 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 
 | Arquivo | Tipo | Alteração |
 |---------|------|-----------|
-| `pnpm-workspace.yaml` | Atualizado | Adicionado `domains/storybook` como workspace explícito |
+| `pnpm-workspace.yaml` | Atualizado | Adicionado `apps/experience-hub/storybook` como workspace explícito |
 | `package.json` (raiz) | Atualizado | Scripts `dev:hub`, `build:hub` apontam para `storybook` (novo local) |
 | `apps/experience-hub/package.json` | Criado | Metaworkspace para future utilities |
 | `apps/experience-hub/README.md` | Criado | Documentação completa (150+ linhas) |
-| `domains/storybook/*` | Migrado | Conteúdo de `domains/storybook` movido |
-| `domains/storybook/` | Removido | Diretório legado deletado |
+| `apps/experience-hub/storybook/*` | Migrado | Conteúdo de `apps/storybook` movido |
+| `apps/storybook/` | Removido | Diretório legado deletado |
 
 **Logs de Validação**:
 - `phase2-install.log` – Install com 7 workspaces
@@ -112,7 +112,7 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 | Type-check regressão | Não | Nenhuma regressão | ✅ Aprovado |
 | Shadcn guardrail | Intacto | "Nenhum uso indevido" | ✅ Aprovado |
 | `/dashboard` render | Sem erro | Compilado em 6.1s, 17 rotas | ✅ Aprovado |
-| Storybook saída correta | Sim | `domains/storybook/storybook-static` | ✅ Aprovado |
+| Storybook saída correta | Sim | `apps/experience-hub/storybook/storybook-static` | ✅ Aprovado |
 
 ---
 
@@ -143,7 +143,7 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 ### O que Funcionou Bem ✅
 
 1. **Migração seletiva**: Copiar diretórios individuais foi mais seguro que `Copy-Item -Recurse` com wildcards
-2. **Workspace layout**: Adicionar `domains/storybook` explicitamente em `pnpm-workspace.yaml` resolveu filtros
+2. **Workspace layout**: Adicionar `apps/experience-hub/storybook` explicitamente em `pnpm-workspace.yaml` resolveu filtros
 3. **Testes paralelos**: Rodar build, lint, type-check em sequência rápida permitiu debug eficiente
 4. **Guardrails**: `pnpm check:shadcn` funcionou perfeitamente após remoção do legado
 
@@ -152,7 +152,7 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 1. **Conflitos CSS global**: Verificados e nenhum encontrado ✅
 2. **Importações circulares**: Type-check passou sem regressão ✅
 3. **URLs hardcoded**: Storybook reconfigurado para novo caminho ✅
-4. **Workspace duplicado**: `domains/storybook` removido cleanly ✅
+4. **Workspace duplicado**: `apps/storybook` removido cleanly ✅
 
 ### Recomendações para Phase 3
 
@@ -162,7 +162,7 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 
 2. **Durante**:
    - Testar cada jornada manualmente para confirmar que UI/links não regrediram
-   - Usar busca global (`grep -r "domains/storybook"`) para garantir que não há referências legadas
+   - Usar busca global (`grep -r "apps/storybook"`) para garantir que não há referências legadas
 
 3. **Após Phase 3**:
    - Antes de Phase 4 (Shadcn reinstall), validar que nenhum arquivo em `domains/` ou Studio padrão importa `@shadcn/ui`
@@ -188,10 +188,10 @@ A **Fase 2 (User Story 1)** foi completada com sucesso. O Storybook foi migrado 
 ```
 feat(hub): consolidate storybook into experience-hub
 
-- Move domains/storybook → domains/storybook
+- Move apps/storybook → apps/experience-hub/storybook
 - Update pnpm-workspace.yaml to register new workspace
 - Adjust package.json scripts: dev:hub, build:hub → filter storybook
-- Remove legacy domains/storybook directory
+- Remove legacy apps/storybook directory
 - Validate build, lint, type-check, shadcn guardrails
 
 Closes #92 #94 (issues de Shadcn scope)
@@ -208,7 +208,7 @@ Feature: Experience Hub Consolidation – Phase 2 (Storybook Migration)
 ```
 ## Phase 2 Completion ✅
 
-Migrado Storybook de `domains/storybook` → `domains/storybook`.
+Migrado Storybook de `apps/storybook` → `apps/experience-hub/storybook`.
 
 ### Validações
 - ✅ Build completo (tokens → design-system → hub → studio)

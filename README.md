@@ -63,89 +63,9 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 └── pnpm-workspace.yaml      # Configuração do monorepo
 ```
 
-## 🎨 Design System
-
-### Componentes Disponíveis (25 total)
-
-O Design System EDUCACROSS fornece 25 componentes prontos para uso, organizados em 4 categorias:
-
-#### Core Components (9)
-- **Button**: Botões com 4 variantes (primary, secondary, outline, ghost) e 3 tamanhos
-- **Text**: Tipografia com 9 tamanhos, 4 pesos e 7 cores
-- **Card**: Container com sub-componentes (CardHeader, CardTitle, CardDescription, CardContent, CardFooter)
-- **Layout**: Container responsivo com 6 larguras máximas
-- **Input**: Campo de texto com label e estados de erro
-- **Select**: Dropdown com options e placeholder
-- **Checkbox**: Seleção múltipla com label
-- **Radio**: Seleção única com label
-- **Switch**: Toggle on/off com label
-
-#### Feedback & Indicators (4)
-- **Badge**: Labels com 5 variantes (default, primary, secondary, success, warning, error) e 2 tamanhos
-- **Progress**: Barra de progresso com % e cores customizáveis
-- **Leaderboard**: Ranking com avatar, nome, pontos e posição
-- **HealthIndicator**: Status com ícone, label e cor (healthy, warning, critical)
-
-#### Loading States (2)
-- **Skeleton**: Placeholders de carregamento (text, circle, rectangle, card)
-- **Table**: Tabela com sorting, paginação e custom renderers
-
-#### BackOffice Suite (10) ✨ NEW in v0.3.0
-- **Sidebar**: Menu lateral colapsável para navegação
-- **Breadcrumb**: Navegação hierárquica (Home > Page > Subpage)
-- **Tabs**: Abas com contador opcional (badge)
-- **PageHeader**: Cabeçalho com título, contador e subtítulo
-- **ToolbarButtons**: Botões de ação em grupo (Import/Export)
-- **ActionButtons**: Ações inline (View/Edit/Delete) com ícones
-- **Pagination**: Navegação entre páginas com range configurável
-- **DataTable**: Tabela avançada com striped, hover, sorting e custom cells
-- **FilterGroup**: Grupo de filtros em layouts horizontal, vertical ou grid
-- **Modal**: Diálogo modal com 3 tamanhos (small, medium, large)
-
-### Como Usar
-
-```typescript
-import {
-  // Core
-  Button, Card, Input, Badge,
-  // BackOffice
-  Sidebar, DataTable, Pagination, FilterGroup
-} from '@prototipo/design-system';
-
-export function MyPage() {
-  return (
-    <div>
-      <Sidebar items={menuItems} />
-      <PageHeader title="Minha Página" count={10} />
-      <DataTable columns={columns} data={data} striped hoverable />
-      <Pagination currentPage={1} totalPages={5} onChange={handlePage} />
-    </div>
-  );
-}
-```
-
-### Design Tokens
-
-Todos os componentes utilizam tokens do Figma (tema Vuexy):
-- **Colors**: Primary (#7367f0 purple), neutral, success, warning, error scales
-- **Spacing**: Base 4px (var(--spacing-1) a var(--spacing-10))
-- **Typography**: Inter font, 9 tamanhos, 4 pesos
-- **Border Radius**: 4px (sm), 6px (md), 8px (lg)
-- **Shadows**: 3 níveis (sm, md, lg)
-
-### Storybook
-
-Todos os componentes estão documentados no Storybook com exemplos interativos:
-- **Local**: `pnpm dev:storybook` → http://localhost:6006
-- **Produção**: [educacross-storybook.vercel.app](https://educacross-storybook.vercel.app)
-
-### Página de Referência
-
-**Banco de Questões** (`/backoffice/banco-questoes`): Implementação completa que demonstra todos os componentes BackOffice em contexto real. Use como template para novas páginas.
-
 ## 🎨 Política de Componentes
 
-- **Shadcn UI** é restrito às rotas do Studio (`/studio`) e do Dashboard (`/dashboard`) dentro de `domains/studio/src/app`. Essas telas exigem microinterações avançadas e podem importar de `@/components/ui/*`.
+- **Shadcn UI** é restrito às rotas do Studio (`/studio`) e do Dashboard (`/dashboard`) dentro de `apps/studio/src/app`. Essas telas exigem microinterações avançadas e podem importar de `@/components/ui/*`.
 - **Domains, docs e demais apps** devem utilizar apenas o Design System nativo exportado por `@prototipo/design-system` (ou HTML sem dependências externas). Isso mantém as jornadas documentadas estáveis e fáceis de sincronizar com Storybook/Figma.
 - O script `pnpm check:shadcn` falha o build caso seja detectado um import de `@/components/ui` fora dos diretórios permitidos. Execute-o localmente antes de abrir PRs para evitar regressões.
 
@@ -186,7 +106,7 @@ Todos os componentes estão documentados no Storybook com exemplos interativos:
 ### Experience Hub – Consolidação Storybook ✅ NOVO
 
 **Phase 2 Concluída** (2025-11-25):
-- ✅ Migração de `domains/storybook` → `domains/storybook` completa
+- ✅ Migração de `apps/storybook` → `apps/experience-hub/storybook` completa
 - ✅ Workspace reconfigurado (7 projetos)
 - ✅ Scripts `pnpm dev:hub`, `pnpm build:hub` operacionais
 - ✅ Guardrails Shadcn validados
@@ -382,7 +302,7 @@ O Studio é um app Next.js que integra o Puck OSS como editor visual.
 
 ### Configuração de Componentes
 
-Os componentes disponíveis no Puck são configurados em `domains/studio/src/config/puck.config.tsx`.
+Os componentes disponíveis no Puck são configurados em `apps/studio/src/config/puck.config.tsx`.
 
 Para adicionar um novo componente:
 
@@ -506,14 +426,14 @@ pnpm lint                 # Lint
 pnpm type-check           # Verificação de tipos
 
 # Studio
-cd domains/studio
+cd apps/studio
 pnpm dev                  # Dev server
 pnpm build                # Production build
 pnpm start                # Start production
 pnpm lint                 # Lint
 
 # Storybook
-cd domains/storybook
+cd apps/storybook
 pnpm dev                  # Storybook dev
 pnpm build                # Build estático
 pnpm lint                 # Lint
@@ -528,12 +448,12 @@ pnpm lint                 # Lint
 
 ### Apps
 
-1. **Studio** (`domains/studio`)
+1. **Studio** (`apps/studio`)
    - Next.js 15 (App Router)
    - Puck OSS integrado
    - Renderização de páginas salvas
 
-2. **Storybook** (`domains/storybook`)
+2. **Storybook** (`apps/storybook`)
    - Storybook 8 (ESM-only)
    - Documentação interativa
    - Playground de componentes
@@ -552,11 +472,11 @@ pnpm lint                 # Lint
 ### Dependências
 
 ```
-domains/studio
+apps/studio
   ├── @prototipo/design-system
   └── @prototipo/tokens
 
-domains/storybook
+apps/storybook
   ├── @prototipo/design-system
   └── @prototipo/tokens
 
@@ -568,8 +488,8 @@ packages/design-system
 
 1. **Criar/atualizar tokens** em `packages/tokens/src/tokens.json`
 2. **Criar componentes** em `packages/design-system/src/components/`
-3. **Documentar no Storybook** criando stories em `domains/storybook/src/stories/`
-4. **Adicionar ao Puck** configurando em `domains/studio/src/config/puck.config.tsx`
+3. **Documentar no Storybook** criando stories em `apps/storybook/src/stories/`
+4. **Adicionar ao Puck** configurando em `apps/studio/src/config/puck.config.tsx`
 5. **Criar protótipos** usando o editor visual em `/studio`
 6. **Documentar jornadas** nas pastas de domínio (BackOffice, FrontOffice, Game)
 
@@ -579,8 +499,8 @@ packages/design-system
 
 - [Tokens README](./packages/tokens/README.md)
 - [Design System README](./packages/design-system/README.md)
-- [Studio README](./domains/studio/README.md)
-- [Storybook README](./domains/storybook/README.md)
+- [Studio README](./apps/studio/README.md)
+- [Storybook README](./apps/storybook/README.md)
 - [Documentação Central](./docs/README.md)
 - [Backlog do Projeto](./docs/backlog.md)
 - [Issues Pendentes](./docs/issues-pendentes.md) 🆕

@@ -7,14 +7,14 @@
 
 ## Visão Geral
 
-`domains/admin/` é a **app principal** do projeto com **Shadcn UI** totalmente instalado. Ela atua como **dashboard central** com acesso a todas as seções do projeto.
+`apps/admin/` é a **app principal** do projeto com **Shadcn UI** totalmente instalado. Ela atua como **dashboard central** com acesso a todas as seções do projeto.
 
 ---
 
 ## Estrutura
 
 ```
-domains/admin/
+apps/admin/
 ├── src/
 │   └── app/
 │       ├── layout.tsx       ← Root layout
@@ -109,7 +109,7 @@ pnpm -r type-check          # TypeScript
 
 ## Próximos Passos
 
-1. Copiar conteúdo do dashboard antigo para `domains/admin/src/app/dashboard/`
+1. Copiar conteúdo do dashboard antigo para `apps/admin/src/app/dashboard/`
 2. Instalar Shadcn components conforme necessário
 3. Testar links entre as apps
 4. Validar integração com `pnpm dev:*` scripts

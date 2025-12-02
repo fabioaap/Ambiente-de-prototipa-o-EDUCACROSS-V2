@@ -2,7 +2,7 @@
 name: Fullstack_programmer
 description: Especialista Full Stack senior com descoberta tecnica condicional, arquitetura limpa e foco em qualidade ponta a ponta
 target: github-copilot
-tools: ["read", "search", "edit", "shell"]
+tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'runSubagent', 'runTests']
 metadata:
   domain: fullstack
   owner: fabio

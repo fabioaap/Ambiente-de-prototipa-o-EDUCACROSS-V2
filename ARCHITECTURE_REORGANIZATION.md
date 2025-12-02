@@ -36,10 +36,10 @@ Raiz do Projeto
 
 | Antes | Depois | Status |
 |-------|--------|--------|
-| `domains/studio` | `domains/studio` | ✅ Movido |
-| `domains/storybook` | `domains/storybook` | ✅ Movido |
+| `apps/studio` | `domains/studio` | ✅ Movido |
+| `apps/experience-hub/storybook` | `domains/storybook` | ✅ Movido |
 | `domains/Dashboard` | `domains/Home` | ✅ Renomeado |
-| — | `domains/admin` | ✅ Criado (placeholder) |
+| — | `apps/admin` | ✅ Criado (placeholder) |
 
 ### Configuração Atualizada
 
@@ -47,7 +47,7 @@ Raiz do Projeto
 |---------|-----------|--------|
 | `pnpm-workspace.yaml` | Atualizado com novos paths | ✅ |
 | `package.json` | Scripts atualizados | ✅ |
-| `domains/admin/package.json` | Criado | ✅ |
+| `apps/admin/package.json` | Criado | ✅ |
 
 ### Testes
 
@@ -59,7 +59,7 @@ Raiz do Projeto
 
 ## 🎯 Novo Model de Acesso
 
-### `domains/admin/` (Página Principal com Shadcn)
+### `apps/admin/` (Página Principal com Shadcn)
 - ✅ Acesso a **todas** as páginas do projeto
 - ✅ Dashboard com componentes avançados
 - ✅ Pode usar Shadcn UI
@@ -110,8 +110,8 @@ pnpm check:shadcn
 ## 🔐 Guardrails Mantidos
 
 ✅ **Shadcn restrito a**:
-- `domains/admin/` (NEW – app principal)
-- ~~`domains/studio/src/app/{studio,dashboard}/`~~ (agora em `domains/studio/`)
+- `apps/admin/` (NEW – app principal)
+- ~~`apps/studio/src/app/{studio,dashboard}/`~~ (agora em `domains/studio/`)
 
 ❌ **Shadcn proibido em**:
 - `domains/Home/`
@@ -127,7 +127,7 @@ pnpm check:shadcn
 
 ## 🚀 Próximas Ações
 
-1. **Copiar código do antigo `domains/studio`** para `domains/admin/`
+1. **Copiar código do antigo `apps/studio`** para `apps/admin/`
    - Ou refatorar para ser a app principal
 
 2. **Atualizar imports em `domains/studio`** e `domains/storybook`**
@@ -150,7 +150,7 @@ pnpm check:shadcn
 ## ✨ Benefícios da Nova Arquitetura
 
 ✅ **Clareza**: `domains/` centraliza tudo de jornadas + experiências  
-✅ **Separação**: `domains/admin` é a app "real" do projeto (com Shadcn)  
+✅ **Separação**: `apps/admin` é a app "real" do projeto (com Shadcn)  
 ✅ **Design**: `domains/Home`, `studio`, `storybook` são "ferramentas" para designers  
 ✅ **Escalabilidade**: Fácil adicionar mais domínios ou apps  
 ✅ **Manutenibilidade**: Uma app principal + muitas jornadas documentadas

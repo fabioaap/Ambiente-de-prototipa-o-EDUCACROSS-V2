@@ -9,7 +9,7 @@
 
 As **4 etapas solicitadas** foram implementadas e validadas com sucesso:
 
-1. ✅ **Etapa 1**: Migrar dashboard do antigo `domains/studio` para `domains/admin`
+1. ✅ **Etapa 1**: Migrar dashboard do antigo `domains/studio` para `apps/admin`
 2. ✅ **Etapa 2**: Adicionar Shadcn UI components (8 componentes)
 3. ✅ **Etapa 3**: Testar navegação entre apps
 4. ✅ **Etapa 4**: Preparar rotas de API (mock data)
@@ -42,7 +42,7 @@ As **4 etapas solicitadas** foram implementadas e validadas com sucesso:
 ## 📁 Arquivos Criados
 
 ```
-domains/admin/src/
+apps/admin/src/
 ├── app/
 │   ├── dashboard/page.tsx                   ✨ NEW (574 linhas)
 │   ├── api/dashboard/summary/route.ts       ✨ NEW (API Mock)
@@ -62,7 +62,7 @@ domains/admin/src/
 │   └── utils.ts                             ✨ NEW (cn utility)
 └── ...
 
-domains/admin/
+apps/admin/
 ├── components.json                          ✨ NEW (Shadcn config)
 ├── eslint.config.mjs                        🔄 UPDATED (formato .mjs)
 └── package.json                             🔄 UPDATED (+3 deps Radix UI)
@@ -324,7 +324,7 @@ Para dúvidas sobre:
 
 ## 🎉 Conclusão
 
-A migração do dashboard para `domains/admin` foi **completamente bem-sucedida**. Todas as 4 etapas foram implementadas, validadas e documentadas. O sistema está pronto para:
+A migração do dashboard para `apps/admin` foi **completamente bem-sucedida**. Todas as 4 etapas foram implementadas, validadas e documentadas. O sistema está pronto para:
 
 - ✅ Merge em `main`
 - ✅ Deploy em staging

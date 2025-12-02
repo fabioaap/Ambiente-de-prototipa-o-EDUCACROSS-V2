@@ -314,3 +314,61 @@ Workflow:
 **Próxima Revisão**: 2025-11-23 ou após merge de Dashboard P2  
 **Responsáveis**: Agente (Copilot) + Time  
 **Comunicação**: GitHub commits + Documentação em raiz
+
+---
+
+## 🔄 Figma MCP Server - Token Sync
+
+### Implementação Concluída (Phase 3)
+
+```
+Status: 🟢 OPERACIONAL
+Data: 2025-11-28
+Branch: 001-figma-mcp-server
+```
+
+**Progresso**:
+- ✅ Phase 1: Setup - Scaffold do figma-mcp-server
+- ✅ Phase 2: Foundational - Infra core (figmaClient, config, server STDIO)
+- ✅ Phase 3: User Story 1 (T010-T015) - get_design_tokens tool
+  - ✅ T010: Contract tests (tokenSetSchema validation)
+  - ✅ T011: Integration tests (mock Figma API)
+  - ✅ T012: Schemas + layer-to-token mappers
+  - ✅ T013: getDesignTokens tool implementation
+  - ✅ T014: MCP server registration
+  - ✅ T015: writeTokensFromMcp pipeline script
+  - ✅ T018: Documentação (README BackOffice + FIGMA_INTEGRATION_PLAN.md)
+- 🔄 Pendente: T016-T017 (Design System + Storybook integration)
+
+**Commits**:
+- `a804937` - feat(mcp): Phase 3 (T010-T015) implementação completa
+- `74156a3` - fix(mcp): corrigir async em beforeEach
+- `50b89b7` - feat(mcp): Phase 2 foundational infra
+- `7e99863` - feat(mcp): Phase 1 scaffold
+
+**Testes**: 14/14 passando ✅
+- 7 contract tests (Zod schema validation)
+- 7 integration tests (mock Figma API responses)
+
+**Ferramentas Disponíveis**:
+- `get_design_tokens` - Extrai tokens do Figma Frame 8565:17355
+- `get_selection_snapshot` - Planejado (Phase 4)
+
+**Scripts**:
+```bash
+# Sincronizar tokens do Figma
+pnpm --filter @educacross/figma-mcp-server exec tsx scripts/writeTokensFromMcp.ts
+
+# Verificar saúde
+pnpm mcp:figma:health
+
+# Executar testes
+pnpm --filter @educacross/figma-mcp-server test
+```
+
+**Próximos Passos**:
+1. Phase 3 final: T016-T017 (DS/Storybook integration)
+2. Phase 4: User Story 2 (get_selection_snapshot)
+3. Phase 5: User Story 3 (health monitoring)
+4. Phase 6: Polish e quality gates
+

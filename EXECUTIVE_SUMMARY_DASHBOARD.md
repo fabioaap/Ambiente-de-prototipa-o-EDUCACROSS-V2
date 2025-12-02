@@ -4,7 +4,7 @@
 
 ## 🎯 Objetivo Alcançado
 
-Migrar dashboard completo do `domains/studio` para `domains/admin` com Shadcn UI em 4 etapas.
+Migrar dashboard completo do `domains/studio` para `apps/admin` com Shadcn UI em 4 etapas.
 
 ---
 
@@ -67,16 +67,16 @@ http://localhost:3000/dashboard
 ## 📁 Arquivos Principais
 
 ### Dashboard
-`domains/admin/src/app/dashboard/page.tsx` (574 linhas)
+`apps/admin/src/app/dashboard/page.tsx` (574 linhas)
 
 ### API Mock
-`domains/admin/src/app/api/dashboard/summary/route.ts`
+`apps/admin/src/app/api/dashboard/summary/route.ts`
 
 ### Types
-`domains/admin/src/lib/types/dashboard.ts` (182 linhas)
+`apps/admin/src/lib/types/dashboard.ts` (182 linhas)
 
 ### Components
-`domains/admin/src/components/ui/` (8 arquivos)
+`apps/admin/src/components/ui/` (8 arquivos)
 
 ---
 

@@ -47,7 +47,7 @@
 ---
 
 ## 📁 Arquivos Alterados
-- `domains/admin/src/app/dashboard/page.tsx` (50 linhas modificadas)
+- `apps/admin/src/app/dashboard/page.tsx` (50 linhas modificadas)
 
 ## 📖 Documentação
 - `DESIGN_CRITIQUE_DASHBOARD.md` (Análise completa)

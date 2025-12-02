@@ -72,7 +72,7 @@ pnpm dev:home
 - Search & Filter de páginas
 - Table com últimas alterações
 
-**Dados**: Mock (arquivo: `domains/admin/src/app/api/dashboard/summary/route.ts`)
+**Dados**: Mock (arquivo: `apps/admin/src/app/api/dashboard/summary/route.ts`)
 
 ---
 
@@ -120,7 +120,7 @@ pnpm prettier --write .
 ## 📁 Estrutura
 
 ```
-domains/admin/src/
+apps/admin/src/
 ├── app/
 │   ├── dashboard/page.tsx     ← Dashboard (574 linhas)
 │   ├── api/dashboard/summary/ ← API Mock
@@ -196,14 +196,14 @@ pnpm lint --fix
 ## 📊 Arquivos Importantes
 
 ### Dashboard
-- `domains/admin/src/app/dashboard/page.tsx` - Componente principal (574 linhas)
-- `domains/admin/src/lib/types/dashboard.ts` - Types TypeScript
+- `apps/admin/src/app/dashboard/page.tsx` - Componente principal (574 linhas)
+- `apps/admin/src/lib/types/dashboard.ts` - Types TypeScript
 
 ### API Mock
-- `domains/admin/src/app/api/dashboard/summary/route.ts` - Endpoint
+- `apps/admin/src/app/api/dashboard/summary/route.ts` - Endpoint
 
 ### Components
-- `domains/admin/src/components/ui/` - Shadcn UI components (8 arquivos)
+- `apps/admin/src/components/ui/` - Shadcn UI components (8 arquivos)
 
 ### Docs
 - `DASHBOARD_MIGRATION_COMPLETE.md` - Status técnico

@@ -32,7 +32,7 @@
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.* Violations require entries in **Complexity Tracking**.
 
 1. **Run-Ready Prototypes Only** – Document how this feature keeps `pnpm build`, `pnpm lint`, and `pnpm -r type-check` green (include affected packages, build order, and console-error mitigation).
-2. **Single Design System Surface** – Confirm which `@prototipo/design-system` primitives or new tokens are involved, how `'use client'` boundaries are respected, and whether Shadcn UI stays inside `domains/studio/src/app/{studio,dashboard}/`.
+2. **Single Design System Surface** – Confirm which `@prototipo/design-system` primitives or new tokens are involved, how `'use client'` boundaries are respected, and whether Shadcn UI stays inside `apps/studio/src/app/{studio,dashboard}/`.
 3. **Documented Journeys Stay Traceable** – Identify the impacted `domains/{domain}/journeys/{journey}` docs, Studio slugs, dashboards, and sprint indexes that will be updated alongside the code.
 4. **Typed APIs & Observable Dashboards** – Outline the contracts, TypeScript interfaces, telemetry, and `/api/health` or dashboard metrics that will change (or state “N/A” if no API touch).
 5. **Automation-First Quality Gates** – Explain how plan/spec/tasks, `/spec` validation, and CI evidence will be produced for this work.
@@ -55,7 +55,7 @@ specs/[###-feature]/
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., domains/admin, packages/something). The delivered plan must
+  real paths (e.g., apps/admin, packages/something). The delivered plan must
   not include Option labels.
 -->
 

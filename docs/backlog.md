@@ -123,8 +123,8 @@
 - [`docs/estrategia-migracao-educacross.md`](./estrategia-migracao-educacross.md) — estratégia recorrente de migração
 
 ### Técnico
-- [`domains/studio/src/app/api/dashboard/summary/route.ts`](../domains/studio/src/app/api/dashboard/summary/route.ts) — API do dashboard
-- [`domains/studio/src/app/dashboard/page.tsx`](../domains/studio/src/app/dashboard/page.tsx) — UI do dashboard
+- [`apps/studio/src/app/api/dashboard/summary/route.ts`](../apps/studio/src/app/api/dashboard/summary/route.ts) — API do dashboard
+- [`apps/studio/src/app/dashboard/page.tsx`](../apps/studio/src/app/dashboard/page.tsx) — UI do dashboard
 - [`docs/SPRINT3_EXECUTION_DETAILED.md`](./SPRINT3_EXECUTION_DETAILED.md) — sprints e tarefas fase 3
 
 ### Pendentes (a criar)

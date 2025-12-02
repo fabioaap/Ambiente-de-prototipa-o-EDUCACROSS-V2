@@ -8,14 +8,14 @@
 
 ## 🎯 OBJETIVO PRINCIPAL
 
-**Migrar dashboard de `domains/studio` para `domains/admin` em 4 etapas**
+**Migrar dashboard de `domains/studio` para `apps/admin` em 4 etapas**
 
 ---
 
 ## ✅ ETAPA 1: MIGRAR DASHBOARD
 
 - [x] Copiar página do dashboard (574 linhas)
-- [x] Criar arquivo: `domains/admin/src/app/dashboard/page.tsx`
+- [x] Criar arquivo: `apps/admin/src/app/dashboard/page.tsx`
 - [x] Migrar componentes internos:
   - [x] KPICard
   - [x] HealthStatusItem
@@ -36,7 +36,7 @@
   - [x] @radix-ui/react-select
   - [x] @radix-ui/react-progress
   - [x] @radix-ui/react-primitive
-- [x] Criar componentes em `domains/admin/src/components/ui/`:
+- [x] Criar componentes em `apps/admin/src/components/ui/`:
   - [x] button.tsx
   - [x] card.tsx
   - [x] input.tsx
@@ -158,28 +158,28 @@
 
 ### Criados
 ```
-✅ domains/admin/src/app/dashboard/page.tsx
-✅ domains/admin/src/app/api/dashboard/summary/route.ts
-✅ domains/admin/src/lib/types/dashboard.ts
-✅ domains/admin/src/components/ui/button.tsx
-✅ domains/admin/src/components/ui/card.tsx
-✅ domains/admin/src/components/ui/input.tsx
-✅ domains/admin/src/components/ui/select.tsx
-✅ domains/admin/src/components/ui/badge.tsx
-✅ domains/admin/src/components/ui/progress.tsx
-✅ domains/admin/src/components/ui/skeleton.tsx
-✅ domains/admin/src/components/ui/table.tsx
-✅ domains/admin/src/components/ui/index.ts
-✅ domains/admin/src/lib/utils.ts
-✅ domains/admin/components.json
+✅ apps/admin/src/app/dashboard/page.tsx
+✅ apps/admin/src/app/api/dashboard/summary/route.ts
+✅ apps/admin/src/lib/types/dashboard.ts
+✅ apps/admin/src/components/ui/button.tsx
+✅ apps/admin/src/components/ui/card.tsx
+✅ apps/admin/src/components/ui/input.tsx
+✅ apps/admin/src/components/ui/select.tsx
+✅ apps/admin/src/components/ui/badge.tsx
+✅ apps/admin/src/components/ui/progress.tsx
+✅ apps/admin/src/components/ui/skeleton.tsx
+✅ apps/admin/src/components/ui/table.tsx
+✅ apps/admin/src/components/ui/index.ts
+✅ apps/admin/src/lib/utils.ts
+✅ apps/admin/components.json
 ✅ 7x Documentação
 ```
 
 ### Modificados
 ```
-🔄 domains/admin/package.json (+3 deps Radix UI)
-🔄 domains/admin/eslint.config.mjs (formato .mjs)
-🔄 domains/admin/src/app/page.tsx (link dashboard)
+🔄 apps/admin/package.json (+3 deps Radix UI)
+🔄 apps/admin/eslint.config.mjs (formato .mjs)
+🔄 apps/admin/src/app/page.tsx (link dashboard)
 ```
 
 **Total**: 24 arquivos criados/modificados
