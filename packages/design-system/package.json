@@ -23,7 +23,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prototipo/tokens": "workspace:*"
+    "@prototipo/tokens": "workspace:*",
+    "@radix-ui/react-dropdown-menu": "^2.1.16"
   },
   "peerDependencies": {
     "react": "^18.0.0",

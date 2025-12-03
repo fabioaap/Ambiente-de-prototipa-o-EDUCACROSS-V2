@@ -17,6 +17,7 @@ const config: StorybookConfig = {
   core: {
     builder: '@storybook/builder-vite',
   },
+  staticDirs: ['../public'],
 };
 
 export default config;
