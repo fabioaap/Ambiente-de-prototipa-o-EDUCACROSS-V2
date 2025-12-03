@@ -2,9 +2,20 @@ import type { Preview } from '@storybook/react';
 import '@prototipo/tokens/tokens.css';
 import '@prototipo/design-system/index.css';
 import './preview-fonts.css';
+import '../src/styles/storybook-globals.css';
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          'Tokens',
+          'Components',
+          '*',
+        ],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -25,6 +36,10 @@ const preview: Preview = {
         {
           name: 'gray',
           value: '#f3f4f6',
+        },
+        {
+          name: 'brand',
+          value: '#5f4de5',
         },
       ],
     },

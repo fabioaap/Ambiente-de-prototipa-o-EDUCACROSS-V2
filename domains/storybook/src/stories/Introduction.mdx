@@ -1,0 +1,116 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# EDUCACROSS Design System
+
+Bem-vindo ao **EDUCACROSS Design System** — um catálogo interativo de componentes para o sistema de prototipação EDUCACROSS.
+
+<div style={{
+  padding: '24px',
+  background: 'linear-gradient(135deg, #5f4de5 0%, #7367f0 100%)',
+  borderRadius: '12px',
+  color: 'white',
+  marginTop: '24px',
+  marginBottom: '32px',
+}}>
+  <h2 style={{ color: 'white', marginTop: 0 }}>🎨 Sistema de Design Unificado</h2>
+  <p style={{ fontSize: '16px', lineHeight: '1.6', marginBottom: 0 }}>
+    Este Storybook documenta todos os componentes, tokens e padrões de design utilizados na plataforma EDUCACROSS. 
+    Explore, teste e implemente componentes consistentes e acessíveis.
+  </p>
+</div>
+
+## 📚 O que você vai encontrar
+
+### Design Tokens
+Visualize e explore nossos tokens de design — cores, tipografia, espaçamentos e mais. Estes tokens são a base do nosso sistema e garantem consistência visual em toda a plataforma.
+
+**[Ver Tokens →](/?path=/docs/tokens--docs)**
+
+### Componentes
+Uma biblioteca completa de componentes React prontos para uso, testados e documentados. Cada componente inclui:
+
+- ✅ **Props interativas** — teste todas as variações em tempo real
+- ✅ **Código de exemplo** — copie e cole diretamente no seu projeto
+- ✅ **Validação de acessibilidade** — garantia de conformidade WCAG 2.1 AA
+- ✅ **Estados visuais** — hover, focus, disabled, error e mais
+
+### Acessibilidade em Primeiro Lugar
+
+Todos os componentes são desenvolvidos seguindo as melhores práticas de acessibilidade:
+
+- Contraste de cores otimizado (WCAG 2.1 AA)
+- Suporte completo para navegação por teclado
+- Leitores de tela compatíveis
+- ARIA labels e roles apropriados
+
+## 🚀 Como Usar
+
+### Instalação
+
+```bash
+pnpm add @prototipo/design-system @prototipo/tokens
+```
+
+### Uso Básico
+
+```tsx
+import { Button, Card, Text } from '@prototipo/design-system';
+import '@prototipo/tokens/tokens.css';
+import '@prototipo/design-system/index.css';
+
+function App() {
+  return (
+    <Card>
+      <Text variant="heading2">Bem-vindo ao EDUCACROSS</Text>
+      <Button variant="primary">Começar</Button>
+    </Card>
+  );
+}
+```
+
+## 🎯 Princípios de Design
+
+1. **Consistência** — Componentes seguem padrões visuais e comportamentais uniformes
+2. **Acessibilidade** — Garantimos que todos possam usar nossa plataforma
+3. **Flexibilidade** — Componentes adaptáveis para diferentes contextos
+4. **Performance** — Otimizados para carregamento rápido e responsividade
+5. **Documentação** — Cada componente é totalmente documentado com exemplos práticos
+
+## 🛠️ Stack Tecnológica
+
+- **React 18** — Biblioteca de UI
+- **TypeScript** — Type safety
+- **CSS Modules** — Estilização isolada
+- **Vite** — Build tool
+- **Storybook 8** — Documentação interativa
+
+## 📖 Recursos Adicionais
+
+- **[Design System no Figma](#)** — Visualize os designs originais
+- **[Guia de Contribuição](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/blob/main/CONTRIBUTING.md)** — Como contribuir com o projeto
+- **[Changelog](https://github.com/fabioaap/Ambiente-de-prototipa-o-EDUCACROSS-V2/blob/main/CHANGELOG.md)** — Acompanhe as atualizações
+
+---
+
+<div style={{
+  marginTop: '48px',
+  padding: '20px',
+  background: '#f9fafb',
+  borderRadius: '8px',
+  borderLeft: '4px solid #5f4de5',
+}}>
+  <p style={{ margin: 0, fontSize: '14px', color: '#6b7280' }}>
+    <strong style={{ color: '#5f4de5' }}>💡 Dica:</strong> Use a aba{' '}
+    <strong>Accessibility</strong> no painel inferior para validar automaticamente cada componente 
+    contra as diretrizes WCAG.
+  </p>
+</div>
+
+## 👋 Contato e Suporte
+
+Tem dúvidas ou sugestões? Entre em contato com a equipe de design através do repositório do projeto.
+
+**Versão:** 0.2.0-beta  
+**Última atualização:** Dezembro 2024

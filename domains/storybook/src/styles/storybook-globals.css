@@ -1,0 +1,54 @@
+/**
+ * Estilos globais do Storybook - EDUCACROSS
+ * Define variáveis CSS da marca e estilos personalizados
+ */
+
+:root {
+  /* Cor primária da marca EDUCACROSS */
+  --brand-primary: #5f4de5;
+  --brand-primary-hover: #4e3dca;
+  --brand-primary-light: #7367f0;
+  --brand-primary-lighter: #9789f8;
+  
+  /* Gradiente da marca */
+  --brand-gradient: linear-gradient(135deg, #5f4de5 0%, #7367f0 100%);
+  
+  /* Sombras com cor da marca */
+  --brand-shadow-sm: 0 1px 2px 0 rgba(95, 77, 229, 0.05);
+  --brand-shadow-md: 0 4px 6px -1px rgba(95, 77, 229, 0.1);
+  --brand-shadow-lg: 0 10px 15px -3px rgba(95, 77, 229, 0.15);
+}
+
+/* Aplicar fonte Montserrat em elementos do Storybook */
+#storybook-root,
+.sb-show-main,
+.docs-story {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Estilização personalizada para a página Introduction */
+.sbdocs-wrapper h1 {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Links com cor primária da marca */
+.sbdocs-wrapper a {
+  color: var(--brand-primary);
+  transition: color 0.2s ease;
+}
+
+.sbdocs-wrapper a:hover {
+  color: var(--brand-primary-hover);
+}
+
+/* Badges customizados */
+.sbdocs-wrapper code {
+  background-color: rgba(95, 77, 229, 0.05);
+  border: 1px solid rgba(95, 77, 229, 0.1);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
