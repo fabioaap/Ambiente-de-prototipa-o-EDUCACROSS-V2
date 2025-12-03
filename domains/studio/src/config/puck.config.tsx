@@ -42,6 +42,12 @@ export type LayoutProps = {
   maxWidth: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 };
 
+export type BadgeProps = {
+  text: string;
+  variant: 'default' | 'success' | 'warning' | 'error' | 'info';
+  size: 'sm' | 'md' | 'lg';
+};
+
 /**
  * Tipos para componentes do Game Hub
  * Usados para listar, filtrar e exibir jogos educacionais
@@ -239,6 +245,46 @@ export const puckConfig: Config = {
           <Layout maxWidth={maxWidth}>
             {puck.renderDropZone({ zone: `${id}:content` })}
           </Layout>
+        );
+      },
+    },
+
+    /**
+     * Badge - Rótulo visual para status, contagem ou categorização
+     * Componente pequeno para destacar informações importantes
+     */
+    Badge: {
+      fields: {
+        text: { type: 'text' },
+        variant: {
+          type: 'select',
+          options: [
+            { label: 'Padrão', value: 'default' },
+            { label: 'Sucesso', value: 'success' },
+            { label: 'Aviso', value: 'warning' },
+            { label: 'Erro', value: 'error' },
+            { label: 'Info', value: 'info' },
+          ],
+        },
+        size: {
+          type: 'select',
+          options: [
+            { label: 'Pequeno', value: 'sm' },
+            { label: 'Médio', value: 'md' },
+            { label: 'Grande', value: 'lg' },
+          ],
+        },
+      },
+      defaultProps: {
+        text: 'Badge',
+        variant: 'default',
+        size: 'md',
+      },
+      render: ({ text, variant, size }: BadgeProps) => {
+        return (
+          <Badge variant={variant} size={size}>
+            {text}
+          </Badge>
         );
       },
     },
@@ -781,5 +827,20 @@ export const puckConfig: Config = {
         <ActionButtons onView={() => {}} onEdit={() => {}} onDelete={() => {}} />
       ),
     },
+
+    /**
+     * COMPONENTES PLANEJADOS PARA SPRINT 4
+     * 
+     * Os seguintes componentes estão documentados em .specify/memory/SPRINT4_PLANNING.md
+     * e serão implementados nas próximas fases:
+     * 
+     * - Alert (node-id=6586-46832): Componente de feedback visual para notificações
+     * - Dropdown (node-id=7232-42750): Menu dropdown com Radix UI para navegação contextual
+     * - Chip (node-id=6595-48177): Tags removíveis para filtros e seleções
+     * - Avatar (node-id=6586-47137): Componente de avatar para representação de usuários
+     * - Stats Cards (node-id=150-138964): Cards de métricas para dashboards
+     * 
+     * Ao implementar estes componentes, registre-os aqui seguindo o padrão dos componentes existentes.
+     */
   },
 };

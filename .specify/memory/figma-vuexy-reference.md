@@ -30,7 +30,7 @@
 | **Tabs** | 6587-47387 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=6587-47387) | ✅ Implementado |
 | **Modals/Dialogs** | 7901-79563 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=7901-79563) | ⚠️ Parcial (precisa interação) |
 | **Alerts** | 6586-46832 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=6586-46832) | ⏳ Pendente |
-| **Badges** | 6586-47073 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=6586-47073) | ⏳ Pendente |
+| **Badges** | 6586-47073 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=6586-47073) | ✅ Implementado |
 | **Chips** | 6595-48177 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=6595-48177) | ⏳ Pendente |
 | **Avatars** | 6586-47137 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=6586-47137) | ⏳ Pendente |
 | **Progress Bars** | 7177-39065 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=7177-39065) | ✅ Implementado |
@@ -72,7 +72,7 @@
 | **Sidebar/Navigation** | 19-238596 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=19-238596) | ✅ Implementado |
 | **Breadcrumbs** | 198-139914 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=198-139914) | ✅ Implementado |
 | **Pagination** | 126-133340 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=126-133340) | ✅ Implementado |
-| **Menu/Dropdown** | 7232-42750 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=7232-42750) | ⏳ Pendente |
+| **Menu/Dropdown** | 7232-42750 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=7232-42750) | ⏳ Pendente (Radix UI) |
 | **Stepper** | 7539-61770 | [Ver no Figma](https://www.figma.com/design/UstdVUNj2isUdfucUj5EAx/vuexy-figma-dashboard-ui-kit-and-builder-v4?node-id=7539-61770) | ⏳ Pendente |
 
 ---
@@ -168,19 +168,19 @@ node /tmp/figma-visual-comparison.mjs
 
 ## 📊 Status de Implementação
 
-**Última Atualização**: 29/11/2025
+**Última Atualização**: 03/12/2025
 
 | Categoria | Total | Implementados | Pendentes | % Completo |
 |-----------|-------|---------------|-----------|------------|
 | Design Tokens | 4 | 4 | 0 | 100% ✅ |
-| Core Components | 9 | 6 | 3 | 66.7% |
+| Core Components | 9 | 7 | 2 | 77.8% |
 | Form Components | 7 | 5 | 2 | 71.4% |
 | Data Display | 7 | 1 | 6 | 14.3% |
 | Navigation | 5 | 3 | 2 | 60% |
 | Dashboard | 6 | 2 | 4 | 33.3% |
 | Game/Learning | 5 | 1 | 4 | 20% |
 | Media | 1 | 0 | 1 | 0% |
-| **TOTAL** | **44** | **22** | **22** | **50%** |
+| **TOTAL** | **44** | **23** | **21** | **52.3%** |
 
 ---
 
@@ -188,11 +188,11 @@ node /tmp/figma-visual-comparison.mjs
 
 ### Sprint 4 - BackOffice Essentials (6 componentes + Storybook UI)
 1. ⏳ **Alerts** (node-id=6586-46832) - Tier 2: ≥90%
-2. ⏳ **Badges** (node-id=6586-47073) - Tier 2: ≥90%
+2. ✅ **Badges** (node-id=6586-47073) - Tier 2: ≥90% - **IMPLEMENTADO**
 3. ⏳ **Chips** (node-id=6595-48177) - Tier 2: ≥90%
 4. ⏳ **Avatars** (node-id=6586-47137) - Tier 2: ≥90%
 5. ⏳ **Stats Cards** (node-id=150-138964) - Tier 1: ≥95% (crítico para dashboards)
-6. ⏳ **Menu/Dropdown** (node-id=7232-42750) - Tier 2: ≥90%
+6. ⏳ **Menu/Dropdown** (node-id=7232-42750) - Tier 2: ≥90% (Radix UI)
 7. ⏳ **Storybook UI Customization** - Logo EDUCACROSS + tema completo
 
 **Meta**: 29/44 componentes (66%) | **Tempo estimado**: 37h (2 semanas)  
