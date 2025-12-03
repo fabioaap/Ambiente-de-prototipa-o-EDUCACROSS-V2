@@ -1,6 +1,6 @@
 # Índice de Jornadas - EDUCACROSS Prototipação
 
-**Última atualização**: 2025-11-28
+**Última atualização**: 2025-11-27
 
 > Este arquivo é gerado automaticamente. Para regenerar, execute: `pnpm gen:journeys`
 
@@ -12,40 +12,18 @@
 
 ### Jornadas
 
-- **[exibir-campo-uso](./BackOffice/journeys/exibir-campo-uso/README.md)** - Jornada prototipada
 - **[revisao-questoes](./BackOffice/journeys/revisao-questoes/README.md)** - Jornada prototipada
+- **[exibir-campo-uso](./BackOffice/journeys/exibir-campo-uso/README.md)** - Tarefa #4800: Exibir campo USO (rede) nas listas com filtro
 
 ## FrontOffice
 
 **[📖 Documentação do Domínio](./FrontOffice/README.md)**
 
-### Jornadas
-
-- **[onboarding](./FrontOffice/journeys/onboarding/README.md)** - Jornada prototipada
+*(sem jornadas)*
 
 ## Game
 
 **[📖 Documentação do Domínio](./Game/README.md)**
-
-### Jornadas
-
-- **[game-hub](./Game/journeys/game-hub/README.md)** - Jornada prototipada
-
-## Home
-
-**[📖 Documentação do Domínio](./Home/README.md)**
-
-*(sem jornadas)*
-
-## storybook
-
-**[📖 Documentação do Domínio](./storybook/README.md)**
-
-*(sem jornadas)*
-
-## studio
-
-**[📖 Documentação do Domínio](./studio/README.md)**
 
 *(sem jornadas)*
 
@@ -53,7 +31,7 @@
 
 ## 📊 Estatísticas
 
-- **Domínios**: 6
+- **Domínios**: 4
 - **Jornadas**: 4
 
 ## 🚀 Próximos Passos

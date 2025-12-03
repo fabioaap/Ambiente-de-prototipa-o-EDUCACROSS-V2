@@ -1,0 +1,124 @@
+@import '@prototipo/tokens/tokens.css';
+
+.Progress_progress {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--typography-fontFamily-sans);
+}
+
+/* Linear variant */
+.Progress_linear {
+  flex-direction: row;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.Progress_linearTrack {
+  flex: 1;
+  height: 100%;
+  background-color: var(--colors-neutral-200);
+  border-radius: var(--borderRadius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.Progress_linearFill {
+  height: 100%;
+  border-radius: var(--borderRadius-full);
+  transition: width 0.3s ease;
+}
+
+.Progress_linearLabel {
+  font-size: var(--typography-fontSize-sm);
+  font-weight: var(--typography-fontWeight-medium);
+  color: var(--colors-neutral-700);
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* Circular variant */
+.Progress_circular {
+  flex-direction: column;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Progress_circularSvg {
+  transform: rotate(0deg);
+}
+
+.Progress_circularBackground {
+  fill: none;
+  stroke: var(--colors-neutral-200);
+}
+
+.Progress_circularForeground {
+  fill: none;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.Progress_circularLabel {
+  position: absolute;
+  font-size: var(--typography-fontSize-xs);
+  font-weight: var(--typography-fontWeight-semibold);
+  color: var(--colors-neutral-700);
+}
+
+/* Size variants for linear */
+.Progress_linear.sm .linearTrack {
+  height: 0.375rem; /* 6px */
+}
+
+.Progress_linear.md .linearTrack {
+  height: 0.5rem; /* 8px */
+}
+
+.Progress_linear.lg .linearTrack {
+  height: 0.75rem; /* 12px */
+}
+
+/* Size variants for circular labels */
+.Progress_circular.sm .circularLabel {
+  font-size: var(--typography-fontSize-xs);
+}
+
+.Progress_circular.md .circularLabel {
+  font-size: var(--typography-fontSize-sm);
+}
+
+.Progress_circular.lg .circularLabel {
+  font-size: var(--typography-fontSize-base);
+}
+
+/* Color variants */
+.Progress_primary .linearFill,
+.Progress_primary .circularForeground {
+  background-color: var(--colors-primary-600);
+  stroke: var(--colors-primary-600);
+}
+
+.Progress_secondary .linearFill,
+.Progress_secondary .circularForeground {
+  background-color: var(--colors-secondary-600);
+  stroke: var(--colors-secondary-600);
+}
+
+.Progress_success .linearFill,
+.Progress_success .circularForeground {
+  background-color: var(--colors-success-500);
+  stroke: var(--colors-success-500);
+}
+
+.Progress_warning .linearFill,
+.Progress_warning .circularForeground {
+  background-color: var(--colors-warning-500);
+  stroke: var(--colors-warning-500);
+}
+
+.Progress_error .linearFill,
+.Progress_error .circularForeground {
+  background-color: var(--colors-error-500);
+  stroke: var(--colors-error-500);
+}

@@ -87,4 +87,4 @@ Use `notas.md` ou `decisions.md` para registrar:
 
 ---
 
-**Nota**: Esta pasta contém apenas documentação. O código real está em `apps/studio` e `packages/*`.
+**Nota**: Esta pasta contém apenas documentação. O código real está em `domains/studio` e `packages/*`.

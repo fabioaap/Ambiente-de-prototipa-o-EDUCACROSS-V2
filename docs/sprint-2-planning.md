@@ -119,7 +119,7 @@ Após a conclusão da Sprint 1 (P0) com sucesso, a Sprint 2 (P1) foca em **melho
 
 **Escopo**:
 - Instalar e configurar `@storybook/addon-a11y`
-- Adicionar em `apps/storybook/.storybook/main.ts`
+- Adicionar em `domains/storybook/.storybook/main.ts`
 - Verificar se componentes do DS passam em checks automáticos
 - Documentar como rodar audits no Storybook
 

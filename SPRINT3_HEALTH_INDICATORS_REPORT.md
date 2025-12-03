@@ -21,7 +21,7 @@ Implementar indicadores de saúde do sistema (health metrics) no Dashboard de P�
 
 ### 1️⃣ API Route: `GET /api/health`
 
-**Localização**: `apps/studio/src/app/api/health/route.ts`
+**Localização**: `domains/studio/src/app/api/health/route.ts`
 
 ```typescript
 export async function GET() {
@@ -51,7 +51,7 @@ export async function GET() {
 
 ### 2️⃣ Health Metrics Library
 
-**Localização**: `apps/studio/src/lib/health-metrics.ts`
+**Localização**: `domains/studio/src/lib/health-metrics.ts`
 
 **Exports**:
 ```typescript
@@ -84,7 +84,7 @@ TOTAL = 100/100 (excellent)
 
 ### 3️⃣ Dashboard Integration
 
-**Localização**: `apps/studio/src/app/dashboard/page.tsx`
+**Localização**: `domains/studio/src/app/dashboard/page.tsx`
 
 **Componentes Adicionados**:
 

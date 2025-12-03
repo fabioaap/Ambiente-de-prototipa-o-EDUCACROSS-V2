@@ -5,10 +5,10 @@
 Resumo: Task list detalhada para implementar os requisitos da UI do Dashboard (Issue #54). Objetivo rápido: entregar listagem de páginas com buscas, filtros por domínio, carregamento responsivo e states (loading/error/empty).
 
 ## Arquivos alvo
-- `apps/studio/src/app/studio/pages/page.tsx` (principal)
-- `apps/studio/src/app/dashboard/page.tsx` (se for /dashboard)
-- `apps/studio/src/app/dashboard/dashboard.module.css` (estilos)
-- `apps/studio/src/app/api/pages/route.ts` (para query params: q, domain)
+- `domains/studio/src/app/studio/pages/page.tsx` (principal)
+- `domains/studio/src/app/dashboard/page.tsx` (se for /dashboard)
+- `domains/studio/src/app/dashboard/dashboard.module.css` (estilos)
+- `domains/studio/src/app/api/pages/route.ts` (para query params: q, domain)
 - `packages/design-system/src/components/{Input,Select,Card,Table,Pagination}/*` (adicionar/usar histórias)
 
 ## Estrutura de Tasks (H2.2)

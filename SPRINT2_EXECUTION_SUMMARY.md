@@ -70,8 +70,8 @@
 #### 2️⃣ Lint (`pnpm lint`)
 - ✅ **packages/tokens**: OK
 - ✅ **packages/design-system**: OK
-- ✅ **apps/storybook**: 1 warning (Tokens.stories.tsx:127 - `any` type)
-- ✅ **apps/studio**: OK (Next.js lint, no errors)
+- ✅ **domains/storybook**: 1 warning (Tokens.stories.tsx:127 - `any` type)
+- ✅ **domains/studio**: OK (Next.js lint, no errors)
 - **Tempo**: ~5s
 - **Resultado**: 0 erros críticos, 1 warning non-blocking
 

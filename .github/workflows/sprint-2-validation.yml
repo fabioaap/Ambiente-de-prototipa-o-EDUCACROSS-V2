@@ -74,7 +74,7 @@ jobs:
       # C2 Validation: Sidebar API check
       - name: 🔍 C2 – API Pages Endpoint Check
         run: |
-          if [ -f "apps/studio/src/app/api/pages/route.ts" ] && [ -f "apps/studio/src/app/api/pages/\[slug\]/route.ts" ]; then
+          if [ -f "domains/studio/src/app/api/pages/route.ts" ] && [ -f "domains/studio/src/app/api/pages/\[slug\]/route.ts" ]; then
             echo "✅ C2: API endpoints exist"
           else
             echo "⚠️ C2: API endpoints missing (Non-blocking for Sprint 3)"

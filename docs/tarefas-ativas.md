@@ -20,10 +20,10 @@ M  eslint.config.mjs                           (rule updates)
 M  docs/backlog.md                             (status updated)
 M  docs/issues-pendentes.md                    (5 P0 concluídas)
 
-M  apps/storybook/src/stories/*.tsx            (Play functions, Layout updates)
-M  apps/studio/src/app/**/*.tsx                (PagesList, StudioLayout)
-M  apps/studio/src/config/puck.config.tsx      (componentes updates)
-M  apps/studio/src/components/*.css            (estilos)
+M  domains/storybook/src/stories/*.tsx            (Play functions, Layout updates)
+M  domains/studio/src/app/**/*.tsx                (PagesList, StudioLayout)
+M  domains/studio/src/config/puck.config.tsx      (componentes updates)
+M  domains/studio/src/components/*.css            (estilos)
 
 M  packages/design-system/src/components/**/*.module.css  (acessibilidade)
 M  packages/tokens/package.json                (lint script)
@@ -38,7 +38,7 @@ M  domains/FrontOffice/README.md              (atualizado)
 ✨ docs/sprint-2-progresso.md                  (9 KB) - Histórico Sprint 2
 ✨ domains/INDEX.md                            (auto-gerado)
 ✨ scripts/gen-journeys-index.js               (3.1 KB)
-✨ apps/studio/data/pages/backoffice/         (dados exemplo)
+✨ domains/studio/data/pages/backoffice/         (dados exemplo)
 ✨ domains/BackOffice/journeys/revisao-questoes/  (primeira jornada)
 ✨ domains/FrontOffice/journeys/              (estrutura)
 ```
@@ -132,8 +132,8 @@ git checkout -b feature/c2-studio-sidebar
 
 # 3. Começar implementação
 pnpm dev:studio
-# Editar: apps/studio/src/components/PagesList.tsx
-# Editar: apps/studio/src/components/StudioLayout.tsx
+# Editar: domains/studio/src/components/PagesList.tsx
+# Editar: domains/studio/src/components/StudioLayout.tsx
 ```
 
 ### Cenário B: Explorar Dashboard (H)
@@ -145,7 +145,7 @@ git checkout -b feature/h-dashboard
 
 # 2. Criar prototype em Storybook
 pnpm dev:storybook
-# Adicionar: apps/storybook/src/stories/Dashboard.stories.tsx
+# Adicionar: domains/storybook/src/stories/Dashboard.stories.tsx
 ```
 
 ### Cenário C: Ampliar Jornadas (E2/E3)
@@ -156,7 +156,7 @@ pnpm dev:storybook
 mkdir -p domains/FrontOffice/journeys/onboarding-aluno
 
 # 2. Criar pages no Studio
-cd apps/studio/data/pages/frontoffice/onboarding-aluno
+cd domains/studio/data/pages/frontoffice/onboarding-aluno
 # pages: boas-vindas.json, perfil-inicial.json, tutorial.json
 ```
 
@@ -197,7 +197,7 @@ cd apps/studio/data/pages/frontoffice/onboarding-aluno
 | **Guia Contribuição** | `CONTRIBUTING.md` |
 | **Audit Acessibilidade** | `docs/accessibility-audit.md` |
 | **Índice Jornadas** | `domains/INDEX.md` |
-| **API Persistência** | `apps/studio/src/app/api/pages/README.md` |
+| **API Persistência** | `domains/studio/src/app/api/pages/README.md` |
 
 ---
 

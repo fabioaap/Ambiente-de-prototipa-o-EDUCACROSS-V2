@@ -31,14 +31,16 @@
     "domains:index": "node scripts/generate-domains-index.mjs",
     "clean": "pnpm -r exec rm -rf node_modules dist build .next storybook-static",
     "gen:journeys": "node ./scripts/gen-journeys-index.js",
-    "specfy": "npx @specfy/stack-analyser . --output=docs/specfy-stack.json"
+    "specfy": "npx @specfy/stack-analyser . --output=docs/specfy-stack.json",
+    "perf:storybook": "playwright test scripts/playwright/storybook-perf.spec.ts --reporter=list"
   },
   "devDependencies": {
     "@prototipo/eslint-config": "workspace:*",
     "eslint": "^9.15.0",
     "prettier": "^3.3.3",
     "turbo": "^2.6.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "@playwright/test": "^1.48.2"
   },
   "packageManager": "pnpm@9.14.4",
   "dependencies": {

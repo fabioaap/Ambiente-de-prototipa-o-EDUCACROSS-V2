@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Switch.module.css';
+import './Switch.css';
 
 export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -24,14 +24,14 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
   ) => {
     const switchId = id || `switch-${Math.random().toString(36).substr(2, 9)}`;
     const switchClassName = [
-      styles.switch,
-      error && styles.error,
+      "Switch_switch",
+      error && "Switch_error",
       className,
     ].filter(Boolean).join(' ');
 
     return (
       <div>
-        <div className={styles.switchWrapper}>
+        <div className={"Switch_switchWrapper"}>
           <input
             ref={ref}
             type="checkbox"
@@ -53,19 +53,19 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           {label && (
             <label
               htmlFor={switchId}
-              className={`${styles.label} ${disabled ? styles.disabled : ''}`}
+              className={`${"Switch_label"} ${disabled ? "Switch_disabled" : ''}`}
             >
               {label}
             </label>
           )}
         </div>
         {errorText && (
-          <div id={`${switchId}-error`} className={styles.errorText} role="alert">
+          <div id={`${switchId}-error`} className={"Switch_errorText"} role="alert">
             {errorText}
           </div>
         )}
         {!errorText && helperText && (
-          <div id={`${switchId}-helper`} className={styles.helperText}>
+          <div id={`${switchId}-helper`} className={"Switch_helperText"}>
             {helperText}
           </div>
         )}

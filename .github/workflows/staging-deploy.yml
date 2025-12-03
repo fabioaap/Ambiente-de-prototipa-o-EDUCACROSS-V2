@@ -76,8 +76,8 @@ jobs:
         with:
           name: build-artifacts-${{ github.sha }}
           path: |
-            apps/studio/.next
-            apps/storybook/storybook-static
+            domains/studio/.next
+            domains/storybook/storybook-static
             packages/*/dist
           retention-days: 7
 
@@ -99,7 +99,7 @@ jobs:
         run: |
           echo "url=https://educacross-studio-staging.vercel.app" >> $GITHUB_OUTPUT
           echo "✅ Studio deployment would trigger via Vercel Git integration"
-          echo "📦 Vercel will use: apps/studio/vercel.json"
+          echo "📦 Vercel will use: domains/studio/vercel.json"
 
   deploy-storybook-staging:
     name: Deploy Storybook to Staging
@@ -119,7 +119,7 @@ jobs:
         run: |
           echo "url=https://educacross-storybook-staging.vercel.app" >> $GITHUB_OUTPUT
           echo "✅ Storybook deployment would trigger via Vercel Git integration"
-          echo "📦 Vercel will use: apps/storybook/vercel.json"
+          echo "📦 Vercel will use: domains/storybook/vercel.json"
 
   create-deployment-summary:
     name: Create Deployment Summary

@@ -5,7 +5,7 @@
 
 ## Summary
 
-Criar um "Experience Hub" dedicado (nova pasta sob `apps/experience-hub/`) para hospedar Storybook e futuras páginas utilitárias (dashboard demo, catálogos) sem interferir no Studio. O plano inclui: (1) mover o Storybook que hoje vive em `apps/storybook` para dentro do hub e garantir que ele consuma apenas componentes documentados nas pastas `domains/*`; (2) remover o CSS global que estava vazando para `/dashboard`; (3) reconfigurar o dashboard raiz para usar Shadcn apenas depois dessa limpeza; (4) atualizar documentação de jornadas para que Storybook/HUB/Studio usem os mesmos links e slugs.
+Criar um "Experience Hub" dedicado (nova pasta sob `apps/experience-hub/`) para hospedar Storybook e futuras páginas utilitárias (dashboard demo, catálogos) sem interferir no Studio. O plano inclui: (1) mover o Storybook que hoje vive em `domains/storybook` para dentro do hub e garantir que ele consuma apenas componentes documentados nas pastas `domains/*`; (2) remover o CSS global que estava vazando para `/dashboard`; (3) reconfigurar o dashboard raiz para usar Shadcn apenas depois dessa limpeza; (4) atualizar documentação de jornadas para que Storybook/HUB/Studio usem os mesmos links e slugs.
 
 ## Technical Context
 
@@ -24,7 +24,7 @@ Criar um "Experience Hub" dedicado (nova pasta sob `apps/experience-hub/`) para 
 1. **Run-Ready Prototypes Only** – Scripts impactados: `pnpm build:tokens`, `pnpm build:design-system`, `pnpm build:hub`, `pnpm build:studio`. Vamos ajustar `package.json` para refletir a nova ordem e garantir que `pnpm lint`/`pnpm -r type-check` rodem antes de cada commit. Também validaremos que `/dashboard` e o novo Storybook não exibem `console.error` após o split.
 2. **Single Design System Surface** – Storybook e Studio continuam usando apenas `@prototipo/design-system`; Shadcn ficará restrito ao hub/dash (scripts `pnpm check:shadcn` continuam obrigatórios). Qualquer componente client terá `'use client'`, `React.forwardRef` e será registrado em `puck.config.tsx` quando aplicável.
 3. **Documented Journeys Stay Traceable** – Atualizaremos `domains/README.md`, `domains/INDEX.md`, `domains/*/journeys/*/README.md|links.md|notas.md`, `PROGRESS_DASHBOARD.md` e `SPRINT3_EXECUTION_DETAILED.md` para refletir o novo hub e manter links para Studio e Storybook sincronizados.
-4. **Typed APIs & Observable Dashboards** – Não esperamos alterar `/api/dashboard/*` diretamente, mas caso algum widget do dashboard seja adaptado, atualizaremos os tipos em `apps/studio/src/app/api/dashboard/*/route.ts`, `docs/health-metrics-widgets.md` e `/api/health`. Monitorar logs e `dashboardLogger` para garantir mensagens claras se endpoints estiverem indisponíveis durante a migração.
+4. **Typed APIs & Observable Dashboards** – Não esperamos alterar `/api/dashboard/*` diretamente, mas caso algum widget do dashboard seja adaptado, atualizaremos os tipos em `domains/studio/src/app/api/dashboard/*/route.ts`, `docs/health-metrics-widgets.md` e `/api/health`. Monitorar logs e `dashboardLogger` para garantir mensagens claras se endpoints estiverem indisponíveis durante a migração.
 5. **Automation-First Quality Gates** – Este plan.md e spec.md estão atualizados; geraremos tasks.md via `/speckit.tasks`. Cada PR publica `/spec`, inclui evidências (`pnpm lint`, `pnpm -r type-check`, `pnpm build`) e descreve como o hub foi validado.
 ## Project Structure
 
@@ -48,7 +48,7 @@ apps/
 │   ├── src/app/dashboard       # Limpo do CSS antigo, pronto para Shadcn controlado
 │   └── src/app/[[...slug]]     # Continua servindo jornadas de domains/
 ├── experience-hub/             # NOVO (Storybook + futuras páginas utilitárias)
-│   ├── storybook/              # Configuração movida de apps/storybook
+│   ├── storybook/              # Configuração movida de domains/storybook
 │   └── README.md               # Guia de execução
 └── storybook/ (legacy)         # A ser removido após migração
 
@@ -67,7 +67,7 @@ docs/
 └── health-metrics-widgets.md
 ```
 
-**Structure Decision**: Adotar um novo subdiretório `apps/experience-hub/` para consolidar Storybook/dashboards utilitários, mantendo `apps/studio/` focado em Puck/Journeys. Durante a execução removeremos o antigo `apps/storybook` e ajustaremos scripts para apontarem para o hub.
+**Structure Decision**: Adotar um novo subdiretório `apps/experience-hub/` para consolidar Storybook/dashboards utilitários, mantendo `domains/studio/` focado em Puck/Journeys. Durante a execução removeremos o antigo `domains/storybook` e ajustaremos scripts para apontarem para o hub.
 directories captured above]
 
 ## Complexity Tracking

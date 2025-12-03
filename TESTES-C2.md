@@ -27,7 +27,7 @@ pnpm --filter studio lint
 
 ```bash
 # Verificar que páginas existem
-ls -la apps/studio/data/pages/
+ls -la domains/studio/data/pages/
 
 # ✅ Espera-se: home.json, teste.json
 
@@ -36,7 +36,7 @@ node << 'EOF'
 const fs = require('fs');
 const files = ['home.json', 'teste.json'];
 files.forEach(f => {
-  const path = `apps/studio/data/pages/${f}`;
+  const path = `domains/studio/data/pages/${f}`;
   const data = JSON.parse(fs.readFileSync(path, 'utf-8'));
   console.log(`✅ ${f}: ${data.root.props.title}`);
 });
@@ -56,7 +56,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 async function test() {
-  const dir = 'apps/studio/data/pages';
+  const dir = 'domains/studio/data/pages';
   const slug = 'test-' + Date.now();
   const data = { content: [], root: { props: { title: 'Test' }}, zones: {} };
   
@@ -83,16 +83,16 @@ EOF
 
 **Workaround 1: Remover página raiz temporariamente**
 ```bash
-mv apps/studio/src/app/page.tsx apps/studio/src/app/page.tsx.bak
+mv domains/studio/src/app/page.tsx domains/studio/src/app/page.tsx.bak
 pnpm dev:studio
 # Testar e depois restaurar:
-# mv apps/studio/src/app/page.tsx.bak apps/studio/src/app/page.tsx
+# mv domains/studio/src/app/page.tsx.bak domains/studio/src/app/page.tsx
 ```
 
 **Workaround 2: Build de produção**
 ```bash
 pnpm build:studio
-cd apps/studio
+cd domains/studio
 pnpm start
 ```
 
@@ -180,7 +180,7 @@ curl -X DELETE http://localhost:3000/api/pages/test-renamed
 **ARIA**:
 ```bash
 # Verificar que elementos têm aria-labels
-grep -r "aria-label" apps/studio/src/components/PagesList.tsx
+grep -r "aria-label" domains/studio/src/components/PagesList.tsx
 ```
 
 **Contraste**:

@@ -81,7 +81,7 @@ export function normalizeRootAttributes(
         'data-theme': dataTheme,
     };
     if (className) {
-        attributes.class = className;
+        attributes.className = className;
     }
 
     return {

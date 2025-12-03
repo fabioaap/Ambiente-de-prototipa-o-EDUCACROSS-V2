@@ -1,0 +1,17 @@
+/* Google Fonts - Montserrat (Vuexy Font) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Fira Code para monospace */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+
+/* Aplicar Montserrat globalmente */
+body, html, #storybook-root {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force font for all components */
+* {
+  font-family: inherit;
+}

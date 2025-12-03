@@ -96,7 +96,7 @@ Para ver o addon em ação detectando problemas:
 ## Configuração Global
 
 A configuração global do addon está em:
-- Arquivo: `apps/storybook/.storybook/preview.ts`
+- Arquivo: `domains/storybook/.storybook/preview.ts`
 - Regras principais habilitadas:
   - `color-contrast` (contraste de cores)
   - `label` (labels de formulários)
@@ -141,12 +141,12 @@ export const WorkInProgress: Story = {
 
 1. Verifique se o addon está instalado: 
    ```bash
-   grep "@storybook/addon-a11y" apps/storybook/package.json
+   grep "@storybook/addon-a11y" domains/storybook/package.json
    ```
 
 2. Verifique se está configurado em `main.ts`:
    ```bash
-   grep "addon-a11y" apps/storybook/.storybook/main.ts
+   grep "addon-a11y" domains/storybook/.storybook/main.ts
    ```
 
 3. Limpe o cache e reinstale:

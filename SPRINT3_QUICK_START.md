@@ -6,12 +6,12 @@ Executar PRIMEIRO antes de #53-#55:
 
 \\\ash
 # 1. Restaurar suporte a DropZone no Puck
-#    Arquivo: apps/studio/src/config/puck.config.tsx
+#    Arquivo: domains/studio/src/config/puck.config.tsx
 #    Adicionar: import { DropZone } from '@measured/puck'
 #    Atualizar: zones suporte na definição de componentes
 
 # 2. Atualizar tipagem de JSON de páginas
-#    Arquivo: apps/studio/data/pages/*.json
+#    Arquivo: domains/studio/data/pages/*.json
 #    Formato: { props: {...}, zones: {...} }
 
 # 3. Validar compilação
@@ -37,12 +37,12 @@ pnpm dev:studio
 
 ### #60: Progress Component (2 horas)
 - Criar novo componente em packages/design-system/src/components/Progress/
-- Story em apps/storybook/src/stories/Progress.stories.tsx
+- Story em domains/storybook/src/stories/Progress.stories.tsx
 - Registrar em puckConfig quando #59 pronto
 
 ### #61: Leaderboard Component (2.5 horas)
 - Criar novo componente em packages/design-system/src/components/Leaderboard/
-- Story em apps/storybook/src/stories/Leaderboard.stories.tsx
+- Story em domains/storybook/src/stories/Leaderboard.stories.tsx
 - Depende de #60 para testes integrados
 
 ## 📋 SEQUENCIAL: Após #59 Concluir
@@ -51,17 +51,17 @@ pnpm dev:studio
 
 \\\ash
 # #53: Dashboard API (2 horas)
-# Arquivo: apps/studio/src/app/api/pages/route.ts
+# Arquivo: domains/studio/src/app/api/pages/route.ts
 # Implementar: GET /api/pages
 # Retorna: Array de páginas salvas no localStorage
 
 # #54: Dashboard UI (3 horas)
-# Arquivo: apps/studio/src/app/page.tsx
+# Arquivo: domains/studio/src/app/page.tsx
 # Renderizar: Lista de páginas criadas
 # Componentes: Card para cada página com ações
 
 # #55: Health Indicators (4 horas)
-# Arquivo: apps/studio/src/app/page.tsx (adicionar seção)
+# Arquivo: domains/studio/src/app/page.tsx (adicionar seção)
 # Exibir: Métricas de saúde do repo (issues, PRs, commits)
 # Componentes: Badge, Text para estatísticas
 \\\

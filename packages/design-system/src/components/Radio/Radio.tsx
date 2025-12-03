@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Radio.module.css';
+import './Radio.css';
 
 export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: string;
@@ -24,14 +24,14 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   ) => {
     const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`;
     const radioClassName = [
-      styles.radio,
-      error && styles.error,
+      "Radio_radio",
+      error && "Radio_error",
       className,
     ].filter(Boolean).join(' ');
 
     return (
       <div>
-        <div className={styles.radioWrapper}>
+        <div className={"Radio_radioWrapper"}>
           <input
             ref={ref}
             type="radio"
@@ -51,19 +51,19 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           {label && (
             <label
               htmlFor={radioId}
-              className={`${styles.label} ${disabled ? styles.disabled : ''}`}
+              className={`${"Radio_label"} ${disabled ? "Radio_disabled" : ''}`}
             >
               {label}
             </label>
           )}
         </div>
         {errorText && (
-          <div id={`${radioId}-error`} className={styles.errorText} role="alert">
+          <div id={`${radioId}-error`} className={"Radio_errorText"} role="alert">
             {errorText}
           </div>
         )}
         {!errorText && helperText && (
-          <div id={`${radioId}-helper`} className={styles.helperText}>
+          <div id={`${radioId}-helper`} className={"Radio_helperText"}>
             {helperText}
           </div>
         )}

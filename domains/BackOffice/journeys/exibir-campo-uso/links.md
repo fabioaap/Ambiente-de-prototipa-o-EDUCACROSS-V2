@@ -11,17 +11,18 @@
 ## 📊 Prototipagem & Design
 
 ### Studio (Puck Editor)
+- [x] **Página Criada**: http://localhost:3000/backoffice/exibir-campo-uso
 - [ ] Banco de Questões: http://localhost:3000/studio?page=backoffice/banco-questoes
 - [ ] Provas - Adicionar: http://localhost:3000/studio?page=backoffice/provas-adicionar
 - [ ] Expedição Leitura: http://localhost:3000/studio?page=backoffice/expedicao-leitura-desafios
 - [ ] Modal Detalhes: http://localhost:3000/studio?page=backoffice/questao-detalhes-modal
 
 ### Figma
-- **Design Tokens** (Aguardando): [Link do Figma com tokens de cor/tipografia]
-- **Wireframe Banco Questões**: [Link do Figma]
-- **Wireframe Provas**: [Link do Figma]
-- **Wireframe Expedição**: [Link do Figma]
-- **Component Library**: [Link do Figma - Design System]
+- **Arquivo Principal**: [EDUCACROSS - Campo USO](https://www.figma.com/file/Sz4z0rpDmocXZ8LylxEgqF)
+- **Frame/Node ID**: `8565:17355` (Tela: Exibir Campo USO)
+- **Design Tokens**: Extraídos via MCP Figma Server
+- **Wireframe Banco Questões**: [Frame no Figma](https://www.figma.com/file/Sz4z0rpDmocXZ8LylxEgqF?node-id=8565-17355)
+- **Component Library**: [Design System EDUCACROSS](https://www.figma.com/file/Sz4z0rpDmocXZ8LylxEgqF)
 
 ---
 

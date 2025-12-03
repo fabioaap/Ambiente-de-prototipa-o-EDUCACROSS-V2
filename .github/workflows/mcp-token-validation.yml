@@ -1,0 +1,82 @@
+name: MCP Token Validation
+
+on:
+  push:
+    paths:
+      - 'packages/tokens/src/tokens.json'
+  pull_request:
+    paths:
+      - 'packages/tokens/src/tokens.json'
+
+jobs:
+  validate-tokens:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate MCP Import
+        run: |
+          if grep -q '"importedViaMCP": true' packages/tokens/src/tokens.json; then
+            echo "✅ Tokens imported via MCP"
+            exit 0
+          else
+            echo "❌ Tokens NOT imported via MCP"
+            echo "Tokens must be imported using 'pnpm sync:figma'"
+            exit 1
+          fi
+
+      - name: Validate Vuexy Purple
+        run: |
+          if grep -q '"500": "#7367f0"' packages/tokens/src/tokens.json; then
+            echo "✅ Vuexy purple color present"
+            exit 0
+          else
+            echo "❌ Vuexy purple color missing or incorrect"
+            echo "Expected primary-500: #7367f0"
+            exit 1
+          fi
+
+      - name: Validate Token Structure
+        run: |
+          # Verificar se o JSON é válido
+          if jq empty packages/tokens/src/tokens.json 2>/dev/null; then
+            echo "✅ Valid JSON structure"
+          else
+            echo "❌ Invalid JSON structure"
+            exit 1
+          fi
+
+          # Verificar se tem as chaves principais
+          if jq -e '.colors and .spacing and .typography and .borderRadius and .shadows' packages/tokens/src/tokens.json > /dev/null; then
+            echo "✅ All required token categories present"
+          else
+            echo "❌ Missing required token categories"
+            echo "Required: colors, spacing, typography, borderRadius, shadows"
+            exit 1
+          fi
+
+      - name: Check Token Count
+        run: |
+          # Contar tokens de cores
+          color_count=$(jq '.colors | to_entries | length' packages/tokens/src/tokens.json)
+          echo "Color tokens: $color_count"
+          
+          if [ "$color_count" -lt 5 ]; then
+            echo "❌ Insufficient color tokens (found: $color_count, minimum: 5)"
+            exit 1
+          else
+            echo "✅ Sufficient color tokens"
+          fi
+
+      - name: Summary
+        run: |
+          echo "## 🎨 Token Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ MCP import validated" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Vuexy purple (#7367f0) present" >> $GITHUB_STEP_SUMMARY
+          echo "✅ JSON structure valid" >> $GITHUB_STEP_SUMMARY
+          echo "✅ All token categories present" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Token count sufficient" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Tokens are ready for use in Design System!" >> $GITHUB_STEP_SUMMARY

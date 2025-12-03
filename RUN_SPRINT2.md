@@ -152,10 +152,10 @@ git checkout main && git pull
 git checkout -b feature/c2-studio-sidebar-pages
 
 # Arquivos a criar/editar:
-# - apps/studio/src/components/Sidebar.tsx (novo)
-# - apps/studio/src/app/layout.tsx (integrar sidebar)
-# - apps/studio/src/app/[[...slug]]/page.tsx (usar lista)
-# - apps/storybook/src/stories/Sidebar.stories.tsx (novo)
+# - domains/studio/src/components/Sidebar.tsx (novo)
+# - domains/studio/src/app/layout.tsx (integrar sidebar)
+# - domains/studio/src/app/[[...slug]]/page.tsx (usar lista)
+# - domains/storybook/src/stories/Sidebar.stories.tsx (novo)
 
 # Build + teste local
 pnpm dev:studio  # http://localhost:3000
@@ -241,7 +241,7 @@ git checkout -b feature/b4-accessibility-improvements
 # - packages/design-system/src/components/Radio/Radio.tsx
 
 # Adicionar story de a11y
-# - apps/storybook/src/stories/Accessibility.stories.tsx (novo)
+# - domains/storybook/src/stories/Accessibility.stories.tsx (novo)
 
 # Validar contraste (ferramentas online como WebAIM)
 # Testar teclado (Tab, Enter, Escape)
@@ -282,8 +282,8 @@ pnpm -r type-check
 git checkout main && git pull
 git checkout -b feature/d2-storybook-a11y-addon
 
-# No apps/storybook/
-cd apps/storybook
+# No domains/storybook/
+cd domains/storybook
 
 # Instalar
 pnpm add -D @storybook/addon-a11y

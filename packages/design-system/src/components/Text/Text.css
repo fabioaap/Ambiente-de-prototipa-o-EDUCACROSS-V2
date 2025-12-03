@@ -1,0 +1,38 @@
+@import '@prototipo/tokens/tokens.css';
+
+.Text_text {
+  margin: 0;
+  font-family: var(--typography-fontFamily-sans);
+  line-height: var(--typography-lineHeight-normal);
+}
+
+/* Tamanhos */
+.Text_size-xs { font-size: var(--typography-fontSize-xs); }
+.Text_size-sm { font-size: var(--typography-fontSize-sm); }
+.Text_size-base { font-size: var(--typography-fontSize-base); }
+.Text_size-lg { font-size: var(--typography-fontSize-lg); }
+.Text_size-xl { font-size: var(--typography-fontSize-xl); }
+.Text_size-2xl { font-size: var(--typography-fontSize-2xl); }
+.Text_size-3xl { font-size: var(--typography-fontSize-3xl); }
+.Text_size-4xl { font-size: var(--typography-fontSize-4xl); }
+.Text_size-5xl { font-size: var(--typography-fontSize-5xl); }
+
+/* Pesos */
+.Text_weight-normal { font-weight: var(--typography-fontWeight-normal); }
+.Text_weight-medium { font-weight: var(--typography-fontWeight-medium); }
+.Text_weight-semibold { font-weight: var(--typography-fontWeight-semibold); }
+.Text_weight-bold { font-weight: var(--typography-fontWeight-bold); }
+
+/* Cores */
+.Text_color-default { color: var(--colors-neutral-900); }
+.Text_color-muted { color: var(--colors-neutral-600); }
+.Text_color-primary { color: var(--colors-primary-600); }
+.Text_color-secondary { color: var(--colors-secondary-600); }
+.Text_color-success { color: var(--colors-success-600); }
+.Text_color-warning { color: var(--colors-warning-600); }
+.Text_color-error { color: var(--colors-error-600); }
+
+/* Alinhamento */
+.Text_align-left { text-align: left; }
+.Text_align-center { text-align: center; }
+.Text_align-right { text-align: right; }

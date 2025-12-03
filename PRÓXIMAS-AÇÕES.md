@@ -59,9 +59,9 @@ pnpm dev:studio
 # Acessar: http://localhost:3000/studio
 
 # 3. Estudar código existente
-cat apps/studio/src/app/api/pages/README.md
-cat apps/studio/src/components/PagesList.tsx
-cat apps/studio/src/components/StudioLayout.tsx
+cat domains/studio/src/app/api/pages/README.md
+cat domains/studio/src/components/PagesList.tsx
+cat domains/studio/src/components/StudioLayout.tsx
 
 # 4. Editar componentes
 # - Adicionar carregamento de páginas da API
@@ -75,7 +75,7 @@ git add -A && git commit -m "C2: Studio sidebar com lista páginas"
 ```
 
 **Referências**:
-- API: `apps/studio/src/app/api/pages/README.md`
+- API: `domains/studio/src/app/api/pages/README.md`
 - Padrões: `CONTRIBUTING.md` - Seção "Criando Componentes"
 - Acessibilidade: `docs/accessibility-audit.md`
 - Exemplo: `domains/BackOffice/journeys/revisao-questoes/`
@@ -107,7 +107,7 @@ git add -A && git commit -m "C2: Studio sidebar com lista páginas"
 git checkout -b feature/d2-addon-a11y
 
 # 2. Mudar para pasta Storybook
-cd apps/storybook
+cd domains/storybook
 
 # 3. Instalar addon
 pnpm add -D @storybook/addon-a11y
@@ -199,10 +199,10 @@ cat > docs/dashboard-wireframe.md << 'EOF'
 EOF
 
 # 3. Criar story placeholder
-touch apps/storybook/src/stories/Dashboard.stories.tsx
+touch domains/storybook/src/stories/Dashboard.stories.tsx
 
 # 4. Esboço de componente
-cat > apps/storybook/src/stories/Dashboard.stories.tsx << 'EOF'
+cat > domains/storybook/src/stories/Dashboard.stories.tsx << 'EOF'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const Dashboard = () => {
@@ -239,7 +239,7 @@ git add -A && git commit -m "H: Dashboard planning e wireframe"
 
 **Referências**:
 - Wireframe: `docs/dashboard-wireframe.md` (você cria)
-- API model: `apps/studio/src/app/api/pages/README.md`
+- API model: `domains/studio/src/app/api/pages/README.md`
 - Storybook: `CONTRIBUTING.md` - "Criando Stories"
 
 **Critério de Aceitação**:

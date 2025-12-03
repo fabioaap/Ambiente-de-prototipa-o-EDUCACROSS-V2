@@ -146,7 +146,7 @@ interface DashboardStats {
 
 ### Fase 2: H2 (Endpoint)
 - [ ] Criar `GET /api/dashboard/pages`
-- [ ] Ler páginas de `apps/studio/data/pages/`
+- [ ] Ler páginas de `domains/studio/data/pages/`
 - [ ] Gerar JSON com metadados
 - [ ] Integrar stats do repositório
 
@@ -237,12 +237,12 @@ interface DashboardStats {
 
 ### H3 - UI Dashboard
 ```bash
-# Opção A: Página em apps/studio
-# apps/studio/src/app/dashboard/page.tsx
+# Opção A: Página em domains/studio
+# domains/studio/src/app/dashboard/page.tsx
 # Rota: /dashboard
 
 # Opção B: Story em Storybook
-# apps/storybook/src/stories/Dashboard.stories.tsx
+# domains/storybook/src/stories/Dashboard.stories.tsx
 # Para prototipagem visual
 ```
 
@@ -284,9 +284,9 @@ interface DashboardStats {
 ## 📝 Referências
 
 ### Arquivos Relacionados
-- `apps/studio/src/app/api/pages/route.ts` - Lógica de carregar páginas
+- `domains/studio/src/app/api/pages/route.ts` - Lógica de carregar páginas
 - `domains/INDEX.md` - Estrutura de domínios
-- `apps/storybook/src/stories/` - Exemplos de componentes
+- `domains/storybook/src/stories/` - Exemplos de componentes
 
 ### Documentação
 - `CONTRIBUTING.md` - Padrões

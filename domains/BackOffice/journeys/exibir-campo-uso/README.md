@@ -21,58 +21,23 @@ Garantir que usuários de BackOffice consigam identificar de qual rede é cada q
 ## 📊 Status
 
 - 📋 **Planejamento** - Jornada em fase de descoberta/especificação
-- ✅ **Integração MCP Figma** - Servidor MCP configurado para sincronizar design tokens automaticamente
-- [ ] Prototipagem no Puck Studio
-- [ ] Integração de componentes
+- ✅ **Integração MCP Figma** - Servidor MCP configurado e tokens extraídos (Node: 8565:17355)
+- ✅ **Prototipagem** - Página criada em `page.tsx` nesta pasta (Build OK)
+- ✅ **Página Visualizável** - Acesse: http://localhost:3000/backoffice/exibir-campo-uso
+- [ ] Integração de componentes visuais baseados no snapshot
+- [ ] Implementação de mocks e filtros (Parcialmente feito)
 - [ ] Testes de usabilidade
 - [ ] Concluído
 
 ---
 
-## 🔄 Sincronização Automática de Design Tokens (MCP Figma)
+## 📂 Estrutura da Jornada
 
-Este projeto usa um servidor **Model Context Protocol (MCP)** para sincronizar design tokens do Figma automaticamente.
-
-### Como Atualizar Tokens do Figma
-
-1. **Pré-requisitos**:
-   - Configurar `.env.local` com `FIGMA_PERSONAL_TOKEN` e `FIGMA_FILE_ID`
-   - Frame ID padrão: `8565:17355` (Jornada #4800)
-
-2. **Sincronizar tokens**:
-   ```bash
-   # Via script direto
-   pnpm --filter @educacross/figma-mcp-server exec tsx scripts/writeTokensFromMcp.ts
-   
-   # Ou via MCP tool (se usando VS Code/Claude)
-   # No chat, solicite: "Atualize os design tokens do Figma"
-   ```
-
-3. **Pipeline automático**:
-   - Tokens são extraídos de `Figma Frame 8565:17355`
-   - Escritos em `packages/tokens/src/tokens.json`
-   - Build automático: `pnpm build:tokens && pnpm build:design-system`
-   - Log registrado em `docs/PROGRESS_DASHBOARD.md`
-
-4. **Tokens disponíveis**:
-   - **Cores**: `color.rede.<slug>`, `color.status.<state>`
-   - **Tipografia**: `typography.<categoria>.<variante>`
-   - **Espaçamento**: `spacing.<size>`
-
-### Verificar Saúde do Servidor MCP
-
-```bash
-# Checar status
-pnpm mcp:figma:health
-
-# Verificar dashboard
-# Acesse /api/health ou /api/dashboard/health
-# Procure por: figmaMcpServer.status = "ok" | "degraded" | "offline"
-```
-
-Para mais detalhes, consulte:
-- `specs/001-figma-mcp-server/quickstart.md`
-- `docs/FIGMA_INTEGRATION_PLAN.md`
+Esta pasta contém:
+- **README.md** - Documentação completa da jornada
+- **links.md** - Referências e links úteis
+- **notas.md** - Anotações técnicas e de desenvolvimento
+- **page.tsx** - Código React da página (Next.js App Router)
 
 ---
 
@@ -82,6 +47,22 @@ Para mais detalhes, consulte:
 - **Tipo**: Nova funcionalidade / Customização
 - **Impacto**: Médio (há alternativa, mas causa transtorno)
 - **Afetados**: Usuários de BackOffice
+
+---
+
+## 🖼️ Referência visual (Figma)
+
+Export do frame de referência (node `8565:17355`). Use para comparação pixel a pixel com a página do Studio (`/backoffice/exibir-campo-uso`).
+
+![Figma Reference](./figma-reference.png)
+
+Checklist de validação rápida:
+- Sidebar: largura `265px`, itens e seções conforme Figma.
+- Breadcrumb: textos e ordem iguais ao `Frame 27`.
+- Tabs: títulos e estado ativo conforme Figma.
+- Filtros (Busca Tema): 4 inputs (linha 1), 2 blocos (linha 2), botões e campo de busca.
+- Tabela: 10 colunas com larguras exatas `[18, 146, 132, 154, 80, 87, 61, 62, 134, 84]`.
+- Footer: contador + paginação (96x28 e 98x28).
 
 ---
 
