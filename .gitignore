@@ -62,3 +62,5 @@ __pycache__/
 *.pyd
 .Python
 .env.local
+test-alert*.mjs
+alert-*.png
