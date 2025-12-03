@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com/schemas/Avatar.schema.json",
+  "title": "Avatar",
+  "description": "Visual representation of users or entities",
+  "type": "object",
+  "properties": {
+    "src": {
+      "type": "string",
+      "format": "uri",
+      "description": "Image source URL"
+    },
+    "alt": {
+      "type": "string",
+      "default": "Avatar",
+      "description": "Alt text for image"
+    },
+    "initials": {
+      "type": "string",
+      "maxLength": 2,
+      "description": "User initials (shown if no image or load fails)"
+    },
+    "icon": {
+      "type": "object",
+      "description": "Icon to show (if no image/initials, React.ReactNode)"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["xs", "sm", "md", "lg", "xl"],
+      "default": "md",
+      "description": "Size variant"
+    },
+    "color": {
+      "type": "string",
+      "enum": ["primary", "secondary", "success", "warning", "error", "neutral"],
+      "default": "primary",
+      "description": "Background color for initials/icon fallback"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["online", "offline", "away", "busy"],
+      "description": "Status indicator"
+    },
+    "badge": {
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string" }
+      ],
+      "description": "Badge for notification count"
+    },
+    "border": {
+      "type": "string",
+      "enum": ["none", "light", "bold"],
+      "default": "none",
+      "description": "Border style"
+    },
+    "shape": {
+      "type": "string",
+      "enum": ["circle", "square"],
+      "default": "circle",
+      "description": "Shape variant"
+    },
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    "data-testid": {
+      "type": "string",
+      "description": "Test ID for automation"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com/schemas/Chip.schema.json",
+  "title": "Chip",
+  "description": "Compact element for selection, filters, or tags",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Chip label (required)"
+    },
+    "variant": {
+      "type": "string",
+      "enum": ["default", "outlined", "primary", "success", "warning", "error"],
+      "default": "default",
+      "description": "Visual variant"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Size variant"
+    },
+    "icon": {
+      "type": "object",
+      "description": "Optional icon before label (React.ReactNode)"
+    },
+    "avatar": {
+      "type": "object",
+      "description": "Optional avatar before label (React.ReactNode)"
+    },
+    "deletable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show delete/close button"
+    },
+    "onDelete": {
+      "type": "object",
+      "description": "Callback when delete button clicked (Function)"
+    },
+    "clickable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Clickable chip"
+    },
+    "onClick": {
+      "type": "object",
+      "description": "Callback when chip clicked (Function)"
+    },
+    "selected": {
+      "type": "boolean",
+      "default": false,
+      "description": "Selected state (for filter chips)"
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disabled state"
+    },
+    "radius": {
+      "type": "string",
+      "enum": ["md", "full"],
+      "default": "full",
+      "description": "Border radius style"
+    },
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    "data-testid": {
+      "type": "string",
+      "description": "Test ID for automation"
+    }
+  },
+  "required": ["label"],
+  "additionalProperties": false
+}

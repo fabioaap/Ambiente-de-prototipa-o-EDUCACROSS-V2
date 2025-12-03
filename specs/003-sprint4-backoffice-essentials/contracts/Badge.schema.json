@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com/schemas/Badge.schema.json",
+  "title": "Badge",
+  "description": "Small label for status, count, or categorization",
+  "type": "object",
+  "properties": {
+    "variant": {
+      "type": "string",
+      "enum": ["primary", "secondary", "success", "warning", "error", "neutral"],
+      "default": "neutral",
+      "description": "Visual variant determining color scheme"
+    },
+    "children": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "object", "description": "React.ReactNode" }
+      ],
+      "description": "Badge content (text or number, required)"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["sm", "md", "lg"],
+      "default": "md",
+      "description": "Size variant"
+    },
+    "style": {
+      "type": "string",
+      "enum": ["filled", "outlined", "soft"],
+      "default": "filled",
+      "description": "Style variant"
+    },
+    "radius": {
+      "type": "string",
+      "enum": ["sm", "md", "full"],
+      "default": "sm",
+      "description": "Border radius style"
+    },
+    "icon": {
+      "type": "object",
+      "description": "Optional icon before text (React.ReactNode)"
+    },
+    "dot": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show only dot (no text)"
+    },
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    "data-testid": {
+      "type": "string",
+      "description": "Test ID for automation"
+    }
+  },
+  "required": ["children"],
+  "additionalProperties": false
+}

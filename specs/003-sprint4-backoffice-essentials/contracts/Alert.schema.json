@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com/schemas/Alert.schema.json",
+  "title": "Alert",
+  "description": "Alert component for displaying feedback messages to users",
+  "type": "object",
+  "properties": {
+    "variant": {
+      "type": "string",
+      "enum": ["success", "warning", "error", "info"],
+      "default": "info",
+      "description": "Visual variant determining color scheme"
+    },
+    "message": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "object", "description": "React.ReactNode" }
+      ],
+      "description": "Alert message content (required)"
+    },
+    "title": {
+      "type": "string",
+      "description": "Optional title/heading"
+    },
+    "icon": {
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "object", "description": "React.ReactNode" }
+      ],
+      "description": "Optional icon (true for default, or custom ReactNode)"
+    },
+    "closable": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show close button"
+    },
+    "onClose": {
+      "type": "object",
+      "description": "Callback function when close button clicked"
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "onClick": { "type": "object", "description": "Function" }
+      },
+      "required": ["label", "onClick"],
+      "description": "Optional action button"
+    },
+    "style": {
+      "type": "string",
+      "enum": ["filled", "outlined"],
+      "default": "filled",
+      "description": "Style variant"
+    },
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    "data-testid": {
+      "type": "string",
+      "description": "Test ID for automation"
+    }
+  },
+  "required": ["message"],
+  "additionalProperties": false
+}

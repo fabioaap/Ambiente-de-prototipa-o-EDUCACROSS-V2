@@ -1,10 +1,11 @@
 # EDUCACROSS Copilot Playbook
-- Status: Sprint 3 Fase 3/4 (Dashboard & Game Hub); sync context via SPRINT3_DOCUMENTATION_INDEX.md before coding.
+- Status: Sprint 4 Planning (BackOffice Essentials & Storybook Branding); spec in specs/003-sprint4-backoffice-essentials/ ready for implementation.
 
 ## Platform Overview
 - Stack: Node 22.21.1 (.nvmrc enforced), pnpm 9.14.4+, TypeScript 5 strict, Next.js 15 App Router, SWR, React 18.
 - Repo map: apps/studio (Next app + Puck), apps/storybook (ESM catalog), packages/design-system, packages/tokens, code-to-figma/, domains/ journeys.
 - Data flow: design-system exports feed Storybook and Studio; Studio dashboard consumes /api/dashboard/* handlers backed by local JSON mocks.
+- New dependencies: Radix UI Dropdown Menu @2.1.16 for accessible Menu/Dropdown component (Sprint 4).
 
 ## Setup & Commands
 - Verify node --version and pnpm --version before installs; always run pnpm install --frozen-lockfile.

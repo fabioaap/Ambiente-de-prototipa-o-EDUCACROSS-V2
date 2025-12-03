@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com/schemas/StatsCard.schema.json",
+  "title": "StatsCard",
+  "description": "Card component for displaying metrics and KPIs",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Card title/label (required)"
+    },
+    "value": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "number" }
+      ],
+      "description": "Main value (number or formatted string, required)"
+    },
+    "trend": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Percentage change"
+        },
+        "direction": {
+          "type": "string",
+          "enum": ["up", "down"],
+          "description": "Direction of trend"
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional label (e.g., 'vs last month')"
+        }
+      },
+      "required": ["value", "direction"],
+      "description": "Optional trend indicator"
+    },
+    "icon": {
+      "type": "object",
+      "description": "Optional icon (React.ReactNode)"
+    },
+    "iconColor": {
+      "type": "string",
+      "enum": ["primary", "success", "warning", "error", "info", "neutral"],
+      "default": "primary",
+      "description": "Icon background color"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Optional subtitle/description"
+    },
+    "children": {
+      "type": "object",
+      "description": "Optional chart/visualization (React.ReactNode)"
+    },
+    "variant": {
+      "type": "string",
+      "enum": ["bordered", "filled", "shadow"],
+      "default": "bordered",
+      "description": "Card style variant"
+    },
+    "loading": {
+      "type": "boolean",
+      "default": false,
+      "description": "Loading state"
+    },
+    "onClick": {
+      "type": "object",
+      "description": "Click handler (makes card interactive, Function)"
+    },
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class"
+    },
+    "data-testid": {
+      "type": "string",
+      "description": "Test ID for automation"
+    }
+  },
+  "required": ["title", "value"],
+  "additionalProperties": false
+}

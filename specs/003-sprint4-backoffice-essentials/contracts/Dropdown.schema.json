@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://educacross.com/schemas/Dropdown.schema.json",
+  "title": "Dropdown",
+  "description": "Contextual menu dropdown for navigation and actions",
+  "type": "object",
+  "properties": {
+    "trigger": {
+      "type": "object",
+      "description": "Trigger button/element (React.ReactNode, required)"
+    },
+    "children": {
+      "type": "object",
+      "description": "Menu items (DropdownItem components, required)"
+    },
+    "open": {
+      "type": "boolean",
+      "description": "Controlled open state"
+    },
+    "defaultOpen": {
+      "type": "boolean",
+      "default": false,
+      "description": "Default open state (uncontrolled)"
+    },
+    "onOpenChange": {
+      "type": "object",
+      "description": "Callback when open state changes (Function)"
+    },
+    "placement": {
+      "type": "string",
+      "enum": [
+        "top", "top-start", "top-end",
+        "bottom", "bottom-start", "bottom-end",
+        "left", "left-start", "left-end",
+        "right", "right-start", "right-end"
+      ],
+      "default": "bottom-start",
+      "description": "Menu placement relative to trigger"
+    },
+    "offset": {
+      "type": "number",
+      "default": 5,
+      "description": "Offset from trigger in pixels"
+    },
+    "avoidCollisions": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable collision detection"
+    },
+    "minWidth": {
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string", "enum": ["trigger"] }
+      ],
+      "default": "trigger",
+      "description": "Minimum width (matches trigger if 'trigger')"
+    },
+    "className": {
+      "type": "string",
+      "description": "Additional CSS class for menu"
+    },
+    "data-testid": {
+      "type": "string",
+      "description": "Test ID for automation"
+    }
+  },
+  "required": ["trigger", "children"],
+  "additionalProperties": false,
+  "definitions": {
+    "DropdownItem": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object", "description": "React.ReactNode" }
+          ],
+          "description": "Item label (required)"
+        },
+        "onSelect": {
+          "type": "object",
+          "description": "Click handler (Function)"
+        },
+        "icon": {
+          "type": "object",
+          "description": "Optional icon before label (React.ReactNode)"
+        },
+        "shortcut": {
+          "type": "string",
+          "description": "Optional keyboard shortcut display"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disabled state"
+        },
+        "destructive": {
+          "type": "boolean",
+          "default": false,
+          "description": "Destructive action styling (e.g., Delete)"
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS class"
+        },
+        "data-testid": {
+          "type": "string",
+          "description": "Test ID for automation"
+        }
+      },
+      "required": ["children"]
+    },
+    "DropdownSeparator": {
+      "type": "object",
+      "properties": {
+        "className": {
+          "type": "string",
+          "description": "Additional CSS class"
+        }
+      }
+    },
+    "DropdownLabel": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object", "description": "React.ReactNode" }
+          ],
+          "description": "Label text (required)"
+        },
+        "className": {
+          "type": "string",
+          "description": "Additional CSS class"
+        }
+      },
+      "required": ["children"]
+    }
+  }
+}
