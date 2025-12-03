@@ -1,0 +1,4 @@
+.                                        |  WARN  Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v20.19.6","pnpm":"9.14.4"})
+Scope: 6 of 7 workspace projects
+packages/design-system type-check$ tsc --noEmit
+packages/design-system type-check: Done
