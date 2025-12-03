@@ -173,6 +173,33 @@ Paralelo:
 
 ---
 
+## 🧪 Sprint 4 — Preparação e NFRs Formais (DS + Storybook)
+
+### Metas NFR
+- Renderização (P95): < 500 ms por componente em ambiente local.
+- Interações (P95): < 200 ms (hover/focus/click) sem jank.
+- Build Storybook estático: < 90 s em máquina padrão do projeto.
+- Acessibilidade: WCAG 2.1 AA para todos componentes interativos.
+- Fidelidade de branding: ≥ 90% (logo, paleta, tipografia, favicons, ordenação).
+
+### Plano de Rollback/Mitigação
+- Storybook:
+  - Reverter `domains/storybook/.storybook/manager.ts` para tema padrão.
+  - Usar somente Montserrat self-hosted em `manager-head.html` se fontes remotas falharem.
+  - Remover ordenação customizada em `preview.ts` em caso de quebra.
+- Design System:
+  - Fixar versão anterior de `@prototipo/design-system` via pnpm overrides.
+  - Desabilitar temporariamente componentes novos com feature flag nos apps.
+- Comunicação:
+  - Registrar incidente em `SPRINT3_HEALTH_INDICATORS_REPORT.md` e abrir issue `regression`.
+
+### Evidências já coletadas (Sprint 4)
+- Gates: install, build (tokens/DS/apps), lint, type-check, Storybook build — PASS.
+- Relatórios: `specs/003-sprint4-backoffice-essentials/checklists/validation.md` e `validation-report.md`.
+- Correções: ordem `@import` em CSS (Studio/Storybook) ajustada.
+
+---
+
 ## 🎓 LIÇÕES APRENDIDAS
 
 1. **Agentes são rápidos**: Completou 4 issues em paralelo em ~4-5 horas

@@ -81,6 +81,12 @@ Sprint 3 P2 (Dashboard)
 ════════════════════════════════════════════════════════════════════════════
 
 TOTAL PROJETO: 75% 🟢 (Fase 1 OK)
+ Sprint 4 — DS + Storybook
+  - Status: Validada (gates PASS; avisos não bloqueantes)
+  - Relatórios: `specs/003-sprint4-backoffice-essentials/checklists/validation.md` e `validation-report.md`
+  - NFRs formais: adicionadas em `SPRINT3_FINAL_STATUS.md`
+  - Correções: ordem `@import` em CSS (Studio/Storybook)
+  - Pendências de formalização: high-contrast, thresholds, rollback documentado (não bloqueiam)
 ```
 
 ---
