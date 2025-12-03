@@ -8,6 +8,8 @@ export { Checkbox } from './components/Checkbox/Checkbox';
 export { Radio } from './components/Radio/Radio';
 export { Switch } from './components/Switch/Switch';
 export { Badge } from './components/Badge/Badge';
+export { Alert } from './components/Alert/Alert';
+export { Chip } from './components/Chip/Chip';
 export { Progress } from './components/Progress/Progress';
 export { Leaderboard } from './components/Leaderboard/Leaderboard';
 export { HealthIndicator } from './components/HealthIndicator/HealthIndicator';
@@ -33,6 +35,8 @@ export {
   DropdownCheckboxItem, 
   DropdownGroup 
 } from './components/Dropdown/Dropdown';
+export { Avatar } from './components/Avatar/Avatar';
+export { AvatarGroup } from './components/Avatar/AvatarGroup';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -44,6 +48,8 @@ export type { CheckboxProps } from './components/Checkbox/Checkbox';
 export type { RadioProps } from './components/Radio/Radio';
 export type { SwitchProps } from './components/Switch/Switch';
 export type { BadgeProps } from './components/Badge/Badge';
+export type { AlertProps } from './components/Alert/Alert';
+export type { ChipProps } from './components/Chip/Chip';
 export type { ProgressProps } from './components/Progress/Progress';
 export type { LeaderboardProps, LeaderboardEntry } from './components/Leaderboard/Leaderboard';
 export type { HealthIndicatorProps, HealthStatus } from './components/HealthIndicator/HealthIndicator';
@@ -69,3 +75,5 @@ export type {
   DropdownCheckboxItemProps, 
   DropdownGroupProps 
 } from './components/Dropdown/Dropdown';
+export type { AvatarProps } from './components/Avatar/Avatar';
+export type { AvatarGroupProps } from './components/Avatar/AvatarGroup';

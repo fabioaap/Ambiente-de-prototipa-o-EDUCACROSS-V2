@@ -1,0 +1,12 @@
+ WARN  Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v20.19.6","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:tokens /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter @prototipo/tokens build
+
+.                                        |  WARN  Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v20.19.6","pnpm":"9.14.4"})
+
+> @prototipo/tokens@0.2.0-beta build /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/packages/tokens
+> node scripts/build-tokens.mjs
+
+🔨 Building tokens...
+✅ Tokens built successfully!

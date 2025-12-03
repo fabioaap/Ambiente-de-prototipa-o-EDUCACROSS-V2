@@ -6,6 +6,21 @@
 
 ---
 
+## ✅ Status de Implementação
+
+| Componente | Status | Registrado no Puck | Observações |
+|-----------|--------|-------------------|-------------|
+| Badge | ✅ Implementado | ✅ Sim | Componente completo e funcional |
+| Alert | ⏳ Pendente | ⏳ Planejado | Documentado para implementação futura |
+| Chip | ⏳ Pendente | ⏳ Planejado | Documentado para implementação futura |
+| Avatar | ⏳ Pendente | ⏳ Planejado | Documentado para implementação futura |
+| Stats Cards | ⏳ Pendente | ⏳ Planejado | Documentado para implementação futura |
+| Dropdown | ⏳ Pendente | ⏳ Planejado | Documentado para implementação futura; usará Radix UI |
+
+**Última atualização**: 03/12/2025
+
+---
+
 ## 🎯 Objetivos do Sprint
 
 1. **Componentes de Feedback**: Implementar Alerts, Badges, Chips para notificações e status
