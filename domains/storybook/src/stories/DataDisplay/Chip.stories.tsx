@@ -177,12 +177,6 @@ export const Disabled: Story = {
 };
 
 // Stories com ícones
-const IconUser = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-  </svg>
-);
-
 const IconTag = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
     <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
@@ -224,39 +218,41 @@ export const WithAvatar: Story = {
 };
 
 // Story de filtros interativos
-export const FilterChips: Story = {
-  render: () => {
-    const [selectedFilters, setSelectedFilters] = React.useState<string[]>(['react']);
+const FilterChipsComponent = () => {
+  const [selectedFilters, setSelectedFilters] = React.useState<string[]>(['react']);
 
-    const filters = [
-      { id: 'react', label: 'React', variant: 'primary' as const },
-      { id: 'typescript', label: 'TypeScript', variant: 'info' as const },
-      { id: 'nodejs', label: 'Node.js', variant: 'success' as const },
-      { id: 'design', label: 'Design', variant: 'warning' as const },
-    ];
+  const filters = [
+    { id: 'react', label: 'React', variant: 'primary' as const },
+    { id: 'typescript', label: 'TypeScript', variant: 'info' as const },
+    { id: 'nodejs', label: 'Node.js', variant: 'success' as const },
+    { id: 'design', label: 'Design', variant: 'warning' as const },
+  ];
 
-    const toggleFilter = (id: string) => {
-      setSelectedFilters((prev) =>
-        prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
-      );
-    };
-
-    return (
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {filters.map((filter) => (
-          <Chip
-            key={filter.id}
-            variant={filter.variant}
-            clickable
-            selected={selectedFilters.includes(filter.id)}
-            onClick={() => toggleFilter(filter.id)}
-          >
-            {filter.label}
-          </Chip>
-        ))}
-      </div>
+  const toggleFilter = (id: string) => {
+    setSelectedFilters((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
     );
-  },
+  };
+
+  return (
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {filters.map((filter) => (
+        <Chip
+          key={filter.id}
+          variant={filter.variant}
+          clickable
+          selected={selectedFilters.includes(filter.id)}
+          onClick={() => toggleFilter(filter.id)}
+        >
+          {filter.label}
+        </Chip>
+      ))}
+    </div>
+  );
+};
+
+export const FilterChips: Story = {
+  render: () => <FilterChipsComponent />,
   parameters: {
     docs: {
       description: {
@@ -267,35 +263,37 @@ export const FilterChips: Story = {
 };
 
 // Story de tags deletáveis
+const DeletableTagsComponent = () => {
+  const [tags, setTags] = React.useState([
+    { id: '1', label: 'JavaScript' },
+    { id: '2', label: 'CSS' },
+    { id: '3', label: 'HTML' },
+    { id: '4', label: 'React' },
+  ]);
+
+  const deleteTag = (id: string) => {
+    setTags((prev) => prev.filter((tag) => tag.id !== id));
+  };
+
+  return (
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {tags.map((tag) => (
+        <Chip
+          key={tag.id}
+          variant="default"
+          deletable
+          onDelete={() => deleteTag(tag.id)}
+          deleteLabel={`Remover tag ${tag.label}`}
+        >
+          {tag.label}
+        </Chip>
+      ))}
+    </div>
+  );
+};
+
 export const DeletableTags: Story = {
-  render: () => {
-    const [tags, setTags] = React.useState([
-      { id: '1', label: 'JavaScript' },
-      { id: '2', label: 'CSS' },
-      { id: '3', label: 'HTML' },
-      { id: '4', label: 'React' },
-    ]);
-
-    const deleteTag = (id: string) => {
-      setTags((prev) => prev.filter((tag) => tag.id !== id));
-    };
-
-    return (
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {tags.map((tag) => (
-          <Chip
-            key={tag.id}
-            variant="default"
-            deletable
-            onDelete={() => deleteTag(tag.id)}
-            deleteLabel={`Remover tag ${tag.label}`}
-          >
-            {tag.label}
-          </Chip>
-        ))}
-      </div>
-    );
-  },
+  render: () => <DeletableTagsComponent />,
   parameters: {
     docs: {
       description: {
@@ -306,41 +304,43 @@ export const DeletableTags: Story = {
 };
 
 // Story de chips com avatar e delete
+const AvatarWithDeleteComponent = () => {
+  const [users, setUsers] = React.useState([
+    { id: '1', name: 'Ana Silva', avatar: 'https://i.pravatar.cc/150?img=5' },
+    { id: '2', name: 'João Costa', avatar: 'https://i.pravatar.cc/150?img=12' },
+    { id: '3', name: 'Maria Santos', avatar: 'https://i.pravatar.cc/150?img=20' },
+  ]);
+
+  const removeUser = (id: string) => {
+    setUsers((prev) => prev.filter((user) => user.id !== id));
+  };
+
+  return (
+    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+      {users.map((user) => (
+        <Chip
+          key={user.id}
+          variant="primary"
+          deletable
+          onDelete={() => removeUser(user.id)}
+          deleteLabel={`Remover ${user.name}`}
+          avatar={
+            <img
+              src={user.avatar}
+              alt={user.name}
+              style={{ borderRadius: '50%' }}
+            />
+          }
+        >
+          {user.name}
+        </Chip>
+      ))}
+    </div>
+  );
+};
+
 export const AvatarWithDelete: Story = {
-  render: () => {
-    const [users, setUsers] = React.useState([
-      { id: '1', name: 'Ana Silva', avatar: 'https://i.pravatar.cc/150?img=5' },
-      { id: '2', name: 'João Costa', avatar: 'https://i.pravatar.cc/150?img=12' },
-      { id: '3', name: 'Maria Santos', avatar: 'https://i.pravatar.cc/150?img=20' },
-    ]);
-
-    const removeUser = (id: string) => {
-      setUsers((prev) => prev.filter((user) => user.id !== id));
-    };
-
-    return (
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {users.map((user) => (
-          <Chip
-            key={user.id}
-            variant="primary"
-            deletable
-            onDelete={() => removeUser(user.id)}
-            deleteLabel={`Remover ${user.name}`}
-            avatar={
-              <img
-                src={user.avatar}
-                alt={user.name}
-                style={{ borderRadius: '50%' }}
-              />
-            }
-          >
-            {user.name}
-          </Chip>
-        ))}
-      </div>
-    );
-  },
+  render: () => <AvatarWithDeleteComponent />,
   parameters: {
     docs: {
       description: {
@@ -351,60 +351,62 @@ export const AvatarWithDelete: Story = {
 };
 
 // Story de demonstração de acessibilidade
-export const KeyboardNavigation: Story = {
-  render: () => {
-    const [items, setItems] = React.useState([
-      { id: '1', label: 'Item 1', selected: false },
-      { id: '2', label: 'Item 2', selected: false },
-      { id: '3', label: 'Item 3', selected: false },
-    ]);
+const KeyboardNavigationComponent = () => {
+  const [items, setItems] = React.useState([
+    { id: '1', label: 'Item 1', selected: false },
+    { id: '2', label: 'Item 2', selected: false },
+    { id: '3', label: 'Item 3', selected: false },
+  ]);
 
-    const toggleItem = (id: string) => {
-      setItems((prev) =>
-        prev.map((item) =>
-          item.id === id ? { ...item, selected: !item.selected } : item
-        )
-      );
-    };
-
-    const deleteItem = (id: string) => {
-      setItems((prev) => prev.filter((item) => item.id !== id));
-    };
-
-    return (
-      <div>
-        <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
-          <strong>Instruções de acessibilidade:</strong>
-          <br />
-          • Use <kbd>Tab</kbd> para navegar entre chips
-          <br />
-          • Pressione <kbd>Enter</kbd> ou <kbd>Space</kbd> para selecionar/desselecionar
-          <br />
-          • Pressione <kbd>Delete</kbd> ou <kbd>Backspace</kbd> para remover
-          <br />
-          • O foco é visível com outline azul
-          <br />
-          • Chips têm aria-pressed quando selecionados
-        </p>
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          {items.map((item) => (
-            <Chip
-              key={item.id}
-              variant="primary"
-              clickable
-              deletable
-              selected={item.selected}
-              onClick={() => toggleItem(item.id)}
-              onDelete={() => deleteItem(item.id)}
-              deleteLabel={`Remover ${item.label}`}
-            >
-              {item.label}
-            </Chip>
-          ))}
-        </div>
-      </div>
+  const toggleItem = (id: string) => {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, selected: !item.selected } : item
+      )
     );
-  },
+  };
+
+  const deleteItem = (id: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  return (
+    <div>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        <strong>Instruções de acessibilidade:</strong>
+        <br />
+        • Use <kbd>Tab</kbd> para navegar entre chips
+        <br />
+        • Pressione <kbd>Enter</kbd> ou <kbd>Space</kbd> para selecionar/desselecionar
+        <br />
+        • Pressione <kbd>Delete</kbd> ou <kbd>Backspace</kbd> para remover
+        <br />
+        • O foco é visível com outline azul
+        <br />
+        • Chips têm aria-pressed quando selecionados
+      </p>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        {items.map((item) => (
+          <Chip
+            key={item.id}
+            variant="primary"
+            clickable
+            deletable
+            selected={item.selected}
+            onClick={() => toggleItem(item.id)}
+            onDelete={() => deleteItem(item.id)}
+            deleteLabel={`Remover ${item.label}`}
+          >
+            {item.label}
+          </Chip>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export const KeyboardNavigation: Story = {
+  render: () => <KeyboardNavigationComponent />,
   parameters: {
     docs: {
       description: {
