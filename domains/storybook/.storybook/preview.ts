@@ -6,7 +6,7 @@ import '../src/styles/storybook-globals.css';
 
 const preview: Preview = {
   parameters: {
-    // Story ordering
+    // Story ordering - usando estrutura em português (HEAD) com ordem alfabética
     options: {
       storySort: {
         method: 'alphabetical',
@@ -59,6 +59,10 @@ const preview: Preview = {
         {
           name: 'dark',
           value: '#1f2937',
+        },
+        {
+          name: 'brand',
+          value: '#5f4de5',
         },
         {
           name: 'brand',

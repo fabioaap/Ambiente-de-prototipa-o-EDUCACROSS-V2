@@ -59,4 +59,13 @@ addons.setConfig({
     copy: { hidden: false },
     fullscreen: { hidden: false },
   },
+=======
+  inputBorder: '#d1d5db',
+  inputTextColor: '#1f2937',
+  inputBorderRadius: 6,
+});
+
+addons.setConfig({
+  theme,
+>>>>>>> fccf72c (feat(storybook): Aplicar branding EDUCACROSS no Storybook)
 });
