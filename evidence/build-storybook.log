@@ -1,0 +1,112 @@
+ WARN  Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v20.19.6","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta build:storybook /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2
+> pnpm --filter storybook build
+
+.                                        |  WARN  Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v20.19.6","pnpm":"9.14.4"})
+
+> storybook@0.2.0-beta build /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/storybook
+> storybook build
+
+[1m@storybook/core v8.6.14
+[22m
+info => Cleaning outputDir: [36mstorybook-static[39m
+info => Loading presets
+info => Building manager..
+info => Manager built ([38;2;181;126;229m241 ms[39m)
+info => Building preview..
+info Using tsconfig paths for react-docgen
+[36mvite v6.4.1 [32mbuilding for production...[36m[39m
+transforming...
+[33m../../packages/design-system/dist/src/index.mjs (1:0): Module level directives cause errors when bundled, "use client" in "../../packages/design-system/dist/src/index.mjs" was ignored.[39m
+[32m✓[39m 150 modules transformed.
+[33m../../node_modules/.pnpm/@storybook+core@8.6.14_prettier@3.6.2_storybook@8.6.14_prettier@3.6.2_/node_modules/@storybook/core/dist/preview/runtime.js (3683:15): Use of eval in "../../node_modules/.pnpm/@storybook+core@8.6.14_prettier@3.6.2_storybook@8.6.14_prettier@3.6.2_/node_modules/@storybook/core/dist/preview/runtime.js" is strongly discouraged as it poses security risks and may cause issues with minification.[39m
+[33m../../node_modules/.pnpm/@storybook+core@8.6.14_prettier@3.6.2_storybook@8.6.14_prettier@3.6.2_/node_modules/@storybook/core/dist/preview/runtime.js (3685:16): Use of eval in "../../node_modules/.pnpm/@storybook+core@8.6.14_prettier@3.6.2_storybook@8.6.14_prettier@3.6.2_/node_modules/@storybook/core/dist/preview/runtime.js" is strongly discouraged as it poses security risks and may cause issues with minification.[39m
+rendering chunks...
+computing gzip size...
+[2mstorybook-static/[22m[32miframe.html                                      [39m[1m[2m 17.75 kB[22m[1m[22m[2m │ gzip:   5.00 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[35mpreview-GEgEJu9K.css                      [39m[1m[2m 46.09 kB[22m[1m[22m[2m │ gzip:   7.94 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36m_commonjsHelpers-CqkleIqs.js              [39m[1m[2m  0.12 kB[22m[1m[22m[2m │ gzip:   0.13 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-B7EolvnA.js                         [39m[1m[2m  0.14 kB[22m[1m[22m[2m │ gzip:   0.13 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-DYTpHdSO.js                       [39m[1m[2m  0.16 kB[22m[1m[22m[2m │ gzip:   0.16 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-CvbIS5ZJ.js                       [39m[1m[2m  0.18 kB[22m[1m[22m[2m │ gzip:   0.16 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-DY5YjHFr.js                       [39m[1m[2m  0.42 kB[22m[1m[22m[2m │ gzip:   0.27 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-CxbY7dAs.js                         [39m[1m[2m  0.49 kB[22m[1m[22m[2m │ gzip:   0.31 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-G8LIXM5I.js                         [39m[1m[2m  0.52 kB[22m[1m[22m[2m │ gzip:   0.37 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-DHQbi4pV.js                       [39m[1m[2m  0.61 kB[22m[1m[22m[2m │ gzip:   0.42 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mchunk-XP5HYGXS-BpfKkqn7.js                [39m[1m[2m  0.71 kB[22m[1m[22m[2m │ gzip:   0.40 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-DGUiP6tS.js                       [39m[1m[2m  0.71 kB[22m[1m[22m[2m │ gzip:   0.50 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-DrFu-skq.js                         [39m[1m[2m  0.77 kB[22m[1m[22m[2m │ gzip:   0.47 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mjornada-4800.tokens-Dn--QDPk.js           [39m[1m[2m  0.94 kB[22m[1m[22m[2m │ gzip:   0.40 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mreact-18-aFUCxlb5.js                      [39m[1m[2m  0.96 kB[22m[1m[22m[2m │ gzip:   0.54 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-3PLY4o93.js                       [39m[1m[2m  0.99 kB[22m[1m[22m[2m │ gzip:   0.61 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mjsx-runtime-Cf8x2fCZ.js                   [39m[1m[2m  1.00 kB[22m[1m[22m[2m │ gzip:   0.62 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mDocsRenderer-CFRXHY34-Cn1Y6mC8.js         [39m[1m[2m  1.47 kB[22m[1m[22m[2m │ gzip:   0.75 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mUSOBadge-56nHdDdb.js                      [39m[1m[2m  1.77 kB[22m[1m[22m[2m │ gzip:   0.87 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-DHP1B_wi.js                       [39m[1m[2m  2.21 kB[22m[1m[22m[2m │ gzip:   1.20 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mtokens-cykZo95o.js                        [39m[1m[2m  2.57 kB[22m[1m[22m[2m │ gzip:   1.27 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mToolbarButtons.stories-x5jKBhzV.js        [39m[1m[2m  2.62 kB[22m[1m[22m[2m │ gzip:   0.81 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPageHeader.stories-C2JMOX1w.js            [39m[1m[2m  2.72 kB[22m[1m[22m[2m │ gzip:   0.96 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mActionButtons.stories-BiIN1TCW.js         [39m[1m[2m  3.20 kB[22m[1m[22m[2m │ gzip:   0.86 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mBreadcrumb.stories-Cksjwy9k.js            [39m[1m[2m  3.28 kB[22m[1m[22m[2m │ gzip:   1.18 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-DD_OYowb.js                       [39m[1m[2m  3.51 kB[22m[1m[22m[2m │ gzip:   1.69 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mPagination.stories-BqCpKxHG.js            [39m[1m[2m  3.63 kB[22m[1m[22m[2m │ gzip:   0.96 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mRadio.stories-SGBGdr5J.js                 [39m[1m[2m  4.62 kB[22m[1m[22m[2m │ gzip:   1.33 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mText.stories-Cu2AqZHG.js                  [39m[1m[2m  4.87 kB[22m[1m[22m[2m │ gzip:   1.35 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-B8lJiyuQ.js                       [39m[1m[2m  5.06 kB[22m[1m[22m[2m │ gzip:   1.88 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mButton.stories-DKRGSrXz.js                [39m[1m[2m  5.10 kB[22m[1m[22m[2m │ gzip:   1.43 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSelect.stories-B5ZJlFEm.js                [39m[1m[2m  5.52 kB[22m[1m[22m[2m │ gzip:   1.53 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTabs.stories-CxtX9mqT.js                  [39m[1m[2m  5.52 kB[22m[1m[22m[2m │ gzip:   1.40 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mLayout.stories-hh0MpsvN.js                [39m[1m[2m  6.67 kB[22m[1m[22m[2m │ gzip:   1.53 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-yBjzXJbu.js                         [39m[1m[2m  6.79 kB[22m[1m[22m[2m │ gzip:   2.72 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mDataTable.stories-DY0vlLLL.js             [39m[1m[2m  6.89 kB[22m[1m[22m[2m │ gzip:   1.75 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mModal.stories-B-7oNjhS.js                 [39m[1m[2m  6.94 kB[22m[1m[22m[2m │ gzip:   2.11 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSwitch.stories-Dk9IMAwd.js                [39m[1m[2m  7.02 kB[22m[1m[22m[2m │ gzip:   1.98 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mHealthIndicator.stories-Dd08ZiVe.js       [39m[1m[2m  7.35 kB[22m[1m[22m[2m │ gzip:   1.94 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mInput.stories-BriY5PQI.js                 [39m[1m[2m  7.42 kB[22m[1m[22m[2m │ gzip:   2.06 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mCheckbox.stories-Bc9cPILI.js              [39m[1m[2m  7.58 kB[22m[1m[22m[2m │ gzip:   2.09 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-BWzBA1C2.js                       [39m[1m[2m  7.62 kB[22m[1m[22m[2m │ gzip:   1.56 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mFilterGroup.stories-CgV4tEmC.js           [39m[1m[2m  7.86 kB[22m[1m[22m[2m │ gzip:   2.06 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mpreview-BBWR9nbA.js                       [39m[1m[2m  8.12 kB[22m[1m[22m[2m │ gzip:   3.10 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mDataTablePerformance.stories-BR64EtXM.js  [39m[1m[2m  8.30 kB[22m[1m[22m[2m │ gzip:   2.62 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSidebar.stories-kVgvbXOa.js               [39m[1m[2m  8.48 kB[22m[1m[22m[2m │ gzip:   1.82 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mUSOBadge.stories-ydCftYaU.js              [39m[1m[2m  8.51 kB[22m[1m[22m[2m │ gzip:   1.81 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mAccessibility.stories-DUsd7e7O.js         [39m[1m[2m  9.06 kB[22m[1m[22m[2m │ gzip:   2.39 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mNetworkFilter.stories-DSxQySCL.js         [39m[1m[2m  9.36 kB[22m[1m[22m[2m │ gzip:   2.93 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mSkeleton.stories-B98S_d-3.js              [39m[1m[2m  9.42 kB[22m[1m[22m[2m │ gzip:   2.12 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mCard.stories-CpMMO7CU.js                  [39m[1m[2m 10.07 kB[22m[1m[22m[2m │ gzip:   2.14 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mGameCard.stories-DJGqCf1C.js              [39m[1m[2m 10.75 kB[22m[1m[22m[2m │ gzip:   3.15 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTable.stories-YxfSWCqX.js                 [39m[1m[2m 10.93 kB[22m[1m[22m[2m │ gzip:   2.99 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTokens-DHq7IPLa.js                        [39m[1m[2m 11.53 kB[22m[1m[22m[2m │ gzip:   2.37 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mAccessibility-iljVBumZ.js                 [39m[1m[2m 12.96 kB[22m[1m[22m[2m │ gzip:   3.75 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mtest-utils-ZdWhL8_C.js                    [39m[1m[2m 13.09 kB[22m[1m[22m[2m │ gzip:   5.11 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mLeaderboard.stories-h4EDLSgd.js           [39m[1m[2m 13.95 kB[22m[1m[22m[2m │ gzip:   2.89 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mQuestionDetailModal.stories-EMSLBvSL.js   [39m[1m[2m 14.08 kB[22m[1m[22m[2m │ gzip:   3.92 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mProgress.stories-ByQr0iVh.js              [39m[1m[2m 14.99 kB[22m[1m[22m[2m │ gzip:   2.56 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mTokens.stories-BLUqMmAC.js                [39m[1m[2m 15.96 kB[22m[1m[22m[2m │ gzip:   3.03 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mHealthMetricsWidgets.stories-jqkYWe2Q.js  [39m[1m[2m 21.61 kB[22m[1m[22m[2m │ gzip:   3.98 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-Ds3MV3A6.js                         [39m[1m[2m 27.52 kB[22m[1m[22m[2m │ gzip:   7.12 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mColor-YHDXOIA2-DffU8NAk.js                [39m[1m[2m 29.39 kB[22m[1m[22m[2m │ gzip:  11.06 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mmatchers-7Z3WT2CE-OIiPHzXs.js             [39m[1m[2m 29.81 kB[22m[1m[22m[2m │ gzip:  10.29 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mentry-preview-CQrDdkTM.js                 [39m[1m[2m 29.89 kB[22m[1m[22m[2m │ gzip:   9.56 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-DgH-xKnr.js                         [39m[1m[2m 57.15 kB[22m[1m[22m[2m │ gzip:  16.28 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-BLHw34Di.js                         [39m[1m[2m134.66 kB[22m[1m[22m[2m │ gzip:  43.22 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36miframe-B4Fp_IDu.js                        [39m[1m[2m218.67 kB[22m[1m[22m[2m │ gzip:  73.22 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mentry-preview-docs-yHLZ1UR3.js            [39m[1m[2m247.15 kB[22m[1m[22m[2m │ gzip:  73.46 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36maxe-BeuH5n83.js                           [39m[1m[33m579.05 kB[39m[22m[2m │ gzip: 159.54 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-B-xsERFa.js                         [39m[1m[33m662.20 kB[39m[22m[2m │ gzip: 156.70 kB[22m
+[2mstorybook-static/[22m[2massets/[22m[36mindex-0edRmSnE.js                         [39m[1m[33m892.77 kB[39m[22m[2m │ gzip: 275.53 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 10.30s[39m
+info => Preview built ([38;2;181;126;229m12 s[39m)
+info => Output directory: /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/storybook/storybook-static
+
+[35m[1mattention[22m[39m => Storybook now collects completely anonymous telemetry regarding usage.
+This information is used to shape Storybook's roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[36mhttps://storybook.js.org/telemetry[39m
+

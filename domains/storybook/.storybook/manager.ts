@@ -1,44 +1,62 @@
 import { addons } from '@storybook/manager-api';
-import { create } from '@storybook/theming';
+import { create } from '@storybook/theming/create';
 
-const theme = create({
+// EDUCACROSS Theme baseado nos tokens do design system
+const educacrossTheme = create({
   base: 'light',
   
   // Brand
   brandTitle: 'EDUCACROSS Design System',
-  brandUrl: '/',
+  brandUrl: 'https://educacross.com',
   brandTarget: '_self',
   
-  // Typography
-  fontBase: '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  fontCode: '"Fira Code", "Courier New", monospace',
-  
-  // Colors
-  colorPrimary: '#5f4de5',
+  // Colors (usando tokens do design system)
+  colorPrimary: '#7367f0',
   colorSecondary: '#5f4de5',
   
   // UI
-  appBg: '#ffffff',
+  appBg: '#fafafa',
   appContentBg: '#ffffff',
-  appBorderColor: '#e5e7eb',
+  appBorderColor: '#e5e5e5',
   appBorderRadius: 8,
   
+  // Typography
+  fontBase: '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  fontCode: '"Fira Code", monospace',
+  
   // Text colors
-  textColor: '#1f2937',
+  textColor: '#171717',
   textInverseColor: '#ffffff',
+  textMutedColor: '#737373',
   
   // Toolbar default and active colors
-  barTextColor: '#6b7280',
-  barSelectedColor: '#5f4de5',
+  barTextColor: '#525252',
+  barSelectedColor: '#7367f0',
   barBg: '#ffffff',
   
   // Form colors
   inputBg: '#ffffff',
-  inputBorder: '#d1d5db',
-  inputTextColor: '#1f2937',
-  inputBorderRadius: 6,
+  inputBorder: '#e5e5e5',
+  inputTextColor: '#171717',
+  inputBorderRadius: 4,
 });
 
 addons.setConfig({
-  theme,
+  theme: educacrossTheme,
+  panelPosition: 'bottom',
+  enableShortcuts: true,
+  showToolbar: true,
+  selectedPanel: undefined,
+  initialActive: 'sidebar',
+  sidebar: {
+    showRoots: false,
+    collapsedRoots: [],
+  },
+  toolbar: {
+    title: { hidden: false },
+    zoom: { hidden: false },
+    eject: { hidden: false },
+    copy: { hidden: false },
+    fullscreen: { hidden: false },
+  },
 });
