@@ -46,6 +46,14 @@ const columns = [
 
 // Performance measurement callback
 let initialRenderMsGlobal: number | null = null;
+declare global {
+  interface Window {
+    __perfMetrics?: {
+      DataTable?: { initialMs?: number | null; sortMs?: number | null };
+      FilterGroup?: { initialMs?: number | null; filterMs?: number | null };
+    };
+  }
+}
 
 const onRenderCallback: ProfilerOnRenderCallback = (
   id,
@@ -68,6 +76,13 @@ const onRenderCallback: ProfilerOnRenderCallback = (
     if (initialEl) {
       initialEl.textContent = `Render inicial: ${actualDuration.toFixed(1)}ms (alvo < 500ms)`;
     }
+    // Expor métricas globais e atualizar título
+    window.__perfMetrics = window.__perfMetrics || {};
+    window.__perfMetrics.DataTable = window.__perfMetrics.DataTable || {};
+    window.__perfMetrics.FilterGroup = window.__perfMetrics.FilterGroup || {};
+    window.__perfMetrics.DataTable.initialMs = actualDuration;
+    window.__perfMetrics.FilterGroup.initialMs = actualDuration;
+    document.title = `Perf: render ${actualDuration.toFixed(1)}ms`;
   }
   if (phase === 'update' && actualDuration > 200) {
     console.warn(`⚠️ Interaction exceeded 200ms target: ${actualDuration.toFixed(2)}ms`);
@@ -78,6 +93,10 @@ function DataTableWithPerformanceMonitoring() {
   const [data, setData] = useState(largeDataset);
   const [sortState, setSortState] = useState<{ key: string; direction: 'asc' | 'desc' } | undefined>();
   const [lastSortMs, setLastSortMs] = useState<number | null>(null);
+  useEffect(() => {
+    window.__perfMetrics = window.__perfMetrics || {};
+    window.__perfMetrics.DataTable = window.__perfMetrics.DataTable || {};
+  }, []);
 
   // Auto-trigger a sort after initial mount to collect metrics without manual interaction
   useEffect(() => {
@@ -117,6 +136,10 @@ function DataTableWithPerformanceMonitoring() {
     if (sortEl) {
       sortEl.textContent = `Última ordenação: ${duration.toFixed(1)}ms (alvo < 200ms)`;
     }
+    window.__perfMetrics = window.__perfMetrics || {};
+    window.__perfMetrics.DataTable = window.__perfMetrics.DataTable || {};
+    window.__perfMetrics.DataTable.sortMs = duration;
+    document.title = `Perf: render ${initialRenderMsGlobal?.toFixed(1) ?? '-'}ms, sort ${duration.toFixed(1)}ms`;
   };
 
   return (
@@ -170,6 +193,10 @@ function FilterGroupWithPerformanceMonitoring() {
   const [filteredData, setFilteredData] = useState(largeDataset);
   const [filters, setFilters] = useState<Record<string, any>>({});
   const [lastFilterMs, setLastFilterMs] = useState<number | null>(null);
+  useEffect(() => {
+    window.__perfMetrics = window.__perfMetrics || {};
+    window.__perfMetrics.FilterGroup = window.__perfMetrics.FilterGroup || {};
+  }, []);
 
   // Auto-trigger a filter after initial mount to collect metrics without manual interaction
   useEffect(() => {
@@ -216,6 +243,10 @@ function FilterGroupWithPerformanceMonitoring() {
     if (filterEl) {
       filterEl.textContent = `Último filtro: ${duration.toFixed(1)}ms (alvo < 200ms)`;
     }
+    window.__perfMetrics = window.__perfMetrics || {};
+    window.__perfMetrics.FilterGroup = window.__perfMetrics.FilterGroup || {};
+    window.__perfMetrics.FilterGroup.filterMs = duration;
+    document.title = `Perf: render ${initialRenderMsGlobal?.toFixed(1) ?? '-'}ms, filter ${duration.toFixed(1)}ms`;
   };
 
   const handleReset = () => {
