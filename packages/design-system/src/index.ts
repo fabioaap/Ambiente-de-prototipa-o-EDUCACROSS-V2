@@ -23,6 +23,8 @@ export { Pagination } from './components/Pagination/Pagination';
 export { DataTable } from './components/DataTable/DataTable';
 export { FilterGroup } from './components/FilterGroup/FilterGroup';
 export { Modal } from './components/Modal/Modal';
+export { Avatar } from './components/Avatar/Avatar';
+export { AvatarGroup } from './components/Avatar/AvatarGroup';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -49,3 +51,5 @@ export type { PaginationProps } from './components/Pagination/Pagination';
 export type { DataTableProps } from './components/DataTable/DataTable';
 export type { FilterGroupProps } from './components/FilterGroup/FilterGroup';
 export type { ModalProps } from './components/Modal/Modal';
+export type { AvatarProps } from './components/Avatar/Avatar';
+export type { AvatarGroupProps } from './components/Avatar/AvatarGroup';
