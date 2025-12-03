@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DataTable, FilterGroup } from '@prototipo/design-system';
-import { useState, Profiler, ProfilerOnRenderCallback } from 'react';
+import { useState, Profiler, ProfilerOnRenderCallback, useEffect } from 'react';
 
 const meta = {
   title: 'BackOffice/Performance/DataTable',
@@ -45,6 +45,8 @@ const columns = [
 ];
 
 // Performance measurement callback
+let initialRenderMsGlobal: number | null = null;
+
 const onRenderCallback: ProfilerOnRenderCallback = (
   id,
   phase,
@@ -60,6 +62,13 @@ const onRenderCallback: ProfilerOnRenderCallback = (
   if (phase === 'mount' && actualDuration > 500) {
     console.warn(`⚠️ Initial render exceeded 500ms target: ${actualDuration.toFixed(2)}ms`);
   }
+  if (phase === 'mount') {
+    initialRenderMsGlobal = actualDuration;
+    const initialEl = document.getElementById('sla-initial');
+    if (initialEl) {
+      initialEl.textContent = `Render inicial: ${actualDuration.toFixed(1)}ms (alvo < 500ms)`;
+    }
+  }
   if (phase === 'update' && actualDuration > 200) {
     console.warn(`⚠️ Interaction exceeded 200ms target: ${actualDuration.toFixed(2)}ms`);
   }
@@ -68,6 +77,17 @@ const onRenderCallback: ProfilerOnRenderCallback = (
 function DataTableWithPerformanceMonitoring() {
   const [data, setData] = useState(largeDataset);
   const [sortState, setSortState] = useState<{ key: string; direction: 'asc' | 'desc' } | undefined>();
+  const [lastSortMs, setLastSortMs] = useState<number | null>(null);
+
+  // Auto-trigger a sort after initial mount to collect metrics without manual interaction
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // Toggle sort on 'codigo' to measure sort performance
+      const nextDir: 'asc' | 'desc' = sortState?.direction === 'asc' ? 'desc' : 'asc';
+      handleSort('codigo', nextDir);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSort = (key: string, direction: 'asc' | 'desc') => {
     const startTime = performance.now();
@@ -86,18 +106,39 @@ function DataTableWithPerformanceMonitoring() {
     
     const endTime = performance.now();
     const duration = endTime - startTime;
+    setLastSortMs(duration);
     
     console.log(`[Sort Performance] ${key} ${direction}: ${duration.toFixed(2)}ms`);
     if (duration > 200) {
       console.warn(`⚠️ Sort exceeded 200ms target: ${duration.toFixed(2)}ms`);
+    }
+
+    const sortEl = document.getElementById('sla-sort');
+    if (sortEl) {
+      sortEl.textContent = `Última ordenação: ${duration.toFixed(1)}ms (alvo < 200ms)`;
     }
   };
 
   return (
     <Profiler id="DataTable-100rows" onRender={onRenderCallback}>
       <div>
+        <div id="sla-panel" aria-label="SLA Metrics Panel" style={{
+          marginBottom: '12px',
+          padding: '8px',
+          border: '1px solid #e0e0e0',
+          borderRadius: '8px',
+          background: '#fafafa'
+        }}>
+          <strong>Metricas (SLA)</strong>
+          <div id="sla-initial" aria-label="Initial Render Time">
+            Render inicial: {initialRenderMsGlobal != null ? initialRenderMsGlobal.toFixed(1) + 'ms' : 'calculando...'} (alvo &lt; 500ms)
+          </div>
+          <div id="sla-sort" aria-label="Last Sort Time">
+            Ultima ordenacao: {lastSortMs != null ? lastSortMs.toFixed(1) + 'ms' : '-'} (alvo &lt; 200ms)
+          </div>
+        </div>
         <p style={{ marginBottom: '1rem', color: '#666' }}>
-          📊 Dataset: 100 rows | 🎯 Target: Initial render &lt; 500ms, Interactions &lt; 200ms
+          Dataset: 100 rows | Target: Initial render &lt; 500ms, Interactions &lt; 200ms
         </p>
         <DataTable
           columns={columns}
@@ -128,6 +169,15 @@ export const Performance100Rows: Story = {
 function FilterGroupWithPerformanceMonitoring() {
   const [filteredData, setFilteredData] = useState(largeDataset);
   const [filters, setFilters] = useState<Record<string, any>>({});
+  const [lastFilterMs, setLastFilterMs] = useState<number | null>(null);
+
+  // Auto-trigger a filter after initial mount to collect metrics without manual interaction
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleFilterChange('topico', 'Matemática');
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleFilterChange = (filterId: string, value: any) => {
     const startTime = performance.now();
@@ -155,10 +205,16 @@ function FilterGroupWithPerformanceMonitoring() {
     
     const endTime = performance.now();
     const duration = endTime - startTime;
+    setLastFilterMs(duration);
     
     console.log(`[Filter Performance] ${filterId}: ${duration.toFixed(2)}ms (${filtered.length} results)`);
     if (duration > 200) {
       console.warn(`⚠️ Filter exceeded 200ms target: ${duration.toFixed(2)}ms`);
+    }
+
+    const filterEl = document.getElementById('sla-filter');
+    if (filterEl) {
+      filterEl.textContent = `Último filtro: ${duration.toFixed(1)}ms (alvo < 200ms)`;
     }
   };
 
@@ -170,8 +226,23 @@ function FilterGroupWithPerformanceMonitoring() {
   return (
     <Profiler id="FilterGroup-100rows" onRender={onRenderCallback}>
       <div>
+        <div id="sla-panel" aria-label="SLA Metrics Panel" style={{
+          marginBottom: '12px',
+          padding: '8px',
+          border: '1px solid #e0e0e0',
+          borderRadius: '8px',
+          background: '#fafafa'
+        }}>
+          <strong>Metricas (SLA)</strong>
+          <div id="sla-initial" aria-label="Initial Render Time">
+            Render inicial: {initialRenderMsGlobal != null ? initialRenderMsGlobal.toFixed(1) + 'ms' : 'calculando...'} (alvo &lt; 500ms)
+          </div>
+          <div id="sla-filter" aria-label="Last Filter Time">
+            Ultimo filtro: {lastFilterMs != null ? lastFilterMs.toFixed(1) + 'ms' : '-'} (alvo &lt; 200ms)
+          </div>
+        </div>
         <p style={{ marginBottom: '1rem', color: '#666' }}>
-          🔍 Dataset: 100 rows | 🎯 Target: Filter response &lt; 200ms
+          Dataset: 100 rows | Target: Filter response &lt; 200ms
         </p>
         <FilterGroup
           filters={[
