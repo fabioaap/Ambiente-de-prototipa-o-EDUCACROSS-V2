@@ -5,6 +5,23 @@ import './preview-fonts.css';
 
 const preview: Preview = {
   parameters: {
+    // Story ordering
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: [
+          'Introdução',
+          'Design Tokens',
+          ['Cores', 'Tipografia', 'Espaçamento', 'Elevação'],
+          'Componentes',
+          ['Básicos', 'Formulários', 'Layout', 'Navegação', 'Feedback'],
+          'Padrões',
+          'Exemplos',
+          '*',
+        ],
+        locales: 'pt-BR',
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -19,12 +36,28 @@ const preview: Preview = {
           value: '#ffffff',
         },
         {
-          name: 'dark',
-          value: '#1f2937',
+          name: 'neutral-50',
+          value: '#fafafa',
         },
         {
-          name: 'gray',
-          value: '#f3f4f6',
+          name: 'neutral-100',
+          value: '#f5f5f5',
+        },
+        {
+          name: 'neutral-200',
+          value: '#e5e5e5',
+        },
+        {
+          name: 'primary-50',
+          value: '#f3f2ff',
+        },
+        {
+          name: 'primary-600',
+          value: '#7367f0',
+        },
+        {
+          name: 'dark',
+          value: '#1f2937',
         },
       ],
     },

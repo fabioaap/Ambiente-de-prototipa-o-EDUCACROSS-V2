@@ -111,6 +111,31 @@ Ao usar os componentes:
 - ✅ Verifique contraste de cores em todos os estados
 - ✅ Anuncie mudanças de estado importantes
 
+## Dependências Externas
+
+### Radix UI (Planejado)
+
+Alguns componentes complexos usarão [Radix UI](https://www.radix-ui.com/) como base para garantir acessibilidade robusta e comportamento consistente:
+
+#### Dropdown/Menu (Planejado para Sprint 4)
+- **Por que Radix?**: Componentes de menu dropdown requerem gerenciamento complexo de foco, navegação por teclado (arrow keys), escape handling, e positioning robusto. Radix UI Dropdown Menu fornece estas funcionalidades prontas e testadas, seguindo WAI-ARIA Authoring Practices.
+- **Pacote**: `@radix-ui/react-dropdown-menu`
+- **Benefícios**:
+  - Gerenciamento automático de foco e navegação por teclado
+  - Posicionamento inteligente (evita overflow)
+  - Suporte a submenu e grupos
+  - Totalmente acessível (ARIA compliant)
+  - Unstyled (totalmente customizável com nossos tokens)
+- **Implementação**: Será adicionado como peer dependency quando o componente Dropdown for implementado
+- **Referência**: Ver `.specify/memory/SPRINT4_PLANNING.md` para detalhes da implementação
+
+#### Outros componentes candidatos (futuro)
+- **Tooltip**: Para tooltips acessíveis com posicionamento robusto
+- **Popover**: Para popovers com gerenciamento de foco
+- **Dialog/Modal**: Para modais com trap de foco e escape handling
+
+**Nota**: Radix UI fornece componentes unstyled (sem estilos), permitindo total customização visual seguindo nossos design tokens enquanto mantém acessibilidade de alto nível.
+
 ## Scripts
 
 - `pnpm build` - Compila a biblioteca
