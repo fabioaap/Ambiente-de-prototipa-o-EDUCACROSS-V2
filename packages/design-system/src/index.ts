@@ -23,6 +23,7 @@ export { Pagination } from './components/Pagination/Pagination';
 export { DataTable } from './components/DataTable/DataTable';
 export { FilterGroup } from './components/FilterGroup/FilterGroup';
 export { Modal } from './components/Modal/Modal';
+export { StatsCard } from './components/StatsCard/StatsCard';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -49,3 +50,4 @@ export type { PaginationProps } from './components/Pagination/Pagination';
 export type { DataTableProps } from './components/DataTable/DataTable';
 export type { FilterGroupProps } from './components/FilterGroup/FilterGroup';
 export type { ModalProps } from './components/Modal/Modal';
+export type { StatsCardProps, TrendData } from './components/StatsCard/StatsCard';
