@@ -11,13 +11,13 @@ const educacrossTheme = create({
   brandTarget: '_self',
   
   // Colors (usando tokens do design system)
-  colorPrimary: '#7367f0', // primary-600
-  colorSecondary: '#5f4de5', // primary-700
+  colorPrimary: '#7367f0',
+  colorSecondary: '#5f4de5',
   
   // UI
-  appBg: '#fafafa', // neutral-50
+  appBg: '#fafafa',
   appContentBg: '#ffffff',
-  appBorderColor: '#e5e5e5', // neutral-200
+  appBorderColor: '#e5e5e5',
   appBorderRadius: 8,
   
   // Typography
@@ -25,19 +25,19 @@ const educacrossTheme = create({
   fontCode: '"Fira Code", monospace',
   
   // Text colors
-  textColor: '#171717', // neutral-900
+  textColor: '#171717',
   textInverseColor: '#ffffff',
-  textMutedColor: '#737373', // neutral-500
+  textMutedColor: '#737373',
   
   // Toolbar default and active colors
-  barTextColor: '#525252', // neutral-600
-  barSelectedColor: '#7367f0', // primary-600
+  barTextColor: '#525252',
+  barSelectedColor: '#7367f0',
   barBg: '#ffffff',
   
   // Form colors
   inputBg: '#ffffff',
-  inputBorder: '#e5e5e5', // neutral-200
-  inputTextColor: '#171717', // neutral-900
+  inputBorder: '#e5e5e5',
+  inputTextColor: '#171717',
   inputBorderRadius: 4,
 });
 
