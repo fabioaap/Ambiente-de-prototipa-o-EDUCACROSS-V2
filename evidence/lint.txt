@@ -1,0 +1,95 @@
+ WARN  Unsupported engine: wanted: {"node":"22.21.1"} (current: {"node":"v20.19.6","pnpm":"9.14.4"})
+
+> prototipacao-educa@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2
+> turbo run lint
+
+
+Attention:
+Turborepo now collects completely anonymous telemetry regarding usage.
+This information is used to shape the Turborepo roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://turborepo.com/docs/telemetry
+
+• Packages in scope: @prototipo/design-system, @prototipo/eslint-config, @prototipo/tokens, admin, storybook, studio
+• Running lint in 6 packages
+• Remote caching disabled
+::group::@prototipo/tokens:lint
+cache miss, executing b309e375f782b0bd
+
+> @prototipo/tokens@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/packages/tokens
+> eslint .
+
+::endgroup::
+::group::admin:lint
+cache miss, executing c6f52bf221a97c67
+
+> admin@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/admin
+> eslint . --ext .ts,.tsx
+
+::endgroup::
+::group::@prototipo/design-system:lint
+cache miss, executing ecbba33e5c0b11ac
+
+> @prototipo/design-system@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/packages/design-system
+> eslint .
+
+
+/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/packages/design-system/src/components/Card/Card.tsx
+  67:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/packages/design-system/src/components/DataTable/DataTable.tsx
+  25:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:47  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  27:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  33:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/packages/design-system/src/components/FilterGroup/FilterGroup.tsx
+  21:13  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  23:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:57  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 9 problems (0 errors, 9 warnings)
+
+::endgroup::
+::group::storybook:lint
+cache miss, executing 32f523d8852c81be
+
+> storybook@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/storybook
+> eslint .
+
+
+/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/storybook/src/stories/DataTable.stories.tsx
+  123:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/storybook/src/stories/DataTablePerformance.stories.tsx
+   63:3   warning  'startTime' is defined but never used. Allowed unused args must match /^_/u                                                                 @typescript-eslint/no-unused-vars
+   64:3   warning  'commitTime' is defined but never used. Allowed unused args must match /^_/u                                                                @typescript-eslint/no-unused-vars
+  109:6   warning  React Hook useEffect has missing dependencies: 'handleSort' and 'sortState?.direction'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  194:57  warning  Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+  207:6   warning  React Hook useEffect has a missing dependency: 'handleFilterChange'. Either include it or remove the dependency array                       react-hooks/exhaustive-deps
+  209:56  warning  Unexpected any. Specify a different type                                                                                                    @typescript-eslint/no-explicit-any
+
+/home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/storybook/src/stories/FilterGroup.stories.tsx
+   51:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   90:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  130:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  169:41  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  177:55  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  179:50  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 13 problems (0 errors, 13 warnings)
+
+::endgroup::
+::group::studio:lint
+cache miss, executing bafeba39375452af
+
+> studio@0.2.0-beta lint /home/runner/work/Ambiente-de-prototipa-o-EDUCACROSS-V2/Ambiente-de-prototipa-o-EDUCACROSS-V2/domains/studio
+> eslint .
+
+::endgroup::
+
+ Tasks:    5 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    5.305s 
+

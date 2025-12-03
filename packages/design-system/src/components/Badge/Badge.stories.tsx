@@ -11,11 +11,18 @@ const meta = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'success', 'warning', 'error', 'info'],
+      options: ['default', 'primary', 'secondary', 'success', 'warning', 'error', 'info'],
     },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
+    },
+    styleType: {
+      control: 'select',
+      options: ['filled', 'outlined', 'soft'],
+    },
+    dot: {
+      control: 'boolean',
     },
   },
 } satisfies Meta<typeof Badge>;
@@ -83,6 +90,8 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Badge variant="default">Default</Badge>
+      <Badge variant="primary">Primary</Badge>
+      <Badge variant="secondary">Secondary</Badge>
       <Badge variant="success">Success</Badge>
       <Badge variant="warning">Warning</Badge>
       <Badge variant="error">Error</Badge>
