@@ -25,6 +25,16 @@ export { Pagination } from './components/Pagination/Pagination';
 export { DataTable } from './components/DataTable/DataTable';
 export { FilterGroup } from './components/FilterGroup/FilterGroup';
 export { Modal } from './components/Modal/Modal';
+export { 
+  Dropdown, 
+  DropdownTrigger, 
+  DropdownContent, 
+  DropdownItem, 
+  DropdownLabel, 
+  DropdownSeparator, 
+  DropdownCheckboxItem, 
+  DropdownGroup 
+} from './components/Dropdown/Dropdown';
 export { Avatar } from './components/Avatar/Avatar';
 export { AvatarGroup } from './components/Avatar/AvatarGroup';
 
@@ -55,5 +65,15 @@ export type { PaginationProps } from './components/Pagination/Pagination';
 export type { DataTableProps } from './components/DataTable/DataTable';
 export type { FilterGroupProps } from './components/FilterGroup/FilterGroup';
 export type { ModalProps } from './components/Modal/Modal';
+export type { 
+  DropdownProps, 
+  DropdownTriggerProps, 
+  DropdownContentProps, 
+  DropdownItemProps, 
+  DropdownLabelProps, 
+  DropdownSeparatorProps, 
+  DropdownCheckboxItemProps, 
+  DropdownGroupProps 
+} from './components/Dropdown/Dropdown';
 export type { AvatarProps } from './components/Avatar/Avatar';
 export type { AvatarGroupProps } from './components/Avatar/AvatarGroup';
