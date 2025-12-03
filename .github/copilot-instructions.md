@@ -1,11 +1,11 @@
 # EDUCACROSS Copilot Playbook
-- Status: Sprint 4 Planning (BackOffice Essentials & Storybook Branding); spec in specs/003-sprint4-backoffice-essentials/ ready for implementation.
+- Status: Sprint 4 Planning (BackOffice Essentials & Storybook Branding); spec/plan/tasks in specs/003-sprint4-backoffice-essentials/ ready for implementation; checklist in checklists/ux.md.
 
 ## Platform Overview
 - Stack: Node 22.21.1 (.nvmrc enforced), pnpm 9.14.4+, TypeScript 5 strict, Next.js 15 App Router, SWR, React 18.
-- Repo map: apps/studio (Next app + Puck), apps/storybook (ESM catalog), packages/design-system, packages/tokens, code-to-figma/, domains/ journeys.
+- Repo map: apps/studio (Next app + Puck), domains/storybook (ESM catalog), packages/design-system, packages/tokens, code-to-figma/, domains/ journeys.
 - Data flow: design-system exports feed Storybook and Studio; Studio dashboard consumes /api/dashboard/* handlers backed by local JSON mocks.
-- New dependencies: Radix UI Dropdown Menu @2.1.16 for accessible Menu/Dropdown component (Sprint 4).
+- New dependencies: Radix UI Dropdown Menu v2.1.x for accessible Menu/Dropdown component (Sprint 4); includes Floating UI internally for positioning/collision.
 
 ## Setup & Commands
 - Verify node --version and pnpm --version before installs; always run pnpm install --frozen-lockfile.
@@ -21,9 +21,10 @@
 
 ## Design System & Tokens
 - Components in packages/design-system/src/components/* require 'use client', React.forwardRef, CSS Modules, and fully documented props.
-- Export new components via packages/design-system/src/index.ts and add matching stories under apps/storybook.
+- Export new components via packages/design-system/src/index.ts and add matching stories under domains/storybook.
 - Styling must reference tokens from packages/tokens/src/tokens.json; regenerate with pnpm build:tokens after edits.
 - Register DS components in apps/studio/src/config/puck.config.tsx so Puck and Studio pages stay in sync.
+- Exception: Radix UI Dropdown uses external headless primitives for a11y; appearance 100% via CSS Modules (justified in constitution).
 
 ## Studio, Dashboard, APIs
 - apps/studio/src/app/dashboard uses client components with SWR, skeleton placeholders, and ErrorBanner fallbacks; mirror existing KPIGrid/HealthSection patterns.

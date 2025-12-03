@@ -14,8 +14,7 @@ Implementar 6 novos componentes BackOffice (Alerts, Badges, Chips, Avatars, Stat
 - React 18 (UI components, forwardRef, Profiler)
 - CSS Modules (scoped styling via tsup)
 - @storybook/react 8.x (component catalog)
-- Radix UI Dropdown Menu (acessibilidade do Menu/Dropdown) - **NEW**
-- Popper.js (posicionamento de dropdowns) - **NEW** or NEEDS CLARIFICATION
+- Radix UI Dropdown Menu v2.1.x (acessibilidade + Floating UI interno para posicionamento/colisão) - **NEW**
 
 **Storage**: Local storage (Puck pages persistence) + static JSON mocks (dashboard data)  
 **Testing**: Manual validation via Storybook + Playwright screenshots (fidelity comparison)  
@@ -66,7 +65,7 @@ Implementar 6 novos componentes BackOffice (Alerts, Badges, Chips, Avatars, Stat
   - `pnpm build:storybook` (sem erros de build)
   - Verificar console do Storybook em localhost:6006 (0 errors)
 
-**Evidence Required**: Build logs anexados ao PR + screenshot do console limpo.
+**Evidence Required**: Build logs anexados ao PR em `evidence/` (build.log, lint.txt, type-check.txt, storybook-screenshots/*.png, metrics.json) + screenshot do console limpo.
 
 ---
 
