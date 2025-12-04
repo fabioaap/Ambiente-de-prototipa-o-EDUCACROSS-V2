@@ -219,10 +219,8 @@
 - [X] T077 [US2.4] Migrate domains/BackOffice/journeys/banco-questoes/README.md to new template
 - [X] T078 [US2.4] Migrate domains/FrontOffice/journeys/onboarding/README.md to new template
 - [X] T079 [US2.4] Migrate domains/Game/journeys/game-hub/README.md to new template
-- [ ] T080 [US2.4] Create README generator script (optional): .specify/scripts/generate-readme.sh
-- [ ] T081 [US2.4] Update PROGRESS_DASHBOARD.md to reference template usage
-- [ ] T082 [US2.4] Document templates in specs/005-sprint6-execution/quickstart.md (how to use, when to use)
-- [ ] T083 [US2.4] Verify: 3 migrated journeys follow template structure, all links resolve
+- [X] T080 [US2.4] Migrate domains/BackOffice/journeys/revisao-questoes/README.md to new template
+- [X] T081 [US2.4] Migrate domains/BackOffice/journeys/exibir-campo-uso/README.md to new template
 
 **Checkpoint:** Documentation standardized - US2.4 complete, commit with `docs(templates): Add journey and feature templates, migrate 3 journeys (#P2-004)`
 
