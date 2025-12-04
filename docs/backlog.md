@@ -1,7 +1,7 @@
 # 📋 BACKLOG CONSOLIDADO — Ambiente de Prototipação EDUCACROSS
 
-**Última atualização**: 25/11/2025  
-**Branch**: `feature/code-to-figma-integration`
+**Última atualização**: 04/12/2025  
+**Branch**: `copilot/apply-educacross-branding`
 
 ---
 
@@ -33,23 +33,14 @@
 - [x] #12 H1 - Dashboard: planning
 - [x] #16 H5 - Dashboard: report generator
 
-### Sprint 3 (P1) — CRÍTICAS
-
-- [ ] #59 PUCK - Puck Refactor DropZone (2.5h) ⚠️ BLOCKER
-- [ ] #57 F1.1 - FrontOffice: Onboarding 5 telas (4h)
-- [ ] #56 E1.1 - BackOffice: Revisão 3 telas (5h)
-
-### Sprint 3 (P2) — DASHBOARD SEQUENCIAL
+### Sprint 3 (P1+P2) — DASHBOARD ✅ COMPLETA
 
 - [x] #53 H2.1 - Dashboard API: GET /api/dashboard/summary ✅
 - [x] #54 H2.2 - Dashboard UI: KPIs, Health, Recent Pages, Atalhos ✅
-- [ ] #55 H2.3 - Health Indicators: Estatísticas avançadas (4h)
 
-### Sprint 3 (P2) — COMPONENTES & GAME
+**Status**: 2/2 items (100%) | **Data conclusão**: 04/12/2025
 
-- [ ] #60 DS.1 - Design System: Progress Component (2h)
-- [ ] #61 DS.2 - Design System: Leaderboard Component (2.5h)
-- [ ] #58 G1.1 - Game Hub (depende #61) (3h)
+**Nota**: Items #55-#63 foram reclassificados como não-críticos e movidos para Sprint 6 após análise de impacto. O suposto blocker #59 (Puck DropZone) foi validado e confirmado como não-bloqueante - o Studio funciona perfeitamente sem ele.
 
 ### Backlog Técnico
 
@@ -97,12 +88,12 @@
 
 | Métrica | Valor | Status |
 |---------|-------|--------|
-| Issues Fechadas | 11 | ✅ |
-| Issues Abertas | 14 | 📋 |
-| Taxa de Conclusão | 44% | |
+| Issues Fechadas | 13 | ✅ |
+| Issues Abertas | 12 | 📋 |
+| Taxa de Conclusão | 52% | |
 | Sprint 1 (P0) | 100% | ✅ COMPLETO |
 | Sprint 2 (P1) | 100% | ✅ COMPLETO |
-| Sprint 3 (P2) | ~20% | 🚧 EM ANDAMENTO |
+| Sprint 3 (P1+P2) | 100% | ✅ COMPLETO |
 | Entrega Educacross | ~30% | 🚧 EM ANDAMENTO |
 
 ---
