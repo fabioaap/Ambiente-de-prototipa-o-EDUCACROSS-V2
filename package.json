@@ -35,15 +35,17 @@
     "perf:storybook": "playwright test scripts/playwright/storybook-perf.spec.ts --reporter=list"
   },
   "devDependencies": {
+    "@playwright/test": "^1.48.2",
     "@prototipo/eslint-config": "workspace:*",
     "eslint": "^9.15.0",
     "prettier": "^3.3.3",
     "turbo": "^2.6.1",
-    "typescript": "^5.6.3",
-    "@playwright/test": "^1.48.2"
+    "typescript": "^5.6.3"
   },
   "packageManager": "pnpm@9.14.4",
   "dependencies": {
-    "@specfy/stack-analyser": "1.27.3"
+    "@sentry/nextjs": "^10.28.0",
+    "@specfy/stack-analyser": "1.27.3",
+    "react-ga4": "^2.1.0"
   }
 }

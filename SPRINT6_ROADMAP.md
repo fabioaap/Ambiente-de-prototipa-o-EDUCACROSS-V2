@@ -401,6 +401,415 @@ docs/templates/
 
 ---
 
+### Phase 5: Sprint 3 Moved Items (Week 2-3, Flexible)
+
+**Context:** 8 items moved from Sprint 3 after validation confirmed non-blocking status. These enhance the platform but don't block core functionality.
+
+---
+
+#### P2-S3-001: Design System - Progress Component (#60)
+**Issue:** #60 DS.1 - Design System: Progress Component  
+**Owner:** Design System Lead  
+**Effort:** 2 hours  
+**Priority:** MEDIUM (P2)  
+**Sprint 3 Origin:** Originally planned as prerequisite for #61  
+
+**Deliverables:**
+- `packages/design-system/src/components/Progress/Progress.tsx`
+- `packages/design-system/src/components/Progress/Progress.module.css`
+- `packages/design-system/src/components/Progress/Progress.stories.tsx`
+- Export via `packages/design-system/src/index.ts`
+
+**Component Features:**
+- Linear progress bar
+- Circular progress spinner
+- Percentage display (optional)
+- Color variants (primary, success, warning, error)
+- Sizes (sm, md, lg)
+- Animated/static modes
+- Accessibility (ARIA progress role)
+
+**Acceptance Criteria:**
+- ✅ Component renders all variants
+- ✅ Storybook story created
+- ✅ CSS Modules styling
+- ✅ TypeScript types exported
+- ✅ WCAG 2.1 AA compliant
+- ✅ Registered in puck.config.tsx (optional)
+
+**Success:** `pnpm build:design-system` passes, story renders
+
+---
+
+#### P2-S3-002: Design System - Leaderboard Component (#61)
+**Issue:** #61 DS.2 - Design System: Leaderboard Component  
+**Owner:** Design System Lead  
+**Effort:** 2.5 hours  
+**Priority:** MEDIUM (P2)  
+**Sprint 3 Origin:** Depends on #60 Progress, enables #58 Game Hub  
+**Dependencies:** P2-S3-001 (Progress Component)
+
+**Deliverables:**
+- `packages/design-system/src/components/Leaderboard/Leaderboard.tsx`
+- `packages/design-system/src/components/Leaderboard/Leaderboard.module.css`
+- `packages/design-system/src/components/Leaderboard/Leaderboard.stories.tsx`
+- Export via index.ts
+
+**Component Features:**
+- Ranked list (top 10)
+- Player info (avatar, name, score, progress)
+- Highlight current user
+- Skeleton loading state
+- Empty state placeholder
+- Responsive design (mobile/desktop)
+- Optional filters (time period, category)
+
+**Props Interface:**
+```typescript
+type LeaderboardEntry = {
+  rank: number;
+  playerId: string;
+  name: string;
+  avatar?: string;
+  score: number;
+  progress: number; // 0-100
+  isCurrentUser?: boolean;
+};
+
+type LeaderboardProps = {
+  entries: LeaderboardEntry[];
+  title?: string;
+  variant?: 'compact' | 'detailed';
+  loading?: boolean;
+};
+```
+
+**Acceptance Criteria:**
+- ✅ Component renders all variants
+- ✅ Uses Progress component from #60
+- ✅ Storybook story with mock data
+- ✅ Responsive design verified
+- ✅ TypeScript types exported
+- ✅ Accessibility (keyboard nav, ARIA labels)
+
+**Success:** Storybook shows interactive leaderboard with 10 entries
+
+---
+
+#### P2-S3-003: Puck Refactor - DropZone Support (#59)
+**Issue:** #59 PUCK - Puck Refactor DropZone  
+**Owner:** Studio Lead  
+**Effort:** 2.5 hours  
+**Priority:** MEDIUM (P2) - **VALIDATED AS NON-BLOCKER**  
+**Sprint 3 Origin:** Originally marked as BLOCKER, validated as enhancement  
+
+**Context from Validation (04/12/2025):**
+```bash
+✅ grep -r "DropZone" apps/studio/ → 0 matches
+✅ pnpm build → SUCCESS (no DropZone errors)
+✅ Dashboard (#53/#54) → FUNCTIONAL without DropZone
+✅ JSON "zones" → WORKS without DropZone component
+
+Conclusion: Studio operates perfectly without DropZone.
+            This is an enhancement for better visual editing, not a fix.
+```
+
+**Deliverables (if implemented):**
+- Import DropZone from `@measured/puck`
+- Update `domains/studio/src/config/puck.config.tsx`
+- Add zones support to Layout component definition
+- Update JSON schema examples in docs
+- Test visual zone editing in Studio
+
+**Acceptance Criteria:**
+- ✅ DropZone imported and configured
+- ✅ Layout component supports child zones
+- ✅ Studio renders zones visually
+- ✅ JSON pages validate with zones
+- ✅ Build passes without errors
+- ✅ Documentation updated
+
+**Alternative:** DEFER to Sprint 7+ if visual zone editing not needed yet
+
+**Success:** Can drag components into nested zones in Studio UI
+
+---
+
+#### P2-S3-004: BackOffice Journey - 3 Telas (#56)
+**Issue:** #56 E1.1 - BackOffice: Revisão 3 telas  
+**Owner:** Journey Designer  
+**Effort:** 5 hours  
+**Priority:** MEDIUM (P2)  
+**Sprint 3 Origin:** Standalone journey, no blockers  
+
+**Deliverables:**
+```
+domains/BackOffice/journeys/admin-workflow/
+├── README.md (objective, components, screenshots)
+├── tela-1-login.tsx (Login form)
+├── tela-2-dashboard.tsx (Admin dashboard)
+└── tela-3-perfil.tsx (User profile management)
+```
+
+**Tela 1 - Login:**
+- Form: email + password
+- Components: Input, Button, Card
+- Validations: required fields, email format
+- Error handling: invalid credentials
+
+**Tela 2 - Dashboard:**
+- Components: PageHeader, StatsCard (4x), DataTable
+- Data: mock users, activities, metrics
+- Actions: filter, search, export
+
+**Tela 3 - Perfil:**
+- Form: name, email, avatar, role
+- Components: Input, Dropdown, Button, Avatar
+- Validations: required fields
+- Actions: save, cancel, reset password
+
+**Acceptance Criteria:**
+- ✅ 3 .tsx files created
+- ✅ README.md with journey description
+- ✅ All components from DS used correctly
+- ✅ TypeScript types defined
+- ✅ Responsive layout
+- ✅ No build errors
+
+**Success:** Can navigate through 3 screens in local demo
+
+---
+
+#### P2-S3-005: FrontOffice Journey - 5 Telas (#57)
+**Issue:** #57 F1.1 - FrontOffice: Onboarding 5 telas  
+**Owner:** Journey Designer  
+**Effort:** 4 hours  
+**Priority:** MEDIUM (P2)  
+**Sprint 3 Origin:** Standalone journey, gamification flow  
+
+**Deliverables:**
+```
+domains/FrontOffice/journeys/onboarding-flow/
+├── README.md
+├── tela-1-boas-vindas.tsx (Welcome screen)
+├── tela-2-personagem.tsx (Character selection)
+├── tela-3-primeira-missao.tsx (First quest/game)
+├── tela-4-leaderboard.tsx (Ranking preview)
+└── tela-5-parabens.tsx (Completion celebration)
+```
+
+**Tela 1 - Boas-vindas:**
+- Components: Text (h1), Button (Começar)
+- Animation: fade-in (optional)
+
+**Tela 2 - Personagem:**
+- Components: Avatar selection grid, Button (Continuar)
+- State: selected character stored
+
+**Tela 3 - Primeira Missão:**
+- Components: Card (quest description), Button (Iniciar)
+- Placeholder: game iframe or mock
+
+**Tela 4 - Leaderboard:**
+- Components: Leaderboard (#61), Text
+- Data: mock top 5 players
+- Highlight: current user
+
+**Tela 5 - Parabéns:**
+- Components: Text, Badge (achievement), Button (Explorar)
+- Celebration: confetti animation (optional)
+
+**Acceptance Criteria:**
+- ✅ 5 .tsx files created
+- ✅ README.md with flow diagram
+- ✅ Uses Leaderboard component (#61)
+- ✅ TypeScript types defined
+- ✅ Responsive design
+- ✅ No build errors
+
+**Success:** Complete onboarding flow navigable locally
+
+---
+
+#### P2-S3-006: Game Hub Integration (#58)
+**Issue:** #58 G1.1 - Game Hub  
+**Owner:** Game Hub Lead  
+**Effort:** 3 hours  
+**Priority:** MEDIUM (P2)  
+**Sprint 3 Origin:** Depends on #61 (Leaderboard), gamification feature  
+**Dependencies:** P2-S3-002 (Leaderboard Component)
+
+**Deliverables:**
+```
+domains/Game/journeys/game-hub-main/
+├── README.md
+├── hub-home.tsx (Game catalog grid)
+├── game-detail.tsx (Individual game page)
+└── leaderboard-global.tsx (Full leaderboard page)
+```
+
+**Hub Home:**
+- GameGrid (3-4 columns)
+- GameFilter (category, difficulty)
+- GameCard x 12 (mock games)
+- Search bar
+
+**Game Detail:**
+- Game info (title, description, thumbnail)
+- Progress bar (#60)
+- Start/Continue button
+- Related games section
+
+**Leaderboard Global:**
+- Leaderboard component (#61)
+- Filters: All-time, Weekly, Daily
+- Pagination (top 50)
+- Current user highlight
+
+**Acceptance Criteria:**
+- ✅ 3 pages created
+- ✅ Uses Progress (#60) and Leaderboard (#61)
+- ✅ Mock data for 12 games
+- ✅ Filtering functional
+- ✅ Navigation between pages works
+- ✅ Registered in Studio (optional)
+
+**Success:** Can browse games, view leaderboard, see progress
+
+---
+
+#### P3-S3-007: Health Indicators Avançados (#55)
+**Issue:** #55 H2.3 - Health Indicators: Estatísticas avançadas  
+**Owner:** Dashboard Team  
+**Effort:** 4 hours  
+**Priority:** LOW (P3)  
+**Sprint 3 Origin:** Enhancement for Dashboard UI (#54)  
+
+**Context:** Dashboard (#54) already shows basic health. This adds advanced metrics.
+
+**New Metrics to Add:**
+```typescript
+type AdvancedHealthMetrics = {
+  // Existing (from #54)
+  buildStatus: 'passing' | 'failing';
+  testsPassing: number;
+  typeErrors: number;
+  cicdStatus: 'passing' | 'failing';
+  
+  // NEW Advanced Metrics
+  codeQualityScore: number; // 0-100
+  testCoverage: number; // percentage
+  technicalDebtHours: number;
+  performanceScore: number; // 0-100
+  securityVulnerabilities: number;
+  lastDeployment: Date;
+  uptime: number; // percentage
+  errorRate: number; // errors/1000 requests
+};
+```
+
+**Deliverables:**
+- Extend `GET /api/dashboard/health` response
+- Update `domains/studio/src/app/dashboard/page.tsx`
+- Add new StatsCard for each metric
+- Mock data with realistic values
+- Thresholds for warning/error states
+
+**Visual Layout:**
+```
+Health Section (expanded):
+├─ Row 1: Build, Tests, Types, CI/CD (existing)
+├─ Row 2: Code Quality, Coverage, Tech Debt, Performance (NEW)
+└─ Row 3: Security, Uptime, Error Rate, Last Deploy (NEW)
+```
+
+**Acceptance Criteria:**
+- ✅ 8 new metrics displayed
+- ✅ API returns all metrics
+- ✅ Color-coded thresholds (green/yellow/red)
+- ✅ Responsive grid layout
+- ✅ Mock data realistic
+- ✅ No performance impact
+
+**Success:** Dashboard shows 12 total health indicators
+
+---
+
+#### P3-S3-008: SpecKit PR Validation (#62)
+**Issue:** #62 CI.1 - SpecKit: PR validation & sprint rules  
+**Owner:** DevOps + Tech Lead  
+**Effort:** 1 hour  
+**Priority:** LOW (P3)  
+**Sprint 3 Origin:** Tooling improvement, complements P1-001 (CI/CD fix)  
+
+**Deliverables:**
+- New workflow: `.github/workflows/speckit-validation.yml`
+- Script: `.specify/scripts/validate-pr.sh`
+- Rules config: `.specify/rules/sprint-validation.json`
+
+**Validation Rules:**
+1. PR has linked issue/spec
+2. Commit messages follow convention
+3. Spec file exists for feature PRs
+4. Test coverage not decreased
+5. No TODO/FIXME in PR diff
+6. Documentation updated (if API changed)
+
+**Workflow Triggers:**
+- `pull_request` (opened, synchronize)
+- Manual dispatch
+
+**Acceptance Criteria:**
+- ✅ Workflow runs on every PR
+- ✅ 6 validation rules implemented
+- ✅ Clear error messages
+- ✅ Blocking vs non-blocking configurable
+- ✅ Documentation in README
+
+**Success:** PR blocked if missing spec file
+
+---
+
+#### P3-S3-009: Code-to-Figma Docs & Backlog (#63)
+**Issue:** #63 C2.2 - Code-to-Figma integration: docs & backlog  
+**Owner:** Design System + Tooling  
+**Effort:** 2 hours  
+**Priority:** LOW (P3)  
+**Sprint 3 Origin:** Documentation task, non-blocking  
+
+**Deliverables:**
+```
+code-to-figma/
+├── README.md (updated with roadmap)
+├── BACKLOG.md (NEW - prioritized tasks)
+├── INTEGRATION_GUIDE.md (NEW - step-by-step setup)
+└── TROUBLESHOOTING.md (NEW - common issues)
+```
+
+**BACKLOG.md Content:**
+- P0: Core sync engine issues (0 items)
+- P1: Missing component mappings (5 items)
+- P2: Style prop edge cases (8 items)
+- P3: Enhancement ideas (12 items)
+
+**INTEGRATION_GUIDE.md:**
+1. Prerequisites (Node, pnpm, Figma plugin)
+2. Setup (install, config, auth)
+3. First sync (Storybook → Figma)
+4. Validation (compare rendered output)
+5. Troubleshooting (link to guide)
+
+**Acceptance Criteria:**
+- ✅ 4 markdown files created/updated
+- ✅ Backlog with 25+ items categorized
+- ✅ Integration guide step-by-step
+- ✅ Screenshots/diagrams included
+- ✅ Reviewed by Design System team
+
+**Success:** New contributor can sync in <30 min following guide
+
+---
+
 #### P3-004: Component Generation CLI
 **Issue:** Manual component scaffolding tedious  
 **Owner:** Tooling Team  

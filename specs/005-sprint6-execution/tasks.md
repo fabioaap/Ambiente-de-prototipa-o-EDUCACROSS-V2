@@ -27,10 +27,10 @@
 
 **Purpose:** Project initialization, dependencies, and environment verification
 
-- [ ] T001 Verify Node 22.21.1 and pnpm 9.14.4+ installed per .nvmrc
-- [ ] T002 Run `pnpm install --frozen-lockfile` to restore dependencies
-- [ ] T003 [P] Verify build order: `pnpm build:tokens && pnpm build:design-system && pnpm build`
-- [ ] T004 [P] Create Sprint 6 feature branch: `git checkout -b feature/sprint6-execution`
+- [X] T001 Verify Node 22.21.1 and pnpm 9.14.4+ installed per .nvmrc
+- [X] T002 Run `pnpm install --frozen-lockfile` to restore dependencies
+- [X] T003 [P] Verify build order: `pnpm build:tokens && pnpm build:design-system && pnpm build`
+- [X] T004 [P] Create Sprint 6 feature branch: `git checkout -b feature/sprint6-execution`
 - [ ] T005 [P] Create GitHub milestone "Sprint 6" and 20 issues from spec.md user stories
 
 ---
@@ -42,10 +42,10 @@
 **⚠️ CRITICAL:** No user story work can begin until this phase is complete
 
 - [ ] T006 Backup current .github/workflows/sprint-2-validation.yml before modifications
-- [ ] T007 [P] Install Playwright: `pnpm add -D -w @playwright/test` and run `pnpm exec playwright install`
-- [ ] T008 [P] Create playwright.config.ts at workspace root with Chromium/Firefox/WebKit configs
-- [ ] T009 [P] Install Sentry: `pnpm add -w @sentry/nextjs` in apps/studio
-- [ ] T010 [P] Install Analytics SDK: `pnpm add -w react-ga4` or `pnpm add -w mixpanel-browser` in apps/studio
+- [X] T007 [P] Install Playwright: `pnpm add -D -w @playwright/test` and run `pnpm exec playwright install`
+- [X] T008 [P] Create playwright.config.ts at workspace root with Chromium/Firefox/WebKit configs
+- [X] T009 [P] Install Sentry: `pnpm add -w @sentry/nextjs` in apps/studio
+- [X] T010 [P] Install Analytics SDK: `pnpm add -w react-ga4` or `pnpm add -w mixpanel-browser` in apps/studio
 - [ ] T011 Verify all foundational installs pass quality gates:
   - Run `pnpm install --frozen-lockfile` to ensure all deps resolved
   - Run `pnpm build:tokens && pnpm build:design-system && pnpm build` (verify SUCCESS)
