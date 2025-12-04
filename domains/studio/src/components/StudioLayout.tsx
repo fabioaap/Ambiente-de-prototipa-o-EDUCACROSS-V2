@@ -2,6 +2,7 @@
 
 import { ReactNode, useState, Suspense } from 'react';
 import { PagesList } from './PagesList';
+import { HighContrastToggle } from './HighContrastToggle';
 import styles from './StudioLayout.module.css';
 
 interface StudioLayoutProps {
@@ -42,6 +43,7 @@ export function StudioLayout({ children }: StudioLayoutProps) {
         </nav>
 
         <div className={styles.sidebarFooter}>
+          <HighContrastToggle />
           <p className={styles.footerText}>
             <strong>Dica:</strong> Use a barra lateral para navegar entre páginas criadas.
           </p>
