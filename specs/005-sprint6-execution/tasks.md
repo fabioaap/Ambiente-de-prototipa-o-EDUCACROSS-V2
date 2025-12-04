@@ -213,12 +213,12 @@
 
 ### Implementation for US2.4
 
-- [ ] T074 [P] [US2.4] Create journey template in .specify/templates/journey-template.md with 5 sections
-- [ ] T075 [P] [US2.4] Create feature spec template in .specify/templates/feature-spec-template.md with user stories section
-- [ ] T076 [P] [US2.4] Create API doc template in .specify/templates/api-doc-template.md with OpenAPI structure
-- [ ] T077 [US2.4] Migrate domains/BackOffice/journeys/admin-workflow/README.md to new template
-- [ ] T078 [US2.4] Migrate domains/FrontOffice/journeys/onboarding-flow/README.md to new template
-- [ ] T079 [US2.4] Migrate domains/FrontOffice/journeys/game-hub/README.md to new template
+- [X] T074 [P] [US2.4] Create journey template in .specify/templates/journey-template.md with 5 sections
+- [X] T075 [P] [US2.4] Create feature spec template in .specify/templates/feature-spec-template.md with user stories section
+- [X] T076 [P] [US2.4] Create API doc template in .specify/templates/api-doc-template.md with OpenAPI structure
+- [X] T077 [US2.4] Migrate domains/BackOffice/journeys/banco-questoes/README.md to new template
+- [X] T078 [US2.4] Migrate domains/FrontOffice/journeys/onboarding/README.md to new template
+- [X] T079 [US2.4] Migrate domains/Game/journeys/game-hub/README.md to new template
 - [ ] T080 [US2.4] Create README generator script (optional): .specify/scripts/generate-readme.sh
 - [ ] T081 [US2.4] Update PROGRESS_DASHBOARD.md to reference template usage
 - [ ] T082 [US2.4] Document templates in specs/005-sprint6-execution/quickstart.md (how to use, when to use)
