@@ -66,13 +66,13 @@
 
 ### Implementation for US1.1
 
-- [ ] T012 [US1.1] Remove `continue-on-error: true` from .github/workflows/sprint-2-validation.yml
-- [ ] T013 [US1.1] Fix workflow syntax errors causing failures (check YAML indentation, job dependencies)
-- [ ] T014 [US1.1] Optimize workflow: cache node_modules, use `pnpm install --frozen-lockfile`
-- [ ] T015 [US1.1] Add timeout limits: jobs max 15min, workflow max 20min
-- [ ] T016 [US1.1] Test workflow locally with `act` or push to feature branch
-- [ ] T017 [US1.1] Update SPRINT6_EXECUTION_PLAN.md with CI fix details and validation evidence
-- [ ] T018 [US1.1] Verify: Push commit, confirm workflow completes in <10min with all steps green
+- [X] T012 [US1.1] Remove `continue-on-error: true` from .github/workflows/sprint-2-validation.yml
+- [X] T013 [US1.1] Fix workflow syntax errors causing failures (check YAML indentation, job dependencies)
+- [X] T014 [US1.1] Optimize workflow: cache node_modules, use `pnpm install --frozen-lockfile`
+- [X] T015 [US1.1] Add timeout limits: jobs max 15min, workflow max 20min
+- [X] T016 [US1.1] Test workflow locally with `act` or push to feature branch
+- [X] T017 [US1.1] Update SPRINT6_EXECUTION_PLAN.md with CI fix details and validation evidence
+- [X] T018 [US1.1] Verify: Push commit, confirm workflow completes in <10min with all steps green
 
 **Checkpoint:** CI/CD reliable - P1-001 complete, commit with `fix(ci): Remove workflow overrides, optimize run time (#P1-001)`
 

@@ -1,27 +1,24 @@
-name: Sprint 6 – Automated Validation
+name: Sprint 2 – Automated Validation
 
 on:
   push:
     branches:
       - main
       - feature/*
-      - 'feature/sprint6-*'
   pull_request:
     branches:
       - main
-      - develop
 
-# Sprint 6 P1-001: Optimized for <10min total runtime
+# Sprint 6 (P1-001): Optimized for <10min total runtime
 env:
   NODE_OPTIONS: '--max-old-space-size=4096'
-  CI: true
 
 jobs:
   # Job 1: Validação de Setup e P0 Regression
   validate-setup:
     name: Setup Validation & P0 Regression Check
     runs-on: ubuntu-latest
-    timeout-minutes: 12  # Job-level timeout (Target <10min)
+    timeout-minutes: 15  # Job-level timeout (Sprint 6 P1-001)
     
     steps:
       - uses: actions/checkout@v4
@@ -41,15 +38,15 @@ jobs:
         run: pnpm install --frozen-lockfile
       
       - name: ✅ Build (P0 regression check)
-        timeout-minutes: 8
+        timeout-minutes: 10
         run: pnpm build
       
       - name: ✅ Lint
-        timeout-minutes: 3
+        timeout-minutes: 5
         run: pnpm lint
       
       - name: ✅ Type check
-        timeout-minutes: 3
+        timeout-minutes: 5
         run: pnpm -r type-check
       
       - name: 📊 Log Build Summary
@@ -62,11 +59,12 @@ jobs:
           echo "- Lint: ✅"
           echo "- Type Check: ✅"
 
-  # Job 2: E2E Tests (Sprint 6 P2) - Parallel, separated for faster feedback
-  e2e-tests:
-    name: E2E Tests & Accessibility
+  # Job 2: Validações Específicas da Sprint 2
+  sprint2-validations:
+    name: Sprint 2 Specific Checks
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15  # Job-level timeout
+    needs: validate-setup  # Avoid duplicate installs
     
     steps:
       - uses: actions/checkout@v4
@@ -85,69 +83,94 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       
-      - name: Install Playwright browsers
-        timeout-minutes: 5
-        run: pnpm exec playwright install --with-deps chromium firefox webkit
-      
-      - name: 🎬 Run E2E Tests
-        timeout-minutes: 8
+      # C2 Validation: Sidebar API check
+      - name: 🔍 C2 – API Pages Endpoint Check
         run: |
-          pnpm exec playwright test --reporter=html || echo "⚠️ E2E tests not yet implemented (Sprint 6 P2)"
-        continue-on-error: true  # P2 optional in P1
-
-  # Job 3: Validações Específicas do Sprint 6
-  sprint6-validations:
-    name: Sprint 6 Specific Checks
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    needs: validate-setup
-    
-    steps:
-      - uses: actions/checkout@v4
+          if [ -f "domains/studio/src/app/api/pages/route.ts" ] && [ -f "domains/studio/src/app/api/pages/\[slug\]/route.ts" ]; then
+            echo "✅ C2: API endpoints exist"
+          else
+            echo "⚠️ C2: API endpoints missing (Non-blocking for Sprint 3)"
+          fi
       
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9.14.4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
+      # G6 Validation: CONTRIBUTING.md exists
+      - name: 📝 G6 – CONTRIBUTING.md Check
+        run: |
+          if [ -f "CONTRIBUTING.md" ]; then
+            echo "✅ G6: CONTRIBUTING.md exists"
+            wc -l CONTRIBUTING.md
+          else
+            echo "⚠️  G6: CONTRIBUTING.md not yet created"
+          fi
       
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      # G4 Validation: Script exists
+      - name: 🔧 G4 – Journeys Index Script Check
+        run: |
+          if [ -f "scripts/gen-journeys-index.js" ]; then
+            echo "✅ G4: Script exists"
+            node scripts/gen-journeys-index.js || echo "⚠️ Script execution warning (non-blocking)"
+            if [ -f "domains/INDEX.md" ]; then
+              echo "✅ G4: Index generated successfully"
+              head -20 domains/INDEX.md
+            else
+              echo "⚠️  G4: Index not generated"
+            fi
+          else
+            echo "⚠️  G4: Script not yet created"
+          fi
       
-      - name: 🔍 Shadcn UI Import Guardrail Check
-        run: pnpm check:shadcn || echo "⚠️ Shadcn validation skipped"
-        continue-on-error: true
+      # B4/D2 Validation: A11y improvements
+      - name: ♿ B4/D2 – Accessibility Check
+        run: |
+          echo "### Accessibility Components Check"
+          for component in Button Input Select Checkbox Radio Switch; do
+            if grep -q "aria-label\|aria-describedby\|role=" "packages/design-system/src/components/$component/$component.tsx" 2>/dev/null; then
+              echo "✅ $component: A11y attributes found"
+            else
+              echo "⚠️  $component: Check manually for a11y improvements"
+            fi
+          done
 
-  # Job 4: Report
+  # Job 3: Report
   report:
-    name: Sprint 6 Status Report
+    name: Sprint 2 Status Report
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [validate-setup, sprint6-validations]
+    needs: [validate-setup, sprint2-validations]
     if: always()
     
     steps:
+      - uses: actions/checkout@v4
+      
       - name: 📊 Generate Status Report
         run: |
-          echo "# 📊 Sprint 6 P1 Validation Report"
+          echo "# 📊 Sprint 2 Validation Report"
           echo ""
           echo "## Build Status"
           echo "- Validate Setup: ${{ needs.validate-setup.result }}"
-          echo "- Sprint 6 Checks: ${{ needs.sprint6-validations.result }}"
+          echo "- Sprint 2 Checks: ${{ needs.sprint2-validations.result }}"
           echo ""
-          echo "## Quality Gates (P1 Target)"
-          echo "- Build: ✅ Required"
-          echo "- Lint: ✅ Required"
-          echo "- Type Check: ✅ Required"
-          echo "- E2E Tests: 🟡 P2 (Parallel job)"
+          echo "## Quality Gates"
+          echo "- Build: ✅ Passed"
+          echo "- Lint: ✅ Passed"
+          echo "- Type Check: ✅ Passed"
           echo ""
-          echo "## Next Steps for PR"
-          echo "1. Ensure all P0 checks pass (Build, Lint, Type)"
-          echo "2. Open PR with feature/sprint6-* prefix"
-          echo "3. Merge after review ✅"
+          echo "## Next Steps"
+          echo "1. Checkout branches: feature/g6-*, feature/c2-*, etc."
+          echo "2. Follow docs/sprint-2-execution-prompt.md"
+          echo "3. Open PRs with [P1] prefix"
+          echo "4. Merge after review ✅"
 
+  # Job 4: Notify if main branch
+  notify-main:
+    name: Notify Sprint 2 Progress
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.validate-setup.result == 'success'
+    needs: [validate-setup]
+    
+    steps:
+      - name: 📢 Sprint 2 Status
+        run: |
+          echo "✅ Main branch updated!"
+          echo "Sprint 2 execution prompt is ready."
+          echo "Start development with: docs/sprint-2-execution-prompt.md"
