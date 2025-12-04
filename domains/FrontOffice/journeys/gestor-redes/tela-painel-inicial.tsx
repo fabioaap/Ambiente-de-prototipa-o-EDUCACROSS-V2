@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Card, Badge, Progress, Text, Select, Input, DataTable, Avatar } from '@prototipo/design-system';
+import { Button, Card, Badge, Progress, Text, Select, Input, DataTable } from '@prototipo/design-system';
 import styles from './gestor-redes.module.css';
-import DrawerDetalhesAcesso from './drawer-detalhes-acesso';
+import ModalDetalhesAcesso from './modal-detalhes-acesso';
 
 interface KPIData {
   label: string;
@@ -26,7 +26,7 @@ interface EscolaData {
 }
 
 export default function PainelInicialGestorRedes() {
-  const [drawerAberto, setDrawerAberto] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false);
   const [grupoSelecionado, setGrupoSelecionado] = useState('todas');
   const [anoSelecionado, setAnoSelecionado] = useState('todos');
   const [periodoSelecionado, setPeriodoSelecionado] = useState('todo');
@@ -201,23 +201,10 @@ export default function PainelInicialGestorRedes() {
       {/* KPIs Grid */}
       <div className={styles.kpisGrid}>
         {kpis.map((kpi, index) => (
-          <Card
-            key={kpi.label}
-            className={`${styles.kpiCard} ${index === 0 ? styles.kpiCardDestaque : ''} ${index === 0 ? styles.kpiCardClickable : ''}`}
-            onClick={index === 0 ? () => setDrawerAberto(true) : undefined}
-          >
+          <Card key={kpi.label} className={`${styles.kpiCard} ${index === 0 ? styles.kpiCardDestaque : ''}`}>
             <div className={styles.kpiHeader}>
-              <div className={styles.kpiHeaderLeft}>
-                {index === 0 && (
-                  <Avatar
-                    initials="AL"
-                    size="sm"
-                    className={styles.kpiAvatar}
-                  />
-                )}
-                <Text size="sm" weight="medium" color="secondary">{kpi.label}</Text>
-              </div>
-              {index === 0 && <span className={styles.kpiIcon}>👁</span>}
+              <Text size="sm" weight="medium" color="secondary">{kpi.label}</Text>
+              {index === 0 && <span className={styles.kpiIcon}>��</span>}
             </div>
 
             <div className={styles.kpiMetric}>
@@ -303,7 +290,7 @@ export default function PainelInicialGestorRedes() {
         <div className={styles.tableHeader}>
           <div className={styles.tableControls}>
             <Text size="sm">Mostrar</Text>
-            <Select value="10" onChange={() => { }}>
+            <Select value="10" onChange={() => {}}>
               <option value="10">10</option>
               <option value="25">25</option>
               <option value="50">50</option>
@@ -335,13 +322,13 @@ export default function PainelInicialGestorRedes() {
         </div>
       </div>
 
-      {/* Drawer de Detalhes */}
-      <DrawerDetalhesAcesso
-        aberto={drawerAberto}
-        onFechar={() => setDrawerAberto(false)}
-        titulo="Detalhes de Acesso - Alunos"
-        totalAcessos={38805}
-      />
+      {/* Modal de Detalhes */}
+      {modalAberto && (
+        <ModalDetalhesAcesso
+          baseAcessaram={38805}
+          onClose={() => setModalAberto(false)}
+        />
+      )}
     </div>
   );
 }
