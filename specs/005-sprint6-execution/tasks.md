@@ -108,17 +108,17 @@
 
 ### Implementation for US1.3
 
-- [ ] T028 [US1.3] Identify failing tests: `pnpm test 2>&1 | grep -A 5 "FAIL"`
-- [ ] T029 [P] [US1.3] Fix test 1: Debug failure, update assertions or test data
-- [ ] T030 [P] [US1.3] Fix test 2: Debug failure, update assertions or test data
-- [ ] T031 [US1.3] Check for flaky tests: Run suite 5 times `for i in {1..5}; do pnpm test; done`
-- [ ] T032 [US1.3] Stabilize flaky tests: Add explicit waits, mock timers, or rewrite test logic
-- [ ] T033 [US1.3] Verify coverage maintained: `pnpm test --coverage` shows ≥95%
-- [ ] T034 [US1.3] Remove skipped tests or document reason in test file comments
-- [ ] T035 [US1.3] Optimize CI test execution: Ensure completes in <2min
-- [ ] T036 [US1.3] Verify: `pnpm test` passes 76/76 tests on 3 consecutive runs
+- [X] T028 [US1.3] Identify failing tests: `pnpm test 2>&1 | grep -A 5 "FAIL"`
+- [X] T029 [P] [US1.3] Fix test 1: Debug failure, update assertions or test data
+- [X] T030 [P] [US1.3] Fix test 2: Debug failure, update assertions or test data
+- [X] T031 [US1.3] Check for flaky tests: Run suite 5 times `for i in {1..5}; do pnpm test; done`
+- [X] T032 [US1.3] Stabilize flaky tests: Add explicit waits, mock timers, or rewrite test logic
+- [X] T033 [US1.3] Verify coverage maintained: `pnpm test --coverage` shows ≥95%
+- [X] T034 [US1.3] Remove skipped tests or document reason in test file comments
+- [X] T035 [US1.3] Optimize CI test execution: Ensure completes in <2min
+- [X] T036 [US1.3] Verify: `pnpm test` passes 76/76 tests on 3 consecutive runs
 
-**Checkpoint:** Test suite 100% reliable - P1-003 complete, commit with `fix(tests): Resolve 2 failing unit tests, stabilize suite (#P1-003)`
+**Checkpoint:** Test suite 100% reliable - P1-003 complete, commit with `fix(tests): Resolve 2 failing unit tests, stabilize suite (#P1-003)` ✅ DONE (b48e420)
 
 ---
 
@@ -134,14 +134,14 @@
 
 **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T037 [P] [US2.1] Contract test: Dashboard API returns valid JSON in tests/e2e/dashboard-api.spec.ts
-- [ ] T038 [P] [US2.1] E2E test: Dashboard loads KPIs in tests/e2e/dashboard-kpis.spec.ts
-- [ ] T039 [P] [US2.1] E2E test: Studio page create/edit/save workflow in tests/e2e/studio-page-crud.spec.ts
+- [X] T037 [P] [US2.1] Contract test: Dashboard API returns valid JSON in tests/e2e/dashboard-api.spec.ts
+- [X] T038 [P] [US2.1] E2E test: Dashboard loads KPIs in tests/e2e/dashboard-kpis.spec.ts
+- [X] T039 [P] [US2.1] E2E test: Studio page create/edit/save workflow in tests/e2e/studio-page-crud.spec.ts
 
 ### Implementation for US2.1
 
-- [ ] T040 [US2.1] Configure playwright.config.ts: 3 browsers (Chromium, Firefox, WebKit), screenshots on failure
-- [ ] T041 [US2.1] Create tests/e2e/ directory structure at workspace root
+- [X] T040 [US2.1] Configure playwright.config.ts: 3 browsers (Chromium, Firefox, WebKit), screenshots on failure
+- [X] T041 [US2.1] Create tests/e2e/ directory structure at workspace root
 - [ ] T042 [P] [US2.1] Implement Dashboard journey test: Visit /dashboard, assert KPIs visible, check health metrics
 - [ ] T043 [P] [US2.1] Implement Studio journey test: Create page, add component, save, verify JSON schema
 - [ ] T044 [P] [US2.1] Add accessibility checks with @axe-core/playwright in all E2E tests
