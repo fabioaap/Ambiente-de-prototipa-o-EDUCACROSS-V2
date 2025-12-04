@@ -46,7 +46,13 @@
 - [ ] T008 [P] Create playwright.config.ts at workspace root with Chromium/Firefox/WebKit configs
 - [ ] T009 [P] Install Sentry: `pnpm add -w @sentry/nextjs` in apps/studio
 - [ ] T010 [P] Install Analytics SDK: `pnpm add -w react-ga4` or `pnpm add -w mixpanel-browser` in apps/studio
-- [ ] T011 Verify all foundational installs: `pnpm -r type-check && pnpm build`
+- [ ] T011 Verify all foundational installs pass quality gates:
+  - Run `pnpm install --frozen-lockfile` to ensure all deps resolved
+  - Run `pnpm build:tokens && pnpm build:design-system && pnpm build` (verify SUCCESS)
+  - Run `pnpm lint` (verify 0 errors)
+  - Run `pnpm -r type-check` (verify 0 warnings)
+  - Check dev servers start: `pnpm dev:studio` and `pnpm dev:storybook` (no console errors)
+  - **Constitution Principle 1 Check:** Environment remains "run-ready" after all installs
 
 **Checkpoint:** Foundation ready - user story implementation can now begin in parallel
 
