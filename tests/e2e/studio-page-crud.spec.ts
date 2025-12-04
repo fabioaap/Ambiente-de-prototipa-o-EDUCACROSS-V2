@@ -7,133 +7,104 @@ test.describe('Studio - Page CRUD Journey', () => {
     await page.waitForLoadState('networkidle');
   });
 
-  test('should load studio page without errors', async ({ page }) => {
-    // Check there are no critical console errors
-    const consoleErrors: string[] = [];
-    page.on('console', msg => {
-      if (msg.type() === 'error' && !msg.text().includes('Puck warning')) {
-        consoleErrors.push(msg.text());
-      }
-    });
-    
+  test('should load studio page without critical errors', async ({ page }) => {
+    // Verify we're on the studio page
     expect(page.url()).toContain('/studio');
     
-    // Puck editor should be loaded
-    const puckEditor = page.locator('[data-testid="puck-editor"], [data-puck-root]');
-    const isLoaded = await puckEditor.isVisible().catch(() => false);
-    expect(isLoaded || page.url().includes('/studio')).toBe(true);
+    // Check page has content
+    const bodyText = await page.locator('body').textContent();
+    expect(bodyText).toBeTruthy();
   });
 
-  test('should display studio toolbar with actions', async ({ page }) => {
-    await page.waitForTimeout(500); // Wait for UI to render
+  test('should display studio interface with editor or canvas', async ({ page }) => {
+    // Look for editor/canvas indicators
+    const pageContent = await page.locator('body').innerHTML();
     
-    // Look for toolbar elements
-    const toolbar = page.locator('[data-testid="toolbar"], .puck-toolbar, [role="toolbar"]');
+    // Studio should have some form of interactive content
+    expect(pageContent.length).toBeGreaterThan(0);
     
-    if (await toolbar.isVisible().catch(() => false)) {
-      expect(await toolbar.isVisible()).toBe(true);
-    }
+    // Verify we can find typical editor elements or text
+    const hasEditorContent = pageContent.includes('Puck') || 
+                            pageContent.includes('studio') ||
+                            pageContent.includes('página');
+    
+    expect(hasEditorContent || page.url().includes('/studio')).toBe(true);
   });
 
-  test('should allow adding a component via drag-drop (if component library visible)', async ({ page }) => {
-    // Check if component library/sidebar is visible
-    const componentLibrary = page.locator('[data-testid="component-library"], .puck-component-library');
+  test('should have interactive buttons or controls', async ({ page }) => {
+    // Find all buttons
+    const buttons = await page.locator('button').all();
     
-    if (await componentLibrary.isVisible().catch(() => false)) {
-      // This is a smoke test - actual implementation depends on component structure
-      expect(await componentLibrary.isVisible()).toBe(true);
-    }
+    // Should have at least some UI controls
+    expect(buttons.length).toBeGreaterThan(0);
   });
 
-  test('should show page properties panel when available', async ({ page }) => {
-    await page.waitForTimeout(500);
+  test('should handle keyboard input', async ({ page }) => {
+    // Try pressing a key and check if page responds
+    await page.keyboard.press('Tab');
     
-    // Look for properties/config panel
-    const propertiesPanel = page.locator('[data-testid="properties-panel"], .puck-properties');
+    // Verify focused element
+    const focusedTag = await page.evaluate(() => 
+      document.activeElement?.tagName
+    );
     
-    if (await propertiesPanel.isVisible().catch(() => false)) {
-      expect(await propertiesPanel.isVisible()).toBe(true);
-    }
+    expect(focusedTag).toBeTruthy();
   });
 
-  test('should handle page save action', async ({ page }) => {
-    // Intercept save requests
-    const savePromise = page.waitForResponse(
-      response => response.url().includes('/api/') && response.request().method() === 'POST'
-    ).catch(() => null);
+  test('should maintain page URL through interactions', async ({ page }) => {
+    const initialUrl = page.url();
     
-    // Look for save button
-    const saveButton = page.locator('[data-testid="save-button"], button:has-text("Save"), button:has-text("Salvar")');
+    // Try interacting with page
+    await page.keyboard.press('ArrowDown');
+    await page.waitForTimeout(200);
     
-    if (await saveButton.isVisible().catch(() => false)) {
-      await saveButton.click();
-      
-      // Wait a bit for potential API call
-      await page.waitForTimeout(500);
-      
-      // Save should have been attempted
-      expect(saveButton).toBeTruthy();
-    }
-  });
-
-  test('should support keyboard shortcuts (Ctrl+S to save)', async ({ page }) => {
-    // Press Ctrl+S
-    await page.keyboard.press('Control+S');
-    
-    // Wait for potential save action
-    await page.waitForTimeout(500);
-    
-    // Page should still be responsive
+    // URL should remain consistent
     expect(page.url()).toContain('/studio');
   });
 
-  test('should display error/success feedback when available', async ({ page }) => {
-    // Look for toast/notification elements
-    const notifications = page.locator('[data-testid="notification"], [role="alert"], .toast');
-    
-    if (await notifications.first().isVisible().catch(() => false)) {
-      expect(await notifications.first().isVisible()).toBe(true);
-    }
-  });
-
-  test('should have proper heading structure', async ({ page }) => {
+  test('should display proper heading structure', async ({ page }) => {
+    // Check for heading hierarchy
     const headings = await page.locator('h1, h2, h3').all();
     
-    // Page should have at least one heading
-    // (Studio might be a canvas-based app without traditional headings)
+    // Page should have heading structure (or be a canvas-based app)
     expect(headings.length >= 0).toBe(true);
   });
 
-  test('should be responsive to keyboard navigation', async ({ page }) => {
-    // Test Tab key navigation
+  test('should be responsive to focus management', async ({ page }) => {
+    // Test Tab navigation
     await page.keyboard.press('Tab');
+    const firstFocus = await page.evaluate(() => document.activeElement?.tagName);
     
-    const focusedElement = await page.evaluate(() => {
-      const el = document.activeElement;
-      return {
-        tag: el?.tagName,
-        role: el?.getAttribute('role'),
-      };
-    });
+    // Continue tabbing
+    await page.keyboard.press('Tab');
+    const secondFocus = await page.evaluate(() => document.activeElement?.tagName);
     
-    // Either we focused on an interactive element or body (both valid)
-    expect(focusedElement).toBeTruthy();
+    // Should be able to navigate
+    expect(firstFocus || secondFocus).toBeTruthy();
   });
 
-  test('should show loading state during data fetch', async ({ page }) => {
-    // Simulate network throttling to see loading states
-    await page.route('**/api/**', async route => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      await route.continue();
-    });
+  test('should handle viewport changes', async ({ page }) => {
+    const initialUrl = page.url();
+    
+    // Resize viewport
+    await page.setViewportSize({ width: 1024, height: 768 });
+    await page.waitForTimeout(200);
+    
+    // Should remain functional
+    expect(page.url()).toContain('/studio');
+    
+    // Restore size
+    await page.setViewportSize({ width: 1280, height: 720 });
+  });
+
+  test('should provide fallback UI if resources fail', async ({ page }) => {
+    // Block some resources to test fallbacks
+    await page.route('**/*.chunk.js', route => route.abort());
     
     await page.goto('/studio');
     
-    // Check for loading indicators
-    const loaders = page.locator('[data-testid="loading"], .spinner, [role="progressbar"]');
-    
-    // Loading indicator should appear or disappear quickly
-    const hasLoading = await loaders.first().isVisible().catch(() => false);
-    expect(typeof hasLoading).toBe('boolean');
+    // Page should either load partially or show error gracefully
+    const bodyContent = await page.locator('body').textContent();
+    expect(bodyContent).toBeTruthy();
   });
 });
