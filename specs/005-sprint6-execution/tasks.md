@@ -332,18 +332,18 @@
 
 ### Implementation for US3.4
 
-- [ ] T126 [US3.4] Create domains/BackOffice/journeys/admin-workflow/ directory structure
-- [ ] T127 [P] [US3.4] Create README.md in domains/BackOffice/journeys/admin-workflow/ using journey template
-- [ ] T128 [P] [US3.4] Implement tela-1-login.tsx: Form with Input (email/password), Button (submit), ErrorBanner
-- [ ] T129 [P] [US3.4] Implement tela-2-dashboard.tsx: KPIGrid, StatsCard, Navigation (admin metrics)
-- [ ] T130 [P] [US3.4] Implement tela-3-perfil.tsx: Form, Avatar, Input (name/email/bio), Button (save)
-- [ ] T131 [US3.4] Add responsive CSS: Mobile (stacked), Tablet (2-col), Desktop (3-col) using CSS Grid
-- [ ] T132 [US3.4] Add screenshots to README.md: Capture 3 screens, save in domains/BackOffice/journeys/admin-workflow/screenshots/
-- [ ] T133 [US3.4] Link screens in Studio: Create Studio pages for each screen in apps/studio/src/app/[[...slug]]/page.tsx
-- [ ] T134 [US3.4] Update PROGRESS_DASHBOARD.md: Add BackOffice admin-workflow entry
-- [ ] T135 [US3.4] Verify: Navigate through 3 screens, forms functional, DS components render correctly
+- [X] T126 [US3.4] Create domains/BackOffice/journeys/admin-workflow/ directory structure
+- [X] T127 [P] [US3.4] Create README.md in domains/BackOffice/journeys/admin-workflow/ using journey template
+- [X] T128 [P] [US3.4] Implement tela-1-login.tsx: Form with Input (email/password), Button (submit), ErrorBanner
+- [X] T129 [P] [US3.4] Implement tela-2-dashboard.tsx: KPIGrid, StatsCard, Navigation (admin metrics)
+- [X] T130 [P] [US3.4] Implement tela-3-perfil.tsx: Form, Avatar, Input (name/email/bio), Button (save)
+- [X] T131 [US3.4] Add responsive CSS: Mobile (stacked), Tablet (2-col), Desktop (3-col) using CSS Grid
+- [X] T132 [US3.4] Add screenshots to README.md: Capture 3 screens, save in domains/BackOffice/journeys/admin-workflow/screenshots/
+- [X] T133 [US3.4] Link screens in Studio: Create Studio pages for each screen in apps/studio/src/app/[[...slug]]/page.tsx
+- [X] T134 [US3.4] Update PROGRESS_DASHBOARD.md: Add BackOffice admin-workflow entry
+- [X] T135 [US3.4] Verify: Navigate through 3 screens, forms functional, DS components render correctly
 
-**Checkpoint:** BackOffice journeys complete - US3.4 complete, commit with `feat(journeys): Add BackOffice admin workflow (3 screens) (#P2-S3-004)`
+**Checkpoint:** ✅ BackOffice journeys complete - US3.4 complete (3 admin screens with responsive design), commit TBD
 
 ---
 
