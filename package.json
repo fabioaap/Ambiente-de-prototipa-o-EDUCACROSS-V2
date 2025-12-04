@@ -4,7 +4,7 @@
   "private": true,
   "description": "Repositório de prototipação frontend orientado a jornadas com Puck, React e Storybook",
   "engines": {
-    "node": ">=22.20.0 <23",
+    "node": "22.21.1",
     "pnpm": ">=9.14.4"
   },
   "scripts": {
@@ -23,7 +23,6 @@
     "type-check": "turbo run type-check",
     "test:dashboard-hydration": "pnpm --filter studio test:dashboard-hydration",
     "check:shadcn": "node scripts/check-shadcn-usage.mjs",
-    "verify-prop": "node scripts/verify-component-prop.mjs",
     "mcp:figma:start": "pnpm --filter @educacross/figma-mcp-server start",
     "mcp:figma:test": "pnpm --filter @educacross/figma-mcp-server test",
     "mcp:figma:health": "curl -s http://localhost:3845/health || echo 'MCP server offline'",
@@ -36,7 +35,6 @@
     "perf:storybook": "playwright test scripts/playwright/storybook-perf.spec.ts --reporter=list"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.11.0",
     "@playwright/test": "^1.48.2",
     "@prototipo/eslint-config": "workspace:*",
     "eslint": "^9.15.0",
@@ -46,13 +44,8 @@
   },
   "packageManager": "pnpm@9.14.4",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
     "@sentry/nextjs": "^10.28.0",
     "@specfy/stack-analyser": "1.27.3",
-    "dotenv": "^16.4.5",
-    "pino": "^9.5.0",
-    "react-ga4": "^2.1.0",
-    "undici": "^6.20.0",
-    "zod": "^3.23.8"
+    "react-ga4": "^2.1.0"
   }
 }

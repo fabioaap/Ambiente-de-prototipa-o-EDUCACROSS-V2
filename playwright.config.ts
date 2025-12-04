@@ -6,39 +6,23 @@ import { defineConfig, devices } from '@playwright/test';
  * Based on Sprint 6 research.md decisions:
  * - Multi-browser support: Chromium, Firefox, WebKit
  * - Screenshot/video on failure for debugging
- * - Parallel execution for faster CI (target <5min)
- * - Comprehensive artifact collection
- * 
- * Performance optimization (Sprint 6 P2):
- * - fullyParallel: true - Run all tests in parallel
- * - workers: 4 (local), 2 (CI) - CPU-bound parallel execution
- * - retries: 0 (local), 2 (CI) - Retry flaky tests only in CI
- * - timeout: 30s per test, 120s per test retry
+ * - Parallel execution for faster CI
  * 
  * @see specs/005-sprint6-execution/research.md
- * @see tests/e2e/README.md
  */
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 2 : 4,
-  timeout: 30_000,  // 30 seconds per test
-  expect: {
-    timeout: 5_000,  // 5 seconds for expect assertions
-  },
+  workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? 'github' : 'list',
-  
-  outputDir: './test-results',
   
   use: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
-    navigationTimeout: 30_000,
-    actionTimeout: 10_000,
   },
 
   projects: [
