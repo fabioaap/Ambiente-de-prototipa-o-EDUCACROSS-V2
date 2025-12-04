@@ -313,48 +313,20 @@ pnpm dev:storybook # In Terminal 2
 
 ### Export/Import Data (CSV/JSON/XML)
 ```bash
-# ✅ IMPLEMENTED in Phase 10 (P2-005)
-# Multi-format export/import with schema validation
+# Feature implemented in P2-005
+# Usage (after implementation):
 
-# EXPORT from Dashboard:
-# Option 1: Via UI
+# Export from dashboard:
 # 1. Visit: http://localhost:3000/dashboard
-# 2. Navigate to Export section
-# 3. Select format from dropdown: JSON, CSV, or XML
-# 4. Click "Download as [FORMAT]"
-# 5. File downloads with timestamp: pages-export-2025-12-04.[format]
+# 2. Click "Export" button
+# 3. Select format: CSV, JSON, or XML
+# 4. File downloads to browser
 
-# Option 2: Direct API call
-curl -o export.json "http://localhost:3000/api/dashboard/pages/export?format=json"
-curl -o export.csv "http://localhost:3000/api/dashboard/pages/export?format=csv"
-curl -o export.xml "http://localhost:3000/api/dashboard/pages/export?format=xml"
-
-# IMPORT to Dashboard:
-# Option 1: Via UI
+# Import to dashboard:
 # 1. Visit: http://localhost:3000/dashboard
-# 2. Navigate to Import section
-# 3. Select mode: "Merge" (keep existing) or "Replace" (delete all first)
-# 4. Choose file (any format: .json, .csv, .xml)
-# 5. Click "Upload" - format auto-detected from extension
-# 6. Review validation results and confirm
-
-# Option 2: Direct API call
-curl -X POST "http://localhost:3000/api/dashboard/pages/import" \
-  -F "file=@pages-export-2025-12-04.json"
-
-# VALIDATION RULES:
-# - All formats: Required fields (id, title, slug, status, owner, createdAt, updatedAt)
-# - Status enum: Must be "published", "draft", or "archived"
-# - Dates: Must be valid ISO 8601 format (e.g., "2024-01-01T00:00:00.000Z")
-# - CSV: Headers must match exactly (ID, Title, Slug, Status, Owner, Created At, Updated At)
-# - JSON: Schema validated (exportedAt, totalPages, pages array)
-# - XML: Valid XML structure with <export>, <metadata>, <pages> tags
-
-# ERROR HANDLING:
-# - Line-level errors: "Row 3: Invalid status 'pending'"
-# - Field-level errors: "Row 5: Missing required field 'title'"
-# - Format errors: "Invalid CSV: expected 7 columns, got 5"
-# - All errors returned with HTTP 400 and details in response body
+# 2. Click "Import" button
+# 3. Select file (CSV/JSON/XML)
+# 4. Validate and confirm import
 ```
 
 ---
@@ -512,78 +484,6 @@ Before requesting review, ensure:
 **Kickoff Meeting:** 09/12/2025 @ 09:00  
 **Daily Standups:** Every day @ 09:30 (15 minutes)  
 **Sprint Retrospective:** 20/12/2025 @ 14:00  
-
----
-
-## Testing Monitoring & Error Tracking (Phase 7)
-
-### Sentry Error Monitoring Setup
-
-#### 1. Environment Configuration
-Create `.env.local` in `domains/studio/`:
-```bash
-# Sentry Configuration
-SENTRY_DSN=https://your-key@sentry.io/your-project-id
-SENTRY_ENVIRONMENT=development
-SENTRY_RELEASE=1.0.0
-
-# Optional: For source map uploads in CI/CD
-SENTRY_ORG=your-org
-SENTRY_PROJECT=your-project
-SENTRY_AUTH_TOKEN=your-auth-token
-```
-
-#### 2. Testing Error Capture
-```bash
-# 1. Start Studio dev server
-pnpm dev:studio
-
-# 2. Open Studio at http://localhost:3000
-# 3. Check browser console for Sentry initialization log
-# 4. Trigger test error:
-#    - Console: `window.__SENTRY__?.captureException(new Error('Test error'))`
-#    - Or throw error in a component
-
-# 5. View in Sentry dashboard
-# https://sentry.io/organizations/your-org/issues/
-```
-
-#### 3. Verify Error Capture
-- [ ] Error appears in Sentry dashboard within 5 seconds
-- [ ] Error includes source map (filename, line number, function)
-- [ ] Stack trace is readable
-- [ ] Breadcrumbs show user actions before error
-
-#### 4. Error Types Tracked
-- **React Errors:** ErrorBoundary captures component crashes
-- **Unhandled Exceptions:** Try/catch errors + rejected promises
-- **API Errors:** Dashboard and Studio API calls
-- **Ignored Errors:** Browser extensions, timeouts, AbortError
-
-#### 5. Dashboard Monitoring
-- Navigate to `/dashboard` after error occurs
-- Check for error indicator (if implemented)
-- Verify error count displayed
-
-### E2E Test Execution
-```bash
-# Run full E2E test suite
-pnpm test:e2e
-
-# Run specific test suite
-pnpm test:e2e dashboard-api
-pnpm test:e2e dashboard-kpis
-pnpm test:e2e studio-page-crud
-
-# View test results
-# Open: playwright/results/index.html in browser
-```
-
-### CI/CD Validation
-- GitHub Actions runs all quality gates: lint, type-check, tests, build
-- E2E tests run in CI (Chrome, Firefox, Safari)
-- Artifacts uploaded if any test fails
-- Check `.github/workflows/sprint-2-validation.yml` for details
 
 ---
 

@@ -21,43 +21,6 @@ Sprint 6 consolidates technical debt elimination (P1), production readiness feat
 
 ---
 
-## Non-Functional Requirements
-
-### Performance
-- **NFR-P1:** Page load time ≤2 seconds (Studio dashboard, journey pages)
-- **NFR-P2:** API response time <200ms (GET endpoints), <500ms (POST endpoints with processing)
-- **NFR-P3:** Storybook build time <90 seconds (full production build)
-- **NFR-P4:** Studio editor interaction <100ms (component drag, property edit, save)
-- **NFR-P5:** Bundle size: Main chunk <500KB gzipped, total page weight <2MB
-
-### Accessibility
-- **NFR-A1:** WCAG 2.1 AA compliance minimum (all components, journeys, dashboards)
-- **NFR-A2:** WCAG 2.1 AAA compliance target for P3-002 audit items
-- **NFR-A3:** Keyboard navigation functional (Tab, Arrow keys, Enter, Escape)
-- **NFR-A4:** Screen reader compatible (ARIA attributes, semantic HTML)
-- **NFR-A5:** Color contrast ratios ≥4.5:1 (AA), ≥7:1 (AAA for P3-002)
-
-### Security
-- **NFR-S1:** No high or critical vulnerabilities in npm audit (production dependencies)
-- **NFR-S2:** OWASP Top 10 awareness (XSS prevention, CSRF tokens, secure headers)
-- **NFR-S3:** Sensitive data not logged (API keys, tokens, user PII)
-- **NFR-S4:** Sentry error tracking excludes sensitive context (passwords, tokens)
-
-### Quality
-- **NFR-Q1:** Test coverage ≥95% (unit tests via Vitest)
-- **NFR-Q2:** E2E coverage ≥80% of user-facing features (Playwright)
-- **NFR-Q3:** Zero TypeScript warnings (strict mode enabled)
-- **NFR-Q4:** Zero ESLint errors (warnings acceptable if documented)
-- **NFR-Q5:** 100% CI pass rate (no manual overrides, all quality gates green)
-
-### Reliability
-- **NFR-R1:** Error rate <1% (tracked via Sentry)
-- **NFR-R2:** Uptime target 99%+ during business hours (9am-6pm BRT)
-- **NFR-R3:** Graceful degradation (feature unavailable states, error boundaries)
-- **NFR-R4:** Build reproducibility (frozen lockfile, pinned Node version)
-
----
-
 ## User Stories
 
 ### Phase 1: Critical Fixes (P1 - Week 1)

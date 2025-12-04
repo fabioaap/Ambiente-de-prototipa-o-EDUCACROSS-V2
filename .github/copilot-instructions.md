@@ -1,16 +1,44 @@
-# Copilot Instructions
+# EDUCACROSS Copilot Playbook
+- Status: Sprint 6 Preparation (2025-12-09 kickoff); Sprint 3 complete (100%), 20 items planned for Sprint 6.
+- Context: specs/005-sprint6-execution/ (spec, plan, research, data-model, quickstart).
 
-- Context: prototyping monorepo (Next.js + Puck Studio + Storybook) on Node 22.21.1 / pnpm 9.14+ / TypeScript strict; keep builds/dev flows clean for designers.
-- Topology: apps (studio dashboard + Storybook hub), packages (design-system, tokens, eslint-config), domains (BackOffice/FrontOffice/Game journeys + docs), and code-to-figma (figma-mcp-server + figma-sync-engine).
-- Build chain: `pnpm build:tokens` → `pnpm build:design-system` → `pnpm build` (or `pnpm build:hub` for Storybook). Install with `pnpm install --frozen-lockfile`. Use `pnpm --filter <pkg> <cmd>` when a package stalls on Windows.
-- Dev servers: `pnpm dev:studio` (Next.js + Puck, port 3000), `pnpm dev:hub`/`dev:storybook` (Storybook, port 6006). Shadcn imports (`@/components/ui/*`) allowed only in studio/dashboard routes; guard with `pnpm check:shadcn`.
-- Design System: components live in [packages/design-system](packages/design-system) using CSS Modules and tokens; export via `src/index.ts`. New components need `'use client'`, `React.forwardRef`, typed props (no `any`), CSS module, Storybook story under [domains/storybook/src/stories](domains/storybook/src/stories). Tokens source is [packages/tokens/src/tokens.json](packages/tokens/src/tokens.json); rebuild via `pnpm build:tokens` and import `dist/tokens.css`.
-- Puck integration: component contract sits in [domains/studio/src/config/puck.config.tsx](domains/studio/src/config/puck.config.tsx); JSON pages live in [domains/studio/data/pages](domains/studio/data/pages). Keep props in sync with design-system or pages break.
-- Journeys: each `domains/{domain}/journeys/{journey}` must ship `README.md`, `notas.md`, `links.md`; only use `@prototipo/design-system` components. After creating journeys run `pnpm gen:journeys` and update [domains/README.md](domains/README.md).
-- API patterns: Next.js App Router handlers under studio/dashboard use `Response.json` with typed payloads; keep `/api/dashboard/summary` and `/api/dashboard/health` response shapes consistent with mocks in the dashboard UI.
-- Testing: Vitest across packages (`vitest.config.ts` per package); use `play()` interaction tests in Storybook stories. Coverage gates on figma-mcp-server: ≥80% statements/functions, ≥75% branches.
-- Quality gates before PR: `pnpm build`, `pnpm lint`, `pnpm type-check`, `pnpm check:shadcn`; ensure Storybook and Studio run without console errors. Branch naming `feature/sprint6-{item}`; commits `type(scope): summary (issue #XX)`; SpecKit runs via `/spec` comment on PR.
-- Code-to-Figma: two subsystems. figma-mcp-server ([code-to-figma/figma-mcp-server](code-to-figma/figma-mcp-server)) exposes MCP tools `get_design_tokens` and `get_frame_snapshot`; requires `FIGMA_ACCESS_TOKEN` for live tests. figma-sync-engine ([code-to-figma/figma-sync-engine](code-to-figma/figma-sync-engine)) pipeline: Storybook addon capture (`packages/storybook-addon-export/captureHtml.ts` whitelist) → HTML→Figma core → AutoLayout interpreter → plugin rebuild; update `docs/figma-json-format.md` when schema changes.
-- ESLint config: shared presets in [packages/eslint-config](packages/eslint-config) (base/next/storybook). Prefer reuse over ad-hoc rules; lint via `pnpm lint` or filtered runs.
-- Accessibility: design-system components target WCAG 2.1 AA; provide `aria-label` for icon buttons and keep focus styles intact. Storybook has a11y addon; dashboards use skeleton → data → error fallback pattern.
-- Helpful references: root overview in [README.md](README.md); design system usage in [packages/design-system/README.md](packages/design-system/README.md); Storybook guidance in [domains/storybook/README.md](domains/storybook/README.md); Studio behavior in [domains/studio/README.md](domains/studio/README.md). For design-system evolution process see [DS_CONTINUOUS_EVOLUTION_SYSTEM.md](DS_CONTINUOUS_EVOLUTION_SYSTEM.md) and [DESIGN_SYSTEM_REAL_GAP_ANALYSIS.md](DESIGN_SYSTEM_REAL_GAP_ANALYSIS.md).
+## Platform Overview
+- Stack: Node 22.21.1 (.nvmrc enforced), pnpm 9.14.4+, TypeScript 5 strict, Next.js 15 App Router, SWR, React 18.
+- Repo map: apps/studio (Next app + Puck), apps/storybook (ESM catalog), packages/design-system, packages/tokens, code-to-figma/, domains/ journeys.
+- Data flow: design-system exports feed Storybook and Studio; Studio dashboard consumes /api/dashboard/* handlers backed by local JSON mocks.
+
+## Setup & Commands
+- Verify node --version and pnpm --version before installs; always run pnpm install --frozen-lockfile.
+- Build order matters: pnpm build:tokens -> pnpm build:design-system -> pnpm build (studio + storybook).
+- Quality gate every PR: pnpm lint, pnpm -r type-check, pnpm build; fix warnings before commit.
+- Dev servers: pnpm dev:studio (3000) and pnpm dev:storybook (6006); kill stray node processes if ports stay busy.
+
+## Workflow Expectations
+- Branch names feature/sprint6-{item-name}; commits follow type(scope): summary (issue #XX).
+- After opening a PR, comment /spec to trigger SpecKit and address every reported gap before merge.
+- sprint-2-validation.yml mirrors build/lint/type-check and additional API/a11y checks; reproduce locally when CI fails.
+- Sprint 6 docs: SPRINT6_ROADMAP.md (20 items), SPRINT6_EXECUTION_PLAN.md (team allocation, timeline).
+
+## Design System & Tokens
+- Components in packages/design-system/src/components/* require 'use client', React.forwardRef, CSS Modules, and fully documented props.
+- Export new components via packages/design-system/src/index.ts and add matching stories under apps/storybook.
+- Styling must reference tokens from packages/tokens/src/tokens.json; regenerate with pnpm build:tokens after edits.
+- Register DS components in apps/studio/src/config/puck.config.tsx so Puck and Studio pages stay in sync.
+
+## Studio, Dashboard, APIs
+- apps/studio/src/app/dashboard uses client components with SWR, skeleton placeholders, and ErrorBanner fallbacks; mirror existing KPIGrid/HealthSection patterns.
+- APIs live under apps/studio/src/app/api/{segment}/route.ts; declare response interfaces, wrap in try/catch, and Response.json errors with status codes.
+- Maintain parity across /api/dashboard/summary, /api/dashboard/health, /api/dashboard/pages, /api/health, and /api/health/metrics when adjusting data shapes.
+- Keep Studio pages (apps/studio/src/app/[[...slug]]/page.tsx) aligned with domains docs so dashboard links resolve.
+
+## Journeys & Content
+- Each domains/{domain}/journeys/{journey}/ folder needs README.md (objective, status, components, links), notas.md, and links.md per template.
+- Update domains/README.md and PROGRESS_DASHBOARD.md whenever you add or rename a journey so stakeholders can find it.
+
+## Code-to-Figma
+- code-to-figma/figma-sync-engine converts Storybook markup to Figma JSON; follow README (pnpm install, pnpm dev, pnpm test) before changing parsers.
+- Maintain semantic markup in Storybook stories, because the sync engine only understands design-system components and predictable HTML.
+
+## Validation Checklist
+- Before merge: pnpm build, pnpm lint, pnpm -r type-check, Storybook stories render, /dashboard works without console errors.
+- Ensure SpecKit report is fully green and document decisions in README.md or SPRINT3_FINAL_STATUS.md to keep history traceable.
