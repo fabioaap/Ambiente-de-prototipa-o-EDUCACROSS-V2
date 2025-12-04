@@ -49,7 +49,7 @@ export function parseJSON(jsonString: string): JSONExportResult {
   }
 
   // Validate each page
-  data.pages.forEach((page: Record<string, unknown>, index: number) => {
+  data.pages.forEach((page: any, index: number) => {
     const requiredFields = ['id', 'title', 'slug', 'status', 'owner', 'createdAt', 'updatedAt'];
     for (const field of requiredFields) {
       if (!page[field]) {

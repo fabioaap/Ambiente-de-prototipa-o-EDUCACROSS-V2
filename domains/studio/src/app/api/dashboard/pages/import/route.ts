@@ -4,6 +4,14 @@ import { parseXML } from '@/lib/export/xml';
 import { parseCSV } from '@/lib/export/csv';
 import { validateJSONExport } from '@/lib/export/validation';
 
+interface ImportRow {
+  id?: string;
+  title: string;
+  slug: string;
+  status: 'published' | 'draft' | 'archived';
+  owner: string;
+}
+
 type ImportFormat = 'json' | 'xml' | 'csv';
 
 export async function POST(request: Request) {
@@ -26,7 +34,7 @@ export async function POST(request: Request) {
       switch (format) {
         case 'json': {
           const data = parseJSON(content);
-
+          
           // Validate JSON schema
           const validation = validateJSONExport(data);
           if (!validation.valid) {
@@ -59,12 +67,11 @@ export async function POST(request: Request) {
             { status: 400 }
           );
       }
-    } catch (parseError: unknown) {
-      const message = parseError instanceof Error ? parseError.message : 'Unknown parse error';
+    } catch (parseError: any) {
       return NextResponse.json(
         {
           error: 'Parse error',
-          message,
+          message: parseError.message,
           format,
         },
         { status: 400 }
@@ -113,13 +120,12 @@ export async function POST(request: Request) {
       format,
       message: `Successfully imported ${pages.length} pages from ${format.toUpperCase()}`,
     });
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : 'Unknown error';
+  } catch (error: any) {
     console.error('Import error:', error);
     return NextResponse.json(
       {
         error: 'Import failed',
-        message,
+        message: error.message || 'Unknown error',
       },
       { status: 500 }
     );
