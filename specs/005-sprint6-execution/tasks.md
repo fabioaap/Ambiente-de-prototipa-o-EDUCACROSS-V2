@@ -86,14 +86,14 @@
 
 ### Implementation for US1.2
 
-- [ ] T019 [US1.2] Audit current warnings: `pnpm -r type-check 2>&1 | tee type-warnings.log`
-- [ ] T020 [P] [US1.2] Fix Storybook type warnings: Remove `@ts-expect-error`, add explicit types in domains/storybook/
-- [ ] T021 [P] [US1.2] Fix Design System warnings: Add JSDoc to all component props in packages/design-system/src/components/
-- [ ] T022 [P] [US1.2] Fix API route handlers: Add explicit return types to apps/studio/src/app/api/**/route.ts
-- [ ] T023 [US1.2] Replace `any` types with proper interfaces or add `// @ts-expect-error: <justification>` comments
-- [ ] T024 [US1.2] Update tsconfig.json: Ensure `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`
-- [ ] T025 [US1.2] Pair programming session: Review remaining complex type issues with team
-- [ ] T026 [US1.2] Verify: `pnpm -r type-check` outputs "Found 0 errors" across all packages
+- [X] T019 [US1.2] Audit current warnings: `pnpm -r type-check 2>&1 | tee type-warnings.log`
+- [X] T020 [P] [US1.2] Fix Storybook type warnings: Remove `@ts-expect-error`, add explicit types in domains/storybook/
+- [X] T021 [P] [US1.2] Fix Design System warnings: Add JSDoc to all component props in packages/design-system/src/components/
+- [X] T022 [P] [US1.2] Fix API route handlers: Add explicit return types to apps/studio/src/app/api/**/route.ts
+- [X] T023 [US1.2] Replace `any` types with proper interfaces or add `// @ts-expect-error: <justification>` comments
+- [X] T024 [US1.2] Update tsconfig.json: Ensure `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`
+- [X] T025 [US1.2] Pair programming session: Review remaining complex type issues with team
+- [X] T026 [US1.2] Verify: `pnpm -r type-check` outputs "Found 0 errors" across all packages
 - [ ] T027 [US1.2] Update .github/copilot-instructions.md to enforce explicit types in code reviews
 
 **Checkpoint:** Type safety 100% - P1-002 complete, commit with `fix(types): Eliminate 22 TypeScript warnings (#P1-002)`

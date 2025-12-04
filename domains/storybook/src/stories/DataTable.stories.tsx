@@ -120,7 +120,7 @@ export const WithRowClick: Story = {
       { key: 'role', label: 'Função' },
     ],
     data: sampleData,
-    onRowClick: (row: any) => {
+    onRowClick: (row: Record<string, string | number | boolean | null | undefined>) => {
       alert(`Clicou na linha: ${row.name}`);
     },
   },

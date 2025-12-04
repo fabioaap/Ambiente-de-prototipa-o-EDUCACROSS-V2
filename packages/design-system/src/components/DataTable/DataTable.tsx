@@ -3,34 +3,43 @@
 import React from 'react';
 import './DataTable.css';
 
+/** Tipo genérico para valores de célula de tabela */
+type CellValue = string | number | boolean | null | undefined;
+
+/** Tipo para função de renderização customizada de célula */
+type CellRenderer = (value: CellValue, row: Record<string, CellValue>) => React.ReactNode;
+
+/** Configuração de coluna da tabela */
+interface DataTableColumn {
+  key: string;
+  label: string;
+  sortable?: boolean;
+  align?: 'left' | 'center' | 'right';
+  render?: CellRenderer;
+}
+
 /**
  * Props para o componente DataTable
- * @param {Array} columns - Configuração das colunas da tabela
- * @param {Array} data - Array de dados a serem exibidos
+ * @param {DataTableColumn[]} columns - Configuração das colunas da tabela
+ * @param {Record<string, CellValue>[]} data - Array de dados a serem exibidos
  * @param {boolean} [sortable] - Habilita ordenação global
  * @param {object} [sortState] - Estado atual da ordenação
  * @param {(key: string, direction: 'asc' | 'desc') => void} [onSort] - Callback ao ordenar
  * @param {boolean} [striped] - Linhas com fundo alternado
  * @param {boolean} [hoverable] - Efeito hover nas linhas
- * @param {(row: Record<string, any>) => void} [onRowClick] - Callback ao clicar em uma linha
+ * @param {(row: Record<string, CellValue>) => void} [onRowClick] - Callback ao clicar em uma linha
  * @param {string} [emptyMessage] - Mensagem quando não há dados
  * @param {boolean} [loading] - Estado de carregamento
  */
 export interface DataTableProps {
-  columns: Array<{
-    key: string;
-    label: string;
-    sortable?: boolean;
-    align?: 'left' | 'center' | 'right';
-    render?: (value: any, row: Record<string, any>) => React.ReactNode;
-  }>;
-  data: Array<Record<string, any>>;
+  columns: DataTableColumn[];
+  data: Array<Record<string, CellValue>>;
   sortable?: boolean;
   sortState?: { key: string; direction: 'asc' | 'desc' };
   onSort?: (key: string, direction: 'asc' | 'desc') => void;
   striped?: boolean;
   hoverable?: boolean;
-  onRowClick?: (row: Record<string, any>) => void;
+  onRowClick?: (row: Record<string, CellValue>) => void;
   emptyMessage?: string;
   loading?: boolean;
 }

@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FilterGroup } from '@prototipo/design-system';
 import { useState } from 'react';
 
+type FilterValue = string | number | boolean | null | undefined;
+
 const meta = {
   title: 'BackOffice/FilterGroup',
   component: FilterGroup,
@@ -48,7 +50,7 @@ export const SelectOnly: Story = {
         ],
       },
     ],
-    onChange: (filterId: string, value: any) => {
+    onChange: (filterId: string, value: FilterValue) => {
       console.log('Filter changed:', filterId, value);
     },
     onReset: () => console.log('Filters reset'),
@@ -87,7 +89,7 @@ export const MixedFilters: Story = {
         label: 'Data Fim',
       },
     ],
-    onChange: (filterId: string, value: any) => {
+    onChange: (filterId: string, value: FilterValue) => {
       console.log('Filter changed:', filterId, value);
     },
     onReset: () => console.log('Filters reset'),
@@ -127,7 +129,7 @@ export const GridLayout: Story = {
         label: 'Data de Criação',
       },
     ],
-    onChange: (filterId: string, value: any) => {
+    onChange: (filterId: string, value: FilterValue) => {
       console.log('Filter changed:', filterId, value);
     },
     onReset: () => console.log('Filters reset'),
@@ -166,7 +168,7 @@ export const VerticalLayout: Story = {
         ],
       },
     ],
-    onChange: (filterId: string, value: any) => {
+    onChange: (filterId: string, value: FilterValue) => {
       console.log('Filter changed:', filterId, value);
     },
     onReset: () => console.log('Filters reset'),
@@ -174,9 +176,9 @@ export const VerticalLayout: Story = {
 };
 
 function InteractiveExample() {
-  const [values, setValues] = useState<Record<string, any>>({});
+  const [values, setValues] = useState<Record<string, FilterValue>>({});
 
-  const handleChange = (filterId: string, value: any) => {
+  const handleChange = (filterId: string, value: FilterValue) => {
     setValues((prev) => ({ ...prev, [filterId]: value }));
   };
 

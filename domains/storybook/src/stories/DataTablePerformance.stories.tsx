@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DataTable, FilterGroup } from '@prototipo/design-system';
-import { useState, Profiler, ProfilerOnRenderCallback, useEffect } from 'react';
+import { useState, Profiler, ProfilerOnRenderCallback, useEffect, useCallback } from 'react';
 
 const meta = {
   title: 'BackOffice/Performance/DataTable',
@@ -60,8 +60,8 @@ const onRenderCallback: ProfilerOnRenderCallback = (
   phase,
   actualDuration,
   baseDuration,
-  startTime,
-  commitTime
+  _startTime,
+  _commitTime
 ) => {
   console.log(`[Performance] ${id} (${phase}):`);
   console.log(`  Render time: ${actualDuration.toFixed(2)}ms`);
@@ -106,6 +106,7 @@ function DataTableWithPerformanceMonitoring() {
       handleSort('codigo', nextDir);
     }, 300);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- handleSort intentionally excluded
   }, []);
 
   const handleSort = (key: string, direction: 'asc' | 'desc') => {
@@ -189,65 +190,54 @@ export const Performance100Rows: Story = {
   },
 };
 
+type FilterValue = string | number | boolean | null | undefined;
+
 function FilterGroupWithPerformanceMonitoring() {
   const [filteredData, setFilteredData] = useState(largeDataset);
-  const [filters, setFilters] = useState<Record<string, any>>({});
   const [lastFilterMs, setLastFilterMs] = useState<number | null>(null);
+  
+  const handleFilterChange = useCallback((filterId: string, value: FilterValue) => {
+    const startTime = performance.now();
+    
+    setFilters((prevFilters) => {
+      const newFilters = { ...prevFilters, [filterId]: value };
+      
+      let filtered = largeDataset;
+      
+      if (newFilters.topico) {
+        filtered = filtered.filter(row => row.topico === newFilters.topico);
+      }
+      if (newFilters.status) {
+        filtered = filtered.filter(row => row.status === newFilters.status);
+      }
+      if (newFilters.search) {
+        const searchLower = newFilters.search.toLowerCase();
+        filtered = filtered.filter(row => 
+          row.codigo.toLowerCase().includes(searchLower) ||
+          row.nome.toLowerCase().includes(searchLower)
+        );
+      }
+
+      setFilteredData(filtered);
+
+      const duration = performance.now() - startTime;
+      setLastFilterMs(duration);
+
+      return newFilters;
+    });
+  }, []);
+  
   useEffect(() => {
     window.__perfMetrics = window.__perfMetrics || {};
     window.__perfMetrics.FilterGroup = window.__perfMetrics.FilterGroup || {};
   }, []);
 
-  // Auto-trigger a filter after initial mount to collect metrics without manual interaction
   useEffect(() => {
     const timer = setTimeout(() => {
       handleFilterChange('topico', 'Matemática');
     }, 500);
     return () => clearTimeout(timer);
-  }, []);
-
-  const handleFilterChange = (filterId: string, value: any) => {
-    const startTime = performance.now();
-    
-    const newFilters = { ...filters, [filterId]: value };
-    setFilters(newFilters);
-
-    let filtered = largeDataset;
-    
-    if (newFilters.topico) {
-      filtered = filtered.filter(row => row.topico === newFilters.topico);
-    }
-    if (newFilters.status) {
-      filtered = filtered.filter(row => row.status === newFilters.status);
-    }
-    if (newFilters.search) {
-      const searchLower = newFilters.search.toLowerCase();
-      filtered = filtered.filter(row => 
-        row.codigo.toLowerCase().includes(searchLower) ||
-        row.habilidade.toLowerCase().includes(searchLower)
-      );
-    }
-    
-    setFilteredData(filtered);
-    
-    const endTime = performance.now();
-    const duration = endTime - startTime;
-    setLastFilterMs(duration);
-    
-    console.log(`[Filter Performance] ${filterId}: ${duration.toFixed(2)}ms (${filtered.length} results)`);
-    if (duration > 200) {
-      console.warn(`⚠️ Filter exceeded 200ms target: ${duration.toFixed(2)}ms`);
-    }
-
-    const filterEl = document.getElementById('sla-filter');
-    if (filterEl) {
-      filterEl.textContent = `Último filtro: ${duration.toFixed(1)}ms (alvo < 200ms)`;
-    }
-    window.__perfMetrics = window.__perfMetrics || {};
-    window.__perfMetrics.FilterGroup = window.__perfMetrics.FilterGroup || {};
-    window.__perfMetrics.FilterGroup.filterMs = duration;
-    document.title = `Perf: render ${initialRenderMsGlobal?.toFixed(1) ?? '-'}ms, filter ${duration.toFixed(1)}ms`;
-  };
+  }, [handleFilterChange]);
 
   const handleReset = () => {
     setFilters({});
