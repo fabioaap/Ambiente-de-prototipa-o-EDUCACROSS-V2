@@ -33,13 +33,13 @@ export function initSentry() {
   Sentry.init({
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
     environment: process.env.SENTRY_ENVIRONMENT || 'development',
-
+    
     // Performance Monitoring
     tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
-
+    
     // Release tracking
     release: process.env.NEXT_PUBLIC_APP_VERSION || 'unknown',
-
+    
     // Integrations
     integrations: [
       Sentry.replayIntegration({
@@ -47,25 +47,25 @@ export function initSentry() {
         blockAllMedia: true,
       }),
     ],
-
+    
     // Session Replay
     replaysSessionSampleRate: 0.1,
     replaysOnErrorSampleRate: 1.0,
-
+    
     // Error filtering
     beforeSend(event, hint) {
       // Filter out certain errors in development
       if (process.env.NODE_ENV === 'development') {
         // Don't report network errors in dev
-        if (hint.originalException instanceof TypeError &&
-          hint.originalException.message.includes('fetch')) {
+        if (hint.originalException instanceof TypeError && 
+            hint.originalException.message.includes('fetch')) {
           return null;
         }
       }
-
+      
       return event;
     },
-
+    
     // Breadcrumb configuration
     maxBreadcrumbs: 50,
   });
@@ -79,9 +79,11 @@ export function initSentry() {
 /**
  * Capture an exception manually
  */
-export function captureException(error: Error, context?: Record<string, unknown>) {
+export function captureException(error: Error, context?: Record<string, any>) {
   Sentry.captureException(error, {
-    ...(context && { contexts: { custom: context } }),
+    contexts: {
+      ...context,
+    },
   });
 }
 
@@ -97,7 +99,7 @@ export function captureMessage(message: string, level: Sentry.SeverityLevel = 'i
  */
 export function addBreadcrumb(
   message: string,
-  data?: Record<string, unknown>,
+  data?: Record<string, any>,
   category: string = 'user-action'
 ) {
   Sentry.addBreadcrumb({

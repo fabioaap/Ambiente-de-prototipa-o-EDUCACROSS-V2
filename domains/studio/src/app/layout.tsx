@@ -6,7 +6,6 @@ import './globals.css';
 
 import { normalizeRootAttributes } from '@/lib/hydration/normalizeRootAttributes';
 import { StudioRoot } from '@/components/StudioRoot';
-import { AnalyticsProvider } from '@/lib/analytics/AnalyticsProvider';
 
 export const metadata: Metadata = {
   title: 'Studio - EDUCACROSS Prototipação',
@@ -24,9 +23,7 @@ export default function RootLayout({
     <html {...rootAttributes.attributes} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground">
         <StudioRoot>
-          <AnalyticsProvider>
-            {children}
-          </AnalyticsProvider>
+          {children}
         </StudioRoot>
       </body>
     </html>

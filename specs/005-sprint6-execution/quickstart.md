@@ -487,6 +487,78 @@ Before requesting review, ensure:
 
 ---
 
+## Testing Monitoring & Error Tracking (Phase 7)
+
+### Sentry Error Monitoring Setup
+
+#### 1. Environment Configuration
+Create `.env.local` in `domains/studio/`:
+```bash
+# Sentry Configuration
+SENTRY_DSN=https://your-key@sentry.io/your-project-id
+SENTRY_ENVIRONMENT=development
+SENTRY_RELEASE=1.0.0
+
+# Optional: For source map uploads in CI/CD
+SENTRY_ORG=your-org
+SENTRY_PROJECT=your-project
+SENTRY_AUTH_TOKEN=your-auth-token
+```
+
+#### 2. Testing Error Capture
+```bash
+# 1. Start Studio dev server
+pnpm dev:studio
+
+# 2. Open Studio at http://localhost:3000
+# 3. Check browser console for Sentry initialization log
+# 4. Trigger test error:
+#    - Console: `window.__SENTRY__?.captureException(new Error('Test error'))`
+#    - Or throw error in a component
+
+# 5. View in Sentry dashboard
+# https://sentry.io/organizations/your-org/issues/
+```
+
+#### 3. Verify Error Capture
+- [ ] Error appears in Sentry dashboard within 5 seconds
+- [ ] Error includes source map (filename, line number, function)
+- [ ] Stack trace is readable
+- [ ] Breadcrumbs show user actions before error
+
+#### 4. Error Types Tracked
+- **React Errors:** ErrorBoundary captures component crashes
+- **Unhandled Exceptions:** Try/catch errors + rejected promises
+- **API Errors:** Dashboard and Studio API calls
+- **Ignored Errors:** Browser extensions, timeouts, AbortError
+
+#### 5. Dashboard Monitoring
+- Navigate to `/dashboard` after error occurs
+- Check for error indicator (if implemented)
+- Verify error count displayed
+
+### E2E Test Execution
+```bash
+# Run full E2E test suite
+pnpm test:e2e
+
+# Run specific test suite
+pnpm test:e2e dashboard-api
+pnpm test:e2e dashboard-kpis
+pnpm test:e2e studio-page-crud
+
+# View test results
+# Open: playwright/results/index.html in browser
+```
+
+### CI/CD Validation
+- GitHub Actions runs all quality gates: lint, type-check, tests, build
+- E2E tests run in CI (Chrome, Firefox, Safari)
+- Artifacts uploaded if any test fails
+- Check `.github/workflows/sprint-2-validation.yml` for details
+
+---
+
 ## Support & Communication
 
 ### Channels

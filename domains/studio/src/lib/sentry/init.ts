@@ -41,17 +41,17 @@ export function initializeSentry(): void {
   Sentry.init({
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
     environment: process.env.NODE_ENV || 'development',
-
+    
     // Performance Monitoring (20% sample rate in production)
     tracesSampleRate:
       process.env.NODE_ENV === 'production' ? 0.2 : 1.0,
-
+    
     // Release tracking for source maps
     release: process.env.SENTRY_RELEASE || 'unknown',
-
+    
     // Enable debug in development
     debug: process.env.NODE_ENV === 'development',
-
+    
     // Capture breadcrumbs for debugging
     integrations: [
       Sentry.replayIntegration({
@@ -59,24 +59,24 @@ export function initializeSentry(): void {
         blockAllMedia: true,
       }),
     ],
-
+    
     // Session replay: 10% of sessions in production
     replaysSessionSampleRate:
       process.env.NODE_ENV === 'production' ? 0.1 : 0.5,
-
+    
     // Replay: 100% of sessions with errors
     replaysOnErrorSampleRate: 1.0,
-
+    
     // Ignore certain errors (e.g., browser extensions, network errors)
     ignoreErrors: [
       // Chrome extensions
       'chrome-extension://',
       'moz-extension://',
-
+      
       // Network errors (often not actionable)
       'NetworkError',
       'timeout',
-
+      
       // User-cancelled requests
       'AbortError',
     ],
@@ -98,7 +98,7 @@ export function initializeSentry(): void {
  */
 export function captureException(
   error: Error | unknown,
-  context?: Record<string, unknown>
+  context?: Record<string, any>
 ): void {
   if (context) {
     Sentry.setContext('custom', context);
@@ -117,7 +117,7 @@ export function captureException(
 export function captureMessage(
   message: string,
   level: Sentry.SeverityLevel = 'info',
-  context?: Record<string, unknown>
+  context?: Record<string, any>
 ): void {
   if (context) {
     Sentry.setContext('custom', context);
