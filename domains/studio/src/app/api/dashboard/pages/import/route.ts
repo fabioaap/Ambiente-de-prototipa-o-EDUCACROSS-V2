@@ -1,4 +1,8 @@
 import { NextResponse } from 'next/server';
+import { parseJSON } from '@/lib/export/json';
+import { parseXML } from '@/lib/export/xml';
+import { parseCSV } from '@/lib/export/csv';
+import { validateJSONExport } from '@/lib/export/validation';
 
 interface ImportRow {
   id?: string;
@@ -7,6 +11,8 @@ interface ImportRow {
   status: 'published' | 'draft' | 'archived';
   owner: string;
 }
+
+type ImportFormat = 'json' | 'xml' | 'csv';
 
 export async function POST(request: Request) {
   try {
@@ -17,74 +23,134 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    if (!file.name.endsWith('.csv')) {
-      return NextResponse.json({ error: 'File must be CSV' }, { status: 400 });
-    }
+    // Detect format from file extension or content-type
+    const format = detectFormat(file);
+    const content = await file.text();
 
-    const text = await file.text();
-    const lines = text.split('\n').filter((line) => line.trim());
-
-    if (lines.length < 2) {
-      return NextResponse.json({ error: 'CSV must have header and data rows' }, { status: 400 });
-    }
-
-    // Parse CSV
-    const headers = lines[0].split(',').map((h) => h.trim().replace(/"/g, ''));
-    const rows: ImportRow[] = [];
+    let pages;
     const errors: string[] = [];
 
-    for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split(',').map((v) => v.trim().replace(/"/g, ''));
-      
-      if (values.length !== headers.length) {
-        errors.push(`Row ${i + 1}: Column count mismatch`);
-        continue;
+    try {
+      switch (format) {
+        case 'json': {
+          const data = parseJSON(content);
+          
+          // Validate JSON schema
+          const validation = validateJSONExport(data);
+          if (!validation.valid) {
+            return NextResponse.json(
+              {
+                error: 'JSON validation failed',
+                details: validation.errors,
+              },
+              { status: 400 }
+            );
+          }
+
+          pages = data.pages;
+          break;
+        }
+
+        case 'xml': {
+          pages = parseXML(content);
+          break;
+        }
+
+        case 'csv': {
+          pages = parseCSV(content);
+          break;
+        }
+
+        default:
+          return NextResponse.json(
+            { error: `Unsupported format: ${format}` },
+            { status: 400 }
+          );
       }
-
-      const row: Record<string, string> = {};
-      headers.forEach((header, idx) => {
-        const key = header.toLowerCase().replace(/ /g, '');
-        row[key] = values[idx];
-      });
-
-      // Validate required fields
-      if (!row.title || !row.slug || !row.status || !row.owner) {
-        errors.push(`Row ${i + 1}: Missing required fields`);
-        continue;
-      }
-
-      // Validate status
-      if (!['published', 'draft', 'archived'].includes(row.status)) {
-        errors.push(`Row ${i + 1}: Invalid status "${row.status}"`);
-        continue;
-      }
-
-      rows.push({
-        id: row.id,
-        title: row.title,
-        slug: row.slug,
-        status: row.status as 'published' | 'draft' | 'archived',
-        owner: row.owner,
-      });
+    } catch (parseError: any) {
+      return NextResponse.json(
+        {
+          error: 'Parse error',
+          message: parseError.message,
+          format,
+        },
+        { status: 400 }
+      );
     }
 
-    if (errors.length > 0 && rows.length === 0) {
+    // Additional validation for all pages
+    for (let i = 0; i < pages.length; i++) {
+      const page = pages[i];
+
+      // Validate required fields
+      if (!page.id) {
+        errors.push(`Row ${i + 1}: Missing required field "id"`);
+      }
+      if (!page.title) {
+        errors.push(`Row ${i + 1}: Missing required field "title"`);
+      }
+      if (!page.status) {
+        errors.push(`Row ${i + 1}: Missing required field "status"`);
+      } else {
+        const validStatuses = ['published', 'draft', 'archived'];
+        if (!validStatuses.includes(page.status)) {
+          errors.push(
+            `Row ${i + 1}: Invalid status "${page.status}" (must be one of: ${validStatuses.join(', ')})`
+          );
+        }
+      }
+    }
+
+    if (errors.length > 0) {
       return NextResponse.json(
-        { error: 'Import failed', errors },
+        {
+          error: 'Validation failed',
+          details: errors,
+        },
         { status: 400 }
       );
     }
 
     // Mock save - replace with real persistence
-    console.log(`Would import ${rows.length} pages`);
+    console.log(`Would import ${pages.length} pages from ${format.toUpperCase()}`);
 
     return NextResponse.json({
       success: true,
-      imported: rows.length,
-      errors: errors.length > 0 ? errors : undefined,
+      imported: pages.length,
+      format,
+      message: `Successfully imported ${pages.length} pages from ${format.toUpperCase()}`,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Import error:', error);
-    return NextResponse.json({ error: 'Import failed' }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: 'Import failed',
+        message: error.message || 'Unknown error',
+      },
+      { status: 500 }
+    );
   }
+}
+
+/**
+ * Detect file format from filename or content-type
+ */
+function detectFormat(file: File): ImportFormat {
+  const filename = file.name.toLowerCase();
+  const contentType = file.type.toLowerCase();
+
+  if (filename.endsWith('.json') || contentType.includes('json')) {
+    return 'json';
+  }
+
+  if (filename.endsWith('.xml') || contentType.includes('xml')) {
+    return 'xml';
+  }
+
+  if (filename.endsWith('.csv') || contentType.includes('csv')) {
+    return 'csv';
+  }
+
+  // Default to CSV for unknown types
+  return 'csv';
 }

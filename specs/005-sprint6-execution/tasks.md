@@ -235,13 +235,13 @@
 ### Implementation for US2.5
 
 - [ ] T084 [US2.5] Add format selector to export UI in apps/studio/src/app/dashboard/ExportButton.tsx
-- [ ] T085 [P] [US2.5] Implement JSON converter in apps/studio/src/lib/export/json.ts (matches OpenAPI schema)
-- [ ] T086 [P] [US2.5] Implement XML converter in apps/studio/src/lib/export/xml.ts (add XSD schema optional)
-- [ ] T087 [P] [US2.5] Implement CSV converter in apps/studio/src/lib/export/csv.ts (existing, enhance with headers)
-- [ ] T088 [US2.5] Add schema validation: Use ajv for JSON, fast-xml-parser for XML
-- [ ] T089 [US2.5] Implement import handlers for all 3 formats in apps/studio/src/app/api/import/route.ts
+- [X] T085 [P] [US2.5] Implement JSON converter in apps/studio/src/lib/export/json.ts (matches OpenAPI schema)
+- [X] T086 [P] [US2.5] Implement XML converter in apps/studio/src/lib/export/xml.ts (add XSD schema optional)
+- [X] T087 [P] [US2.5] Implement CSV converter in apps/studio/src/lib/export/csv.ts (existing, enhance with headers)
+- [X] T088 [US2.5] Add schema validation: Use ajv for JSON, fast-xml-parser for XML
+- [X] T089 [US2.5] Implement import handlers for all 3 formats in apps/studio/src/app/api/import/route.ts
 - [ ] T090 [US2.5] Add error handling: Show line number, field name, validation error to user
-- [ ] T091 [P] [US2.5] Write unit tests for converters in apps/studio/src/lib/export/*.test.ts (6 tests: export + import per format)
+- [X] T091 [P] [US2.5] Write unit tests for converters in apps/studio/src/lib/export/*.test.ts (6 tests: export + import per format)
 - [ ] T092 [US2.5] Update API documentation: Document /api/export and /api/import endpoints in specs/005-sprint6-execution/contracts/openapi.yaml
 - [ ] T093 [US2.5] Document export/import in specs/005-sprint6-execution/quickstart.md (formats, validation rules)
 - [ ] T094 [US2.5] Verify: Export Dashboard data in JSON, validate with ajv, import successfully with no errors

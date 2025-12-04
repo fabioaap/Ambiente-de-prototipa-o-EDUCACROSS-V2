@@ -49,6 +49,32 @@
   color: var(--color-text-secondary, #666);
 }
 
+.exportControls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.formatSelector {
+  padding: 0.5rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.formatSelector:hover:not(:disabled) {
+  border-color: var(--color-primary, #0070f3);
+}
+
+.formatSelector:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-surface, #fafafa);
+}
+
 .modeSelector {
   display: flex;
   gap: 1.5rem;
