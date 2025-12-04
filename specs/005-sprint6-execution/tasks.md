@@ -27,10 +27,10 @@
 
 **Purpose:** Project initialization, dependencies, and environment verification
 
-- [X] T001 Verify Node 22.21.1 and pnpm 9.14.4+ installed per .nvmrc
-- [X] T002 Run `pnpm install --frozen-lockfile` to restore dependencies
-- [X] T003 [P] Verify build order: `pnpm build:tokens && pnpm build:design-system && pnpm build`
-- [X] T004 [P] Create Sprint 6 feature branch: `git checkout -b feature/sprint6-execution`
+- [ ] T001 Verify Node 22.21.1 and pnpm 9.14.4+ installed per .nvmrc
+- [ ] T002 Run `pnpm install --frozen-lockfile` to restore dependencies
+- [ ] T003 [P] Verify build order: `pnpm build:tokens && pnpm build:design-system && pnpm build`
+- [ ] T004 [P] Create Sprint 6 feature branch: `git checkout -b feature/sprint6-execution`
 - [ ] T005 [P] Create GitHub milestone "Sprint 6" and 20 issues from spec.md user stories
 
 ---
@@ -42,17 +42,11 @@
 **⚠️ CRITICAL:** No user story work can begin until this phase is complete
 
 - [ ] T006 Backup current .github/workflows/sprint-2-validation.yml before modifications
-- [X] T007 [P] Install Playwright: `pnpm add -D -w @playwright/test` and run `pnpm exec playwright install`
-- [X] T008 [P] Create playwright.config.ts at workspace root with Chromium/Firefox/WebKit configs
-- [X] T009 [P] Install Sentry: `pnpm add -w @sentry/nextjs` in apps/studio
-- [X] T010 [P] Install Analytics SDK: `pnpm add -w react-ga4` or `pnpm add -w mixpanel-browser` in apps/studio
-- [ ] T011 Verify all foundational installs pass quality gates:
-  - Run `pnpm install --frozen-lockfile` to ensure all deps resolved
-  - Run `pnpm build:tokens && pnpm build:design-system && pnpm build` (verify SUCCESS)
-  - Run `pnpm lint` (verify 0 errors)
-  - Run `pnpm -r type-check` (verify 0 warnings)
-  - Check dev servers start: `pnpm dev:studio` and `pnpm dev:storybook` (no console errors)
-  - **Constitution Principle 1 Check:** Environment remains "run-ready" after all installs
+- [ ] T007 [P] Install Playwright: `pnpm add -D -w @playwright/test` and run `pnpm exec playwright install`
+- [ ] T008 [P] Create playwright.config.ts at workspace root with Chromium/Firefox/WebKit configs
+- [ ] T009 [P] Install Sentry: `pnpm add -w @sentry/nextjs` in apps/studio
+- [ ] T010 [P] Install Analytics SDK: `pnpm add -w react-ga4` or `pnpm add -w mixpanel-browser` in apps/studio
+- [ ] T011 Verify all foundational installs: `pnpm -r type-check && pnpm build`
 
 **Checkpoint:** Foundation ready - user story implementation can now begin in parallel
 
@@ -66,13 +60,13 @@
 
 ### Implementation for US1.1
 
-- [X] T012 [US1.1] Remove `continue-on-error: true` from .github/workflows/sprint-2-validation.yml
-- [X] T013 [US1.1] Fix workflow syntax errors causing failures (check YAML indentation, job dependencies)
-- [X] T014 [US1.1] Optimize workflow: cache node_modules, use `pnpm install --frozen-lockfile`
-- [X] T015 [US1.1] Add timeout limits: jobs max 15min, workflow max 20min
-- [X] T016 [US1.1] Test workflow locally with `act` or push to feature branch
-- [X] T017 [US1.1] Update SPRINT6_EXECUTION_PLAN.md with CI fix details and validation evidence
-- [X] T018 [US1.1] Verify: Push commit, confirm workflow completes in <10min with all steps green
+- [ ] T012 [US1.1] Remove `continue-on-error: true` from .github/workflows/sprint-2-validation.yml
+- [ ] T013 [US1.1] Fix workflow syntax errors causing failures (check YAML indentation, job dependencies)
+- [ ] T014 [US1.1] Optimize workflow: cache node_modules, use `pnpm install --frozen-lockfile`
+- [ ] T015 [US1.1] Add timeout limits: jobs max 15min, workflow max 20min
+- [ ] T016 [US1.1] Test workflow locally with `act` or push to feature branch
+- [ ] T017 [US1.1] Update SPRINT6_EXECUTION_PLAN.md with CI fix details and validation evidence
+- [ ] T018 [US1.1] Verify: Push commit, confirm workflow completes in <10min with all steps green
 
 **Checkpoint:** CI/CD reliable - P1-001 complete, commit with `fix(ci): Remove workflow overrides, optimize run time (#P1-001)`
 
@@ -86,14 +80,14 @@
 
 ### Implementation for US1.2
 
-- [X] T019 [US1.2] Audit current warnings: `pnpm -r type-check 2>&1 | tee type-warnings.log`
-- [X] T020 [P] [US1.2] Fix Storybook type warnings: Remove `@ts-expect-error`, add explicit types in domains/storybook/
-- [X] T021 [P] [US1.2] Fix Design System warnings: Add JSDoc to all component props in packages/design-system/src/components/
-- [X] T022 [P] [US1.2] Fix API route handlers: Add explicit return types to apps/studio/src/app/api/**/route.ts
-- [X] T023 [US1.2] Replace `any` types with proper interfaces or add `// @ts-expect-error: <justification>` comments
-- [X] T024 [US1.2] Update tsconfig.json: Ensure `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`
-- [X] T025 [US1.2] Pair programming session: Review remaining complex type issues with team
-- [X] T026 [US1.2] Verify: `pnpm -r type-check` outputs "Found 0 errors" across all packages
+- [ ] T019 [US1.2] Audit current warnings: `pnpm -r type-check 2>&1 | tee type-warnings.log`
+- [ ] T020 [P] [US1.2] Fix Storybook type warnings: Remove `@ts-expect-error`, add explicit types in domains/storybook/
+- [ ] T021 [P] [US1.2] Fix Design System warnings: Add JSDoc to all component props in packages/design-system/src/components/
+- [ ] T022 [P] [US1.2] Fix API route handlers: Add explicit return types to apps/studio/src/app/api/**/route.ts
+- [ ] T023 [US1.2] Replace `any` types with proper interfaces or add `// @ts-expect-error: <justification>` comments
+- [ ] T024 [US1.2] Update tsconfig.json: Ensure `strict: true`, `noImplicitAny: true`, `strictNullChecks: true`
+- [ ] T025 [US1.2] Pair programming session: Review remaining complex type issues with team
+- [ ] T026 [US1.2] Verify: `pnpm -r type-check` outputs "Found 0 errors" across all packages
 - [ ] T027 [US1.2] Update .github/copilot-instructions.md to enforce explicit types in code reviews
 
 **Checkpoint:** Type safety 100% - P1-002 complete, commit with `fix(types): Eliminate 22 TypeScript warnings (#P1-002)`
@@ -108,17 +102,17 @@
 
 ### Implementation for US1.3
 
-- [X] T028 [US1.3] Identify failing tests: `pnpm test 2>&1 | grep -A 5 "FAIL"`
-- [X] T029 [P] [US1.3] Fix test 1: Debug failure, update assertions or test data
-- [X] T030 [P] [US1.3] Fix test 2: Debug failure, update assertions or test data
-- [X] T031 [US1.3] Check for flaky tests: Run suite 5 times `for i in {1..5}; do pnpm test; done`
-- [X] T032 [US1.3] Stabilize flaky tests: Add explicit waits, mock timers, or rewrite test logic
-- [X] T033 [US1.3] Verify coverage maintained: `pnpm test --coverage` shows ≥95%
-- [X] T034 [US1.3] Remove skipped tests or document reason in test file comments
-- [X] T035 [US1.3] Optimize CI test execution: Ensure completes in <2min
-- [X] T036 [US1.3] Verify: `pnpm test` passes 76/76 tests on 3 consecutive runs
+- [ ] T028 [US1.3] Identify failing tests: `pnpm test 2>&1 | grep -A 5 "FAIL"`
+- [ ] T029 [P] [US1.3] Fix test 1: Debug failure, update assertions or test data
+- [ ] T030 [P] [US1.3] Fix test 2: Debug failure, update assertions or test data
+- [ ] T031 [US1.3] Check for flaky tests: Run suite 5 times `for i in {1..5}; do pnpm test; done`
+- [ ] T032 [US1.3] Stabilize flaky tests: Add explicit waits, mock timers, or rewrite test logic
+- [ ] T033 [US1.3] Verify coverage maintained: `pnpm test --coverage` shows ≥95%
+- [ ] T034 [US1.3] Remove skipped tests or document reason in test file comments
+- [ ] T035 [US1.3] Optimize CI test execution: Ensure completes in <2min
+- [ ] T036 [US1.3] Verify: `pnpm test` passes 76/76 tests on 3 consecutive runs
 
-**Checkpoint:** Test suite 100% reliable - P1-003 complete, commit with `fix(tests): Resolve 2 failing unit tests, stabilize suite (#P1-003)` ✅ DONE (b48e420)
+**Checkpoint:** Test suite 100% reliable - P1-003 complete, commit with `fix(tests): Resolve 2 failing unit tests, stabilize suite (#P1-003)`
 
 ---
 
@@ -134,22 +128,22 @@
 
 **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [X] T037 [P] [US2.1] Contract test: Dashboard API returns valid JSON in tests/e2e/dashboard-api.spec.ts
-- [X] T038 [P] [US2.1] E2E test: Dashboard loads KPIs in tests/e2e/dashboard-kpis.spec.ts
-- [X] T039 [P] [US2.1] E2E test: Studio page create/edit/save workflow in tests/e2e/studio-page-crud.spec.ts
+- [ ] T037 [P] [US2.1] Contract test: Dashboard API returns valid JSON in tests/e2e/dashboard-api.spec.ts
+- [ ] T038 [P] [US2.1] E2E test: Dashboard loads KPIs in tests/e2e/dashboard-kpis.spec.ts
+- [ ] T039 [P] [US2.1] E2E test: Studio page create/edit/save workflow in tests/e2e/studio-page-crud.spec.ts
 
 ### Implementation for US2.1
 
-- [X] T040 [US2.1] Configure playwright.config.ts: 3 browsers (Chromium, Firefox, WebKit), screenshots on failure
-- [X] T041 [US2.1] Create tests/e2e/ directory structure at workspace root
-- [X] T042 [P] [US2.1] Implement Dashboard journey test: Visit /dashboard, assert KPIs visible, check health metrics
-- [X] T043 [P] [US2.1] Implement Studio journey test: Create page, add component, save, verify JSON schema
-- [X] T044 [P] [US2.1] Add accessibility checks with @axe-core/playwright in all E2E tests
-- [X] T045 [US2.1] Configure test artifacts: screenshots in tests/e2e/screenshots/, videos in tests/e2e/videos/
-- [X] T046 [US2.1] Add E2E step to .github/workflows/sprint-2-validation.yml with artifact upload
-- [X] T047 [US2.1] Optimize test execution: Run in parallel, target <5min total runtime
-- [X] T048 [US2.1] Document E2E testing in specs/005-sprint6-execution/quickstart.md (how to run, debug, add tests)
-- [X] T049 [US2.1] Verify: `pnpm exec playwright test` passes 3/3 suites across 3 browsers in <5min
+- [ ] T040 [US2.1] Configure playwright.config.ts: 3 browsers (Chromium, Firefox, WebKit), screenshots on failure
+- [ ] T041 [US2.1] Create tests/e2e/ directory structure at workspace root
+- [ ] T042 [P] [US2.1] Implement Dashboard journey test: Visit /dashboard, assert KPIs visible, check health metrics
+- [ ] T043 [P] [US2.1] Implement Studio journey test: Create page, add component, save, verify JSON schema
+- [ ] T044 [P] [US2.1] Add accessibility checks with @axe-core/playwright in all E2E tests
+- [ ] T045 [US2.1] Configure test artifacts: screenshots in tests/e2e/screenshots/, videos in tests/e2e/videos/
+- [ ] T046 [US2.1] Add E2E step to .github/workflows/sprint-2-validation.yml with artifact upload
+- [ ] T047 [US2.1] Optimize test execution: Run in parallel, target <5min total runtime
+- [ ] T048 [US2.1] Document E2E testing in specs/005-sprint6-execution/quickstart.md (how to run, debug, add tests)
+- [ ] T049 [US2.1] Verify: `pnpm exec playwright test` passes 3/3 suites across 3 browsers in <5min
 
 **Checkpoint:** E2E testing active - US2.1 complete, commit with `feat(tests): Add Playwright E2E suite with Dashboard + Studio journeys (#P2-001)`
 
@@ -163,16 +157,16 @@
 
 ### Implementation for US2.2
 
-- [X] T050 [US2.2] Create Sentry project at sentry.io (or self-hosted instance)
-- [X] T051 [US2.2] Configure sentry.client.config.ts in apps/studio/src/ with DSN and environment
-- [X] T052 [US2.2] Configure sentry.server.config.ts in apps/studio/src/ for API route errors
-- [X] T053 [P] [US2.2] Add ErrorBoundary component in apps/studio/src/components/ErrorBoundary.tsx
-- [X] T054 [P] [US2.2] Wrap app/layout.tsx with ErrorBoundary to catch React errors
-- [X] T055 [US2.2] Add Sentry.captureException() to API route error handlers in apps/studio/src/app/api/**/route.ts
-- [X] T056 [US2.2] Configure source maps upload in next.config.mjs with @sentry/nextjs plugin
-- [X] T057 [US2.2] Set up alert rules in Sentry: >10 errors/hour triggers Slack notification
-- [X] T058 [US2.2] Add Sentry error rate widget to Dashboard (optional): Display in apps/studio/src/app/dashboard/page.tsx
-- [X] T059 [US2.2] Document Sentry setup in specs/005-sprint6-execution/quickstart.md (how to test, view errors)
+- [ ] T050 [US2.2] Create Sentry project at sentry.io (or self-hosted instance)
+- [ ] T051 [US2.2] Configure sentry.client.config.ts in apps/studio/src/ with DSN and environment
+- [ ] T052 [US2.2] Configure sentry.server.config.ts in apps/studio/src/ for API route errors
+- [ ] T053 [P] [US2.2] Add ErrorBoundary component in apps/studio/src/components/ErrorBoundary.tsx
+- [ ] T054 [P] [US2.2] Wrap app/layout.tsx with ErrorBoundary to catch React errors
+- [ ] T055 [US2.2] Add Sentry.captureException() to API route error handlers in apps/studio/src/app/api/**/route.ts
+- [ ] T056 [US2.2] Configure source maps upload in next.config.mjs with @sentry/nextjs plugin
+- [ ] T057 [US2.2] Set up alert rules in Sentry: >10 errors/hour triggers Slack notification
+- [ ] T058 [US2.2] Add Sentry error rate widget to Dashboard (optional): Display in apps/studio/src/app/dashboard/page.tsx
+- [ ] T059 [US2.2] Document Sentry setup in specs/005-sprint6-execution/quickstart.md (how to test, view errors)
 - [ ] T060 [US2.2] Verify: Trigger test error `throw new Error('Test Sentry')`, confirm appears in Sentry dashboard with source map context
 
 **Checkpoint:** Error monitoring live - US2.2 complete, commit with `feat(monitoring): Integrate Sentry for error tracking (#P2-002)`
@@ -187,19 +181,19 @@
 
 ### Implementation for US2.3
 
-- [X] T061 [US2.3] Create GA4 property at analytics.google.com or set up Mixpanel project
-- [X] T062 [US2.3] Add gtag.js script to apps/studio/src/app/layout.tsx with measurement ID
-- [X] T063 [P] [US2.3] Create AnalyticsProvider component in apps/studio/src/lib/analytics/AnalyticsProvider.tsx
-- [X] T064 [P] [US2.3] Implement trackEvent() function for custom events (event name, params)
-- [X] T065 [US2.3] Track page_view: Automatic in GA4 gtag.js (verify in DebugView)
-- [X] T066 [P] [US2.3] Track dashboard_load: Call trackEvent() in apps/studio/src/app/dashboard/page.tsx useEffect
-- [X] T067 [P] [US2.3] Track page_create: Call trackEvent() in Studio page creation handler
-- [X] T068 [P] [US2.3] Track csv_export: Call trackEvent() in CSV export button onClick
-- [X] T069 [US2.3] Add cookie consent banner (optional): Use @cookie-consent/react or custom implementation
-- [X] T070 [US2.3] Configure data retention: 14 months in GA4 settings, document GDPR compliance
-- [X] T071 [US2.3] Create analytics dashboard view for PMs (GA4 web interface or custom iframe)
-- [X] T072 [US2.3] Document analytics in specs/005-sprint6-execution/quickstart.md (tracked events, testing with DebugView)
-- [X] T073 [US2.3] Verify: Open GA4 DebugView, perform actions in Studio, confirm 5+ events tracked with params
+- [ ] T061 [US2.3] Create GA4 property at analytics.google.com or set up Mixpanel project
+- [ ] T062 [US2.3] Add gtag.js script to apps/studio/src/app/layout.tsx with measurement ID
+- [ ] T063 [P] [US2.3] Create AnalyticsProvider component in apps/studio/src/lib/analytics/AnalyticsProvider.tsx
+- [ ] T064 [P] [US2.3] Implement trackEvent() function for custom events (event name, params)
+- [ ] T065 [US2.3] Track page_view: Automatic in GA4 gtag.js (verify in DebugView)
+- [ ] T066 [P] [US2.3] Track dashboard_load: Call trackEvent() in apps/studio/src/app/dashboard/page.tsx useEffect
+- [ ] T067 [P] [US2.3] Track page_create: Call trackEvent() in Studio page creation handler
+- [ ] T068 [P] [US2.3] Track csv_export: Call trackEvent() in CSV export button onClick
+- [ ] T069 [US2.3] Add cookie consent banner (optional): Use @cookie-consent/react or custom implementation
+- [ ] T070 [US2.3] Configure data retention: 14 months in GA4 settings, document GDPR compliance
+- [ ] T071 [US2.3] Create analytics dashboard view for PMs (GA4 web interface or custom iframe)
+- [ ] T072 [US2.3] Document analytics in specs/005-sprint6-execution/quickstart.md (tracked events, testing with DebugView)
+- [ ] T073 [US2.3] Verify: Open GA4 DebugView, perform actions in Studio, confirm 5+ events tracked with params
 
 **Checkpoint:** Analytics active - US2.3 complete, commit with `feat(analytics): Integrate Google Analytics 4 for usage tracking (#P2-003)`
 
@@ -213,14 +207,16 @@
 
 ### Implementation for US2.4
 
-- [X] T074 [P] [US2.4] Create journey template in .specify/templates/journey-template.md with 5 sections
-- [X] T075 [P] [US2.4] Create feature spec template in .specify/templates/feature-spec-template.md with user stories section
-- [X] T076 [P] [US2.4] Create API doc template in .specify/templates/api-doc-template.md with OpenAPI structure
-- [X] T077 [US2.4] Migrate domains/BackOffice/journeys/banco-questoes/README.md to new template
-- [X] T078 [US2.4] Migrate domains/FrontOffice/journeys/onboarding/README.md to new template
-- [X] T079 [US2.4] Migrate domains/Game/journeys/game-hub/README.md to new template
-- [X] T080 [US2.4] Migrate domains/BackOffice/journeys/revisao-questoes/README.md to new template
-- [X] T081 [US2.4] Migrate domains/BackOffice/journeys/exibir-campo-uso/README.md to new template
+- [ ] T074 [P] [US2.4] Create journey template in .specify/templates/journey-template.md with 5 sections
+- [ ] T075 [P] [US2.4] Create feature spec template in .specify/templates/feature-spec-template.md with user stories section
+- [ ] T076 [P] [US2.4] Create API doc template in .specify/templates/api-doc-template.md with OpenAPI structure
+- [ ] T077 [US2.4] Migrate domains/BackOffice/journeys/admin-workflow/README.md to new template
+- [ ] T078 [US2.4] Migrate domains/FrontOffice/journeys/onboarding-flow/README.md to new template
+- [ ] T079 [US2.4] Migrate domains/FrontOffice/journeys/game-hub/README.md to new template
+- [ ] T080 [US2.4] Create README generator script (optional): .specify/scripts/generate-readme.sh
+- [ ] T081 [US2.4] Update PROGRESS_DASHBOARD.md to reference template usage
+- [ ] T082 [US2.4] Document templates in specs/005-sprint6-execution/quickstart.md (how to use, when to use)
+- [ ] T083 [US2.4] Verify: 3 migrated journeys follow template structure, all links resolve
 
 **Checkpoint:** Documentation standardized - US2.4 complete, commit with `docs(templates): Add journey and feature templates, migrate 3 journeys (#P2-004)`
 
@@ -234,19 +230,19 @@
 
 ### Implementation for US2.5
 
-- [X] T084 [US2.5] Add format selector to export UI in apps/studio/src/app/dashboard/ExportButton.tsx
-- [X] T085 [P] [US2.5] Implement JSON converter in apps/studio/src/lib/export/json.ts (matches OpenAPI schema)
-- [X] T086 [P] [US2.5] Implement XML converter in apps/studio/src/lib/export/xml.ts (add XSD schema optional)
-- [X] T087 [P] [US2.5] Implement CSV converter in apps/studio/src/lib/export/csv.ts (existing, enhance with headers)
-- [X] T088 [US2.5] Add schema validation: Use ajv for JSON, fast-xml-parser for XML
-- [X] T089 [US2.5] Implement import handlers for all 3 formats in apps/studio/src/app/api/import/route.ts
-- [X] T090 [US2.5] Add error handling: Show line number, field name, validation error to user
-- [X] T091 [P] [US2.5] Write unit tests for converters in apps/studio/src/lib/export/*.test.ts (6 tests: export + import per format)
-- [X] T092 [US2.5] Update API documentation: Document /api/export and /api/import endpoints in specs/005-sprint6-execution/contracts/openapi.yaml
-- [X] T093 [US2.5] Document export/import in specs/005-sprint6-execution/quickstart.md (formats, validation rules)
-- [X] T094 [US2.5] Verify: Export Dashboard data in JSON, validate with ajv, import successfully with no errors
+- [ ] T084 [US2.5] Add format selector to export UI in apps/studio/src/app/dashboard/ExportButton.tsx
+- [ ] T085 [P] [US2.5] Implement JSON converter in apps/studio/src/lib/export/json.ts (matches OpenAPI schema)
+- [ ] T086 [P] [US2.5] Implement XML converter in apps/studio/src/lib/export/xml.ts (add XSD schema optional)
+- [ ] T087 [P] [US2.5] Implement CSV converter in apps/studio/src/lib/export/csv.ts (existing, enhance with headers)
+- [ ] T088 [US2.5] Add schema validation: Use ajv for JSON, fast-xml-parser for XML
+- [ ] T089 [US2.5] Implement import handlers for all 3 formats in apps/studio/src/app/api/import/route.ts
+- [ ] T090 [US2.5] Add error handling: Show line number, field name, validation error to user
+- [ ] T091 [P] [US2.5] Write unit tests for converters in apps/studio/src/lib/export/*.test.ts (6 tests: export + import per format)
+- [ ] T092 [US2.5] Update API documentation: Document /api/export and /api/import endpoints in specs/005-sprint6-execution/contracts/openapi.yaml
+- [ ] T093 [US2.5] Document export/import in specs/005-sprint6-execution/quickstart.md (formats, validation rules)
+- [ ] T094 [US2.5] Verify: Export Dashboard data in JSON, validate with ajv, import successfully with no errors
 
-**Checkpoint:** ✅ Multi-format export/import live - US2.5 complete, commit `bfd42b9` with `feat(export): Add JSON and XML export/import with validation (#P2-005)`
+**Checkpoint:** Multi-format export/import live - US2.5 complete, commit with `feat(export): Add JSON and XML export/import with validation (#P2-005)`
 
 ---
 
@@ -258,20 +254,20 @@
 
 ### Implementation for US3.1
 
-- [X] T095 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.tsx with linear/circular logic
-- [X] T096 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.module.css consuming tokens
-- [X] T097 [US3.1] Implement props interface: value (0-100), variant, size, color, animated, showValue, ariaLabel
-- [X] T098 [US3.1] Add ARIA attributes: role="progressbar", aria-valuenow, aria-valuemin, aria-valuemax
-- [X] T099 [US3.1] Implement 4 color variants: primary, success, warning, danger (using tokens)
-- [X] T100 [US3.1] Implement 3 sizes: sm, md, lg (width/height from tokens)
-- [X] T101 [US3.1] Export via packages/design-system/src/index.ts
-- [X] T102 [P] [US3.1] Create Storybook story in domains/storybook/src/stories/Progress.stories.tsx (all variants)
-- [X] T103 [P] [US3.1] Write unit tests in packages/design-system/src/components/Progress/Progress.test.tsx
-- [X] T104 [US3.1] Register in apps/studio/src/config/puck.config.tsx for Studio usage
-- [X] T105 [US3.1] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Progress variants render
-- [X] T106 [US3.1] Document component in packages/design-system/README.md (props, usage examples)
+- [ ] T095 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.tsx with linear/circular logic
+- [ ] T096 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.module.css consuming tokens
+- [ ] T097 [US3.1] Implement props interface: value (0-100), variant, size, color, animated, showValue, ariaLabel
+- [ ] T098 [US3.1] Add ARIA attributes: role="progressbar", aria-valuenow, aria-valuemin, aria-valuemax
+- [ ] T099 [US3.1] Implement 4 color variants: primary, success, warning, danger (using tokens)
+- [ ] T100 [US3.1] Implement 3 sizes: sm, md, lg (width/height from tokens)
+- [ ] T101 [US3.1] Export via packages/design-system/src/index.ts
+- [ ] T102 [P] [US3.1] Create Storybook story in domains/storybook/src/stories/Progress.stories.tsx (all variants)
+- [ ] T103 [P] [US3.1] Write unit tests in packages/design-system/src/components/Progress/Progress.test.tsx
+- [ ] T104 [US3.1] Register in apps/studio/src/config/puck.config.tsx for Studio usage
+- [ ] T105 [US3.1] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Progress variants render
+- [ ] T106 [US3.1] Document component in packages/design-system/README.md (props, usage examples)
 
-**Checkpoint:** ✅ Progress component complete - US3.1 complete (component existed, added tests), commit TBD
+**Checkpoint:** Progress component complete - US3.1 complete, commit with `feat(ds): Add Progress component with linear/circular variants (#P2-S3-001)`
 
 ---
 
@@ -285,21 +281,21 @@
 
 ### Implementation for US3.2
 
-- [X] T107 [P] [US3.2] Define LeaderboardEntry TypeScript interface in packages/design-system/src/components/Leaderboard/types.ts
-- [X] T108 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.tsx using Avatar + Progress from DS
-- [X] T109 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.module.css with responsive CSS Grid
-- [X] T110 [US3.2] Implement props: entries, maxEntries (default 10), loading, emptyMessage
-- [X] T111 [US3.2] Add current user highlighting: Check isCurrentUser flag, apply distinct CSS class
-- [X] T112 [US3.2] Implement skeleton loading state: Show placeholder entries when loading=true
-- [X] T113 [US3.2] Add keyboard navigation: Arrow keys move focus between entries
-- [X] T114 [US3.2] Export via packages/design-system/src/index.ts
-- [X] T115 [P] [US3.2] Create Storybook story in domains/storybook/src/stories/Leaderboard.stories.tsx (empty, loading, 10 entries, current user)
-- [X] T116 [P] [US3.2] Write unit tests in packages/design-system/src/components/Leaderboard/Leaderboard.test.tsx
-- [X] T117 [US3.2] Register in apps/studio/src/config/puck.config.tsx
-- [X] T118 [US3.2] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Leaderboard variants
-- [X] T119 [US3.2] Document component in packages/design-system/README.md
+- [ ] T107 [P] [US3.2] Define LeaderboardEntry TypeScript interface in packages/design-system/src/components/Leaderboard/types.ts
+- [ ] T108 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.tsx using Avatar + Progress from DS
+- [ ] T109 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.module.css with responsive CSS Grid
+- [ ] T110 [US3.2] Implement props: entries, maxEntries (default 10), loading, emptyMessage
+- [ ] T111 [US3.2] Add current user highlighting: Check isCurrentUser flag, apply distinct CSS class
+- [ ] T112 [US3.2] Implement skeleton loading state: Show placeholder entries when loading=true
+- [ ] T113 [US3.2] Add keyboard navigation: Arrow keys move focus between entries
+- [ ] T114 [US3.2] Export via packages/design-system/src/index.ts
+- [ ] T115 [P] [US3.2] Create Storybook story in domains/storybook/src/stories/Leaderboard.stories.tsx (empty, loading, 10 entries, current user)
+- [ ] T116 [P] [US3.2] Write unit tests in packages/design-system/src/components/Leaderboard/Leaderboard.test.tsx
+- [ ] T117 [US3.2] Register in apps/studio/src/config/puck.config.tsx
+- [ ] T118 [US3.2] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Leaderboard variants
+- [ ] T119 [US3.2] Document component in packages/design-system/README.md
 
-**Checkpoint:** ✅ Leaderboard component complete - US3.2 complete (component existed, added 87 tests + Puck registration), commit TBD
+**Checkpoint:** Leaderboard component complete - US3.2 complete, commit with `feat(ds): Add Leaderboard component with ranking and progress (#P2-S3-002)`
 
 ---
 
@@ -332,18 +328,18 @@
 
 ### Implementation for US3.4
 
-- [X] T126 [US3.4] Create domains/BackOffice/journeys/admin-workflow/ directory structure
-- [X] T127 [P] [US3.4] Create README.md in domains/BackOffice/journeys/admin-workflow/ using journey template
-- [X] T128 [P] [US3.4] Implement tela-1-login.tsx: Form with Input (email/password), Button (submit), ErrorBanner
-- [X] T129 [P] [US3.4] Implement tela-2-dashboard.tsx: KPIGrid, StatsCard, Navigation (admin metrics)
-- [X] T130 [P] [US3.4] Implement tela-3-perfil.tsx: Form, Avatar, Input (name/email/bio), Button (save)
-- [X] T131 [US3.4] Add responsive CSS: Mobile (stacked), Tablet (2-col), Desktop (3-col) using CSS Grid
-- [X] T132 [US3.4] Add screenshots to README.md: Capture 3 screens, save in domains/BackOffice/journeys/admin-workflow/screenshots/
-- [X] T133 [US3.4] Link screens in Studio: Create Studio pages for each screen in apps/studio/src/app/[[...slug]]/page.tsx
-- [X] T134 [US3.4] Update PROGRESS_DASHBOARD.md: Add BackOffice admin-workflow entry
-- [X] T135 [US3.4] Verify: Navigate through 3 screens, forms functional, DS components render correctly
+- [ ] T126 [US3.4] Create domains/BackOffice/journeys/admin-workflow/ directory structure
+- [ ] T127 [P] [US3.4] Create README.md in domains/BackOffice/journeys/admin-workflow/ using journey template
+- [ ] T128 [P] [US3.4] Implement tela-1-login.tsx: Form with Input (email/password), Button (submit), ErrorBanner
+- [ ] T129 [P] [US3.4] Implement tela-2-dashboard.tsx: KPIGrid, StatsCard, Navigation (admin metrics)
+- [ ] T130 [P] [US3.4] Implement tela-3-perfil.tsx: Form, Avatar, Input (name/email/bio), Button (save)
+- [ ] T131 [US3.4] Add responsive CSS: Mobile (stacked), Tablet (2-col), Desktop (3-col) using CSS Grid
+- [ ] T132 [US3.4] Add screenshots to README.md: Capture 3 screens, save in domains/BackOffice/journeys/admin-workflow/screenshots/
+- [ ] T133 [US3.4] Link screens in Studio: Create Studio pages for each screen in apps/studio/src/app/[[...slug]]/page.tsx
+- [ ] T134 [US3.4] Update PROGRESS_DASHBOARD.md: Add BackOffice admin-workflow entry
+- [ ] T135 [US3.4] Verify: Navigate through 3 screens, forms functional, DS components render correctly
 
-**Checkpoint:** ✅ BackOffice journeys complete - US3.4 complete (3 admin screens with responsive design), commit TBD
+**Checkpoint:** BackOffice journeys complete - US3.4 complete, commit with `feat(journeys): Add BackOffice admin workflow (3 screens) (#P2-S3-004)`
 
 ---
 
@@ -357,22 +353,22 @@
 
 ### Implementation for US3.5
 
-- [X] T136 [US3.5] Create domains/FrontOffice/journeys/onboarding-flow/ directory structure
-- [X] T137 [P] [US3.5] Create README.md in domains/FrontOffice/journeys/onboarding-flow/ with navigation diagram
-- [X] T138 [P] [US3.5] Implement tela-1-boas-vindas.tsx: Hero, logo, welcome text, "Start" Button
-- [X] T139 [P] [US3.5] Implement tela-2-personagem.tsx: Avatar selection grid, interactive preview, "Next" Button
-- [X] T140 [P] [US3.5] Implement tela-3-primeira-missao.tsx: Step-by-step tutorial with Progress component
-- [X] T141 [P] [US3.5] Implement tela-4-leaderboard.tsx: Use Leaderboard component with mock top 10 data
-- [X] T142 [P] [US3.5] Implement tela-5-parabens.tsx: Celebration message, confetti animation (react-confetti), "Continue" Button
-- [X] T143 [US3.5] Add navigation flow: Buttons link to next screen in sequence
-- [X] T144 [US3.5] Add responsive design: All screens work on mobile, tablet, desktop
-- [X] T145 [US3.5] Add keyboard navigation: Tab order logical, Enter submits forms
-- [X] T146 [US3.5] Add screenshots to README.md: Capture 5 screens, save in domains/FrontOffice/journeys/onboarding-flow/screenshots/
-- [X] T147 [US3.5] Link screens in Studio: Create Studio pages for each screen
-- [X] T148 [US3.5] Update PROGRESS_DASHBOARD.md: Add FrontOffice onboarding-flow entry
-- [X] T149 [US3.5] Verify: Complete 5-screen flow, Leaderboard renders with data, animations smooth
+- [ ] T136 [US3.5] Create domains/FrontOffice/journeys/onboarding-flow/ directory structure
+- [ ] T137 [P] [US3.5] Create README.md in domains/FrontOffice/journeys/onboarding-flow/ with navigation diagram
+- [ ] T138 [P] [US3.5] Implement tela-1-boas-vindas.tsx: Hero, logo, welcome text, "Start" Button
+- [ ] T139 [P] [US3.5] Implement tela-2-personagem.tsx: Avatar selection grid, interactive preview, "Next" Button
+- [ ] T140 [P] [US3.5] Implement tela-3-primeira-missao.tsx: Step-by-step tutorial with Progress component
+- [ ] T141 [P] [US3.5] Implement tela-4-leaderboard.tsx: Use Leaderboard component with mock top 10 data
+- [ ] T142 [P] [US3.5] Implement tela-5-parabens.tsx: Celebration message, confetti animation (react-confetti), "Continue" Button
+- [ ] T143 [US3.5] Add navigation flow: Buttons link to next screen in sequence
+- [ ] T144 [US3.5] Add responsive design: All screens work on mobile, tablet, desktop
+- [ ] T145 [US3.5] Add keyboard navigation: Tab order logical, Enter submits forms
+- [ ] T146 [US3.5] Add screenshots to README.md: Capture 5 screens, save in domains/FrontOffice/journeys/onboarding-flow/screenshots/
+- [ ] T147 [US3.5] Link screens in Studio: Create Studio pages for each screen
+- [ ] T148 [US3.5] Update PROGRESS_DASHBOARD.md: Add FrontOffice onboarding-flow entry
+- [ ] T149 [US3.5] Verify: Complete 5-screen flow, Leaderboard renders with data, animations smooth
 
-**Checkpoint:** ✅ FrontOffice onboarding complete - US3.5 complete (5-screen flow with Leaderboard integration), commit TBD
+**Checkpoint:** FrontOffice onboarding complete - US3.5 complete, commit with `feat(journeys): Add FrontOffice onboarding flow (5 screens) (#P2-S3-005)`
 
 ---
 
