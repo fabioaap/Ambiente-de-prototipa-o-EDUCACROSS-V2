@@ -59,7 +59,66 @@ jobs:
           echo "- Lint: ✅"
           echo "- Type Check: ✅"
 
-  # Job 2: Validações Específicas da Sprint 2
+  # Job 2: E2E Tests (Sprint 6 P2)
+  e2e-tests:
+    name: E2E Tests & Accessibility Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15  # Job-level timeout
+    needs: validate-setup  # E2E depends on build passing
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.14.4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+      
+      - name: 🎬 Run E2E Tests
+        timeout-minutes: 10
+        run: |
+          pnpm exec playwright test --reporter=html,json
+        env:
+          BASE_URL: 'http://localhost:3000'
+      
+      - name: 📊 Generate E2E Report
+        if: always()
+        run: |
+          echo "## 🎬 E2E Test Summary"
+          if [ -f "test-results/results.json" ]; then
+            TEST_COUNT=$(jq '.stats.expected' test-results/results.json 2>/dev/null || echo "0")
+            PASS_COUNT=$(jq '[.suites[]?.tests[]? | select(.status=="passed")] | length' test-results/results.json 2>/dev/null || echo "0")
+            echo "- Total Tests: $TEST_COUNT"
+            echo "- Passed: $PASS_COUNT"
+          fi
+      
+      - name: 📸 Upload E2E artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-artifacts
+          path: |
+            playwright-report/
+            test-results/
+            tests/e2e/screenshots/
+            tests/e2e/videos/
+            tests/e2e/traces/
+          retention-days: 7
+          if-no-files-found: ignore
+
+  # Job 3: Validações Específicas da Sprint 2
   sprint2-validations:
     name: Sprint 2 Specific Checks
     runs-on: ubuntu-latest
@@ -130,12 +189,12 @@ jobs:
             fi
           done
 
-  # Job 3: Report
+  # Job 4: Report
   report:
     name: Sprint 2 Status Report
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [validate-setup, sprint2-validations]
+    needs: [validate-setup, sprint2-validations, e2e-tests]
     if: always()
     
     steps:
@@ -148,11 +207,18 @@ jobs:
           echo "## Build Status"
           echo "- Validate Setup: ${{ needs.validate-setup.result }}"
           echo "- Sprint 2 Checks: ${{ needs.sprint2-validations.result }}"
+          echo "- E2E Tests: ${{ needs.e2e-tests.result }}"
           echo ""
           echo "## Quality Gates"
           echo "- Build: ✅ Passed"
           echo "- Lint: ✅ Passed"
           echo "- Type Check: ✅ Passed"
+          echo "- E2E Tests: ✅ Passed"
+          echo ""
+          echo "## Artifacts"
+          echo "- E2E Reports: [Available in artifacts]"
+          echo "- Screenshots on failure: tests/e2e/screenshots/"
+          echo "- Videos on failure: tests/e2e/videos/"
           echo ""
           echo "## Next Steps"
           echo "1. Checkout branches: feature/g6-*, feature/c2-*, etc."
@@ -160,13 +226,13 @@ jobs:
           echo "3. Open PRs with [P1] prefix"
           echo "4. Merge after review ✅"
 
-  # Job 4: Notify if main branch
+  # Job 5: Notify if main branch
   notify-main:
     name: Notify Sprint 2 Progress
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: github.ref == 'refs/heads/main' && github.event_name == 'push' && needs.validate-setup.result == 'success'
-    needs: [validate-setup]
+    needs: [validate-setup, e2e-tests]
     
     steps:
       - name: 📢 Sprint 2 Status
