@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2025-12-03 — Sprint 4 (DS + Storybook)
+
+### Added
+- Design System: validação de Alert, Badge, Chip, Avatar/Group, StatsCard, Dropdown (Radix UI).
+- Storybook: Branding EDUCACROSS — tema (manager), assets head (favicons/fonts), ordenação pt-BR (preview).
+- Documentação: `validation.md` e `validation-report.md` em `specs/003-sprint4-backoffice-essentials/checklists/`.
+- NFRs & Rollback: metas formais e plano de mitigação em `SPRINT3_FINAL_STATUS.md`.
+
+### Changed
+- CSS: ordem de `@import` ajustada em Studio/Storybook para remover warnings de PostCSS/Next.
+
+### Build & Quality
+- Tokens, Design System, Storybook, Studio, Admin: builds PASS.
+- Lint e Type-check: PASS.
+- Observações: warnings não bloqueantes — chunks grandes em Storybook (rollup), `eval` em core (upstream).
+
 ## [0.3.0] - 2025-11-29
 
 ### Added - Design System Consolidation Sprint

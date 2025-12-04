@@ -1,0 +1,35 @@
+openapi: 3.0.3
+info:
+  title: EDUCACROSS Dashboard API
+  version: 1.0.0
+paths:
+  /api/dashboard/summary:
+    get:
+      responses:
+        '200':
+          description: Summary KPIs
+        '500':
+          description: Error
+  /api/dashboard/health:
+    get:
+      responses:
+        '200':
+          description: Health metrics
+        '500':
+          description: Error
+  /api/dashboard/pages:
+    get:
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Pages list
+        '500':
+          description: Error
