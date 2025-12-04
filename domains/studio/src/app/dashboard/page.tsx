@@ -283,6 +283,7 @@ function EmptyState() {
 export default function DashboardPage() {
   const { data: rawData, error, isLoading, mutate } = useDashboardData();
   const data = rawData as SummaryData | undefined;
+<<<<<<< HEAD
   const router = useRouter();
   const isError = !!error;
 
@@ -296,6 +297,10 @@ export default function DashboardPage() {
     }
   }, [data, isLoading]);
 
+=======
+  const isError = !!error;
+
+>>>>>>> e9822ce (feat(dashboard): add SWR hook and next sprint scaffolding)
   const [search, setSearch] = React.useState('');
   const [debouncedSearch, setDebouncedSearch] = React.useState('');
   const [domainFilter, setDomainFilter] = React.useState<string>('All');
