@@ -73,9 +73,9 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     );
 
     return (
-      <Component
-        ref={mergedRef as React.Ref<HTMLDivElement>}
-        className={classNames}
+      <Component 
+        ref={ref as unknown as React.Ref<HTMLDivElement>}
+        className={classNames} 
         onClick={onClick}
         role={role}
         aria-label={ariaLabel}
