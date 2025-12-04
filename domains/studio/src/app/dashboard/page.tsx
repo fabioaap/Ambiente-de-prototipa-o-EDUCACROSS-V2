@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useDashboardData } from './useDashboardData';
+import { trackEvent } from '@/lib/analytics/init';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -267,6 +268,16 @@ export default function DashboardPage() {
   const { data: rawData, error, isLoading, mutate } = useDashboardData();
   const data = rawData as SummaryData | undefined;
   const isError = !!error;
+
+  // Track dashboard load event
+  React.useEffect(() => {
+    if (data && !isLoading) {
+      trackEvent('dashboard_load', {
+        pages_count: data.recentPages?.length || 0,
+        domains_count: data.domains?.length || 0,
+      });
+    }
+  }, [data, isLoading]);
 
   const [search, setSearch] = React.useState('');
   const [debouncedSearch, setDebouncedSearch] = React.useState('');
