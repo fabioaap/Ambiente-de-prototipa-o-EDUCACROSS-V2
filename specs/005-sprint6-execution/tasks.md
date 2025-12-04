@@ -258,20 +258,20 @@
 
 ### Implementation for US3.1
 
-- [ ] T095 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.tsx with linear/circular logic
-- [ ] T096 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.module.css consuming tokens
-- [ ] T097 [US3.1] Implement props interface: value (0-100), variant, size, color, animated, showValue, ariaLabel
-- [ ] T098 [US3.1] Add ARIA attributes: role="progressbar", aria-valuenow, aria-valuemin, aria-valuemax
-- [ ] T099 [US3.1] Implement 4 color variants: primary, success, warning, danger (using tokens)
-- [ ] T100 [US3.1] Implement 3 sizes: sm, md, lg (width/height from tokens)
-- [ ] T101 [US3.1] Export via packages/design-system/src/index.ts
-- [ ] T102 [P] [US3.1] Create Storybook story in domains/storybook/src/stories/Progress.stories.tsx (all variants)
-- [ ] T103 [P] [US3.1] Write unit tests in packages/design-system/src/components/Progress/Progress.test.tsx
-- [ ] T104 [US3.1] Register in apps/studio/src/config/puck.config.tsx for Studio usage
-- [ ] T105 [US3.1] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Progress variants render
-- [ ] T106 [US3.1] Document component in packages/design-system/README.md (props, usage examples)
+- [X] T095 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.tsx with linear/circular logic
+- [X] T096 [P] [US3.1] Create packages/design-system/src/components/Progress/Progress.module.css consuming tokens
+- [X] T097 [US3.1] Implement props interface: value (0-100), variant, size, color, animated, showValue, ariaLabel
+- [X] T098 [US3.1] Add ARIA attributes: role="progressbar", aria-valuenow, aria-valuemin, aria-valuemax
+- [X] T099 [US3.1] Implement 4 color variants: primary, success, warning, danger (using tokens)
+- [X] T100 [US3.1] Implement 3 sizes: sm, md, lg (width/height from tokens)
+- [X] T101 [US3.1] Export via packages/design-system/src/index.ts
+- [X] T102 [P] [US3.1] Create Storybook story in domains/storybook/src/stories/Progress.stories.tsx (all variants)
+- [X] T103 [P] [US3.1] Write unit tests in packages/design-system/src/components/Progress/Progress.test.tsx
+- [X] T104 [US3.1] Register in apps/studio/src/config/puck.config.tsx for Studio usage
+- [X] T105 [US3.1] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Progress variants render
+- [X] T106 [US3.1] Document component in packages/design-system/README.md (props, usage examples)
 
-**Checkpoint:** Progress component complete - US3.1 complete, commit with `feat(ds): Add Progress component with linear/circular variants (#P2-S3-001)`
+**Checkpoint:** ✅ Progress component complete - US3.1 complete (component existed, added tests), commit TBD
 
 ---
 
