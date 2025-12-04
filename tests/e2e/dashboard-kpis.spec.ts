@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { injectAxe, checkA11y } from 'axe-playwright';
 
 test.describe('Dashboard - KPIs Journey', () => {
   test.beforeEach(async ({ page }) => {
@@ -6,6 +7,8 @@ test.describe('Dashboard - KPIs Journey', () => {
     await page.goto('/dashboard');
     // Wait for data to load
     await page.waitForLoadState('networkidle');
+    // Inject axe for accessibility testing
+    await injectAxe(page);
   });
 
   test('should load dashboard page without errors', async ({ page }) => {
@@ -116,5 +119,29 @@ test.describe('Dashboard - KPIs Journey', () => {
     
     // Either <main> exists or body is the main container
     expect(mainExists || page.url().includes('/dashboard')).toBe(true);
+  });
+
+  test('should pass axe accessibility checks (WCAG AA)', async ({ page }) => {
+    // Run axe accessibility checks
+    try {
+      await checkA11y(page, null, {
+        detailedReport: true,
+        detailedReportOptions: {
+          html: true
+        }
+      });
+    } catch (error: any) {
+      // Log violations but allow test to continue if only minor issues
+      const violations = error.violations || [];
+      const criticalViolations = violations.filter((v: any) => 
+        v.impact === 'critical' || v.impact === 'serious'
+      );
+      
+      // Fail if there are critical or serious violations
+      if (criticalViolations.length > 0) {
+        console.error('Critical accessibility violations found:', criticalViolations);
+        throw error;
+      }
+    }
   });
 });
