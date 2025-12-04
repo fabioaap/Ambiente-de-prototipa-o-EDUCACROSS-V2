@@ -1,5 +1,6 @@
 # EDUCACROSS Copilot Playbook
-- Status: Sprint 3 Fase 3/4 (Dashboard & Game Hub); sync context via SPRINT3_DOCUMENTATION_INDEX.md before coding.
+- Status: Sprint 6 Preparation (2025-12-09 kickoff); Sprint 3 complete (100%), 20 items planned for Sprint 6.
+- Context: specs/005-sprint6-execution/ (spec, plan, research, data-model, quickstart).
 
 ## Platform Overview
 - Stack: Node 22.21.1 (.nvmrc enforced), pnpm 9.14.4+, TypeScript 5 strict, Next.js 15 App Router, SWR, React 18.
@@ -13,10 +14,10 @@
 - Dev servers: pnpm dev:studio (3000) and pnpm dev:storybook (6006); kill stray node processes if ports stay busy.
 
 ## Workflow Expectations
-- Branch names feature/{area}-{desc}; commits follow type(scope): summary (issue #XX).
+- Branch names feature/sprint6-{item-name}; commits follow type(scope): summary (issue #XX).
 - After opening a PR, comment /spec to trigger SpecKit and address every reported gap before merge.
 - sprint-2-validation.yml mirrors build/lint/type-check and additional API/a11y checks; reproduce locally when CI fails.
-- Sprint prompts live in SPRINT3_EXECUTION_DETAILED.md; keep dashboard context docs (SPRINT3_FINAL_STATUS.md, PROGRESS_DASHBOARD.md) updated as you work.
+- Sprint 6 docs: SPRINT6_ROADMAP.md (20 items), SPRINT6_EXECUTION_PLAN.md (team allocation, timeline).
 
 ## Design System & Tokens
 - Components in packages/design-system/src/components/* require 'use client', React.forwardRef, CSS Modules, and fully documented props.
