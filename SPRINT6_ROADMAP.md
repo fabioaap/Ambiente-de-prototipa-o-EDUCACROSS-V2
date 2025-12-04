@@ -1,7 +1,8 @@
 # Sprint 6 Roadmap & Planning
 
 **Created:** 2025-12-04  
-**Target Start:** 2025-12-05 (Friday) or 2025-12-09 (Monday)  
+**Updated:** 2025-12-04 (Sprint 3 items moved)  
+**Target Start:** 2025-12-09 (Monday)  
 **Duration:** 2 weeks (10 business days)  
 **Status:** PLANNING  
 
@@ -16,6 +17,7 @@ Build on Sprint 5's foundation with a focus on:
 - ✅ Comprehensive testing (E2E, coverage)
 - ✅ Production readiness (monitoring, alerts)
 - ✅ Developer experience (templates, tooling)
+- ✅ Sprint 3 deferred items (components, journeys)
 
 **Success Metrics:**
 - 100% CI/CD pass rate (no manual overrides)
@@ -25,22 +27,52 @@ Build on Sprint 5's foundation with a focus on:
 - <45s build time maintained
 - Monitoring active in staging
 
+**Total Items:** 20 (12 original + 8 moved from Sprint 3)  
+**Total Effort:** 17.25 person-days (14 + 3.25)
+
+---
+
+## 📦 Sprint 3 Moved Items (Added 04/12/2025)
+
+Following validation on 04/12/2025, **8 items from Sprint 3** were reclassified as non-critical after analysis:
+- **#59 (Puck DropZone)** validated as NOT a blocker - Studio functions without it
+- **Sprint 3 declared 100% complete** with #53 (Dashboard API) + #54 (Dashboard UI)
+
+### Moved to Sprint 6 P2 (Medium Priority):
+- **#56** E1.1 - BackOffice: Revisão 3 telas (5h)
+- **#57** F1.1 - FrontOffice: Onboarding 5 telas (4h)
+- **#59** PUCK - Puck Refactor DropZone (2.5h) - validated as enhancement, not blocker
+- **#60** DS.1 - Design System: Progress Component (2h)
+- **#61** DS.2 - Design System: Leaderboard Component (2.5h)
+- **#58** G1.1 - Game Hub (3h) - depends on #61
+
+### Moved to Sprint 6 P3 (Low Priority):
+- **#55** H2.3 - Health Indicators: Estatísticas avançadas (4h)
+- **#62** CI.1 - SpecKit: PR validation & sprint rules (1h)
+- **#63** C2.2 - Code-to-Figma integration: docs & backlog (2h)
+
+**Rationale:** All 8 items are standalone features/enhancements that don't block core functionality. Moving them allows Sprint 3 to close at 100% and consolidates feature work in Sprint 6.
+
 ---
 
 ## 📅 Timeline Overview
 
 ```
-Week 1 (Mon-Fri)    │ Week 2 (Mon-Fri)
-────────────────────┼────────────────────
-P1 Items Fix        │ P2 Features Build
-(3 days)            │ (5 days)
-                    │
-├─ CI/CD Fix    1d  │ ├─ E2E Tests      3d
-├─ Type Safety  2d  │ ├─ Monitoring     1d
-├─ Tests Fix    1d  │ ├─ Analytics      1d
-│                   │ └─ Docs Template  1d
-│                   │
-Contingency: 1d     │ Contingency: 1d
+Week 1 (Mon-Fri)    │ Week 2 (Mon-Fri)         │ Week 3 (Optional)
+────────────────────┼──────────────────────────┼──────────────────
+P1 Items Fix        │ P2 Features Build        │ P2/P3 Completion
+(3 days)            │ (5 days)                 │ (3-5 days)
+                    │                          │
+├─ CI/CD Fix    1d  │ ├─ E2E Tests      2d     │ ├─ Journeys (#56/#57)
+├─ Type Safety  2d  │ ├─ Monitoring     1d     │ ├─ Game Hub (#58)
+├─ Tests Fix    1d  │ ├─ Analytics      1d     │ ├─ Health (#55)
+│                   │ ├─ Docs Template  1d     │ └─ Tooling (#62/#63)
+│                   │ ├─ CSV Enhance    1.5d   │
+│                   │ ├─ DS Components  4.5d   │
+│                   │ │  (#60, #61, #59)       │
+│                   │ └─ Sprint 3 items 7d     │
+│                   │                          │
+Contingency: 1d     │ Contingency: 1d          │ Contingency: 1d
 ```
 
 ---
