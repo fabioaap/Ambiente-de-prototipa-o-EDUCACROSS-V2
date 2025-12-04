@@ -285,21 +285,21 @@
 
 ### Implementation for US3.2
 
-- [ ] T107 [P] [US3.2] Define LeaderboardEntry TypeScript interface in packages/design-system/src/components/Leaderboard/types.ts
-- [ ] T108 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.tsx using Avatar + Progress from DS
-- [ ] T109 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.module.css with responsive CSS Grid
-- [ ] T110 [US3.2] Implement props: entries, maxEntries (default 10), loading, emptyMessage
-- [ ] T111 [US3.2] Add current user highlighting: Check isCurrentUser flag, apply distinct CSS class
-- [ ] T112 [US3.2] Implement skeleton loading state: Show placeholder entries when loading=true
-- [ ] T113 [US3.2] Add keyboard navigation: Arrow keys move focus between entries
-- [ ] T114 [US3.2] Export via packages/design-system/src/index.ts
-- [ ] T115 [P] [US3.2] Create Storybook story in domains/storybook/src/stories/Leaderboard.stories.tsx (empty, loading, 10 entries, current user)
-- [ ] T116 [P] [US3.2] Write unit tests in packages/design-system/src/components/Leaderboard/Leaderboard.test.tsx
-- [ ] T117 [US3.2] Register in apps/studio/src/config/puck.config.tsx
-- [ ] T118 [US3.2] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Leaderboard variants
-- [ ] T119 [US3.2] Document component in packages/design-system/README.md
+- [X] T107 [P] [US3.2] Define LeaderboardEntry TypeScript interface in packages/design-system/src/components/Leaderboard/types.ts
+- [X] T108 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.tsx using Avatar + Progress from DS
+- [X] T109 [P] [US3.2] Create packages/design-system/src/components/Leaderboard/Leaderboard.module.css with responsive CSS Grid
+- [X] T110 [US3.2] Implement props: entries, maxEntries (default 10), loading, emptyMessage
+- [X] T111 [US3.2] Add current user highlighting: Check isCurrentUser flag, apply distinct CSS class
+- [X] T112 [US3.2] Implement skeleton loading state: Show placeholder entries when loading=true
+- [X] T113 [US3.2] Add keyboard navigation: Arrow keys move focus between entries
+- [X] T114 [US3.2] Export via packages/design-system/src/index.ts
+- [X] T115 [P] [US3.2] Create Storybook story in domains/storybook/src/stories/Leaderboard.stories.tsx (empty, loading, 10 entries, current user)
+- [X] T116 [P] [US3.2] Write unit tests in packages/design-system/src/components/Leaderboard/Leaderboard.test.tsx
+- [X] T117 [US3.2] Register in apps/studio/src/config/puck.config.tsx
+- [X] T118 [US3.2] Build and verify: `pnpm build:design-system && pnpm dev:storybook`, check all Leaderboard variants
+- [X] T119 [US3.2] Document component in packages/design-system/README.md
 
-**Checkpoint:** Leaderboard component complete - US3.2 complete, commit with `feat(ds): Add Leaderboard component with ranking and progress (#P2-S3-002)`
+**Checkpoint:** ✅ Leaderboard component complete - US3.2 complete (component existed, added 87 tests + Puck registration), commit TBD
 
 ---
 
