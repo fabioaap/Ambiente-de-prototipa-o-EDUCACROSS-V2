@@ -148,8 +148,8 @@
 - [X] T045 [US2.1] Configure test artifacts: screenshots in tests/e2e/screenshots/, videos in tests/e2e/videos/
 - [X] T046 [US2.1] Add E2E step to .github/workflows/sprint-2-validation.yml with artifact upload
 - [X] T047 [US2.1] Optimize test execution: Run in parallel, target <5min total runtime
-- [ ] T048 [US2.1] Document E2E testing in specs/005-sprint6-execution/quickstart.md (how to run, debug, add tests)
-- [ ] T049 [US2.1] Verify: `pnpm exec playwright test` passes 3/3 suites across 3 browsers in <5min
+- [X] T048 [US2.1] Document E2E testing in specs/005-sprint6-execution/quickstart.md (how to run, debug, add tests)
+- [X] T049 [US2.1] Verify: `pnpm exec playwright test` passes 3/3 suites across 3 browsers in <5min
 
 **Checkpoint:** E2E testing active - US2.1 complete, commit with `feat(tests): Add Playwright E2E suite with Dashboard + Studio journeys (#P2-001)`
 
