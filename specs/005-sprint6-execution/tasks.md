@@ -163,16 +163,16 @@
 
 ### Implementation for US2.2
 
-- [ ] T050 [US2.2] Create Sentry project at sentry.io (or self-hosted instance)
-- [ ] T051 [US2.2] Configure sentry.client.config.ts in apps/studio/src/ with DSN and environment
-- [ ] T052 [US2.2] Configure sentry.server.config.ts in apps/studio/src/ for API route errors
-- [ ] T053 [P] [US2.2] Add ErrorBoundary component in apps/studio/src/components/ErrorBoundary.tsx
-- [ ] T054 [P] [US2.2] Wrap app/layout.tsx with ErrorBoundary to catch React errors
-- [ ] T055 [US2.2] Add Sentry.captureException() to API route error handlers in apps/studio/src/app/api/**/route.ts
-- [ ] T056 [US2.2] Configure source maps upload in next.config.mjs with @sentry/nextjs plugin
+- [X] T050 [US2.2] Create Sentry project at sentry.io (or self-hosted instance)
+- [X] T051 [US2.2] Configure sentry.client.config.ts in apps/studio/src/ with DSN and environment
+- [X] T052 [US2.2] Configure sentry.server.config.ts in apps/studio/src/ for API route errors
+- [X] T053 [P] [US2.2] Add ErrorBoundary component in apps/studio/src/components/ErrorBoundary.tsx
+- [X] T054 [P] [US2.2] Wrap app/layout.tsx with ErrorBoundary to catch React errors
+- [X] T055 [US2.2] Add Sentry.captureException() to API route error handlers in apps/studio/src/app/api/**/route.ts
+- [X] T056 [US2.2] Configure source maps upload in next.config.mjs with @sentry/nextjs plugin
 - [ ] T057 [US2.2] Set up alert rules in Sentry: >10 errors/hour triggers Slack notification
 - [ ] T058 [US2.2] Add Sentry error rate widget to Dashboard (optional): Display in apps/studio/src/app/dashboard/page.tsx
-- [ ] T059 [US2.2] Document Sentry setup in specs/005-sprint6-execution/quickstart.md (how to test, view errors)
+- [X] T059 [US2.2] Document Sentry setup in specs/005-sprint6-execution/quickstart.md (how to test, view errors)
 - [ ] T060 [US2.2] Verify: Trigger test error `throw new Error('Test Sentry')`, confirm appears in Sentry dashboard with source map context
 
 **Checkpoint:** Error monitoring live - US2.2 complete, commit with `feat(monitoring): Integrate Sentry for error tracking (#P2-002)`
