@@ -35,6 +35,7 @@
     "perf:storybook": "playwright test scripts/playwright/storybook-perf.spec.ts --reporter=list"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@playwright/test": "^1.48.2",
     "@prototipo/eslint-config": "workspace:*",
     "eslint": "^9.15.0",

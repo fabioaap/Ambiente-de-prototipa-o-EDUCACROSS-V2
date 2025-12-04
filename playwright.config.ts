@@ -7,6 +7,7 @@ import { defineConfig, devices } from '@playwright/test';
  * - Multi-browser support: Chromium, Firefox, WebKit
  * - Screenshot/video on failure for debugging
  * - Parallel execution for faster CI
+ * - Comprehensive artifact collection
  * 
  * @see specs/005-sprint6-execution/research.md
  */
@@ -17,6 +18,8 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? 'github' : 'list',
+  
+  outputDir: './test-results',
   
   use: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',

@@ -144,8 +144,8 @@
 - [X] T041 [US2.1] Create tests/e2e/ directory structure at workspace root
 - [X] T042 [P] [US2.1] Implement Dashboard journey test: Visit /dashboard, assert KPIs visible, check health metrics
 - [X] T043 [P] [US2.1] Implement Studio journey test: Create page, add component, save, verify JSON schema
-- [ ] T044 [P] [US2.1] Add accessibility checks with @axe-core/playwright in all E2E tests
-- [ ] T045 [US2.1] Configure test artifacts: screenshots in tests/e2e/screenshots/, videos in tests/e2e/videos/
+- [X] T044 [P] [US2.1] Add accessibility checks with @axe-core/playwright in all E2E tests
+- [X] T045 [US2.1] Configure test artifacts: screenshots in tests/e2e/screenshots/, videos in tests/e2e/videos/
 - [ ] T046 [US2.1] Add E2E step to .github/workflows/sprint-2-validation.yml with artifact upload
 - [ ] T047 [US2.1] Optimize test execution: Run in parallel, target <5min total runtime
 - [ ] T048 [US2.1] Document E2E testing in specs/005-sprint6-execution/quickstart.md (how to run, debug, add tests)
