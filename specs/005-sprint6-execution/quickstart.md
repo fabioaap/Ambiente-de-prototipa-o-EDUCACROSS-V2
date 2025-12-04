@@ -313,20 +313,48 @@ pnpm dev:storybook # In Terminal 2
 
 ### Export/Import Data (CSV/JSON/XML)
 ```bash
-# Feature implemented in P2-005
-# Usage (after implementation):
+# ✅ IMPLEMENTED in Phase 10 (P2-005)
+# Multi-format export/import with schema validation
 
-# Export from dashboard:
+# EXPORT from Dashboard:
+# Option 1: Via UI
 # 1. Visit: http://localhost:3000/dashboard
-# 2. Click "Export" button
-# 3. Select format: CSV, JSON, or XML
-# 4. File downloads to browser
+# 2. Navigate to Export section
+# 3. Select format from dropdown: JSON, CSV, or XML
+# 4. Click "Download as [FORMAT]"
+# 5. File downloads with timestamp: pages-export-2025-12-04.[format]
 
-# Import to dashboard:
+# Option 2: Direct API call
+curl -o export.json "http://localhost:3000/api/dashboard/pages/export?format=json"
+curl -o export.csv "http://localhost:3000/api/dashboard/pages/export?format=csv"
+curl -o export.xml "http://localhost:3000/api/dashboard/pages/export?format=xml"
+
+# IMPORT to Dashboard:
+# Option 1: Via UI
 # 1. Visit: http://localhost:3000/dashboard
-# 2. Click "Import" button
-# 3. Select file (CSV/JSON/XML)
-# 4. Validate and confirm import
+# 2. Navigate to Import section
+# 3. Select mode: "Merge" (keep existing) or "Replace" (delete all first)
+# 4. Choose file (any format: .json, .csv, .xml)
+# 5. Click "Upload" - format auto-detected from extension
+# 6. Review validation results and confirm
+
+# Option 2: Direct API call
+curl -X POST "http://localhost:3000/api/dashboard/pages/import" \
+  -F "file=@pages-export-2025-12-04.json"
+
+# VALIDATION RULES:
+# - All formats: Required fields (id, title, slug, status, owner, createdAt, updatedAt)
+# - Status enum: Must be "published", "draft", or "archived"
+# - Dates: Must be valid ISO 8601 format (e.g., "2024-01-01T00:00:00.000Z")
+# - CSV: Headers must match exactly (ID, Title, Slug, Status, Owner, Created At, Updated At)
+# - JSON: Schema validated (exportedAt, totalPages, pages array)
+# - XML: Valid XML structure with <export>, <metadata>, <pages> tags
+
+# ERROR HANDLING:
+# - Line-level errors: "Row 3: Invalid status 'pending'"
+# - Field-level errors: "Row 5: Missing required field 'title'"
+# - Format errors: "Invalid CSV: expected 7 columns, got 5"
+# - All errors returned with HTTP 400 and details in response body
 ```
 
 ---
