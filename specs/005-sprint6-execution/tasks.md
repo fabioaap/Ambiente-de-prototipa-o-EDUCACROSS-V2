@@ -170,8 +170,8 @@
 - [X] T054 [P] [US2.2] Wrap app/layout.tsx with ErrorBoundary to catch React errors
 - [X] T055 [US2.2] Add Sentry.captureException() to API route error handlers in apps/studio/src/app/api/**/route.ts
 - [X] T056 [US2.2] Configure source maps upload in next.config.mjs with @sentry/nextjs plugin
-- [ ] T057 [US2.2] Set up alert rules in Sentry: >10 errors/hour triggers Slack notification
-- [ ] T058 [US2.2] Add Sentry error rate widget to Dashboard (optional): Display in apps/studio/src/app/dashboard/page.tsx
+- [X] T057 [US2.2] Set up alert rules in Sentry: >10 errors/hour triggers Slack notification
+- [X] T058 [US2.2] Add Sentry error rate widget to Dashboard (optional): Display in apps/studio/src/app/dashboard/page.tsx
 - [X] T059 [US2.2] Document Sentry setup in specs/005-sprint6-execution/quickstart.md (how to test, view errors)
 - [ ] T060 [US2.2] Verify: Trigger test error `throw new Error('Test Sentry')`, confirm appears in Sentry dashboard with source map context
 
@@ -187,18 +187,18 @@
 
 ### Implementation for US2.3
 
-- [ ] T061 [US2.3] Create GA4 property at analytics.google.com or set up Mixpanel project
-- [ ] T062 [US2.3] Add gtag.js script to apps/studio/src/app/layout.tsx with measurement ID
-- [ ] T063 [P] [US2.3] Create AnalyticsProvider component in apps/studio/src/lib/analytics/AnalyticsProvider.tsx
-- [ ] T064 [P] [US2.3] Implement trackEvent() function for custom events (event name, params)
-- [ ] T065 [US2.3] Track page_view: Automatic in GA4 gtag.js (verify in DebugView)
-- [ ] T066 [P] [US2.3] Track dashboard_load: Call trackEvent() in apps/studio/src/app/dashboard/page.tsx useEffect
+- [X] T061 [US2.3] Create GA4 property at analytics.google.com or set up Mixpanel project
+- [X] T062 [US2.3] Add gtag.js script to apps/studio/src/app/layout.tsx with measurement ID
+- [X] T063 [P] [US2.3] Create AnalyticsProvider component in apps/studio/src/lib/analytics/AnalyticsProvider.tsx
+- [X] T064 [P] [US2.3] Implement trackEvent() function for custom events (event name, params)
+- [X] T065 [US2.3] Track page_view: Automatic in GA4 gtag.js (verify in DebugView)
+- [X] T066 [P] [US2.3] Track dashboard_load: Call trackEvent() in apps/studio/src/app/dashboard/page.tsx useEffect
 - [ ] T067 [P] [US2.3] Track page_create: Call trackEvent() in Studio page creation handler
 - [ ] T068 [P] [US2.3] Track csv_export: Call trackEvent() in CSV export button onClick
 - [ ] T069 [US2.3] Add cookie consent banner (optional): Use @cookie-consent/react or custom implementation
 - [ ] T070 [US2.3] Configure data retention: 14 months in GA4 settings, document GDPR compliance
 - [ ] T071 [US2.3] Create analytics dashboard view for PMs (GA4 web interface or custom iframe)
-- [ ] T072 [US2.3] Document analytics in specs/005-sprint6-execution/quickstart.md (tracked events, testing with DebugView)
+- [X] T072 [US2.3] Document analytics in specs/005-sprint6-execution/quickstart.md (tracked events, testing with DebugView)
 - [ ] T073 [US2.3] Verify: Open GA4 DebugView, perform actions in Studio, confirm 5+ events tracked with params
 
 **Checkpoint:** Analytics active - US2.3 complete, commit with `feat(analytics): Integrate Google Analytics 4 for usage tracking (#P2-003)`
