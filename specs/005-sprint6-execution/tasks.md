@@ -357,22 +357,22 @@
 
 ### Implementation for US3.5
 
-- [ ] T136 [US3.5] Create domains/FrontOffice/journeys/onboarding-flow/ directory structure
-- [ ] T137 [P] [US3.5] Create README.md in domains/FrontOffice/journeys/onboarding-flow/ with navigation diagram
-- [ ] T138 [P] [US3.5] Implement tela-1-boas-vindas.tsx: Hero, logo, welcome text, "Start" Button
-- [ ] T139 [P] [US3.5] Implement tela-2-personagem.tsx: Avatar selection grid, interactive preview, "Next" Button
-- [ ] T140 [P] [US3.5] Implement tela-3-primeira-missao.tsx: Step-by-step tutorial with Progress component
-- [ ] T141 [P] [US3.5] Implement tela-4-leaderboard.tsx: Use Leaderboard component with mock top 10 data
-- [ ] T142 [P] [US3.5] Implement tela-5-parabens.tsx: Celebration message, confetti animation (react-confetti), "Continue" Button
-- [ ] T143 [US3.5] Add navigation flow: Buttons link to next screen in sequence
-- [ ] T144 [US3.5] Add responsive design: All screens work on mobile, tablet, desktop
-- [ ] T145 [US3.5] Add keyboard navigation: Tab order logical, Enter submits forms
-- [ ] T146 [US3.5] Add screenshots to README.md: Capture 5 screens, save in domains/FrontOffice/journeys/onboarding-flow/screenshots/
-- [ ] T147 [US3.5] Link screens in Studio: Create Studio pages for each screen
-- [ ] T148 [US3.5] Update PROGRESS_DASHBOARD.md: Add FrontOffice onboarding-flow entry
-- [ ] T149 [US3.5] Verify: Complete 5-screen flow, Leaderboard renders with data, animations smooth
+- [X] T136 [US3.5] Create domains/FrontOffice/journeys/onboarding-flow/ directory structure
+- [X] T137 [P] [US3.5] Create README.md in domains/FrontOffice/journeys/onboarding-flow/ with navigation diagram
+- [X] T138 [P] [US3.5] Implement tela-1-boas-vindas.tsx: Hero, logo, welcome text, "Start" Button
+- [X] T139 [P] [US3.5] Implement tela-2-personagem.tsx: Avatar selection grid, interactive preview, "Next" Button
+- [X] T140 [P] [US3.5] Implement tela-3-primeira-missao.tsx: Step-by-step tutorial with Progress component
+- [X] T141 [P] [US3.5] Implement tela-4-leaderboard.tsx: Use Leaderboard component with mock top 10 data
+- [X] T142 [P] [US3.5] Implement tela-5-parabens.tsx: Celebration message, confetti animation (react-confetti), "Continue" Button
+- [X] T143 [US3.5] Add navigation flow: Buttons link to next screen in sequence
+- [X] T144 [US3.5] Add responsive design: All screens work on mobile, tablet, desktop
+- [X] T145 [US3.5] Add keyboard navigation: Tab order logical, Enter submits forms
+- [X] T146 [US3.5] Add screenshots to README.md: Capture 5 screens, save in domains/FrontOffice/journeys/onboarding-flow/screenshots/
+- [X] T147 [US3.5] Link screens in Studio: Create Studio pages for each screen
+- [X] T148 [US3.5] Update PROGRESS_DASHBOARD.md: Add FrontOffice onboarding-flow entry
+- [X] T149 [US3.5] Verify: Complete 5-screen flow, Leaderboard renders with data, animations smooth
 
-**Checkpoint:** FrontOffice onboarding complete - US3.5 complete, commit with `feat(journeys): Add FrontOffice onboarding flow (5 screens) (#P2-S3-005)`
+**Checkpoint:** ✅ FrontOffice onboarding complete - US3.5 complete (5-screen flow with Leaderboard integration), commit TBD
 
 ---
 
