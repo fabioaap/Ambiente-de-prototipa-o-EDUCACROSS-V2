@@ -20,6 +20,12 @@ Repositório de prototipação frontend orientado a jornadas, utilizando React, 
 - **🎨 Studio Staging:** [educacross-studio-staging.vercel.app](https://educacross-studio-staging.vercel.app)
 - **📚 Storybook Staging:** [educacross-storybook-staging.vercel.app](https://educacross-storybook-staging.vercel.app)
 
+## 📘 Sou PM ou Designer? Comece por aqui
+
+Se você é **Product Manager** ou **Designer** e quer criar/validar protótipos, siga o **Guia Rápido para Jornadas**:
+
+- **📘 [Guia Completo: Criar Jornadas com VSCode & Cursor](docs/JORNADAS_VSCODE_CURSOR.md)** — Como criar novas jornadas com VSCode/Cursor e assistentes de IA (GitHub Copilot, ChatGPT, Cursor AI). Inclui templates prontos, prompts práticos e checklist de qualidade.
+
 ## 🎯 Visão Geral
 
 Este é um ambiente de **prototipação**, não um repositório de produção. Tudo o que é criado aqui deve rodar sem erros (build e dev) para ser usado por designers, PMs e desenvolvedores.
