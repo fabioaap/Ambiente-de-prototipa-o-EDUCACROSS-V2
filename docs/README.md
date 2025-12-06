@@ -4,6 +4,10 @@ Este diretório centraliza documentos de apoio ao monorepo de prototipação EDU
 
 ## Índice
 
+### 👥 Para Não-Técnicos
+
+- **[🎨 Guia PM/Designer](./GUIA_PM_DESIGNER.md)** ⭐ **COMECE AQUI** se você é Product Manager ou Designer
+
 ### Planejamento e Roadmap
 
 - [Backlog do Projeto](./backlog.md) - Epics, tarefas priorizadas e roadmap

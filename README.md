@@ -24,6 +24,16 @@ Repositório de prototipação frontend orientado a jornadas, utilizando React, 
 
 Este é um ambiente de **prototipação**, não um repositório de produção. Tudo o que é criado aqui deve rodar sem erros (build e dev) para ser usado por designers, PMs e desenvolvedores.
 
+### 👋 Sou PM ou Designer? Comece por aqui!
+
+**📖 [Guia para Product Managers e Designers →](./docs/GUIA_PM_DESIGNER.md)**
+
+Um guia completo e não-técnico sobre como usar o ambiente de prototipação:
+- ✅ Como validar componentes no Storybook
+- ✅ Como criar páginas no Studio (editor visual)
+- ✅ Como documentar jornadas de usuário
+- ✅ Como solicitar novos componentes ou ajustes
+
 ### Stack Principal
 
 - **React 18** - Biblioteca base de componentes
