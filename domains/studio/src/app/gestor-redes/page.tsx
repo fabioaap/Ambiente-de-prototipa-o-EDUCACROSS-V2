@@ -147,7 +147,7 @@ export default function GestorRedesPage() {
           <Text as="h3" className={styles.tabelaTitulo}>
             Escolas ({escolasFiltradas.length})
           </Text>
-
+          
           <div className={styles.tabela}>
             <div className={styles.tabelaHeader}>
               <span>Escola</span>
@@ -157,7 +157,7 @@ export default function GestorRedesPage() {
               <span>Engajamento</span>
               <span>Ações</span>
             </div>
-
+            
             {escolasPaginadas.map((escola) => (
               <div key={escola.id} className={styles.tabelaRow}>
                 <span className={styles.escolaNome}>{escola.nome}</span>
@@ -167,14 +167,14 @@ export default function GestorRedesPage() {
                 <span>{escola.alunos.toLocaleString()}</span>
                 <span>{escola.acessaram.toLocaleString()}</span>
                 <span className={styles.progressoCell}>
-                  <Progress value={escola.percentual} />
+                  <Progress value={escola.percentual} max={100} />
                   <span style={{ color: getCorProgresso(escola.percentual) }}>
                     {escola.percentual}%
                   </span>
                 </span>
                 <span>
-                  <Button
-                    variant="secondary"
+                  <Button 
+                    variant="secondary" 
                     size="sm"
                     onClick={() => abrirModal(escola)}
                   >
@@ -212,7 +212,7 @@ export default function GestorRedesPage() {
         {/* Modal de Detalhes */}
         {modalAberto && escolaSelecionada && (
           <Modal
-            open={modalAberto}
+            isOpen={modalAberto}
             onClose={() => setModalAberto(false)}
             title={`Detalhes: ${escolaSelecionada.nome}`}
           >
@@ -238,7 +238,7 @@ export default function GestorRedesPage() {
                         {interacao.percentual}%
                       </Badge>
                     </div>
-                    <Progress value={interacao.percentual} />
+                    <Progress value={interacao.percentual} max={100} />
                     <Text className={styles.interacaoTotal}>
                       {interacao.total.toLocaleString()} interações
                     </Text>
@@ -247,7 +247,7 @@ export default function GestorRedesPage() {
               </div>
 
               <div className={styles.modalAviso}>
-                <Text as="span" size="xs">
+                <Text as="small">
                   ⚠️ Os dados podem se sobrepor, pois um aluno pode realizar múltiplas interações.
                 </Text>
               </div>

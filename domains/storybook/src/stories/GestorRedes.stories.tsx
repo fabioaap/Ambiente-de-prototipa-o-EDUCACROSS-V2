@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Text, Button, Select, Input, Progress, Badge } from '@prototipo/design-system';
+import { Card, Text, Button, Select, Input, Progress, Badge } from '@prototipo/design-system';
 
 /**
  * Dashboard Protótipo - Gestor de Redes
@@ -69,19 +69,19 @@ const GestorRedesDashboard = () => {
           <Text as="span" style={{ fontSize: '12px' }}>
             Escola A: 92%
           </Text>
-          <Progress value={92} />
+          <Progress value={92} max={100} />
         </div>
         <div style={{ marginBottom: '12px' }}>
           <Text as="span" style={{ fontSize: '12px' }}>
             Escola B: 78%
           </Text>
-          <Progress value={78} />
+          <Progress value={78} max={100} />
         </div>
         <div>
           <Text as="span" style={{ fontSize: '12px' }}>
             Escola C: 65%
           </Text>
-          <Progress value={65} />
+          <Progress value={65} max={100} />
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export const ComponentsShowcase: Story = {
 
       <div style={{ marginBottom: '20px' }}>
         <Text as="h4">Progress</Text>
-        <Progress value={75} />
+        <Progress value={75} max={100} />
       </div>
     </div>
   ),
