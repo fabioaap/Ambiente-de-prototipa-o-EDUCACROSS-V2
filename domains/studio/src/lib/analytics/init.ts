@@ -43,8 +43,6 @@ export function initializeAnalytics(): void {
   try {
     // Initialize GA4 with measurement ID
     ReactGA.initialize(process.env.NEXT_PUBLIC_GA4_ID, {
-      // Debug mode in development
-      debugMode: process.env.NODE_ENV === 'development',
       // Track page views automatically
       gtagUrl: 'https://www.googletagmanager.com/gtag/js',
     });
@@ -104,7 +102,16 @@ export function trackPageView(path: string, title?: string): void {
   }
 
   try {
-    ReactGA.pageview(path, title);
+    const payload: Parameters<typeof ReactGA.send>[0] = {
+      hitType: 'pageview',
+      page: path,
+    };
+
+    if (title) {
+      payload.title = title;
+    }
+
+    ReactGA.send(payload);
   } catch (error) {
     console.error('[Analytics] Failed to track page view:', error);
   }

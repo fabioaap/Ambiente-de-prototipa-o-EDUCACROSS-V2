@@ -1,0 +1,227 @@
+/* Gestor de Redes - Estilos complementares ao Design System */
+
+.pageWrapper {
+  min-height: 100vh;
+  background-color: var(--color-background, #f8f9fa);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.topHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: var(--color-surface, #ffffff);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  font-size: 24px;
+  color: var(--color-primary, #6366f1);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-muted, #f0f0f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+
+/* Main Content */
+.mainContent {
+  flex: 1;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Tabs Row */
+.tabsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+/* KPI Section */
+.kpiSection {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.kpiAlunosContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpiAlunosMetricas {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kpiMetrica {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metricaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpiEmoji {
+  font-size: 64px;
+  margin-left: 24px;
+}
+
+.kpiCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 1200px) {
+  .kpiSection {
+    grid-template-columns: 1fr;
+  }
+  
+  .kpiCardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .kpiCardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Table Toolbar */
+.tableToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: var(--color-surface, #ffffff);
+  border-radius: 12px 12px 0 0;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-bottom: none;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selectPequeno {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 6px;
+  background-color: var(--color-surface, #ffffff);
+  font-size: 14px;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Table Cell Styles */
+.celulaDados {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.acoesBotoes {
+  display: flex;
+  gap: 8px;
+}
+
+/* Help Button */
+.ajudaButton {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+}
+
+/* Legenda */
+.legenda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--color-surface, #ffffff);
+  border-radius: 8px;
+}
+
+.legendaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--color-border, #e0e0e0);
+}
+
+.socialLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.socialLinks a {
+  font-size: 20px;
+  text-decoration: none;
+}

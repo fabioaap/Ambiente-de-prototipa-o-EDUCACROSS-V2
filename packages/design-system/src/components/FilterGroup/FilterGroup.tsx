@@ -42,7 +42,7 @@ export const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
     };
 
     const renderFilter = (filter: FilterConfig) => {
-      const currentValue = values[filter.id] ?? filter.value ?? '';
+      const currentValue = (values[filter.id] ?? filter.value ?? '') as string;
 
       switch (filter.type) {
         case 'select':
