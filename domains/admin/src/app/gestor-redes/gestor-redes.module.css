@@ -1,227 +1,266 @@
-/* Gestor de Redes - Estilos complementares ao Design System */
-
-.pageWrapper {
+/* ===== Container Principal ===== */
+.container {
   min-height: 100vh;
-  background-color: var(--color-background, #f8f9fa);
-  display: flex;
-  flex-direction: column;
+  background-color: var(--color-bg-secondary, #f5f5f7);
+  padding: var(--spacing-md);
 }
 
-/* Header */
-.topHeader {
+/* ===== Header ===== */
+.header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
-  background-color: var(--color-surface, #ffffff);
-  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .headerLeft {
   display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logoIcon {
-  font-size: 24px;
-  color: var(--color-primary, #6366f1);
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .headerRight {
+  text-align: right;
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
-.avatar {
-  position: relative;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: var(--color-muted, #f0f0f0);
+/* ===== Tabs ===== */
+.tabs {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
 }
 
-.notificationBadge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
+.tab {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
 }
 
-/* Main Content */
-.mainContent {
-  flex: 1;
-  padding: 24px;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
+.tab:hover {
+  color: var(--color-text-primary);
 }
 
-/* Tabs Row */
-.tabsRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
+.tabActive {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
 }
 
-/* KPI Section */
-.kpiSection {
+/* ===== Filtros ===== */
+.filters {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-md);
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
-.kpiAlunosContent {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.kpiAlunosMetricas {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.kpiMetrica {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.metricaRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.kpiEmoji {
-  font-size: 64px;
-  margin-left: 24px;
-}
-
-.kpiCardsGrid {
+/* ===== KPIs Grid ===== */
+.kpisGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
-@media (max-width: 1200px) {
-  .kpiSection {
-    grid-template-columns: 1fr;
-  }
-  
-  .kpiCardsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .kpiCardsGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Table Toolbar */
-.tableToolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  padding: 16px;
-  background-color: var(--color-surface, #ffffff);
-  border-radius: 12px 12px 0 0;
-  border: 1px solid var(--color-border, #e0e0e0);
-  border-bottom: none;
-}
-
-.toolbarLeft {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.selectPequeno {
-  padding: 6px 12px;
-  border: 1px solid var(--color-border, #e0e0e0);
-  border-radius: 6px;
-  background-color: var(--color-surface, #ffffff);
-  font-size: 14px;
-}
-
-.toolbarRight {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Table Cell Styles */
-.celulaDados {
+.kpiCard {
+  padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.acoesBotoes {
+.kpiCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.kpiCardDestaque {
+  border: 2px solid var(--color-primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 245, 255, 1) 100%);
+}
+
+.kpiCardClickable {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpiCardClickable::after {
+  content: '👁️ Ver detalhes';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 11px;
+  color: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.kpiCardClickable:hover::after {
+  opacity: 1;
+}
+
+.kpiCardClickable:hover {
+  border-color: var(--color-primary-600);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.kpiHeader {
   display: flex;
-  gap: 8px;
-}
-
-/* Help Button */
-.ajudaButton {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 100;
-}
-
-/* Legenda */
-.legenda {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 24px;
-  padding: 16px;
-  background-color: var(--color-surface, #ffffff);
-  border-radius: 8px;
-}
-
-.legendaItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Footer */
-.footer {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 24px;
-  margin-top: 24px;
+  align-items: center;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+}
+
+.kpiHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kpiAvatar {
+  flex-shrink: 0;
+}
+
+.kpiIcon {
+  font-size: 24px;
+}
+
+.kpiMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kpiProgress {
+  height: 6px;
+  margin-top: 4px;
+}
+
+.kpiBadge {
+  align-self: flex-start;
+  margin-top: 4px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.kpiButton {
+  margin-top: var(--spacing-xs);
+}
+
+/* ===== Tabela de Escolas ===== */
+.tableSection {
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.tableControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.tableSearch {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.cellWithProgress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 150px;
+}
+
+.tablePagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
   border-top: 1px solid var(--color-border, #e0e0e0);
 }
 
-.socialLinks {
-  display: flex;
-  gap: 16px;
+/* ===== Responsive - Tablet ===== */
+@media (max-width: 1024px) {
+  .kpisGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tableHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tableSearch {
+    max-width: 100%;
+  }
 }
 
-.socialLinks a {
-  font-size: 20px;
-  text-decoration: none;
+/* ===== Responsive - Mobile ===== */
+@media (max-width: 640px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .headerRight {
+    text-align: left;
+  }
+
+  .kpisGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .tableHeader {
+    gap: var(--spacing-sm);
+  }
+
+  .tableControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

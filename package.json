@@ -45,8 +45,13 @@
   },
   "packageManager": "pnpm@9.14.4",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
     "@sentry/nextjs": "^10.28.0",
     "@specfy/stack-analyser": "1.27.3",
-    "react-ga4": "^2.1.0"
+    "dotenv": "^16.4.5",
+    "pino": "^9.5.0",
+    "react-ga4": "^2.1.0",
+    "undici": "^6.20.0",
+    "zod": "^3.23.8"
   }
 }
