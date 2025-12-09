@@ -52,7 +52,7 @@ export function useExportTracking() {
   return {
     trackAndExport: async (
       format: 'csv' | 'json' | 'xml',
-      data: any,
+      data: unknown,
       rowsCount: number,
       options?: { domain?: string; pageType?: string }
     ) => {

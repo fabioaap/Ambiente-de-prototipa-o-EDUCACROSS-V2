@@ -173,7 +173,7 @@ export const CellRendererExample: Story = {
         data={enrollmentData}
         cellRenderer={{
           enrolled: (value) => <strong>{value}</strong>,
-          percentage: (value, row) => (
+          percentage: (value, _row) => (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <Progress
                 value={Number(value)}

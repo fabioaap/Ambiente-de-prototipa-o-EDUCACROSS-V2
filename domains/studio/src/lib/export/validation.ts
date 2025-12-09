@@ -3,7 +3,7 @@
  * Manual validation without external dependencies (ajv can be added later for production)
  */
 
-import { ExportData, JSONExportResult } from './json';
+import { ExportData as _ExportData, JSONExportResult as _JSONExportResult } from './json';
 
 /**
  * Validate JSON export data against schema
@@ -17,7 +17,7 @@ export function validateJSONExport(data: unknown): { valid: boolean; errors: str
     return { valid: false, errors: ['Root must be an object'] };
   }
 
-  const obj = data as any;
+  const obj = data as Record<string, unknown>;
 
   // Validate required fields
   if (!obj.exportedAt || typeof obj.exportedAt !== 'string') {
@@ -34,7 +34,7 @@ export function validateJSONExport(data: unknown): { valid: boolean; errors: str
     errors.push('pages: must be an array');
   } else {
     // Validate each page
-    obj.pages.forEach((page: any, index: number) => {
+    obj.pages.forEach((page: Record<string, unknown>, index: number) => {
       const pageErrors = validatePage(page);
       if (!pageErrors.valid) {
         pageErrors.errors.forEach(err => {
@@ -59,7 +59,7 @@ export function validatePage(page: unknown): { valid: boolean; errors: string[] 
     return { valid: false, errors: ['must be an object'] };
   }
 
-  const obj = page as any;
+  const obj = page as Record<string, unknown>;
 
   // Required string fields
   const stringFields = ['id', 'title', 'slug', 'owner'];

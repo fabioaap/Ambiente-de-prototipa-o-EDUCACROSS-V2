@@ -93,78 +93,98 @@ export default function PainelInicialPage() {
 
     const tableData = mockData.map((item) => ({
         escola: item.escola,
-        alunos: item,
-        professores: item.professores,
+        alunos: `${item.cadastrados}/${item.total}`,  // String serializada
+        professores: String(item.professores),
         status: item.status,
-        acoes: item,
+        acoes: '',  // Placeholder
     }));
 
-    const cellRenderer = {
-        alunos: (value: any, _row: Record<string, any>) => (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', width: '200px' }}>
-                <Text size="sm" weight="semibold">
-                    {value.cadastrados.toLocaleString('pt-BR')} de {value.total.toLocaleString('pt-BR')}
-                </Text>
-                <Progress value={value.percentual} height="12px" />
-                <Text size="xs" style={{ color: '#6E6B7B' }}>
-                    {value.percentual.toFixed(1)}% concluído
-                </Text>
-            </div>
-        ),
-        professores: (value: any) => (
+    // Map para recuperar dados originais no renderer
+    const dataMap = new Map(mockData.map(item => [item.escola, item]));
+
+    type TableRow = Record<string, unknown>;
+    type CellRenderer = (value: unknown, row: TableRow) => React.ReactNode;
+
+    const cellRenderer: Record<string, CellRenderer> = {
+        alunos: (value) => {
+            // Usar string no lugar de object
+            const parts = String(value ?? '').split('/');
+            const cadastrados = parseInt(parts[0] ?? '0', 10);
+            const total = parseInt(parts[1] ?? '0', 10);
+            const percentual = total > 0 ? (cadastrados / total) * 100 : 0;
+
+            return (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', width: '200px' }}>
+                    <Text size="sm" weight="semibold">
+                        {cadastrados.toLocaleString('pt-BR')} de {total.toLocaleString('pt-BR')}
+                    </Text>
+                    <Progress value={percentual} height="12px" />
+                    <Text size="xs" style={{ color: '#6E6B7B' }}>
+                        {percentual.toFixed(1)}% concluído
+                    </Text>
+                </div>
+            );
+        },
+        professores: (value) => (
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '20px' }}>👨‍🏫</span>
                 <Text size="base" weight="semibold">
-                    {value}
+                    {String(value ?? '')}
                 </Text>
             </div>
         ),
-        status: (value: any) => (
+        status: (value) => (
             <Badge customColor={getStatusColor(value as string)} size="md">
-                {value}
+                {String(value ?? '')}
             </Badge>
         ),
-        acoes: (value: any, _row: Record<string, any>) => (
-            <ActionButtons
-                icons={{
-                    edit: (
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path
-                                d="M11.3333 2.00004L14 4.66671L4.66667 14H2V11.3334L11.3333 2.00004Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    ),
-                    view: (
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path
-                                d="M1 8C1 8 3.66667 3 8 3C12.3333 3 15 8 15 8C15 8 12.3333 13 8 13C3.66667 13 1 8 1 8Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                            />
-                            <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.5" />
-                        </svg>
-                    ),
-                    delete: (
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path
-                                d="M2 4H14M12.6667 4L12 12.6667C12 13.403 11.403 14 10.6667 14H5.33333C4.597 14 4 13.403 4 12.6667L3.33333 4M6 4V2.66667C6 2.29848 6.29848 2 6.66667 2H9.33333C9.70152 2 10 2.29848 10 2.66667V4"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
-                        </svg>
-                    ),
-                }}
-                onEdit={() => console.log('Editar', value.escola)}
-                onView={() => console.log('Ver', value.escola)}
-                onDelete={() => console.log('Deletar', value.escola)}
-            />
-        ),
+        acoes: (_value, row) => {
+            // Recuperar dados originais via escola (escola é string e está em row)
+            const escolaNome = String(row.escola ?? '');
+            const itemOriginal = dataMap.get(escolaNome);
+
+            return (
+                <ActionButtons
+                    icons={{
+                        edit: (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path
+                                    d="M11.3333 2.00004L14 4.66671L4.66667 14H2V11.3334L11.3333 2.00004Z"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        ),
+                        view: (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path
+                                    d="M1 8C1 8 3.66667 3 8 3C12.3333 3 15 8 15 8C15 8 12.3333 13 8 13C3.66667 13 1 8 1 8Z"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                />
+                                <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="1.5" />
+                            </svg>
+                        ),
+                        delete: (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path
+                                    d="M2 4H14M12.6667 4L12 12.6667C12 13.403 11.403 14 10.6667 14H5.33333C4.597 14 4 13.403 4 12.6667L3.33333 4M6 4V2.66667C6 2.29848 6.29848 2 6.66667 2H9.33333C9.70152 2 10 2.29848 10 2.66667V4"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        ),
+                    }}
+                    onEdit={() => console.log('Editar', itemOriginal?.escola)}
+                    onView={() => console.log('Ver', itemOriginal?.escola)}
+                    onDelete={() => console.log('Deletar', itemOriginal?.escola)}
+                />
+            );
+        },
     };
 
     return (
@@ -348,7 +368,7 @@ export default function PainelInicialPage() {
             <Card>
                 <DataTable
                     columns={columns}
-                    data={tableData as any}
+                    data={tableData}
                     cellRenderer={cellRenderer}
                     striped
                     hoverable

@@ -47,6 +47,18 @@ export default function ExibirCampoUsoPage() {
         setModalAberto(true);
     };
 
+    // Serializar dados para compatibilidade com DataTable (CellValue only)
+    const questoesParaTabela = useMemo(() => {
+        return questoesFiltradas.map(q => ({
+            codigo: q.codigo,
+            enunciado: q.enunciado,
+            uso: q.uso,
+            disciplina: q.disciplina,
+            habilidades: Array.isArray(q.habilidades) ? q.habilidades.join(', ') : 'N/A',
+            acoes: '', // placeholder
+        }));
+    }, [questoesFiltradas]);
+
     const colunas = [
         {
             key: 'codigo',
@@ -74,30 +86,34 @@ export default function ExibirCampoUsoPage() {
         },
     ];
 
-    // Custom cell renderers
-    const cellRenderer = {
-        codigo: (value: any) => <span>{value}</span>,
-        enunciado: (value: any) => (
+    // Custom cell renderers com tipagem compatível com DataTable
+    const cellRenderer: Record<string, (value: unknown, row: Record<string, string | number | boolean | null | undefined>) => React.ReactNode> = {
+        codigo: (value) => <span>{String(value ?? '')}</span>,
+        enunciado: (value) => (
             <span style={{ display: 'block', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {value}
+                {String(value ?? '')}
             </span>
         ),
-        uso: (value: any) => (
-            <Badge variant={redesCores[value] || 'default'}>
-                {value}
+        uso: (value) => (
+            <Badge variant={redesCores[String(value)] || 'default'}>
+                {String(value ?? '')}
             </Badge>
         ),
-        disciplina: (value: any) => <span>{value}</span>,
-        habilidades: (value: any) => <span>{Array.isArray(value) ? value.join(', ') : 'N/A'}</span>,
-        acoes: (value: any, row: any) => (
-            <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleVerDetalhes(row as Questao)}
-            >
-                Ver Detalhes
-            </Button>
-        ),
+        disciplina: (value) => <span>{String(value ?? '')}</span>,
+        habilidades: (value) => <span>{String(value ?? 'N/A')}</span>,
+        acoes: (_value, row) => {
+            // Recuperar questão original via código
+            const questaoOriginal = questoesFiltradas.find(q => q.codigo === row.codigo);
+            return (
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => questaoOriginal && handleVerDetalhes(questaoOriginal)}
+                >
+                    Ver Detalhes
+                </Button>
+            );
+        },
     };
 
     return (
@@ -139,7 +155,7 @@ export default function ExibirCampoUsoPage() {
 
             {/* Tabela de Questões */}
             <DataTable
-                data={questoesFiltradas as Record<string, any>[]}
+                data={questoesParaTabela}
                 columns={colunas}
                 cellRenderer={cellRenderer}
             />

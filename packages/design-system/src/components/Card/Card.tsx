@@ -60,19 +60,22 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       .filter(Boolean)
       .join(' ');
 
-    const Component = clickable ? 'button' : 'div';
+    const Component = 'div';
     const mergedRef = React.useCallback(
-      (node: HTMLDivElement | HTMLButtonElement | null) => {
-        if (typeof ref === 'function') ref(node as HTMLDivElement);
-        else if (ref) (ref as any).current = node;
+      (node: HTMLDivElement | null) => {
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref && typeof ref === 'object' && 'current' in ref) {
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        }
       },
       [ref]
     );
 
     return (
-      <Component 
-        ref={mergedRef as any}
-        className={classNames} 
+      <Component
+        ref={mergedRef as React.Ref<HTMLDivElement>}
+        className={classNames}
         onClick={onClick}
         role={role}
         aria-label={ariaLabel}

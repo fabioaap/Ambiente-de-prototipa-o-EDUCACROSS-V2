@@ -45,6 +45,8 @@ export function initializeAnalytics(): void {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GA4_ID, {
       // Track page views automatically
       gtagUrl: 'https://www.googletagmanager.com/gtag/js',
+      // Enable debug mode in development
+      debugMode: process.env.NODE_ENV === 'development',
     });
 
     console.log(
@@ -67,7 +69,7 @@ export function initializeAnalytics(): void {
  * - trackEvent('csv_export', { format: 'csv', rows: 100 })
  * - trackEvent('dashboard_load', { tabs_open: 3, filters_applied: 1 })
  */
-export function trackEvent(eventName: string, params?: Record<string, any>): void {
+export function trackEvent(eventName: string, params?: Record<string, unknown>): void {
   if (process.env.NODE_ENV === 'test') {
     return;
   }
@@ -93,25 +95,13 @@ export function trackEvent(eventName: string, params?: Record<string, any>): voi
  * @param title - Page title (optional)
  */
 export function trackPageView(path: string, title?: string): void {
-  if (process.env.NODE_ENV === 'test') {
-    return;
-  }
-
   if (!process.env.NEXT_PUBLIC_GA4_ID) {
     return;
   }
 
   try {
-    const payload: Parameters<typeof ReactGA.send>[0] = {
-      hitType: 'pageview',
-      page: path,
-    };
-
-    if (title) {
-      payload.title = title;
-    }
-
-    ReactGA.send(payload);
+    // Use pageview method for tracking page views
+    ReactGA.pageview(path, title);
   } catch (error) {
     console.error('[Analytics] Failed to track page view:', error);
   }
@@ -129,7 +119,7 @@ export function trackPageView(path: string, title?: string): void {
  *   plan_type: 'enterprise',
  * })
  */
-export function setUserProperties(properties: Record<string, any>): void {
+export function setUserProperties(properties: Record<string, unknown>): void {
   if (process.env.NODE_ENV === 'test') {
     return;
   }

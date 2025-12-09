@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Card, Text, Button, Select, Input, Progress, Badge } from '@prototipo/design-system';
+import { Text, Button, Select, Input, Progress, Badge } from '@prototipo/design-system';
 
 /**
  * Dashboard Protótipo - Gestor de Redes
