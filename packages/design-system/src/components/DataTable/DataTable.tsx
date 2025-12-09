@@ -30,6 +30,7 @@ interface DataTableColumn {
  * @param {(row: Record<string, CellValue>) => void} [onRowClick] - Callback ao clicar em uma linha
  * @param {string} [emptyMessage] - Mensagem quando não há dados
  * @param {boolean} [loading] - Estado de carregamento
+ * @param {Record<string, CellRenderer>} [cellRenderer] - Mapa de renderizadores customizados por nome de coluna
  */
 export interface DataTableProps {
   columns: DataTableColumn[];
@@ -42,6 +43,7 @@ export interface DataTableProps {
   onRowClick?: (row: Record<string, CellValue>) => void;
   emptyMessage?: string;
   loading?: boolean;
+  cellRenderer?: Record<string, CellRenderer>;
 }
 
 export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
@@ -57,6 +59,7 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
       onRowClick,
       emptyMessage = 'Nenhum dado disponível',
       loading = false,
+      cellRenderer,
     },
     ref
   ) => {
@@ -134,9 +137,8 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
                   return (
                     <th
                       key={column.key}
-                      className={`${"DataTable_th"} ${`DataTable_${column.align || 'left'}`} ${
-                        isSortable ? "DataTable_sortable" : ''
-                      }`}
+                      className={`${"DataTable_th"} ${`DataTable_${column.align || 'left'}`} ${isSortable ? "DataTable_sortable" : ''
+                        }`}
                       onClick={() => isSortable && handleSort(column.key)}
                     >
                       <div className={"DataTable_thContent"}>
@@ -152,9 +154,8 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
               {data.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
-                  className={`${"DataTable_tr"} ${striped && rowIndex % 2 !== 0 ? "DataTable_striped" : ''} ${
-                    hoverable ? "DataTable_hoverable" : ''
-                  } ${onRowClick ? "DataTable_clickable" : ''}`}
+                  className={`${"DataTable_tr"} ${striped && rowIndex % 2 !== 0 ? "DataTable_striped" : ''} ${hoverable ? "DataTable_hoverable" : ''
+                    } ${onRowClick ? "DataTable_clickable" : ''}`}
                   onClick={() => onRowClick?.(row)}
                 >
                   {columns.map((column) => (
@@ -162,9 +163,11 @@ export const DataTable = React.forwardRef<HTMLDivElement, DataTableProps>(
                       key={column.key}
                       className={`${"DataTable_td"} ${`DataTable_${column.align || 'left'}`}`}
                     >
-                      {column.render
-                        ? column.render(row[column.key], row)
-                        : row[column.key]}
+                      {cellRenderer?.[column.key]
+                        ? cellRenderer[column.key](row[column.key], row)
+                        : column.render
+                          ? column.render(row[column.key], row)
+                          : row[column.key]}
                     </td>
                   ))}
                 </tr>

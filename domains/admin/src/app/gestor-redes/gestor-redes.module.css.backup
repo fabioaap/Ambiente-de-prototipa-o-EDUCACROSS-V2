@@ -1,0 +1,266 @@
+/* ===== Container Principal ===== */
+.container {
+  min-height: 100vh;
+  background-color: var(--color-bg-secondary, #f5f5f7);
+  padding: var(--spacing-md);
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.headerRight {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+}
+
+.tab {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--color-text-primary);
+}
+
+.tabActive {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* ===== Filtros ===== */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-md);
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== KPIs Grid ===== */
+.kpisGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.kpiCard {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpiCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.kpiCardDestaque {
+  border: 2px solid var(--color-primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 245, 255, 1) 100%);
+}
+
+.kpiCardClickable {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpiCardClickable::after {
+  content: '👁️ Ver detalhes';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 11px;
+  color: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.kpiCardClickable:hover::after {
+  opacity: 1;
+}
+
+.kpiCardClickable:hover {
+  border-color: var(--color-primary-600);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.kpiHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+}
+
+.kpiHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kpiAvatar {
+  flex-shrink: 0;
+}
+
+.kpiIcon {
+  font-size: 24px;
+}
+
+.kpiMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kpiProgress {
+  height: 6px;
+  margin-top: 4px;
+}
+
+.kpiBadge {
+  align-self: flex-start;
+  margin-top: 4px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.kpiButton {
+  margin-top: var(--spacing-xs);
+}
+
+/* ===== Tabela de Escolas ===== */
+.tableSection {
+  background: var(--color-bg-primary, #ffffff);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.tableControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.tableSearch {
+  flex: 1;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.cellWithProgress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 150px;
+}
+
+.tablePagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border, #e0e0e0);
+}
+
+/* ===== Responsive - Tablet ===== */
+@media (max-width: 1024px) {
+  .kpisGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tableHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tableSearch {
+    max-width: 100%;
+  }
+}
+
+/* ===== Responsive - Mobile ===== */
+@media (max-width: 640px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .headerRight {
+    text-align: left;
+  }
+
+  .kpisGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .tableHeader {
+    gap: var(--spacing-sm);
+  }
+
+  .tableControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

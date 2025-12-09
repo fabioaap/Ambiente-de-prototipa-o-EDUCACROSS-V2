@@ -205,6 +205,46 @@ After adding/renaming journeys:
 7. ✅ **Documentation:** Journey README complete, PR description clear, architectural decisions logged
 8. ✅ **SpecKit:** Green report in PR (no gaps or blockers)
 
+## 🔄 Design System Continuous Evolution Pipeline
+
+The Design System grows incrementally as new screens are built. When you discover a component gap:
+
+### Workflow
+
+1. **Create Analysis**: When starting a new screen, document component needs in `docs/TELA_{NAME}_DS_ANALYSIS.md`
+   - ✅ Existing components (ready to use)
+   - ❌ Components needing extension (props)
+   - 🆕 Completely new components
+
+2. **Create Issues**: For each gap, create GitHub issue with label `ds-enhancement`
+   - **Title:** `DS Enhancement: {Component} + {Props}`
+   - **Body:** Include Figma link, usage example, affected screens
+   - **Priority:** Based on number of dependent screens
+
+3. **Extend Component**: Branch naming: `feature/ds-{component}-{prop}`
+   ```bash
+   git checkout -b feature/ds-datatable-cellrenderer
+   git checkout -b feature/ds-badge-customcolor
+   git checkout -b feature/ds-progress-customheight
+   ```
+
+4. **Implement**: Add props to component interface + implementation
+   - Update TypeScript interfaces
+   - Implement in component logic
+   - Update CSS Modules if needed
+   - Add Storybook story with real usage example
+
+5. **Merge & Document**: After passing CI, merge and update Storybook
+   - New props visible in Storybook stories
+   - Example from real screen shows use case
+   - Component now available for future screens
+
+### Key Resources
+
+- **System Documentation:** `DS_CONTINUOUS_EVOLUTION_SYSTEM.md`
+- **Gap Analysis Template:** `docs/TELA_ANALYSIS_TEMPLATE.md`
+- **Storybook Reference:** `domains/storybook/src/stories/`
+
 ---
 
 **Key Files to Reference:**
@@ -213,3 +253,4 @@ After adding/renaming journeys:
 - Component examples: `packages/design-system/src/components/Button/`, `domains/storybook/src/stories/`
 - Puck integration: `domains/studio/src/config/puck.config.tsx`, `domains/studio/data/pages/`
 - Test setup: `code-to-figma/figma-mcp-server/vitest.config.ts`, `code-to-figma/figma-mcp-server/tests/helpers/setup.ts`
+- **DS Evolution:** `DS_CONTINUOUS_EVOLUTION_SYSTEM.md`, `DESIGN_SYSTEM_REAL_GAP_ANALYSIS.md`

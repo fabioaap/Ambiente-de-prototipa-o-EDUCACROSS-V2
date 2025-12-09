@@ -24,10 +24,10 @@ interface Questao {
 
 const redesDisponiveis = ['Todas as Redes', 'Canoas', 'Porto Alegre', 'Gravataí'];
 
-const redesCores: Record<string, 'blue' | 'red' | 'green' | 'default'> = {
-    'Canoas': 'blue',
-    'Porto Alegre': 'red',
-    'Gravataí': 'green',
+const redesCores: Record<string, 'primary' | 'secondary' | 'success' | 'error' | 'default'> = {
+    'Canoas': 'primary',
+    'Porto Alegre': 'error',
+    'Gravataí': 'success',
 };
 
 export default function ExibirCampoUsoPage() {
@@ -50,51 +50,55 @@ export default function ExibirCampoUsoPage() {
     const colunas = [
         {
             key: 'codigo',
-            header: 'Código',
-            render: (questao: Questao) => <span>{questao.codigo}</span>,
+            label: 'Código',
         },
         {
             key: 'enunciado',
-            header: 'Enunciado',
-            render: (questao: Questao) => (
-                <span style={{ display: 'block', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {questao.enunciado}
-                </span>
-            ),
+            label: 'Enunciado',
         },
         {
             key: 'uso',
-            header: 'USO (Rede)',
-            render: (questao: Questao) => (
-                <Badge variant={redesCores[questao.uso] || 'default'}>
-                    {questao.uso}
-                </Badge>
-            ),
+            label: 'USO (Rede)',
         },
         {
             key: 'disciplina',
-            header: 'Disciplina',
-            render: (questao: Questao) => <span>{questao.disciplina}</span>,
+            label: 'Disciplina',
         },
         {
             key: 'habilidades',
-            header: 'Habilidades',
-            render: (questao: Questao) => <span>{questao.habilidades?.join(', ') || 'N/A'}</span>,
+            label: 'Habilidades',
         },
         {
             key: 'acoes',
-            header: 'Ações',
-            render: (questao: Questao) => (
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleVerDetalhes(questao)}
-                >
-                    Ver Detalhes
-                </Button>
-            ),
+            label: 'Ações',
         },
     ];
+
+    // Custom cell renderers
+    const cellRenderer = {
+        codigo: (value: any) => <span>{value}</span>,
+        enunciado: (value: any) => (
+            <span style={{ display: 'block', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {value}
+            </span>
+        ),
+        uso: (value: any) => (
+            <Badge variant={redesCores[value] || 'default'}>
+                {value}
+            </Badge>
+        ),
+        disciplina: (value: any) => <span>{value}</span>,
+        habilidades: (value: any) => <span>{Array.isArray(value) ? value.join(', ') : 'N/A'}</span>,
+        acoes: (value: any, row: any) => (
+            <Button
+                variant="outline"
+                size="sm"
+                onClick={() => handleVerDetalhes(row as Questao)}
+            >
+                Ver Detalhes
+            </Button>
+        ),
+    };
 
     return (
         <div style={{ padding: '24px', maxWidth: '1400px', margin: '0 auto' }}>
@@ -135,15 +139,15 @@ export default function ExibirCampoUsoPage() {
 
             {/* Tabela de Questões */}
             <DataTable
-                data={questoesFiltradas}
+                data={questoesFiltradas as Record<string, any>[]}
                 columns={colunas}
-                keyExtractor={(questao) => questao.id}
+                cellRenderer={cellRenderer}
             />
 
             {/* Modal de Detalhes */}
             {questaoSelecionada && (
                 <Modal
-                    isOpen={modalAberto}
+                    open={modalAberto}
                     onClose={() => setModalAberto(false)}
                     title={`Questão ${questaoSelecionada.codigo}`}
                 >

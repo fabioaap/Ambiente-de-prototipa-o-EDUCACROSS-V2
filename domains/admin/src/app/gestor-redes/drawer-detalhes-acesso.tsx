@@ -119,7 +119,7 @@ export default function DrawerDetalhesAcesso({
             >
                 {/* Header */}
                 <div className={styles.drawerHeader}>
-                    <Text id="drawer-title" size="lg" weight="bold">
+                    <Text size="lg" weight="bold">
                         {titulo}
                     </Text>
                     <button
@@ -143,7 +143,7 @@ export default function DrawerDetalhesAcesso({
 
                     {/* Lista de interações */}
                     <div className={styles.interactionsList}>
-                        <Text size="md" weight="semibold" className={styles.sectionTitle}>
+                        <Text size="base" weight="semibold" className={styles.sectionTitle}>
                             Tipos de interação
                         </Text>
 
@@ -159,8 +159,8 @@ export default function DrawerDetalhesAcesso({
                                         </Text>
                                     </div>
                                     <Badge
-                                        variant="soft"
-                                        color={getColorByPercentage(interacao.percentual)}
+                                        styleType="soft"
+                                        variant={getColorByPercentage(interacao.percentual)}
                                         className={styles.interactionBadge}
                                     >
                                         {interacao.percentual.toFixed(2)}%
@@ -177,10 +177,10 @@ export default function DrawerDetalhesAcesso({
                                 />
 
                                 <div className={styles.interactionStats}>
-                                    <Text size="xs" color="secondary">
+                                    <Text size="xs">
                                         {interacao.quantidade.toLocaleString('pt-BR')} alunos
                                     </Text>
-                                    <Text size="xs" color="secondary" title={interacao.tooltip}>
+                                    <Text size="xs">
                                         ℹ️ {interacao.tooltip}
                                     </Text>
                                 </div>

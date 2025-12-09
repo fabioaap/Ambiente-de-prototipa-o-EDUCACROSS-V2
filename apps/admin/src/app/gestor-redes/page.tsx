@@ -341,7 +341,7 @@ export default function GestorRedesPage() {
 
         {/* Modal de Detalhes */}
         <Modal
-          isOpen={modalAberto}
+          open={modalAberto}
           onClose={() => setModalAberto(false)}
           title={escolaSelecionada?.nome || 'Detalhes da Escola'}
         >

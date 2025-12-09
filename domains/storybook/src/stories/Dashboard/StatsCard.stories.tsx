@@ -422,3 +422,42 @@ export const AccessibilityTest: Story = {
     },
   },
 };
+
+export const PainelInicialExample: Story = {
+  render: () => (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem', maxWidth: '700px' }}>
+      <StatsCard
+        title="Alunos Cadastrados"
+        value="1,250"
+        trend={{ value: '+8%', direction: 'up' }}
+        icon={<UserIcon />}
+      />
+      <StatsCard
+        title="Cursos Ativos"
+        value="24"
+        trend={{ value: '+3', direction: 'up' }}
+        icon={<ChartIcon />}
+      />
+      <StatsCard
+        title="Receita Mensal"
+        value="R$ 125.400"
+        trend={{ value: '+15%', direction: 'up' }}
+        icon={<MoneyIcon />}
+      />
+      <StatsCard
+        title="Taxa de Conclusão"
+        value="78%"
+        trend={{ value: '+12 pp', direction: 'up' }}
+        icon={<SalesIcon />}
+      />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exemplo completo para Painel Inicial com 4 cards de KPIs usando ícones customizados. Cada card mostra um indicador diferente com tendência positiva.',
+      },
+    },
+  },
+};
+

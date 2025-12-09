@@ -69,19 +69,19 @@ const GestorRedesDashboard = () => {
           <Text as="span" style={{ fontSize: '12px' }}>
             Escola A: 92%
           </Text>
-          <Progress value={92} max={100} />
+          <Progress value={92} />
         </div>
         <div style={{ marginBottom: '12px' }}>
           <Text as="span" style={{ fontSize: '12px' }}>
             Escola B: 78%
           </Text>
-          <Progress value={78} max={100} />
+          <Progress value={78} />
         </div>
         <div>
           <Text as="span" style={{ fontSize: '12px' }}>
             Escola C: 65%
           </Text>
-          <Progress value={65} max={100} />
+          <Progress value={65} />
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export const ComponentsShowcase: Story = {
 
       <div style={{ marginBottom: '20px' }}>
         <Text as="h4">Progress</Text>
-        <Progress value={75} max={100} />
+        <Progress value={75} />
       </div>
     </div>
   ),

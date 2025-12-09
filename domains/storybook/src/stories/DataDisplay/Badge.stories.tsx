@@ -251,7 +251,7 @@ export const AllVariants: Story = {
           <Badge variant="info">Info</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 style={{ marginBottom: '1rem' }}>Outlined Style</h3>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -264,7 +264,7 @@ export const AllVariants: Story = {
           <Badge styleType="outlined" variant="info">Info</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 style={{ marginBottom: '1rem' }}>Soft Style</h3>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -277,7 +277,7 @@ export const AllVariants: Story = {
           <Badge styleType="soft" variant="info">Info</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 style={{ marginBottom: '1rem' }}>Com Dot</h3>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -286,7 +286,7 @@ export const AllVariants: Story = {
           <Badge dot styleType="soft" variant="warning">Soft + Dot</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 style={{ marginBottom: '1rem' }}>Com Ícone</h3>
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -295,7 +295,7 @@ export const AllVariants: Story = {
           <Badge icon="✗" styleType="soft" variant="error">Erro</Badge>
         </div>
       </div>
-      
+
       <div>
         <h3 style={{ marginBottom: '1rem' }}>Tamanhos</h3>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -306,4 +306,56 @@ export const AllVariants: Story = {
       </div>
     </div>
   ),
+};
+
+export const CustomColor: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div>
+        <h3 style={{ marginBottom: '1rem', fontSize: '0.875rem', fontWeight: '600' }}>Cores Customizadas</h3>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <Badge customColor="#28C76F">Verde Sucesso</Badge>
+          <Badge customColor="#EA5455">Vermelho Erro</Badge>
+          <Badge customColor="#F0A500">Laranja Aviso</Badge>
+          <Badge customColor="#7367F0">Roxo Principal</Badge>
+          <Badge customColor="#00D4FF">Ciano Destaque</Badge>
+        </div>
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '1rem', fontSize: '0.875rem', fontWeight: '600' }}>Com Dot</h3>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <Badge customColor="#28C76F" dot>Ativo</Badge>
+          <Badge customColor="#EA5455" dot>Inativo</Badge>
+          <Badge customColor="#F0A500" dot>Pendente</Badge>
+        </div>
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '1rem', fontSize: '0.875rem', fontWeight: '600' }}>Tamanhos</h3>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Badge customColor="#7367F0" size="sm">Small</Badge>
+          <Badge customColor="#7367F0" size="md">Medium</Badge>
+          <Badge customColor="#7367F0" size="lg">Large</Badge>
+        </div>
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: '1rem', fontSize: '0.875rem', fontWeight: '600' }}>Caso de Uso: Painel Inicial</h3>
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <Badge customColor="#28C76F">85%</Badge>
+          <Badge customColor="#7367F0">60%</Badge>
+          <Badge customColor="#F0A500">40%</Badge>
+          <Badge customColor="#EA5455">15%</Badge>
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstra o uso da prop `customColor` para cores personalizadas. Ideal para Painel Inicial onde badges mostram porcentagens com cores dinâmicas (verde para alto, vermelho para baixo).',
+      },
+    },
+  },
 };
