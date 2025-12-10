@@ -45,8 +45,6 @@ export function initializeAnalytics(): void {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GA4_ID, {
       // Track page views automatically
       gtagUrl: 'https://www.googletagmanager.com/gtag/js',
-      // Enable debug mode in development
-      debugMode: process.env.NODE_ENV === 'development',
     });
 
     console.log(
@@ -100,8 +98,11 @@ export function trackPageView(path: string, title?: string): void {
   }
 
   try {
-    // Use pageview method for tracking page views
-    ReactGA.pageview(path, title);
+    // Track page view using event method
+    ReactGA.event('page_view', {
+      page_path: path,
+      page_title: title || document.title,
+    });
   } catch (error) {
     console.error('[Analytics] Failed to track page view:', error);
   }

@@ -24,7 +24,6 @@ vi.mock('react-ga4', () => ({
   default: {
     initialize: vi.fn(),
     event: vi.fn(),
-    pageview: vi.fn(),
     gtag: vi.fn(),
   },
 }));
@@ -50,7 +49,7 @@ describe('GA4 Analytics', () => {
       vi.stubEnv('NODE_ENV', 'development');
       vi.stubEnv('NEXT_PUBLIC_GA4_ID', '');
 
-      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => { });
 
       initializeAnalytics();
 
@@ -69,21 +68,19 @@ describe('GA4 Analytics', () => {
       initializeAnalytics();
 
       expect(ReactGA.initialize).toHaveBeenCalledWith('G-ABC123XYZ', {
-        debugMode: false,
         gtagUrl: 'https://www.googletagmanager.com/gtag/js',
       });
 
       vi.unstubAllEnvs();
     });
 
-    it('should enable debug mode in development', () => {
+    it('should initialize GA4 in development', () => {
       vi.stubEnv('NODE_ENV', 'development');
       vi.stubEnv('NEXT_PUBLIC_GA4_ID', 'G-DEV123');
 
       initializeAnalytics();
 
       expect(ReactGA.initialize).toHaveBeenCalledWith('G-DEV123', {
-        debugMode: true,
         gtagUrl: 'https://www.googletagmanager.com/gtag/js',
       });
 
@@ -147,7 +144,9 @@ describe('GA4 Analytics', () => {
 
       trackPageView('/dashboard');
 
-      expect(ReactGA.pageview).toHaveBeenCalledWith('/dashboard', undefined);
+      expect(ReactGA.event).toHaveBeenCalledWith('page_view', expect.objectContaining({
+        page_path: '/dashboard',
+      }));
 
       vi.unstubAllEnvs();
     });
@@ -158,7 +157,10 @@ describe('GA4 Analytics', () => {
 
       trackPageView('/studio/editor', 'Studio - Page Editor');
 
-      expect(ReactGA.pageview).toHaveBeenCalledWith('/studio/editor', 'Studio - Page Editor');
+      expect(ReactGA.event).toHaveBeenCalledWith('page_view', {
+        page_path: '/studio/editor',
+        page_title: 'Studio - Page Editor',
+      });
 
       vi.unstubAllEnvs();
     });
