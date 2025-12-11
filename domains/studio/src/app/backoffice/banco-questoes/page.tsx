@@ -9,72 +9,71 @@ import {
   DataTable,
   Pagination,
   ToolbarButtons,
-  ActionButtons,
-  Badge,
 } from '@prototipo/design-system';
+import type { DataTableProps } from '@prototipo/design-system';
 import { useState } from 'react';
 
 // Dados mock para 5 questões
-const mockQuestions = [
+const mockQuestions: DataTableProps['data'] = [
   {
     id: 'Q001',
     codigo: 'MAT-6-001',
-    habilidades: ['EF06MA01', 'EF06MA02'],
+    habilidades: 'EF06MA01, EF06MA02',
     topico: 'Números e Operações',
     tipo: 'Múltipla Escolha',
     autoria: 'Rede Canoas',
     criador: 'Prof. Ana Silva',
     revisor: 'Prof. João Santos',
     data: '2025-11-15',
-    badges: ['efobmaos', 'd6'],
+    badges: 'efobmaos · d6',
   },
   {
     id: 'Q002',
     codigo: 'MAT-6-002',
-    habilidades: ['EF06MA03'],
+    habilidades: 'EF06MA03',
     topico: 'Geometria',
     tipo: 'Dissertativa',
     autoria: 'Rede Canoas',
     criador: 'Prof. Maria Costa',
     revisor: 'Prof. Ana Silva',
     data: '2025-11-10',
-    badges: ['geometria', 'd6'],
+    badges: 'geometria · d6',
   },
   {
     id: 'Q003',
     codigo: 'MAT-7-001',
-    habilidades: ['EF07MA01', 'EF07MA05'],
+    habilidades: 'EF07MA01, EF07MA05',
     topico: 'Álgebra',
     tipo: 'Múltipla Escolha',
     autoria: 'Rede Canoas',
     criador: 'Prof. Pedro Lima',
     revisor: 'Prof. Maria Costa',
     data: '2025-11-05',
-    badges: ['algebra', 'd7'],
+    badges: 'algebra · d7',
   },
   {
     id: 'Q004',
     codigo: 'MAT-8-001',
-    habilidades: ['EF08MA02'],
+    habilidades: 'EF08MA02',
     topico: 'Estatística',
     tipo: 'Verdadeiro ou Falso',
     autoria: 'Rede Canoas',
     criador: 'Prof. João Santos',
     revisor: 'Prof. Pedro Lima',
     data: '2025-10-28',
-    badges: ['estatistica', 'd8'],
+    badges: 'estatistica · d8',
   },
   {
     id: 'Q005',
     codigo: 'MAT-9-001',
-    habilidades: ['EF09MA01', 'EF09MA02', 'EF09MA03'],
+    habilidades: 'EF09MA01, EF09MA02, EF09MA03',
     topico: 'Funções',
     tipo: 'Múltipla Escolha',
     autoria: 'Rede Canoas',
     criador: 'Prof. Ana Silva',
     revisor: 'Prof. João Santos',
     data: '2025-10-20',
-    badges: ['funcoes', 'd9'],
+    badges: 'funcoes · d9',
   },
 ];
 
@@ -83,43 +82,16 @@ export default function BancoQuestoesPage() {
   const [activeTab, setActiveTab] = useState('aprovadas');
   const [filters, setFilters] = useState({});
 
-  const columns = [
+  const columns: DataTableProps['columns'] = [
     { key: 'codigo', label: 'Código', sortable: true },
-    {
-      key: 'habilidades',
-      label: 'Habilidades',
-      render: (habilidades: string[]) => habilidades.join(', '),
-    },
+    { key: 'habilidades', label: 'Habilidades', sortable: false },
     { key: 'topico', label: 'Tópico' },
     { key: 'tipo', label: 'Tipo' },
-    {
-      key: 'badges',
-      label: 'Classificação',
-      render: (badges: string[]) => (
-        <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-          {badges.map((b) => (
-            <Badge key={b} variant="info" size="sm">
-              {b}
-            </Badge>
-          ))}
-        </div>
-      ),
-    },
+    { key: 'badges', label: 'Classificação', sortable: false },
     { key: 'autoria', label: 'Autoria' },
     { key: 'criador', label: 'Criador' },
     { key: 'revisor', label: 'Revisor' },
     { key: 'data', label: 'Data' },
-    {
-      key: 'acoes',
-      label: 'Ações',
-      render: () => (
-        <ActionButtons
-          onView={() => console.log('View')}
-          onEdit={() => console.log('Edit')}
-          onDelete={() => console.log('Delete')}
-        />
-      ),
-    },
   ];
 
   const sidebarItems = [

@@ -69,6 +69,50 @@ Este é um ambiente de **prototipação**, não um repositório de produção. T
 - **Domains, docs e demais apps** devem utilizar apenas o Design System nativo exportado por `@prototipo/design-system` (ou HTML sem dependências externas). Isso mantém as jornadas documentadas estáveis e fáceis de sincronizar com Storybook/Figma.
 - O script `pnpm check:shadcn` falha o build caso seja detectado um import de `@/components/ui` fora dos diretórios permitidos. Execute-o localmente antes de abrir PRs para evitar regressões.
 
+## 🔄 Pipeline Contínuo de Evolução do Design System
+
+O Design System cresce incrementalmente conforme novas telas são prototipadas. **Não é necessário ter tudo pronto antes de começar** — use este pipeline para alimentar o DS naturalmente:
+
+### Fluxo Recomendado
+
+1. **Analisar**: Ao iniciar uma tela, crie `docs/TELA_{NOME}_DS_ANALYSIS.md` documentando:
+   - ✅ Componentes já prontos (usar direto)
+   - ❌ Componentes que precisam de extensão (novas props)
+   - 🆕 Componentes completamente novos
+
+2. **Criar Issues**: Para cada gap, abra issue com label `ds-enhancement`
+   - Título: `DS Enhancement: {Componente} + {Props}`
+   - Inclua link Figma, exemplo de uso e telas dependentes
+
+3. **Estender**: Branch `feature/ds-{componente}-{prop}`
+   ```bash
+   git checkout -b feature/ds-datatable-cellrenderer
+   git checkout -b feature/ds-badge-customcolor
+   git checkout -b feature/ds-progress-customheight
+   ```
+
+4. **Implementar**: Adicionar props aos componentes
+   - Atualizar interfaces TypeScript
+   - Implementar lógica
+   - Atualizar CSS Modules
+   - Criar story no Storybook com exemplo real
+
+5. **Usar**: Após merge, usar o componente estendido na tela
+
+### Benefícios
+
+✅ Sem retrabalho (cada prop é feita 1x)  
+✅ Rastreabilidade via issues  
+✅ Reutilizável por próximas telas  
+✅ Documentado automaticamente no Storybook  
+✅ Escala de 1 tela para 100 telas  
+
+### Recursos
+
+- 📋 **Documentação Completa**: [DS_CONTINUOUS_EVOLUTION_SYSTEM.md](./DS_CONTINUOUS_EVOLUTION_SYSTEM.md)
+- 📊 **Análise de Gaps**: [DESIGN_SYSTEM_REAL_GAP_ANALYSIS.md](./DESIGN_SYSTEM_REAL_GAP_ANALYSIS.md)
+- 📖 **Inventário**: [STORYBOOK_INVENTORY_AND_GAPS.md](./STORYBOOK_INVENTORY_AND_GAPS.md)
+
 ## 🔵 Sprint 2 – Execução & PRs
 
 **Status**: ✅ Validado e pronto para merge (2025-11-22)

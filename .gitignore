@@ -5,6 +5,12 @@ node_modules/
 
 # Testing
 coverage/
+test-results/
+playwright-report/
+!test-results/.gitkeep
+!tests/e2e/screenshots/.gitkeep
+!tests/e2e/videos/.gitkeep
+!tests/e2e/traces/.gitkeep
 
 # Production builds
 dist/

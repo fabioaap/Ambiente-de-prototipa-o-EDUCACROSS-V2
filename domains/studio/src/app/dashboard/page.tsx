@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useDashboardData } from './useDashboardData';
+import { trackEvent } from '@/lib/analytics/init';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -263,47 +265,23 @@ function EmptyState() {
 }
 
 export default function DashboardPage() {
-  const [data, setData] = React.useState<SummaryData | null>(null);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isError, setIsError] = React.useState(false);
-  const [error, setError] = React.useState<Error | null>(null);
+  const { data: rawData, error, isLoading, mutate } = useDashboardData();
+  const data = rawData as SummaryData | undefined;
+  const isError = !!error;
+
+  // Track dashboard load event
+  React.useEffect(() => {
+    if (data && !isLoading) {
+      trackEvent('dashboard_load', {
+        pages_count: data.recentPages?.length || 0,
+        domains_count: data.domains?.length || 0,
+      });
+    }
+  }, [data, isLoading]);
+
   const [search, setSearch] = React.useState('');
   const [debouncedSearch, setDebouncedSearch] = React.useState('');
   const [domainFilter, setDomainFilter] = React.useState<string>('All');
-  const mountedRef = React.useRef(true);
-
-  React.useEffect(() => {
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-
-  const fetchSummary = React.useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/dashboard/summary');
-      if (!response.ok) throw new Error('Não foi possível carregar o dashboard');
-      const payload: DashboardSummaryResponse = await response.json();
-      if (mountedRef.current) {
-        setData(payload.data);
-        setIsError(false);
-        setError(null);
-      }
-    } catch (err) {
-      if (mountedRef.current) {
-        setIsError(true);
-        setError(err as Error);
-      }
-    } finally {
-      if (mountedRef.current) {
-        setIsLoading(false);
-      }
-    }
-  }, []);
-
-  React.useEffect(() => {
-    void fetchSummary();
-  }, [fetchSummary]);
 
   React.useEffect(() => {
     const timeoutId = window.setTimeout(() => setDebouncedSearch(search), 250);
@@ -370,7 +348,7 @@ export default function DashboardPage() {
           </div>
           <Button
             variant="outline"
-            onClick={() => void fetchSummary()}
+            onClick={() => void mutate()}
             disabled={isLoading}
             className="w-full md:w-auto"
           >
@@ -389,7 +367,7 @@ export default function DashboardPage() {
                   {error?.message ?? 'Tente novamente em instantes.'}
                 </p>
               </div>
-              <Button variant="outline" size="sm" onClick={() => void fetchSummary()}>
+              <Button variant="outline" size="sm" onClick={() => void mutate()}>
                 Tentar novamente
               </Button>
             </CardContent>

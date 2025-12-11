@@ -2,20 +2,127 @@
 
 > 🎓 Jornada de boas-vindas e primeiros passos para novos usuários da plataforma EDUCACROSS
 
-## 🎯 Objetivo
+## Overview
 
-Criar uma experiência de onboarding intuitiva e orientada que guie novos usuários pelos primeiros passos na plataforma, validando a compreensão dos conceitos principais e aumentando o engajamento inicial. Esta jornada transforma a primeira experiência do usuário em um momento de descoberta guiada e motivadora.
+**Objetivo Primário**: Criar uma experiência de onboarding intuitiva e orientada que guie novos usuários pelos primeiros passos na plataforma, validando a compreensão dos conceitos principais e aumentando o engajamento inicial.
 
-## 📋 Contexto de Negócio
+**Usuários Alvo**: Estudantes e educadores novos que acessam a plataforma pela primeira vez
 
-- **Para quem?** Usuários novos (estudantes e educadores) que acessam a plataforma pela primeira vez
-- **Por que é importante?** Reduzir a curva de aprendizado inicial, aumentar taxa de ativação (activation rate), criar primeira impressão positiva que leva a maior retention de longo prazo
-- **Quando será usado?** 
-  - Na primeira visitação após criação de conta
-  - Pode ser reativado pelo usuário via menu "Ajuda > Tour Guiado"
-  - Automaticamente sugerido após 30 dias de inatividade
+**Resultado Esperado**: Primeira impressão positiva que aumenta retention de longo prazo, reduzindo curva de aprendizado inicial
 
-## 🚀 Fluxo da Jornada (4 Etapas)
+**Contexto de Negócio**:
+- Reduzir a curva de aprendizado inicial
+- Aumentar taxa de ativação (activation rate)
+- Aumentar retention de 7 dias em 30%
+- Demonstrar valor core da plataforma desde o início
+
+**Ativadores**:
+- Primeira visitação após criação de conta (obrigatório)
+- Pode ser reativado via menu "Ajuda > Tour Guiado" (opcional)
+- Automaticamente sugerido após 30 dias de inatividade
+
+## Journey Steps
+
+### Etapa 1: Boas-vindas (25%)
+**Objetivo**: Criar conexão emocional e explicar valor da plataforma
+
+**Componentes**:
+- Mensagem personalizada de boas-vindas
+- Breve descrição do que é EDUCACROSS
+- 3 benefícios principais em cards
+- Indicador de progresso: "Passo 1 de 4"
+
+**Success Criteria**:
+- ✅ Usuário vê mensagem de boas-vindas personalizada
+- ✅ Entende proposição de valor em < 1 minuto
+- ✅ Clica em "Começar" (não "Pular")
+
+**User Story**:
+```gherkin
+Given um usuário novo acessa a plataforma pela primeira vez
+When chega à tela de boas-vindas do onboarding
+Then vê mensagem personalizada com seu nome
+And vê 3 benefícios principais da plataforma
+And pode clicar em "Começar" ou "Pular Tour"
+```
+
+### Etapa 2: Tutorial de Navegação (50%)
+**Objetivo**: Ensinar estrutura básica da plataforma
+
+**Componentes**:
+- Explanação do menu principal
+- Introdução aos 3 domínios (BackOffice, FrontOffice, Game)
+- Como encontrar e iniciar jornadas
+- Indicador de progresso: "Passo 2 de 4"
+
+**Success Criteria**:
+- ✅ Usuário entende estrutura de menus
+- ✅ Sabe diferenciar os 3 domínios
+- ✅ Sabe como buscar jornadas
+
+**User Story**:
+```gherkin
+Given o usuário está na etapa 2 do onboarding
+When vê o tutorial de navegação
+Then aprende como usar o menu principal
+And entende os 3 domínios (BO, FO, Game)
+And sabe como explorar jornadas disponíveis
+And pode progredir para a próxima etapa
+```
+
+### Etapa 3: Primeiro Jogo/Atividade (75%)
+**Objetivo**: Engajamento prático e demonstração de gamificação
+
+**Componentes**:
+- Mini-game de demonstração interativo
+- Primeiro badge conquistado 🎖️
+- Visualização de posição inicial no Leaderboard
+- Explicação do sistema de pontos
+- Indicador de progresso: "Passo 3 de 4"
+
+**Success Criteria**:
+- ✅ Usuário interage com mini-game
+- ✅ Recebe primeira conquista/badge
+- ✅ Vê pontuação e posição no leaderboard
+- ✅ Entende sistema de gamificação
+
+**User Story**:
+```gherkin
+Given o usuário está na etapa 3 do onboarding
+When vê o mini-game de demonstração
+Then pode jogar e obter pontos
+And recebe seu primeiro badge
+And vê sua posição inicial no leaderboard
+And entende como funciona o sistema de gamificação
+```
+
+### Etapa 4: Conclusão e Próximos Passos (100%)
+**Objetivo**: Reforçar aprendizado e direcionar ação
+
+**Componentes**:
+- Resumo de tudo o que foi aprendido
+- Recursos adicionais disponíveis
+- Sugestão de próximas jornadas recomendadas
+- Indicador de progresso: "Concluído! 🎉"
+
+**Success Criteria**:
+- ✅ Usuário vê resumo completo
+- ✅ Conhece próximas jornadas disponíveis
+- ✅ Sabe onde encontrar suporte
+- ✅ Sente-se motivado a explorar
+
+**User Story**:
+```gherkin
+Given o usuário completou todas as etapas do onboarding
+When chega à etapa 4 de conclusão
+Then vê resumo do que aprendeu
+And recebe sugestões de próximas jornadas
+And pode acessar recursos adicionais (FAQ, Suporte)
+And vê todos seus badges/conquistas
+And pode explorar a plataforma ou refazer o tour
+```
+
+## Fluxo Detalhado
 
 ### Etapa 1: Boas-vindas
 **Objetivo**: Criar conexão emocional e explicar valor da plataforma

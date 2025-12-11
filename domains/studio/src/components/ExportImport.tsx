@@ -7,10 +7,13 @@ interface ExportImportProps {
   onImportComplete?: () => void;
 }
 
+type ExportFormat = 'csv' | 'json' | 'xml';
+
 export function ExportImport({ onImportComplete }: ExportImportProps) {
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const [importMode, setImportMode] = useState<'merge' | 'replace'>('merge');
+  const [exportFormat, setExportFormat] = useState<ExportFormat>('json');
   const [message, setMessage] = useState<{
     type: 'success' | 'error';
     text: string;
@@ -21,22 +24,23 @@ export function ExportImport({ onImportComplete }: ExportImportProps) {
     setMessage(null);
 
     try {
-      const response = await fetch('/api/pages/export?format=json');
+      const response = await fetch(`/api/dashboard/pages/export?format=${exportFormat}`);
 
       if (!response.ok) {
         throw new Error('Export failed');
       }
 
-      const data = await response.json();
+      // Get filename from Content-Disposition header or generate
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filenameMatch = contentDisposition?.match(/filename="(.+)"/);
+      const filename = filenameMatch?.[1] || `pages-export.${exportFormat}`;
 
-      // Criar blob e download
-      const blob = new Blob([JSON.stringify(data, null, 2)], {
-        type: 'application/json',
-      });
+      // Download file
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `pages-export-${new Date().toISOString().split('T')[0]}.json`;
+      a.download = filename;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -44,7 +48,7 @@ export function ExportImport({ onImportComplete }: ExportImportProps) {
 
       setMessage({
         type: 'success',
-        text: `Exported ${data.totalPages} pages successfully`,
+        text: `Exported pages successfully as ${exportFormat.toUpperCase()}`,
       });
     } catch (error) {
       setMessage({
@@ -64,24 +68,24 @@ export function ExportImport({ onImportComplete }: ExportImportProps) {
     setMessage(null);
 
     try {
-      const text = await file.text();
-      const data = JSON.parse(text);
+      const formData = new FormData();
+      formData.append('file', file);
 
-      const response = await fetch('/api/pages/import', {
+      const response = await fetch('/api/dashboard/pages/import', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, mode: importMode }),
+        body: formData,
       });
 
       if (!response.ok) {
-        throw new Error('Import failed');
+        const error = await response.json();
+        throw new Error(error.message || 'Import failed');
       }
 
       const result = await response.json();
 
       setMessage({
         type: 'success',
-        text: result.message,
+        text: result.message || `Successfully imported ${result.imported} pages`,
       });
 
       onImportComplete?.();
@@ -103,16 +107,29 @@ export function ExportImport({ onImportComplete }: ExportImportProps) {
     <div className={styles.container}>
       <div className={styles.section}>
         <h3>Export Pages</h3>
-        <button
-          onClick={handleExport}
-          disabled={isExporting}
-          className={styles.button}
-          aria-label="Export all pages as JSON"
-        >
-          {isExporting ? 'Exporting...' : 'Download as JSON'}
-        </button>
+        <div className={styles.exportControls}>
+          <select
+            value={exportFormat}
+            onChange={(e) => setExportFormat(e.target.value as ExportFormat)}
+            disabled={isExporting}
+            className={styles.formatSelector}
+            aria-label="Export format selector"
+          >
+            <option value="json">JSON</option>
+            <option value="csv">CSV</option>
+            <option value="xml">XML</option>
+          </select>
+          <button
+            onClick={handleExport}
+            disabled={isExporting}
+            className={styles.button}
+            aria-label={`Export all pages as ${exportFormat.toUpperCase()}`}
+          >
+            {isExporting ? 'Exporting...' : `Download as ${exportFormat.toUpperCase()}`}
+          </button>
+        </div>
         <p className={styles.description}>
-          Download all pages as a JSON file for backup or sharing.
+          Download all pages as {exportFormat.toUpperCase()} file for backup or sharing.
         </p>
       </div>
 

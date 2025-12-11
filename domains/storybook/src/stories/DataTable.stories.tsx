@@ -120,7 +120,7 @@ export const WithRowClick: Story = {
       { key: 'role', label: 'Função' },
     ],
     data: sampleData,
-    onRowClick: (row: any) => {
+    onRowClick: (row: Record<string, string | number | boolean | null | undefined>) => {
       alert(`Clicou na linha: ${row.name}`);
     },
   },
@@ -147,5 +147,56 @@ export const Empty: Story = {
     ],
     data: [],
     emptyMessage: 'Nenhum usuário encontrado',
+  },
+};
+
+export const CellRendererExample: Story = {
+  render: () => {
+    const { Progress } = require('@prototipo/design-system');
+
+    const enrollmentData = [
+      { id: 1, student: 'João Silva', enrolled: 85, total: 100, percentage: 85 },
+      { id: 2, student: 'Maria Santos', enrolled: 60, total: 100, percentage: 60 },
+      { id: 3, student: 'Pedro Costa', enrolled: 40, total: 100, percentage: 40 },
+      { id: 4, student: 'Ana Paula', enrolled: 15, total: 100, percentage: 15 },
+    ];
+
+    return (
+      <DataTable
+        columns={[
+          { key: 'id', label: 'ID', align: 'center' },
+          { key: 'student', label: 'Aluno' },
+          { key: 'enrolled', label: 'Matriculados' },
+          { key: 'total', label: 'Total' },
+          { key: 'percentage', label: 'Progresso' },
+        ]}
+        data={enrollmentData}
+        cellRenderer={{
+          enrolled: (value) => <strong>{value}</strong>,
+          percentage: (value, _row) => (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <Progress
+                value={Number(value)}
+                variant="linear"
+                height="12px"
+                color="success"
+              />
+              <Badge customColor={value >= 75 ? '#28C76F' : value >= 50 ? '#7367F0' : '#EA5455'}>
+                {value}%
+              </Badge>
+            </div>
+          ),
+        }}
+        striped
+        hoverable
+      />
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exemplo de uso da prop `cellRenderer` para renderizar células customizadas. Combina Progress e Badge para mostrar porcentagem de matrícula de alunos (case Painel Inicial).',
+      },
+    },
   },
 };

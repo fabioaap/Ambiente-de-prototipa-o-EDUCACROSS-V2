@@ -1,0 +1,173 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding: var(--spacing-4);
+}
+
+/* Header com Saudação */
+.header {
+    padding: var(--spacing-6) 0;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+}
+
+.avatar {
+    flex-shrink: 0;
+}
+
+.greeting {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+/* Grid de Estatísticas */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-4);
+}
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Seção de Progresso */
+.progressSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progressFooter {
+    text-align: center;
+    margin-top: var(--spacing-2);
+}
+
+/* Layout de 2 Colunas */
+.twoColumns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-4);
+}
+
+@media (max-width: 768px) {
+    .twoColumns {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Lista de Atividades */
+.activityList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.activityItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-background-subtle);
+    transition: background-color 0.2s ease;
+}
+
+.activityItem:hover {
+    background-color: var(--color-background-hover);
+}
+
+.activityInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    flex: 1;
+}
+
+/* Lista de Notificações */
+.notificationList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.notificationItem {
+    display: flex;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius-md);
+    background-color: var(--color-background-subtle);
+    transition: background-color 0.2s ease;
+}
+
+.notificationItem:hover {
+    background-color: var(--color-background-hover);
+}
+
+.notificationIcon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.notificationContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    flex: 1;
+}
+
+/* Ações dos Cards */
+.cardActions {
+    margin-top: var(--spacing-4);
+    padding-top: var(--spacing-3);
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+/* Botão de Ação Principal */
+.mainAction {
+    margin-top: var(--spacing-4);
+}
+
+/* Responsividade Extra */
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-3);
+        gap: var(--spacing-4);
+    }
+
+    .header {
+        padding: var(--spacing-4) 0;
+    }
+
+    .headerContent {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

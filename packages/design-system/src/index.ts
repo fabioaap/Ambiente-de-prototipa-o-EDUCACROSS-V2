@@ -26,18 +26,20 @@ export { DataTable } from './components/DataTable/DataTable';
 export { FilterGroup } from './components/FilterGroup/FilterGroup';
 export { Modal } from './components/Modal/Modal';
 export { StatsCard } from './components/StatsCard/StatsCard';
-export { 
-  Dropdown, 
-  DropdownTrigger, 
-  DropdownContent, 
-  DropdownItem, 
-  DropdownLabel, 
-  DropdownSeparator, 
-  DropdownCheckboxItem, 
-  DropdownGroup 
+export {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+  DropdownCheckboxItem,
+  DropdownGroup
 } from './components/Dropdown/Dropdown';
 export { Avatar } from './components/Avatar/Avatar';
 export { AvatarGroup } from './components/Avatar/AvatarGroup';
+export { ProfileCard } from './components/ProfileCard/ProfileCard';
+export { IconDashboard, IconChart, IconFlag, IconBook, IconCalendar, IconReading, IconRegister, IconDownload, IconUser, IconSales, IconMoney } from './icons';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -61,21 +63,23 @@ export type { ToolbarButtonsProps } from './components/ToolbarButtons/ToolbarBut
 export type { ActionButtonsProps } from './components/ActionButtons/ActionButtons';
 export type { BreadcrumbProps } from './components/Breadcrumb/Breadcrumb';
 export type { TabsProps } from './components/Tabs/Tabs';
-export type { SidebarProps } from './components/Sidebar/Sidebar';
+export type { SidebarProps, SidebarItem, SidebarItemSimple, SidebarItemExpandable, SidebarItemBase } from './components/Sidebar/Sidebar';
 export type { PaginationProps } from './components/Pagination/Pagination';
 export type { DataTableProps } from './components/DataTable/DataTable';
 export type { FilterGroupProps } from './components/FilterGroup/FilterGroup';
 export type { ModalProps } from './components/Modal/Modal';
 export type { StatsCardProps, TrendData } from './components/StatsCard/StatsCard';
-export type { 
-  DropdownProps, 
-  DropdownTriggerProps, 
-  DropdownContentProps, 
-  DropdownItemProps, 
-  DropdownLabelProps, 
-  DropdownSeparatorProps, 
-  DropdownCheckboxItemProps, 
-  DropdownGroupProps 
+export type {
+  DropdownProps,
+  DropdownTriggerProps,
+  DropdownContentProps,
+  DropdownItemProps,
+  DropdownLabelProps,
+  DropdownSeparatorProps,
+  DropdownCheckboxItemProps,
+  DropdownGroupProps
 } from './components/Dropdown/Dropdown';
 export type { AvatarProps } from './components/Avatar/Avatar';
 export type { AvatarGroupProps } from './components/Avatar/AvatarGroup';
+export type { ProfileCardProps } from './components/ProfileCard/ProfileCard';
+

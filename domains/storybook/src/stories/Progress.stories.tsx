@@ -355,3 +355,98 @@ export const StepsIndicator: Story = {
     },
   },
 };
+
+export const CustomHeight: Story = {
+  render: () => (
+    <div style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div>
+        <h3 style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+          Height: 8px (padrão md)
+        </h3>
+        <Progress value={65} variant="linear" color="primary" showLabel height="8px" />
+      </div>
+      <div>
+        <h3 style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+          Height: 12px (ideal para tabelas)
+        </h3>
+        <Progress value={75} variant="linear" color="success" showLabel height="12px" />
+      </div>
+      <div>
+        <h3 style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+          Height: 16px (destaque)
+        </h3>
+        <Progress value={45} variant="linear" color="warning" showLabel height="16px" />
+      </div>
+      <div>
+        <h3 style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
+          Height: 24px (grande destaque)
+        </h3>
+        <Progress value={90} variant="linear" color="error" showLabel height="24px" />
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstra o uso da prop `height` para altura customizada. Útil para linhas de tabela com progresso embarcado.',
+      },
+    },
+  },
+};
+
+export const TableIntegration: Story = {
+  render: () => (
+    <div style={{ width: '100%', maxWidth: '500px' }}>
+      <table style={{
+        width: '100%',
+        borderCollapse: 'collapse',
+        fontSize: '0.875rem',
+      }}>
+        <thead>
+          <tr style={{ borderBottom: '1px solid #e5e7eb', backgroundColor: '#f9fafb' }}>
+            <th style={{ padding: '0.75rem', textAlign: 'left', fontWeight: '600' }}>Aluno</th>
+            <th style={{ padding: '0.75rem', textAlign: 'center', fontWeight: '600' }}>Progresso</th>
+            <th style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '600' }}>%</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style={{ borderBottom: '1px solid #f3f4f6' }}>
+            <td style={{ padding: '0.75rem' }}>João Silva</td>
+            <td style={{ padding: '0.75rem' }}>
+              <Progress value={85} variant="linear" color="success" height="12px" />
+            </td>
+            <td style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '500' }}>85%</td>
+          </tr>
+          <tr style={{ borderBottom: '1px solid #f3f4f6' }}>
+            <td style={{ padding: '0.75rem' }}>Maria Santos</td>
+            <td style={{ padding: '0.75rem' }}>
+              <Progress value={60} variant="linear" color="primary" height="12px" />
+            </td>
+            <td style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '500' }}>60%</td>
+          </tr>
+          <tr style={{ borderBottom: '1px solid #f3f4f6' }}>
+            <td style={{ padding: '0.75rem' }}>Pedro Costa</td>
+            <td style={{ padding: '0.75rem' }}>
+              <Progress value={40} variant="linear" color="warning" height="12px" />
+            </td>
+            <td style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '500' }}>40%</td>
+          </tr>
+          <tr>
+            <td style={{ padding: '0.75rem' }}>Ana Oliveira</td>
+            <td style={{ padding: '0.75rem' }}>
+              <Progress value={15} variant="linear" color="error" height="12px" />
+            </td>
+            <td style={{ padding: '0.75rem', textAlign: 'right', fontWeight: '500' }}>15%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Exemplo real de uso em tabela (Painel Inicial) com altura de 12px para visual compacto e limpo.',
+      },
+    },
+  },
+};

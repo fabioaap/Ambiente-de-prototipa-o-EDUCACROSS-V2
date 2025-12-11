@@ -1,0 +1,388 @@
+openapi: 3.0.3
+info:
+  title: Sprint 6 Execution API
+  version: 1.0.0
+  description: |
+    API contracts for Sprint 6 deliverables including enhanced health metrics,
+    leaderboard data, and analytics tracking.
+    
+    Base URL: http://localhost:3000
+  contact:
+    name: EDUCACROSS Team
+    email: team@educacross.example.com
+
+servers:
+  - url: http://localhost:3000
+    description: Local development
+  - url: https://staging.educacross.example.com
+    description: Staging environment
+
+tags:
+  - name: Dashboard
+    description: Dashboard API endpoints
+  - name: Health
+    description: System health metrics
+  - name: Leaderboard
+    description: Leaderboard data (mock for Sprint 6)
+  - name: Analytics
+    description: Analytics event tracking
+
+paths:
+  /api/dashboard/health:
+    get:
+      summary: Get system health metrics
+      description: |
+        Returns comprehensive health metrics including build status, test coverage,
+        type errors, and new Sprint 6 metrics (code quality, technical debt, performance, etc.)
+      tags:
+        - Dashboard
+        - Health
+      responses:
+        '200':
+          description: Health metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthMetricsResponse'
+              examples:
+                healthy:
+                  value:
+                    data:
+                      buildStatus: passing
+                      testCoverage: 97.4
+                      typeErrors: 0
+                      lintWarnings: 0
+                      codeQualityScore: 92
+                      technicalDebtHours: 8
+                      performanceScore: 95
+                      securityVulnerabilities: 0
+                      lastDeployment: '2025-12-09T10:30:00Z'
+                      uptime: 99.9
+                      errorRate: 2.5
+                    timestamp: '2025-12-09T14:22:00Z'
+                degraded:
+                  value:
+                    data:
+                      buildStatus: failing
+                      testCoverage: 85.2
+                      typeErrors: 5
+                      lintWarnings: 12
+                      codeQualityScore: 75
+                      technicalDebtHours: 24
+                      performanceScore: 70
+                      securityVulnerabilities: 2
+                      lastDeployment: '2025-12-08T16:45:00Z'
+                      uptime: 95.0
+                      errorRate: 15.3
+                    timestamp: '2025-12-09T14:22:00Z'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/leaderboard:
+    get:
+      summary: Get leaderboard entries
+      description: |
+        Returns ranked list of players/entities with scores and progress.
+        Mock data for Sprint 6 - future implementation will support filters.
+      tags:
+        - Leaderboard
+      parameters:
+        - name: maxEntries
+          in: query
+          description: Maximum number of entries to return
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: gameId
+          in: query
+          description: Filter by game ID (future)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Leaderboard entries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardResponse'
+              examples:
+                top10:
+                  value:
+                    data:
+                      entries:
+                        - rank: 1
+                          playerId: 'player-001'
+                          name: 'Alice Wonder'
+                          avatar: 'https://i.pravatar.cc/150?img=1'
+                          score: 15420
+                          progress: 95
+                          isCurrentUser: false
+                        - rank: 2
+                          playerId: 'player-002'
+                          name: 'Bob Builder'
+                          avatar: 'https://i.pravatar.cc/150?img=2'
+                          score: 14230
+                          progress: 88
+                          isCurrentUser: true
+                        - rank: 3
+                          playerId: 'player-003'
+                          name: 'Charlie Brown'
+                          score: 13100
+                          progress: 75
+                          isCurrentUser: false
+                      totalEntries: 1247
+                    timestamp: '2025-12-09T14:22:00Z'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/analytics/track:
+    post:
+      summary: Track analytics event
+      description: |
+        Records user interaction event for analytics.
+        Forwards to Google Analytics 4 or Mixpanel.
+        Client-side tracking preferred (via gtag.js).
+      tags:
+        - Analytics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyticsEventRequest'
+            examples:
+              dashboard_load:
+                value:
+                  eventName: dashboard_load
+                  params:
+                    kpis_count: 4
+                    load_time_ms: 287
+                  timestamp: '2025-12-09T14:22:00Z'
+              page_create:
+                value:
+                  eventName: page_create
+                  params:
+                    page_type: 'landing'
+                    components_count: 5
+                  timestamp: '2025-12-09T14:25:00Z'
+      responses:
+        '200':
+          description: Event tracked successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          description: Invalid event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    HealthMetrics:
+      type: object
+      required:
+        - buildStatus
+        - testCoverage
+        - typeErrors
+        - lintWarnings
+        - codeQualityScore
+        - technicalDebtHours
+        - performanceScore
+        - securityVulnerabilities
+        - lastDeployment
+        - uptime
+        - errorRate
+      properties:
+        buildStatus:
+          type: string
+          enum: [passing, failing]
+          description: CI/CD build status
+        testCoverage:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Test coverage percentage
+        typeErrors:
+          type: integer
+          minimum: 0
+          description: Count of TypeScript type errors
+        lintWarnings:
+          type: integer
+          minimum: 0
+          description: Count of linter warnings
+        codeQualityScore:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Code quality score (0-100)
+        technicalDebtHours:
+          type: number
+          minimum: 0
+          description: Estimated technical debt in hours
+        performanceScore:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Lighthouse performance score
+        securityVulnerabilities:
+          type: integer
+          minimum: 0
+          description: Count of security vulnerabilities
+        lastDeployment:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of last deployment
+        uptime:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: System uptime percentage
+        errorRate:
+          type: number
+          minimum: 0
+          description: Errors per hour
+
+    HealthMetricsResponse:
+      type: object
+      required:
+        - data
+        - timestamp
+      properties:
+        data:
+          $ref: '#/components/schemas/HealthMetrics'
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of response
+
+    LeaderboardEntry:
+      type: object
+      required:
+        - rank
+        - playerId
+        - name
+        - score
+        - progress
+      properties:
+        rank:
+          type: integer
+          minimum: 1
+          description: Player rank (1-based)
+        playerId:
+          type: string
+          description: Unique player identifier
+        name:
+          type: string
+          maxLength: 50
+          description: Player display name
+        avatar:
+          type: string
+          format: uri
+          description: Avatar image URL (optional)
+        score:
+          type: number
+          minimum: 0
+          description: Player score
+        progress:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Completion progress percentage
+        isCurrentUser:
+          type: boolean
+          default: false
+          description: Highlight current user
+
+    LeaderboardData:
+      type: object
+      required:
+        - entries
+        - totalEntries
+      properties:
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaderboardEntry'
+        totalEntries:
+          type: integer
+          minimum: 0
+          description: Total number of entries in leaderboard
+
+    LeaderboardResponse:
+      type: object
+      required:
+        - data
+        - timestamp
+      properties:
+        data:
+          $ref: '#/components/schemas/LeaderboardData'
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of response
+
+    AnalyticsEventRequest:
+      type: object
+      required:
+        - eventName
+        - params
+      properties:
+        eventName:
+          type: string
+          enum:
+            - page_view
+            - dashboard_load
+            - page_create
+            - csv_export
+            - journey_complete
+          description: Event name (kebab-case)
+        params:
+          type: object
+          description: Event parameters (camelCase keys)
+          additionalProperties: true
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp (auto-generated if omitted)
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - status
+      properties:
+        error:
+          type: string
+          description: Error message
+        status:
+          type: integer
+          description: HTTP status code
+        details:
+          type: object
+          description: Additional error details (optional)
+          additionalProperties: true

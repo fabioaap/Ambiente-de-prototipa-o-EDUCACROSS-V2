@@ -10,6 +10,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   size?: 'sm' | 'md' | 'lg';
   /** Estilo do badge (filled, outlined, soft) */
   styleType?: 'filled' | 'outlined' | 'soft';
+  /** Cor customizada (ex: '#28C76F', '#EA5455'). Sobrescreve variant. 
+   * Deve ser um hex color válido. Quando fornecida, usa estilo filled com a cor como background. */
+  customColor?: string;
   /** Exibir um dot antes do conteúdo */
   dot?: boolean;
   /** Ícone a ser exibido antes do conteúdo */
@@ -19,26 +22,40 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ 
-    variant = 'default', 
-    size = 'md', 
+  ({
+    variant = 'default',
+    size = 'md',
     styleType = 'filled',
+    customColor,
     dot = false,
     icon,
-    className = '', 
-    children, 
-    ...props 
+    className = '',
+    children,
+    ...props
   }, ref) => {
+    // Se customColor for fornecida, usar estilo filled com a cor customizada
+    const variantClass = customColor ? undefined : variant;
+
     const classNames = [
       styles.badge,
-      styles[variant],
+      variantClass && styles[variantClass],
       styles[size],
-      styles[styleType],
+      !customColor && styles[styleType],
+      customColor && styles.filled, // Quando usar customColor, sempre usar filled
       className,
     ].filter(Boolean).join(' ');
 
+    // Se customColor for fornecida, aplicar inline style
+    const inlineStyle = customColor
+      ? {
+        backgroundColor: customColor,
+        color: 'white',
+        border: `1px solid ${customColor}`,
+      }
+      : undefined;
+
     return (
-      <span ref={ref} className={classNames} {...props}>
+      <span ref={ref} className={classNames} style={inlineStyle} {...props}>
         {dot && <span className={styles.dot} />}
         {icon && <span className={styles.icon}>{icon}</span>}
         {children && <span className={styles.content}>{children}</span>}

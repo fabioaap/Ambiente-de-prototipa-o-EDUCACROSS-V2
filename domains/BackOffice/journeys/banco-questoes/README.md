@@ -1,104 +1,224 @@
-# Jornada: Banco de Questões
+# Banco de Questões
 
-## 📋 Objetivo
+**Title:** Gerenciar Banco de Questões  
+**Status:** Complete  
+**Last Updated:** 2025-12-09  
+**Owner:** BackOffice Team
 
-Página de referência que demonstra o uso completo da suite BackOffice do Design System EDUCACROSS para gestão de banco de questões educacionais.
+## Overview
 
-## 🎯 Status
+**Objective:**  
+Gerenciar, filtrar, revisar e exportar banco de questões educacionais com suporte completo a BNCC (Base Nacional Comum Curricular). Página de referência que demonstra o uso completo da suite BackOffice do Design System EDUCACROSS.
 
-✅ **Implementada** - Sprint 3 Fase 4
+**Target Users:**  
+- Coordenadores Pedagógicos
+- Revisores de Questões
+- Administradores do Sistema
 
-## 🧩 Componentes Utilizados
+**Expected Outcome:**  
+Usuários conseguem filtrar questões por múltiplos critérios, revisar status, visualizar metadados, e exportar dados para análise.
 
-### Navegação e Estrutura
-- **Sidebar**: Menu lateral com links para BackOffice, Usuários e Relatórios
-- **Breadcrumb**: Navegação hierárquica (Home > BackOffice > Banco de Questões)
-- **PageHeader**: Cabeçalho com título, contador (181 questões) e subtítulo
+---
 
-### Filtros e Controles
-- **Tabs**: 3 abas (Aprovadas: 150, Em revisão: 23, Em correção: 8)
-- **FilterGroup**: 8 filtros em layout grid:
-  - Área, Ano Escolar, Tipo, Nível (select)
-  - Habilidade, Tópico (input)
-  - Autoria, USO (select)
-- **ToolbarButtons**: Botões de Importar e Exportar
+## Journey Steps
 
-### Visualização de Dados
-- **DataTable**: Tabela com 10 colunas:
-  - Código, Habilidades, Tópico, Tipo
-  - Classificação (badges), Autoria, Criador, Revisor, Data
-  - Ações (ActionButtons)
-- **Badge**: Classificação visual (efobmaos, d6, d7, etc.)
-- **ActionButtons**: Visualizar, Editar e Excluir
-- **Pagination**: 19 páginas de navegação
+### Step 1: Acessar Banco de Questões
+**Description:** Usuário acessa a página do banco de questões via navegação lateral ou URL direta  
+**Duration:** <1 segundo  
+**Components Used:** Sidebar, Breadcrumb, PageHeader  
+**Data Required:** Contagem total de questões (181)
 
-## 📂 Arquivos
+**Success Criteria:**
+- [ ] Página carrega com sidebar visível
+- [ ] Breadcrumb mostra navegação hierárquica
+- [ ] PageHeader exibe título e contador
 
-- **Página**: `domains/studio/src/app/backoffice/banco-questoes/page.tsx`
-- **Documentação**: `domains/BackOffice/journeys/banco-questoes/README.md` (este arquivo)
+### Step 2: Aplicar Filtros
+**Description:** Usuário filtra questões por até 8 critérios diferentes (Área, Ano, Tipo, etc)  
+**Duration:** 5-30 segundos  
+**Components Used:** FilterGroup, Tabs  
+**Data Required:** Opções de filtros disponíveis
 
-## 💾 Dados Mock
+**Success Criteria:**
+- [ ] Todos os 8 filtros funcionam
+- [ ] Abas por status (Aprovadas/Em revisão/Em correção) atualizam
+- [ ] Resultados refletem filtros aplicados
+
+### Step 3: Visualizar Resultados
+**Description:** Questões filtradas aparecem em tabela com 10 colunas de dados  
+**Duration:** Instantâneo  
+**Components Used:** DataTable, Badge, ActionButtons, Pagination  
+**Data Required:** Lista de questões com metadados
+
+**Success Criteria:**
+- [ ] Tabela exibe todas as colunas corretamente
+- [ ] Badges de classificação aparecem com cores
+- [ ] Paginação funciona (19 páginas)
+
+### Step 4: Executar Ações
+**Description:** Usuário visualiza, edita ou exclui questões específicas  
+**Duration:** 30-60 segundos  
+**Components Used:** ActionButtons, Modal (implícito)  
+**Data Required:** ID e dados da questão
+
+**Success Criteria:**
+- [ ] Botão "Visualizar" abre detalhes
+- [ ] Botão "Editar" abre editor
+- [ ] Botão "Excluir" pede confirmação
+
+---
+
+## User Stories
+
+```gherkin
+Feature: Gerenciar Banco de Questões
+
+  Scenario: Visualizar todas as questões
+    Given Usuário acessa /backoffice/banco-questoes
+    When Página carrega
+    Then 150 questões aprovadas aparecem na tabela
+    And Contagem total mostra 181
+
+  Scenario: Filtrar por múltiplos critérios
+    Given Usuário está na página do banco
+    When Aplica filtro "Área: Matemática" e "Ano: 6º"
+    Then Tabela mostra apenas questões de Matemática 6º ano
+    And Resultados atualizam em tempo real
+
+  Scenario: Navegar por abas de status
+    Given Usuário está na página do banco
+    When Clica na aba "Em revisão"
+    Then Tabela mostra 23 questões em revisão
+    And Badge mostra status correto
+
+  Scenario: Exportar questões filtradas
+    Given Usuário filtrou questões
+    When Clica em "Exportar"
+    Then Arquivo CSV é baixado com dados filtrados
+
+  Scenario: Editar questão
+    Given Usuário vê questão na tabela
+    When Clica em "Editar"
+    Then Editor de questão abre
+    And Dados da questão são carregados
+```
+
+---
+
+## Component Architecture
+
+**Layout Principal:**
+- Sidebar (navegação lateral)
+- Breadcrumb (navegação hierárquica)
+- PageHeader (título + contador)
+- Abas (status das questões)
+- FilterGroup (8 filtros em grid)
+- ToolbarButtons (Importar/Exportar)
+- DataTable (10 colunas)
+- Pagination (19 páginas)
+
+**Data Model:**
+```typescript
+interface Questão {
+  codigo: string;
+  habilidades: string[];
+  topico: string;
+  tipo: 'múltipla' | 'discursiva' | 'verdadeiro-falso';
+  classificacao: string[];
+  autoria: string;
+  criador: string;
+  revisor: string;
+  data: string;
+  status: 'aprovada' | 'em_revisao' | 'em_correcao';
+}
+```
+
+---
+
+## Dados de Exemplo
 
 A página inclui 5 questões de exemplo:
-- MAT-6-001: Números e Operações (Prof. Ana Silva)
-- MAT-6-002: Geometria (Prof. Maria Costa)
-- MAT-7-001: Álgebra (Prof. Pedro Lima)
-- MAT-8-001: Estatística (Prof. João Santos)
-- MAT-9-001: Funções (Prof. Ana Silva)
+- **MAT-6-001**: Números e Operações (Prof. Ana Silva) - Aprovada
+- **MAT-6-002**: Geometria (Prof. Maria Costa) - Aprovada
+- **MAT-7-001**: Álgebra (Prof. Pedro Lima) - Em revisão
+- **MAT-8-001**: Estatística (Prof. João Santos) - Em revisão
+- **MAT-9-001**: Funções (Prof. Ana Silva) - Em correção
 
-Cada questão possui:
-- Código, Habilidades BNCC, Tópico, Tipo
-- Autoria, Criador, Revisor, Data
-- Badges de classificação
+---
 
-## 🚀 Como Usar
+## Implementação
 
-### Acessar a Página
+**Localização da Página:** `domains/studio/src/app/backoffice/banco-questoes/page.tsx`
 
-```bash
-# Iniciar servidor de desenvolvimento
-cd domains/studio
-pnpm dev
+**Como Usar como Template:**
 
-# Acessar no navegador
-http://localhost:3000/backoffice/banco-questoes
-```
+1. Copiar estrutura de componentes
+2. Substituir `mockQuestions` pelos dados reais
+3. Integrar com `/api/questions` endpoint
+4. Ajustar filtros conforme necessário
 
-### Usar como Template
-
-1. **Copiar estrutura**:
 ```typescript
-import {
-  Sidebar,
-  Breadcrumb,
-  PageHeader,
-  Tabs,
-  FilterGroup,
-  DataTable,
-  Pagination,
-  ToolbarButtons,
-  ActionButtons,
-  Badge,
-} from '@prototipo/design-system';
-```
-
-2. **Adaptar dados**:
-   - Substituir `mockQuestions` pelos seus dados
-   - Ajustar `columns` conforme necessário
-   - Configurar `filterConfig` para seus filtros
-   - Personalizar `tabs` e `sidebarItems`
-
-3. **Integrar API**:
-```typescript
-// Substituir mock por fetch real
+// Padrão para integração de API
 const [questions, setQuestions] = useState([]);
+const [filters, setFilters] = useState({});
 
 useEffect(() => {
-  fetch('/api/questions')
+  fetch('/api/questions', { body: filters })
     .then(res => res.json())
     .then(setQuestions);
-}, []);
+}, [filters]);
 ```
+
+---
+
+## Related Documentation
+
+- **Feature Spec:** [Feature spec document link]
+- **API Documentation:** `/api/questions`
+- **Design:** [Figma BackOffice Kit]
+- **Related Journeys:**
+  - Revisão de Questões
+  - Banco de Respostas
+
+---
+
+## Progress Status
+
+**Phase 1 (Research):** ✅ Complete  
+**Phase 2 (Design):** ✅ Complete  
+**Phase 3 (Development):** ✅ Complete  
+**Phase 4 (Testing):** ✅ Complete  
+**Phase 5 (Migration to New Template):** ✅ Complete  
+
+---
+
+## Analytics Events
+
+**Events Tracked:**
+- `journey_start` - Usuário abre banco de questões
+- `filter_applied` - Usuário aplica filtro
+- `question_viewed` - Usuário visualiza questão
+- `question_edited` - Usuário edita questão
+- `data_exported` - Usuário exporta dados
+
+**Expected Metrics:**
+- Conversion Rate: 85% (usuários que aplicam filtro)
+- Average Time: 3-5 minutos por sessão
+- Export Rate: 40% de usuários exportam
+
+---
+
+## Notas e Melhorias Futuras
+
+- Implementar busca em tempo real
+- Adicionar filtros salvos/favoritos
+- Integrar com sistema de revisão automática
+- Adicionar relatórios de qualidade das questões
+- Suporte para importação em lote via Excel
+
+---
+
+**Perguntas?** Veja [quickstart.md](../../specs/005-sprint6-execution/quickstart.md) ou contate o BackOffice Team.
 
 ## 🎨 Customização
 

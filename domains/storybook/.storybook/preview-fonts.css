@@ -1,3 +1,6 @@
+/* Fira Code para monospace */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+
 /* Self-hosted Montserrat (Vuexy Font) */
 @font-face {
   font-family: 'Montserrat';
@@ -6,9 +9,6 @@
   font-style: normal;
   font-display: swap;
 }
-
-/* Fira Code para monospace */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
 
 /* Aplicar Montserrat globalmente */
 body, html, #storybook-root {

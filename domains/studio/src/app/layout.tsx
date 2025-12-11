@@ -5,6 +5,8 @@ import '@measured/puck/puck.css';
 import './globals.css';
 
 import { normalizeRootAttributes } from '@/lib/hydration/normalizeRootAttributes';
+import { StudioRoot } from '@/components/StudioRoot';
+import { AnalyticsProvider } from '@/lib/analytics/AnalyticsProvider';
 
 export const metadata: Metadata = {
   title: 'Studio - EDUCACROSS Prototipação',
@@ -21,7 +23,11 @@ export default function RootLayout({
   return (
     <html {...rootAttributes.attributes} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground">
-        {children}
+        <StudioRoot>
+          <AnalyticsProvider>
+            {children}
+          </AnalyticsProvider>
+        </StudioRoot>
       </body>
     </html>
   );

@@ -13,9 +13,14 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   variant?: 'linear' | 'circular';
   /**
-   * Tamanho do componente
+   * Tamanho do componente (ignorado se height for fornecido)
    */
   size?: 'sm' | 'md' | 'lg';
+  /**
+   * Altura customizada em pixels (ex: '12px', '16px'). Sobrescreve o tamanho predefinido.
+   * Aplicável apenas para variant='linear'
+   */
+  height?: string;
   /**
    * Cor do tema (usa design tokens)
    */
@@ -44,6 +49,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       variant = 'linear',
       size = 'md',
       color = 'primary',
+      height,
       showLabel = false,
       label,
       className = '',
@@ -130,7 +136,10 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         aria-label={ariaLabel || 'Progress indicator'}
         {...props}
       >
-        <div className={"Progress_linearTrack"}>
+        <div
+          className={"Progress_linearTrack"}
+          style={height ? { height } : undefined}
+        >
           <div
             className={"Progress_linearFill"}
             style={{ width: `${clampedValue}%` }}

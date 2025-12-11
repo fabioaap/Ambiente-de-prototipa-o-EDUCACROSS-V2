@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import '@prototipo/tokens/tokens.css';
 import ThemeProviderClient from '@/components/theme/ThemeProviderClient';
 
 export const metadata: Metadata = {
