@@ -135,7 +135,7 @@ Depois escolha a abordagem recomendada e siga com o plano detalhado.
 Sempre peça confirmacao antes de:
 
 * Delecoes de dados
-* Migracoes destrutivas de banco
+* Migracoes destrutreivas de banco
 * Mudancas que possam causar indisponibilidade relevante
 * Desligar ou alterar mecanismos de seguranca
 
