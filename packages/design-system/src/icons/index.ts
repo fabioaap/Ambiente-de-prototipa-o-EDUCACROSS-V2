@@ -1,13 +1,21 @@
 'use client';
-export { IconDashboard } from './Dashboard';
-export { IconChart } from './Chart';
-export { IconFlag } from './Flag';
-export { IconBook } from './Book';
-export { IconCalendar } from './Calendar';
-export { IconReading } from './Reading';
-export { IconRegister } from './Register';
-export { IconDownload } from './Download';
-export { IconUser } from './User';
-export { IconSales } from './Sales';
-export { IconMoney } from './Money';
-export type { IconProps } from './Dashboard';
+
+import type { Icon } from '@tabler/icons-react';
+
+// Re-export Tabler icons with our naming convention
+export { 
+  IconDashboard,
+  IconChartBar as IconChart,
+  IconFlag,
+  IconBook,
+  IconCalendar,
+  IconBook2 as IconReading,
+  IconClipboardList as IconRegister,
+  IconDownload,
+  IconUser,
+  IconShoppingCart as IconSales,
+  IconCurrencyDollar as IconMoney
+} from '@tabler/icons-react';
+
+// Type for all Tabler icon components
+export type IconProps = React.ComponentProps<Icon>;
