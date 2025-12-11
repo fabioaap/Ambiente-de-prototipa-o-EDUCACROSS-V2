@@ -1,0 +1,13 @@
+'use client';
+export { IconDashboard } from './Dashboard';
+export { IconChart } from './Chart';
+export { IconFlag } from './Flag';
+export { IconBook } from './Book';
+export { IconCalendar } from './Calendar';
+export { IconReading } from './Reading';
+export { IconRegister } from './Register';
+export { IconDownload } from './Download';
+export { IconUser } from './User';
+export { IconSales } from './Sales';
+export { IconMoney } from './Money';
+export type { IconProps } from './Dashboard';

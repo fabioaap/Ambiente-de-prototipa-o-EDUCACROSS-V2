@@ -39,6 +39,7 @@ export {
 export { Avatar } from './components/Avatar/Avatar';
 export { AvatarGroup } from './components/Avatar/AvatarGroup';
 export { ProfileCard } from './components/ProfileCard/ProfileCard';
+export { IconDashboard, IconChart, IconFlag, IconBook, IconCalendar, IconReading, IconRegister, IconDownload, IconUser, IconSales, IconMoney } from './icons';
 
 export type { ButtonProps } from './components/Button/Button';
 export type { TextProps } from './components/Text/Text';
@@ -62,7 +63,7 @@ export type { ToolbarButtonsProps } from './components/ToolbarButtons/ToolbarBut
 export type { ActionButtonsProps } from './components/ActionButtons/ActionButtons';
 export type { BreadcrumbProps } from './components/Breadcrumb/Breadcrumb';
 export type { TabsProps } from './components/Tabs/Tabs';
-export type { SidebarProps } from './components/Sidebar/Sidebar';
+export type { SidebarProps, SidebarItem, SidebarItemSimple, SidebarItemExpandable, SidebarItemBase } from './components/Sidebar/Sidebar';
 export type { PaginationProps } from './components/Pagination/Pagination';
 export type { DataTableProps } from './components/DataTable/DataTable';
 export type { FilterGroupProps } from './components/FilterGroup/FilterGroup';
