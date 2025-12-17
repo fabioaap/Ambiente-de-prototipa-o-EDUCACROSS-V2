@@ -3,25 +3,31 @@
 import React from 'react';
 import './FilterGroup.css';
 
+/** Tipo para valor de filtro */
+type FilterValue = string | number | boolean | null | undefined;
+
+/** Configuração de um filtro individual */
+interface FilterConfig {
+  id: string;
+  type: 'select' | 'input' | 'date';
+  label: string;
+  placeholder?: string;
+  options?: Array<{ value: string; label: string }>;
+  value?: FilterValue;
+}
+
 /**
  * Props para o componente FilterGroup
- * @param {Array} filters - Configuração dos filtros disponíveis
- * @param {Record<string, any>} [values] - Valores atuais dos filtros
- * @param {(filterId: string, value: any) => void} [onChange] - Callback ao alterar um filtro
+ * @param {FilterConfig[]} filters - Configuração dos filtros disponíveis
+ * @param {Record<string, FilterValue>} [values] - Valores atuais dos filtros
+ * @param {(filterId: string, value: FilterValue) => void} [onChange] - Callback ao alterar um filtro
  * @param {() => void} [onReset] - Callback ao resetar todos os filtros
  * @param {'horizontal' | 'vertical' | 'grid'} [layout] - Layout dos filtros
  */
 export interface FilterGroupProps {
-  filters: Array<{
-    id: string;
-    type: 'select' | 'input' | 'date';
-    label: string;
-    placeholder?: string;
-    options?: Array<{ value: string; label: string }>;
-    value?: any;
-  }>;
-  values?: Record<string, any>;
-  onChange?: (filterId: string, value: any) => void;
+  filters: FilterConfig[];
+  values?: Record<string, FilterValue>;
+  onChange?: (filterId: string, value: FilterValue) => void;
   onReset?: () => void;
   layout?: 'horizontal' | 'vertical' | 'grid';
 }
@@ -31,12 +37,12 @@ export const FilterGroup = React.forwardRef<HTMLDivElement, FilterGroupProps>(
     { filters, values = {}, onChange, onReset, layout = 'horizontal' },
     ref
   ) => {
-    const handleInputChange = (filterId: string, value: any) => {
+    const handleInputChange = (filterId: string, value: FilterValue) => {
       onChange?.(filterId, value);
     };
 
-    const renderFilter = (filter: FilterGroupProps['filters'][0]) => {
-      const currentValue = values[filter.id] ?? filter.value ?? '';
+    const renderFilter = (filter: FilterConfig) => {
+      const currentValue = (values[filter.id] ?? filter.value ?? '') as string;
 
       switch (filter.type) {
         case 'select':

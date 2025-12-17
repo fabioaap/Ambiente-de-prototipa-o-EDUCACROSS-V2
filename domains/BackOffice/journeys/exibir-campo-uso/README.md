@@ -1,103 +1,133 @@
 # Jornada: Exibir Campo USO (Rede) nas Listas de Questões
 
-> 🎓 Jornada de melhoria na curadoria de conteúdo: exibição de campo USO (rede) e filtros para identificar e selecionar questões corretamente.
+> 🎓 Melhoria na curadoria de conteúdo: exibição e filtro de campo USO (rede) para seleção segura de questões
 
-## 🎯 Objetivo
+## Overview
 
-Garantir que usuários de BackOffice consigam identificar de qual rede é cada questão (via campo **USO**) nas listas de questões, permitindo filtro por rede e acesso rápido aos detalhes da questão antes de usá-la em provas e Expedições de Leitura. Isso reduz o risco de usar questão errada (de outra rede ou contexto) e aumenta a segurança na montagem de avaliações e trilhas educacionais.
+**Objetivo Primário**: Permitir que usuários de BackOffice identifiquem de qual rede é cada questão via campo USO nas listas, reduzindo risco de erros de seleção.
 
-## 📋 Contexto de Negócio
+**Usuários Alvo**: Coordenadores, professores e curadores de BackOffice que gerenciam conteúdo
 
-- **Para quem?** Usuários de BackOffice (coordenadores, professores, curadores)
-- **Por que é importante?** 
-  - Reduzir erros de seleção de questões de rede errada
-  - Aumentar confiança na montagem de provas e Expedições de Leitura
-  - Melhorar eficiência da curadoria com filtro visual
-- **Quando será usado?** 
-  - Diariamente, ao consultar questões aprovadas
-  - Ao adicionar questões em provas (teste de avaliações)
-  - Ao criar desafios em Expedição de Leitura
+**Resultado Esperado**: Segurança aumentada na montagem de avaliações e trilhas educacionais, redução de 80-90% em erros de seleção de rede errada
 
-## 📊 Status
+**Contexto de Negócio**:
+- Reduzir erros de seleção de questões de rede errada
+- Aumentar confiança na montagem de provas
+- Melhorar eficiência da curadoria com filtro visual
+- Garantir questões sejam usadas no contexto correto
 
-- 📋 **Planejamento** - Jornada em fase de descoberta/especificação
-- ✅ **Integração MCP Figma** - Servidor MCP configurado e tokens extraídos (Node: 8565:17355)
-- ✅ **Prototipagem** - Página criada em `page.tsx` nesta pasta (Build OK)
-- ✅ **Página Visualizável** - Acesse: http://localhost:3000/backoffice/exibir-campo-uso
-- [ ] Integração de componentes visuais baseados no snapshot
-- [ ] Implementação de mocks e filtros (Parcialmente feito)
-- [ ] Testes de usabilidade
-- [ ] Concluído
+**Ativadores**:
+- Usuário consultando questões aprovadas no banco
+- Selecionando questões para provas (teste de avaliações)
+- Criando desafios em Expedição de Leitura
 
----
+## Journey Steps
 
-## 📂 Estrutura da Jornada
+### Etapa 1: Visualizar Questões com Badge USO
+**Objetivo**: Mostrar de qual rede é cada questão em listas e tabulações
 
-Esta pasta contém:
-- **README.md** - Documentação completa da jornada
-- **links.md** - Referências e links úteis
-- **notas.md** - Anotações técnicas e de desenvolvimento
-- **page.tsx** - Código React da página (Next.js App Router)
+**Componentes**:
+- Coluna "USO (Rede)" adicionada às tabelas
+- Badge com nome da rede e cor diferenciada por rede
+- Cores consistentes: Canoas (azul), Porto Alegre (vermelho), Gravataí (verde)
+- Dados mock com ~50 questões distribuídas em 3 redes
 
----
+**Success Criteria**:
+- ✅ Coluna USO aparece em banco de questões
+- ✅ Badge exibe nome da rede corretamente
+- ✅ Cores são consistentes por rede
+- ✅ Informação é visível sem necessidade de scroll horizontal
 
-## 🔗 Referência da Tarefa
+**User Story**:
+```gherkin
+Given um usuário acessa a lista de questões aprovadas
+When visualiza a tabela
+Then vê coluna adicional "USO (Rede)"
+And cada questão mostra um badge com nome da rede (Canoas, Porto Alegre, Gravataí)
+And badge tem cor diferenciada por rede
+And pode identificar imediatamente a qual rede a questão pertence
+```
 
-- **ID Bitrix**: #4800
-- **Tipo**: Nova funcionalidade / Customização
-- **Impacto**: Médio (há alternativa, mas causa transtorno)
-- **Afetados**: Usuários de BackOffice
+### Etapa 2: Filtrar Questões por Rede
+**Objetivo**: Permitir filtro rápido por rede/USO para foco em conteúdo específico
 
----
+**Componentes**:
+- Select/dropdown de filtro por rede
+- Opção "Todas as Redes" para limpar filtro
+- Filtro persiste enquanto navega
+- Contador dinâmico de questões por rede
 
-## 🖼️ Referência visual (Figma)
+**Success Criteria**:
+- ✅ Filtro por rede filtra dinamicamente a tabela
+- ✅ Pode filtrar por cada rede individualmente
+- ✅ Pode limpar filtro e ver todas questões
+- ✅ Contador mostra "X questões de Canoas"
 
-Export do frame de referência (node `8565:17355`). Use para comparação pixel a pixel com a página do Studio (`/backoffice/exibir-campo-uso`).
+**User Story**:
+```gherkin
+Given um usuário está na lista de questões
+When vê o filtro de rede
+Then pode selecionar uma rede específica (Canoas, Porto Alegre, Gravataí)
+And tabela filtra automaticamente
+And vê apenas questões daquela rede
+And contador atualiza (ex: "18 questões de Canoas")
+And pode limpar o filtro e ver todas novamente
+```
 
-![Figma Reference](./figma-reference.png)
+### Etapa 3: Acessar Detalhes Completos da Questão
+**Objetivo**: Ver todos os detalhes da questão em modal antes de usá-la
 
-Checklist de validação rápida:
-- Sidebar: largura `265px`, itens e seções conforme Figma.
-- Breadcrumb: textos e ordem iguais ao `Frame 27`.
-- Tabs: títulos e estado ativo conforme Figma.
-- Filtros (Busca Tema): 4 inputs (linha 1), 2 blocos (linha 2), botões e campo de busca.
-- Tabela: 10 colunas com larguras exatas `[18, 146, 132, 154, 80, 87, 61, 62, 134, 84]`.
-- Footer: contador + paginação (96x28 e 98x28).
+**Componentes**:
+- Botão "Ver Detalhes" em cada linha
+- Modal com conteúdo completo
+- Exibição de enunciado, alternativas, gabarito
+- Informações: rede, disciplina, nível, autor, habilidades
+- Botão "Usar esta Questão" ou "Voltar"
 
----
+**Success Criteria**:
+- ✅ Cada questão tem botão "Ver Detalhes"
+- ✅ Modal exibe conteúdo completo
+- ✅ Badge USO é visível no modal
+- ✅ Pode fechar modal e voltar à lista
 
-## 🚀 Fluxo da Jornada
+**User Story**:
+```gherkin
+Given um usuário encontrou uma questão potencial
+When clica em "Ver Detalhes"
+Then modal abre com conteúdo completo
+And mostra enunciado, todas as alternativas
+And mostra gabarito com explicação
+And exibe badge da rede (USO)
+And mostra metadados (disciplina, nível, autor, habilidades)
+And pode usar a questão ou voltar à lista
+```
 
-### 1. Lista de Questões Aprovadas (Banco de Questões)
-**URL esperada**: `/domains/backoffice/banco-questoes` (aba "Questões Aprovadas")
+### Etapa 4: Usar Questão no Contexto Apropriado
+**Objetivo**: Integrar questão selecionada na prova/expedição com confirmação de rede
 
-**Mudanças necessárias**:
-- [ ] Adicionar coluna **USO (Rede)** na tabela de questões
-  - Exibir badge com nome da rede (ex: "Canoas", "Porto Alegre")
-  - Usar cor de badge diferenciada por rede (opcional: usar tokens de cores do Design System)
-- [ ] Implementar **filtro por Rede**
-  - Dropdown ou select com opções de redes disponíveis
-  - Filtrar resultados dinamicamente
-- [ ] Adicionar CTA **"Ver Detalhes"** em cada linha
-  - Abre modal ou navega para tela de visualização completa da questão
+**Componentes**:
+- Confirmação: "Você está adicionando questão da rede X"
+- Opção de cancelar se estiver errado
+- Questão adicionada com badge USO visível
+- Histórico de questões adicionadas mostra redes
 
-### 2. Lista de Questões em Provas (Teste de Avaliações)
-**URL esperada**: `/domains/backoffice/provas/adicionar-questoes`
+**Success Criteria**:
+- ✅ Ao usar questão, sistema confirma rede
+- ✅ Usuário pode cancelar se errado
+- ✅ Questão é adicionada com badge USO visível
+- ✅ Histórico mostra redes para auditoria
 
-**Mudanças necessárias**:
-- [ ] Exibir badge **USO** na listagem de questões disponíveis
-- [ ] Filtro por rede para facilitar seleção
-- [ ] CTA **"Ver Detalhes"** em cada questão (modal com conteúdo completo)
+**User Story**:
+```gherkin
+Given o usuário selecionou "Usar esta Questão"
+When está pronto para adicionar à prova
+Then vê confirmação: "Adicionando questão de [Rede]"
+And pode confirmar ou cancelar
+And após confirmar, questão aparece com badge USO
+And pode ver histórico de questões adicionadas
+```
 
-### 3. Lista de Questões em Expedição de Leitura
-**URL esperada**: `/domains/backoffice/expedicao-leitura/desafios-compreensao/criar/add-proposta`
-
-**Mudanças necessárias**:
-- [ ] Exibir badge **USO** nas questões disponíveis
-- [ ] Filtro por rede
-- [ ] CTA **"Ver Detalhes"** para inspeção antes de adicionar
-
----
+## Fluxo Detalhado
 
 ## 🧪 Estratégia de Prototipagem (Dados Simulados)
 

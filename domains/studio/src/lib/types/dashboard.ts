@@ -179,3 +179,51 @@ export const ERROR_CODES = {
 } as const;
 
 export type ErrorCode = (typeof ERROR_CODES)[keyof typeof ERROR_CODES];
+
+// New API types for US1
+export interface KPI {
+  id: string;
+  name: string;
+  value: string | number;
+  delta?: string;
+  trend?: 'up' | 'down' | 'neutral';
+  updatedAt: string;
+}
+
+export interface HealthMetric {
+  id: string;
+  name: string;
+  status: 'ok' | 'warn' | 'fail';
+  message?: string;
+  updatedAt: string;
+}
+
+export interface Page {
+  id: string;
+  title: string;
+  slug: string;
+  status: 'published' | 'draft' | 'archived';
+  owner: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface DashboardSummary {
+  kpis: KPI[];
+  timestamp: string;
+}
+
+export interface DashboardHealth {
+  metrics: HealthMetric[];
+  timestamp: string;
+}
+
+export interface DashboardPages {
+  pages: Page[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    total: number;
+    totalPages: number;
+  };
+}

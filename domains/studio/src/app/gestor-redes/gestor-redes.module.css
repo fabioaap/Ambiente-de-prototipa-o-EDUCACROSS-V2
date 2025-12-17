@@ -1,0 +1,254 @@
+.container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.titulo {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a2e;
+}
+
+.subtitulo {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* KPIs */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpiCard {
+  padding: 20px;
+  text-align: center;
+}
+
+.kpiLabel {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpiValor {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 8px 0 0;
+}
+
+/* Filtros */
+.filtrosCard {
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.filtrosRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.filtrosRow > * {
+  flex: 1;
+}
+
+.filtrosRow > button {
+  flex: none;
+}
+
+/* Tabela */
+.tabelaCard {
+  padding: 20px;
+}
+
+.tabelaTitulo {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.tabela {
+  width: 100%;
+}
+
+.tabelaHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1fr;
+  gap: 16px;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.tabelaRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.tabelaRow:hover {
+  background: #f8f9fa;
+}
+
+.escolaNome {
+  font-weight: 500;
+}
+
+.progressoCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progressoCell span {
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 45px;
+}
+
+/* Paginação */
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+/* Modal */
+.modalContent {
+  padding: 8px 0;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.modalSubtitulo {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.interacoesList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.interacaoItem {
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.interacaoHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.interacaoEmoji {
+  font-size: 20px;
+}
+
+.interacaoTipo {
+  font-weight: 500;
+  flex: 1;
+}
+
+.interacaoTotal {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.modalAviso {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fff3cd;
+  border-radius: 6px;
+  border: 1px solid #ffc107;
+}
+
+.modalAviso small {
+  color: #856404;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .filtrosRow {
+    flex-wrap: wrap;
+  }
+  
+  .tabelaHeader,
+  .tabelaRow {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+  
+  .tabelaHeader span:nth-child(5),
+  .tabelaHeader span:nth-child(6),
+  .tabelaRow span:nth-child(5),
+  .tabelaRow span:nth-child(6) {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .kpiGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .kpiValor {
+    font-size: 24px;
+  }
+  
+  .tabelaHeader,
+  .tabelaRow {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .tabelaHeader span:nth-child(3),
+  .tabelaHeader span:nth-child(4),
+  .tabelaRow span:nth-child(3),
+  .tabelaRow span:nth-child(4) {
+    display: none;
+  }
+}

@@ -6,6 +6,7 @@ import {
   Layout,
   Badge,
   Progress,
+  Leaderboard,
   Sidebar,
   Breadcrumb,
   Tabs,
@@ -825,6 +826,45 @@ export const puckConfig: Config = {
       defaultProps: {},
       render: () => (
         <ActionButtons onView={() => {}} onEdit={() => {}} onDelete={() => {}} />
+      ),
+    },
+
+    Leaderboard: {
+      fields: {
+        entries: {
+          type: 'array',
+          arrayFields: {
+            id: { type: 'text' },
+            name: { type: 'text' },
+            score: { type: 'number' },
+            avatar: { type: 'text' },
+            badge: { type: 'text' },
+          },
+        },
+        limit: { type: 'number' },
+        showTopBadges: { type: 'radio', options: [
+          { label: 'Sim', value: true },
+          { label: 'Não', value: false },
+        ]},
+        highlightId: { type: 'text' },
+      },
+      defaultProps: {
+        entries: [
+          { id: '1', name: 'Alice Johnson', score: 1500, avatar: '', badge: '' },
+          { id: '2', name: 'Bob Smith', score: 1350, avatar: '', badge: '' },
+          { id: '3', name: 'Charlie Brown', score: 1200, avatar: '', badge: '' },
+        ],
+        limit: 10,
+        showTopBadges: true,
+        highlightId: '',
+      },
+      render: ({ entries, limit, showTopBadges, highlightId }) => (
+        <Leaderboard
+          entries={entries}
+          limit={limit}
+          showTopBadges={showTopBadges}
+          highlightId={highlightId}
+        />
       ),
     },
 

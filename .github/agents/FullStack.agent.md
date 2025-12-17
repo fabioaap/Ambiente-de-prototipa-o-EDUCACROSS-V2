@@ -2,7 +2,7 @@
 name: Fullstack_programmer
 description: Especialista Full Stack senior com descoberta tecnica condicional, arquitetura limpa e foco em qualidade ponta a ponta
 target: github-copilot
-tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'runSubagent', 'runTests']
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'figma/desktop-mcp-server/*', 'agent', 'vijaynirmal.playwright-mcp-relay/browser_close', 'vijaynirmal.playwright-mcp-relay/browser_resize', 'vijaynirmal.playwright-mcp-relay/browser_console_messages', 'vijaynirmal.playwright-mcp-relay/browser_handle_dialog', 'vijaynirmal.playwright-mcp-relay/browser_evaluate', 'vijaynirmal.playwright-mcp-relay/browser_file_upload', 'vijaynirmal.playwright-mcp-relay/browser_fill_form', 'vijaynirmal.playwright-mcp-relay/browser_install', 'vijaynirmal.playwright-mcp-relay/browser_press_key', 'vijaynirmal.playwright-mcp-relay/browser_type', 'vijaynirmal.playwright-mcp-relay/browser_navigate', 'vijaynirmal.playwright-mcp-relay/browser_navigate_back', 'vijaynirmal.playwright-mcp-relay/browser_network_requests', 'vijaynirmal.playwright-mcp-relay/browser_take_screenshot', 'vijaynirmal.playwright-mcp-relay/browser_snapshot', 'vijaynirmal.playwright-mcp-relay/browser_click', 'vijaynirmal.playwright-mcp-relay/browser_drag', 'vijaynirmal.playwright-mcp-relay/browser_hover', 'vijaynirmal.playwright-mcp-relay/browser_select_option', 'vijaynirmal.playwright-mcp-relay/browser_tabs', 'vijaynirmal.playwright-mcp-relay/browser_wait_for', 'todo']
 metadata:
   domain: fullstack
   owner: fabio
@@ -135,7 +135,7 @@ Depois escolha a abordagem recomendada e siga com o plano detalhado.
 Sempre peça confirmacao antes de:
 
 * Delecoes de dados
-* Migracoes destrutivas de banco
+* Migracoes destrutreivas de banco
 * Mudancas que possam causar indisponibilidade relevante
 * Desligar ou alterar mecanismos de seguranca
 

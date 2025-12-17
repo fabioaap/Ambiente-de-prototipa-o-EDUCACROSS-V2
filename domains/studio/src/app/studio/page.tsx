@@ -5,6 +5,7 @@ import { puckConfig } from '@/config/puck.config';
 import { StudioLayout } from '@/components/StudioLayout';
 import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { trackEvent } from '@/lib/analytics/init';
 
 const initialData: Data = {
   content: [
@@ -103,8 +104,10 @@ function StudioEditor() {
           body: JSON.stringify({ data: newData }),
         });
 
+        let isNewPage = false;
         if (response.status === 404) {
           // Página não existe, criar nova
+          isNewPage = true;
           const createResponse = await fetch('/api/pages', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -114,8 +117,21 @@ function StudioEditor() {
           if (!createResponse.ok) {
             throw new Error('Failed to create page');
           }
+
+          // Track page creation event
+          trackEvent('page_create', {
+            page_slug: currentSlug,
+            page_type: 'blank',
+            components_count: newData.content?.length || 0,
+          });
         } else if (!response.ok) {
           throw new Error('Failed to save page');
+        } else if (!isNewPage) {
+          // Track page edit event for existing pages
+          trackEvent('page_edit', {
+            page_slug: currentSlug,
+            components_count: newData.content?.length || 0,
+          });
         }
 
         // Backup em localStorage

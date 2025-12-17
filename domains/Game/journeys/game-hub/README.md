@@ -1,103 +1,161 @@
 # Jornada: Game Hub
 
-## Objetivo
+> 🎮 Hub centralizado para acesso a todos os jogos educacionais da plataforma EDUCACROSS
 
-Criar um hub centralizado para acesso a todos os jogos educacionais disponíveis na plataforma EDUCACROSS, oferecendo uma experiência visual atraente e navegação intuitiva. O Game Hub serve como ponto de entrada para os jogadores explorarem, selecionarem e acessarem diferentes jogos, além de visualizarem seu progresso e rankings.
+## Overview
 
-## Status
+**Objetivo Primário**: Criar um hub centralizado para acesso a todos os jogos educacionais disponíveis, oferecendo uma experiência visual atraente e navegação intuitiva.
 
-- [x] Planejamento
-- [x] Estrutura de documentação
-- [x] Prototipagem no Puck Studio
-- [x] Integração de componentes
-- [ ] Testes de usabilidade
-- [ ] Concluído
+**Usuários Alvo**: Todos os jogadores na plataforma que buscam descobrir novos jogos, acompanhar progresso e competir no ranking
 
-## 🚀 Quick Start
+**Resultado Esperado**: Aumentar engajamento com jogos, facilitar descoberta de novo conteúdo, criar competição saudável via rankings
 
-### Acessar o Game Hub
+**Contexto de Negócio**:
+- Centralizar acesso a todos os jogos em um único lugar
+- Aumentar taxa de descoberta de novos jogos
+- Motivar competição através de rankings
+- Melhorar retenção de usuários via gamificação
+- Servir como landing page para game experience
 
-```bash
-# Desenvolvimento local
-pnpm dev:studio
+**Ativadores**:
+- Acesso direto ao `/game-hub`
+- Link na navegação principal
+- Recomendações de jogos personalizadas
 
-# Acessar no navegador
-http://localhost:3000/game-hub
+## Journey Steps
 
-# Editar no Puck Studio
-http://localhost:3000/studio?page=game-hub
+### Etapa 1: Descoberta de Jogos
+**Objetivo**: Permitir que usuários encontrem jogos de interesse rapidamente
+
+**Componentes**:
+- Grid responsivo de cards de jogos (3 colunas desktop, 1 mobile)
+- Filtros por categoria (Math, Language, Science, Logic)
+- Filtros por dificuldade (Easy, Medium, Hard)
+- Barra de busca por título
+- Tags de status (Novo, Popular, Concluído)
+
+**Success Criteria**:
+- ✅ Usuário encontra jogo desejado em < 30 segundos
+- ✅ Filtros funcionam corretamente
+- ✅ Cards exibem informações essenciais (título, categoria, dificuldade, thumbnail)
+
+**User Story**:
+```gherkin
+Given um usuário acessa o Game Hub
+When vê a grid de jogos disponíveis
+Then pode filtrar por categoria ou dificuldade
+And pode buscar por título
+And vê informações sobre cada jogo (thumbnail, descrição, dificuldade)
+And pode identificar jogos que já começou
 ```
 
-### Componentes Puck Disponíveis
+### Etapa 2: Seleção e Inicio do Jogo
+**Objetivo**: Iniciar jogo com um clique e acesso claro a instruções
 
-O Game Hub utiliza 3 novos componentes no Puck:
+**Componentes**:
+- Card de jogo com CTA primária "Jogar"
+- Modal/página com instruções do jogo
+- Visualização de record pessoal anterior
+- Botão "Começar Jogo"
 
-1. **GameCard** - Card individual de jogo
-2. **GameFilter** - Filtros por categoria e dificuldade
-3. **GameGrid** - Grid responsivo para layout dos cards
+**Success Criteria**:
+- ✅ Usuário inicia jogo com 1-2 cliques
+- ✅ Entende regras antes de começar
+- ✅ Vê seu melhor resultado anterior
 
-## Fluxo da Jornada
-
-### 1. Entrada no Game Hub
-```
-Usuário → Acessa /game-hub
-         ↓
-    Visualiza lista de jogos disponíveis
-         ↓
-    Vê cards com thumbnails, títulos e descrições
-```
-
-### 2. Seleção de Jogo
-```
-Usuário → Clica em um card de jogo
-         ↓
-    Navega para /game/:slug
-         ↓
-    Página do jogo é carregada
+**User Story**:
+```gherkin
+Given um usuário clicou em um card de jogo
+When chega à página do jogo
+Then vê instruções claras
+And vê seu melhor resultado anterior (se houver)
+And pode começar a jogar
+And pode pausar/sair a qualquer momento
 ```
 
-### 3. Durante o Jogo
-```
-Usuário → Joga e interage
-         ↓
-    Progress é atualizado em tempo real
-         ↓
-    Pode pausar/sair a qualquer momento
-```
+### Etapa 3: Durante o Jogo
+**Objetivo**: Acompanhamento de progresso em tempo real durante gameplay
 
-### 4. Pós-Jogo
-```
-Usuário → Completa o jogo
-         ↓
-    Visualiza tela de resultados
-         ↓
-    Vê sua pontuação no Leaderboard
-         ↓
-    Opções: Jogar novamente | Voltar ao Hub
-```
+**Componentes**:
+- Cronômetro de tempo decorrido
+- Barra de progresso (questões respondidas)
+- Placar ou contador de pontos
+- Botão "Pausar" e "Sair"
+- Feedback visual de acertos/erros
 
-### 5. Visualização de Rankings
-```
-Usuário → Acessa Leaderboard
-         ↓
-    Vê ranking global de todos os jogadores
-         ↓
-    Pode filtrar por jogo específico
-         ↓
-    Vê sua posição destacada
+**Success Criteria**:
+- ✅ Usuário vê tempo passando em tempo real
+- ✅ Progresso é visível (ex: 5/10 questões)
+- ✅ Pode pausar e retomar
+- ✅ Pode sair sem perder dados
+
+**User Story**:
+```gherkin
+Given o usuário iniciou um jogo
+When está jogando
+Then vê o tempo decorrido
+And vê seu progresso (questões respondidas)
+And pode pausar e retomar a qualquer momento
+And pode ver sua pontuação acumulada
+And recebe feedback visual para acertos/erros
 ```
 
-## Componentes Utilizados
+### Etapa 4: Resultados e Comparação
+**Objetivo**: Visualizar resultados finais e comparar com outros jogadores
 
-### Do Design System (@prototipo/design-system)
+**Componentes**:
+- Tela de resultados com pontuação final
+- Tempo total do jogo
+- Comparação com média de todos os jogadores
+- Comparação com melhor resultado pessoal
+- Botões: "Ver Leaderboard", "Jogar Novamente", "Voltar ao Hub"
 
-1. **Card** 
-   - Variante: `elevated`
-   - Uso: Cards de jogos com thumbnail e informações
-   - Props: `variant="elevated"`, `padding="md"`, `clickable={true}`
+**Success Criteria**:
+- ✅ Usuário vê sua pontuação final
+- ✅ Entende como se saiu comparado com média
+- ✅ Vê seu melhor resultado
+- ✅ Sabe que foi registrado no leaderboard
 
-2. **Button**
-   - Variantes: `primary`, `secondary`, `outline`
+**User Story**:
+```gherkin
+Given o usuário completou um jogo
+When chega à tela de resultados
+Then vê sua pontuação final
+And vê o tempo total gasto
+And vê como se saiu comparado com a média
+And vê se foi melhor ou pior que seu record pessoal
+And pode ver o leaderboard
+And pode jogar novamente ou voltar ao hub
+```
+
+### Etapa 5: Visualização de Rankings
+**Objetivo**: Criar competição saudável e motivar melhoria
+
+**Componentes**:
+- Tabela com top 100 jogadores
+- Sua posição destacada
+- Filtros por período (Dia, Semana, Mês, Geral)
+- Filtros por jogo específico
+- Avatar/nome dos players
+
+**Success Criteria**:
+- ✅ Usuário vê ranking geral
+- ✅ Pode filtrar por período
+- ✅ Pode filtrar por jogo específico
+- ✅ Sua posição é destacada
+
+**User Story**:
+```gherkin
+Given um usuário acessa o Leaderboard
+When vê o ranking de jogadores
+Then vê top 100 jogadores globais
+And sua posição é destacada
+And pode filtrar por período (dia, semana, mês, geral)
+And pode filtrar por jogo específico
+And pode voltar ao hub para jogar mais
+```
+
+## Fluxo Detalhado
    - Uso: Ações (Jogar, Voltar, Ver Ranking)
    - Props: `variant="primary"`, `size="md"`, `fullWidth`
 

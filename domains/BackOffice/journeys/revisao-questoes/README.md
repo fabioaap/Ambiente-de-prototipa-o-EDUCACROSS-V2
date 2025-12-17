@@ -1,47 +1,142 @@
 # Jornada: Revisão de Questões
 
-## 🎯 Objetivo
-Validar o fluxo para que curadores pedagógicos revisem questões enviadas pelos educadores, garantindo qualidade antes da publicação. Esta jornada permite que coordenadores e professores revisem, aprovem ou solicitem ajustes nas questões de forma eficiente e organizada.
+> 📋 Fluxo de validação e qualidade para questões enviadas antes da publicação
 
-## 📋 Contexto de Negócio
-- **Para quem?** Coordenadores e professores responsáveis pelo BackOffice de conteúdo.
-- **Por que é importante?** Reduz retrabalho, melhora a qualidade dos itens e libera rapidamente questões aprovadas. Garante consistência pedagógica e alinhamento com os objetivos de aprendizagem.
-- **Quando será usado?** Diariamente, como checklist de revisão antes da disponibilização de novas atividades. Processo contínuo durante períodos de produção de conteúdo.
+## Overview
 
-## 🚀 Fluxo da Jornada
+**Objetivo Primário**: Validar questões enviadas pelos educadores, garantindo qualidade e consistência pedagógica antes da publicação na plataforma.
 
-### 1. Lista de Questões Pendentes
-Visualização em cards de todas as questões aguardando revisão, com:
-- Status visual (pendente, em revisão, aprovado)
+**Usuários Alvo**: Coordenadores pedagógicos e professores responsáveis pelo BackOffice de conteúdo
+
+**Resultado Esperado**: Questões aprovadas com qualidade garantida, redução de retrabalho, aceleração de publicação
+
+**Contexto de Negócio**:
+- Reduzir retrabalho no ciclo de edição
+- Melhorar qualidade dos itens publicados
+- Garantir consistência pedagógica e alinhamento com objetivos
+- Liberar rapidamente questões aprovadas para uso em atividades
+- Criar feedback claro para autores quando ajustes são solicitados
+
+**Ativadores**:
+- Novas questões enviadas por educadores
+- Diariamente como checklist de revisão
+- Contínuo durante períodos de produção de conteúdo
+
+## Journey Steps
+
+### Etapa 1: Visualizar Lista de Pendências
+**Objetivo**: Permitir revisores ver todas as questões aguardando revisão de forma organizada
+
+**Componentes**:
+- Grid/lista de cards com questões pendentes
+- Status visual (Pendente, Em Revisão, Aprovado)
 - Metadados importantes (disciplina, autor, data de envio)
-- Ações rápidas (visualizar detalhes, aprovar)
 - Filtros por status, disciplina e autor
+- Barra de busca por título/conteúdo
 
-### 2. Detalhe da Questão
-Tela de análise profunda da questão, incluindo:
-- Enunciado completo
-- Alternativas de resposta
-- Gabarito e explicação
-- Metadados pedagógicos (nível, competências)
-- Histórico de revisões
-- Ações: Aprovar, Solicitar Ajustes, Rejeitar
+**Success Criteria**:
+- ✅ Revisor vê todas questões pendentes
+- ✅ Pode filtrar por disciplina e status
+- ✅ Pode buscar questão específica
+- ✅ Metadados essenciais visíveis (autor, disciplina, data)
 
-### 3. Confirmação de Ações (Em desenvolvimento)
-Modal ou tela de confirmação para ações críticas:
-- Aprovar questão para publicação
-- Solicitar ajustes com comentários
-- Rejeitar questão com justificativa
+**User Story**:
+```gherkin
+Given um revisor acessa a jornada de revisão de questões
+When vê a lista de questões pendentes
+Then visualiza cards/linhas com questões aguardando revisão
+And cada questão mostra: título, autor, disciplina, data de envio
+And pode filtrar por status (pendente, em revisão, aprovado)
+And pode filtrar por disciplina
+And pode buscar questão por título
+```
 
-## 🔗 Protótipos Relacionados
+### Etapa 2: Analisar Questão em Detalhe
+**Objetivo**: Revisor examina todos os aspectos da questão para tomar decisão fundamentada
 
-### Páginas no Studio
-- [Lista de questões pendentes](http://localhost:3000/backoffice/revisao-questoes/lista) - Visão geral com filtros
-- [Detalhe da questão](http://localhost:3000/backoffice/revisao-questoes/detalhe) - Análise detalhada
+**Componentes**:
+- Enunciado completo da questão
+- Todas as alternativas de resposta
+- Gabarito e explicação pedagógica
+- Metadados pedagógicos (nível, competências, objetivos)
+- Histórico de revisões anteriores
+- Seção de comentários/discussões
 
-### Acesso ao Studio (Editor)
-Para editar as páginas no Puck:
-- [Editar Lista](http://localhost:3000/studio?slug=backoffice/revisao-questoes/lista)
-- [Editar Detalhe](http://localhost:3000/studio?slug=backoffice/revisao-questoes/detalhe)
+**Success Criteria**:
+- ✅ Revisor vê enunciado completo e legível
+- ✅ Visualiza todas as alternativas
+- ✅ Vê gabarito com explicação
+- ✅ Entende contexto pedagógico (nível, competências)
+- ✅ Vê histórico de mudanças anteriores
+
+**User Story**:
+```gherkin
+Given o revisor clicou em uma questão para analisar
+When chega à tela de detalhe
+Then vê o enunciado completo
+And visualiza todas as alternativas com indicação da correta
+And vê a explicação pedagógica
+And pode ver metadados (nível, competências, objetivos)
+And pode ver histórico de revisões anteriores
+And vê comentários anteriores (se houver)
+```
+
+### Etapa 3: Tomar Decisão (Aprovar/Solicitar Ajustes/Rejeitar)
+**Objetivo**: Registrar decisão da revisão e comunicar resultado ao autor
+
+**Componentes**:
+- Botões de ação: Aprovar, Solicitar Ajustes, Rejeitar
+- Modal de confirmação para ações críticas
+- Campo de comentários/justificativa (para ajustes/rejeição)
+- Opção de adicionar tags ou categorias
+- Indicador de progresso (quantas questões revisadas)
+
+**Success Criteria**:
+- ✅ Revisor clica em "Aprovar", "Solicitar Ajustes" ou "Rejeitar"
+- ✅ Ação requer confirmação para evitar erros
+- ✅ Comentário opcional para contextualizar decisão
+- ✅ Decisão é registrada com timestamp
+
+**User Story**:
+```gherkin
+Given o revisor analisou a questão
+When está pronto para tomar uma decisão
+Then vê 3 botões: "Aprovar", "Solicitar Ajustes", "Rejeitar"
+And pode clicar em "Solicitar Ajustes" e adicionar comentário
+And vê modal de confirmação antes de confirmar ação
+And depois de confirmar, vê mensagem de sucesso
+And progresso de revisão é atualizado (ex: "15 de 30 questões revisadas")
+And pode voltar à lista de questões
+```
+
+### Etapa 4: Feedback para Autor
+**Objetivo**: Comunicar decisão da revisão para o educador que enviou a questão
+
+**Componentes**:
+- Email automático com resultado (aprovado/ajustes/rejeitado)
+- Portal/notificação in-app com comentários do revisor
+- Link direto para questão no portal do autor
+- Opção de reagir/responder comentários
+
+**Success Criteria**:
+- ✅ Autor recebe notificação de decisão
+- ✅ Vê comentários e sugestões do revisor
+- ✅ Sabe exatamente qual questão foi revisada
+- ✅ Pode resubmeter se solicitado ajustes
+
+**User Story**:
+```gherkin
+Given uma questão foi revisada (aprovada/ajustes/rejeitada)
+When o sistema processa a decisão
+Then o autor recebe notificação in-app
+And recebe email com resultado
+And vê comentários e sugestões do revisor
+And se "Solicitar Ajustes", pode editar e resubmeter
+And se "Aprovado", questão entra em publicação
+And se "Rejeitado", questão fica no arquivo
+```
+
+## Fluxo Detalhado
 
 ## 🧩 Componentes Utilizados
 

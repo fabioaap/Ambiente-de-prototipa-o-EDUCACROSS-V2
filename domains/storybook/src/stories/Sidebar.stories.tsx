@@ -1,18 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Sidebar } from '@prototipo/design-system';
+import { Sidebar, SidebarItem } from '@prototipo/design-system';
 
 const meta = {
-  title: 'BackOffice/Sidebar',
+  title: 'FrontOffice/Sidebar',
   component: Sidebar,
   parameters: {
     layout: 'fullscreen',
     a11y: {
-      // Garante verificação de foco e roles
       config: {
         rules: [
           { id: 'aria-required-attr', enabled: true },
           { id: 'aria-required-parent', enabled: true },
         ],
+      },
+    },
+    docs: {
+      description: {
+        component: 'Componente Sidebar para navegação lateral do FrontOffice. Baseado no design Figma com suporte a itens simples e expansíveis (com chevron), estados de hover e ativo.',
       },
     },
   },
@@ -22,82 +26,120 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const DashboardIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-    <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-    <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-    <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
-  </svg>
-);
+import { IconDashboard, IconChart, IconFlag, IconBook, IconCalendar, IconReading, IconRegister, IconDownload } from '@prototipo/design-system';
 
-const UsersIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M14 17V15C14 13.8954 13.1046 13 12 13H6C4.89543 13 4 13.8954 4 15V17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M17 17V15C17 14.2707 16.6281 13.6372 16.0645 13.2726" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M13 3.27734C13.8604 3.61023 14.5 4.43658 14.5 5.40234C14.5 6.36811 13.8604 7.19446 13 7.52734" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
-
-const SettingsIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <circle cx="10" cy="10" r="2" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M10 3V5M10 15V17M17 10H15M5 10H3M15.3 15.3L13.8 13.8M6.2 6.2L4.7 4.7M15.3 4.7L13.8 6.2M6.2 13.8L4.7 15.3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
-
-export const Default: Story = {
-  args: {
-    logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>EDUCACROSS</div>,
-    items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', active: true, ariaLabel: 'Ir para Dashboard' },
-      { id: 'users', label: 'Usuários', icon: <UsersIcon />, href: '/users', ariaLabel: 'Gerenciar usuários' },
-      { id: 'products', label: 'Produtos', icon: <DashboardIcon />, href: '/products', ariaLabel: 'Ver produtos' },
-      { id: 'settings', label: 'Configurações', icon: <SettingsIcon />, href: '/settings', ariaLabel: 'Abrir configurações' },
+// Array de itens conforme design do Figma (FrontOffice)
+const frontOfficeSidebarItems: SidebarItem[] = [
+  {
+    id: 'dashboard',
+    label: 'Painel Inicial',
+    icon: <IconDashboard />, // imported from design-system icons
+    href: '/dashboard',
+    active: true,
+  },
+  {
+    id: 'reports',
+    label: 'Relatórios Gerais',
+    icon: <IconChart />,
+    href: '/reports',
+    expandable: true,
+    children: [
+      { id: 'reports-overview', label: 'Visão Geral', href: '/reports/overview' },
+      { id: 'reports-analytics', label: 'Analytics', href: '/reports/analytics' },
     ],
+  },
+  {
+    id: 'missions',
+    label: 'Missões da Escola',
+    icon: <IconFlag />,
+    href: '/missions',
+    expandable: true,
+  },
+  {
+    id: 'teaching',
+    label: 'Sistema de Ensino',
+    icon: <IconBook />,
+    href: '/teaching',
+  },
+  {
+    id: 'events',
+    label: 'Eventos',
+    icon: <IconCalendar />,
+    href: '/events',
+  },
+  {
+    id: 'reading',
+    label: 'Expedição Leitura',
+    icon: <IconReading />,
+    href: '/reading',
+  },
+  {
+    id: 'registers',
+    label: 'Cadastros',
+    icon: <IconRegister />,
+    href: '/registers',
+    expandable: true,
+    children: [
+      { id: 'registers-students', label: 'Alunos', href: '/registers/students' },
+      { id: 'registers-teachers', label: 'Professores', href: '/registers/teachers' },
+      { id: 'registers-schools', label: 'Escolas', href: '/registers/schools' },
+    ],
+  },
+  {
+    id: 'help',
+    label: 'Ajudas e Materiais',
+    icon: <IconDownload />,
+    href: '/help',
+  },
+];
+
+export const FrontOffice: Story = {
+  args: {
+    items: frontOfficeSidebarItems,
+    activeItem: 'dashboard',
   },
 };
 
-export const Collapsed: Story = {
+export const WithExpandedItems: Story = {
   args: {
-    collapsed: true,
-    logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>EC</div>,
-    items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', active: true, ariaLabel: 'Ir para Dashboard' },
-      { id: 'users', label: 'Usuários', icon: <UsersIcon />, href: '/users', ariaLabel: 'Gerenciar usuários' },
-      { id: 'products', label: 'Produtos', icon: <DashboardIcon />, href: '/products', ariaLabel: 'Ver produtos' },
-      { id: 'settings', label: 'Configurações', icon: <SettingsIcon />, href: '/settings', ariaLabel: 'Abrir configurações' },
-    ],
+    items: frontOfficeSidebarItems,
+    activeItem: 'reports-overview',
   },
 };
 
-export const WithBadges: Story = {
+export const NoActiveItem: Story = {
   args: {
-    logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>ADMIN</div>,
-    items: [
-      { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon />, href: '/dashboard', ariaLabel: 'Ir para Dashboard' },
-      { id: 'messages', label: 'Mensagens', icon: <UsersIcon />, href: '/messages', badge: '12', ariaLabel: 'Abrir mensagens' },
-      { id: 'notifications', label: 'Notificações', icon: <DashboardIcon />, href: '/notifications', badge: '3', ariaLabel: 'Ver notificações' },
-      { id: 'tasks', label: 'Tarefas', icon: <SettingsIcon />, href: '/tasks', badge: '5', active: true, ariaLabel: 'Ir para tarefas' },
-    ],
+    items: frontOfficeSidebarItems,
   },
 };
 
-export const LongList: Story = {
+export const WithOnClickHandler: Story = {
   args: {
-    logo: <div style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>BACKOFFICE</div>,
+    items: frontOfficeSidebarItems,
+    activeItem: 'dashboard',
+    onItemClick: (id, href) => {
+      console.log(`Clicked on ${id} with href ${href}`);
+      alert(`Navegando para: ${href}`);
+    },
+  },
+};
+
+export const MinimalSidebar: Story = {
+  args: {
     items: [
-      { id: '1', label: 'Dashboard', icon: <DashboardIcon />, href: '#', active: true },
-      { id: '2', label: 'Usuários', icon: <UsersIcon />, href: '#' },
-      { id: '3', label: 'Produtos', icon: <DashboardIcon />, href: '#' },
-      { id: '4', label: 'Pedidos', icon: <DashboardIcon />, href: '#', badge: '28' },
-      { id: '5', label: 'Pagamentos', icon: <DashboardIcon />, href: '#' },
-      { id: '6', label: 'Relatórios', icon: <DashboardIcon />, href: '#' },
-      { id: '7', label: 'Configurações', icon: <SettingsIcon />, href: '#' },
-      { id: '8', label: 'Integrações', icon: <DashboardIcon />, href: '#' },
-      { id: '9', label: 'Suporte', icon: <UsersIcon />, href: '#', badge: '2' },
-      { id: '10', label: 'Ajuda', icon: <DashboardIcon />, href: '#' },
+      {
+        id: 'home',
+        label: 'Home',
+        icon: <IconDashboard />,
+        href: '/',
+        active: true,
+      },
+      {
+        id: 'settings',
+        label: 'Configurações',
+        icon: <IconRegister />,
+        href: '/settings',
+      },
     ],
   },
 };
