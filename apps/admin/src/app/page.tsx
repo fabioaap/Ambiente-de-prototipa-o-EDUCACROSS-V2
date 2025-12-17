@@ -1,10 +1,18 @@
 import type { ElementType } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowUpRight, BookOpenCheck, Home, LayoutDashboard, PenSquare } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+    Badge,
+    Button,
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@prototipo/design-system";
 import { cn } from "@/lib/utils";
 
 type NavigationCard = {
@@ -78,11 +86,13 @@ const resourceLinks = [
 ];
 
 export default function Page() {
+    const router = useRouter();
+
     return (
         <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(37,99,235,0.12),_transparent_55%)] bg-background">
             <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-16 md:px-8 lg:px-12">
                 <div className="rounded-3xl border border-border/40 bg-card/70 p-8 text-center shadow-xl backdrop-blur">
-                    <Badge variant="outline" className="mb-4 bg-primary/10 text-primary">
+                    <Badge variant="primary" styleType="soft" size="sm" className="mb-4">
                         App principal do ecossistema
                     </Badge>
                     <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
@@ -93,11 +103,14 @@ export default function Page() {
                         Experience Hub e domínios documentados durante a sprint corrente.
                     </p>
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                        <Button asChild size="lg">
-                            <Link href="/dashboard" aria-label="Abrir dashboard operacional">
-                                Abrir dashboard
-                                <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden />
-                            </Link>
+                        <Button
+                            variant="secondary"
+                            size="lg"
+                            onClick={() => void router.push("/dashboard")}
+                            className="gap-2"
+                        >
+                            Abrir dashboard
+                            <ArrowUpRight className="ml-2 h-4 w-4" aria-hidden />
                         </Button>
                         <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
                             {infoHighlights.map((item) => (
@@ -126,7 +139,12 @@ export default function Page() {
                                             <Icon className={cn("h-5 w-5", card.title === "Dashboard" ? "text-blue-200" : "text-primary")} aria-hidden />
                                             <span>{card.title}</span>
                                             {card.badge && (
-                                                <Badge variant="secondary" className="ml-auto text-xs">
+                                                <Badge
+                                                    variant="secondary"
+                                                    styleType="soft"
+                                                    size="sm"
+                                                    className="ml-auto text-xs"
+                                                >
                                                     {card.badge}
                                                 </Badge>
                                             )}
@@ -187,9 +205,15 @@ export default function Page() {
                             </ul>
                         </CardContent>
                         <CardFooter className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-                            <Badge variant="outline">Next 15</Badge>
-                            <Badge variant="outline">Tailwind 3.4</Badge>
-                            <Badge variant="outline">Lucide</Badge>
+                            <Badge variant="secondary" styleType="outlined" size="sm">
+                                Next 15
+                            </Badge>
+                            <Badge variant="secondary" styleType="outlined" size="sm">
+                                Tailwind 3.4
+                            </Badge>
+                            <Badge variant="secondary" styleType="outlined" size="sm">
+                                Lucide
+                            </Badge>
                         </CardFooter>
                     </Card>
 

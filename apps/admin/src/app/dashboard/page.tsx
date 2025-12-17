@@ -2,15 +2,21 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Progress } from '@/components/ui/progress';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+    Badge,
+    Button,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+    Input,
+    Progress,
+    Select,
+    Skeleton,
+} from '@prototipo/design-system';
 import {
     Activity,
     AlertCircle,
@@ -76,6 +82,14 @@ const trendMeta = {
     down: { label: 'abaixo do período anterior', prefix: '-', tone: 'text-rose-600' },
     stable: { label: 'estável', prefix: '~', tone: 'text-muted-foreground' },
 };
+
+const ICON_BUTTON_CLASS =
+    'inline-flex h-8 w-8 items-center justify-center rounded border border-border/60 text-muted-foreground transition hover:bg-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
+
+const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
+
+const CARD_LINK_CLASS =
+    'inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-border/60 px-3 py-2 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
 
 const PLACEHOLDER_DATE = '2024-01-01T00:00:00.000Z';
 const KPI_SKELETON_INDICES = Array.from({ length: 4 }, (_, index) => index);
@@ -148,7 +162,12 @@ function HealthStatusItem({
                         <p className={`text-xs font-medium ${meta.tone}`}>{meta.label}</p>
                     </div>
                 </div>
-                <Badge variant="outline" className={`${meta.tone} border-current`}>
+                <Badge
+                    variant="secondary"
+                    styleType="outlined"
+                    size="sm"
+                    className={`${meta.tone} border-current`}
+                >
                     {status}
                 </Badge>
             </div>
@@ -168,7 +187,7 @@ function DomainItem({ name, count }: { name: string; count: number }) {
                 </span>
                 <span className="text-sm font-medium text-foreground">{name}</span>
             </div>
-            <Badge variant="secondary" className="text-xs">
+            <Badge variant="secondary" styleType="soft" size="sm" className="text-xs">
                 {count}
             </Badge>
         </div>
@@ -280,27 +299,25 @@ function PageCard({ page }: { page: SummaryData['recentPages'][number] }) {
                     Atualizado {formatDate(page.updatedAt)}
                 </p>
                 <div className="flex gap-2">
-                    <Link href={page.viewUrl} className="flex-1">
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-full"
-                            aria-label={`Visualizar ${page.name}`}
-                        >
-                            <Eye className="h-4 w-4 mr-2" aria-hidden />
-                            Visualizar
-                        </Button>
+                    <Link
+                        href={page.viewUrl}
+                        className={CARD_LINK_CLASS}
+                        aria-label={`Visualizar ${page.name}`}
+                        target={isExternalUrl(page.viewUrl) ? '_blank' : undefined}
+                        rel={isExternalUrl(page.viewUrl) ? 'noreferrer' : undefined}
+                    >
+                        <Eye className="h-4 w-4" aria-hidden />
+                        Visualizar
                     </Link>
-                    <Link href={page.editUrl} className="flex-1">
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-full"
-                            aria-label={`Editar ${page.name}`}
-                        >
-                            <Pencil className="h-4 w-4 mr-2" aria-hidden />
-                            Editar
-                        </Button>
+                    <Link
+                        href={page.editUrl}
+                        className={CARD_LINK_CLASS}
+                        aria-label={`Editar ${page.name}`}
+                        target={isExternalUrl(page.editUrl) ? '_blank' : undefined}
+                        rel={isExternalUrl(page.editUrl) ? 'noreferrer' : undefined}
+                    >
+                        <Pencil className="h-4 w-4" aria-hidden />
+                        Editar
                     </Link>
                 </div>
             </CardContent>
@@ -310,6 +327,7 @@ function PageCard({ page }: { page: SummaryData['recentPages'][number] }) {
 
 export default function DashboardPage() {
     const [data, setData] = React.useState<SummaryData | null>(null);
+    const router = useRouter();
     const [isLoading, setIsLoading] = React.useState(true);
     const [isError, setIsError] = React.useState(false);
     const [error, setError] = React.useState<Error | null>(null);
@@ -405,11 +423,13 @@ export default function DashboardPage() {
                         </p>
                         {data && (
                             <div className="flex flex-wrap gap-2 pt-1">
-                                <Badge variant="secondary" className="gap-2">
+                                <Badge variant="success" styleType="soft" size="sm" className="gap-2">
                                     <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
                                     Atualizado {formatDate(data.lastUpdated)}
                                 </Badge>
-                                <Badge variant="outline">{data.stats.totalPages} páginas mapeadas</Badge>
+                                <Badge variant="secondary" styleType="outlined" size="sm">
+                                    {data.stats.totalPages} páginas mapeadas
+                                </Badge>
                             </div>
                         )}
                     </div>
@@ -468,7 +488,9 @@ export default function DashboardPage() {
                                                 <p className="text-3xl font-semibold text-foreground">{data.health.healthScore}%</p>
                                             </div>
                                             <div className="text-right">
-                                                <Badge variant="secondary">{data.health.healthStatus}</Badge>
+                                                <Badge variant="secondary" styleType="soft" size="sm">
+                                                    {data.health.healthStatus}
+                                                </Badge>
                                                 <p className="text-xs text-muted-foreground">
                                                     Última verificação {formatDate(data.health.lastChecked)}
                                                 </p>
@@ -523,12 +545,15 @@ export default function DashboardPage() {
                                         <CardTitle>Páginas recentes</CardTitle>
                                         <CardDescription>Últimas alterações registradas no Studio</CardDescription>
                                     </div>
-                                    <Link href="/domains/studio">
-                                        <Button size="sm">
-                                            <FileText className="mr-2 h-4 w-4" aria-hidden />
-                                            Nova página
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        variant="secondary"
+                                        size="sm"
+                                        onClick={() => void router.push("/domains/studio")}
+                                        className="gap-2"
+                                    >
+                                        <FileText className="mr-2 h-4 w-4" aria-hidden />
+                                        Nova página
+                                    </Button>
                                 </div>
                             </CardHeader>
                             <CardContent className="space-y-4">
@@ -542,18 +567,17 @@ export default function DashboardPage() {
                                             className="pl-10"
                                         />
                                     </div>
-                                    <Select value={domainFilter} onValueChange={setDomainFilter}>
-                                        <SelectTrigger className="w-full sm:w-[220px]">
-                                            <SelectValue placeholder="Domínio" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="All">Todos os domínios</SelectItem>
-                                            {domainOptions.map((domain) => (
-                                                <SelectItem key={domain} value={domain}>
-                                                    {domain}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
+                                    <Select
+                                        value={domainFilter}
+                                        onChange={(event) => setDomainFilter(event.target.value)}
+                                        className="w-full sm:w-[220px]"
+                                    >
+                                        <option value="All">Todos os domínios</option>
+                                        {domainOptions.map((domain) => (
+                                            <option key={domain} value={domain}>
+                                                {domain}
+                                            </option>
+                                        ))}
                                     </Select>
                                 </div>
 
@@ -561,57 +585,56 @@ export default function DashboardPage() {
                                     <EmptyState />
                                 ) : (
                                     <>
-                                        {/* Desktop Table */}
                                         <div className="hidden md:block rounded-md border overflow-hidden">
-                                            <Table>
-                                                <TableHeader>
-                                                    <TableRow>
-                                                        <TableHead>Título</TableHead>
-                                                        <TableHead>Slug</TableHead>
-                                                        <TableHead>Domínio</TableHead>
-                                                        <TableHead>Atualizado</TableHead>
-                                                        <TableHead className="text-right">Ações</TableHead>
-                                                    </TableRow>
-                                                </TableHeader>
-                                                <TableBody>
+                                            <table className="min-w-full divide-y divide-border text-sm">
+                                                <thead className="bg-muted/40 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                                    <tr>
+                                                        <th className="px-4 py-3 text-left">Título</th>
+                                                        <th className="px-4 py-3 text-left">Slug</th>
+                                                        <th className="px-4 py-3 text-left">Domínio</th>
+                                                        <th className="px-4 py-3 text-left">Atualizado</th>
+                                                        <th className="px-4 py-3 text-right">Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y divide-border bg-background">
                                                     {filteredPages.map((page) => (
-                                                        <TableRow key={page.id}>
-                                                            <TableCell className="font-medium text-foreground">{page.name}</TableCell>
-                                                            <TableCell>
+                                                        <tr key={page.id} className="odd:bg-muted/10">
+                                                            <td className="px-4 py-3 font-medium text-foreground">{page.name}</td>
+                                                            <td className="px-4 py-3">
                                                                 <code className="rounded bg-muted px-2 py-0.5 text-xs">/{page.slug}</code>
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                <Badge variant="secondary">{page.domain}</Badge>
-                                                            </TableCell>
-                                                            <TableCell className="text-muted-foreground">{formatDate(page.updatedAt)}</TableCell>
-                                                            <TableCell className="text-right">
+                                                            </td>
+                                                            <td className="px-4 py-3">
+                                                                <Badge variant="secondary" styleType="soft" size="sm">
+                                                                    {page.domain}
+                                                                </Badge>
+                                                            </td>
+                                                            <td className="px-4 py-3 text-muted-foreground">{formatDate(page.updatedAt)}</td>
+                                                            <td className="px-4 py-3 text-right">
                                                                 <div className="flex justify-end gap-2">
-                                                                    <Link href={page.viewUrl}>
-                                                                        <Button
-                                                                            variant="ghost"
-                                                                            size="icon"
-                                                                            className="h-8 w-8"
-                                                                            aria-label={`Visualizar ${page.name}`}
-                                                                        >
-                                                                            <Eye className="h-4 w-4" aria-hidden />
-                                                                        </Button>
+                                                                    <Link
+                                                                        href={page.viewUrl}
+                                                                        className={ICON_BUTTON_CLASS}
+                                                                        aria-label={`Visualizar ${page.name}`}
+                                                                        target={isExternalUrl(page.viewUrl) ? '_blank' : undefined}
+                                                                        rel={isExternalUrl(page.viewUrl) ? 'noreferrer' : undefined}
+                                                                    >
+                                                                        <Eye className="h-4 w-4" aria-hidden />
                                                                     </Link>
-                                                                    <Link href={page.editUrl}>
-                                                                        <Button
-                                                                            variant="ghost"
-                                                                            size="icon"
-                                                                            className="h-8 w-8"
-                                                                            aria-label={`Editar ${page.name}`}
-                                                                        >
-                                                                            <Pencil className="h-4 w-4" aria-hidden />
-                                                                        </Button>
+                                                                    <Link
+                                                                        href={page.editUrl}
+                                                                        className={ICON_BUTTON_CLASS}
+                                                                        aria-label={`Editar ${page.name}`}
+                                                                        target={isExternalUrl(page.editUrl) ? '_blank' : undefined}
+                                                                        rel={isExternalUrl(page.editUrl) ? 'noreferrer' : undefined}
+                                                                    >
+                                                                        <Pencil className="h-4 w-4" aria-hidden />
                                                                     </Link>
                                                                 </div>
-                                                            </TableCell>
-                                                        </TableRow>
+                                                            </td>
+                                                        </tr>
                                                     ))}
-                                                </TableBody>
-                                            </Table>
+                                                </tbody>
+                                            </table>
                                         </div>
 
                                         {/* Mobile Card Grid */}

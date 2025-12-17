@@ -1,7 +1,7 @@
 'use client';
 
 import { useHighContrast } from '@/lib/hooks/useHighContrast';
-import { Button } from '@/components/ui/button';
+import { Button } from '@prototipo/design-system';
 import { Contrast } from 'lucide-react';
 
 export function HighContrastToggle() {
