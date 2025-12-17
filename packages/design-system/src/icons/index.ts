@@ -1,9 +1,7 @@
 'use client';
 
-import type { Icon } from '@tabler/icons-react';
-
 // Re-export Tabler icons with our naming convention
-export { 
+export {
   IconDashboard,
   IconChartBar as IconChart,
   IconFlag,
@@ -17,5 +15,11 @@ export {
   IconCurrencyDollar as IconMoney
 } from '@tabler/icons-react';
 
-// Type for all Tabler icon components
-export type IconProps = React.ComponentProps<Icon>;
+// Simple icon props type based on common props
+export interface IconProps {
+  size?: number | string;
+  color?: string;
+  stroke?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
