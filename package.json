@@ -23,6 +23,7 @@
     "type-check": "turbo run type-check",
     "test:dashboard-hydration": "pnpm --filter studio test:dashboard-hydration",
     "check:shadcn": "node scripts/check-shadcn-usage.mjs",
+    "verify-prop": "node scripts/verify-component-prop.mjs",
     "mcp:figma:start": "pnpm --filter @educacross/figma-mcp-server start",
     "mcp:figma:test": "pnpm --filter @educacross/figma-mcp-server test",
     "mcp:figma:health": "curl -s http://localhost:3845/health || echo 'MCP server offline'",
