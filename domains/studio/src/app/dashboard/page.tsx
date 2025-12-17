@@ -93,9 +93,6 @@ const ICON_BUTTON_CLASS =
 
 const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
 
-const CARD_LINK_CLASS =
-  'inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-border/60 px-3 py-2 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:bg-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
-
 function formatDate(iso: string = PLACEHOLDER_DATE): string {
   return new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
