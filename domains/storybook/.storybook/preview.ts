@@ -4,14 +4,8 @@ import '@prototipo/design-system/index.css';
 import './preview-fonts.css';
 import '../src/styles/storybook-globals.css';
 
+const preview: Preview = {
   parameters: {
-<<<<<<< HEAD
-    options: {
-      storySort: {
-        order: [
-          'Introduction',
-          'Tokens',
-          'Components',
     // Story ordering
     options: {
       storySort: {
@@ -27,24 +21,6 @@ import '../src/styles/storybook-globals.css';
           '*',
         ],
         locales: 'pt-BR',
-        ],
-=======
-    // Story ordering
-    options: {
-      storySort: {
-        method: 'alphabetical',
-        order: [
-          'Introdução',
-          'Design Tokens',
-          ['Cores', 'Tipografia', 'Espaçamento', 'Elevação'],
-          'Componentes',
-          ['Básicos', 'Formulários', 'Layout', 'Navegação', 'Feedback'],
-          'Padrões',
-          'Exemplos',
-          '*',
-        ],
-        locales: 'pt-BR',
->>>>>>> origin/main
       },
     },
     controls: {
