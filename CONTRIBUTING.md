@@ -235,6 +235,42 @@ git commit -m "feat(frontoffice): adicionar jornada cadastro-aluno"
 
 ## Criando um Componente
 
+### ⚠️ IMPORTANTE: Verificação Pré-Issue
+
+**ANTES** de criar uma issue para adicionar uma funcionalidade (prop) a um componente, verifique se ela já existe:
+
+```bash
+# Verificar se uma prop existe em um componente
+pnpm verify-prop <ComponentName> <propName>
+
+# Exemplos:
+pnpm verify-prop DataTable cellRenderer
+pnpm verify-prop Badge icon
+pnpm verify-prop StatsCard trend
+```
+
+**O que este comando faz:**
+- ✅ Procura a prop nas interfaces TypeScript do componente
+- ✅ Mostra a linha exata onde está implementada
+- ✅ Indica se a prop JÁ EXISTE ou se é uma nova funcionalidade
+- ✅ Evita criação de issues duplicadas (falsos positivos)
+
+**Quando usar:**
+- Antes de criar issue solicitando nova prop
+- Ao revisar backlog de componentes
+- Para confirmar implementação de funcionalidade
+- Durante code review de PRs
+
+### Checklist para Criar Issue de Componente
+
+Antes de criar uma issue solicitando nova funcionalidade:
+
+- [ ] Executei `pnpm verify-prop <Component> <prop>` e confirmei que NÃO existe
+- [ ] Verifiquei manualmente o arquivo do componente
+- [ ] Consultei a documentação no Storybook
+- [ ] Descrição clara do comportamento esperado
+- [ ] Exemplos de uso da prop proposta
+
 ### Passo a Passo
 
 #### 1. Criar Estrutura do Componente
