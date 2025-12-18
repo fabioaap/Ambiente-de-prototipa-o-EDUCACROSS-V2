@@ -38,6 +38,17 @@ pnpm-debug.log*
 # Local env files
 .env*.local
 .env
+.env.production
+.env.development
+
+# Secrets e credenciais (prevenção de leaks)
+*.key
+*.pem
+*.p12
+*.pfx
+*credentials*
+*secret*
+.secrets/
 
 # Vercel
 .vercel
