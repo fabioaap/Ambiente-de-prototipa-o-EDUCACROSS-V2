@@ -682,16 +682,289 @@ graph TD
 
 ---
 
-## 📝 Tracking de Execução
+## � ETAPA 5: Dependências MAJOR (Breaking Changes)
+
+**Prioridade**: Média (planejar antes de executar)  
+**Risco**: ALTO (breaking changes confirmados)  
+**Tempo estimado**: 2-3 horas (pesquisa + implementação + testes)  
+**Bloqueadores**: ETAPA 4.2.0 (CVE Storybook) executada  
+
+### 5.1 Contexto
+
+Quatro dependências do workspace raiz possuem updates MAJOR disponíveis com breaking changes confirmados:
+
+| Dependência | Atual | Latest | Salto | Risco | Uso no Projeto |
+|-------------|-------|--------|-------|-------|----------------|
+| **dotenv** | 16.6.1 | 17.2.3 | MAJOR | MÉDIO | Zero uso direto (apenas MCP SDK futuro) |
+| **pino** | 9.14.0 | 10.1.0 | MAJOR | MÉDIO | Zero uso direto (apenas MCP SDK futuro) |
+| **undici** | 6.22.0 | 7.16.0 | MAJOR | BAIXO | Transitiva (Node.js fetch), zero uso direto |
+| **zod** | 3.25.76 | 4.2.1 | MAJOR | ALTO | Dependency do MCP SDK (peer dep) |
+
+**Descoberta**: Em 18/12/2025 via `pnpm outdated`, após correção do CVE Storybook.
+
+### 5.2 Análise de Impacto por Dependência
+
+#### 5.2.1 dotenv (16 → 17)
+
+**Breaking Changes Esperados** (baseado em padrão semver):
+- Mudança no parsing de variáveis com espaços
+- Alteração em prioridade de carregamento (`.env.local` vs `.env`)
+- Remoção de métodos deprecated
+
+**Uso no Projeto**:
+- ❌ Nenhum `import` ou `require` direto encontrado no código
+- ✅ Dependência declarada mas não utilizada ativamente
+- 🔄 Possível uso futuro em MCP SDK (config de ambiente)
+
+**Risco Real**: **BAIXO** (não usada hoje, atualizar pode prevenir breaking futuro)
+
+**Ação Recomendada**: Atualizar para 17.x, testar se MCP SDK continua funcionando
+
+---
+
+#### 5.2.2 pino (9 → 10)
+
+**Breaking Changes Esperados**:
+- Mudança no formato de logs estruturados (JSON schema)
+- Alteração em `pino.destination()` API
+- Remoção de transports deprecated
+- Novos tipos TypeScript obrigatórios
+
+**Uso no Projeto**:
+- ❌ Nenhum `import` ou `require` direto encontrado
+- ✅ Dependência declarada mas não utilizada ativamente
+- 🔄 Planejado para logging futuro (MCP SDK + monitoramento)
+
+**Risco Real**: **BAIXO** (não usada hoje)
+
+**Ação Recomendada**: Atualizar para 10.x, validar se API mudou (ler changelog antes)
+
+---
+
+#### 5.2.3 undici (6 → 7)
+
+**Breaking Changes Esperados**:
+- Mudanças em `fetch()` API (compatibilidade com Web Standards)
+- Alteração em timeout behavior
+- Novos headers obrigatórios
+- Pool connection changes
+
+**Uso no Projeto**:
+- ❌ Nenhum uso direto no código
+- ✅ Dependência **transitiva** do Node.js native `fetch`
+- ⚠️ Next.js pode estar usando internamente
+
+**Risco Real**: **MÉDIO** (pode causar regressão em chamadas HTTP do Next.js)
+
+**Ação Recomendada**: Atualizar CAUTELOSAMENTE, testar todas as rotas de API e fetches
+
+---
+
+#### 5.2.4 zod (3 → 4) ⚠️ MAIOR RISCO
+
+**Breaking Changes Confirmados** (zod 4.0 changelog):
+- `z.string().uuid()` agora valida versão específica
+- `z.object().strict()` tornou-se comportamento padrão
+- `z.enum()` requer pelo menos 2 valores
+- `.parse()` agora retorna erro diferente para tipos primitivos
+- Mudanças em `.refine()` e `.superRefine()`
+
+**Uso no Projeto**:
+- ✅ **Dependency do @modelcontextprotocol/sdk 1.24.3**
+- ✅ Declarado como `peer dependency` pelo MCP SDK
+- ✅ Usado em `zod-to-json-schema` (transitiva)
+- ❌ Zero uso direto no código do monorepo (só via MCP SDK)
+- 📋 Planejado para validação de JSON imports (spec: `tasks.md` linha 149)
+
+**Risco Real**: **ALTO** - MCP SDK pode quebrar se depender de comportamento v3
+
+**Ação Recomendada**:
+1. Verificar `package.json` do MCP SDK (compatibilidade com zod 4)
+2. Se MCP SDK exige `zod ^3.x` → **NÃO atualizar** (conflito de peer dep)
+3. Se MCP SDK aceita `zod ^4.x` → Atualizar e testar extensivamente
+
+---
+
+### 5.3 Estratégia de Execução
+
+**Branch de teste**: `test/major-deps-upgrade`
+
+```bash
+# Criar branch isolada
+git checkout -b test/major-deps-upgrade
+```
+
+#### 5.3.1 Fase 1: Pesquisa (30 min)
+
+```bash
+# Ler changelogs oficiais
+# - dotenv: https://github.com/motdotla/dotenv/releases/tag/v17.0.0
+# - pino: https://github.com/pinojs/pino/releases/tag/v10.0.0
+# - undici: https://github.com/nodejs/undici/releases/tag/v7.0.0
+# - zod: https://github.com/colinhacks/zod/releases/tag/v4.0.0
+
+# Verificar compatibilidade MCP SDK com zod 4
+pnpm view @modelcontextprotocol/sdk@latest peerDependencies
+```
+
+#### 5.3.2 Fase 2: Atualização Sequencial (1h)
+
+**Ordem recomendada** (do menor para maior risco):
+
+```bash
+# 1. dotenv (baixo risco, não usada)
+pnpm add dotenv@^17.2.3
+pnpm install
+pnpm build  # Validar se não quebrou
+
+# 2. pino (baixo risco, não usada)
+pnpm add pino@^10.1.0
+pnpm install
+pnpm build
+
+# 3. undici (médio risco, transitiva)
+pnpm add undici@^7.16.0
+pnpm install
+pnpm build
+pnpm dev:studio  # Testar servidor Next.js
+pnpm dev:hub     # Testar Storybook
+
+# 4. zod (ALTO risco, MCP SDK dependency)
+# ⚠️ EXECUTAR APENAS SE MCP SDK for compatível com zod 4
+pnpm add zod@^4.2.1
+pnpm install
+pnpm build
+
+# Validar MCP SDK (se houver uso ativo)
+node -e "const sdk = require('@modelcontextprotocol/sdk'); console.log('MCP SDK OK');"
+```
+
+#### 5.3.3 Fase 3: Testes Extensivos (30 min)
+
+```bash
+# Build completo
+pnpm build
+
+# Type checking
+pnpm type-check
+
+# Linting
+pnpm lint
+
+# Testes de servidor (manual)
+pnpm dev:studio  # Porta 3000 - testar navegação
+pnpm dev:hub     # Porta 6006 - testar componentes
+
+# Testes de API (se houver)
+curl http://localhost:3000/api/dashboard/health
+curl http://localhost:3000/api/dashboard/summary
+
+# Validar logs (não deve ter erros de pino)
+# Validar fetches (não deve ter erros de undici)
+# Validar envs (não deve ter erros de dotenv)
+```
+
+#### 5.3.4 Fase 4: Decisão
+
+**✅ Se TUDO passar sem erros**:
+```bash
+git add package.json pnpm-lock.yaml
+git commit -m "feat(deps): atualizar dependências MAJOR (dotenv 17, pino 10, undici 7, zod 4)
+
+- dotenv: 16.6.1 → 17.2.3 (zero uso direto, preventivo)
+- pino: 9.14.0 → 10.1.0 (zero uso direto, preparação futura)
+- undici: 6.22.0 → 7.16.0 (transitiva, validado em Next.js)
+- zod: 3.25.76 → 4.2.1 (MCP SDK peer dep, validado)
+
+Validações:
+- Build: ✅ Sem erros TypeScript
+- Type-check: ✅ Todos os tipos resolvidos
+- Servidores: ✅ Studio + Hub funcionando
+- APIs: ✅ Endpoints respondendo corretamente
+
+Breaking changes: Nenhum impacto detectado (deps não usadas diretamente)
+
+Refs: #<issue-number-se-houver>"
+
+git checkout main
+git merge test/major-deps-upgrade
+git push origin main
+git branch -d test/major-deps-upgrade
+```
+
+**⚠️ Se zod 4 quebrar MCP SDK** (provável):
+```bash
+# Reverter apenas zod
+pnpm add zod@^3.25.76
+pnpm install
+pnpm build
+
+# Commit parcial (sem zod 4)
+git add package.json pnpm-lock.yaml
+git commit -m "feat(deps): atualizar dotenv 17, pino 10, undici 7 (zod mantido em v3)
+
+- dotenv: 16.6.1 → 17.2.3
+- pino: 9.14.0 → 10.1.0
+- undici: 6.22.0 → 7.16.0
+- zod: MANTIDO em 3.25.76 (MCP SDK requer ^3.x)
+
+Nota: zod 4 incompatível com @modelcontextprotocol/sdk@1.24.3"
+```
+
+**❌ Se múltiplas deps quebrarem**:
+```bash
+# Reverter tudo
+git checkout main
+git branch -D test/major-deps-upgrade
+
+# Documentar no PLANO
+# Adicionar seção "5.5 Bloqueios Descobertos"
+# Listar incompatibilidades e custos de adaptação
+```
+
+---
+
+### 5.4 Rollback
+
+```bash
+# Se já fez merge e detectou problemas
+git revert HEAD
+pnpm install
+pnpm build
+```
+
+---
+
+### 5.5 Checklist de Validação
+
+- [ ] Changelogs lidos (dotenv, pino, undici, zod)
+- [ ] Compatibilidade MCP SDK verificada (zod peer deps)
+- [ ] Branch de teste criada
+- [ ] dotenv 17.x atualizado e validado
+- [ ] pino 10.x atualizado e validado
+- [ ] undici 7.x atualizado e validado
+- [ ] zod 4.x atualizado (ou mantido em v3 se incompatível)
+- [ ] Build completo sem erros
+- [ ] Type-check passando
+- [ ] Lint sem warnings novos
+- [ ] Servidores testados (Studio + Hub)
+- [ ] APIs testadas (se houver)
+- [ ] Commit + merge ou rollback documentado
+
+---
+
+## �📝 Tracking de Execução
 
 ### Status por Etapa
 
 | Etapa | Status | Data Execução | Commit SHA | Notas |
 |-------|--------|---------------|------------|-------|
-| 1. Sentry | ⏳ Pendente | - | - | Aguardando início |
-| 2. MCP SDK | ⏳ Pendente | - | - | Depende de Etapa 1 |
-| 3. TypeScript ESLint | ⏳ Pendente | - | - | Depende de Etapas 1-2 |
-| 4. Storybook | 🚧 Planejado | - | - | Sprint futuro |
+| **🚨 CVE Storybook (4.2.0)** | **🔴 URGENTE** | - | - | **Executar PRIMEIRO** (CVE-2025-68429) |
+| 1. Sentry 10.28→10.32 | ⏳ Pendente | - | - | Baixa prioridade (4 patches, sem CVEs) |
+| 2. MCP SDK 1.0→1.25 | ⏳ Pendente | - | - | Baixa prioridade |
+| 3. TypeScript ESLint | ⏳ Pendente | - | - | Baixa prioridade |
+| 4. Storybook 8→10 | 🚧 Planejado | - | - | Sprint futuro (após CVE) |
+| **5. MAJOR deps** | **📋 Planejado** | - | - | **Pesquisar changelogs primeiro** (2-3h) |
 
 ### Log de Execução
 
@@ -715,30 +988,51 @@ graph TD
 ## 🔄 Próximos Passos
 
 **Imediato** (hoje/agora):
-1. Revisar este plano com equipe
-2. Confirmar aprovação para execução
-3. Executar Etapa 1 (Sentry) - 5 min
+1. ✅ Plano revisado e aprovado
+2. 🔴 **DECISÃO PENDENTE**: Executar ETAPA 4.2.0 (CVE Storybook) - 15 min
+3. ⏸️ Aguardar decisão do usuário
 
-**Curto prazo** (hoje/amanhã):
-1. Executar Etapa 2 (MCP SDK) - 15 min
-2. Avaliar breaking changes (se houver)
-3. Executar Etapa 3 (TypeScript ESLint) - 8 min
-4. Validar estado final do monorepo
+**Curto prazo** (hoje/esta semana):
+1. Executar ETAPA 4.2.0 (CVE Storybook 8.6.15) - **URGENTE**
+2. Executar ETAPA 5 (MAJOR deps) - **Pesquisar changelogs primeiro** (2-3h)
+   - Ler releases: dotenv 17, pino 10, undici 7, zod 4
+   - Verificar compatibilidade MCP SDK + zod 4
+   - Testar em branch isolada
+3. Validar estado final do monorepo
 
-**Médio prazo** (próximo sprint):
-1. Criar issue no GitHub: "feat(storybook): planejar upgrade 8.x → 10.x"
-2. Agendar sessão de 2h dedicada para Etapa 4
-3. Executar pré-requisitos (unificar 8.6.14)
-4. Executar upgrade completo com validação
+**Médio prazo** (próxima sprint):
+1. Executar ETAPAs 1-3 (Sentry, MCP SDK, ESLint) - baixa prioridade (28 min total)
+2. Criar issue no GitHub: "feat(storybook): planejar upgrade 8.x → 10.x"
+3. Agendar sessão de 2h para ETAPA 4 (Storybook MAJOR)
+
+**Backlog** (pós-DS v1.0):
+1. Limpar pacotes deprecated (glob, rimraf, expect-playwright, jest-process-manager)
+2. Patches menores (eslint, turbo, prettier, specfy)
+3. Hardening de segurança (git-secrets, audit CI, supply chain verification)
 
 ---
 
 ## 📚 Referências
 
+### Segurança e Vulnerabilidades
 - [Next.js Security Advisories](https://github.com/vercel/next.js/security/advisories)
+- [CVE-2025-68429 - Storybook env leak](https://github.com/advisories/GHSA-8452-54wp-rmv6)
+
+### Changelogs de Patches
 - [Sentry Next.js Changelog](https://github.com/getsentry/sentry-javascript/blob/develop/CHANGELOG.md)
 - [MCP TypeScript SDK Releases](https://github.com/modelcontextprotocol/typescript-sdk/releases)
 - [TypeScript ESLint Releases](https://github.com/typescript-eslint/typescript-eslint/releases)
+
+### Changelogs de MAJOR Updates (ETAPA 5)
+- [dotenv v17.0.0 Breaking Changes](https://github.com/motdotla/dotenv/releases/tag/v17.0.0)
+- [pino v10.0.0 Breaking Changes](https://github.com/pinojs/pino/releases/tag/v10.0.0)
+- [undici v7.0.0 Breaking Changes](https://github.com/nodejs/undici/releases/tag/v7.0.0)
+- [zod v4.0.0 Breaking Changes](https://github.com/colinhacks/zod/releases/tag/v4.0.0)
+
+### Storybook Migrations
+- [Storybook Migration Guide](https://storybook.js.org/docs/migration-guide)
+- [Storybook 9.0 Breaking Changes](https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#from-version-8x-to-90)
+- [Storybook 10.0 Breaking Changes](https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#from-version-9x-to-100)
 - [Storybook Migration Guide](https://storybook.js.org/docs/migration-guide)
 - [Storybook 9.0 Breaking Changes](https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#from-version-8x-to-90)
 - [Storybook 10.0 Breaking Changes](https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#from-version-9x-to-100)
