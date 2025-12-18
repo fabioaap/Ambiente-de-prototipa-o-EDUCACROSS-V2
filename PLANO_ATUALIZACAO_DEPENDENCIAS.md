@@ -11,8 +11,9 @@
 
 Após auditoria de dependências realizada em 17/12/2025, foram identificadas 4 categorias de atualizações pendentes:
 
-1. **@sentry/nextjs** (10.28.0 → 10.31.0) - Patch releases, baixo risco
+1. **@sentry/nextjs** (10.28.0 → 10.32.0) - Patch releases, baixo risco
 2. **@modelcontextprotocol/sdk** (1.0.0 → 1.25.1) - Minor releases, médio risco, requer teste de breaking
+   - Nota: Versão instalada é 1.24.3, latest npm é 1.25.1
 3. **TypeScript ESLint** (8.14.0 → 8.50.0) - Patches, baixo risco
 4. **Storybook** (8.x → 10.x) - MAJOR upgrade, alto risco, requer planejamento dedicado
 
@@ -20,15 +21,15 @@ Após auditoria de dependências realizada em 17/12/2025, foram identificadas 4 
 
 | Dependência | Local | Versão Atual | Versão Alvo |
 |-------------|-------|--------------|-------------|
-| @sentry/nextjs | workspace raiz | ^10.28.0 | ^10.31.0 |
-| @modelcontextprotocol/sdk | workspace raiz | ^1.0.0 | ^1.25.1 |
+| @sentry/nextjs | workspace raiz | ^10.28.0 | ^10.32.0 |
+| @modelcontextprotocol/sdk | workspace raiz | ^1.0.0 | ^1.25.3 |
 | @typescript-eslint/* | packages/eslint-config | ^8.14.0 | ^8.50.0 |
 | @storybook/* | domains/storybook | ^8.4.7 / ^8.6.14 | ^10.x (futuro) |
 | @storybook/* | packages/design-system | ^8.4.7 / ^8.6.14 | ^10.x (futuro) |
 
 ### Análise de Risco
 
-- ✅ **Baixo risco**: Sentry (3 patches), TypeScript ESLint (36 patches, mesma versão major)
+- ✅ **Baixo risco**: Sentry (4 patches), TypeScript ESLint (36 patches, mesma versão major)
 - ⚠️ **Médio risco**: MCP SDK (25 minor releases, possível breaking)
 - ⛔ **Alto risco**: Storybook (MAJOR 8→10, versões misturadas, addons, visual regression)
 
@@ -45,14 +46,16 @@ Após auditoria de dependências realizada em 17/12/2025, foram identificadas 4 
 
 ## 📦 ETAPA 1: Atualização Sentry
 
-**Prioridade**: Alta  
+**Prioridade**: Baixa (patches sem CVEs críticos)  
 **Risco**: Baixo  
 **Tempo estimado**: 5 minutos  
 **Bloqueadores**: Nenhum  
 
 ### 1.1 Contexto
 
-O Sentry está no workspace raiz e monitora erros em Next.js. Atualização de 3 patch releases (10.28 → 10.31) é conservadora e focada em bugfixes.
+O Sentry está no workspace raiz e monitora erros em Next.js. Atualização de 4 patch releases (10.28 → 10.32) é conservadora e focada em bugfixes.
+
+**Nota**: Descoberto em 18/12/2025 que versão atual é 10.32 (não 10.31).
 
 ### 1.2 Comandos
 
@@ -61,7 +64,7 @@ O Sentry está no workspace raiz e monitora erros em Next.js. Atualização de 3
 cd c:\Users\Educacross\Documents\Ambiente-de-prototipa-o-EDUCACROSS-V2
 
 # Atualizar Sentry
-pnpm add @sentry/nextjs@^10.31.0
+pnpm add @sentry/nextjs@^10.32.0
 
 # Instalar dependências
 pnpm install
@@ -81,9 +84,9 @@ pnpm build
 
 ```bash
 git add package.json pnpm-lock.yaml
-git commit -m "chore(deps): atualizar @sentry/nextjs 10.28.0 → 10.31.0
+git commit -m "chore(deps): atualizar @sentry/nextjs 10.28.0 → 10.32.0
 
-- Atualização de patch releases (bugfixes e melhorias)
+- Atualização de 4 patch releases (bugfixes e melhorias)
 - Validado: build completo sem erros
 - Impacto: zero breaking changes"
 git push origin main
@@ -111,6 +114,8 @@ git checkout -- package.json pnpm-lock.yaml
 O MCP SDK está no workspace raiz (uso geral para integrações futuras).
 
 Salto de **1.0.0 → 1.25.1** (25 minor releases) pode conter breaking changes não documentados ou mudanças em APIs experimentais.
+
+**Nota**: Versão instalada atual é 1.24.3 (já atualizou parcialmente), latest npm é 1.25.1.
 
 ⚠️ **NOTA**: O subsistema code-to-figma foi removido do monorepo, então esta atualização agora afeta apenas o workspace raiz.
 
@@ -183,7 +188,7 @@ git merge test/mcp-sdk-update
 git branch -d test/mcp-sdk-update
 
 git add -A
-git commit -m "feat(deps): atualizar @modelcontextprotocol/sdk 1.0.0 → 1.25.1
+git commit -m "feat(deps): atualizar @modelcontextprotocol/sdk 1.24.3 → 1.25.1
 
 - Atualizado em workspace raiz
 - Validado: build + type-check + lint passando
