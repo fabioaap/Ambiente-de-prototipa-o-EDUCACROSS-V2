@@ -22,12 +22,9 @@ Após auditoria de dependências realizada em 17/12/2025, foram identificadas 4 
 |-------------|-------|--------------|-------------|
 | @sentry/nextjs | workspace raiz | ^10.28.0 | ^10.31.0 |
 | @modelcontextprotocol/sdk | workspace raiz | ^1.0.0 | ^1.25.1 |
-| @modelcontextprotocol/sdk | figma-mcp-server | ^1.0.0 | ^1.25.1 |
 | @typescript-eslint/* | packages/eslint-config | ^8.14.0 | ^8.50.0 |
-| @typescript-eslint/* | figma-sync-engine | ^7.18.0 | (não atualizar) |
 | @storybook/* | domains/storybook | ^8.4.7 / ^8.6.14 | ^10.x (futuro) |
 | @storybook/* | packages/design-system | ^8.4.7 / ^8.6.14 | ^10.x (futuro) |
-| @storybook/* | figma-sync-engine | ^7.6.17 | (não atualizar) |
 
 ### Análise de Risco
 
@@ -111,19 +108,19 @@ git checkout -- package.json pnpm-lock.yaml
 
 ### 2.1 Contexto
 
-O MCP SDK está em 2 workspaces:
-- Raiz (uso geral)
-- `code-to-figma/figma-mcp-server` (implementação de tools MCP)
+O MCP SDK está no workspace raiz (uso geral para integrações futuras).
 
 Salto de **1.0.0 → 1.25.1** (25 minor releases) pode conter breaking changes não documentados ou mudanças em APIs experimentais.
+
+⚠️ **NOTA**: O subsistema code-to-figma foi removido do monorepo, então esta atualização agora afeta apenas o workspace raiz.
 
 ### 2.2 Estratégia
 
 1. Criar branch de teste isolado
-2. Atualizar nos 2 workspaces simultaneamente
+2. Atualizar no workspace raiz
 3. Inspecionar changelog oficial
-4. Buscar breaking changes no código
-5. Rodar testes unitários (figma-mcp-server tem coverage ≥80%)
+4. Verificar se há uso ativo do SDK no código
+5. Validar build e type-check
 6. Decidir: merge ou reverter
 
 ### 2.3 Comandos
@@ -135,9 +132,6 @@ git checkout -b test/mcp-sdk-update
 # Atualizar workspace raiz
 pnpm add @modelcontextprotocol/sdk@latest
 
-# Atualizar figma-mcp-server
-pnpm --filter figma-mcp-server add @modelcontextprotocol/sdk@latest
-
 # Instalar
 pnpm install
 
@@ -148,11 +142,11 @@ pnpm install
 ### 2.4 Análise de Breaking Changes
 
 ```bash
-# Buscar imports no código
-grep -r "from '@modelcontextprotocol/sdk'" code-to-figma/figma-mcp-server/src
+# Buscar imports no código (workspace raiz e apps/packages)
+grep -r "from '@modelcontextprotocol/sdk'" apps/ packages/ domains/
 
 # Buscar exports/tipos usados
-grep -r "import {" code-to-figma/figma-mcp-server/src | grep modelcontextprotocol
+grep -r "import {" apps/ packages/ domains/ | grep modelcontextprotocol
 ```
 
 **Pontos críticos para verificar**:
@@ -164,27 +158,21 @@ grep -r "import {" code-to-figma/figma-mcp-server/src | grep modelcontextprotoco
 ### 2.5 Validações
 
 ```bash
-# Rodar testes unitários
-pnpm --filter figma-mcp-server test
-
-# Verificar coverage (deve manter ≥80%)
-# Statements: ≥80%
-# Branches: ≥75%
-# Functions: ≥80%
-
 # Build completo
 pnpm build
 
-# Type check específico
-pnpm --filter figma-mcp-server type-check
+# Type check global
+pnpm type-check
+
+# Lint (verificar se há warnings de deprecação)
+pnpm lint
 ```
 
 **Checklist**:
-- [ ] Testes unitários passando (0 falhas)
-- [ ] Coverage mantém thresholds (≥80/75/80)
 - [ ] Build sem erros TypeScript
-- [ ] Nenhum warning de deprecação nos logs
-- [ ] Server MCP inicia sem exceções
+- [ ] Type-check passa sem erros
+- [ ] Lint sem novos warnings
+- [ ] Nenhum import órfão do SDK no código
 
 ### 2.6 Decisão
 
@@ -197,9 +185,9 @@ git branch -d test/mcp-sdk-update
 git add -A
 git commit -m "feat(deps): atualizar @modelcontextprotocol/sdk 1.0.0 → 1.25.1
 
-- Atualizado em workspace raiz + figma-mcp-server
-- Testado: 100% testes unitários passando
-- Coverage mantido: ≥80% statements/functions, ≥75% branches
+- Atualizado em workspace raiz
+- Validado: build + type-check + lint passando
+- Nota: code-to-figma removido do monorepo
 - Breaking changes: nenhum detectado"
 git push origin main
 ```
@@ -235,11 +223,9 @@ pnpm build
 
 ### 3.1 Contexto
 
-ESLint TypeScript está em 2 locais:
-- `packages/eslint-config`: **v8.14.0** (usado no monorepo) → atualizar para **v8.50.0**
-- `code-to-figma/figma-sync-engine`: **v7.18.0** (código legado) → **NÃO atualizar**
+ESLint TypeScript está em `packages/eslint-config`: **v8.14.0** (usado no monorepo) → atualizar para **v8.50.0**
 
-**Decisão**: atualizar apenas `packages/eslint-config` (36 patch releases, baixo risco).
+**Decisão**: atualizar 36 patch releases, baixo risco.
 
 ### 3.2 Comandos
 
@@ -289,7 +275,7 @@ git add packages/eslint-config/package.json pnpm-lock.yaml
 git commit -m "chore(lint): atualizar TypeScript ESLint 8.14.0 → 8.50.0
 
 - Atualizado @typescript-eslint/eslint-plugin e parser
-- Escopo: packages/eslint-config (não mexeu em figma-sync-engine)
+- Escopo: packages/eslint-config
 - Validado: pnpm lint sem novos erros
 - Impacto: 36 patch releases aplicadas"
 
@@ -319,13 +305,12 @@ git checkout -- packages/eslint-config/package.json pnpm-lock.yaml
 
 ### 4.1 Contexto
 
-Storybook está com **versões misturadas** em 3 locais:
+Storybook está com **versões misturadas** em 2 locais:
 
 | Local | Versões | Status |
 |-------|---------|--------|
 | domains/storybook | 8.4.7 (maioria) + 8.6.14 (a11y) | ⚠️ Inconsistente |
 | packages/design-system | 8.4.7 (react) + 8.6.14 (types) | ⚠️ Inconsistente |
-| figma-sync-engine/addon | 7.6.17 (legado) | 🔒 Não mexer |
 
 **Desafio**: upgrade MAJOR (8→10) em cima de base inconsistente = alto risco de regressão visual e funcional.
 
@@ -555,20 +540,14 @@ pnpm dev:hub
 
 **Tempo máximo de tentativa**: 2 horas
 
-### 4.8 Sobre figma-sync-engine (Storybook 7.x)
+### 4.8 Nota sobre subsistemas removidos
 
-**❌ DECISÃO: NÃO ATUALIZAR**
+**ℹ️ INFORMAÇÃO**: O subsistema `code-to-figma` (figma-mcp-server + figma-sync-engine) foi removido do monorepo em 18/12/2025.
 
-**Justificativa**:
-- Código legado isolado (não afeta monorepo principal)
-- Storybook 7.6.17 está funcionando para o caso de uso específico (export addon)
-- Risco > Benefício (pode quebrar pipeline figma-sync)
-- Prioridade baixa vs esforço alto
-
-**Se futuramente for necessário**:
-- Criar repositório separado para figma-sync-engine
-- Atualizar lá de forma isolada
-- Não misturar com upgrade do monorepo principal
+**Impacto no upgrade Storybook**:
+- ✅ Não há mais conflito com Storybook 7.x legado
+- ✅ Upgrade pode focar 100% em domains/storybook + packages/design-system
+- ✅ Sem necessidade de compatibilidade com addons antigos
 
 ### 4.9 Commit Final (se sucesso)
 
@@ -594,8 +573,7 @@ Performance:
 
 Escopo:
 - domains/storybook: atualizado
-- packages/design-system: atualizado
-- figma-sync-engine: NÃO mexido (decisão documentada)"
+- packages/design-system: atualizado"
 
 git push origin feat/storybook-10-upgrade
 
