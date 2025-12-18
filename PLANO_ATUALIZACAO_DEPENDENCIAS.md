@@ -303,23 +303,75 @@ git checkout -- packages/eslint-config/package.json pnpm-lock.yaml
 **Bloqueadores**: Requer sessão dedicada em sprint futuro  
 **Status**: 🚧 PLANEJAMENTO - NÃO EXECUTAR AGORA  
 
-### 4.1 Contexto
+### 4.0 Estado Real Descoberto (18/12/2025)
 
-Storybook está com **versões misturadas** em 2 locais:
+**Auditoria revelou versões misturadas em 2 locais**:
 
-| Local | Versões | Status |
-|-------|---------|--------|
-| domains/storybook | 8.4.7 (maioria) + 8.6.14 (a11y) | ⚠️ Inconsistente |
-| packages/design-system | 8.4.7 (react) + 8.6.14 (types) | ⚠️ Inconsistente |
+| Local | Packages | Versões Declaradas | Problema |
+|-------|----------|-------------------|----------|
+| **domains/storybook** | 11 packages | `^8.4.7` (maioria)<br>`^8.6.14` (a11y) | ⚠️ Mistura |
+| **packages/design-system** | 2 packages | `^8.4.7` (react)<br>`^8.6.14` (types) | ⚠️ Mistura |
+
+**Versões instaladas em node_modules** (via pnpm resolution):
+- Maioria: **8.6.14** (pnpm escolheu a mais recente que satisfaz `^8.4.7`)
+- Declarado: Mix de 8.4.7 e 8.6.14 nos package.json
+
+**CVE ATIVO**: CVE-2025-68429 (HIGH) - Storybook 8.0.0 até 8.6.14 vaza `.env` em builds publicados.  
+**Versão segura**: 8.6.15+
+
+### 4.1 Contexto e Desafio
+
+**Por quê versões misturadas**:
+1. Projeto criado com Storybook 8.4.7
+2. Addon a11y instalado depois → npm tinha 8.6.14 disponível
+3. pnpm resolveu `^8.4.7` → 8.6.14 (satisfaz semantic versioning)
+4. Resultado: declaração inconsistente, runtime misto
 
 **Desafio**: upgrade MAJOR (8→10) em cima de base inconsistente = alto risco de regressão visual e funcional.
 
 ### 4.2 Pré-requisitos (antes de começar)
 
-#### 4.2.1 Unificar versão 8.x atual
+#### 4.2.0 Correção Urgente do CVE (FAZER PRIMEIRO)
+
+⚠️ **ATENÇÃO**: Antes de qualquer upgrade, corrigir CVE-2025-68429.
 
 ```bash
-# Atualizar TODAS para 8.6.14 (última 8.x estável)
+# Atualizar para 8.6.15 (versão segura) nos 2 locais:
+links@^8.6.14 \
+  # ... [resto omitido por estar DEPRECATED]
+```
+
+**Validação pré-upgrade** (após 4.2.0 com 8.6.15)5
+
+# 3. Instalar e validar
+pnpm install
+pnpm dev:hub  # Testar se inicia sem erros
+pnpm build:hub  # Testar build
+
+# 4. Commit imediato
+git add -A
+git commit -m "security(storybook): CVE-2025-68429 - unificar em 8.6.15
+
+- Atualizado domains/storybook: 8.4.7/8.6.14 → 8.6.15
+- Atualizado packages/design-system: 8.4.7/8.6.14 → 8.6.15
+- Corrige leak de .env em builds publicados (HIGH severity)
+- Versões agora unificadas e segu (`pnpm dev:hub`)
+- [ ] Todas as stories renderizam corretamente (testar manualmente)
+- [ ] Addon a11y funciona (painel Accessibility aparece)
+- [ ] Interaction tests rodam via `pnpm test-storybook`
+- [ ] Audit confirma CVE resolvido: `pnpm audit --audit-level=high
+**Tempo estimado**: 15 minutos  
+**Impacto**: Zero breaking (patch release)  
+**Urgência**: ALTA (CVE público há 7 dias)
+
+#### 4.2.1 Unificar em versão intermediária (DEPRECATED - pular para 4.2.0)
+
+~~Atualizar TODAS para 8.6.14 (última 8.x antes do CVE)~~ → **PULAR ESTA ETAPA**, ir direto para 8.6.15.
+
+```bash
+# DEPRECATED - NÃO EXECUTAR (8.6.14 é vulnerável)
+# Use 4.2.0 acima (8.6.15) ao invés disto
+
 pnpm --filter storybook add -D \
   @storybook/addon-essentials@^8.6.14 \
   @storybook/addon-interactions@^8.6.14 \
@@ -565,8 +617,9 @@ Validações:
 - ✅ Build: pnpm build:hub completo
 - ✅ Visual regression: 100% stories OK
 - ✅ Interaction tests: todos passando
-- ✅ Addon a11y: funcional e validado
-
+- **URGENTE** - Correção CVE Storybook (4.2.0): **15 minutos** (executar IMEDIATAMENTE)
+- Etapas 1-3: **28 minutos** (baixa prioridade, pode adiar)
+- Etapa 4 (upgrade 8→10)
 Performance:
 - Build time: [X]s antes → [Y]s depois
 - Dev server start: [X]s antes → [Y]s depois
@@ -646,10 +699,11 @@ graph TD
 
 ```
 [18/12/2025 - 00:00] - Plano criado, aguardando aprovação
-[__/12/2025 - __:__] - ETAPA 1 iniciada
-[__/12/2025 - __:__] - ETAPA 1 concluída - Commit: <sha>
-[__/12/2025 - __:__] - ETAPA 2 iniciada
-[__/12/2025 - __:__] - ETAPA 2 concluída - Commit: <sha> - Breaking: Sim/Não
+[_**🚨 CVE Storybook (4.2.0)** | **🔴 URGENTE** | - | - | **Executar PRIMEIRO** (CVE-2025-68429) |
+| 1. Sentry | ⏳ Pendente | - | - | Baixa prioridade |
+| 2. MCP SDK | ⏳ Pendente | - | - | Baixa prioridade |
+| 3. TypeScript ESLint | ⏳ Pendente | - | - | Baixa prioridade |
+| 4. Storybook 8→10 | 🚧 Planejado | - | - | Sprint futuro (após CVE corrigido)ha> - Breaking: Sim/Não
 [__/12/2025 - __:__] - ETAPA 3 iniciada
 [__/12/2025 - __:__] - ETAPA 3 concluída - Commit: <sha>
 [__/12/2025 - __:__] - Etapas 1-3 finalizadas com sucesso
