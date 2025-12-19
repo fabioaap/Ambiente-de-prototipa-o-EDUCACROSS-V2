@@ -11,41 +11,58 @@ Cada story está priorizada por impacto em segurança, estabilidade e velocidade
 
 ---
 
-### User Story 1 - Correção Urgente do CVE Storybook (Priority: P0 - CRÍTICO)
+### User Story 1 - CVE Fix + Modernização Storybook 10.x (Priority: P0 - CRÍTICO)
 
 **Jornada**: Não aplicável (infraestrutura base)  
 **Superfícies afetadas**: 
 - `domains/storybook` (Hub de visualização na porta 6006)
 - `packages/design-system` (dependências de tipo Storybook)
 - Build artifacts publicáveis (`pnpm build:hub`)
+- Todas as `.stories.tsx` (potencial mudança de API)
 
-Como **desenvolvedor do monorepo**, preciso **corrigir a vulnerabilidade CVE-2025-68429 no Storybook** que pode vazar variáveis de ambiente em builds públicos, para **garantir que nenhum token ou secret seja exposto acidentalmente** quando publicarmos o Storybook do design system.
+Como **desenvolvedor do monorepo**, preciso **corrigir a vulnerabilidade CVE-2025-68429 E modernizar para Storybook 10.x** em uma única tacada, para **eliminar o CVE + aproveitar features modernas** antes de publicar o design system v1.0, com fallback seguro para 8.6.15 se v10 quebrar.
 
-**Why this priority**: CVE de severidade HIGH que expõe `.env` em builds. Bloqueia qualquer publicação pública do Storybook. Risco de vazamento de tokens Figma, credenciais de API, e segredos de desenvolvimento.
+**Why this priority**: 
+- CVE de severidade HIGH que expõe `.env` em builds (urgente)
+- Contexto de prototipação permite risco controlado de MAJOR upgrade
+- Melhor migrar AGORA (pré-v1.0) que depois com consumidores
+- v10 tem performance, UI e testes melhores (valor agregado)
+- Fallback para 8.6.15 garante que CVE será corrigido de qualquer forma
+
+**Estratégia**: Tentar v10 primeiro, fallback conservador se falhar
 
 **Independent Test**: 
-1. Executar `pnpm audit --audit-level=high` e confirmar zero vulnerabilidades HIGH
-2. Rodar `pnpm build:hub` e inspecionar output por variáveis de ambiente vazadas
-3. Validar que `pnpm dev:hub` inicia sem erros na porta 6006
-4. Confirmar que todas as 11 packages do Storybook estão unificadas em versão >=8.6.15
+1. Criar branch `test/storybook-10-upgrade` isolada
+2. Executar `pnpm dlx storybook@latest upgrade` (tenta v10)
+3. Validar `pnpm install && pnpm build && pnpm dev:hub`
+4. Se SUCESSO: confirmar zero CVE + v10 funcional + merge
+5. Se FALHA: rollback + executar 8.6.15 conservador (ETAPA 4.2.0 fallback)
 
 **Acceptance Scenarios**:
 
 1. **Given** o monorepo possui Storybook 8.4.7 e 8.6.14 (versões vulneráveis)  
-   **When** atualizo para 8.6.15+ em `domains/storybook` (11 packages) e `packages/design-system` (2 packages)  
-   **Then** `pnpm audit` reporta zero vulnerabilidades HIGH e CVE-2025-68429 desaparece
+   **When** executo `pnpm dlx storybook@latest upgrade` em branch de teste  
+   **Then** CLI atualiza para Storybook 10.x (última stable) automaticamente
 
-2. **Given** as versões foram unificadas em 8.6.15  
+2. **Given** packages foram atualizados para 10.x  
+   **When** executo `pnpm install && pnpm build`  
+   **Then** instalação completa sem peer dependency conflicts E build passa sem erros TypeScript
+
+3. **Given** build passou  
    **When** executo `pnpm dev:hub`  
-   **Then** o servidor Storybook inicia sem erros de plugin incompatível e renderiza todas as stories
+   **Then** servidor inicia, todas as stories renderizam, addons funcionam (a11y, interactions, essentials)
 
-3. **Given** o Storybook está atualizado  
-   **When** rodo `pnpm build:hub` e inspeciono o output  
-   **Then** nenhuma variável `.env` (FIGMA_TOKEN, SECRET, etc) aparece no bundle final
+4. **Given** dev funciona  
+   **When** rodo `pnpm audit --audit-level=high`  
+   **Then** zero vulnerabilidades HIGH (CVE-2025-68429 resolvido)
 
-4. **Given** a correção foi aplicada  
-   **When** verifico `pnpm-lock.yaml`  
-   **Then** todas as referências a Storybook 8.0.0-8.6.14 foram substituídas por >=8.6.15
+5. **Given** tudo funciona em v10  
+   **When** merge na main  
+   **Then** CVE corrigido + modernização completa em um único commit
+
+6. **Given** v10 quebrou algo crítico (cenário de falha)  
+   **When** identifico erro bloqueante (addon incompatível, build quebrado, stories não renderizam)  
+   **Then** rollback + executar ETAPA 4.2.0 fallback (8.6.15 conservador) para garantir CVE fix
 
 ---
 
@@ -131,17 +148,16 @@ Como **mantenedor do monorepo**, preciso **atualizar patches de Sentry, MCP SDK 
 
 ---
 
-### User Story 4 - Planejamento do Upgrade Storybook 8→10 MAJOR (Priority: P3 - BAIXO)
+### User Story 4 - Fallback Conservador (8.6.15) Se v10 Falhar (Priority: P0-FALLBACK)
 
-**Jornada**: Não aplicável (planejamento futuro)  
+**Jornada**: Não aplicável (contingência)  
 **Superfícies afetadas**:
-- `domains/storybook` (Hub completo)
-- `packages/design-system` (stories e interactions)
-- Todos os componentes com `.stories.tsx`
+- `domains/storybook` (11 packages)
+- `packages/design-system` (2 packages)
 
-Como **líder técnico do monorepo**, preciso **criar um plano detalhado para upgrade Storybook 8.x → 10.x** incluindo pesquisa de breaking changes, teste de addons, e validação de visual regression, para **garantir que o upgrade MAJOR seja executado com segurança em sprint futura dedicada**.
+Como **desenvolvedor do monorepo**, preciso **ter um plano de fallback conservador (atualizar apenas para 8.6.15)** caso o upgrade para Storybook 10.x falhe, para **garantir que o CVE-2025-68429 será corrigido de qualquer forma** mesmo se a modernização não funcionar.
 
-**Why this priority**: MAJOR upgrade complexo que requer pesquisa prévia, 2h de execução, e validação extensiva. Não é urgente porque versão 8.6.15 (pós-CVE) é estável e suportada. Pode ser agendado para sprint dedicada.
+**Why this priority**: Contingência crítica. Se User Story 1 (v10) quebrar algo bloqueante, este é o plano B que garante CVE fix em 15 minutos adicionais.
 
 **Independent Test**:
 1. Documentar checklist de pré-requisitos (unificar versões, ler migration guides)
@@ -150,37 +166,39 @@ Como **líder técnico do monorepo**, preciso **criar um plano detalhado para up
 4. Rodar interaction tests e visual regression
 5. Documentar rollback plan caso upgrade falhe
 
-**Acceptance Scenarios**:
+**Acceptance Scenarios** (executados APENAS se User Story 1 falhar):
 
-1. **Given** Storybook está unificado em 8.6.15 (pós-CVE)  
-   **When** leio migration guides do Storybook 9.0 e 10.0  
-   **Then** identifico breaking changes que impactam nosso setup (addons, config, stories)
+1. **Given** tentativa de Storybook 10.x falhou com erro bloqueante  
+   **When** identifico que não consigo resolver em <1h (addon incompatível crítico, build quebrado)  
+   **Then** decido executar fallback conservador 8.6.15
 
-2. **Given** entendo os breaking changes  
-   **When** executo `pnpm dlx storybook@latest upgrade` em branch de teste  
-   **Then** CLI atualiza packages e sugere codemods necessários
+2. **Given** decidi fazer fallback  
+   **When** atualizo manualmente para 8.6.15 em `domains/storybook` (11 packages) e `packages/design-system` (2 packages)  
+   **Then** `pnpm install` completa sem conflitos
 
-3. **Given** packages foram atualizados para 10.x  
-   **When** rodo `pnpm dev:hub`  
-   **Then** servidor inicia, todas as stories renderizam, e addons funcionam (a11y, interactions)
+3. **Given** packages em 8.6.15  
+   **When** executo `pnpm build && pnpm dev:hub`  
+   **Then** build passa, servidor inicia, stories renderizam (validação conservadora)
 
-4. **Given** dev server funciona  
-   **When** executo `pnpm build:hub`  
-   **Then** build completa sem erros e Storybook estático é gerado
+4. **Given** 8.6.15 funciona  
+   **When** rodo `pnpm audit --audit-level=high`  
+   **Then** CVE-2025-68429 resolvido (objetivo mínimo atingido)
 
-5. **Given** tudo funciona na branch de teste  
-   **When** documento o processo e rollback plan  
-   **Then** ETAPA 4 está pronta para execução em sprint futura
+5. **Given** CVE corrigido via fallback  
+   **When** commit + merge  
+   **Then** monorepo seguro, v10 pode ser tentado em sprint futura com mais tempo
 
 ---
 
 ### Edge Cases
 
-- **CVE Storybook (P0)**:
-  - O que acontece se `pnpm install` após atualização falhar por conflito de peer dependency entre Storybook 8.6.15 e algum addon de terceiro? → Rollback imediato para 8.6.14, investigar addon incompatível, buscar versão compatível
-  - ✅ **WARNING CONHECIDO**: @storybook/test-runner@0.24.2 é incompatível com Storybook 8.6.14 (e continuará em 8.6.15). Não bloqueia CVE fix, apenas gera warning no console. Solução: atualizar test-runner para v0.25+ quando disponível ou aceitar warning.
-  - Como validar que `.env` realmente não vaza no build sem publicar? → Inspecionar localmente os arquivos `storybook-static/` por padrões `FIGMA.*TOKEN|SECRET|KEY`, usar grep recursivo
-  - E se o addon-a11y quebrar após unificação? → Remover temporariamente, completar CVE fix, reativar depois com versão compatível
+- **CVE + v10 (P0)**:
+  - O que acontece se Storybook 10.x quebrar build com erro de Vite? → Ler error stack, ajustar `vite.config.ts` se necessário, ou executar fallback 8.6.15 se não resolver em 30min
+  - E se addon-a11y não tiver versão compatível com v10? → Remover temporariamente, completar upgrade, buscar alternativa ou aguardar update do addon
+  - Como saber se v10 está realmente melhor que v8? → Comparar startup time, build time, e experiência de navegação (stories loading faster, UI mais responsiva)
+  - ✅ **VALIDADO**: @storybook/test-runner incompatível com v8 (warning conhecido), verificar se v10 resolve
+  - E se migration de 8→10 exigir codemod manual em 50+ stories? → Avaliar custo/benefício, se >1h considerar fallback 8.6.15
+  - Como validar que `.env` não vaza em v10? → Inspecionar `storybook-static/` por padrões `FIGMA.*TOKEN|SECRET|KEY` (mesmo método)
 
 - **MAJOR deps (P1)**:
   - O que acontece se zod 4.x for incompatível com MCP SDK 1.25.1? → Manter zod em 3.x, documentar bloqueio, abrir issue upstream no MCP SDK
@@ -231,15 +249,15 @@ Constituição alignment:
 ### Measurable Outcomes
 
 - **SC-001**: `pnpm audit --audit-level=high` retorna zero vulnerabilidades após CVE fix (✅ tempo típico: 3.1s, exit code 0)
-- **SC-002**: Todas as 13 packages do Storybook (@storybook/*) estão em versão unificada >=8.6.15 (verificado via `pnpm list --depth=0 | grep storybook`)
-- **SC-003**: `pnpm dev:hub` inicia em <30 segundos e renderiza 100% das stories sem erros de console (✅ baseline medido: 9.2s startup)
-- **SC-004**: `pnpm build` completa em <5 minutos sem erros de TypeScript ou build (✅ baseline medido: 2.06 min / 123s)
+- **SC-002**: Todas as 13 packages do Storybook (@storybook/*) estão em versão unificada >=10.0.0 (ideal) OU >=8.6.15 (fallback) - verificado via `pnpm list --depth=0 | grep storybook`
+- **SC-003**: `pnpm dev:hub` inicia e renderiza 100% das stories (✅ baseline v8: 9.2s, v10 pode ser mais rápido com Vite 5+)
+- **SC-004**: `pnpm build` completa sem erros TypeScript (✅ baseline v8: 2.06min, v10 pode ser diferente)
 - **SC-005**: 4 dependências MAJOR (dotenv, pino, undici, zod) atualizadas OU decisão documentada de manter versões antigas com justificativa (verificado via git log + PLANO.md)
 - **SC-006**: Zero regressão em `pnpm lint` após atualização do TypeScript ESLint (exit code 0, zero novos warnings)
 - **SC-007**: Sentry 10.32, MCP SDK 1.25.1 instalados e validados via `pnpm list` (medido via grep de package.json)
 - **SC-008**: Tracking table em `PLANO_ATUALIZACAO_DEPENDENCIAS.md` atualizada com data de execução, commit SHA, e status por etapa
 - **SC-009**: Branch `chore/dependency-updates-sprint6` mergeada na main com commits atômicos (1 por etapa) e mensagens descritivas
-- **SC-010**: Tempo total de execução <1h para P0+P1+P2 (CVE + MAJOR + Patches), excluindo P3 (Storybook 8→10 planejado para futuro)
+- **SC-010**: Tempo total de execução <3h para P0+P1+P2 (CVE+v10 tentativa 2h + MAJOR deps 2-3h + Patches 28min), com fallback <1h se v10 falhar
 
 ---
 
@@ -247,17 +265,20 @@ Constituição alignment:
 
 ### Execution Order (Priority-Based)
 
-1. **P0 - CVE Storybook** (15 min, URGENTE)
+1. **P0 - CVE + v10 tentativa** (2h upgrade + validação, fallback 15min se falhar)
 2. **P1 - MAJOR deps** (2-3h, pesquisa + teste + decisão)
 3. **P2 - Patches** (28 min total: 5+15+8)
-4. **P3 - Storybook 8→10** (planejamento apenas, execução em sprint futura)
+4. **P0-FALLBACK - 8.6.15 conservador** (executado APENAS se v10 falhar, 15min)
 
 ### Rollback Strategy
 
-Cada etapa possui rollback documentado no `PLANO_ATUALIZACAO_DEPENDENCIAS.md`. Em caso de falha:
-- **CVE**: `git revert HEAD && pnpm install` (volta para 8.6.14 temporariamente)
+**Estratégia v10 first com fallback**:
+- **v10 tentativa**: Branch isolada `test/storybook-10-upgrade`, se falhar → `git checkout main` (sem impacto)
+- **Fallback 8.6.15**: Se v10 não funcionar, executar User Story 4 (15min conservador)
 - **MAJOR deps**: Reverter apenas a dep problemática, manter outras se passaram
 - **Patches**: `git checkout -- package.json pnpm-lock.yaml && pnpm install`
+
+**Gatilho de fallback**: Usar 8.6.15 se v10 tiver erros bloqueantes que não consigo resolver em <1h
 
 ### Validation Checklist (applies to ALL stories)
 
