@@ -35,6 +35,8 @@
     "@axe-core/playwright": "^4.11.0",
     "@playwright/test": "^1.48.2",
     "@prototipo/eslint-config": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "eslint": "^9.15.0",
     "prettier": "^3.3.3",
     "turbo": "^2.6.1",
@@ -42,13 +44,13 @@
   },
   "packageManager": "pnpm@9.14.4",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
-    "@sentry/nextjs": "^10.28.0",
+    "@modelcontextprotocol/sdk": "^1.25.1",
+    "@sentry/nextjs": "^10.32.0",
     "@specfy/stack-analyser": "1.27.3",
     "dotenv": "^17.2.3",
-    "pino": "^9.5.0",
+    "pino": "^10.1.0",
     "react-ga4": "^2.1.0",
-    "undici": "^6.20.0",
-    "zod": "^3.23.8"
+    "undici": "^7.16.0",
+    "zod": "^4.2.1"
   }
 }
